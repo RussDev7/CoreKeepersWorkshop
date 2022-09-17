@@ -13,7 +13,8 @@ CoreKeepersWorkshop - The simple GUI inventory editor for Core Keeper. This app 
  - [x] Export / Import players. 
  - [x] Minimization support. 
  - [x] Unknown ID debugger. 
- - [x] Modded support. 
+ - [x] Modded support.
+ - [x] No Game File Replacement. 
  - [x] Future proof resiliency.
  
 ## How It Works / How Do I Use It?
