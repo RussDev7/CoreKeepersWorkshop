@@ -211,6 +211,10 @@ namespace CoreKeeperInventoryEditor
                 button2.Text = "Reload Inventory";
                 button3.Text = "Remove All";
 
+                // Reset progress bar.
+                progressBar2.Value = 0;
+                progressBar2.Visible = false;
+
                 MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -5238,6 +5242,7 @@ namespace CoreKeeperInventoryEditor
 
             // Reset progress bar.
             progressBar2.Value = 0;
+            progressBar2.Visible = true;
 
             // Reload Inventory.
             AddItemToInv(loadInventory: true);
