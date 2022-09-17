@@ -1,0 +1,69 @@
+Changes Since v1.1.7
+===========================================================
+- Fixed an issue with the progress bar when failing.
+- Fixed the version numbers.
+- Fixed being able to reload with invalid addresses.
+
++ Right clicking inventory slots shows an info message.
+
+Changes Since v1.1.6
+===========================================================
+- Fixed the debug menu not being read only.
+- Fixed some issues with items getting corruted.
+- Renamed texbox "variation" to "item variant".
+
++ Added item count to the inventory slots.
++ Added a progress bar for address searches and loading.
++ Added some assets for some of the food items.
++ Minor code improvements.
+
+Changes Since v1.1.5
+===========================================================
+- Fixed an issue where you could only export once per load.
+- Misc bugs fixed.
+
++ Added a new item tag called variation (mostly for foods).
++ Added new item assets.
++ Increased the max item stack to 999999999.
+
+Changes Since v1.1.4
+===========================================================
++ Player names can now be changes to any lengh under 30.
++ Ability to now import or export player files.
++ Minor code improvements.
+
+Changes Since v1.1.3
+===========================================================
+- Fixed a bug when double launching the application.
+- Fixed a bug with item slot1 closing inventory explorer.
+- Fixed a bug with item slot12 saving item to slot13.
+- Choosing filtered items didn't reset saved search tab.
+
++ Application is now a single instance application.
+
+Changes Since v1.1.2
+===========================================================
+- Fixed bug with adding custom ID's throwing an error.
+- Fixed all the tab indexes.
+
++ Inv explorer now saves the last settings when closed.
+
+Changes Since v1.1
+===========================================================
+- Fixed an issue where unknown items would break the GUI.
+
++ Added a richtextbox in player to record missing ids.
+
+Changes Since v1.0
+===========================================================
+- Fixed picturebox2 from not aborting correctly.
+- Fixed removing items leaving stacks values of 1.
+- Fixed torch error to include more detailed instructions.
+- Fixed the double loading of assets bug.
+- Fixed a few spelling errors.
+- Fixed a few other minar bugs.
+- Fixed a few of the GUI sizes.
+
++ Added a search for item feature for the item browser.
++ Added tooltips.
++ Increased the indexing speeds 300%.
