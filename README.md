@@ -1,7 +1,7 @@
 
 # CoreKeepersWorkshop
 
-[![Build status](https://ci.appveyor.com/api/projects/status/louecd5l7lvp4hvo?svg=true)](https://ci.appveyor.com/project/RussDev7/corekeepersworkshop) [![GitHub Version](https://img.shields.io/github/tag/RussDev7/CoreKeepersWorkshop.svg?label=GitHub)](https://github.com/RussDev7/CoreKeepersWorkshop) [![Contributors](https://img.shields.io/github/contributors/RussDev7/CoreKeepersWorkshop)](https://github.com/RussDev7/CoreKeepersWorkshop)
+[![Build status](https://ci.appveyor.com/api/projects/status/louecd5l7lvp4hvo?svg=true)](https://ci.appveyor.com/project/RussDev7/corekeepersworkshop) [![GitHub Version](https://img.shields.io/github/tag/RussDev7/CoreKeepersWorkshop?label=GitHub)](https://github.com/RussDev7/CoreKeepersWorkshop) [![Contributors](https://img.shields.io/github/contributors/RussDev7/CoreKeepersWorkshop)](https://github.com/RussDev7/CoreKeepersWorkshop)
 
 ![thumbCKWNew](https://user-images.githubusercontent.com/33048298/190870510-69e52e39-fd39-4fea-a705-fdb44dac93df.png)
 
