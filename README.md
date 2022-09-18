@@ -62,3 +62,9 @@ Here is the list of all the available categories:
 ## Download
 
 - [GitHub Releases](https://github.com/RussDev7/CoreKeepersWorkshop/releases)
+
+## Support & Credits
+
+- [memory.dll](https://github.com/erfg12/memory.dll)
+- [json.net](https://www.newtonsoft.com/json)
+- [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Donation&currency_code=USD&bn=PP%2dDonationsBF)
