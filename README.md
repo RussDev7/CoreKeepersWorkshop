@@ -18,7 +18,7 @@ CoreKeepersWorkshop - The simple GUI inventory editor for Core Keeper. This app 
  - [x] Future proof resiliency.
  
 ## How It Works / How Do I Use It?
-Due to how Core Keeper is as a unity game, the devolopers have protected there source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection tequnies to scramble regions of memory to prevent address pointers. So using some clevor AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
+Due to how Core Keeper is as a unity game, the devolopers have protected their source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection techniques to scramble regions of memory to prevent address pointers. So using some clevor AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
 
 Included in this application's directory is a file named `build.bat`. This file can be used to compile the applications source code from a single click. You can also download an already compiled version from the releases. After building, your application can be found in the releases directory.
 
@@ -33,11 +33,11 @@ The features for the application is as follows:
 
 
 ## How To Add New / Modded Items
-This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editors textures. Each item category is devided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a questionmark on the main form. 
+This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editor's textures. Each item category is divided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a questionmark on the main form. 
 
 ![01](https://user-images.githubusercontent.com/33048298/190876339-6153add9-0558-4759-969f-a14f2dddbe7f.PNG)
 
-Bellow is a chart to show off filename system for images:
+Below is a chart to show off filename system for images:
 
 ![ItemSupportv2](https://user-images.githubusercontent.com/33048298/190885823-8f0b7a7a-0abd-4f45-b11a-76d67c52f466.png)
 
