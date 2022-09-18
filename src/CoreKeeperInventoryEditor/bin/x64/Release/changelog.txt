@@ -1,6 +1,6 @@
 Changes Since v1.1.8
 ===========================================================
-+ Changed the item catagories to now use folder names.
++ Changed the item categories to now use folder names.
 
 Changes Since v1.1.7
 ===========================================================
