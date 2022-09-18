@@ -27,7 +27,7 @@ After launching, you will need to put some torches in both your first and last i
 ![start2](https://user-images.githubusercontent.com/33048298/190875320-ac4f5496-2b0f-480c-b7f4-0f7179d2d423.png)
 
 The features for the application is as follows:
-![InventoryAbout](https://user-images.githubusercontent.com/33048298/190877327-7828e908-430c-45e4-9546-9c346f642de3.png)
+![InventoryAbout2](https://user-images.githubusercontent.com/33048298/190886327-bb0308b3-233e-4a6e-8e35-614a70c36ae8.png)
 ![PlayerAbout](https://user-images.githubusercontent.com/33048298/190877329-170e2c23-2271-4de6-8d4a-e4fafa9f5b43.png)
 ![EditorAbout](https://user-images.githubusercontent.com/33048298/190877333-99fda451-1cfe-4962-941b-e8bb7d54a30d.PNG)
 
