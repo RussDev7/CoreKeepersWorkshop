@@ -43,6 +43,7 @@ Bellow is a chart to show off filename system for images:
 
 Here is the list of all the available categories:
 
+ - Tools
  - PlaceableItems
  - Nature
  - Materials
