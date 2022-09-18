@@ -33,13 +33,13 @@ The features for the application is as follows:
 
 
 ## How To Add New / Modded Items
-This editor has full support for adding modded items or future game release content. The assets folder for all the inventory editors textures can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If textures do not contain an asset texture, they will show up as a questionmark. 
+This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editors textures. Each item category is devided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a questionmark on the main form. 
 
 ![01](https://user-images.githubusercontent.com/33048298/190876339-6153add9-0558-4759-969f-a14f2dddbe7f.PNG)
 
 Bellow is a chart to show off filename system for images:
 
-![ItemSupport](https://user-images.githubusercontent.com/33048298/190875665-9977b004-37f9-455f-bb4b-ae3834152468.png)
+![ItemSupportv2](https://user-images.githubusercontent.com/33048298/190885823-8f0b7a7a-0abd-4f45-b11a-76d67c52f466.png)
 
 Here is the list of all the available categories:
 
