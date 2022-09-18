@@ -41,6 +41,23 @@ Bellow is a chart to show off filename system for images:
 
 ![ItemSupport](https://user-images.githubusercontent.com/33048298/190875665-9977b004-37f9-455f-bb4b-ae3834152468.png)
 
+Here is the list of all the available categories:
+
+ - PlaceableItems
+ - Nature
+ - Materials
+ - Special
+ - MobItems
+ - BaseBuilding
+ - Treasures
+ - ElectroMechanics
+ - PlantsSeeds
+ - Armors
+ - Accessories
+ - Weapons
+ - Consumables
+ - Seasonal
+
 ## Download
 
 - [GitHub Releases](https://github.com/RussDev7/CoreKeepersWorkshop/releases)
