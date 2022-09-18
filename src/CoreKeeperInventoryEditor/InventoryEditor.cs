@@ -182,204 +182,212 @@ namespace CoreKeeperInventoryEditor
             // Make sure assets exist.
             if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
             {
-                // Retrieve all image files
-                foreach (var file in ImageFiles)
+                // Get each folder in inventory.
+                foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
                 {
-                    // Get file infomration.
-                    var fi = new FileInfo(file);
-                    string[] filenameData = fi.Name.Split(',');
+                    // Get current folder name.
+                    var catergoryName = new DirectoryInfo(catergoryFolder).Name;
 
-                    // Catch desktop.ini from throwing errors.
-                    if (filenameData[0] == "desktop.ini") continue;
-                    if (filenameData[0] == "Thumbs.db") continue;
-
-                    try
+                    // Retrieve all image files
+                    foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                     {
-                        if (filenameData[3] == "Tools.png")
+                        // Get file infomration.
+                        var fi = new FileInfo(file);
+                        string[] filenameData = fi.Name.Split(',');
+
+                        // Catch desktop.ini from throwing errors.
+                        if (filenameData[0] == "desktop.ini") continue;
+                        if (filenameData[0] == "Thumbs.db") continue;
+
+                        // Place items in listview.
+                        try
                         {
-                            //Add images to Imagelist
-                            ImagelistTools.Images.Add(Image.FromFile(file));
-                            ImagelistLargeTools.Images.Add(Image.FromFile(file));
+                            if (catergoryName == "Tools")
+                            {
+                                //Add images to Imagelist
+                                ImagelistTools.Images.Add(Image.FromFile(file));
+                                ImagelistLargeTools.Images.Add(Image.FromFile(file));
 
-                            listView1.LargeImageList = ImagelistTools;
+                                listView1.LargeImageList = ImagelistTools;
 
-                            // Save filename information.
-                            listView1.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countTools++; // Add one to index count.
+                                // Save filename information.
+                                listView1.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countTools++; // Add one to index count.
+                            }
+                            else if (catergoryName == "PlaceableItems")
+                            {
+                                //Add images to Imagelist
+                                ImagelistPlaceableItems.Images.Add(Image.FromFile(file));
+                                ImagelistLargePlaceableItems.Images.Add(Image.FromFile(file));
+
+                                listView2.LargeImageList = ImagelistPlaceableItems;
+
+                                // Save filename information.
+                                listView2.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countPlaceableItems++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Nature")
+                            {
+                                //Add images to Imagelist
+                                ImagelistNature.Images.Add(Image.FromFile(file));
+                                ImagelistLargeNature.Images.Add(Image.FromFile(file));
+
+                                listView3.LargeImageList = ImagelistNature;
+
+                                // Save filename information.
+                                listView3.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countNature++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Materials")
+                            {
+                                //Add images to Imagelist
+                                ImagelistMaterials.Images.Add(Image.FromFile(file));
+                                ImagelistLargeMaterials.Images.Add(Image.FromFile(file));
+
+                                listView4.LargeImageList = ImagelistMaterials;
+
+                                // Save filename information.
+                                listView4.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countMaterials++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Special")
+                            {
+                                //Add images to Imagelist
+                                ImagelistSpecial.Images.Add(Image.FromFile(file));
+                                ImagelistLargeSpecial.Images.Add(Image.FromFile(file));
+
+                                listView5.LargeImageList = ImagelistSpecial;
+
+                                // Save filename information.
+                                listView5.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countSpecial++; // Add one to index count.
+                            }
+                            else if (catergoryName == "MobItems")
+                            {
+                                //Add images to Imagelist
+                                ImagelistMobItems.Images.Add(Image.FromFile(file));
+                                ImagelistLargeMobItems.Images.Add(Image.FromFile(file));
+
+                                listView6.LargeImageList = ImagelistMobItems;
+
+                                // Save filename information.
+                                listView6.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countMobItems++; // Add one to index count.
+                            }
+                            else if (catergoryName == "BaseBuilding")
+                            {
+                                //Add images to Imagelist
+                                ImagelistBaseBuilding.Images.Add(Image.FromFile(file));
+                                ImagelistLargeBaseBuilding.Images.Add(Image.FromFile(file));
+
+                                listView7.LargeImageList = ImagelistBaseBuilding;
+
+                                // Save filename information.
+                                listView7.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countBaseBuilding++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Treasures")
+                            {
+                                //Add images to Imagelist
+                                ImagelistTreasures.Images.Add(Image.FromFile(file));
+                                ImagelistLargeTreasures.Images.Add(Image.FromFile(file));
+
+                                listView8.LargeImageList = ImagelistTreasures;
+
+                                // Save filename information.
+                                listView8.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countTreasures++; // Add one to index count.
+                            }
+                            else if (catergoryName == "ElectroMechanics")
+                            {
+                                //Add images to Imagelist
+                                ImagelistWiring.Images.Add(Image.FromFile(file));
+                                ImagelistLargeWiring.Images.Add(Image.FromFile(file));
+
+                                listView9.LargeImageList = ImagelistWiring;
+
+                                // Save filename information.
+                                listView9.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countWiring++; // Add one to index count.
+                            }
+                            else if (catergoryName == "PlantsSeeds")
+                            {
+                                //Add images to Imagelist
+                                ImagelistPlants.Images.Add(Image.FromFile(file));
+                                ImagelistLargePlants.Images.Add(Image.FromFile(file));
+
+                                listView10.LargeImageList = ImagelistPlants;
+
+                                // Save filename information.
+                                listView10.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countPlants++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Armors")
+                            {
+                                //Add images to Imagelist
+                                ImagelistArmors.Images.Add(Image.FromFile(file));
+                                ImagelistLargeArmors.Images.Add(Image.FromFile(file));
+
+                                listView11.LargeImageList = ImagelistArmors;
+
+                                // Save filename information.
+                                listView11.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countArmors++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Accessories")
+                            {
+                                //Add images to Imagelist
+                                ImagelistAccessories.Images.Add(Image.FromFile(file));
+                                ImagelistLargeAccessories.Images.Add(Image.FromFile(file));
+
+                                listView12.LargeImageList = ImagelistAccessories;
+
+                                // Save filename information.
+                                listView12.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countAccessories++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Weapons")
+                            {
+                                //Add images to Imagelist
+                                ImagelistWeapons.Images.Add(Image.FromFile(file));
+                                ImagelistLargeWeapons.Images.Add(Image.FromFile(file));
+
+                                listView13.LargeImageList = ImagelistWeapons;
+
+                                // Save filename information.
+                                listView13.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countWeapons++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Consumables")
+                            {
+                                //Add images to Imagelist
+                                ImagelistConsumables.Images.Add(Image.FromFile(file));
+                                ImagelistLargeConsumables.Images.Add(Image.FromFile(file));
+
+                                listView14.LargeImageList = ImagelistConsumables;
+
+                                // Save filename information.
+                                listView14.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countConsumables++; // Add one to index count.
+                            }
+                            else if (catergoryName == "Seasonal")
+                            {
+                                //Add images to Imagelist
+                                ImagelistSeasonal.Images.Add(Image.FromFile(file));
+                                ImagelistLargeSeasonal.Images.Add(Image.FromFile(file));
+
+                                listView15.LargeImageList = ImagelistSeasonal;
+
+                                // Save filename information.
+                                listView15.Items.Add(new ListViewItem { ImageIndex = countSeasonal, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countSeasonal++; // Add one to index count.
+                            }
                         }
-                        else if (filenameData[3] == "PlaceableItems.png")
+                        catch (Exception)
                         {
-                            //Add images to Imagelist
-                            ImagelistPlaceableItems.Images.Add(Image.FromFile(file));
-                            ImagelistLargePlaceableItems.Images.Add(Image.FromFile(file));
-
-                            listView2.LargeImageList = ImagelistPlaceableItems;
-
-                            // Save filename information.
-                            listView2.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countPlaceableItems++; // Add one to index count.
+                            MessageBox.Show("The filename: \"" + filenameData[0] + "\" has thrown an error while loading!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            continue;
                         }
-                        else if (filenameData[3] == "Nature.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistNature.Images.Add(Image.FromFile(file));
-                            ImagelistLargeNature.Images.Add(Image.FromFile(file));
-
-                            listView3.LargeImageList = ImagelistNature;
-
-                            // Save filename information.
-                            listView3.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countNature++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Materials.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistMaterials.Images.Add(Image.FromFile(file));
-                            ImagelistLargeMaterials.Images.Add(Image.FromFile(file));
-
-                            listView4.LargeImageList = ImagelistMaterials;
-
-                            // Save filename information.
-                            listView4.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countMaterials++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Special.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistSpecial.Images.Add(Image.FromFile(file));
-                            ImagelistLargeSpecial.Images.Add(Image.FromFile(file));
-
-                            listView5.LargeImageList = ImagelistSpecial;
-
-                            // Save filename information.
-                            listView5.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countSpecial++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "MobItems.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistMobItems.Images.Add(Image.FromFile(file));
-                            ImagelistLargeMobItems.Images.Add(Image.FromFile(file));
-
-                            listView6.LargeImageList = ImagelistMobItems;
-
-                            // Save filename information.
-                            listView6.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countMobItems++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "BaseBuilding.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistBaseBuilding.Images.Add(Image.FromFile(file));
-                            ImagelistLargeBaseBuilding.Images.Add(Image.FromFile(file));
-
-                            listView7.LargeImageList = ImagelistBaseBuilding;
-
-                            // Save filename information.
-                            listView7.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countBaseBuilding++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Treasures.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistTreasures.Images.Add(Image.FromFile(file));
-                            ImagelistLargeTreasures.Images.Add(Image.FromFile(file));
-
-                            listView8.LargeImageList = ImagelistTreasures;
-
-                            // Save filename information.
-                            listView8.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countTreasures++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "ElectroMechanics.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistWiring.Images.Add(Image.FromFile(file));
-                            ImagelistLargeWiring.Images.Add(Image.FromFile(file));
-
-                            listView9.LargeImageList = ImagelistWiring;
-
-                            // Save filename information.
-                            listView9.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countWiring++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "PlantsSeeds.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistPlants.Images.Add(Image.FromFile(file));
-                            ImagelistLargePlants.Images.Add(Image.FromFile(file));
-
-                            listView10.LargeImageList = ImagelistPlants;
-
-                            // Save filename information.
-                            listView10.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countPlants++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Armors.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistArmors.Images.Add(Image.FromFile(file));
-                            ImagelistLargeArmors.Images.Add(Image.FromFile(file));
-
-                            listView11.LargeImageList = ImagelistArmors;
-
-                            // Save filename information.
-                            listView11.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countArmors++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Accessories.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistAccessories.Images.Add(Image.FromFile(file));
-                            ImagelistLargeAccessories.Images.Add(Image.FromFile(file));
-
-                            listView12.LargeImageList = ImagelistAccessories;
-
-                            // Save filename information.
-                            listView12.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countAccessories++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Weapons.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistWeapons.Images.Add(Image.FromFile(file));
-                            ImagelistLargeWeapons.Images.Add(Image.FromFile(file));
-
-                            listView13.LargeImageList = ImagelistWeapons;
-
-                            // Save filename information.
-                            listView13.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countWeapons++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Consumables.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistConsumables.Images.Add(Image.FromFile(file));
-                            ImagelistLargeConsumables.Images.Add(Image.FromFile(file));
-
-                            listView14.LargeImageList = ImagelistConsumables;
-
-                            // Save filename information.
-                            listView14.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countConsumables++; // Add one to index count.
-                        }
-                        else if (filenameData[3] == "Seasonal.png")
-                        {
-                            //Add images to Imagelist
-                            ImagelistSeasonal.Images.Add(Image.FromFile(file));
-                            ImagelistLargeSeasonal.Images.Add(Image.FromFile(file));
-
-                            listView15.LargeImageList = ImagelistSeasonal;
-
-                            // Save filename information.
-                            listView15.Items.Add(new ListViewItem { ImageIndex = countSeasonal, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countSeasonal++; // Add one to index count.
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("The filename: \"" + filenameData[0] + "\" has thrown an error while loading!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
                     }
                 }
 
