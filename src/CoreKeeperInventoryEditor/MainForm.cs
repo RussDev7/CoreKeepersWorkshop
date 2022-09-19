@@ -24,7 +24,7 @@ namespace CoreKeeperInventoryEditor
         public string ExportPlayerName = "";
 
         // Define texture data.
-        public IEnumerable<string> ImageFiles1 = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\");
+        public IEnumerable<string> ImageFiles1 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\", "*.png", SearchOption.AllDirectories);
 
         // Form initialization.
         public MainForm()
