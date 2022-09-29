@@ -1,6 +1,19 @@
+Changes Since v1.1.9
+===========================================================
+- Fixed a bug where a few returns where comments.
+- Fixed a bug with the inventory explorers search bar.
+- Fixed a bug with items not saving.
+- Fixed a bug where adding items added to their variations.
+- Fixed a bug when using windows hidden taskbox mode.
+- Adjusted the tooltip timings.
+- Made changes to the about textbox.
+
++ Added a chat capture feature for in-game command lines.
++ Inventory explorers tabs are now named based off folders.
+
 Changes Since v1.1.8
 ===========================================================
-+ Changed the item categories to now use folder names.
++ Changed the item catagories to now use folder names.
 
 Changes Since v1.1.7
 ===========================================================
