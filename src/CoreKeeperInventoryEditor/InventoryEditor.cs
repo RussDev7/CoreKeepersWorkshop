@@ -20,6 +20,9 @@ namespace CoreKeeperInventoryEditor
         // Define texture data.
         public IEnumerable<string> ImageFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\");
 
+        // Define folder names.
+        public IEnumerable<string> FolderNames = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\");
+
         // Define imagelist.
         ImageList ImagelistTools = new ImageList();
         ImageList ImagelistLargeTools = new ImageList();
@@ -139,6 +142,23 @@ namespace CoreKeeperInventoryEditor
 
             #region Do Loading Events
 
+            // Set tab text based on the folder names.
+            tabControl1.TabPages[0].Text = new DirectoryInfo(FolderNames.ElementAt(0)).Name;
+            tabControl1.TabPages[1].Text = new DirectoryInfo(FolderNames.ElementAt(1)).Name;
+            tabControl1.TabPages[2].Text = new DirectoryInfo(FolderNames.ElementAt(2)).Name;
+            tabControl1.TabPages[3].Text = new DirectoryInfo(FolderNames.ElementAt(3)).Name;
+            tabControl1.TabPages[4].Text = new DirectoryInfo(FolderNames.ElementAt(4)).Name;
+            tabControl1.TabPages[5].Text = new DirectoryInfo(FolderNames.ElementAt(5)).Name;
+            tabControl1.TabPages[6].Text = new DirectoryInfo(FolderNames.ElementAt(6)).Name;
+            tabControl1.TabPages[7].Text = new DirectoryInfo(FolderNames.ElementAt(7)).Name;
+            tabControl1.TabPages[8].Text = new DirectoryInfo(FolderNames.ElementAt(8)).Name;
+            tabControl1.TabPages[9].Text = new DirectoryInfo(FolderNames.ElementAt(9)).Name;
+            tabControl1.TabPages[10].Text = new DirectoryInfo(FolderNames.ElementAt(10)).Name;
+            tabControl1.TabPages[11].Text = new DirectoryInfo(FolderNames.ElementAt(11)).Name;
+            tabControl1.TabPages[12].Text = new DirectoryInfo(FolderNames.ElementAt(12)).Name;
+            tabControl1.TabPages[13].Text = new DirectoryInfo(FolderNames.ElementAt(13)).Name;
+            tabControl1.TabPages[14].Text = new DirectoryInfo(FolderNames.ElementAt(14)).Name;
+
             // Load some settings.
             numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
             numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemID;
@@ -202,7 +222,7 @@ namespace CoreKeeperInventoryEditor
                         // Place items in listview.
                         try
                         {
-                            if (catergoryName == "Tools")
+                            if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(0)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistTools.Images.Add(Image.FromFile(file));
@@ -214,7 +234,7 @@ namespace CoreKeeperInventoryEditor
                                 listView1.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countTools++; // Add one to index count.
                             }
-                            else if (catergoryName == "PlaceableItems")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(1)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistPlaceableItems.Images.Add(Image.FromFile(file));
@@ -226,7 +246,7 @@ namespace CoreKeeperInventoryEditor
                                 listView2.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countPlaceableItems++; // Add one to index count.
                             }
-                            else if (catergoryName == "Nature")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(2)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistNature.Images.Add(Image.FromFile(file));
@@ -238,7 +258,7 @@ namespace CoreKeeperInventoryEditor
                                 listView3.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countNature++; // Add one to index count.
                             }
-                            else if (catergoryName == "Materials")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(3)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistMaterials.Images.Add(Image.FromFile(file));
@@ -250,7 +270,7 @@ namespace CoreKeeperInventoryEditor
                                 listView4.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countMaterials++; // Add one to index count.
                             }
-                            else if (catergoryName == "Special")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(4)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistSpecial.Images.Add(Image.FromFile(file));
@@ -262,7 +282,7 @@ namespace CoreKeeperInventoryEditor
                                 listView5.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countSpecial++; // Add one to index count.
                             }
-                            else if (catergoryName == "MobItems")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(5)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistMobItems.Images.Add(Image.FromFile(file));
@@ -274,7 +294,7 @@ namespace CoreKeeperInventoryEditor
                                 listView6.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countMobItems++; // Add one to index count.
                             }
-                            else if (catergoryName == "BaseBuilding")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(6)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistBaseBuilding.Images.Add(Image.FromFile(file));
@@ -286,7 +306,7 @@ namespace CoreKeeperInventoryEditor
                                 listView7.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countBaseBuilding++; // Add one to index count.
                             }
-                            else if (catergoryName == "Treasures")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(7)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistTreasures.Images.Add(Image.FromFile(file));
@@ -298,7 +318,7 @@ namespace CoreKeeperInventoryEditor
                                 listView8.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countTreasures++; // Add one to index count.
                             }
-                            else if (catergoryName == "ElectroMechanics")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(8)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistWiring.Images.Add(Image.FromFile(file));
@@ -310,7 +330,7 @@ namespace CoreKeeperInventoryEditor
                                 listView9.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countWiring++; // Add one to index count.
                             }
-                            else if (catergoryName == "PlantsSeeds")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(9)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistPlants.Images.Add(Image.FromFile(file));
@@ -322,7 +342,7 @@ namespace CoreKeeperInventoryEditor
                                 listView10.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countPlants++; // Add one to index count.
                             }
-                            else if (catergoryName == "Armors")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(10)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistArmors.Images.Add(Image.FromFile(file));
@@ -334,7 +354,7 @@ namespace CoreKeeperInventoryEditor
                                 listView11.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countArmors++; // Add one to index count.
                             }
-                            else if (catergoryName == "Accessories")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(11)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistAccessories.Images.Add(Image.FromFile(file));
@@ -346,7 +366,7 @@ namespace CoreKeeperInventoryEditor
                                 listView12.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countAccessories++; // Add one to index count.
                             }
-                            else if (catergoryName == "Weapons")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(12)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistWeapons.Images.Add(Image.FromFile(file));
@@ -358,7 +378,7 @@ namespace CoreKeeperInventoryEditor
                                 listView13.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countWeapons++; // Add one to index count.
                             }
-                            else if (catergoryName == "Consumables")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(13)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistConsumables.Images.Add(Image.FromFile(file));
@@ -370,7 +390,7 @@ namespace CoreKeeperInventoryEditor
                                 listView14.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
                                 countConsumables++; // Add one to index count.
                             }
-                            else if (catergoryName == "Seasonal")
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(14)).Name)
                             {
                                 //Add images to Imagelist
                                 ImagelistSeasonal.Images.Add(Image.FromFile(file));
@@ -509,28 +529,35 @@ namespace CoreKeeperInventoryEditor
             // Make sure assets exist.
             if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
             {
-                // Retrieve all image files
-                foreach (var file in ImageFiles)
+                // Get each folder in inventory.
+                foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
                 {
-                    // Get file infomration.
-                    var fi = new FileInfo(file);
-                    string[] filenameData = fi.Name.Split(',');
+                    // Get current folder name.
+                    var catergoryName = new DirectoryInfo(catergoryFolder).Name;
 
-                    // Catch desktop.ini from throwing errors.
-                    if (filenameData[0] == "desktop.ini") continue;
-
-                    // Get all matches.
-                    if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
+                    // Retrieve all image files
+                    foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                     {
-                        //Add images to Imagelist
-                        ImagelistSearch.Images.Add(Image.FromFile(file));
-                        ImagelistLargeSearch.Images.Add(Image.FromFile(file));
+                        // Get file infomration.
+                        var fi = new FileInfo(file);
+                        string[] filenameData = fi.Name.Split(',');
 
-                        listView16.LargeImageList = ImagelistSearch;
+                        // Catch desktop.ini from throwing errors.
+                        if (filenameData[0] == "desktop.ini") continue;
 
-                        // Save filename information.
-                        listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                        countSearch++; // Add one to index count.
+                        // Get all matches.
+                        if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
+                        {
+                            //Add images to Imagelist
+                            ImagelistSearch.Images.Add(Image.FromFile(file));
+                            ImagelistLargeSearch.Images.Add(Image.FromFile(file));
+
+                            listView16.LargeImageList = ImagelistSearch;
+
+                            // Save filename information.
+                            listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                            countSearch++; // Add one to index count.
+                        }
                     }
                 }
             }
@@ -562,33 +589,40 @@ namespace CoreKeeperInventoryEditor
                 ImagelistSearch.ImageSize = new Size(50, 60);
 
                 // Define seperate counts.
-                int countSearch = 0;
 
+                int countSearch = 0;
                 // Make sure assets exist.
                 if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
                 {
-                    // Retrieve all image files
-                    foreach (var file in ImageFiles)
+                    // Get each folder in inventory.
+                    foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
                     {
-                        // Get file infomration.
-                        var fi = new FileInfo(file);
-                        string[] filenameData = fi.Name.Split(',');
+                        // Get current folder name.
+                        var catergoryName = new DirectoryInfo(catergoryFolder).Name;
 
-                        // Catch desktop.ini from throwing errors.
-                        if (filenameData[0] == "desktop.ini") continue;
-
-                        // Get all matches.
-                        if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
+                        // Retrieve all image files
+                        foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                         {
-                            //Add images to Imagelist
-                            ImagelistSearch.Images.Add(Image.FromFile(file));
-                            ImagelistLargeSearch.Images.Add(Image.FromFile(file));
+                            // Get file infomration.
+                            var fi = new FileInfo(file);
+                            string[] filenameData = fi.Name.Split(',');
 
-                            listView16.LargeImageList = ImagelistSearch;
+                            // Catch desktop.ini from throwing errors.
+                            if (filenameData[0] == "desktop.ini") continue;
 
-                            // Save filename information.
-                            listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
-                            countSearch++; // Add one to index count.
+                            // Get all matches.
+                            if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
+                            {
+                                //Add images to Imagelist
+                                ImagelistSearch.Images.Add(Image.FromFile(file));
+                                ImagelistLargeSearch.Images.Add(Image.FromFile(file));
+
+                                listView16.LargeImageList = ImagelistSearch;
+
+                                // Save filename information.
+                                listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                countSearch++; // Add one to index count.
+                            }
                         }
                     }
                 }

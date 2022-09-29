@@ -20,6 +20,8 @@ namespace CoreKeeperInventoryEditor
         public Mem MemLib = new Mem();
         public IEnumerable<long> AoBScanResultsInventory;
         public IEnumerable<long> AoBScanResultsPlayerName;
+        public IEnumerable<long> AoBScanResultsChat;
+        public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
 
@@ -41,8 +43,8 @@ namespace CoreKeeperInventoryEditor
 
             // Create a new tooltip.
             ToolTip toolTip = new ToolTip();
-            toolTip.AutoPopDelay = 5000;
-            toolTip.InitialDelay = 1500;
+            toolTip.AutoPopDelay = 3000;
+            toolTip.InitialDelay = 1000;
 
             // Set tool texts.
             toolTip.SetToolTip(textBox1, "Enter the existing loaded player's name.");
@@ -54,10 +56,23 @@ namespace CoreKeeperInventoryEditor
             toolTip.SetToolTip(button4, "Change your existing name.");
             toolTip.SetToolTip(button5, "Import a player file to overwrite items.");
             toolTip.SetToolTip(button6, "Export a player file to overwrite items.");
+            toolTip.SetToolTip(button7, "Enable / disable in-game chat commands.");
 
             toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
 
+            toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
+            toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
+            toolTip.SetToolTip(radioButton2, "Add items to a custom inventory slot.");
+
+            toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
+
             #endregion
+        }
+
+        // Launch the link in the browser.
+        private void richTextBox2_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/RussDev7/CoreKeepersWorkshop");
         }
 
         // Reset inventory stats back to defualts.
@@ -76,7 +91,12 @@ namespace CoreKeeperInventoryEditor
                 // Adjust window properties
                 this.WindowState = FormWindowState.Normal;
                 MainForm.ActiveForm.Size = new Size(320, 37);
-                MainForm.ActiveForm.Location = new Point(0, System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height);
+
+                // Get height for both types of taskbar modes.
+                Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
+                MainForm.ActiveForm.Location = new Point(0, activeScreenDimensions.Height - 40);
+
+                // Adjust window properties
                 this.Opacity = 0.8;
                 MainForm.ActiveForm.MaximizeBox = true;
                 MainForm.ActiveForm.MinimizeBox = false;
@@ -97,6 +117,10 @@ namespace CoreKeeperInventoryEditor
                 {
                     MainForm.ActiveForm.Size = new Size(410, 360);
                 }
+                else if (tabControl1.SelectedTab == tabPage5)
+                {
+                    MainForm.ActiveForm.Size = new Size(410, 360);
+                }
 
                 MainForm.ActiveForm.Opacity = 100;
                 this.CenterToScreen();
@@ -111,6 +135,10 @@ namespace CoreKeeperInventoryEditor
                 MainForm.ActiveForm.Size = new Size(830, 360);
             }
             else if (tabControl1.SelectedTab == tabPage2)
+            {
+                MainForm.ActiveForm.Size = new Size(410, 360);
+            }
+            else if (tabControl1.SelectedTab == tabPage5)
             {
                 MainForm.ActiveForm.Size = new Size(410, 360);
             }
@@ -202,8 +230,10 @@ namespace CoreKeeperInventoryEditor
         }
 
         // this function is async, which means it does not block other code
-        public void AddItemToInv(int itemSlot = 1, int type = 1, int variation = 0, int amount = 1, bool loadInventory = false, bool CycleAll = false, bool ExportInventory = false, bool Overwrite = false, bool GetItemInfo = false)
+        public void AddItemToInv(int itemSlot = 1, int type = 1, int variation = 0, int amount = 1, bool loadInventory = false, bool CycleAll = false, bool ExportInventory = false, bool Overwrite = false, bool GetItemInfo = false, bool AddToEmpty = false)
         {
+            #region Add Items Upon Editing
+
             if (AoBScanResultsInventory == null)
             {
                 // Rename button back to defualt.
@@ -298,7 +328,7 @@ namespace CoreKeeperInventoryEditor
                 try
                 {
                     // Get Offsets for Inventory.
-                    if (itemSlot == 1 || loadInventory || CycleAll || ExportInventory)
+                    if (!AddToEmpty && (itemSlot == 1 || loadInventory || CycleAll || ExportInventory))
                     {
                         string slot1Item = baseAddress;
                         string slot1Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
@@ -329,7 +359,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot1Amount, "int", (MemLib.ReadUInt(slot1Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot1Variation, "int", (MemLib.ReadInt(slot1Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot1Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)(MemLib.ReadUInt(slot1Amount) + amount);
                                 }
                             }
@@ -443,7 +473,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot2Amount, "int", (MemLib.ReadUInt(slot2Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot2Variation, "int", (MemLib.ReadInt(slot2Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot2Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot2Amount);
                                 }
                             }
@@ -557,8 +587,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot3Amount, "int", (MemLib.ReadUInt(slot3Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot3Variation, "int", (MemLib.ReadInt(slot3Variation) + variation).ToString()); // Write item variation
-                                    finalItemAmount = (int)MemLib.ReadUInt(slot3Amount);
+                                    MemLib.WriteMemory(slot3Variation, "int", variation.ToString()); // Write item variation
                                 }
                             }
                         }
@@ -671,7 +700,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot4Amount, "int", (MemLib.ReadUInt(slot4Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot4Variation, "int", (MemLib.ReadInt(slot4Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot4Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot4Amount);
                                 }
                             }
@@ -785,7 +814,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot5Amount, "int", (MemLib.ReadUInt(slot5Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot5Variation, "int", (MemLib.ReadInt(slot5Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot5Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot5Amount);
                                 }
                             }
@@ -899,7 +928,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot6Amount, "int", (MemLib.ReadUInt(slot6Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot6Variation, "int", (MemLib.ReadInt(slot6Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot6Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot6Amount);
                                 }
                             }
@@ -1013,7 +1042,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot7Amount, "int", (MemLib.ReadUInt(slot7Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot7Variation, "int", (MemLib.ReadInt(slot7Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot7Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot7Amount);
                                 }
                             }
@@ -1127,7 +1156,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot8Amount, "int", (MemLib.ReadUInt(slot8Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot8Variation, "int", (MemLib.ReadInt(slot8Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot8Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot8Amount);
                                 }
                             }
@@ -1241,7 +1270,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot9Amount, "int", (MemLib.ReadUInt(slot9Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot9Variation, "int", (MemLib.ReadInt(slot9Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot9Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot9Amount);
                                 }
                             }
@@ -1355,7 +1384,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot10Amount, "int", (MemLib.ReadUInt(slot10Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot10Variation, "int", (MemLib.ReadInt(slot10Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot10Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot10Amount);
                                 }
                             }
@@ -1469,7 +1498,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot11Amount, "int", (MemLib.ReadUInt(slot11Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot11Variation, "int", (MemLib.ReadInt(slot11Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot11Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot11Amount);
                                 }
                             }
@@ -1583,7 +1612,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot12Amount, "int", (MemLib.ReadUInt(slot12Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot12Variation, "int", (MemLib.ReadInt(slot12Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot12Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot12Amount);
                                 }
                             }
@@ -1697,7 +1726,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot13Amount, "int", (MemLib.ReadUInt(slot13Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot13Variation, "int", (MemLib.ReadInt(slot13Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot13Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot13Amount);
                                 }
                             }
@@ -1811,7 +1840,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot14Amount, "int", (MemLib.ReadUInt(slot14Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot14Variation, "int", (MemLib.ReadInt(slot14Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot14Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot14Amount);
                                 }
                             }
@@ -1925,7 +1954,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot15Amount, "int", (MemLib.ReadUInt(slot15Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot15Variation, "int", (MemLib.ReadInt(slot15Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot15Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot15Amount);
                                 }
                             }
@@ -2040,7 +2069,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot16Amount, "int", (MemLib.ReadUInt(slot16Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot16Variation, "int", (MemLib.ReadInt(slot16Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot16Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot16Amount);
                                 }
                             }
@@ -2154,7 +2183,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot17Amount, "int", (MemLib.ReadUInt(slot17Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot17Variation, "int", (MemLib.ReadInt(slot17Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot17Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot17Amount);
                                 }
                             }
@@ -2268,7 +2297,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot18Amount, "int", (MemLib.ReadUInt(slot18Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot18Variation, "int", (MemLib.ReadInt(slot18Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot18Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot18Amount);
                                 }
                             }
@@ -2382,7 +2411,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot19Amount, "int", (MemLib.ReadUInt(slot19Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot19Variation, "int", (MemLib.ReadInt(slot19Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot19Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot19Amount);
                                 }
                             }
@@ -2496,7 +2525,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot20Amount, "int", (MemLib.ReadUInt(slot20Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot20Variation, "int", (MemLib.ReadInt(slot20Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot20Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot20Amount);
                                 }
                             }
@@ -2610,7 +2639,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot21Amount, "int", (MemLib.ReadUInt(slot21Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot21Variation, "int", (MemLib.ReadInt(slot21Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot21Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot21Amount);
                                 }
                             }
@@ -2724,7 +2753,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot22Amount, "int", (MemLib.ReadUInt(slot22Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot22Variation, "int", (MemLib.ReadInt(slot22Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot22Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot22Amount);
                                 }
                             }
@@ -2838,7 +2867,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot23Amount, "int", (MemLib.ReadUInt(slot23Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot23Variation, "int", (MemLib.ReadInt(slot23Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot23Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot23Amount);
                                 }
                             }
@@ -2952,7 +2981,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot24Amount, "int", (MemLib.ReadUInt(slot24Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot24Variation, "int", (MemLib.ReadInt(slot24Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot24Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot24Amount);
                                 }
                             }
@@ -3066,7 +3095,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot25Amount, "int", (MemLib.ReadUInt(slot25Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot25Variation, "int", (MemLib.ReadInt(slot25Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot25Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot25Amount);
                                 }
                             }
@@ -3180,7 +3209,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot26Amount, "int", (MemLib.ReadUInt(slot26Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot26Variation, "int", (MemLib.ReadInt(slot26Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot26Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot26Amount);
                                 }
                             }
@@ -3294,7 +3323,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot27Amount, "int", (MemLib.ReadUInt(slot27Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot27Variation, "int", (MemLib.ReadInt(slot27Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot27Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot27Amount);
                                 }
                             }
@@ -3408,7 +3437,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot28Amount, "int", (MemLib.ReadUInt(slot28Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot28Variation, "int", (MemLib.ReadInt(slot28Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot28Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot28Amount);
                                 }
                             }
@@ -3522,7 +3551,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot29Amount, "int", (MemLib.ReadUInt(slot29Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot29Variation, "int", (MemLib.ReadInt(slot29Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot29Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot29Amount);
                                 }
                             }
@@ -3636,7 +3665,7 @@ namespace CoreKeeperInventoryEditor
                                 else
                                 {
                                     MemLib.WriteMemory(slot30Amount, "int", (MemLib.ReadUInt(slot30Amount) + amount).ToString()); // Write item amount
-                                    MemLib.WriteMemory(slot30Variation, "int", (MemLib.ReadInt(slot30Variation) + variation).ToString()); // Write item variation
+                                    MemLib.WriteMemory(slot30Variation, "int", variation.ToString()); // Write item variation
                                     finalItemAmount = (int)MemLib.ReadUInt(slot30Amount);
                                 }
                             }
@@ -3711,6 +3740,9 @@ namespace CoreKeeperInventoryEditor
                             }
                         }
 
+                        // Do some textbox scrolling.
+                        richTextBox3.ScrollToCaret();
+
                         // Do some information stuff.
                         if (GetItemInfo)
                         {
@@ -3748,1481 +3780,1852 @@ namespace CoreKeeperInventoryEditor
                 MessageBox.Show("Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Variant: " + infoVariant, "Item Information:", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+            #endregion
+
             #region Load Pictures Upon Editing
 
+            // Define varible for addtoempty.
+            bool emptySlotFound = false;
+
             // Load Picture
-            if (!loadInventory && !GetItemInfo && (itemSlot == 1 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 1 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox1.Image == null && !emptySlotFound)
                 {
-                    pictureBox1.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 1, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox1.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox1.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox1.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox1.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox1.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox1.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox1.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox1.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox1.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 2 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 2 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox2.Image == null && !emptySlotFound)
                 {
-                    pictureBox2.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 2, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox2.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox2.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox2.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox2.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox2.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox2.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox2.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox2.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox2.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 3 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 3 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox3.Image == null && !emptySlotFound)
                 {
-                    pictureBox3.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 3, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox3.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox3.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox3.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox3.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox3.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox3.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox3.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox3.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox3.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 4 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 4 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox4.Image == null && !emptySlotFound)
                 {
-                    pictureBox4.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 4, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox4.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox4.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox4.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox4.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox4.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox4.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox4.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox4.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox4.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox4.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox4.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 5 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 5 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox5.Image == null && !emptySlotFound)
                 {
-                    pictureBox5.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 5, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox5.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox5.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox5.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox5.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox5.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox5.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox5.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox5.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox5.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox5.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox5.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 6 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 6 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox6.Image == null && !emptySlotFound)
                 {
-                    pictureBox6.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 6, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox6.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox6.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox6.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox6.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox6.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox6.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox6.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox6.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox6.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox6.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox6.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 7 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 7 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox7.Image == null && !emptySlotFound)
                 {
-                    pictureBox7.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 7, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox7.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox7.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox7.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox7.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox7.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox7.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox7.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox7.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox7.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox7.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox7.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 8 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 8 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox8.Image == null && !emptySlotFound)
                 {
-                    pictureBox8.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 8, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox8.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox8.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox8.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox8.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox8.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox8.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox8.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox8.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox8.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox8.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox8.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 9 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 9 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox9.Image == null && !emptySlotFound)
                 {
-                    pictureBox9.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 9, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox9.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox9.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox9.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox9.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox9.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox9.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox9.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox9.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox9.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox9.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox9.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 10 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 10 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox10.Image == null && !emptySlotFound)
                 {
-                    pictureBox10.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 10, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox10.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox10.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox10.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox10.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox10.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox10.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox10.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox10.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox10.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox10.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox10.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 11 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 11 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox11.Image == null && !emptySlotFound)
                 {
-                    pictureBox11.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 11, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox11.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox11.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox11.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox11.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox11.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox11.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox11.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox11.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox11.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox11.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox11.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 12 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 12 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox12.Image == null && !emptySlotFound)
                 {
-                    pictureBox12.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 12, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox12.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox12.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox12.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox12.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox12.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox12.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox12.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox12.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox12.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox12.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox12.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 13 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 13 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox13.Image == null && !emptySlotFound)
                 {
-                    pictureBox13.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 13, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox13.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox13.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox13.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox13.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox13.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox13.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox13.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox13.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox13.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox13.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox13.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 14 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 14 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox14.Image == null && !emptySlotFound)
                 {
-                    pictureBox14.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 14, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox14.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox14.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox14.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox14.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox14.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox14.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox14.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox14.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox14.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox14.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox14.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 15 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 15 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox15.Image == null && !emptySlotFound)
                 {
-                    pictureBox15.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 15, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox15.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox15.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox15.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox15.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox15.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox15.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox15.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox15.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox15.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox15.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox15.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 16 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 16 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox16.Image == null && !emptySlotFound)
                 {
-                    pictureBox16.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 16, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox16.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox16.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox16.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox16.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox16.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox16.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox16.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox16.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox16.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox16.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox16.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 17 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 17 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox17.Image == null && !emptySlotFound)
                 {
-                    pictureBox17.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 17, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox17.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox17.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox17.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox17.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox17.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox17.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox17.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox17.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox17.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox17.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox17.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 18 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 18 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox18.Image == null && !emptySlotFound)
                 {
-                    pictureBox18.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 18, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox18.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox18.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox18.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox18.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox18.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox18.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox18.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox18.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox18.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox18.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox18.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 19 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 19 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox19.Image == null && !emptySlotFound)
                 {
-                    pictureBox19.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 19, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox19.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox19.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox19.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox19.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox19.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox19.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox19.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox19.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox19.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox19.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox19.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 20 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 20 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox20.Image == null && !emptySlotFound)
                 {
-                    pictureBox20.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 20, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox20.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox20.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox20.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox20.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox20.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox20.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox20.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox20.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox20.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox20.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox20.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 21 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 21 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox21.Image == null && !emptySlotFound)
                 {
-                    pictureBox21.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 21, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox21.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox21.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox21.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox21.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox21.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox21.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox21.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox21.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox21.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox21.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox21.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 22 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 22 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox22.Image == null && !emptySlotFound)
                 {
-                    pictureBox22.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 22, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox22.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox22.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox22.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox22.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox22.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox22.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox22.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox22.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox22.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox22.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox22.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 23 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 23 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox23.Image == null && !emptySlotFound)
                 {
-                    pictureBox23.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 23, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox23.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox23.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox23.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox23.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox23.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox23.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox23.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox23.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox23.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox23.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox23.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 24 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 24 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox24.Image == null && !emptySlotFound)
                 {
-                    pictureBox24.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 24, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox24.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox24.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox24.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox24.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox24.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox24.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox24.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox24.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox24.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox24.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox24.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 25 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 25 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox25.Image == null && !emptySlotFound)
                 {
-                    pictureBox25.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 25, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox25.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox25.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox25.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox25.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox25.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox25.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox25.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox25.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox25.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox25.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox25.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 26 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 26 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox26.Image == null && !emptySlotFound)
                 {
-                    pictureBox26.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 26, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox26.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox26.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox26.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox26.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox26.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox26.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox26.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox26.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox26.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox26.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox26.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 27 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 27 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox27.Image == null && !emptySlotFound)
                 {
-                    pictureBox27.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 27, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox27.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox27.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox27.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox27.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox27.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox27.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox27.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox27.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox27.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox27.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox27.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 28 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 28 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox28.Image == null && !emptySlotFound)
                 {
-                    pictureBox28.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 28, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox28.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox28.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox28.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox28.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox28.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox28.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox28.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox28.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox28.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox28.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox28.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 29 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 29 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox29.Image == null && !emptySlotFound)
                 {
-                    pictureBox29.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 29, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox29.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox29.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox29.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox29.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox29.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox29.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox29.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox29.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox29.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox29.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox29.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
-            if (!loadInventory && !GetItemInfo && (itemSlot == 30 || CycleAll))
+            if (!loadInventory && !GetItemInfo && (itemSlot == 30 || CycleAll || AddToEmpty))
             {
-                // Perform progress step.
-                progressBar2.PerformStep();
-
-                // Set image to null if type is zero.
-                if (type.ToString() == "0")
+                // If slot is empty, add item to invintory.
+                if (AddToEmpty && pictureBox30.Image == null && !emptySlotFound)
                 {
-                    pictureBox30.Image = null;
+                    // Add item to inventory.
+                    AddItemToInv(itemSlot: 30, type: type, amount: amount, variation: variation);
+
+                    // Update bool.
+                    emptySlotFound = true;
                 }
-                else
+                else if (!AddToEmpty)
                 {
-                    // Get Picture
-                    try
-                    {
-                        pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
-                        pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Perform progress step.
+                    progressBar2.PerformStep();
 
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox30.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
-                        {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
-                        }
-                        pictureBox30.Invalidate(); // Reload picturebox.
+                    // Set image to null if type is zero.
+                    if (type.ToString() == "0")
+                    {
+                        pictureBox30.Image = null;
                     }
-                    catch (Exception)
+                    else
                     {
-                        pictureBox30.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                        // Draw item amount.
-                        using (Font font = new Font("Arial", 24f))
-                        using (Graphics G = Graphics.FromImage(pictureBox30.Image))
-                        using (GraphicsPath gp = new GraphicsPath())
+                        // Get Picture
+                        try
                         {
-                            // Do drawling actions.
-                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
-                            G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
-                            G.FillPath(new SolidBrush(Color.White), gp);
+                            pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.Single(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox30.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox30.Invalidate(); // Reload picturebox.
                         }
-                        pictureBox30.Invalidate(); // Reload picturebox.
+                        catch (Exception)
+                        {
+                            pictureBox30.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                            // Draw item amount.
+                            using (Font font = new Font("Arial", 24f))
+                            using (Graphics G = Graphics.FromImage(pictureBox30.Image))
+                            using (GraphicsPath gp = new GraphicsPath())
+                            {
+                                // Do drawling actions.
+                                gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
+                                G.FillPath(new SolidBrush(Color.White), gp);
+                            }
+                            pictureBox30.Invalidate(); // Reload picturebox.
+                        }
                     }
                 }
             }
 
             #endregion
+
+            // Check if there was no slots empty.
+            if (AddToEmpty && !emptySlotFound)
+            {
+                MessageBox.Show("Your inventoy is full!" + Environment.NewLine + Environment.NewLine + "Try using the reload inventory button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // Rename button back to defualt.
             button1.Text = "Get Inventory Addresses";
@@ -5231,7 +5634,6 @@ namespace CoreKeeperInventoryEditor
 
             // Rehide the progressbar.
             progressBar2.Visible = false;
-
         }
 
         // Reload Inventory.
@@ -5283,7 +5685,7 @@ namespace CoreKeeperInventoryEditor
                     // Get returned item from picker.
                     int itemType = frm2.GetItemTypeFromList();
                     int itemAmount = frm2.GetItemAmountFromList();
-                    int itemVariation = frm2.GetItemVeriationFromList() + 80068096;
+                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : + 80068096; // If variation is not zero, add offset.
                     bool wasAborted = frm2.GetUserCancledTask();
                     bool itemOverwrite = frm2.GetSelectedOverwriteTask();
 
@@ -5312,12 +5714,6 @@ namespace CoreKeeperInventoryEditor
 
         #region Misc
 
-        // Change the max text lengh of textbox2 to match textbox1's lengh.
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // textBox2.MaxLength = textBox1.TextLength;
-        }
-
         // Change player name.
         private async void button4_Click(object sender, EventArgs e)
         {
@@ -5333,7 +5729,7 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //return;
+                return;
             }
 
             // Name button to indicate loading.
@@ -5537,5 +5933,253 @@ namespace CoreKeeperInventoryEditor
 
         #endregion // End misc tab.
 
+        #region ItemChatCommands
+
+        // Enable the numericupdown based on if selected radiobutton is checked.
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked == true)
+            {
+                // Disable
+                numericUpDown1.Enabled = true;
+            }
+            else
+            {
+                // Enable
+                numericUpDown1.Enabled = false;
+            }
+        }
+
+        // Toggle chat commands.
+        bool chatEnabled = false;
+        public System.Timers.Timer chatTimer = new System.Timers.Timer(500);
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsInventory == null)
+            {
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the chat button is enabled or disabled.
+            if (chatEnabled)
+            {
+                // Disable / reset some controls.
+                chatEnabled = false;
+                button7.Text = "Enable";
+                button7.Enabled = true;
+                progressBar3.Value = 0;
+                chatTimer.Stop();
+                chatTimer.Enabled = false;
+            }
+            else
+            {
+                // Enable some controls.
+                chatEnabled = true;
+
+                // Name button to indicate loading.
+                progressBar3.Value = 10;
+                button7.Text = "Loading..";
+                button7.Enabled = false;
+
+                // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                AoBScanResultsChat = await MemLib.AoBScan("2F 69 74 65 6D", true, true);
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsChat.Count() == 0 | AoBScanResultsChat.Count() < 1)
+                {
+                    // Disable / reset some controls.
+                    chatEnabled = false;
+                    button7.Text = "Enable";
+                    button7.Enabled = true;
+                    progressBar3.Value = 0;
+                    chatTimer.Stop();
+                    chatTimer.Enabled = false;
+
+                    // Display error message.
+                    MessageBox.Show("You must type \"/item\" in the player chat first!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Name button to indicate loading finished.
+                button7.Text = "Disable";
+                button7.Enabled = true;
+
+                // Reset richtextbox.
+                richTextBox4.Text = "Any captured chat messages will appear here." + Environment.NewLine + "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+
+                // Advance progress bar.
+                progressBar3.Value = 100;
+
+                // Enable a timer.
+                chatTimer.AutoReset = true;
+                chatTimer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimedEvent);
+                chatTimer.Start();
+            }
+        }
+
+        // Do events for the chat.
+        bool firstRun = true; // Do text reset bool.
+        bool firstItem = true; // Ensure we only add to one slot.
+        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsChat)
+            {
+                // Get address from loop.
+                string baseAddress = res.ToString("X").ToString();
+
+                // Get address value.
+                string currentCommand = MemLib.ReadString(baseAddress);
+
+                try
+                {
+                    // Check if current value is valid command and it's unique.
+                    if (currentCommand.Split(' ')[0] == "/item")
+                    {
+                        // Erase current chat values.
+                        MemLib.WriteMemory(baseAddress, "string", "                                ");
+
+                        // Update last chat command
+                        LastChatCommand.Add(currentCommand);
+
+                        // Log command if it does not exist.
+                        if (currentCommand != richTextBox4.Lines[richTextBox4.Lines.Length - 1] && firstRun)
+                        {
+                            // Prevent further entries this loop.
+                            firstRun = false;
+
+                            richTextBox4.AppendText(currentCommand + Environment.NewLine);
+                            richTextBox4.ScrollToCaret();
+                        }
+
+                        string itemName = currentCommand.Split(' ')[1];
+                        string itemAmount = currentCommand.Split(' ')[2];
+                        string itemVariation = "";
+
+                        try
+                        {
+                            // With item variation.
+                            itemVariation = currentCommand.Split(' ')[3];
+
+                            // Make sure assets exist.
+                            if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                            {
+                                // Get each folder in inventory.
+                                foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                                {
+                                    // Get current folder name.
+                                    var catergoryName = new DirectoryInfo(catergoryFolder).Name;
+
+                                    // Retrieve all image files
+                                    foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
+                                    {
+                                        // Get file infomration.
+                                        var fi = new FileInfo(file);
+                                        string[] filenameData = fi.Name.Split(',');
+
+                                        // Catch desktop.ini from throwing errors.
+                                        if (filenameData[0] == "desktop.ini") continue;
+
+                                        // Get all matches.
+                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")))
+                                        {
+                                            // Check if to overwrite or to add to empty slots.
+                                            if (radioButton1.Checked) // Overwrite slot1.
+                                            {
+                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : +80068096, Overwrite: true);
+                                            }
+                                            else if (radioButton2.Checked) // Add item to an empty slot.
+                                            {
+                                                // Reload inventory if add to empty is checked.
+                                                if (radioButton2.Checked && firstItem)
+                                                {
+                                                    // Mark item as first.
+                                                    firstItem = false;
+
+                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : +80068096, Overwrite: true);
+                                                }
+                                            }
+                                            else if (radioButton3.Checked) // Custom slot.
+                                            {
+                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : +80068096, Overwrite: true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            // Without item variation.
+                            // Make sure assets exist.
+                            if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                            {
+                                // Get each folder in inventory.
+                                foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                                {
+                                    // Get current folder name.
+                                    var catergoryName = new DirectoryInfo(catergoryFolder).Name;
+
+                                    // Retrieve all image files
+                                    foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
+                                    {
+                                        // Get file infomration.
+                                        var fi = new FileInfo(file);
+                                        string[] filenameData = fi.Name.Split(',');
+
+                                        // Catch desktop.ini from throwing errors.
+                                        if (filenameData[0] == "desktop.ini") continue;
+
+                                        // Get all matches.
+                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")))
+                                        {
+                                            // Check if to overwrite or to add to empty slots.
+                                            if (radioButton1.Checked) // Overwrite slot1.
+                                            {
+                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
+                                            }
+                                            else if (radioButton2.Checked) // Add item to an empty slot.
+                                            {
+                                                // Reload inventory if add to empty is checked.
+                                                if (radioButton2.Checked && firstItem)
+                                                {
+                                                    // Mark item as first.
+                                                    firstItem = false;
+
+                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
+                                                }
+                                            }
+                                            else if (radioButton3.Checked) // Custom slot.
+                                            {
+                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+
+            // Reset the loop checks.
+            firstRun = true;
+            firstItem = true;
+        }
+
+        #endregion
     }
 }

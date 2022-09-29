@@ -122,7 +122,16 @@
 -------------------------------------------------------------------------------------------------------------------
 This tool was created with updates and modded in mind. It currently supports manual item additions by naming images using the following format: (ItemName,ItemID,ItemVariation,Category.png) - You can add these assets to the "\assets\inventory" directory. For future requests or any issues, please contact me under my discord handle above, thanks!
 -------------------------------------------------------------------------------------------------------------------
-Current game version: 0.4.3 - b0ed Early Access</value>
+Project Source: https://github.com/RussDev7/CoreKeepersWorkshop</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Enabling this feature will scan chat for all chat
+commands from the player. To use this feature
+first type "/item" in chat and send it. Then
+press the enable button to activate this feature.
+
+[] = Required, () = Optional - Use item names.
+/item [Type] [Amount] (Variation)</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
