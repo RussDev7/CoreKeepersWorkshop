@@ -88,13 +88,13 @@ namespace CoreKeeperInventoryEditor
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -152,13 +152,13 @@ namespace CoreKeeperInventoryEditor
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(813, 352);
+            this.tabControl1.Size = new System.Drawing.Size(814, 321);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.tabPage1.BackColor = System.Drawing.Color.Black;
             this.tabPage1.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackground;
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tabPage1.Controls.Add(this.progressBar2);
@@ -199,13 +199,13 @@ namespace CoreKeeperInventoryEditor
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(805, 323);
+            this.tabPage1.Size = new System.Drawing.Size(806, 292);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Inventory";
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(160, 10);
+            this.progressBar2.Location = new System.Drawing.Point(160, 7);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(443, 23);
             this.progressBar2.Step = 1;
@@ -214,7 +214,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(603, 10);
+            this.button3.Location = new System.Drawing.Point(603, 7);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(98, 23);
             this.button3.TabIndex = 2;
@@ -224,7 +224,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(699, 10);
+            this.button2.Location = new System.Drawing.Point(700, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 23);
             this.button2.TabIndex = 3;
@@ -236,7 +236,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox30.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox30.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox30.Location = new System.Drawing.Point(716, 232);
+            this.pictureBox30.Location = new System.Drawing.Point(723, 220);
             this.pictureBox30.Name = "pictureBox30";
             this.pictureBox30.Size = new System.Drawing.Size(60, 60);
             this.pictureBox30.TabIndex = 31;
@@ -247,7 +247,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox29.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox29.Location = new System.Drawing.Point(639, 232);
+            this.pictureBox29.Location = new System.Drawing.Point(645, 220);
             this.pictureBox29.Name = "pictureBox29";
             this.pictureBox29.Size = new System.Drawing.Size(60, 60);
             this.pictureBox29.TabIndex = 30;
@@ -258,7 +258,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox28.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox28.Location = new System.Drawing.Point(564, 232);
+            this.pictureBox28.Location = new System.Drawing.Point(567, 220);
             this.pictureBox28.Name = "pictureBox28";
             this.pictureBox28.Size = new System.Drawing.Size(60, 60);
             this.pictureBox28.TabIndex = 29;
@@ -269,7 +269,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox27.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox27.Location = new System.Drawing.Point(488, 232);
+            this.pictureBox27.Location = new System.Drawing.Point(490, 220);
             this.pictureBox27.Name = "pictureBox27";
             this.pictureBox27.Size = new System.Drawing.Size(60, 60);
             this.pictureBox27.TabIndex = 28;
@@ -280,7 +280,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox26.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox26.Location = new System.Drawing.Point(412, 232);
+            this.pictureBox26.Location = new System.Drawing.Point(412, 220);
             this.pictureBox26.Name = "pictureBox26";
             this.pictureBox26.Size = new System.Drawing.Size(60, 60);
             this.pictureBox26.TabIndex = 27;
@@ -291,7 +291,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox25.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox25.Location = new System.Drawing.Point(336, 232);
+            this.pictureBox25.Location = new System.Drawing.Point(334, 220);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(60, 60);
             this.pictureBox25.TabIndex = 26;
@@ -302,7 +302,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox24.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox24.Location = new System.Drawing.Point(260, 232);
+            this.pictureBox24.Location = new System.Drawing.Point(256, 220);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(60, 60);
             this.pictureBox24.TabIndex = 25;
@@ -313,7 +313,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox23.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox23.Location = new System.Drawing.Point(184, 232);
+            this.pictureBox23.Location = new System.Drawing.Point(179, 220);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(60, 60);
             this.pictureBox23.TabIndex = 24;
@@ -324,7 +324,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox22.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox22.Location = new System.Drawing.Point(108, 232);
+            this.pictureBox22.Location = new System.Drawing.Point(101, 220);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(60, 60);
             this.pictureBox22.TabIndex = 23;
@@ -335,7 +335,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox21.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox21.Location = new System.Drawing.Point(32, 232);
+            this.pictureBox21.Location = new System.Drawing.Point(23, 220);
             this.pictureBox21.Name = "pictureBox21";
             this.pictureBox21.Size = new System.Drawing.Size(60, 60);
             this.pictureBox21.TabIndex = 22;
@@ -346,7 +346,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox20.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox20.Location = new System.Drawing.Point(716, 158);
+            this.pictureBox20.Location = new System.Drawing.Point(723, 143);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(60, 60);
             this.pictureBox20.TabIndex = 21;
@@ -357,7 +357,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox19.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox19.Location = new System.Drawing.Point(639, 158);
+            this.pictureBox19.Location = new System.Drawing.Point(645, 143);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(60, 60);
             this.pictureBox19.TabIndex = 20;
@@ -368,7 +368,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox18.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox18.Location = new System.Drawing.Point(564, 158);
+            this.pictureBox18.Location = new System.Drawing.Point(567, 143);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(60, 60);
             this.pictureBox18.TabIndex = 19;
@@ -379,7 +379,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox17.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox17.Location = new System.Drawing.Point(488, 158);
+            this.pictureBox17.Location = new System.Drawing.Point(490, 143);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(60, 60);
             this.pictureBox17.TabIndex = 18;
@@ -390,7 +390,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox16.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox16.Location = new System.Drawing.Point(412, 158);
+            this.pictureBox16.Location = new System.Drawing.Point(412, 143);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(60, 60);
             this.pictureBox16.TabIndex = 17;
@@ -401,7 +401,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox15.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox15.Location = new System.Drawing.Point(336, 158);
+            this.pictureBox15.Location = new System.Drawing.Point(334, 143);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(60, 60);
             this.pictureBox15.TabIndex = 16;
@@ -412,7 +412,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox14.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox14.Location = new System.Drawing.Point(260, 158);
+            this.pictureBox14.Location = new System.Drawing.Point(256, 143);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(60, 60);
             this.pictureBox14.TabIndex = 15;
@@ -423,7 +423,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox13.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox13.Location = new System.Drawing.Point(184, 158);
+            this.pictureBox13.Location = new System.Drawing.Point(179, 143);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(60, 60);
             this.pictureBox13.TabIndex = 14;
@@ -434,7 +434,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox12.Location = new System.Drawing.Point(108, 158);
+            this.pictureBox12.Location = new System.Drawing.Point(101, 143);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(60, 60);
             this.pictureBox12.TabIndex = 13;
@@ -445,7 +445,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox11.Location = new System.Drawing.Point(32, 158);
+            this.pictureBox11.Location = new System.Drawing.Point(23, 143);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(60, 60);
             this.pictureBox11.TabIndex = 12;
@@ -456,7 +456,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox10.Location = new System.Drawing.Point(716, 72);
+            this.pictureBox10.Location = new System.Drawing.Point(723, 52);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(60, 60);
             this.pictureBox10.TabIndex = 11;
@@ -467,7 +467,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox9.Location = new System.Drawing.Point(639, 72);
+            this.pictureBox9.Location = new System.Drawing.Point(645, 52);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(60, 60);
             this.pictureBox9.TabIndex = 10;
@@ -478,7 +478,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox8.Location = new System.Drawing.Point(564, 72);
+            this.pictureBox8.Location = new System.Drawing.Point(567, 52);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(60, 60);
             this.pictureBox8.TabIndex = 9;
@@ -489,7 +489,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox7.Location = new System.Drawing.Point(488, 72);
+            this.pictureBox7.Location = new System.Drawing.Point(490, 52);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(60, 60);
             this.pictureBox7.TabIndex = 8;
@@ -500,7 +500,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox6.Location = new System.Drawing.Point(412, 72);
+            this.pictureBox6.Location = new System.Drawing.Point(412, 52);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(60, 60);
             this.pictureBox6.TabIndex = 7;
@@ -511,7 +511,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox5.Location = new System.Drawing.Point(336, 72);
+            this.pictureBox5.Location = new System.Drawing.Point(334, 52);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(60, 60);
             this.pictureBox5.TabIndex = 6;
@@ -522,7 +522,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox4.Location = new System.Drawing.Point(260, 72);
+            this.pictureBox4.Location = new System.Drawing.Point(256, 52);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(60, 60);
             this.pictureBox4.TabIndex = 5;
@@ -533,7 +533,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox3.Location = new System.Drawing.Point(184, 72);
+            this.pictureBox3.Location = new System.Drawing.Point(179, 52);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(60, 60);
             this.pictureBox3.TabIndex = 4;
@@ -544,7 +544,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox2.Location = new System.Drawing.Point(108, 72);
+            this.pictureBox2.Location = new System.Drawing.Point(101, 52);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(60, 60);
             this.pictureBox2.TabIndex = 3;
@@ -555,7 +555,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(32, 72);
+            this.pictureBox1.Location = new System.Drawing.Point(23, 52);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(60, 60);
             this.pictureBox1.TabIndex = 2;
@@ -564,7 +564,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 10);
+            this.button1.Location = new System.Drawing.Point(6, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 23);
             this.button1.TabIndex = 0;
@@ -575,7 +575,7 @@ namespace CoreKeeperInventoryEditor
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.richTextBox1.Location = new System.Drawing.Point(160, 10);
+            this.richTextBox1.Location = new System.Drawing.Point(160, 7);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
@@ -592,7 +592,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(805, 323);
+            this.tabPage2.Size = new System.Drawing.Size(806, 292);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Player";
             // 
@@ -782,7 +782,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage5.Controls.Add(this.progressBar3);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(805, 323);
+            this.tabPage5.Size = new System.Drawing.Size(806, 292);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Chat";
             // 
@@ -821,17 +821,6 @@ namespace CoreKeeperInventoryEditor
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chat Commands";
-            // 
-            // button7
-            // 
-            this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(233, 83);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(125, 23);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Enable";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button8_Click);
             // 
             // groupBox6
             // 
@@ -916,6 +905,17 @@ namespace CoreKeeperInventoryEditor
             this.label3.TabIndex = 2;
             this.label3.Text = resources.GetString("label3.Text");
             // 
+            // button7
+            // 
+            this.button7.ForeColor = System.Drawing.Color.Black;
+            this.button7.Location = new System.Drawing.Point(233, 83);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(125, 23);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Enable";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button8_Click);
+            // 
             // progressBar3
             // 
             this.progressBar3.Location = new System.Drawing.Point(10, 261);
@@ -928,11 +928,9 @@ namespace CoreKeeperInventoryEditor
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(813, 352);
+            this.ClientSize = new System.Drawing.Size(814, 321);
             this.Controls.Add(this.tabControl1);
-            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

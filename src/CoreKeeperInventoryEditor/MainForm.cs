@@ -111,7 +111,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure we got the correct tab size to maximize back too.
                 if (tabControl1.SelectedTab == tabPage1)
                 {
-                    MainForm.ActiveForm.Size = new Size(829, 391);
+                    MainForm.ActiveForm.Size = new Size(830, 360);
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
@@ -132,7 +132,7 @@ namespace CoreKeeperInventoryEditor
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
-                MainForm.ActiveForm.Size = new Size(829, 391);
+                MainForm.ActiveForm.Size = new Size(830, 360);
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {

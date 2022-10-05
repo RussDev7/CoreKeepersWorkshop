@@ -95,8 +95,6 @@ namespace CoreKeeperInventoryEditor
 
         #endregion
 
-        #region Closing Events
-
         // Define closing varibles.
         public int GetItemTypeFromList()
         {
@@ -118,7 +116,6 @@ namespace CoreKeeperInventoryEditor
         {
             return selectedOverwrite;
         }
-        #endregion
 
         // Do loading events.
         private void Form2_Load(object sender, EventArgs e)
