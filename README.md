@@ -59,6 +59,11 @@ Here is the list of all the available categories:
  - Consumables
  - Seasonal
 
+## How To Add Custom Skins
+Adding background UI skins is now supported. You can add custom skins to the `\assets\UI\` directory by any name. These images must be 695x288. It's very important you keep the inventory boxes where they are, these do not move with the skins. You can cycle through the skins using the "Change Skin" tab-button at the top. These will save when you close and appear when re-opened.
+
+![CK-UISkins](https://user-images.githubusercontent.com/33048298/193999717-3ecc128e-ea28-4367-a8cb-c0081ac011df.gif)
+
 ## Download
 
 - [GitHub Releases](https://github.com/RussDev7/CoreKeepersWorkshop/releases)
@@ -67,4 +72,5 @@ Here is the list of all the available categories:
 
 - [Memory.dll](https://github.com/erfg12/memory.dll)
 - [Json.net](https://www.newtonsoft.com/json)
+- [UI-Background](https://discord.com/users/229227672121769984/)
 - [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Donation&currency_code=USD&bn=PP%2dDonationsBF)
