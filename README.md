@@ -67,5 +67,4 @@ Here is the list of all the available categories:
 
 - [Memory.dll](https://github.com/erfg12/memory.dll)
 - [Json.net](https://www.newtonsoft.com/json)
-- [UI-Background](https://discord.com/users/229227672121769984/)
 - [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Donation&currency_code=USD&bn=PP%2dDonationsBF)
