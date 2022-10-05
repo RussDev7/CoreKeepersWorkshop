@@ -47,7 +47,15 @@ namespace CoreKeeperInventoryEditor
             // Ensure background is not null.
             if (CoreKeepersWorkshop.Properties.Settings.Default.UIBackground != "")
             {
-                tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.UIBackground);
+                // Catch image missing / renamed errors.
+                try
+                {
+                    tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.UIBackground);
+                }
+                catch (Exception)
+                {
+                    CoreKeepersWorkshop.Properties.Settings.Default.UIBackground = "";
+                }
             }
             #endregion
 
