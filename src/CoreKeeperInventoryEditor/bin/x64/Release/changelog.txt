@@ -1,10 +1,14 @@
+Changes Since v1.2
+===========================================================
++ Changed the UI, texture provided kindly by Roupiks.
+
 Changes Since v1.1.9
 ===========================================================
 - Fixed a bug where a few returns where comments.
 - Fixed a bug with the inventory explorers search bar.
 - Fixed a bug with items not saving.
 - Fixed a bug where adding items added to their variations.
-- Fixed a bug when using windows hidden taskbox mode.
+- Fixed a bug when using windows hidden taskbar mode.
 - Adjusted the tooltip timings.
 - Made changes to the about textbox.
 
@@ -13,7 +17,7 @@ Changes Since v1.1.9
 
 Changes Since v1.1.8
 ===========================================================
-+ Changed the item catagories to now use folder names.
++ Changed the item categories to now use folder names.
 
 Changes Since v1.1.7
 ===========================================================
@@ -27,7 +31,7 @@ Changes Since v1.1.6
 ===========================================================
 - Fixed the debug menu not being read only.
 - Fixed some issues with items getting corruted.
-- Renamed texbox "variation" to "item variant".
+- Renamed textbox "variation" to "item variant".
 
 + Added item count to the inventory slots.
 + Added a progress bar for address searches and loading.
@@ -45,7 +49,7 @@ Changes Since v1.1.5
 
 Changes Since v1.1.4
 ===========================================================
-+ Player names can now be changes to any lengh under 30.
++ Player names can now be changes to any length under 30.
 + Ability to now import or export player files.
 + Minor code improvements.
 
@@ -78,7 +82,7 @@ Changes Since v1.0
 - Fixed torch error to include more detailed instructions.
 - Fixed the double loading of assets bug.
 - Fixed a few spelling errors.
-- Fixed a few other minar bugs.
+- Fixed a few other minor bugs.
 - Fixed a few of the GUI sizes.
 
 + Added a search for item feature for the item browser.
