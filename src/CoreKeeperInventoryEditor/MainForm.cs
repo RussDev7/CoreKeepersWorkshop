@@ -24,9 +24,11 @@ namespace CoreKeeperInventoryEditor
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
+        public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
 
         // Define texture data.
         public IEnumerable<string> ImageFiles1 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\", "*.png", SearchOption.AllDirectories);
+        public IEnumerable<string> InventorySkins = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"\assets\UI\", "*.png", SearchOption.AllDirectories);
 
         // Form initialization.
         public MainForm()
@@ -39,6 +41,16 @@ namespace CoreKeeperInventoryEditor
         // Do form loading events.
         private void MainForm_Load(object sender, EventArgs e)
         {
+            #region Set Background
+
+            // Get background from saved settings.
+            // Ensure background is not null.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.UIBackground != "")
+            {
+                tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.UIBackground);
+            }
+            #endregion
+
             #region Tooltips
 
             // Create a new tooltip.
@@ -79,7 +91,14 @@ namespace CoreKeeperInventoryEditor
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Save some form settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.Reset();
+            CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = 50;
+            CoreKeepersWorkshop.Properties.Settings.Default.ItemID = 110;
+            CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "TabPage1";
+            CoreKeepersWorkshop.Properties.Settings.Default.ItemVeriation = 0;
+
+            // Save UI form settings.
+            CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount = skinCounter;
+            CoreKeepersWorkshop.Properties.Settings.Default.Save();
         }
 
         // Move window to the bottom left.
@@ -111,7 +130,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure we got the correct tab size to maximize back too.
                 if (tabControl1.SelectedTab == tabPage1)
                 {
-                    MainForm.ActiveForm.Size = new Size(830, 360);
+                    MainForm.ActiveForm.Size = new Size(804, 371);
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
@@ -128,11 +147,12 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Control switching tabs.
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
-                MainForm.ActiveForm.Size = new Size(830, 360);
+                MainForm.ActiveForm.Size = new Size(804, 371);
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
@@ -141,6 +161,26 @@ namespace CoreKeeperInventoryEditor
             else if (tabControl1.SelectedTab == tabPage5)
             {
                 MainForm.ActiveForm.Size = new Size(410, 360);
+            }
+
+            // Change skin
+            if (tabControl1.SelectedTab == tabPage6)
+            {
+                // Reset tab page back to one.
+                tabControl1.SelectedTab = tabPage1;
+
+                // Prevent overflow from add or removal of images.
+                if (skinCounter > InventorySkins.Count()) { skinCounter = 0; }
+
+                // Change the background.
+                tabControl1.TabPages[0].BackgroundImage = Image.FromFile(InventorySkins.ToArray()[skinCounter].ToString());
+
+                // Save the property in the settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.UIBackground = InventorySkins.ToArray()[skinCounter].ToString();
+
+                // Add to the counter.
+                skinCounter++;
+                if (skinCounter == InventorySkins.Count()) { skinCounter = 0; }
             }
         }
 
