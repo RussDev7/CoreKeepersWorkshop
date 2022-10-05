@@ -70,5 +70,29 @@ namespace CoreKeepersWorkshop.Properties {
                 this["ItemVeriation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UIBackground {
+            get {
+                return ((string)(this["UIBackground"]));
+            }
+            set {
+                this["UIBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int UIBackgroundCount {
+            get {
+                return ((int)(this["UIBackgroundCount"]));
+            }
+            set {
+                this["UIBackgroundCount"] = value;
+            }
+        }
     }
 }
