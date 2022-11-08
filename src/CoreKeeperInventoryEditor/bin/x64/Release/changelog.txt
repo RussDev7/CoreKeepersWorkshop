@@ -1,3 +1,8 @@
+Changes Since v1.2.1
+===========================================================
+- Fix a bug with removing images breaking the skin button.
+- Misc bugs fixed.
+
 Changes Since v1.2
 ===========================================================
 + Added a tab-button for changing the appearance.
