@@ -27,8 +27,8 @@ namespace CoreKeeperInventoryEditor
         public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
 
         // Define texture data.
-        public IEnumerable<string> ImageFiles1 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\", "*.png", SearchOption.AllDirectories);
-        public IEnumerable<string> InventorySkins = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"\assets\UI\", "*.png", SearchOption.AllDirectories);
+        public IEnumerable<string> ImageFiles1 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
+        public IEnumerable<string> InventorySkins = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\", "*.png", SearchOption.AllDirectories);
 
         // Form initialization.
         public MainForm()
@@ -178,7 +178,7 @@ namespace CoreKeeperInventoryEditor
                 tabControl1.SelectedTab = tabPage1;
 
                 // Prevent overflow from add or removal of images.
-                if (skinCounter > InventorySkins.Count()) { skinCounter = 0; }
+                if (skinCounter >= InventorySkins.Count()) { skinCounter = 0; }
 
                 // Change the background.
                 tabControl1.TabPages[0].BackgroundImage = Image.FromFile(InventorySkins.ToArray()[skinCounter].ToString());
