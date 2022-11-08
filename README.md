@@ -67,6 +67,7 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 ## Download
 
 - [GitHub Releases](https://github.com/RussDev7/CoreKeepersWorkshop/releases)
+- [Skin Template](https://raw.githubusercontent.com/RussDev7/CoreKeepersWorkshop/main/src/CoreKeeperInventoryEditor/images/SkinTemplate.png)
 
 ## Support & Credits
 
