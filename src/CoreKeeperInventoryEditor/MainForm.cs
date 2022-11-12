@@ -5733,7 +5733,7 @@ namespace CoreKeeperInventoryEditor
                     // Get returned item from picker.
                     int itemType = frm2.GetItemTypeFromList();
                     int itemAmount = frm2.GetItemAmountFromList();
-                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : + 80068096; // If variation is not zero, add offset.
+                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : +80068096; // If variation is not zero, add offset.
                     bool wasAborted = frm2.GetUserCancledTask();
                     bool itemOverwrite = frm2.GetSelectedOverwriteTask();
 
@@ -6001,7 +6001,7 @@ namespace CoreKeeperInventoryEditor
         // Toggle chat commands.
         bool chatEnabled = false;
         public System.Timers.Timer chatTimer = new System.Timers.Timer(500);
-        private async void button8_Click(object sender, EventArgs e)
+        private async void button7_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -6226,6 +6226,228 @@ namespace CoreKeeperInventoryEditor
             // Reset the loop checks.
             firstRun = true;
             firstItem = true;
+        }
+
+        #endregion
+
+        #region Admin Tools
+
+        // Remove duplicates.
+        private void button10_Click(object sender, EventArgs e)
+        {
+            // Create directories if they do not exist.
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
+            }
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images");
+            }
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out");
+            }
+
+            // Delete files in out if they exist.
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt"))
+            {
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt");
+            }
+
+            // Check if images exist within the directory.
+            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images", "*.png").Length == 0 || !File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
+            {
+                MessageBox.Show("Missing images or data files within the debug directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                // Define count for file deletion.
+                int imageRemovalCount = 0;
+
+                // Get each file in the directory.
+                FileInfo[] Files = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images").GetFiles("*.png");
+
+                // Get each image file in directory.
+                foreach (FileInfo file in Files)
+                {
+                    // Get each png file from the inventory subdirectories.
+                    var file123 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
+                    foreach (string image in file123)
+                    {
+                        // Check if image from debug exists within inventory.
+                        if (file.FullName.Substring(file.FullName.LastIndexOf('\\') + 1).Replace("_", "").Split('.')[0].ToLower() == image.Substring(image.LastIndexOf('\\') + 1).Split(',')[0].ToLower())
+                        {
+                            try
+                            {
+                                // Match was found, log it.
+                                string imageName = file.FullName.Substring(file.FullName.LastIndexOf('\\') + 1).Replace("_", "").Split('.')[0];
+                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", "Removed File: " + imageName + ".png" + Environment.NewLine);
+
+                                // Remove image from debug.
+                                File.Delete(file.FullName);
+
+                                // Advance removal counter.
+                                imageRemovalCount++;
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
+                }
+
+                // Display results.
+                MessageBox.Show(imageRemovalCount.ToString() + " images where found and deleted.", "Removed Dupes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Rename images based off data.txt.
+        private void button8_Click(object sender, EventArgs e)
+        {
+            // Create directories if they do not exist.
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
+            }
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images");
+            }
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out");
+            }
+
+            // Delete files in out if they exist.
+            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out", "*.png").Length != 0)
+            {
+                Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out").ToList().ForEach(File.Delete);
+            }
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt"))
+            {
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt");
+            }
+
+            // Define counter for total items.
+            int renamedImagesCount = 0;
+
+            // Check if images exist within the directory.
+            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images", "*.png").Length == 0 || !File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
+            {
+                MessageBox.Show("Missing images or data files within the debug directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                // Get each file in the directory.
+                FileInfo[] Files = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images").GetFiles("*.png");
+
+                // Read each line in the text file.
+                foreach (var line in File.ReadLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
+                {
+                    // Define image name from file.
+                    string imageNameFromFile = line.Split(',')[0].Replace(" ", "");
+
+                    // Get each image file in directory.
+                    foreach (FileInfo file in Files)
+                    {
+                        // Define image name.
+                        string imageName = file.Name.Split('.')[0].Replace("_", "");
+
+                        // Check if file contains the recorded data.
+                        if (imageName.ToLower() == imageNameFromFile.ToLower())
+                        {
+                            try
+                            {
+                                // Define new filename.
+                                string newImageName = imageNameFromFile + "," + line.Split(',')[1] + ",0.png";
+
+                                // Match was found, log it.
+                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", file.Name + " -> " + newImageName + Environment.NewLine);
+
+                                // Copy and save the rename image file.
+                                File.Copy(file.FullName, AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out\" + newImageName);
+
+                                // Add to count.
+                                renamedImagesCount++;
+                            }
+                            catch (Exception)
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                }
+
+                // Display results.
+                MessageBox.Show(renamedImagesCount.ToString() + " images where found and renamed.", "Rename Images", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Cycle Items
+        private async void button9_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsInventory == null)
+            {
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Delete files in out if they exist.
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt"))
+            {
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt");
+            }
+
+            // Get address from loop.
+            string baseAddress = AoBScanResultsInventory.Last().ToString("X").ToString();
+            string slot1Item = baseAddress;
+
+            // Test 
+            for (int testValue = 0; testValue < 32767 + 1; testValue++)
+            {
+                // Add New Item
+                MemLib.WriteMemory(slot1Item, "int", testValue.ToString()); // Write item type
+
+                // Add Delay
+                await System.Threading.Tasks.Task.Delay(100);
+
+                // Check if new item reads negitive.
+                int itemByteValue = (int)MemLib.ReadByte(slot1Item);
+                if (itemByteValue < 0)
+                {
+                    // Log items.
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", "Invalid: ItemID: " + testValue + " Result: " + itemByteValue + Environment.NewLine);
+
+                    // MessageBox.Show("Invalid: ItemID: " + testValue + " Result: " + itemByteValue, "Cycle Items", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    // Log items.
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", itemByteValue.ToString() + Environment.NewLine);
+
+                    // MessageBox.Show(itemByteValue.ToString(), "Cycle Items", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            // Finished
+            MessageBox.Show("Finished cycling items.", "Cycle Items", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion

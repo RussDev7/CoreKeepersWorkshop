@@ -84,6 +84,14 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
@@ -136,6 +144,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -718,6 +727,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Location = new System.Drawing.Point(2, 8);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -776,6 +786,94 @@ namespace CoreKeeperInventoryEditor
     "--------------------------------------------------------------------------------" +
     "--------";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.BackColor = System.Drawing.Color.Black;
+            this.tabPage7.Controls.Add(this.label7);
+            this.tabPage7.Controls.Add(this.button10);
+            this.tabPage7.Controls.Add(this.label6);
+            this.tabPage7.Controls.Add(this.button9);
+            this.tabPage7.Controls.Add(this.label5);
+            this.tabPage7.Controls.Add(this.label4);
+            this.tabPage7.Controls.Add(this.button8);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(354, 133);
+            this.tabPage7.TabIndex = 2;
+            this.tabPage7.Text = "Dev-Tools";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Lime;
+            this.label7.Location = new System.Drawing.Point(109, 42);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(212, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "- Remove any images matched from assets.";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(5, 37);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(102, 23);
+            this.button10.TabIndex = 5;
+            this.button10.Text = "Remove Dupes";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Lime;
+            this.label6.Location = new System.Drawing.Point(109, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(239, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "- Cycle through all possible items within the game.";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(5, 95);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(102, 23);
+            this.button9.TabIndex = 3;
+            this.button9.Text = "Cycle Items";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Lime;
+            this.label5.Location = new System.Drawing.Point(-2, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(358, 26);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "This section contains useful debuging tools for maintainers and devs.\r\n----------" +
+    "--------------------------------------------------------------------------------" +
+    "---------------------------";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Lime;
+            this.label4.Location = new System.Drawing.Point(109, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(230, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "- Rename images based off a itemList (data.txt).";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(5, 66);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(102, 23);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Rename Images";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
@@ -833,7 +931,7 @@ namespace CoreKeeperInventoryEditor
             this.button7.TabIndex = 11;
             this.button7.Text = "Enable";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button8_Click);
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // groupBox6
             // 
@@ -991,6 +1089,8 @@ namespace CoreKeeperInventoryEditor
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -1071,6 +1171,14 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label7;
     }
 }
 
