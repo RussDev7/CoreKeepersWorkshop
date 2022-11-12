@@ -850,7 +850,7 @@ namespace CoreKeeperInventoryEditor
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(358, 26);
             this.label5.TabIndex = 2;
-            this.label5.Text = "This section contains useful debuging tools for maintainers and devs.\r\n----------" +
+            this.label5.Text = "This section contains useful debugging tools for maintainers and devs.\r\n----------" +
     "--------------------------------------------------------------------------------" +
     "---------------------------";
             // 
