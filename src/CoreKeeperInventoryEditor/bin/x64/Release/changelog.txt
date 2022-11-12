@@ -1,6 +1,7 @@
 Changes Since v1.2.3
 ===========================================================
 + Added many new assets for the desert update.
++ Added a minecraft themed skin.
 
 Changes Since v1.2.2
 ===========================================================
