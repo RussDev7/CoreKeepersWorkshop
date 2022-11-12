@@ -1,3 +1,8 @@
+Changes Since v1.2.2
+===========================================================
++ Added many new assets for the desert update.
++ Added a debug dev tools tab under player.
+
 Changes Since v1.2.1
 ===========================================================
 - Fix a bug with removing images breaking the skin button.
