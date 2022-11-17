@@ -3892,7 +3892,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -3953,7 +3953,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4014,7 +4014,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4075,7 +4075,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4136,7 +4136,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4197,7 +4197,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4258,7 +4258,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4319,7 +4319,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4380,7 +4380,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4441,7 +4441,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4502,7 +4502,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4563,7 +4563,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4624,7 +4624,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4685,7 +4685,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4746,7 +4746,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4807,7 +4807,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4868,7 +4868,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4929,7 +4929,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4990,7 +4990,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5051,7 +5051,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5112,7 +5112,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5173,7 +5173,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5234,7 +5234,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5295,7 +5295,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5356,7 +5356,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5417,7 +5417,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5478,7 +5478,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5539,7 +5539,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5600,7 +5600,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5661,7 +5661,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()))); // Check if file matches current type, set it.
+                            pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
                             pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
