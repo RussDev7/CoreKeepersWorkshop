@@ -1,3 +1,10 @@
+Changes Since v1.2.4
+===========================================================
+- Restored funtionality to the item variant feature.
+- Misc bugs fixed.
+
++ Added many new assets from various updates.
+
 Changes Since v1.2.3
 ===========================================================
 + Added many new assets for the desert update.
