@@ -5733,10 +5733,9 @@ namespace CoreKeeperInventoryEditor
                     // Get returned item from picker.
                     int itemType = frm2.GetItemTypeFromList();
                     int itemAmount = frm2.GetItemAmountFromList();
-                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : +80068096; // If variation is not zero, add offset.
+                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : (frm2.GetItemVeriationFromList() + 80068096); // If variation is not zero, add offset.
                     bool wasAborted = frm2.GetUserCancledTask();
                     bool itemOverwrite = frm2.GetSelectedOverwriteTask();
-
                     frm2.Close();
 
                     // Check if user closed the form
@@ -6143,7 +6142,7 @@ namespace CoreKeeperInventoryEditor
                                             // Check if to overwrite or to add to empty slots.
                                             if (radioButton1.Checked) // Overwrite slot1.
                                             {
-                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : +80068096, Overwrite: true);
+                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation) + 80068096), Overwrite: true);
                                             }
                                             else if (radioButton2.Checked) // Add item to an empty slot.
                                             {
@@ -6153,12 +6152,12 @@ namespace CoreKeeperInventoryEditor
                                                     // Mark item as first.
                                                     firstItem = false;
 
-                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : +80068096, Overwrite: true);
+                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation) + 80068096), Overwrite: true);
                                                 }
                                             }
                                             else if (radioButton3.Checked) // Custom slot.
                                             {
-                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : +80068096, Overwrite: true);
+                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation) + 80068096), Overwrite: true);
                                             }
                                         }
                                     }

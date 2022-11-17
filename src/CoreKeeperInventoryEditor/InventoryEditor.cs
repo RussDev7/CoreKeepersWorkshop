@@ -234,7 +234,7 @@ namespace CoreKeeperInventoryEditor
                                 listView1.LargeImageList = ImagelistTools;
 
                                 // Save filename information.
-                                listView1.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView1.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countTools++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(1)).Name)
@@ -246,7 +246,7 @@ namespace CoreKeeperInventoryEditor
                                 listView2.LargeImageList = ImagelistPlaceableItems;
 
                                 // Save filename information.
-                                listView2.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView2.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countPlaceableItems++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(2)).Name)
@@ -258,7 +258,7 @@ namespace CoreKeeperInventoryEditor
                                 listView3.LargeImageList = ImagelistNature;
 
                                 // Save filename information.
-                                listView3.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView3.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countNature++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(3)).Name)
@@ -270,7 +270,7 @@ namespace CoreKeeperInventoryEditor
                                 listView4.LargeImageList = ImagelistMaterials;
 
                                 // Save filename information.
-                                listView4.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView4.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countMaterials++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(4)).Name)
@@ -282,7 +282,7 @@ namespace CoreKeeperInventoryEditor
                                 listView5.LargeImageList = ImagelistSpecial;
 
                                 // Save filename information.
-                                listView5.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView5.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countSpecial++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(5)).Name)
@@ -294,7 +294,7 @@ namespace CoreKeeperInventoryEditor
                                 listView6.LargeImageList = ImagelistMobItems;
 
                                 // Save filename information.
-                                listView6.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView6.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countMobItems++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(6)).Name)
@@ -306,7 +306,7 @@ namespace CoreKeeperInventoryEditor
                                 listView7.LargeImageList = ImagelistBaseBuilding;
 
                                 // Save filename information.
-                                listView7.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView7.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countBaseBuilding++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(7)).Name)
@@ -318,7 +318,7 @@ namespace CoreKeeperInventoryEditor
                                 listView8.LargeImageList = ImagelistTreasures;
 
                                 // Save filename information.
-                                listView8.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView8.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countTreasures++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(8)).Name)
@@ -330,7 +330,7 @@ namespace CoreKeeperInventoryEditor
                                 listView9.LargeImageList = ImagelistWiring;
 
                                 // Save filename information.
-                                listView9.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView9.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countWiring++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(9)).Name)
@@ -342,7 +342,7 @@ namespace CoreKeeperInventoryEditor
                                 listView10.LargeImageList = ImagelistPlants;
 
                                 // Save filename information.
-                                listView10.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView10.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countPlants++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(10)).Name)
@@ -354,7 +354,7 @@ namespace CoreKeeperInventoryEditor
                                 listView11.LargeImageList = ImagelistArmors;
 
                                 // Save filename information.
-                                listView11.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView11.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countArmors++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(11)).Name)
@@ -366,7 +366,7 @@ namespace CoreKeeperInventoryEditor
                                 listView12.LargeImageList = ImagelistAccessories;
 
                                 // Save filename information.
-                                listView12.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView12.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countAccessories++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(12)).Name)
@@ -378,7 +378,7 @@ namespace CoreKeeperInventoryEditor
                                 listView13.LargeImageList = ImagelistWeapons;
 
                                 // Save filename information.
-                                listView13.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView13.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countWeapons++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(13)).Name)
@@ -390,7 +390,7 @@ namespace CoreKeeperInventoryEditor
                                 listView14.LargeImageList = ImagelistConsumables;
 
                                 // Save filename information.
-                                listView14.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView14.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countConsumables++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(14)).Name)
@@ -402,7 +402,7 @@ namespace CoreKeeperInventoryEditor
                                 listView15.LargeImageList = ImagelistSeasonal;
 
                                 // Save filename information.
-                                listView15.Items.Add(new ListViewItem { ImageIndex = countSeasonal, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView15.Items.Add(new ListViewItem { ImageIndex = countSeasonal, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countSeasonal++; // Add one to index count.
                             }
                         }
@@ -558,7 +558,7 @@ namespace CoreKeeperInventoryEditor
                             listView16.LargeImageList = ImagelistSearch;
 
                             // Save filename information.
-                            listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                            listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                             countSearch++; // Add one to index count.
                         }
                     }
@@ -623,7 +623,7 @@ namespace CoreKeeperInventoryEditor
                                 listView16.LargeImageList = ImagelistSearch;
 
                                 // Save filename information.
-                                listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] }); // Using object initializer to add the text
+                                listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countSearch++; // Add one to index count.
                             }
                         }
@@ -645,12 +645,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView1.SelectedItems.Count; i++)
             {
-                var PostNumber = listView1.Items[listView1.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView1.Items[listView1.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -661,12 +658,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -675,12 +670,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView2.SelectedItems.Count; i++)
             {
-                var PostNumber = listView2.Items[listView2.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView2.Items[listView2.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -705,12 +697,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView3.SelectedItems.Count; i++)
             {
-                var PostNumber = listView3.Items[listView3.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView3.Items[listView3.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -735,12 +724,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView4.SelectedItems.Count; i++)
             {
-                var PostNumber = listView4.Items[listView4.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView4.Items[listView4.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -765,12 +751,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView5.SelectedItems.Count; i++)
             {
-                var PostNumber = listView5.Items[listView5.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView5.Items[listView5.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -795,12 +778,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView6.SelectedItems.Count; i++)
             {
-                var PostNumber = listView6.Items[listView6.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView6.Items[listView6.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -825,12 +805,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView7.SelectedItems.Count; i++)
             {
-                var PostNumber = listView7.Items[listView7.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView7.Items[listView7.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -855,12 +832,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView8.SelectedItems.Count; i++)
             {
-                var PostNumber = listView8.Items[listView8.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView8.Items[listView8.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -885,12 +859,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView9.SelectedItems.Count; i++)
             {
-                var PostNumber = listView9.Items[listView9.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView9.Items[listView9.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -915,12 +886,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView10.SelectedItems.Count; i++)
             {
-                var PostNumber = listView10.Items[listView10.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView10.Items[listView10.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -945,12 +913,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView11.SelectedItems.Count; i++)
             {
-                var PostNumber = listView11.Items[listView11.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView11.Items[listView11.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -975,12 +940,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView12.SelectedItems.Count; i++)
             {
-                var PostNumber = listView12.Items[listView12.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView12.Items[listView12.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -1005,12 +967,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView13.SelectedItems.Count; i++)
             {
-                var PostNumber = listView13.Items[listView13.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView13.Items[listView13.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -1035,12 +994,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView14.SelectedItems.Count; i++)
             {
-                var PostNumber = listView14.Items[listView14.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView14.Items[listView14.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -1065,12 +1021,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView15.SelectedItems.Count; i++)
             {
-                var PostNumber = listView15.Items[listView15.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView15.Items[listView15.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -1095,12 +1048,9 @@ namespace CoreKeeperInventoryEditor
         {
             for (int i = 0; i < listView16.SelectedItems.Count; i++)
             {
-                var PostNumber = listView16.Items[listView16.SelectedIndices[i]].Tag.ToString();
-                if (PostNumber.Contains("."))
-                {
-                    PostNumber = PostNumber.Substring(0, PostNumber.IndexOf("."));
-                }
-                selectedItemType = int.Parse(PostNumber);
+                string[] PostNumber = listView16.Items[listView16.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
                 this.Close();
             }
         }
@@ -1119,8 +1069,6 @@ namespace CoreKeeperInventoryEditor
                 selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
-
         #endregion
-
     }
 }
