@@ -2,6 +2,7 @@ Changes Since v1.2.5
 ===========================================================
 - Fixed a bug with slot3s number not updating when edited.
 - Fixed a bug with edited items assets showing wrong.
+- Fixed a bug with item explorers menu15 item amounts.
 
 + Added many new assets from various updates.
 + Right clicking inventory slots shows an fast item editor.
