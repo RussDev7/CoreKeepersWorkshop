@@ -1,6 +1,7 @@
 Changes Since v1.2.4
 ===========================================================
 - Restored funtionality to the item variant feature.
+- Fixed assets of the same ID causing render issues.
 - Misc bugs fixed.
 
 + Added many new assets from various updates.
