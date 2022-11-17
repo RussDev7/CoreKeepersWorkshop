@@ -683,12 +683,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -710,12 +708,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -737,12 +733,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -764,12 +758,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -791,12 +783,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -818,12 +808,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -845,12 +833,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -872,12 +858,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -899,12 +883,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -926,12 +908,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -953,12 +933,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -980,12 +958,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -1007,12 +983,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -1034,12 +1008,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
 
@@ -1061,12 +1033,10 @@ namespace CoreKeeperInventoryEditor
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
                 selectedItemAmount = 1;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
                 selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
             }
         }
         #endregion

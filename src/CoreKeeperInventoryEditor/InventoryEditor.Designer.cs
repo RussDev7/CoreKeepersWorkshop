@@ -480,6 +480,7 @@ namespace CoreKeeperInventoryEditor
             this.listView15.TabIndex = 1;
             this.listView15.UseCompatibleStateImageBehavior = false;
             this.listView15.SelectedIndexChanged += new System.EventHandler(this.listView15_SelectedIndexChanged);
+            this.listView15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listView15_MouseDown);
             // 
             // tabPage16
             // 
