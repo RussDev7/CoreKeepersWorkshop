@@ -78,7 +78,7 @@ namespace CoreKeeperInventoryEditor
             // Save some form settings.
             CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)numericUpDown1.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)numericUpDown2.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemVeriation = (int)numericUpDown3.Value;
+            CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)numericUpDown3.Value;
 
             // Ensure current tab is not search, if so, reset.
             if (tabControl1.SelectedTab == tabPage16)
@@ -133,6 +133,7 @@ namespace CoreKeeperInventoryEditor
             // Set tool texts.
             toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
             toolTip.SetToolTip(numericUpDown2, "Enter a custom ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Either press enter when done or use the button.");
 
             toolTip.SetToolTip(button1, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button3, "Spawn in custom item amount + ID.");
@@ -165,7 +166,7 @@ namespace CoreKeeperInventoryEditor
             // Load some settings.
             numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
             numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemID;
-            numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemVeriation;
+            numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation;
             tabControl1.SelectedTab = tabControl1.TabPages[CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab];
 
             // Set Image Size

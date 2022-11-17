@@ -11,13 +11,22 @@
     <Setting Name="CurrentItemTab" Type="System.String" Scope="User">
       <Value Profile="(Default)">TabPage1</Value>
     </Setting>
-    <Setting Name="ItemVeriation" Type="System.Int32" Scope="User">
+    <Setting Name="ItemVariation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="UIBackground" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="UIBackgroundCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="InfoAmount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="InfoID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="InfoVariation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

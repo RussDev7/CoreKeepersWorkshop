@@ -62,12 +62,12 @@ namespace CoreKeepersWorkshop.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ItemVeriation {
+        public int ItemVariation {
             get {
-                return ((int)(this["ItemVeriation"]));
+                return ((int)(this["ItemVariation"]));
             }
             set {
-                this["ItemVeriation"] = value;
+                this["ItemVariation"] = value;
             }
         }
         
@@ -92,6 +92,42 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["UIBackgroundCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int InfoAmount {
+            get {
+                return ((int)(this["InfoAmount"]));
+            }
+            set {
+                this["InfoAmount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int InfoID {
+            get {
+                return ((int)(this["InfoID"]));
+            }
+            set {
+                this["InfoID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int InfoVariation {
+            get {
+                return ((int)(this["InfoVariation"]));
+            }
+            set {
+                this["InfoVariation"] = value;
             }
         }
     }

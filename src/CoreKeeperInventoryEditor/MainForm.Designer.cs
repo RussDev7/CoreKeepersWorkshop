@@ -252,7 +252,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox30.Size = new System.Drawing.Size(60, 60);
             this.pictureBox30.TabIndex = 31;
             this.pictureBox30.TabStop = false;
-            this.pictureBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox29
             // 
@@ -263,7 +263,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox29.Size = new System.Drawing.Size(60, 60);
             this.pictureBox29.TabIndex = 30;
             this.pictureBox29.TabStop = false;
-            this.pictureBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox28
             // 
@@ -274,7 +274,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox28.Size = new System.Drawing.Size(60, 60);
             this.pictureBox28.TabIndex = 29;
             this.pictureBox28.TabStop = false;
-            this.pictureBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox27
             // 
@@ -285,7 +285,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox27.Size = new System.Drawing.Size(60, 60);
             this.pictureBox27.TabIndex = 28;
             this.pictureBox27.TabStop = false;
-            this.pictureBox27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox26
             // 
@@ -296,7 +296,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox26.Size = new System.Drawing.Size(60, 60);
             this.pictureBox26.TabIndex = 27;
             this.pictureBox26.TabStop = false;
-            this.pictureBox26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox25
             // 
@@ -307,7 +307,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox25.Size = new System.Drawing.Size(60, 60);
             this.pictureBox25.TabIndex = 26;
             this.pictureBox25.TabStop = false;
-            this.pictureBox25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox24
             // 
@@ -318,7 +318,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox24.Size = new System.Drawing.Size(60, 60);
             this.pictureBox24.TabIndex = 25;
             this.pictureBox24.TabStop = false;
-            this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox23
             // 
@@ -329,7 +329,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox23.Size = new System.Drawing.Size(60, 60);
             this.pictureBox23.TabIndex = 24;
             this.pictureBox23.TabStop = false;
-            this.pictureBox23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox22
             // 
@@ -340,7 +340,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox22.Size = new System.Drawing.Size(60, 60);
             this.pictureBox22.TabIndex = 23;
             this.pictureBox22.TabStop = false;
-            this.pictureBox22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox21
             // 
@@ -351,7 +351,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox21.Size = new System.Drawing.Size(60, 60);
             this.pictureBox21.TabIndex = 22;
             this.pictureBox21.TabStop = false;
-            this.pictureBox21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox20
             // 
@@ -362,7 +362,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox20.Size = new System.Drawing.Size(60, 60);
             this.pictureBox20.TabIndex = 21;
             this.pictureBox20.TabStop = false;
-            this.pictureBox20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox19
             // 
@@ -373,7 +373,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox19.Size = new System.Drawing.Size(60, 60);
             this.pictureBox19.TabIndex = 20;
             this.pictureBox19.TabStop = false;
-            this.pictureBox19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox18
             // 
@@ -384,7 +384,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox18.Size = new System.Drawing.Size(60, 60);
             this.pictureBox18.TabIndex = 19;
             this.pictureBox18.TabStop = false;
-            this.pictureBox18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox17
             // 
@@ -395,7 +395,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox17.Size = new System.Drawing.Size(60, 60);
             this.pictureBox17.TabIndex = 18;
             this.pictureBox17.TabStop = false;
-            this.pictureBox17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox16
             // 
@@ -406,7 +406,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox16.Size = new System.Drawing.Size(60, 60);
             this.pictureBox16.TabIndex = 17;
             this.pictureBox16.TabStop = false;
-            this.pictureBox16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox15
             // 
@@ -417,7 +417,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox15.Size = new System.Drawing.Size(60, 60);
             this.pictureBox15.TabIndex = 16;
             this.pictureBox15.TabStop = false;
-            this.pictureBox15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox14
             // 
@@ -428,7 +428,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox14.Size = new System.Drawing.Size(60, 60);
             this.pictureBox14.TabIndex = 15;
             this.pictureBox14.TabStop = false;
-            this.pictureBox14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox13
             // 
@@ -439,7 +439,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox13.Size = new System.Drawing.Size(60, 60);
             this.pictureBox13.TabIndex = 14;
             this.pictureBox13.TabStop = false;
-            this.pictureBox13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox12
             // 
@@ -450,7 +450,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox12.Size = new System.Drawing.Size(60, 60);
             this.pictureBox12.TabIndex = 13;
             this.pictureBox12.TabStop = false;
-            this.pictureBox12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox11
             // 
@@ -461,7 +461,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox11.Size = new System.Drawing.Size(60, 60);
             this.pictureBox11.TabIndex = 12;
             this.pictureBox11.TabStop = false;
-            this.pictureBox11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox10
             // 
@@ -472,7 +472,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox10.Size = new System.Drawing.Size(60, 60);
             this.pictureBox10.TabIndex = 11;
             this.pictureBox10.TabStop = false;
-            this.pictureBox10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox9
             // 
@@ -483,7 +483,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox9.Size = new System.Drawing.Size(60, 60);
             this.pictureBox9.TabIndex = 10;
             this.pictureBox9.TabStop = false;
-            this.pictureBox9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox8
             // 
@@ -494,7 +494,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox8.Size = new System.Drawing.Size(60, 60);
             this.pictureBox8.TabIndex = 9;
             this.pictureBox8.TabStop = false;
-            this.pictureBox8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox7
             // 
@@ -505,7 +505,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox7.Size = new System.Drawing.Size(60, 60);
             this.pictureBox7.TabIndex = 8;
             this.pictureBox7.TabStop = false;
-            this.pictureBox7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox6
             // 
@@ -516,7 +516,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox6.Size = new System.Drawing.Size(60, 60);
             this.pictureBox6.TabIndex = 7;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox5
             // 
@@ -527,7 +527,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox5.Size = new System.Drawing.Size(60, 60);
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox4
             // 
@@ -538,7 +538,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox4.Size = new System.Drawing.Size(60, 60);
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox3
             // 
@@ -549,7 +549,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox3.Size = new System.Drawing.Size(60, 60);
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox2
             // 
@@ -560,7 +560,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox2.Size = new System.Drawing.Size(60, 60);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // pictureBox1
             // 
@@ -571,7 +571,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox1.Size = new System.Drawing.Size(60, 60);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // button1
             // 
