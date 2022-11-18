@@ -41,6 +41,12 @@ namespace CoreKeepersWorkshop
         // Do loading events.
         private void ItemEditor_Load(object sender, EventArgs e)
         {
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            ItemEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation;
+            #endregion
+
             #region Tooltips
 
             // Create a new tooltip.
@@ -79,6 +85,7 @@ namespace CoreKeepersWorkshop
             CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)numericUpDown1.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)numericUpDown2.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown3.Value;
+            CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = ItemEditor.ActiveForm.Location;
         }
         #endregion // Form loading and closing events.
 

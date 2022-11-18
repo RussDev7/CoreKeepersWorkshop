@@ -42,6 +42,12 @@ namespace CoreKeeperInventoryEditor
         // Do form loading events.
         private void MainForm_Load(object sender, EventArgs e)
         {
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+            #endregion
+
             #region Set Background
 
             // Get background from saved settings.
@@ -99,6 +105,13 @@ namespace CoreKeeperInventoryEditor
         // Reset inventory stats back to defualts.
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Save the previous form location before closing if it's not minimized.
+            Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
+            if (WindowState == FormWindowState.Normal && MainForm.ActiveForm.Location != new Point(0, activeScreenDimensions.Height - 40))
+            {
+                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = InventoryEditor.ActiveForm.Location;
+            }
+
             // Save some form settings.
             CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = 50;
             CoreKeepersWorkshop.Properties.Settings.Default.ItemID = 110;
@@ -113,6 +126,15 @@ namespace CoreKeeperInventoryEditor
         // Move window to the bottom left.
         private void Form1_Resize(object sender, EventArgs e)
         {
+            // Get height for both types of taskbar modes.
+            Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
+
+            // Save the previous form location before minimizing it.
+            if (WindowState == FormWindowState.Normal && MainForm.ActiveForm.Location != new Point(0, activeScreenDimensions.Height - 40))
+            {
+                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = InventoryEditor.ActiveForm.Location;
+            }
+
             // Get window states.
             if (WindowState == FormWindowState.Minimized)
             {
@@ -120,8 +142,7 @@ namespace CoreKeeperInventoryEditor
                 this.WindowState = FormWindowState.Normal;
                 MainForm.ActiveForm.Size = new Size(320, 37);
 
-                // Get height for both types of taskbar modes.
-                Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
+                // Adjust the form location.
                 MainForm.ActiveForm.Location = new Point(0, activeScreenDimensions.Height - 40);
 
                 // Adjust window properties
@@ -150,13 +171,13 @@ namespace CoreKeeperInventoryEditor
                     MainForm.ActiveForm.Size = new Size(410, 360);
                 }
 
+                // Adjust some final form settings.
                 MainForm.ActiveForm.Opacity = 100;
-                this.CenterToScreen();
+                InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
             }
         }
 
         // Control switching tabs.
-
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab == tabPage1)
