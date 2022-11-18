@@ -130,5 +130,41 @@ namespace CoreKeepersWorkshop.Properties {
                 this["InfoVariation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point MainFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["MainFormLocation"]));
+            }
+            set {
+                this["MainFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point ItemEditorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ItemEditorLocation"]));
+            }
+            set {
+                this["ItemEditorLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point InventoryEditorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["InventoryEditorLocation"]));
+            }
+            set {
+                this["InventoryEditorLocation"] = value;
+            }
+        }
     }
 }
