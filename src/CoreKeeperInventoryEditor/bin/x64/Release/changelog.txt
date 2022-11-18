@@ -1,3 +1,7 @@
+Changes Since v1.2.6
+===========================================================
++ Application now remembers all window locations.
+
 Changes Since v1.2.5
 ===========================================================
 - Fixed a bug with slot3s number not updating when edited.
