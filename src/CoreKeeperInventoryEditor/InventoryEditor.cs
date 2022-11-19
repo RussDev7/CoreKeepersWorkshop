@@ -127,7 +127,7 @@ namespace CoreKeeperInventoryEditor
             #region Set Form Locations
 
             // Set the forms active location based on previous save.
-           this.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
+            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
             #endregion
 
             #region Tooltips
