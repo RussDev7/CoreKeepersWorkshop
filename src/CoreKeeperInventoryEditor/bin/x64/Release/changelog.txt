@@ -1,6 +1,7 @@
 Changes Since v1.2.6
 ===========================================================
 + Application now remembers all window locations.
++ Added missing assets.
 
 Changes Since v1.2.5
 ===========================================================
