@@ -79,7 +79,7 @@ namespace CoreKeeperInventoryEditor
             CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)numericUpDown1.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)numericUpDown2.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)numericUpDown3.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = InventoryEditor.ActiveForm.Location;
+            CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = this.Location;
 
             // Ensure current tab is not search, if so, reset.
             if (tabControl1.SelectedTab == tabPage16)
@@ -127,7 +127,7 @@ namespace CoreKeeperInventoryEditor
             #region Set Form Locations
 
             // Set the forms active location based on previous save.
-            InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
+           this.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
             #endregion
 
             #region Tooltips

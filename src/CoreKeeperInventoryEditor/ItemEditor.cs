@@ -44,7 +44,7 @@ namespace CoreKeepersWorkshop
             #region Set Form Locations
 
             // Set the forms active location based on previous save.
-            ItemEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation;
+            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation;
             #endregion
 
             #region Tooltips
@@ -85,7 +85,7 @@ namespace CoreKeepersWorkshop
             CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)numericUpDown1.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)numericUpDown2.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown3.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = ItemEditor.ActiveForm.Location;
+            CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = this.Location;
         }
         #endregion // Form loading and closing events.
 

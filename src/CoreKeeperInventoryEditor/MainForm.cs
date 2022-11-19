@@ -107,9 +107,9 @@ namespace CoreKeeperInventoryEditor
         {
             // Save the previous form location before closing if it's not minimized.
             Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
-            if (WindowState == FormWindowState.Normal && MainForm.ActiveForm.Location != new Point(0, activeScreenDimensions.Height - 40))
+            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40))
             {
-                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = InventoryEditor.ActiveForm.Location;
+                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
             }
 
             // Save some form settings.
@@ -130,9 +130,9 @@ namespace CoreKeeperInventoryEditor
             Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
 
             // Save the previous form location before minimizing it.
-            if (WindowState == FormWindowState.Normal && MainForm.ActiveForm.Location != new Point(0, activeScreenDimensions.Height - 40))
+            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40))
             {
-                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = InventoryEditor.ActiveForm.Location;
+                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
             }
 
             // Get window states.
@@ -140,40 +140,40 @@ namespace CoreKeeperInventoryEditor
             {
                 // Adjust window properties
                 this.WindowState = FormWindowState.Normal;
-                MainForm.ActiveForm.Size = new Size(320, 37);
+                this.Size = new Size(320, 37);
 
                 // Adjust the form location.
-                MainForm.ActiveForm.Location = new Point(0, activeScreenDimensions.Height - 40);
+                this.Location = new Point(0, activeScreenDimensions.Height - 40);
 
                 // Adjust window properties
                 this.Opacity = 0.8;
-                MainForm.ActiveForm.MaximizeBox = true;
-                MainForm.ActiveForm.MinimizeBox = false;
+                this.MaximizeBox = true;
+                this.MinimizeBox = false;
             }
             else if (WindowState == FormWindowState.Maximized)
             {
                 // Adjust window properties
                 this.WindowState = FormWindowState.Normal;
-                MainForm.ActiveForm.MaximizeBox = false;
-                MainForm.ActiveForm.MinimizeBox = true;
+                this.MaximizeBox = false;
+                this.MinimizeBox = true;
 
                 // Ensure we got the correct tab size to maximize back too.
                 if (tabControl1.SelectedTab == tabPage1)
                 {
-                    MainForm.ActiveForm.Size = new Size(804, 371);
+                    this.Size = new Size(804, 371);
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
-                    MainForm.ActiveForm.Size = new Size(410, 360);
+                    this.Size = new Size(410, 360);
                 }
                 else if (tabControl1.SelectedTab == tabPage5)
                 {
-                    MainForm.ActiveForm.Size = new Size(410, 360);
+                    this.Size = new Size(410, 360);
                 }
 
                 // Adjust some final form settings.
-                MainForm.ActiveForm.Opacity = 100;
-                InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+                this.Opacity = 100;
+                this.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
             }
         }
 
@@ -182,15 +182,15 @@ namespace CoreKeeperInventoryEditor
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
-                MainForm.ActiveForm.Size = new Size(804, 371);
+                this.Size = new Size(804, 371);
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
-                MainForm.ActiveForm.Size = new Size(410, 360);
+                this.Size = new Size(410, 360);
             }
             else if (tabControl1.SelectedTab == tabPage5)
             {
-                MainForm.ActiveForm.Size = new Size(410, 360);
+                this.Size = new Size(410, 360);
             }
 
             // Change skin
