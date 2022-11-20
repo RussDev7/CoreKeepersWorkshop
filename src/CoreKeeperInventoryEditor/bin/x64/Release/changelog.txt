@@ -3,6 +3,7 @@ Changes Since v1.2.6
 + Application now remembers all window locations.
 + Added missing assets.
 + Misc bug fixes accross mutliple forms.
++ Chat commands can now also use item ids.
 
 Changes Since v1.2.5
 ===========================================================
