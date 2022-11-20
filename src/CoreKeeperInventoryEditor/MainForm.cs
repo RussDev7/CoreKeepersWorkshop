@@ -6448,7 +6448,7 @@ namespace CoreKeeperInventoryEditor
                                         if (filenameData[0] == "desktop.ini") continue;
 
                                         // Get all matches.
-                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")))
+                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
                                         {
                                             // Check if to overwrite or to add to empty slots.
                                             if (radioButton1.Checked) // Overwrite slot1.
@@ -6498,7 +6498,7 @@ namespace CoreKeeperInventoryEditor
                                         if (filenameData[0] == "desktop.ini") continue;
 
                                         // Get all matches.
-                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")))
+                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
                                         {
                                             // Check if to overwrite or to add to empty slots.
                                             if (radioButton1.Checked) // Overwrite slot1.
