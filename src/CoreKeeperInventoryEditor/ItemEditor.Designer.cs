@@ -55,7 +55,7 @@ namespace CoreKeepersWorkshop
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(12, 12);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            65535,
+            999999999,
             0,
             0,
             0});
@@ -83,7 +83,7 @@ namespace CoreKeepersWorkshop
             // 
             this.numericUpDown3.Location = new System.Drawing.Point(12, 65);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            20000,
+            999999999,
             0,
             0,
             0});
