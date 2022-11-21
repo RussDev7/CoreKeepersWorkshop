@@ -557,7 +557,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(323, 13);
             this.numericUpDown2.Maximum = new decimal(new int[] {
-            65535,
+            999999999,
             0,
             0,
             0});
@@ -593,7 +593,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.numericUpDown3.Location = new System.Drawing.Point(529, 13);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            20000,
+            999999999,
             0,
             0,
             0});
