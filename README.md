@@ -31,6 +31,14 @@ The features for the application is as follows:
 ![PlayerAbout](https://user-images.githubusercontent.com/33048298/190877329-170e2c23-2271-4de6-8d4a-e4fafa9f5b43.png)
 ![EditorAbout](https://user-images.githubusercontent.com/33048298/190877333-99fda451-1cfe-4962-941b-e8bb7d54a30d.PNG)
 
+## Explination on Item Variants
+Varitants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items reguardless of variant all have a base id. There is not a unique id assosiated with each item variant, only the base ID. Refer to the formula bellow to understand how these are built.
+
+Variant-ID: `xxxxyyyy`\
+`x` = ID of first ingredient\
+`y` = Second ingredient ID.
+
+![HowVariantsWork](https://user-images.githubusercontent.com/33048298/203685712-03d340d2-ef94-41ad-bd7e-6c4fa8088a1e.png)
 
 ## How To Add New / Modded Items
 This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editor's textures. Each item category is divided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a questionmark on the main form. 
