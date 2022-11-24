@@ -463,7 +463,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -496,9 +496,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox1.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -578,7 +578,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -611,9 +611,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox2.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -692,7 +692,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount
@@ -725,9 +725,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox3.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -807,7 +807,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -840,9 +840,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox4.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -922,7 +922,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -955,9 +955,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox5.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1037,7 +1037,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1070,9 +1070,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox6.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1152,7 +1152,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1185,9 +1185,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox7.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1267,7 +1267,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1300,9 +1300,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox8.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1382,7 +1382,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1415,9 +1415,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox9.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1497,7 +1497,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1530,9 +1530,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox10.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1612,7 +1612,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1645,9 +1645,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox11.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1727,7 +1727,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1760,9 +1760,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox12.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1842,7 +1842,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1875,9 +1875,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox13.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -1957,7 +1957,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -1990,9 +1990,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox14.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2072,7 +2072,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2105,9 +2105,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox15.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2188,7 +2188,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2221,9 +2221,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox16.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2303,7 +2303,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2336,9 +2336,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox17.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2418,7 +2418,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2451,9 +2451,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox18.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2533,7 +2533,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2566,9 +2566,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox19.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2648,7 +2648,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2681,9 +2681,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox20.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2763,7 +2763,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2796,9 +2796,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox21.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2878,7 +2878,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -2911,9 +2911,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox22.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -2993,7 +2993,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3026,9 +3026,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox23.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3108,7 +3108,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3141,9 +3141,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox24.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3223,7 +3223,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3256,9 +3256,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox25.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3338,7 +3338,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3371,9 +3371,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox26.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3453,7 +3453,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3486,9 +3486,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox27.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3568,7 +3568,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3601,9 +3601,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox28.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3683,7 +3683,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3716,9 +3716,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox29.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3798,7 +3798,7 @@ namespace CoreKeeperInventoryEditor
                                     // Get Picture
                                     try
                                     {
-                                        pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                                        pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                                         pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
@@ -3831,9 +3831,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox30.Invalidate(); // Reload picturebox.
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation) - 80068096))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation) - 80068096) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
                                 }
@@ -3870,14 +3870,17 @@ namespace CoreKeeperInventoryEditor
             // Ammounce the information.
             if (GetItemInfo)
             {
-                // Tweak amount for item variant;
-                if (infoVariant != 0)
+                // Check if the items variant is an lengh of 8. 
+                if (infoVariant.ToString().Length == 8)
                 {
-                    infoVariant -= 80068096;
+                    // Item is a food - Display messagebox.
+                    MessageBox.Show("Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Variant: Food1 [" + infoVariant.ToString().Substring(0, infoVariant.ToString().Length / 2) + "] + Food2 [" + infoVariant.ToString().Substring(infoVariant.ToString().Length / 2) + "]", "Item Information:", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                // Display messagebox.
-                MessageBox.Show("Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Variant: " + infoVariant, "Item Information:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    // Display messagebox.
+                    MessageBox.Show("Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Variant: " + infoVariant, "Item Information:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
 
             #endregion
@@ -3914,7 +3917,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -3975,7 +3978,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4036,7 +4039,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4097,7 +4100,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4158,7 +4161,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4219,7 +4222,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4280,7 +4283,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4341,7 +4344,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4402,7 +4405,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4463,7 +4466,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4524,7 +4527,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4585,7 +4588,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4646,7 +4649,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4707,7 +4710,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4768,7 +4771,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4829,7 +4832,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4890,7 +4893,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -4951,7 +4954,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5012,7 +5015,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5073,7 +5076,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5134,7 +5137,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5195,7 +5198,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5256,7 +5259,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5317,7 +5320,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5378,7 +5381,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5439,7 +5442,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5500,7 +5503,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5561,7 +5564,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5622,7 +5625,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5683,7 +5686,7 @@ namespace CoreKeeperInventoryEditor
                         // Get Picture
                         try
                         {
-                            pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation - 80068096).ToString()))); // Check if file matches current type, set it.
+                            pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
                             pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
@@ -5785,7 +5788,7 @@ namespace CoreKeeperInventoryEditor
                     // Get returned item from picker.
                     int itemType = frm2.GetItemTypeFromList();
                     int itemAmount = frm2.GetItemAmountFromList();
-                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : (frm2.GetItemVeriationFromList() + 80068096); // If variation is not zero, add offset.
+                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : (frm2.GetItemVeriationFromList()); // If variation is not zero, add offset.
                     bool wasAborted = frm2.GetUserCancledTask();
                     bool itemOverwrite = frm2.GetSelectedOverwriteTask();
                     frm2.Close();
@@ -5831,7 +5834,7 @@ namespace CoreKeeperInventoryEditor
                     // Save some form settings.
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoID = itemInfo[0];
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = itemInfo[1];
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2] - 80068096); // Ensure variant gets translated correctly.
+                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
 
                     // Spawn item picker window.
                     ItemEditor frm3 = new ItemEditor();
@@ -5840,7 +5843,7 @@ namespace CoreKeeperInventoryEditor
                     // Get returned item from picker.
                     int itemType = frm3.GetItemTypeFromList();
                     int itemAmount = frm3.GetItemAmountFromList();
-                    int itemVariation = frm3.GetItemVeriationFromList() == 0 ? 0 : (frm3.GetItemVeriationFromList() + 80068096); // If variation is not zero, add offset.
+                    int itemVariation = frm3.GetItemVeriationFromList() == 0 ? 0 : (frm3.GetItemVeriationFromList()); // If variation is not zero, add offset.
                     bool wasAborted = frm3.GetUserCancledTask();
                     // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
                     frm3.Close();
@@ -6239,7 +6242,7 @@ namespace CoreKeeperInventoryEditor
                                         }
                                         else
                                         {
-                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation + 80068096, Overwrite: true);
+                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
                                         }
 
                                         // Add one to the loopcount.
@@ -6453,7 +6456,7 @@ namespace CoreKeeperInventoryEditor
                                             // Check if to overwrite or to add to empty slots.
                                             if (radioButton1.Checked) // Overwrite slot1.
                                             {
-                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation) + 80068096), Overwrite: true);
+                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
                                             }
                                             else if (radioButton2.Checked) // Add item to an empty slot.
                                             {
@@ -6463,12 +6466,12 @@ namespace CoreKeeperInventoryEditor
                                                     // Mark item as first.
                                                     firstItem = false;
 
-                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation) + 80068096), Overwrite: true);
+                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
                                                 }
                                             }
                                             else if (radioButton3.Checked) // Custom slot.
                                             {
-                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation) + 80068096), Overwrite: true);
+                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
                                             }
                                         }
                                     }

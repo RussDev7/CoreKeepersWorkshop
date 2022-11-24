@@ -65,9 +65,27 @@ namespace CoreKeepersWorkshop
             #endregion
 
             // Load some settings.
-            numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
-            numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
-            numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+            {
+                // Change some form items.
+                numericUpDown3.Visible = false;
+                numericUpDown4.Visible = true;
+                numericUpDown5.Visible = true;
+                button4.Visible = true;
+
+                // Update settings.
+                numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
+                numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
+                numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+                numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+            }
+            else
+            {
+                // None food variant, keep normal settings.
+                numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
+                numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
+                numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
+            }
         }
 
         // Do closing events.
@@ -82,9 +100,27 @@ namespace CoreKeepersWorkshop
             }
 
             // Save some form settings.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Combine strings into int.
+                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown3.Value;
+            }
             CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)numericUpDown1.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)numericUpDown2.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown3.Value;
             CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = this.Location;
         }
         #endregion // Form loading and closing events.
@@ -98,7 +134,25 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
+                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                {
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Combine strings into int.
+                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        selectedItemVariation = (int)numericUpDown4.Value;
+                    }
+                }
+                else
+                {
+                    // Normal item variant.
+                    selectedItemVariation = (int)numericUpDown3.Value;
+                }
                 this.Close();
             }
         }
@@ -108,7 +162,25 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
+                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                {
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Combine strings into int.
+                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        selectedItemVariation = (int)numericUpDown4.Value;
+                    }
+                }
+                else
+                {
+                    // Normal item variant.
+                    selectedItemVariation = (int)numericUpDown3.Value;
+                }
                 this.Close();
             }
         }
@@ -118,11 +190,84 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
+                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                {
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Combine strings into int.
+                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        selectedItemVariation = (int)numericUpDown4.Value;
+                    }
+                }
+                else
+                {
+                    // Normal item variant.
+                    selectedItemVariation = (int)numericUpDown3.Value;
+                }
+                this.Close();
+            }
+        }
+        private void numericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                selectedItemType = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)numericUpDown2.Value;
+                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                {
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Combine strings into int.
+                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        selectedItemVariation = (int)numericUpDown4.Value;
+                    }
+                }
+                else
+                {
+                    // Normal item variant.
+                    selectedItemVariation = (int)numericUpDown3.Value;
+                }
+                this.Close();
+            }
+        }
+        private void numericUpDown5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                selectedItemType = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)numericUpDown2.Value;
+                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                {
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Combine strings into int.
+                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        selectedItemVariation = (int)numericUpDown4.Value;
+                    }
+                }
+                else
+                {
+                    // Normal item variant.
+                    selectedItemVariation = (int)numericUpDown3.Value;
+                }
                 this.Close();
             }
         }
         #endregion // Keydown Events.
-
     }
 }
