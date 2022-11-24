@@ -1,3 +1,9 @@
+Changes Since v1.2.7
+===========================================================
++ Restored proper functionality to the variant system.
++ Made variants easier to read and write to items.
++ Added missing assets.
+
 Changes Since v1.2.6
 ===========================================================
 + Application now remembers all window locations.
