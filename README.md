@@ -31,8 +31,8 @@ The features for the application is as follows:
 ![PlayerAbout](https://user-images.githubusercontent.com/33048298/190877329-170e2c23-2271-4de6-8d4a-e4fafa9f5b43.png)
 ![EditorAbout](https://user-images.githubusercontent.com/33048298/190877333-99fda451-1cfe-4962-941b-e8bb7d54a30d.PNG)
 
-## Explination on Item Variants
-Varitants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items reguardless of variant all have a base id. There is not a unique id assosiated with each item variant, only the base ID. Refer to the formula bellow to understand how these are built.
+## Explanation On Item Variants
+Variants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items regardless of variant all have a base ID. There is not a unique ID assosiated with each item variant, only the base ID. Refer to the formula below to understand how these are built.
 
 Variant-ID: `xxxxyyyy`\
 `x` = ID of first ingredient\
@@ -41,7 +41,7 @@ Variant-ID: `xxxxyyyy`\
 ![HowVariantsWork](https://user-images.githubusercontent.com/33048298/203685712-03d340d2-ef94-41ad-bd7e-6c4fa8088a1e.png)
 
 ## How Does This Mod Work?
-You may be asking yourself, how does this work without even replacing files in my game? To awnser as simply as possible, you first need to understand what memory addresses are. Every game and every program on your PC has an "address" which is a physical space in your memory (RAM or CPU registers). This mod scans for these unique memory patterns by there values to to find values like an items id, amount, variant and pretty much whatever value you can imagine. All text, numbers, and even the positions of enemies are stored in this memory; the only issue is finding it. Core Keepers is a very special game as in there is no static way to get the game value from an address each time. Each time you reload your game, even your world, these addresses will no longer point to the values they did before. This game scrambles its memory to protect from people abusing this method however so it's quite the annoyance. This mod uses some clevor techneques to overcome this obstical by something called AoB scanning. This allows us to always find the addresses by a unique pattern in memory, the torches. Bellow you can see how the values are sotred in memory for the inventory.
+You may be asking yourself, how does this work without even replacing files in my game? To answer as simply as possible, you first need to understand what memory addresses are. Every game and every program on your PC has an "address" which is a physical space in your memory (RAM or CPU registers). This mod scans for these unique memory patterns by their values to to find values like an items ID, amount, variant and pretty much whatever value you can imagine. All text, numbers, and even the positions of enemies are stored in this memory; the only issue is finding it. Core Keeper is a very special game as there is no static way to get the game value from an address each time. Each time you reload your game, even your world, these addresses will no longer point to the values they did before. This game scrambles its memory to protect from people abusing this method so it's quite annoying. This mod uses some clever techniques to overcome this obstacle by something called AoB scanning. This allows us to always find the addresses by a unique pattern in memory, the torches. Below you can see how the values are stored in memory for the inventory.
 
 ![HowMemWorks](https://user-images.githubusercontent.com/33048298/203687176-72f493b0-0186-4cea-a5f9-16c3555efb20.png)
 
