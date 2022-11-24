@@ -137,6 +137,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown4.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown4.TabIndex = 8;
             this.numericUpDown4.Visible = false;
+            this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown4_KeyDown);
             // 
             // button4
             // 
@@ -161,6 +162,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown5.Size = new System.Drawing.Size(80, 20);
             this.numericUpDown5.TabIndex = 10;
             this.numericUpDown5.Visible = false;
+            this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown5_KeyDown);
             // 
             // ItemEditor
             // 
