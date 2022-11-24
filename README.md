@@ -40,6 +40,11 @@ Variant-ID: `xxxxyyyy`\
 
 ![HowVariantsWork](https://user-images.githubusercontent.com/33048298/203685712-03d340d2-ef94-41ad-bd7e-6c4fa8088a1e.png)
 
+## How Does This Mod Work?
+You may be asking yourself, how does this work without even replacing files in my game? To awnser as simply as possible, you first need to understand what memory addresses are. Every game and every program on your PC has an "address" which is a physical space in your memory (RAM or CPU registers). This mod scans for these unique memory patterns by there values to to find values like an items id, amount, variant and pretty much whatever value you can imagine. All text, numbers, and even the positions of enemies are stored in this memory; the only issue is finding it. Core Keepers is a very special game as in there is no static way to get the game value from an address each time. Each time you reload your game, even your world, these addresses will no longer point to the values they did before. This game scrambles its memory to protect from people abusing this method however so it's quite the annoyance. This mod uses some clevor techneques to overcome this obstical by something called AoB scanning. This allows us to always find the addresses by a unique pattern in memory, the torches. Bellow you can see how the values are sotred in memory for the inventory.
+
+![HowMemWorks](https://user-images.githubusercontent.com/33048298/203687176-72f493b0-0186-4cea-a5f9-16c3555efb20.png)
+
 ## How To Add New / Modded Items
 This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editor's textures. Each item category is divided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a questionmark on the main form. 
 
