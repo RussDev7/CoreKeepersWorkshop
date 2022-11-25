@@ -39,6 +39,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.button4 = new System.Windows.Forms.Button();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -52,7 +53,7 @@ namespace CoreKeepersWorkshop
             this.button1.Location = new System.Drawing.Point(153, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 22);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 0;
             this.button1.Text = "Custom ID";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -66,7 +67,7 @@ namespace CoreKeepersWorkshop
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(241, 20);
-            this.numericUpDown1.TabIndex = 3;
+            this.numericUpDown1.TabIndex = 0;
             this.numericUpDown1.Value = new decimal(new int[] {
             110,
             0,
@@ -76,13 +77,13 @@ namespace CoreKeepersWorkshop
             // 
             // button3
             // 
-            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(153, 64);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 22);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Item Variant";
+            this.button3.TabIndex = 0;
+            this.button3.Text = "Item Variant [or]";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // numericUpDown3
             // 
@@ -94,7 +95,7 @@ namespace CoreKeepersWorkshop
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(241, 20);
-            this.numericUpDown3.TabIndex = 7;
+            this.numericUpDown3.TabIndex = 2;
             this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown3_KeyDown);
             // 
             // numericUpDown2
@@ -107,7 +108,7 @@ namespace CoreKeepersWorkshop
             0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(241, 20);
-            this.numericUpDown2.TabIndex = 5;
+            this.numericUpDown2.TabIndex = 1;
             this.numericUpDown2.Value = new decimal(new int[] {
             50,
             0,
@@ -121,7 +122,7 @@ namespace CoreKeepersWorkshop
             this.button2.Location = new System.Drawing.Point(153, 38);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 22);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 0;
             this.button2.Text = "Custom Amount";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -135,7 +136,7 @@ namespace CoreKeepersWorkshop
             0});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(78, 20);
-            this.numericUpDown4.TabIndex = 8;
+            this.numericUpDown4.TabIndex = 3;
             this.numericUpDown4.Visible = false;
             this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown4_KeyDown);
             // 
@@ -145,7 +146,7 @@ namespace CoreKeepersWorkshop
             this.button4.Location = new System.Drawing.Point(73, 64);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(17, 22);
-            this.button4.TabIndex = 9;
+            this.button4.TabIndex = 0;
             this.button4.Text = "+";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
@@ -160,25 +161,36 @@ namespace CoreKeepersWorkshop
             0});
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDown5.TabIndex = 10;
+            this.numericUpDown5.TabIndex = 4;
             this.numericUpDown5.Visible = false;
             this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown5_KeyDown);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(12, 92);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(241, 22);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "Remove Item";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(265, 99);
+            this.ClientSize = new System.Drawing.Size(265, 124);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.numericUpDown5);
-            this.Controls.Add(this.numericUpDown4);
-            this.Controls.Add(this.numericUpDown3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericUpDown4);
+            this.Controls.Add(this.numericUpDown3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -207,5 +219,6 @@ namespace CoreKeepersWorkshop
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Button button5;
     }
 }

@@ -28,8 +28,8 @@ namespace CoreKeeperInventoryEditor
         public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
 
         // Define texture data.
-        public IEnumerable<string> ImageFiles1 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
-        public IEnumerable<string> InventorySkins = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\", "*.png", SearchOption.AllDirectories);
+        public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        public IEnumerable<string> InventorySkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Form initialization.
         public MainForm()
@@ -201,6 +201,14 @@ namespace CoreKeeperInventoryEditor
 
                 // Prevent overflow from add or removal of images.
                 if (skinCounter >= InventorySkins.Count()) { skinCounter = 0; }
+
+                // Ensure the skin exists. Fix: v1.2.9.
+                if (!File.Exists(InventorySkins.ToArray()[skinCounter]))
+                {
+                    // Display an error.
+                    MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 // Change the background.
                 tabControl1.TabPages[0].BackgroundImage = Image.FromFile(InventorySkins.ToArray()[skinCounter].ToString());
@@ -6545,93 +6553,13 @@ namespace CoreKeeperInventoryEditor
 
         #region Admin Tools
 
-        // Remove duplicates.
-        private void button10_Click(object sender, EventArgs e)
+        private void label7_Click(object sender, EventArgs e)
         {
             // Create directories if they do not exist.
             if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
             {
                 // Create directory.
                 Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
-            }
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images"))
-            {
-                // Create directory.
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images");
-            }
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out"))
-            {
-                // Create directory.
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out");
-            }
-
-            // Delete files in out if they exist.
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt"))
-            {
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt");
-            }
-
-            // Check if images exist within the directory.
-            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images", "*.png").Length == 0 || !File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
-            {
-                MessageBox.Show("Missing images or data files within the debug directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                // Define count for file deletion.
-                int imageRemovalCount = 0;
-
-                // Get each file in the directory.
-                FileInfo[] Files = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images").GetFiles("*.png");
-
-                // Get each image file in directory.
-                foreach (FileInfo file in Files)
-                {
-                    // Get each png file from the inventory subdirectories.
-                    var file123 = Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
-                    foreach (string image in file123)
-                    {
-                        // Check if image from debug exists within inventory.
-                        if (file.FullName.Substring(file.FullName.LastIndexOf('\\') + 1).Replace("_", "").Split('.')[0].ToLower() == image.Substring(image.LastIndexOf('\\') + 1).Split(',')[0].ToLower())
-                        {
-                            try
-                            {
-                                // Match was found, log it.
-                                string imageName = file.FullName.Substring(file.FullName.LastIndexOf('\\') + 1).Replace("_", "").Split('.')[0];
-                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", "Removed File: " + imageName + ".png" + Environment.NewLine);
-
-                                // Remove image from debug.
-                                File.Delete(file.FullName);
-
-                                // Advance removal counter.
-                                imageRemovalCount++;
-                            }
-                            catch (Exception)
-                            {
-                            }
-                        }
-                    }
-                }
-
-                // Display results.
-                MessageBox.Show(imageRemovalCount.ToString() + " images where found and deleted.", "Removed Dupes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        // Rename images based off data.txt.
-        private void button8_Click(object sender, EventArgs e)
-        {
-            // Create directories if they do not exist.
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
-            {
-                // Create directory.
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
-            }
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images"))
-            {
-                // Create directory.
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images");
             }
             if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out"))
             {
@@ -6644,69 +6572,60 @@ namespace CoreKeeperInventoryEditor
             {
                 Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out").ToList().ForEach(File.Delete);
             }
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt"))
-            {
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt");
-            }
 
             // Define counter for total items.
             int renamedImagesCount = 0;
 
             // Check if images exist within the directory.
-            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images", "*.png").Length == 0 || !File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
+            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) == null)
             {
-                MessageBox.Show("Missing images or data files within the debug directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No assets found within the inventory directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
             {
                 // Get each file in the directory.
-                FileInfo[] Files = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\images").GetFiles("*.png");
+                string[] Files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
 
-                // Read each line in the text file.
-                foreach (var line in File.ReadLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
+                // Get each image file in directory.
+                foreach (string file in Files)
                 {
-                    // Define image name from file.
-                    string imageNameFromFile = line.Split(',')[0].Replace(" ", "");
-
-                    // Get each image file in directory.
-                    foreach (FileInfo file in Files)
+                    try
                     {
-                        // Define image name.
-                        string imageName = file.Name.Split('.')[0].Replace("_", "");
+                        // Define image variant.
+                        string imageName = Path.GetFileName(file).Split(',')[0];
+                        string imageID = Path.GetFileName(file).Split(',')[1];
+                        string imageVariant = Path.GetFileName(file).Split(',')[2].Split('.')[0];
 
-                        // Check if file contains the recorded data.
-                        if (imageName.ToLower() == imageNameFromFile.ToLower())
+                        // Check if variant lengh is 8 and value is not zero.
+                        if (imageVariant.Length != 8 && int.Parse(imageVariant) != 0)
                         {
-                            try
-                            {
-                                // Define new filename.
-                                string newImageName = imageNameFromFile + "," + line.Split(',')[1] + ",0.png";
+                            // Define new filename.
+                            string newImageName = imageName + "," + imageID + "," + (int.Parse(imageVariant) + 80068096) + ".png";
 
-                                // Match was found, log it.
-                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", file.Name + " -> " + newImageName + Environment.NewLine);
+                            // Match was found, log it.
+                            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", @"\assets\inventory\" + Path.GetDirectoryName(file) + @"\" + Path.GetFileName(file) + " -> " + @"\assets\debug\out\" + newImageName + Environment.NewLine);
 
-                                // Copy and save the rename image file.
-                                File.Copy(file.FullName, AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out\" + newImageName);
+                            // Copy and save the rename image file.
+                            File.Copy(file, AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out\" + newImageName);
 
-                                // Add to count.
-                                renamedImagesCount++;
-                            }
-                            catch (Exception)
-                            {
-                                continue;
-                            }
+                            // Add to count.
+                            renamedImagesCount++;
                         }
+                    }
+                    catch (Exception)
+                    {
+                        continue;
                     }
                 }
 
                 // Display results.
-                MessageBox.Show(renamedImagesCount.ToString() + " images where found and renamed.", "Rename Images", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(renamedImagesCount.ToString() + " images where found and renamed.", "Legacy Upgrade", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        // Cycle Items
-        private async void button9_Click(object sender, EventArgs e)
+        // Get a random food ID.
+        private void label4_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -6722,47 +6641,52 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // Delete files in out if they exist.
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt"))
+            // Create directories if they do not exist.
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
             {
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt");
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
             }
 
-            // Get address from loop.
-            string baseAddress = AoBScanResultsInventory.Last().ToString("X").ToString();
-            string slot1Item = baseAddress;
-
-            // Test 
-            for (int testValue = 0; testValue < 32767 + 1; testValue++)
+            // Check if images exist within the directory.
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
             {
-                // Add New Item
-                MemLib.WriteMemory(slot1Item, "int", testValue.ToString()); // Write item type
+                MessageBox.Show(@"The file '\assets\debug\data.txt' does not exist!" + Environment.NewLine + "Create one with random IDs per line.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                // Define new random item variation.
+                Random randomItem = new Random();
+                int item1 = randomItem.Next(0, File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt").Length);
+                int item2 = randomItem.Next(0, File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt").Length);
+                string itemVariation = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt")[item1].ToString() + File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt")[item2].ToString();
 
-                // Add Delay
-                await System.Threading.Tasks.Task.Delay(100);
-
-                // Check if new item reads negitive.
-                int itemByteValue = (int)MemLib.ReadByte(slot1Item);
-                if (itemByteValue < 0)
+                // Add new item to slot2.
+                // Iterate through each found address.
+                foreach (long res in AoBScanResultsInventory)
                 {
-                    // Log items.
-                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", "Invalid: ItemID: " + testValue + " Result: " + itemByteValue + Environment.NewLine);
+                    try
+                    {
+                        // Get address from loop.
+                        string baseAddress = res.ToString("X").ToString();
 
-                    // MessageBox.Show("Invalid: ItemID: " + testValue + " Result: " + itemByteValue, "Cycle Items", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    // Log items.
-                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", itemByteValue.ToString() + Environment.NewLine);
+                        string slot2Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                        string slot2Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
+                        string slot2Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
 
-                    // MessageBox.Show(itemByteValue.ToString(), "Cycle Items", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Add New Item
+                        MemLib.WriteMemory(slot2Item, "int", MemLib.ReadInt(slot2Item).ToString()); // Write item type 
+                        MemLib.WriteMemory(slot2Amount, "int", MemLib.ReadInt(slot2Amount).ToString()); // Write item amount
+                        MemLib.WriteMemory(slot2Variation, "int", itemVariation.ToString()); // Write item variation
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
                 }
             }
-
-            // Finished
-            MessageBox.Show("Finished cycling items.", "Cycle Items", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        #endregion
+        #endregion // End admin tools.
     }
 }

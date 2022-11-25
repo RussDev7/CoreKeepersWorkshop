@@ -18,10 +18,10 @@ namespace CoreKeeperInventoryEditor
         bool userCancledTask = false;
 
         // Define texture data.
-        public IEnumerable<string> ImageFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\");
+        public IEnumerable<string> ImageFiles = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Define folder names.
-        public IEnumerable<string> FolderNames = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\");
+        public IEnumerable<string> FolderNames = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") ? Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") : new String[] { "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null" }; // Ensure directory exists. Fix: v1.2.9.
 
         // Define imagelist.
         ImageList ImagelistTools = new ImageList();

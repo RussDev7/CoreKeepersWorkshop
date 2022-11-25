@@ -56,11 +56,12 @@ namespace CoreKeepersWorkshop
 
             // Set tool texts.
             toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
-            toolTip.SetToolTip(numericUpDown2, "Enter a custom ID. Either press enter when done or use the button.");
-            toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(numericUpDown2, "Enter a custom ID. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown4, "Enter an ingredient ID. Press enter when done.");
 
-            toolTip.SetToolTip(button1, "Remove the item from this inventory slot.");
-            toolTip.SetToolTip(button3, "Spawn in custom item amount + ID.");
+            toolTip.SetToolTip(button3, "Toggle the GUI between food / item variaty.");
+            toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
 
             #endregion
 
@@ -78,6 +79,12 @@ namespace CoreKeepersWorkshop
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
                 numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
                 numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+
+                // Rename button label.
+                button2.Text = "Food Variant [or]";
+
+                // Update tooltips.
+                toolTip.SetToolTip(numericUpDown3, "Enter an ingredient ID or full variant ID on this side. Press enter when done.");
             }
             else
             {
@@ -85,6 +92,9 @@ namespace CoreKeepersWorkshop
                 numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
                 numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
+
+                // Update tooltips.
+                toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
             }
         }
 
@@ -268,6 +278,49 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
+        // Remove item.
+        private void button5_Click(object sender, EventArgs e)
+        {
+            selectedItemType = 0;
+            selectedItemAmount = 1;
+            selectedItemVariation = 0;
+            this.Close();
+        }
         #endregion // Keydown Events.
+
+        #region Form Controls
+        // Toggle variant settings.
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // Check if item or food mode is enabled.
+            if (!numericUpDown3.Visible)
+            {
+                // Enabled controls.
+                numericUpDown3.Visible = true;
+
+                // Disable controls.
+                numericUpDown4.Visible = false;
+                numericUpDown5.Visible = false;
+                button4.Visible = false;
+
+                // Rename button label.
+                button2.Text = "Item Variant [or]";
+            }
+            else
+            {
+                // Enabled controls.
+                numericUpDown4.Visible = true;
+                numericUpDown5.Visible = true;
+                button4.Visible = true;
+
+                // Disable controls.
+
+                numericUpDown3.Visible = false;
+
+                // Rename button label.
+                button2.Text = "Food Variant [or]";
+            }
+        }
+        #endregion // End form controls.
     }
 }
