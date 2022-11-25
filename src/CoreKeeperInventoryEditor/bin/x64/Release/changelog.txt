@@ -4,6 +4,7 @@ Changes Since v1.2.8
 - Fixed all the tab indexes.
 - Fixed wrong tooltips.
 - Fixed a few wrong entrees within the changelog.
+- Changed around some existing assets to proper locations.
 
 + Removed and added some dev-tools.
 + Added a remove item button to the quick item editor.
