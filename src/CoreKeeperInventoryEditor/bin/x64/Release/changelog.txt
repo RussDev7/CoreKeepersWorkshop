@@ -1,3 +1,15 @@
+Changes Since v1.2.8
+===========================================================
+- Added a few startup checks to prevent exceptions. 
+- Fixed all the tab indexes.
+- Fixed wrong tooltips.
+- Fixed a few wrong entrees within the changelog.
+
++ Removed and added some dev-tools.
++ Added a remove item button to the quick item editor.
++ Added a variant GUI toggle to the quick item editor.
++ Added tooltips based on a forms situation.
+
 Changes Since v1.2.7
 ===========================================================
 + Restored proper functionality to the variant system.
@@ -6,9 +18,10 @@ Changes Since v1.2.7
 
 Changes Since v1.2.6
 ===========================================================
+- Misc bug fixes accross mutliple forms.
+
 + Application now remembers all window locations.
 + Added missing assets.
-+ Misc bug fixes accross mutliple forms.
 + Chat commands can now also use item ids.
 + Changed the numericupdowns maximum to 999999999.
 
