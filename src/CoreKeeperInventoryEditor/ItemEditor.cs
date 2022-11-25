@@ -81,7 +81,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
 
                 // Rename button label.
-                button2.Text = "Food Variant [or]";
+                button3.Text = "Food Variant [or]";
 
                 // Update tooltips.
                 toolTip.SetToolTip(numericUpDown3, "Enter an ingredient ID or full variant ID on this side. Press enter when done.");
@@ -110,7 +110,7 @@ namespace CoreKeepersWorkshop
             }
 
             // Save some form settings.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
             {
                 // Check if both entrees are populated.
                 if (numericUpDown5.Value != 0)
@@ -144,7 +144,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
@@ -172,7 +172,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
@@ -200,7 +200,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
@@ -228,7 +228,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
@@ -256,7 +256,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
-                if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
@@ -304,7 +304,10 @@ namespace CoreKeepersWorkshop
                 button4.Visible = false;
 
                 // Rename button label.
-                button2.Text = "Item Variant [or]";
+                button3.Text = "Item Variant [or]";
+
+                // Update item variant
+                numericUpDown3.Value = numericUpDown4.Value;
             }
             else
             {
@@ -318,7 +321,10 @@ namespace CoreKeepersWorkshop
                 numericUpDown3.Visible = false;
 
                 // Rename button label.
-                button2.Text = "Food Variant [or]";
+                button3.Text = "Food Variant [or]";
+
+                // Update food variant
+                numericUpDown4.Value = numericUpDown3.Value;
             }
         }
         #endregion // End form controls.
