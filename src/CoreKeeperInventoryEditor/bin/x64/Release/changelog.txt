@@ -10,6 +10,7 @@ Changes Since v1.2.8
 + Added a remove item button to the quick item editor.
 + Added a variant GUI toggle to the quick item editor.
 + Added tooltips based on a forms situation.
++ Added missing assets.
 
 Changes Since v1.2.7
 ===========================================================
