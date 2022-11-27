@@ -753,7 +753,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBox2.Size = new System.Drawing.Size(348, 127);
             this.richTextBox2.TabIndex = 10;
-            this.richTextBox2.Text = resources.GetString("richTextBox2.Text");
+            this.richTextBox2.Text = "";
             this.richTextBox2.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox2_LinkClicked);
             // 
             // tabPage4
@@ -798,11 +798,11 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(5, 29);
+            this.label7.Location = new System.Drawing.Point(1, 29);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(338, 13);
+            this.label7.Size = new System.Drawing.Size(300, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "[Legacy Upgrade] Rename pre-1.2.7 assets to the new variaty system.";
+            this.label7.Text = "[Click Me] Rename pre-1.2.7 assets to the new variaty system.";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label5
@@ -821,11 +821,11 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(5, 54);
+            this.label4.Location = new System.Drawing.Point(1, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(287, 13);
+            this.label4.Size = new System.Drawing.Size(250, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "[Random Variaty]  Randomize slot2\'s variaty based on a list.\r\n";
+            this.label4.Text = "[Click Me] Randomize slot2\'s variaty based on a list.\r\n";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // tabPage5

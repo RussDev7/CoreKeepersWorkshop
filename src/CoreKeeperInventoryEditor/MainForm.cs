@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -42,6 +43,18 @@ namespace CoreKeeperInventoryEditor
         // Do form loading events.
         private void MainForm_Load(object sender, EventArgs e)
         {
+            #region Set Controls
+
+            // Set the about tabs content.
+            richTextBox2.Text = String.Concat(new string[] {
+                @"// CoreKeepersWorkshop v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion + " - Written kindly by: D.RUSS#2430" + Environment.NewLine,
+                @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
+                @"This tool was created with future content and modded content in mind. It currently supports manual item additions by naming images using the following format: ItemName,ItemID,ItemVariation.png - You can add these assets to the ""\assets\inventory\"" directory. For future requests or any issues, please contact me under my discord handle above, thanks!" + Environment.NewLine,
+                @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
+                @"Project source: https://github.com/RussDev7/CoreKeepersWorkshop"
+            });
+            #endregion
+
             #region Set Form Locations
 
             // Set the forms active location based on previous save.
@@ -6091,7 +6104,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Display error message.
                 MessageBox.Show("Your must type your playername and a new name!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //return;
+                return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
@@ -6348,11 +6361,15 @@ namespace CoreKeeperInventoryEditor
                 progressBar3.Value = 0;
                 chatTimer.Stop();
                 chatTimer.Enabled = false;
+                groupBox6.Enabled = true;
             }
             else
             {
                 // Enable some controls.
                 chatEnabled = true;
+
+                // Disable some controls.
+                groupBox6.Enabled = false;
 
                 // Name button to indicate loading.
                 progressBar3.Value = 10;
@@ -6372,6 +6389,7 @@ namespace CoreKeeperInventoryEditor
                     progressBar3.Value = 0;
                     chatTimer.Stop();
                     chatTimer.Enabled = false;
+                    groupBox6.Enabled = true;
 
                     // Display error message.
                     MessageBox.Show("You must type \"/item\" in the player chat first!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -6577,50 +6595,59 @@ namespace CoreKeeperInventoryEditor
             int renamedImagesCount = 0;
 
             // Check if images exist within the directory.
-            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) == null)
+            try
             {
-                MessageBox.Show("No assets found within the inventory directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                // Get each file in the directory.
-                string[] Files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
-
-                // Get each image file in directory.
-                foreach (string file in Files)
+                if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) == null)
                 {
-                    try
+                    MessageBox.Show("No assets found within the inventory directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    // Get each file in the directory.
+                    string[] Files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
+
+                    // Get each image file in directory.
+                    foreach (string file in Files)
                     {
-                        // Define image variant.
-                        string imageName = Path.GetFileName(file).Split(',')[0];
-                        string imageID = Path.GetFileName(file).Split(',')[1];
-                        string imageVariant = Path.GetFileName(file).Split(',')[2].Split('.')[0];
-
-                        // Check if variant lengh is 8 and value is not zero.
-                        if (imageVariant.Length != 8 && int.Parse(imageVariant) != 0)
+                        try
                         {
-                            // Define new filename.
-                            string newImageName = imageName + "," + imageID + "," + (int.Parse(imageVariant) + 80068096) + ".png";
+                            // Define image variant.
+                            string imageName = Path.GetFileName(file).Split(',')[0];
+                            string imageID = Path.GetFileName(file).Split(',')[1];
+                            string imageVariant = Path.GetFileName(file).Split(',')[2].Split('.')[0];
 
-                            // Match was found, log it.
-                            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", @"\assets\inventory\" + Path.GetDirectoryName(file) + @"\" + Path.GetFileName(file) + " -> " + @"\assets\debug\out\" + newImageName + Environment.NewLine);
+                            // Check if variant lengh is 8 and value is not zero.
+                            if (imageVariant.Length != 8 && int.Parse(imageVariant) != 0)
+                            {
+                                // Define new filename.
+                                string newImageName = imageName + "," + imageID + "," + (int.Parse(imageVariant) + 80068096) + ".png";
 
-                            // Copy and save the rename image file.
-                            File.Copy(file, AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out\" + newImageName);
+                                // Match was found, log it.
+                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", @"\assets\inventory\" + Path.GetDirectoryName(file) + @"\" + Path.GetFileName(file) + " -> " + @"\assets\debug\out\" + newImageName + Environment.NewLine);
 
-                            // Add to count.
-                            renamedImagesCount++;
+                                // Copy and save the rename image file.
+                                File.Copy(file, AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out\" + newImageName);
+
+                                // Add to count.
+                                renamedImagesCount++;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            continue;
                         }
                     }
-                    catch (Exception)
-                    {
-                        continue;
-                    }
-                }
 
-                // Display results.
-                MessageBox.Show(renamedImagesCount.ToString() + " images where found and renamed.", "Legacy Upgrade", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Display results.
+                    MessageBox.Show(renamedImagesCount.ToString() + " images where found and renamed.", "Legacy Upgrade", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception a)
+            {
+                // Display error.
+                MessageBox.Show(a.Message.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

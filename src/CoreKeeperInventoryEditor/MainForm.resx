@@ -117,13 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox2.Text" xml:space="preserve">
-    <value>// Written kindly by: D.RUSS#2430
--------------------------------------------------------------------------------------------------------------------
-This tool was created with updates and modded in mind. It currently supports manual item additions by naming images using the following format: (ItemName,ItemID,ItemVariation,Category.png) - You can add these assets to the "\assets\inventory" directory. For future requests or any issues, please contact me under my discord handle above, thanks!
--------------------------------------------------------------------------------------------------------------------
-Project Source: https://github.com/RussDev7/CoreKeepersWorkshop</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Enabling this feature will scan chat for all chat
 commands from the player. To use this feature
