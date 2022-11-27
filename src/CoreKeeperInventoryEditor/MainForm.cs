@@ -6361,7 +6361,7 @@ namespace CoreKeeperInventoryEditor
                 progressBar3.Value = 0;
                 chatTimer.Stop();
                 chatTimer.Enabled = false;
-                groupBox6.Enabled = true;
+                // groupBox6.Enabled = true;
             }
             else
             {
@@ -6369,7 +6369,7 @@ namespace CoreKeeperInventoryEditor
                 chatEnabled = true;
 
                 // Disable some controls.
-                groupBox6.Enabled = false;
+                // groupBox6.Enabled = false;
 
                 // Name button to indicate loading.
                 progressBar3.Value = 10;
@@ -6389,7 +6389,7 @@ namespace CoreKeeperInventoryEditor
                     progressBar3.Value = 0;
                     chatTimer.Stop();
                     chatTimer.Enabled = false;
-                    groupBox6.Enabled = true;
+                    // groupBox6.Enabled = true;
 
                     // Display error message.
                     MessageBox.Show("You must type \"/item\" in the player chat first!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
