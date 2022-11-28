@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label3.Text" xml:space="preserve">
-    <value>To use, type "/cmd" in chat and send it. Then
+    <value>To use, type "/item" in chat and send it. Then
 press the enable button to activate this feature.
 
 /item [Type] [Amount] (Variation) - Spawn items.
