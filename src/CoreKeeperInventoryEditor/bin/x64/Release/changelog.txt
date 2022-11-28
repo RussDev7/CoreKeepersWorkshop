@@ -7,6 +7,8 @@ Changes Since v1.2.9
 
 + Added the file version to the about tab.
 + Added missing assets.
++ World tab was added along with a console.
++ Added a remove all ground items button.
 
 Changes Since v1.2.8
 ===========================================================
