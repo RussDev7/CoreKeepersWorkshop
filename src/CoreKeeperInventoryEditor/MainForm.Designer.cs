@@ -100,6 +100,13 @@ namespace CoreKeeperInventoryEditor
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -146,6 +153,8 @@ namespace CoreKeeperInventoryEditor
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabPage8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -154,6 +163,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -977,6 +987,84 @@ namespace CoreKeeperInventoryEditor
             this.progressBar3.Size = new System.Drawing.Size(364, 23);
             this.progressBar3.TabIndex = 15;
             // 
+            // tabPage8
+            // 
+            this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.tabPage8.Controls.Add(this.progressBar4);
+            this.tabPage8.Controls.Add(this.richTextBox5);
+            this.tabPage8.Controls.Add(this.groupBox7);
+            this.tabPage8.Location = new System.Drawing.Point(4, 25);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(780, 303);
+            this.tabPage8.TabIndex = 4;
+            this.tabPage8.Text = "World";
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Location = new System.Drawing.Point(10, 262);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(364, 23);
+            this.progressBar4.TabIndex = 19;
+            // 
+            // richTextBox5
+            // 
+            this.richTextBox5.BackColor = System.Drawing.Color.Black;
+            this.richTextBox5.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBox5.Location = new System.Drawing.Point(10, 127);
+            this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.ReadOnly = true;
+            this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.richTextBox5.Size = new System.Drawing.Size(362, 129);
+            this.richTextBox5.TabIndex = 18;
+            this.richTextBox5.Text = "Information reguarding the world tools will appear here.\n------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "----\n";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Controls.Add(this.button8);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.ForeColor = System.Drawing.Color.Lime;
+            this.groupBox7.Location = new System.Drawing.Point(10, 5);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(364, 116);
+            this.groupBox7.TabIndex = 17;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "World Tools";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Snow;
+            this.label9.Location = new System.Drawing.Point(138, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(155, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "- Removes all the ground items.";
+            // 
+            // button8
+            // 
+            this.button8.ForeColor = System.Drawing.Color.Black;
+            this.button8.Location = new System.Drawing.Point(8, 19);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(129, 23);
+            this.button8.TabIndex = 12;
+            this.button8.Text = "Remove Ground Items";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Snow;
+            this.label6.Location = new System.Drawing.Point(2, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 13);
+            this.label6.TabIndex = 2;
+            // 
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
@@ -1052,6 +1140,9 @@ namespace CoreKeeperInventoryEditor
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.tabPage8.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1129,6 +1220,13 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ProgressBar progressBar4;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RichTextBox richTextBox5;
     }
 }
 

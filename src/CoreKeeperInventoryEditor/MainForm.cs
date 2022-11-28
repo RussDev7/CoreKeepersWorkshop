@@ -23,6 +23,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsInventory;
         public IEnumerable<long> AoBScanResultsPlayerName;
         public IEnumerable<long> AoBScanResultsChat;
+        public IEnumerable<long> AoBScanResultsGroundItems;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -183,6 +184,10 @@ namespace CoreKeeperInventoryEditor
                 {
                     this.Size = new Size(410, 360);
                 }
+                else if (tabControl1.SelectedTab == tabPage8)
+                {
+                    this.Size = new Size(410, 360);
+                }
 
                 // Adjust some final form settings.
                 this.Opacity = 100;
@@ -202,6 +207,10 @@ namespace CoreKeeperInventoryEditor
                 this.Size = new Size(410, 360);
             }
             else if (tabControl1.SelectedTab == tabPage5)
+            {
+                this.Size = new Size(410, 360);
+            }
+            else if (tabControl1.SelectedTab == tabPage8)
             {
                 this.Size = new Size(410, 360);
             }
@@ -260,6 +269,9 @@ namespace CoreKeeperInventoryEditor
 
             // Name button to indicate loading.
             button1.Text = "Loading Addresses...";
+
+            // Disable button to prevent spamming.
+            button1.Enabled = false;
 
             // Reset textbox.
             richTextBox1.Text = "Addresses Loaded: 0";
@@ -5756,6 +5768,9 @@ namespace CoreKeeperInventoryEditor
             button2.Text = "Reload Inventory";
             button3.Text = "Remove All";
 
+            // Re-enable button.
+            button1.Enabled = true;
+
             // Rehide the progressbar.
             progressBar2.Visible = false;
         }
@@ -6715,5 +6730,111 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End admin tools.
+
+        #region World Tools
+
+        // Delete all ground items.
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Reset progress bar.
+            progressBar4.Step = 10;
+            progressBar4.Value = 0;
+            progressBar4.PerformStep(); // Progress 10%.
+
+            // Name button to indicate loading.
+            button8.Text = "Removing Items..";
+
+            // Disable button to prevent spamming.
+            button4.Enabled = false;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+
+            // Adjust the max value of the progress bar.
+            progressBar4.Step = AoBScanResultsGroundItems.Count();
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsGroundItems.Count() == 0)
+            {
+                // Rename button back to defualt.
+                button8.Text = "Remove Ground Items";
+
+                // Ensure progressbar is at 100.
+                progressBar4.Value = 100;
+
+                // Display error message.
+                MessageBox.Show("You must throw at least one torch on the ground!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Perform step.
+            progressBar4.PerformStep();
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsGroundItems)
+            {
+                // Get base addresses.
+                string ItemType = res.ToString("X").ToString();
+                string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                string ItemFooter = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                // Climb down the address for each item.
+                bool endAddressFound = false;
+                while (!endAddressFound)
+                {
+                    // Find the next footer value.
+                    ItemFooter = BigInteger.Subtract(BigInteger.Parse(ItemFooter, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+
+                    // Check if this is the last value.
+                    if (MemLib.ReadUInt(ItemFooter).ToString() == "1")
+                    {
+                        // The final value to write too.
+                        // Log the items removed.
+                        if (MemLib.ReadUInt(ItemType).ToString() != "0")
+                        {
+                            richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + Environment.NewLine);
+                            richTextBox5.ScrollToCaret();
+                        }
+
+                        // Use the previous values to wrtite.
+                        MemLib.WriteMemory(ItemType, "int", "0");
+                        MemLib.WriteMemory(ItemAmount, "int", "0");
+                        MemLib.WriteMemory(ItemVariant, "int", "0");
+                    }
+                    else
+                    {
+                        // End the loop.
+                        endAddressFound = true;
+                    }
+
+                    // Get the next footer values.
+                    ItemType = BigInteger.Subtract(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                    ItemAmount = BigInteger.Subtract(BigInteger.Parse(ItemAmount, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                    ItemVariant = BigInteger.Subtract(BigInteger.Parse(ItemVariant, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                }
+
+                // Progress the progress bar.
+                progressBar4.PerformStep();
+            }
+
+            // Process completed, run finishing tasks.
+            // Rename button back to defualt.
+            button8.Text = "Remove Ground Items";
+
+            // Enable button.
+            button4.Enabled = true;
+
+            // Ensure progressbar is at 100.
+            progressBar4.Value = 100;
+        }
+        #endregion
     }
 }
