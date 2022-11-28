@@ -9,6 +9,7 @@ Changes Since v1.2.9
 + Added missing assets.
 + World tab was added along with a console.
 + Added a remove all ground items button.
++ Added new chat commands within the chat tab.
 
 Changes Since v1.2.8
 ===========================================================
