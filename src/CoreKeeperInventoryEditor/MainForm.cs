@@ -44,70 +44,76 @@ namespace CoreKeeperInventoryEditor
         // Do form loading events.
         private void MainForm_Load(object sender, EventArgs e)
         {
-            #region Set Controls
+            try // Further catch possible errors.
+            {
+                #region Set Controls
 
-            // Set the about tabs content.
-            richTextBox2.Text = String.Concat(new string[] {
+                // Set the about tabs content.
+                richTextBox2.Text = String.Concat(new string[] {
                 @"// CoreKeepersWorkshop v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion + " - Written kindly by: D.RUSS#2430" + Environment.NewLine,
                 @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
                 @"This tool was created with future content and modded content in mind. It currently supports manual item additions by naming images using the following format: ItemName,ItemID,ItemVariation.png - You can add these assets to the ""\assets\inventory\"" directory. For future requests or any issues, please contact me under my discord handle above, thanks!" + Environment.NewLine,
                 @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
                 @"Project source: https://github.com/RussDev7/CoreKeepersWorkshop"
             });
-            #endregion
+                #endregion
 
-            #region Set Form Locations
+                #region Set Form Locations
 
-            // Set the forms active location based on previous save.
-            InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
-            #endregion
+                // Set the forms active location based on previous save.
+                InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+                #endregion
 
-            #region Set Background
+                #region Set Background
 
-            // Get background from saved settings.
-            // Ensure background is not null.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.UIBackground != "")
-            {
-                // Catch image missing / renamed errors.
-                try
+                // Get background from saved settings.
+                // Ensure background is not null.
+                if (CoreKeepersWorkshop.Properties.Settings.Default.UIBackground != "")
                 {
-                    tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.UIBackground);
+                    // Catch image missing / renamed errors.
+                    try
+                    {
+                        tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.UIBackground);
+                    }
+                    catch (Exception)
+                    {
+                        CoreKeepersWorkshop.Properties.Settings.Default.UIBackground = "";
+                    }
                 }
-                catch (Exception)
-                {
-                    CoreKeepersWorkshop.Properties.Settings.Default.UIBackground = "";
-                }
+                #endregion
+
+                #region Tooltips
+
+                // Create a new tooltip.
+                ToolTip toolTip = new ToolTip();
+                toolTip.AutoPopDelay = 3000;
+                toolTip.InitialDelay = 1000;
+
+                // Set tool texts.
+                toolTip.SetToolTip(textBox1, "Enter the existing loaded player's name.");
+                toolTip.SetToolTip(textBox2, "Enter a custom name. Must match current player's name length.");
+
+                toolTip.SetToolTip(button1, "Get the required addresses for editing the inventory.");
+                toolTip.SetToolTip(button2, "Reload loads the GUI with updated inventory items.");
+                toolTip.SetToolTip(button3, "Remove all items from the inventory.");
+                toolTip.SetToolTip(button4, "Change your existing name.");
+                toolTip.SetToolTip(button5, "Import a player file to overwrite items.");
+                toolTip.SetToolTip(button6, "Export a player file to overwrite items.");
+                toolTip.SetToolTip(button7, "Enable / disable in-game chat commands.");
+
+                toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
+
+                toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
+                toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
+                toolTip.SetToolTip(radioButton2, "Add items to a custom inventory slot.");
+
+                toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
+
+                #endregion
             }
-            #endregion
-
-            #region Tooltips
-
-            // Create a new tooltip.
-            ToolTip toolTip = new ToolTip();
-            toolTip.AutoPopDelay = 3000;
-            toolTip.InitialDelay = 1000;
-
-            // Set tool texts.
-            toolTip.SetToolTip(textBox1, "Enter the existing loaded player's name.");
-            toolTip.SetToolTip(textBox2, "Enter a custom name. Must match current player's name length.");
-
-            toolTip.SetToolTip(button1, "Get the required addresses for editing the inventory.");
-            toolTip.SetToolTip(button2, "Reload loads the GUI with updated inventory items.");
-            toolTip.SetToolTip(button3, "Remove all items from the inventory.");
-            toolTip.SetToolTip(button4, "Change your existing name.");
-            toolTip.SetToolTip(button5, "Import a player file to overwrite items.");
-            toolTip.SetToolTip(button6, "Export a player file to overwrite items.");
-            toolTip.SetToolTip(button7, "Enable / disable in-game chat commands.");
-
-            toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
-
-            toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
-            toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
-            toolTip.SetToolTip(radioButton2, "Add items to a custom inventory slot.");
-
-            toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
-
-            #endregion
+            catch (Exception)
+            {
+            }
         }
 
         // Launch the link in the browser.
