@@ -118,13 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label3.Text" xml:space="preserve">
-    <value>Enabling this feature will scan chat for all chat
-commands from the player. To use this feature
-first type "/item" in chat and send it. Then
+    <value>To use, type "/cmd" in chat and send it. Then
 press the enable button to activate this feature.
 
-[] = Required, () = Optional - Use item names.
-/item [Type] [Amount] (Variation)</value>
+/item [Type] [Amount] (Variation) - Spawn items.
+/clearground - Clear ground items.
+/cls - Clear the console.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

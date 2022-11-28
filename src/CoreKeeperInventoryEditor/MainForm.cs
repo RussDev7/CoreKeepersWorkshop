@@ -6431,7 +6431,7 @@ namespace CoreKeeperInventoryEditor
         // Do events for the chat.
         bool firstRun = true; // Do text reset bool.
         bool firstItem = true; // Ensure we only add to one slot.
-        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private async void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             // Iterate through each found address.
             foreach (long res in AoBScanResultsChat)
@@ -6568,6 +6568,67 @@ namespace CoreKeeperInventoryEditor
                                     }
                                 }
                             }
+                        }
+                    }
+                    if (currentCommand.Split(' ')[0] == "/clearground")
+                    {
+                        // Erase current chat values.
+                        MemLib.WriteMemory(baseAddress, "string", "                                ");
+
+                        // Update last chat command
+                        LastChatCommand.Add(currentCommand);
+
+                        // Log command if it does not exist.
+                        if (currentCommand != richTextBox4.Lines[richTextBox4.Lines.Length - 1] && firstRun)
+                        {
+                            // Prevent further entries this loop.
+                            firstRun = false;
+
+                            richTextBox4.AppendText(currentCommand + " - Loading please wait.." + Environment.NewLine);
+                            richTextBox4.ScrollToCaret();
+
+                            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                            AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+
+                            // Adjust the max value of the progress bar.
+                            progressBar4.Step = AoBScanResultsGroundItems.Count();
+
+                            // If the count is zero, the scan had an error.
+                            if (AoBScanResultsGroundItems.Count() == 0)
+                            {
+                                // Ensure progressbar is at 100.
+                                progressBar4.Value = 100;
+
+                                // Display error message.
+                                richTextBox4.AppendText("[ClearGround] You must throw at least one torch on the ground!!" + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                                break;
+                            }
+
+                            // Remove ground items.
+                            RemoveGroundItems();
+
+                            // Log evensts.
+                            richTextBox4.AppendText("[ClearGround] Ground items cleared!" + Environment.NewLine);
+                            richTextBox4.ScrollToCaret();
+                        }
+                    }
+                    if (currentCommand.Split(' ')[0] == "/cls")
+                    {
+                        // Erase current chat values.
+                        MemLib.WriteMemory(baseAddress, "string", "                                ");
+
+                        // Update last chat command
+                        LastChatCommand.Add(currentCommand);
+
+                        // Log command if it does not exist.
+                        if (currentCommand != richTextBox4.Lines[richTextBox4.Lines.Length - 1] && firstRun)
+                        {
+                            // Prevent further entries this loop.
+                            firstRun = false;
+
+                            // Reset richtextbox.
+                            richTextBox4.Text = "Any captured chat messages will appear here." + Environment.NewLine + "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
                         }
                     }
                 }
@@ -6777,6 +6838,25 @@ namespace CoreKeeperInventoryEditor
             // Perform step.
             progressBar4.PerformStep();
 
+            // Remove ground items.
+            RemoveGroundItems();
+
+            // Process completed, run finishing tasks.
+            // Rename button back to defualt.
+            button8.Text = "Remove Ground Items";
+
+            // Enable button.
+            button4.Enabled = true;
+        }
+
+        // Remove items function.
+        public void RemoveGroundItems()
+        {
+            // Reset progress bar.
+            progressBar4.Step = 10;
+            progressBar4.Value = 0;
+            progressBar4.PerformStep(); // Progress 10%.
+
             // Iterate through each found address.
             foreach (long res in AoBScanResultsGroundItems)
             {
@@ -6824,13 +6904,6 @@ namespace CoreKeeperInventoryEditor
                 // Progress the progress bar.
                 progressBar4.PerformStep();
             }
-
-            // Process completed, run finishing tasks.
-            // Rename button back to defualt.
-            button8.Text = "Remove Ground Items";
-
-            // Enable button.
-            button4.Enabled = true;
 
             // Ensure progressbar is at 100.
             progressBar4.Value = 100;
