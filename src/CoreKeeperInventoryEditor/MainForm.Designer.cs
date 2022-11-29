@@ -85,6 +85,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -795,6 +796,7 @@ namespace CoreKeeperInventoryEditor
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.Black;
+            this.tabPage7.Controls.Add(this.label8);
             this.tabPage7.Controls.Add(this.label7);
             this.tabPage7.Controls.Add(this.label5);
             this.tabPage7.Controls.Add(this.label4);
@@ -803,6 +805,17 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.Size = new System.Drawing.Size(354, 133);
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "Dev-Tools";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(1, 70);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(277, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -1227,6 +1240,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox5;
+        private System.Windows.Forms.Label label8;
     }
 }
 
