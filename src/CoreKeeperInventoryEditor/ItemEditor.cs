@@ -50,9 +50,11 @@ namespace CoreKeepersWorkshop
             #region Tooltips
 
             // Create a new tooltip.
-            ToolTip toolTip = new ToolTip();
-            toolTip.AutoPopDelay = 5000;
-            toolTip.InitialDelay = 1500;
+            ToolTip toolTip = new()
+            {
+                AutoPopDelay = 5000,
+                InitialDelay = 1500
+            };
 
             // Set tool texts.
             toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
@@ -138,7 +140,7 @@ namespace CoreKeepersWorkshop
         #region Keydown Events
 
         // Do enter events.
-        private void numericUpDown1_KeyDown(object sender, KeyEventArgs e)
+        private void NumericUpDown1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -166,7 +168,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void numericUpDown2_KeyDown(object sender, KeyEventArgs e)
+        private void NumericUpDown2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -194,7 +196,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void numericUpDown3_KeyDown(object sender, KeyEventArgs e)
+        private void NumericUpDown3_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -222,7 +224,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void numericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        private void NumericUpDown4_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -250,7 +252,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void numericUpDown5_KeyDown(object sender, KeyEventArgs e)
+        private void NumericUpDown5_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -279,7 +281,7 @@ namespace CoreKeepersWorkshop
             }
         }
         // Remove item.
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             selectedItemType = 0;
             selectedItemAmount = 1;
@@ -290,7 +292,7 @@ namespace CoreKeepersWorkshop
 
         #region Form Controls
         // Toggle variant settings.
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             // Check if item or food mode is enabled.
             if (!numericUpDown3.Visible)

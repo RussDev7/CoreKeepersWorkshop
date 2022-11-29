@@ -73,17 +73,17 @@ namespace CoreKeepersWorkshop
             0,
             0,
             0});
-            this.numericUpDown1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown1_KeyDown);
+            this.numericUpDown1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown1_KeyDown);
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(153, 64);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 22);
-            this.button3.TabIndex = 0;
+            this.button3.TabIndex = 6;
             this.button3.Text = "Item Variant [or]";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // numericUpDown3
             // 
@@ -96,7 +96,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(241, 20);
             this.numericUpDown3.TabIndex = 2;
-            this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown3_KeyDown);
+            this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
             // 
             // numericUpDown2
             // 
@@ -114,7 +114,7 @@ namespace CoreKeepersWorkshop
             0,
             0,
             0});
-            this.numericUpDown2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown2_KeyDown);
+            this.numericUpDown2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
             // 
             // button2
             // 
@@ -138,7 +138,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown4.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown4.TabIndex = 3;
             this.numericUpDown4.Visible = false;
-            this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown4_KeyDown);
+            this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
             // button4
             // 
@@ -163,7 +163,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown5.Size = new System.Drawing.Size(80, 20);
             this.numericUpDown5.TabIndex = 4;
             this.numericUpDown5.Visible = false;
-            this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown5_KeyDown);
+            this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
             // 
             // button5
             // 
@@ -173,7 +173,7 @@ namespace CoreKeepersWorkshop
             this.button5.TabIndex = 5;
             this.button5.Text = "Remove Item";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // ItemEditor
             // 

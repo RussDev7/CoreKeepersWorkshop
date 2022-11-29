@@ -89,6 +89,7 @@ namespace CoreKeeperInventoryEditor
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
@@ -149,6 +150,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -172,7 +174,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 332);
             this.tabControl1.TabIndex = 5;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -238,7 +240,7 @@ namespace CoreKeeperInventoryEditor
             this.button3.TabIndex = 2;
             this.button3.Text = "Remove All";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button2
             // 
@@ -248,7 +250,7 @@ namespace CoreKeeperInventoryEditor
             this.button2.TabIndex = 3;
             this.button2.Text = "Reload Inventory";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // pictureBox30
             // 
@@ -259,7 +261,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox30.Size = new System.Drawing.Size(60, 60);
             this.pictureBox30.TabIndex = 31;
             this.pictureBox30.TabStop = false;
-            this.pictureBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox29
             // 
@@ -270,7 +272,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox29.Size = new System.Drawing.Size(60, 60);
             this.pictureBox29.TabIndex = 30;
             this.pictureBox29.TabStop = false;
-            this.pictureBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox28
             // 
@@ -281,7 +283,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox28.Size = new System.Drawing.Size(60, 60);
             this.pictureBox28.TabIndex = 29;
             this.pictureBox28.TabStop = false;
-            this.pictureBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox27
             // 
@@ -292,7 +294,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox27.Size = new System.Drawing.Size(60, 60);
             this.pictureBox27.TabIndex = 28;
             this.pictureBox27.TabStop = false;
-            this.pictureBox27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox26
             // 
@@ -303,7 +305,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox26.Size = new System.Drawing.Size(60, 60);
             this.pictureBox26.TabIndex = 27;
             this.pictureBox26.TabStop = false;
-            this.pictureBox26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox25
             // 
@@ -314,7 +316,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox25.Size = new System.Drawing.Size(60, 60);
             this.pictureBox25.TabIndex = 26;
             this.pictureBox25.TabStop = false;
-            this.pictureBox25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox24
             // 
@@ -325,7 +327,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox24.Size = new System.Drawing.Size(60, 60);
             this.pictureBox24.TabIndex = 25;
             this.pictureBox24.TabStop = false;
-            this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox23
             // 
@@ -336,7 +338,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox23.Size = new System.Drawing.Size(60, 60);
             this.pictureBox23.TabIndex = 24;
             this.pictureBox23.TabStop = false;
-            this.pictureBox23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox22
             // 
@@ -347,7 +349,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox22.Size = new System.Drawing.Size(60, 60);
             this.pictureBox22.TabIndex = 23;
             this.pictureBox22.TabStop = false;
-            this.pictureBox22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox21
             // 
@@ -358,7 +360,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox21.Size = new System.Drawing.Size(60, 60);
             this.pictureBox21.TabIndex = 22;
             this.pictureBox21.TabStop = false;
-            this.pictureBox21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox20
             // 
@@ -369,7 +371,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox20.Size = new System.Drawing.Size(60, 60);
             this.pictureBox20.TabIndex = 21;
             this.pictureBox20.TabStop = false;
-            this.pictureBox20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox19
             // 
@@ -380,7 +382,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox19.Size = new System.Drawing.Size(60, 60);
             this.pictureBox19.TabIndex = 20;
             this.pictureBox19.TabStop = false;
-            this.pictureBox19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox18
             // 
@@ -391,7 +393,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox18.Size = new System.Drawing.Size(60, 60);
             this.pictureBox18.TabIndex = 19;
             this.pictureBox18.TabStop = false;
-            this.pictureBox18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox17
             // 
@@ -402,7 +404,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox17.Size = new System.Drawing.Size(60, 60);
             this.pictureBox17.TabIndex = 18;
             this.pictureBox17.TabStop = false;
-            this.pictureBox17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox16
             // 
@@ -413,7 +415,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox16.Size = new System.Drawing.Size(60, 60);
             this.pictureBox16.TabIndex = 17;
             this.pictureBox16.TabStop = false;
-            this.pictureBox16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox15
             // 
@@ -424,7 +426,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox15.Size = new System.Drawing.Size(60, 60);
             this.pictureBox15.TabIndex = 16;
             this.pictureBox15.TabStop = false;
-            this.pictureBox15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox14
             // 
@@ -435,7 +437,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox14.Size = new System.Drawing.Size(60, 60);
             this.pictureBox14.TabIndex = 15;
             this.pictureBox14.TabStop = false;
-            this.pictureBox14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox13
             // 
@@ -446,7 +448,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox13.Size = new System.Drawing.Size(60, 60);
             this.pictureBox13.TabIndex = 14;
             this.pictureBox13.TabStop = false;
-            this.pictureBox13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox12
             // 
@@ -457,7 +459,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox12.Size = new System.Drawing.Size(60, 60);
             this.pictureBox12.TabIndex = 13;
             this.pictureBox12.TabStop = false;
-            this.pictureBox12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox11
             // 
@@ -468,7 +470,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox11.Size = new System.Drawing.Size(60, 60);
             this.pictureBox11.TabIndex = 12;
             this.pictureBox11.TabStop = false;
-            this.pictureBox11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox10
             // 
@@ -479,7 +481,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox10.Size = new System.Drawing.Size(60, 60);
             this.pictureBox10.TabIndex = 11;
             this.pictureBox10.TabStop = false;
-            this.pictureBox10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox9
             // 
@@ -490,7 +492,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox9.Size = new System.Drawing.Size(60, 60);
             this.pictureBox9.TabIndex = 10;
             this.pictureBox9.TabStop = false;
-            this.pictureBox9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox8
             // 
@@ -501,7 +503,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox8.Size = new System.Drawing.Size(60, 60);
             this.pictureBox8.TabIndex = 9;
             this.pictureBox8.TabStop = false;
-            this.pictureBox8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox7
             // 
@@ -512,7 +514,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox7.Size = new System.Drawing.Size(60, 60);
             this.pictureBox7.TabIndex = 8;
             this.pictureBox7.TabStop = false;
-            this.pictureBox7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox6
             // 
@@ -523,7 +525,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox6.Size = new System.Drawing.Size(60, 60);
             this.pictureBox6.TabIndex = 7;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox5
             // 
@@ -534,7 +536,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox5.Size = new System.Drawing.Size(60, 60);
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox4
             // 
@@ -545,7 +547,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox4.Size = new System.Drawing.Size(60, 60);
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox3
             // 
@@ -556,7 +558,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox3.Size = new System.Drawing.Size(60, 60);
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox2
             // 
@@ -567,7 +569,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox2.Size = new System.Drawing.Size(60, 60);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // pictureBox1
             // 
@@ -578,7 +580,7 @@ namespace CoreKeeperInventoryEditor
             this.pictureBox1.Size = new System.Drawing.Size(60, 60);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
             // button1
             // 
@@ -588,7 +590,7 @@ namespace CoreKeeperInventoryEditor
             this.button1.TabIndex = 0;
             this.button1.Text = "Get Inventory Addresses";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // richTextBox1
             // 
@@ -644,7 +646,7 @@ namespace CoreKeeperInventoryEditor
             this.button6.TabIndex = 10;
             this.button6.Text = "Export Player";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // button5
             // 
@@ -655,7 +657,7 @@ namespace CoreKeeperInventoryEditor
             this.button5.TabIndex = 9;
             this.button5.Text = "Import Player";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // groupBox1
             // 
@@ -702,7 +704,7 @@ namespace CoreKeeperInventoryEditor
             this.button4.TabIndex = 8;
             this.button4.Text = "Change Name";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // textBox2
             // 
@@ -765,7 +767,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox2.Size = new System.Drawing.Size(348, 127);
             this.richTextBox2.TabIndex = 10;
             this.richTextBox2.Text = "";
-            this.richTextBox2.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox2_LinkClicked);
+            this.richTextBox2.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichTextBox2_LinkClicked);
             // 
             // tabPage4
             // 
@@ -800,6 +802,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.Controls.Add(this.label7);
             this.tabPage7.Controls.Add(this.label5);
             this.tabPage7.Controls.Add(this.label4);
+            this.tabPage7.Controls.Add(this.numericUpDown2);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(354, 133);
@@ -815,7 +818,7 @@ namespace CoreKeeperInventoryEditor
             this.label8.Size = new System.Drawing.Size(277, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.label8.Click += new System.EventHandler(this.Label8_Click);
             // 
             // label7
             // 
@@ -826,7 +829,7 @@ namespace CoreKeeperInventoryEditor
             this.label7.Size = new System.Drawing.Size(300, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "[Click Me] Rename pre-1.2.7 assets to the new variaty system.";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.label7.Click += new System.EventHandler(this.Label7_Click);
             // 
             // label5
             // 
@@ -849,7 +852,36 @@ namespace CoreKeeperInventoryEditor
             this.label4.Size = new System.Drawing.Size(250, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "[Click Me] Randomize slot2\'s variaty based on a list.\r\n";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.label4.Click += new System.EventHandler(this.Label4_Click);
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.BackColor = System.Drawing.SystemColors.Window;
+            this.numericUpDown2.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown2.InterceptArrowKeys = false;
+            this.numericUpDown2.Location = new System.Drawing.Point(331, 113);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown2.TabIndex = 0;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
             // 
             // tabPage5
             // 
@@ -881,9 +913,9 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox4.ReadOnly = true;
             this.richTextBox4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox4.Size = new System.Drawing.Size(362, 129);
-            this.richTextBox4.TabIndex = 1;
+            this.richTextBox4.TabIndex = 16;
             this.richTextBox4.Text = "Any captured chat messages will appear here.\n------------------------------------" +
-    "------------------------------------------------------------------------\n";
+    "-----------------------------------------------------------------------------\n";
             // 
             // groupBox4
             // 
@@ -908,7 +940,7 @@ namespace CoreKeeperInventoryEditor
             this.button7.TabIndex = 11;
             this.button7.Text = "Enable";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // groupBox6
             // 
@@ -957,7 +989,7 @@ namespace CoreKeeperInventoryEditor
             this.radioButton3.TabIndex = 14;
             this.radioButton3.Text = "Custom:";
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -998,7 +1030,7 @@ namespace CoreKeeperInventoryEditor
             this.progressBar3.Location = new System.Drawing.Point(10, 261);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(364, 23);
-            this.progressBar3.TabIndex = 15;
+            this.progressBar3.TabIndex = 17;
             // 
             // tabPage8
             // 
@@ -1018,21 +1050,21 @@ namespace CoreKeeperInventoryEditor
             this.progressBar4.Location = new System.Drawing.Point(10, 262);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(364, 23);
-            this.progressBar4.TabIndex = 19;
+            this.progressBar4.TabIndex = 20;
             // 
             // richTextBox5
             // 
             this.richTextBox5.BackColor = System.Drawing.Color.Black;
             this.richTextBox5.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox5.Location = new System.Drawing.Point(10, 127);
+            this.richTextBox5.Location = new System.Drawing.Point(10, 65);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.ReadOnly = true;
             this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox5.Size = new System.Drawing.Size(362, 129);
-            this.richTextBox5.TabIndex = 18;
+            this.richTextBox5.Size = new System.Drawing.Size(362, 191);
+            this.richTextBox5.TabIndex = 19;
             this.richTextBox5.Text = "Information reguarding the world tools will appear here.\n------------------------" +
     "--------------------------------------------------------------------------------" +
-    "----\n";
+    "---------\n";
             // 
             // groupBox7
             // 
@@ -1043,7 +1075,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox7.ForeColor = System.Drawing.Color.Lime;
             this.groupBox7.Location = new System.Drawing.Point(10, 5);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(364, 116);
+            this.groupBox7.Size = new System.Drawing.Size(364, 54);
             this.groupBox7.TabIndex = 17;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "World Tools";
@@ -1052,22 +1084,22 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Snow;
-            this.label9.Location = new System.Drawing.Point(138, 24);
+            this.label9.Location = new System.Drawing.Point(131, 24);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(155, 13);
+            this.label9.Size = new System.Drawing.Size(229, 13);
             this.label9.TabIndex = 13;
-            this.label9.Text = "- Removes all the ground items.";
+            this.label9.Text = "- Deletes all items not picked up off the ground.";
             // 
             // button8
             // 
             this.button8.ForeColor = System.Drawing.Color.Black;
             this.button8.Location = new System.Drawing.Point(8, 19);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(129, 23);
-            this.button8.TabIndex = 12;
+            this.button8.Size = new System.Drawing.Size(122, 23);
+            this.button8.TabIndex = 18;
             this.button8.Text = "Remove Ground Items";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // label6
             // 
@@ -1146,6 +1178,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage4.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -1241,6 +1274,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox5;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
     }
 }
 

@@ -21,13 +21,13 @@ namespace CoreKeeperInventoryEditor
     public partial class MainForm : Form
     {
         // Setup some varibles.
-        public Mem MemLib = new Mem();
+        public Mem MemLib = new();
         public IEnumerable<long> AoBScanResultsInventory;
         public IEnumerable<long> AoBScanResultsPlayerName;
         public IEnumerable<long> AoBScanResultsChat;
         public IEnumerable<long> AoBScanResultsGroundItems;
-        public List<string> LastChatCommand = new List<string>() { "" };
-        public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
+        public List<string> LastChatCommand = new() { "" };
+        public Dictionary<string, int> ExportPlayerItems = new() { };
         public string ExportPlayerName = "";
         public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
 
@@ -98,9 +98,11 @@ namespace CoreKeeperInventoryEditor
                 #region Tooltips
 
                 // Create a new tooltip.
-                ToolTip toolTip = new ToolTip();
-                toolTip.AutoPopDelay = 3000;
-                toolTip.InitialDelay = 1000;
+                ToolTip toolTip = new()
+                {
+                    AutoPopDelay = 3000,
+                    InitialDelay = 1000
+                };
 
                 // Set tool texts.
                 toolTip.SetToolTip(textBox1, "Enter the existing loaded player's name.");
@@ -113,6 +115,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button5, "Import a player file to overwrite items.");
                 toolTip.SetToolTip(button6, "Export a player file to overwrite items.");
                 toolTip.SetToolTip(button7, "Enable / disable in-game chat commands.");
+                toolTip.SetToolTip(button8, "Removes all ground items not picked up by the player.");
 
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
 
@@ -121,6 +124,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(radioButton2, "Add items to a custom inventory slot.");
 
                 toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
+                toolTip.SetToolTip(numericUpDown2, "Change the interval of tools that use times.");
 
                 #endregion
             }
@@ -130,7 +134,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Launch the link in the browser.
-        private void richTextBox2_LinkClicked(object sender, LinkClickedEventArgs e)
+        private void RichTextBox2_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/RussDev7/CoreKeepersWorkshop");
         }
@@ -215,7 +219,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Control switching tabs.
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
@@ -268,7 +272,7 @@ namespace CoreKeeperInventoryEditor
         #region Inventory Editor
 
         // Get Inventory addresses.
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             progressBar2.Value = 0;
@@ -377,8 +381,10 @@ namespace CoreKeeperInventoryEditor
             // Set playername in jason array.
             if (ExportInventory)
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Player File|*.ckplayer";
+                SaveFileDialog sfd = new()
+                {
+                    Filter = "Player File|*.ckplayer"
+                };
 
                 // Ensure the user chose a file.
                 if (sfd.ShowDialog() == DialogResult.OK)
@@ -522,9 +528,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox1.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot1Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -539,9 +545,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox1.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot1Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -637,9 +643,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox2.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot2Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -654,9 +660,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox2.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot2Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -751,9 +757,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox3.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot3Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -768,9 +774,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox3.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot3Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -866,9 +872,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox4.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot4Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -883,9 +889,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox4.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot4Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -981,9 +987,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox5.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot5Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -998,9 +1004,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox5.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot5Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1096,9 +1102,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox6.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot6Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1113,9 +1119,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox6.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot6Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1211,9 +1217,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox7.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot7Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1228,9 +1234,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox7.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot7Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1326,9 +1332,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox8.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot8Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1343,9 +1349,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox8.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot8Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1441,9 +1447,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox9.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot9Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1458,9 +1464,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox9.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot9Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1556,9 +1562,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox10.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot10Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1573,9 +1579,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox10.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot10Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1671,9 +1677,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox11.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot11Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1688,9 +1694,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox11.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot11Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1786,9 +1792,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox12.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot12Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1803,9 +1809,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox12.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot12Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1901,9 +1907,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox13.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot13Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -1918,9 +1924,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox13.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot13Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2016,9 +2022,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox14.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot14Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2033,9 +2039,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox14.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot14Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2131,9 +2137,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox15.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot15Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2148,9 +2154,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox15.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot15Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2247,9 +2253,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox16.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot16Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2264,9 +2270,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox16.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot16Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2362,9 +2368,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox17.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot17Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2379,9 +2385,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox17.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot17Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2477,9 +2483,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox18.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot18Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2494,9 +2500,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox18.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot18Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2592,9 +2598,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox19.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot19Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2609,9 +2615,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox19.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot19Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2707,9 +2713,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox20.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot20Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2724,9 +2730,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox20.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot20Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2822,9 +2828,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox21.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot21Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2839,9 +2845,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox21.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot21Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2937,9 +2943,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox22.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot22Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -2954,9 +2960,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox22.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot22Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3052,9 +3058,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox23.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot23Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3069,9 +3075,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox23.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot23Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3167,9 +3173,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox24.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot24Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3184,9 +3190,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox24.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot24Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3282,9 +3288,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox25.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot25Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3299,9 +3305,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox25.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot25Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3397,9 +3403,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox26.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot26Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3414,9 +3420,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox26.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot26Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3512,9 +3518,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox27.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot27Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3529,9 +3535,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox27.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot27Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3627,9 +3633,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox28.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot28Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3644,9 +3650,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox28.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot28Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3742,9 +3748,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox29.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot29Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3759,9 +3765,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox29.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot29Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3857,9 +3863,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox30.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot30Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3874,9 +3880,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                                         // Draw item amount.
-                                        using (Font font = new Font("Arial", 24f))
+                                        using (Font font = new("Arial", 24f))
                                         using (Graphics G = Graphics.FromImage(pictureBox30.Image))
-                                        using (GraphicsPath gp = new GraphicsPath())
+                                        using (GraphicsPath gp = new())
                                         {
                                             // Do drawling actions.
                                             gp.AddString(MemLib.ReadInt(slot30Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3976,9 +3982,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox1.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -3993,9 +3999,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox1.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4037,9 +4043,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox2.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4054,9 +4060,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox2.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4098,9 +4104,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox3.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4115,9 +4121,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox3.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4159,9 +4165,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox4.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4176,9 +4182,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox4.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4220,9 +4226,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox5.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4237,9 +4243,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox5.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4281,9 +4287,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox6.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4298,9 +4304,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox6.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4342,9 +4348,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox7.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4359,9 +4365,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox7.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4403,9 +4409,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox8.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4420,9 +4426,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox8.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4464,9 +4470,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox9.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4481,9 +4487,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox9.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4525,9 +4531,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox10.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4542,9 +4548,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox10.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4586,9 +4592,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox11.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4603,9 +4609,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox11.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4647,9 +4653,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox12.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4664,9 +4670,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox12.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4708,9 +4714,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox13.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4725,9 +4731,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox13.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4769,9 +4775,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox14.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4786,9 +4792,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox14.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4830,9 +4836,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox15.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4847,9 +4853,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox15.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4891,9 +4897,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox16.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4908,9 +4914,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox16.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4952,9 +4958,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox17.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -4969,9 +4975,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox17.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5013,9 +5019,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox18.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5030,9 +5036,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox18.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5074,9 +5080,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox19.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5091,9 +5097,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox19.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5135,9 +5141,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox20.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5152,9 +5158,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox20.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5196,9 +5202,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox21.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5213,9 +5219,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox21.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5257,9 +5263,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox22.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5274,9 +5280,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox22.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5318,9 +5324,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox23.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5335,9 +5341,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox23.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5379,9 +5385,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox24.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5396,9 +5402,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox24.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5440,9 +5446,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox25.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5457,9 +5463,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox25.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5501,9 +5507,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox26.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5518,9 +5524,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox26.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5562,9 +5568,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox27.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5579,9 +5585,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox27.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5623,9 +5629,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox28.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5640,9 +5646,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox28.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5684,9 +5690,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox29.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5701,9 +5707,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox29.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5745,9 +5751,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox30.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5762,9 +5768,9 @@ namespace CoreKeeperInventoryEditor
                             pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
 
                             // Draw item amount.
-                            using (Font font = new Font("Arial", 24f))
+                            using (Font font = new("Arial", 24f))
                             using (Graphics G = Graphics.FromImage(pictureBox30.Image))
-                            using (GraphicsPath gp = new GraphicsPath())
+                            using (GraphicsPath gp = new())
                             {
                                 // Do drawling actions.
                                 gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
@@ -5798,7 +5804,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Reload Inventory.
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             // Change button labels.
             button2.Text = "Loading..";
@@ -5812,7 +5818,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Remove entire Inventory.
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Delete ALL items? Are you sure?", "Remove All", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -5827,12 +5833,10 @@ namespace CoreKeeperInventoryEditor
         #region Click Events
 
         // Click Events
-        private void pictureBox_MouseClick(object sender, MouseEventArgs e)
+        private void PictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            PictureBox pic = sender as PictureBox;
-
             // Ensure picturebox control exists.
-            if (pic != null)
+            if (sender is PictureBox pic)
             {
                 if (e.Button == MouseButtons.Left) // Load inventory editor.
                 {
@@ -5840,8 +5844,8 @@ namespace CoreKeeperInventoryEditor
                     int slotNumber = int.Parse(pic.Name.Replace("pictureBox", ""));
 
                     // Spawn item picker window.
-                    InventoryEditor frm2 = new InventoryEditor();
-                    DialogResult dr = frm2.ShowDialog(this);
+                    InventoryEditor frm2 = new();
+                    _ = frm2.ShowDialog(this);
 
                     // Get returned item from picker.
                     int itemType = frm2.GetItemTypeFromList();
@@ -5895,8 +5899,8 @@ namespace CoreKeeperInventoryEditor
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
 
                     // Spawn item picker window.
-                    ItemEditor frm3 = new ItemEditor();
-                    DialogResult dr = frm3.ShowDialog(this);
+                    ItemEditor frm3 = new();
+                    _ = frm3.ShowDialog(this);
 
                     // Get returned item from picker.
                     int itemType = frm3.GetItemTypeFromList();
@@ -6134,7 +6138,7 @@ namespace CoreKeeperInventoryEditor
         #region Misc
 
         // Change player name.
-        private async void button4_Click(object sender, EventArgs e)
+        private async void Button4_Click(object sender, EventArgs e)
         {
             // Ensure properties are filled.
             if (textBox1.Text == "" || textBox2.Text == "")
@@ -6155,7 +6159,7 @@ namespace CoreKeeperInventoryEditor
             button4.Text = "Changing Name..";
 
             // Get current player name.
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             foreach (char c in textBox1.Text)
             {
                 builder.Append(Convert.ToInt32(c).ToString("X"));
@@ -6176,11 +6180,11 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Change players name.
-            ChangePlayersName(textBox2.Text, textBox2.Text.Length, textBox2.Text.Length);
+            ChangePlayersName(textBox2.Text, textBox2.Text.Length);
         }
 
         // this function is async, which means it does not block other code.
-        public void ChangePlayersName(string NewName, int OldLengh, int NewLengh)
+        public void ChangePlayersName(string NewName, int NewLengh)
         {
             // Iterate through each found address.
             foreach (long res in AoBScanResultsPlayerName)
@@ -6204,7 +6208,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Import a player file.
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -6226,8 +6230,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get file from browser.
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Player File|*.ckplayer";
+            OpenFileDialog ofd = new()
+            {
+                Filter = "Player File|*.ckplayer"
+            };
 
             // Ensure the user chose a file.
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -6237,7 +6243,7 @@ namespace CoreKeeperInventoryEditor
                 progressBar1.Value = 0;
 
                 // Define playername
-                string playerName = ofd.SafeFileName;
+                // string playerName = ofd.SafeFileName;
 
                 // Define count for inventory slots.
                 int ItemSlotCount = 1;
@@ -6245,67 +6251,65 @@ namespace CoreKeeperInventoryEditor
                 try
                 {
                     // Read the json file.
-                    using (FileStream fileStream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
-                    using (StreamReader fileReader = new StreamReader(fileStream))
-                    using (JsonTextReader reader = new JsonTextReader(fileReader))
+                    using FileStream fileStream = new(ofd.FileName, FileMode.Open, FileAccess.Read);
+                    using StreamReader fileReader = new(fileStream);
+                    using JsonTextReader reader = new(fileReader);
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        if (reader.TokenType == JsonToken.StartObject)
                         {
-                            if (reader.TokenType == JsonToken.StartObject)
+                            // Load each object from the stream.
+                            JObject playerData = JObject.Load(reader);
+
+                            // Define some vars.
+                            int itemID = 0;
+                            int itemAmount = 0;
+                            int itemVariation = 0;
+
+                            // Loop through each item in object.
+                            foreach (var ex in playerData)
                             {
-                                // Load each object from the stream.
-                                JObject playerData = JObject.Load(reader);
-
-                                // Define some vars.
-                                int itemID = 0;
-                                int itemAmount = 0;
-                                int itemVariation = 0;
-
-                                // Loop through each item in object.
-                                foreach (var ex in playerData)
+                                // Convert json items to vars.
+                                // Get item id.
+                                if (ex.Key.Contains("-ID"))
                                 {
-                                    // Convert json items to vars.
                                     // Get item id.
-                                    if (ex.Key.Contains("-ID"))
+                                    string slotNumberID = "itemSlot" + ItemSlotCount.ToString() + "-ID";
+                                    itemID = int.Parse(playerData[slotNumberID].ToString().Replace("itemSlot", "").Replace("-ID", ""));
+
+                                    // Advance the protgress bar.
+                                    progressBar1.PerformStep();
+                                }
+                                else if (ex.Key.Contains("-Amount"))
+                                {
+                                    // Get item amount.
+                                    string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Amount";
+                                    itemAmount = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Amount", ""));
+
+                                    // Advance the protgress bar.
+                                    progressBar1.PerformStep();
+                                }
+                                else if (ex.Key.Contains("-Variation"))
+                                {
+                                    // Get item amount.
+                                    string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Variation";
+                                    itemVariation = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Variation", ""));
+
+                                    // Advance the protgress bar.
+                                    progressBar1.PerformStep();
+
+                                    // Add the item to the inventory.
+                                    if (itemVariation == 0)
                                     {
-                                        // Get item id.
-                                        string slotNumberID = "itemSlot" + ItemSlotCount.ToString() + "-ID";
-                                        itemID = int.Parse(playerData[slotNumberID].ToString().Replace("itemSlot", "").Replace("-ID", ""));
-
-                                        // Advance the protgress bar.
-                                        progressBar1.PerformStep();
+                                        AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
                                     }
-                                    else if (ex.Key.Contains("-Amount"))
+                                    else
                                     {
-                                        // Get item amount.
-                                        string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Amount";
-                                        itemAmount = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Amount", ""));
-
-                                        // Advance the protgress bar.
-                                        progressBar1.PerformStep();
+                                        AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
                                     }
-                                    else if (ex.Key.Contains("-Variation"))
-                                    {
-                                        // Get item amount.
-                                        string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Variation";
-                                        itemVariation = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Variation", ""));
 
-                                        // Advance the protgress bar.
-                                        progressBar1.PerformStep();
-
-                                        // Add the item to the inventory.
-                                        if (itemVariation == 0)
-                                        {
-                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
-                                        }
-                                        else
-                                        {
-                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
-                                        }
-
-                                        // Add one to the loopcount.
-                                        ItemSlotCount++;
-                                    }
+                                    // Add one to the loopcount.
+                                    ItemSlotCount++;
                                 }
                             }
                         }
@@ -6322,7 +6326,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Export a player file.
-        private void button6_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -6355,7 +6359,7 @@ namespace CoreKeeperInventoryEditor
         #region ItemChatCommands
 
         // Enable the numericupdown based on if selected radiobutton is checked.
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton3.Checked == true)
             {
@@ -6371,8 +6375,8 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle chat commands.
         bool chatEnabled = false;
-        public System.Timers.Timer chatTimer = new System.Timers.Timer(500);
-        private async void button7_Click(object sender, EventArgs e)
+        public System.Timers.Timer chatTimer = new(500);
+        private async void Button7_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -6670,7 +6674,7 @@ namespace CoreKeeperInventoryEditor
         #region Admin Tools
 
         // Upgrade legacy version vanity items to the new system.
-        private void label7_Click(object sender, EventArgs e)
+        private void Label7_Click(object sender, EventArgs e)
         {
             // Create directories if they do not exist.
             if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
@@ -6763,7 +6767,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get a random food ID.
-        private void label4_Click(object sender, EventArgs e)
+        private void Label4_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -6801,7 +6805,7 @@ namespace CoreKeeperInventoryEditor
             else
             {
                 // Define new random item variation.
-                Random randomItem = new Random();
+                Random randomItem = new();
                 int item1 = randomItem.Next(0, File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt").Length);
                 int item2 = randomItem.Next(0, File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt").Length);
                 string itemVariation = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt")[item1].ToString() + File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt")[item2].ToString();
@@ -6840,27 +6844,15 @@ namespace CoreKeeperInventoryEditor
         static extern short GetKeyState(int nVirtKey);
         public static bool IsKeyPressed(int testKey)
         {
-            // Barrowed From: http://pinvoke.net/default.aspx/user32/GetKeyboardState.html
-            bool keyPressed = false;
             short result = GetKeyState(testKey);
-
-            switch (result)
+            
+            // Not pressed and not toggled on.
+            var keyPressed = result switch
             {
-                case 0:
-                    // Not pressed and not toggled on.
-                    keyPressed = false;
-                    break;
-
-                case 1:
-                    // Not pressed, but toggled on
-                    keyPressed = false;
-                    break;
-
-                default:
-                    // Pressed (and may be toggled on)
-                    keyPressed = true;
-                    break;
-            }
+                0 => false, // Not pressed and not toggled on.
+                1 => false, // Not pressed, but toggled on
+                _ => true,  // Pressed (and may be toggled on)
+            };
             return keyPressed;
         }
 
@@ -6869,8 +6861,8 @@ namespace CoreKeeperInventoryEditor
         int currentSwapAmount = 50;
         int currentSwapVariation = 0;
         bool itemSwapActive = false; // Define toggle for on / off.
-        System.Timers.Timer itemSwapTimer = new System.Timers.Timer();
-        private void label8_Click(object sender, EventArgs e)
+        readonly System.Timers.Timer itemSwapTimer = new();
+        private void Label8_Click(object sender, EventArgs e)
         {
             // Check if item swap is active or not.
             if (!itemSwapActive)
@@ -6895,11 +6887,22 @@ namespace CoreKeeperInventoryEditor
                 // Recolor label.
                 label8.ForeColor = Color.Lime;
 
+                // Get existing slot two values.
+                // Iterate through each found address.
+                foreach (long res in AoBScanResultsInventory)
+                {
+                    // Get address for the second item slot from loop.
+                    string baseAddress = res.ToString("X").ToString();
+                    currentSwapItem = MemLib.ReadInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X"));
+                    currentSwapAmount = MemLib.ReadInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X"));
+                    currentSwapVariation = MemLib.ReadInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X"));
+                }
+
                 // Enable bool.
                 itemSwapActive = true;
 
                 // Start the timed events.
-                itemSwapTimer.Interval = 100;
+                itemSwapTimer.Interval = (double)numericUpDown2.Value; // Custom intervals.
                 itemSwapTimer.Elapsed += new ElapsedEventHandler(ItemSwapTimedEvent);
                 itemSwapTimer.Start();
             }
@@ -6950,7 +6953,7 @@ namespace CoreKeeperInventoryEditor
         #region World Tools
 
         // Delete all ground items.
-        private async void button8_Click(object sender, EventArgs e)
+        private async void Button8_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
