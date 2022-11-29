@@ -11,7 +11,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace CoreKeeperInventoryEditor
@@ -37,6 +39,17 @@ namespace CoreKeeperInventoryEditor
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void Instance_KeyPressed(object sender, KeyEventArgs e)
+        {
+            // Any Key was pressed, do Stuff then
+            MessageBox.Show("pp");
+        }
+
+        private void Instance_KeyReleased(object sender, KeyEventArgs e)
+        {
+            // Do Stuff when a Key was Released
         }
 
         #region Form Controls
@@ -305,6 +318,9 @@ namespace CoreKeeperInventoryEditor
 
                 // Rename button back to defualt.
                 button1.Text = "Get Inventory Addresses";
+
+                // Re-enable button.
+                button1.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsInventory = null;
@@ -6653,6 +6669,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Admin Tools
 
+        // Upgrade legacy version vanity items to the new system.
         private void label7_Click(object sender, EventArgs e)
         {
             // Create directories if they do not exist.
@@ -6666,6 +6683,9 @@ namespace CoreKeeperInventoryEditor
                 // Create directory.
                 Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out");
             }
+
+            // Recolor label.
+            label7.ForeColor = Color.Lime;
 
             // Delete files in out if they exist.
             if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out", "*.png").Length != 0)
@@ -6681,6 +6701,9 @@ namespace CoreKeeperInventoryEditor
             {
                 if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) == null)
                 {
+                    // Recolor label.
+                    label7.ForeColor = Color.Red;
+
                     MessageBox.Show("No assets found within the inventory directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -6727,10 +6750,16 @@ namespace CoreKeeperInventoryEditor
             }
             catch (Exception a)
             {
+                // Recolor label.
+                label7.ForeColor = Color.Red;
+
                 // Display error.
                 MessageBox.Show(a.Message.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Recolor label.
+            label7.ForeColor = Color.Red;
         }
 
         // Get a random food ID.
@@ -6750,6 +6779,9 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Recolor label.
+            label4.ForeColor = Color.Lime;
+
             // Create directories if they do not exist.
             if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
             {
@@ -6760,6 +6792,9 @@ namespace CoreKeeperInventoryEditor
             // Check if images exist within the directory.
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\data.txt"))
             {
+                // Recolor label.
+                label4.ForeColor = Color.Red;
+
                 MessageBox.Show(@"The file '\assets\debug\data.txt' does not exist!" + Environment.NewLine + "Create one with random IDs per line.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -6794,6 +6829,120 @@ namespace CoreKeeperInventoryEditor
                         continue;
                     }
                 }
+            }
+
+            // Recolor label.
+            label4.ForeColor = Color.Lime;
+        }
+
+        // Quick edit Slot2s item using arrow keys.
+        [DllImport("user32.dll")]
+        static extern short GetKeyState(int nVirtKey);
+        public static bool IsKeyPressed(int testKey)
+        {
+            // Barrowed From: http://pinvoke.net/default.aspx/user32/GetKeyboardState.html
+            bool keyPressed = false;
+            short result = GetKeyState(testKey);
+
+            switch (result)
+            {
+                case 0:
+                    // Not pressed and not toggled on.
+                    keyPressed = false;
+                    break;
+
+                case 1:
+                    // Not pressed, but toggled on
+                    keyPressed = false;
+                    break;
+
+                default:
+                    // Pressed (and may be toggled on)
+                    keyPressed = true;
+                    break;
+            }
+            return keyPressed;
+        }
+
+        // Define current item values.
+        int currentSwapItem = 0;
+        int currentSwapAmount = 50;
+        int currentSwapVariation = 0;
+        bool itemSwapActive = false; // Define toggle for on / off.
+        System.Timers.Timer itemSwapTimer = new System.Timers.Timer();
+        private void label8_Click(object sender, EventArgs e)
+        {
+            // Check if item swap is active or not.
+            if (!itemSwapActive)
+            {
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Ensure pointers are found.
+                if (AoBScanResultsInventory == null)
+                {
+                    MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Show message box.
+                MessageBox.Show("Key Mapping:" + Environment.NewLine + Environment.NewLine + "Left & Right Arrow Keys: +/- ID" + Environment.NewLine + "Up & Down Arrow Keys: +/- Variation" + Environment.NewLine + "Add & Subtract Buttons: +/- Amount", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Recolor label.
+                label8.ForeColor = Color.Lime;
+
+                // Enable bool.
+                itemSwapActive = true;
+
+                // Start the timed events.
+                itemSwapTimer.Interval = 100;
+                itemSwapTimer.Elapsed += new ElapsedEventHandler(ItemSwapTimedEvent);
+                itemSwapTimer.Start();
+            }
+            else
+            {
+                // Stop the timer.
+                itemSwapTimer.Stop();
+
+                // Recolor label.
+                label8.ForeColor = Color.Red;
+
+                // Disable bool.
+                itemSwapActive = false;
+            }
+        }
+
+        // Item swap timer.
+        private void ItemSwapTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Get keydown events.
+            if (IsKeyPressed(0x25))  // Get left arrow press; subtract id.
+            {
+                AddItemToInv(itemSlot: 2, type: currentSwapItem -= 1, amount: currentSwapAmount, variation: currentSwapVariation, Overwrite: true);
+            }
+            else if (IsKeyPressed(0x27)) // Get right arrow press; add id.
+            {
+                AddItemToInv(itemSlot: 2, type: currentSwapItem += 1, amount: currentSwapAmount, variation: currentSwapVariation, Overwrite: true);
+            }
+            else if (IsKeyPressed(0x26)) // Get up arrow press; subtract variant.
+            {
+                AddItemToInv(itemSlot: 2, type: currentSwapItem, amount: currentSwapAmount, variation: currentSwapVariation -= 1, Overwrite: true);
+            }
+            else if (IsKeyPressed(0x28)) // Get down arrow press; add variant.
+            {
+                AddItemToInv(itemSlot: 2, type: currentSwapItem, amount: currentSwapAmount, variation: currentSwapVariation += 1, Overwrite: true);
+            }
+            else if (IsKeyPressed(0xBB)) // Get plus button; add amount.
+            {
+                AddItemToInv(itemSlot: 2, type: currentSwapItem, amount: currentSwapAmount += 1, variation: currentSwapVariation, Overwrite: true);
+            }
+            else if (IsKeyPressed(0xBD)) // Get minus button; subtract amount.
+            {
+                AddItemToInv(itemSlot: 2, type: currentSwapItem, amount: currentSwapAmount -= 1, variation: currentSwapVariation, Overwrite: true);
             }
         }
         #endregion // End admin tools.
