@@ -21,13 +21,13 @@ namespace CoreKeeperInventoryEditor
     public partial class MainForm : Form
     {
         // Setup some varibles.
-        public Mem MemLib = new();
+        public Mem MemLib = new Mem();
         public IEnumerable<long> AoBScanResultsInventory;
         public IEnumerable<long> AoBScanResultsPlayerName;
         public IEnumerable<long> AoBScanResultsChat;
         public IEnumerable<long> AoBScanResultsGroundItems;
-        public List<string> LastChatCommand = new() { "" };
-        public Dictionary<string, int> ExportPlayerItems = new() { };
+        public List<string> LastChatCommand = new List<string>() { "" };
+        public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
         public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
 
