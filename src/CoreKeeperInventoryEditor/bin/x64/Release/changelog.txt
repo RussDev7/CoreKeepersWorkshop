@@ -10,6 +10,7 @@ Changes Since v1.2.9
 + World tab was added along with a console.
 + Added a remove all ground items button.
 + Added new chat commands within the chat tab.
++ Added a new dev tool.
 
 Changes Since v1.2.8
 ===========================================================
