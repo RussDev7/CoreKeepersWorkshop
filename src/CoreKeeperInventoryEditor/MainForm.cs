@@ -6242,65 +6242,67 @@ namespace CoreKeeperInventoryEditor
                 try
                 {
                     // Read the json file.
-                    using FileStream fileStream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
-                    using StreamReader fileReader = new StreamReader(fileStream);
-                    using JsonTextReader reader = new JsonTextReader(fileReader);
-                    while (reader.Read())
+                    using (FileStream fileStream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
+                    using (StreamReader fileReader = new StreamReader(fileStream))
+                    using (JsonTextReader reader = new JsonTextReader(fileReader))
                     {
-                        if (reader.TokenType == JsonToken.StartObject)
+                        while (reader.Read())
                         {
-                            // Load each object from the stream.
-                            JObject playerData = JObject.Load(reader);
-
-                            // Define some vars.
-                            int itemID = 0;
-                            int itemAmount = 0;
-                            int itemVariation = 0;
-
-                            // Loop through each item in object.
-                            foreach (var ex in playerData)
+                            if (reader.TokenType == JsonToken.StartObject)
                             {
-                                // Convert json items to vars.
-                                // Get item id.
-                                if (ex.Key.Contains("-ID"))
+                                // Load each object from the stream.
+                                JObject playerData = JObject.Load(reader);
+
+                                // Define some vars.
+                                int itemID = 0;
+                                int itemAmount = 0;
+                                int itemVariation = 0;
+
+                                // Loop through each item in object.
+                                foreach (var ex in playerData)
                                 {
+                                    // Convert json items to vars.
                                     // Get item id.
-                                    string slotNumberID = "itemSlot" + ItemSlotCount.ToString() + "-ID";
-                                    itemID = int.Parse(playerData[slotNumberID].ToString().Replace("itemSlot", "").Replace("-ID", ""));
-
-                                    // Advance the protgress bar.
-                                    progressBar1.PerformStep();
-                                }
-                                else if (ex.Key.Contains("-Amount"))
-                                {
-                                    // Get item amount.
-                                    string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Amount";
-                                    itemAmount = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Amount", ""));
-
-                                    // Advance the protgress bar.
-                                    progressBar1.PerformStep();
-                                }
-                                else if (ex.Key.Contains("-Variation"))
-                                {
-                                    // Get item amount.
-                                    string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Variation";
-                                    itemVariation = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Variation", ""));
-
-                                    // Advance the protgress bar.
-                                    progressBar1.PerformStep();
-
-                                    // Add the item to the inventory.
-                                    if (itemVariation == 0)
+                                    if (ex.Key.Contains("-ID"))
                                     {
-                                        AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
-                                    }
-                                    else
-                                    {
-                                        AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
-                                    }
+                                        // Get item id.
+                                        string slotNumberID = "itemSlot" + ItemSlotCount.ToString() + "-ID";
+                                        itemID = int.Parse(playerData[slotNumberID].ToString().Replace("itemSlot", "").Replace("-ID", ""));
 
-                                    // Add one to the loopcount.
-                                    ItemSlotCount++;
+                                        // Advance the protgress bar.
+                                        progressBar1.PerformStep();
+                                    }
+                                    else if (ex.Key.Contains("-Amount"))
+                                    {
+                                        // Get item amount.
+                                        string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Amount";
+                                        itemAmount = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Amount", ""));
+
+                                        // Advance the protgress bar.
+                                        progressBar1.PerformStep();
+                                    }
+                                    else if (ex.Key.Contains("-Variation"))
+                                    {
+                                        // Get item amount.
+                                        string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Variation";
+                                        itemVariation = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Variation", ""));
+
+                                        // Advance the protgress bar.
+                                        progressBar1.PerformStep();
+
+                                        // Add the item to the inventory.
+                                        if (itemVariation == 0)
+                                        {
+                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
+                                        }
+                                        else
+                                        {
+                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
+                                        }
+
+                                        // Add one to the loopcount.
+                                        ItemSlotCount++;
+                                    }
                                 }
                             }
                         }
