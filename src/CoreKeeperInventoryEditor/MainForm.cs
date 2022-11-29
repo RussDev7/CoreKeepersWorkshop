@@ -6375,7 +6375,7 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle chat commands.
         bool chatEnabled = false;
-        public System.Timers.Timer chatTimer = new(500);
+        public System.Timers.Timer chatTimer = new System.Timers.Timer(500);
         private async void Button7_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -6861,7 +6861,7 @@ namespace CoreKeeperInventoryEditor
         int currentSwapAmount = 50;
         int currentSwapVariation = 0;
         bool itemSwapActive = false; // Define toggle for on / off.
-        readonly System.Timers.Timer itemSwapTimer = new();
+        readonly System.Timers.Timer itemSwapTimer = new System.Timers.Timer();
         private void Label8_Click(object sender, EventArgs e)
         {
             // Check if item swap is active or not.
