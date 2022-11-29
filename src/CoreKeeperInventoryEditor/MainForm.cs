@@ -6976,7 +6976,7 @@ namespace CoreKeeperInventoryEditor
             button8.Text = "Removing Items..";
 
             // Disable button to prevent spamming.
-            button4.Enabled = false;
+            button8.Enabled = false;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
@@ -7009,7 +7009,7 @@ namespace CoreKeeperInventoryEditor
             button8.Text = "Remove Ground Items";
 
             // Enable button.
-            button4.Enabled = true;
+            button8.Enabled = true;
         }
 
         // Remove items function.
