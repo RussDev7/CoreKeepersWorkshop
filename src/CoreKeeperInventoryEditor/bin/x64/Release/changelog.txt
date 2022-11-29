@@ -4,6 +4,7 @@ Changes Since v1.2.9
 - Updated the dev tools tab.
 - Fixed missing exceptions.
 - Misc bugs fixed.
+- Fixed all warning messages and cleaned code.
 
 + Added the file version to the about tab.
 + Added missing assets.
@@ -11,6 +12,7 @@ Changes Since v1.2.9
 + Added a remove all ground items button.
 + Added new chat commands within the chat tab.
 + Added a new dev tool.
++ Various quality of life improvements. 
 
 Changes Since v1.2.8
 ===========================================================
