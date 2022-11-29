@@ -6242,9 +6242,9 @@ namespace CoreKeeperInventoryEditor
                 try
                 {
                     // Read the json file.
-                    using FileStream fileStream = new(ofd.FileName, FileMode.Open, FileAccess.Read);
-                    using StreamReader fileReader = new(fileStream);
-                    using JsonTextReader reader = new(fileReader);
+                    using FileStream fileStream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
+                    using StreamReader fileReader = new StreamReader(fileStream);
+                    using JsonTextReader reader = new JsonTextReader(fileReader);
                     while (reader.Read())
                     {
                         if (reader.TokenType == JsonToken.StartObject)
