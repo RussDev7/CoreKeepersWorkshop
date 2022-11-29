@@ -133,7 +133,7 @@ namespace CoreKeeperInventoryEditor
             #region Tooltips
 
             // Create a new tooltip.
-            ToolTip toolTip = new()
+            ToolTip toolTip = new ToolTip()
             {
                 AutoPopDelay = 5000,
                 InitialDelay = 1500
