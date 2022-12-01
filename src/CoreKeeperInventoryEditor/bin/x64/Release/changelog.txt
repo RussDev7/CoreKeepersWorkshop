@@ -1,3 +1,11 @@
+Changes Since v1.3.0
+===========================================================
+- Misc bugs fixed.
+- Fixed a few spelling issues.
+- Added some missing console messages.
+
++ Added player position within world tools.
+
 Changes Since v1.2.9
 ===========================================================
 - Updated the about tabs information.
