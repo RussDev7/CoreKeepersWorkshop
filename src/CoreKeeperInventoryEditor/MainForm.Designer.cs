@@ -832,7 +832,7 @@ namespace CoreKeeperInventoryEditor
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(300, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "[Click Me] Rename pre-1.2.7 assets to the new variaty system.";
+            this.label7.Text = "[Click Me] Rename pre-1.2.7 assets to the new variety system.";
             this.label7.Click += new System.EventHandler(this.Label7_Click);
             // 
             // label5
@@ -855,7 +855,7 @@ namespace CoreKeeperInventoryEditor
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(250, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "[Click Me] Randomize slot2\'s variaty based on a list.\r\n";
+            this.label4.Text = "[Click Me] Randomize slot2\'s variety based on a list.\r\n";
             this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // numericUpDown2
@@ -1068,9 +1068,9 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox5.Size = new System.Drawing.Size(362, 159);
             this.richTextBox5.TabIndex = 16;
-            this.richTextBox5.Text = "Information reguarding the world tools will appear here.\n------------------------" +
+            this.richTextBox5.Text = "Information regarding the world tools will appear here.\n-------------------------" +
     "--------------------------------------------------------------------------------" +
-    "---------";
+    "--------";
             // 
             // progressBar4
             // 
@@ -1101,9 +1101,9 @@ namespace CoreKeeperInventoryEditor
             this.label10.ForeColor = System.Drawing.Color.Snow;
             this.label10.Location = new System.Drawing.Point(131, 53);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(227, 13);
+            this.label10.Size = new System.Drawing.Size(229, 13);
             this.label10.TabIndex = 20;
-            this.label10.Text = "- Stand at the cores entrence before enabling. ";
+            this.label10.Text = "- Stand at the core\'s entrance before enabling. ";
             // 
             // button9
             // 

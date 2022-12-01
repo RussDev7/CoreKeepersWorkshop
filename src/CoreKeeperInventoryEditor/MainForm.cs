@@ -7004,6 +7004,10 @@ namespace CoreKeeperInventoryEditor
                 // Ensure progressbar is at 100.
                 progressBar4.Value = 100;
 
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] You must throw at least one torch on the ground!!" + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
+
                 // Display error message.
                 MessageBox.Show("You must throw at least one torch on the ground!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -7134,8 +7138,12 @@ namespace CoreKeeperInventoryEditor
                     // Set the enabled bool.
                     playerPositionEnabled = false;
 
+                    // Update consoile with the status.
+                    richTextBox5.AppendText("[PlayerPosition] You must be standing at the core's entrance!!" + Environment.NewLine);
+                    richTextBox5.ScrollToCaret();
+
                     // Display error message.
-                    MessageBox.Show("You must be standing at the cores entrence!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else
@@ -7160,6 +7168,10 @@ namespace CoreKeeperInventoryEditor
 
                 // Ensure progressbar is at 100.
                 progressBar4.Value = 100;
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] Player position has been enabled." + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
             }
             else
             {
@@ -7178,6 +7190,10 @@ namespace CoreKeeperInventoryEditor
 
                 // Enable button.
                 button9.Enabled = true;
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] Player position has been disabled." + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
             }
         }
 
