@@ -103,9 +103,12 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -157,6 +160,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage8.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1035,8 +1039,8 @@ namespace CoreKeeperInventoryEditor
             // tabPage8
             // 
             this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.tabPage8.Controls.Add(this.groupBox8);
             this.tabPage8.Controls.Add(this.progressBar4);
-            this.tabPage8.Controls.Add(this.richTextBox5);
             this.tabPage8.Controls.Add(this.groupBox7);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
@@ -1045,40 +1049,72 @@ namespace CoreKeeperInventoryEditor
             this.tabPage8.TabIndex = 4;
             this.tabPage8.Text = "World";
             // 
-            // progressBar4
+            // groupBox8
             // 
-            this.progressBar4.Location = new System.Drawing.Point(10, 262);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(364, 23);
-            this.progressBar4.TabIndex = 20;
+            this.groupBox8.Controls.Add(this.richTextBox5);
+            this.groupBox8.Location = new System.Drawing.Point(10, 87);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(364, 168);
+            this.groupBox8.TabIndex = 21;
+            this.groupBox8.TabStop = false;
             // 
             // richTextBox5
             // 
             this.richTextBox5.BackColor = System.Drawing.Color.Black;
             this.richTextBox5.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox5.Location = new System.Drawing.Point(10, 65);
+            this.richTextBox5.Location = new System.Drawing.Point(1, 7);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.ReadOnly = true;
             this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox5.Size = new System.Drawing.Size(362, 191);
-            this.richTextBox5.TabIndex = 19;
+            this.richTextBox5.Size = new System.Drawing.Size(362, 159);
+            this.richTextBox5.TabIndex = 16;
             this.richTextBox5.Text = "Information reguarding the world tools will appear here.\n------------------------" +
     "--------------------------------------------------------------------------------" +
-    "---------\n";
+    "---------";
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Location = new System.Drawing.Point(10, 261);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(364, 23);
+            this.progressBar4.TabIndex = 20;
             // 
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.groupBox7.Controls.Add(this.label10);
+            this.groupBox7.Controls.Add(this.button9);
             this.groupBox7.Controls.Add(this.label9);
             this.groupBox7.Controls.Add(this.button8);
             this.groupBox7.Controls.Add(this.label6);
             this.groupBox7.ForeColor = System.Drawing.Color.Lime;
             this.groupBox7.Location = new System.Drawing.Point(10, 5);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(364, 54);
+            this.groupBox7.Size = new System.Drawing.Size(364, 80);
             this.groupBox7.TabIndex = 17;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "World Tools";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Snow;
+            this.label10.Location = new System.Drawing.Point(131, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(227, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "- Stand at the cores entrence before enabling. ";
+            // 
+            // button9
+            // 
+            this.button9.ForeColor = System.Drawing.Color.Black;
+            this.button9.Location = new System.Drawing.Point(8, 48);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(122, 23);
+            this.button9.TabIndex = 19;
+            this.button9.Text = "Display Players XY";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9_Click);
             // 
             // label9
             // 
@@ -1187,6 +1223,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPage8.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
@@ -1272,9 +1309,12 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.ProgressBar progressBar4;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RichTextBox richTextBox5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RichTextBox richTextBox5;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

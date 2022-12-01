@@ -26,10 +26,12 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerName;
         public IEnumerable<long> AoBScanResultsChat;
         public IEnumerable<long> AoBScanResultsGroundItems;
+        public IEnumerable<long> AoBScanResultsPlayerPosition;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
         public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
+        public bool isMinimized = false;
 
         // Define texture data.
         public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
@@ -63,7 +65,7 @@ namespace CoreKeeperInventoryEditor
                 #region Set Form Locations
 
                 // Set the forms active location based on previous save.
-                InventoryEditor.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+                MainForm.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
                 #endregion
 
                 #region Set Background
@@ -133,7 +135,7 @@ namespace CoreKeeperInventoryEditor
         {
             // Save the previous form location before closing if it's not minimized.
             Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
-            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40))
+            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40) && !isMinimized) // isMinimized fix 1.3.1.
             {
                 CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
             }
@@ -156,7 +158,7 @@ namespace CoreKeeperInventoryEditor
             Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
 
             // Save the previous form location before minimizing it.
-            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40))
+            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40) && !isMinimized) // isMinimized fix 1.3.1.
             {
                 CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
             }
@@ -175,6 +177,9 @@ namespace CoreKeeperInventoryEditor
                 this.Opacity = 0.8;
                 this.MaximizeBox = true;
                 this.MinimizeBox = false;
+
+                // Adjust minimized bool.
+                isMinimized = true;
             }
             else if (WindowState == FormWindowState.Maximized)
             {
@@ -204,6 +209,9 @@ namespace CoreKeeperInventoryEditor
                 // Adjust some final form settings.
                 this.Opacity = 100;
                 this.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+
+                // Adjust minimized bool.
+                isMinimized = false;
             }
         }
 
@@ -6982,13 +6990,16 @@ namespace CoreKeeperInventoryEditor
             AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
 
             // Adjust the max value of the progress bar.
-            progressBar4.Step = AoBScanResultsGroundItems.Count();
+            progressBar4.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsGroundItems.Count() == 0)
             {
                 // Rename button back to defualt.
                 button8.Text = "Remove Ground Items";
+
+                // Enable button.
+                button8.Enabled = true;
 
                 // Ensure progressbar is at 100.
                 progressBar4.Value = 100;
@@ -7070,6 +7081,128 @@ namespace CoreKeeperInventoryEditor
 
             // Ensure progressbar is at 100.
             progressBar4.Value = 100;
+        }
+
+        // Enable player xy tool.
+        readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
+        bool playerPositionEnabled = false;
+        string playerPositionAddress = "0";
+        private async void Button9_Click(object sender, EventArgs e)
+        {
+            // Check if the players position was already enabled or not.
+            if (!playerPositionEnabled)
+            {
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Set the enabled bool
+                playerPositionEnabled = true;
+
+                // Reset progress bar.
+                progressBar4.Step = 10;
+                progressBar4.Value = 0;
+                progressBar4.PerformStep(); // Progress 10%.
+
+                // Name button to indicate loading.
+                button9.Text = "Loading Position..";
+
+                // Disable button to prevent spamming.
+                button9.Enabled = false;
+
+                // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                AoBScanResultsPlayerPosition = await MemLib.AoBScan("00 00 00 00 39 8E E3 3C AB AA 2A 3D 00 00 10 42 00 00 C0 41 00 00 00 00 00 00 00 00 00 00 00 40 00 00 00 00", true, true);
+
+                // Adjust the max value of the progress bar.
+                progressBar4.Step = AoBScanResultsPlayerPosition.Count() == 0 ? 0 : AoBScanResultsPlayerPosition.Count();
+
+                // If the count is bellow 300 results, the scan had an error.
+                if (AoBScanResultsPlayerPosition.Count() < 300)
+                {
+                    // Rename button back to defualt.
+                    button9.Text = "Display Players XY";
+
+                    // Ensure progressbar is at 100.
+                    progressBar4.Value = 100;
+
+                    // Enable button.
+                    button9.Enabled = true;
+
+                    // Set the enabled bool.
+                    playerPositionEnabled = false;
+
+                    // Display error message.
+                    MessageBox.Show("You must be standing at the cores entrence!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    // Set the address to use.
+                    playerPositionAddress = AoBScanResultsPlayerPosition.First().ToString("X");
+                }
+
+                // Perform step.
+                progressBar4.PerformStep();
+
+                // Name button to indicate loading.
+                button9.Text = "Click To Disable";
+
+                // Start the timed events.
+                playersPositionTimer.Interval = 100; // Custom intervals.
+                playersPositionTimer.Elapsed += new ElapsedEventHandler(PlayersPositionTimedEvent);
+                playersPositionTimer.Start();
+
+                // Enable button.
+                button9.Enabled = true;
+
+                // Ensure progressbar is at 100.
+                progressBar4.Value = 100;
+            }
+            else
+            {
+                // Disable player position.
+                // Change appllication text back to defualt.
+                this.Text = "CoreKeeper's Workshop";
+
+                // Disable bool.
+                playerPositionEnabled = false;
+
+                // Stop the timers.
+                playersPositionTimer.Stop();
+
+                // Rename button back to defualt.
+                button9.Text = "Display Players XY";
+
+                // Enable button.
+                button9.Enabled = true;
+            }
+        }
+
+        // Players position timer.
+        private void PlayersPositionTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Get the addresses.
+            string positionX = BigInteger.Add(BigInteger.Parse(playerPositionAddress.ToString(), NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
+            string positionY = BigInteger.Add(BigInteger.Parse(playerPositionAddress.ToString(), NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
+
+            // Convert values to number.
+            string playerPositionX = MemLib.ReadFloat(positionX).ToString();
+            string playerPositionY = (MemLib.ReadFloat(positionY) - 1).ToString(); // Correct the offset. 
+
+            // Change the applications tittle based on minimization and tab pages. 
+            if (isMinimized || tabControl1.SelectedTab == tabPage2 || tabControl1.SelectedTab == tabPage5 || tabControl1.SelectedTab == tabPage6 || tabControl1.SelectedTab == tabPage8)
+            {
+                // Change text based on minimized window.
+                this.Text = "PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
+            }
+            else
+            {
+                // Change text based on maximized window.
+                this.Text = "CoreKeeper's Workshop | PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
+            }
         }
         #endregion
     }
