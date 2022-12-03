@@ -83,6 +83,16 @@ namespace CoreKeepersWorkshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap UIBackgroundSingle {
+            get {
+                object obj = ResourceManager.GetObject("UIBackgroundSingle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap UnknownItem {
             get {
                 object obj = ResourceManager.GetObject("UnknownItem", resourceCulture);
