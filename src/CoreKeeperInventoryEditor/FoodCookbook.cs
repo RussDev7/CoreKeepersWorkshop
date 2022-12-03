@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -67,6 +65,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
             #endregion
 
+            #region Populate Datagridview
             // Get json file from resources.
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.Cookbook.json"))
             using (StreamReader reader = new StreamReader(stream))
@@ -82,6 +81,10 @@ namespace CoreKeepersWorkshop
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add((string)file.name, (string)file.stats, (string)file.id, (string)file.variation)));
                 }
             }
+
+            // Sort datagridview by ascending.
+            dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            #endregion
         }
 
         // Do form closing events.

@@ -136,7 +136,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(78, 20);
+            this.numericUpDown4.Size = new System.Drawing.Size(80, 20);
             this.numericUpDown4.TabIndex = 3;
             this.numericUpDown4.Visible = false;
             this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
@@ -144,24 +144,24 @@ namespace CoreKeepersWorkshop
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(73, 64);
+            this.button4.Location = new System.Drawing.Point(71, 64);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(17, 22);
+            this.button4.Size = new System.Drawing.Size(21, 22);
             this.button4.TabIndex = 0;
-            this.button4.Text = "+";
+            this.button4.Text = "&&";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(90, 65);
+            this.numericUpDown5.Location = new System.Drawing.Point(92, 65);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDown5.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown5.TabIndex = 4;
             this.numericUpDown5.Visible = false;
             this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
