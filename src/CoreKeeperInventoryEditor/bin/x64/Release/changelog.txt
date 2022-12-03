@@ -1,3 +1,8 @@
+Changes Since v1.3.1
+===========================================================
++ Editor now shows base item id for missing variations.
++ Added all missing base food assets.
+
 Changes Since v1.3.0
 ===========================================================
 - Misc bugs fixed.
