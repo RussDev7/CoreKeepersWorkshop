@@ -634,7 +634,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot1Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -745,7 +745,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot2Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -855,7 +855,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot3Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -966,7 +966,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot4Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1077,7 +1077,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot5Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1188,7 +1188,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot6Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1299,7 +1299,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot7Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1410,7 +1410,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot8Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1521,7 +1521,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot9Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1632,7 +1632,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot10Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1743,7 +1743,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot11Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1854,7 +1854,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot12Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -1965,7 +1965,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot13Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2076,7 +2076,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot14Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2187,7 +2187,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot15Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2298,7 +2298,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot16Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2409,7 +2409,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot17Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2520,7 +2520,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot18Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2631,7 +2631,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot19Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2742,7 +2742,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot20Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2853,7 +2853,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot21Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -2964,7 +2964,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot22Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3075,7 +3075,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot23Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3186,7 +3186,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot24Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3297,7 +3297,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot25Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3408,7 +3408,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot26Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3519,7 +3519,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot27Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3630,7 +3630,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot28Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3741,7 +3741,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot29Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
@@ -3852,7 +3852,7 @@ namespace CoreKeeperInventoryEditor
                                         using (GraphicsPath gp = new GraphicsPath())
                                         {
                                             // Do drawling actions.
-                                            gp.AddString(finalItemAmount.ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
+                                            gp.AddString(MemLib.ReadInt(slot30Amount).ToString(), font.FontFamily, (int)font.Style, font.Size, ClientRectangle, new StringFormat());
                                             G.DrawPath(new Pen(Color.Black, 4) { LineJoin = LineJoin.Round }, gp);
                                             G.FillPath(new SolidBrush(Color.White), gp);
                                         }
