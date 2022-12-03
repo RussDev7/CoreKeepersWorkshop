@@ -64,6 +64,7 @@ namespace CoreKeepersWorkshop
 
             toolTip.SetToolTip(button3, "Toggle the GUI between food / item variaty.");
             toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
+            toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
 
             #endregion
 
@@ -328,6 +329,31 @@ namespace CoreKeepersWorkshop
                 // Update food variant
                 numericUpDown4.Value = numericUpDown3.Value;
             }
+        }
+
+        // Open food cookbook.
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // Spawn food cookbook window.
+            FoodCookbook frm4 = new FoodCookbook();
+            DialogResult dr = frm4.ShowDialog(this);
+
+            // Get returned item from picker.
+            int itemType = frm4.GetItemTypeFromList();
+            int itemAmount = frm4.GetItemAmountFromList();
+            int itemVariation = frm4.GetItemVeriationFromList() == 0 ? 0 : (frm4.GetItemVeriationFromList()); // If variation is not zero, add offset.
+            bool wasAborted = frm4.GetUserCancledTask();
+            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
+            frm4.Close();
+
+            // Check if user closed the form
+            if (wasAborted) { return; };
+
+            // Set the values from returning form.
+            selectedItemType = itemType;
+            selectedItemAmount = itemAmount;
+            selectedItemVariation = itemVariation;
+            this.Close();
         }
         #endregion // End form controls.
     }

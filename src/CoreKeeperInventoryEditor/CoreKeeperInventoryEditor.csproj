@@ -99,6 +99,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FoodCookbook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FoodCookbook.Designer.cs">
+      <DependentUpon>FoodCookbook.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FoodCookbook.resx">
+      <DependentUpon>FoodCookbook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemEditor.resx">
       <DependentUpon>ItemEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +157,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\Cookbook.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -161,5 +171,6 @@
   <ItemGroup>
     <None Include="images\UnknownItem.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

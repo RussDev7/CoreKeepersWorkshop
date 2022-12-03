@@ -72,6 +72,7 @@ namespace CoreKeeperInventoryEditor
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -359,8 +360,6 @@ namespace CoreKeeperInventoryEditor
             this.listView10.Size = new System.Drawing.Size(1056, 608);
             this.listView10.TabIndex = 1;
             this.listView10.UseCompatibleStateImageBehavior = false;
-            this.listView10.SelectedIndexChanged += new System.EventHandler(this.ListView10_SelectedIndexChanged);
-            this.listView10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView10_MouseDown);
             // 
             // tabPage11
             // 
@@ -508,9 +507,9 @@ namespace CoreKeeperInventoryEditor
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(648, 12);
+            this.button2.Location = new System.Drawing.Point(574, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 22);
+            this.button2.Size = new System.Drawing.Size(80, 22);
             this.button2.TabIndex = 6;
             this.button2.Text = "Remove Item";
             this.button2.UseVisualStyleBackColor = true;
@@ -519,9 +518,9 @@ namespace CoreKeeperInventoryEditor
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(11, 12);
+            this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 22);
+            this.button1.Size = new System.Drawing.Size(99, 22);
             this.button1.TabIndex = 0;
             this.button1.Text = "Custom Amount:";
             this.button1.UseVisualStyleBackColor = true;
@@ -535,7 +534,7 @@ namespace CoreKeeperInventoryEditor
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(200, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(175, 20);
             this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.Value = new decimal(new int[] {
             50,
@@ -545,7 +544,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(242, 12);
+            this.button3.Location = new System.Drawing.Point(217, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 22);
             this.button3.TabIndex = 2;
@@ -555,14 +554,14 @@ namespace CoreKeeperInventoryEditor
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(323, 13);
+            this.numericUpDown2.Location = new System.Drawing.Point(298, 13);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(200, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(175, 20);
             this.numericUpDown2.TabIndex = 3;
             this.numericUpDown2.Value = new decimal(new int[] {
             110,
@@ -573,7 +572,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(977, 12);
+            this.button4.Location = new System.Drawing.Point(834, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 22);
             this.button4.TabIndex = 8;
@@ -583,28 +582,28 @@ namespace CoreKeeperInventoryEditor
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(754, 13);
+            this.textBox1.Location = new System.Drawing.Point(660, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(298, 20);
+            this.textBox1.Size = new System.Drawing.Size(175, 20);
             this.textBox1.TabIndex = 7;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(529, 13);
+            this.numericUpDown3.Location = new System.Drawing.Point(479, 13);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(219, 20);
+            this.numericUpDown3.Size = new System.Drawing.Size(175, 20);
             this.numericUpDown3.TabIndex = 5;
             this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(448, 12);
+            this.button5.Location = new System.Drawing.Point(398, 12);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 22);
             this.button5.TabIndex = 4;
@@ -612,12 +611,23 @@ namespace CoreKeeperInventoryEditor
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(915, 12);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(137, 22);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "Open Food Cookbook";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // InventoryEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -706,5 +716,6 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.ListView listView16;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
