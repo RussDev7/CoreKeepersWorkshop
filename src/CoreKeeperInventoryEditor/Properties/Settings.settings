@@ -38,5 +38,8 @@
     <Setting Name="InventoryEditorLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">50, 50</Value>
     </Setting>
+    <Setting Name="CookbookLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
