@@ -2,6 +2,7 @@ Changes Since v1.3.1
 ===========================================================
 + Editor now shows base item id for missing variations.
 + Added all missing base food assets.
++ Added a food cookbook for all food variants with stats.
 
 Changes Since v1.3.0
 ===========================================================
