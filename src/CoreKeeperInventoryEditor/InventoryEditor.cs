@@ -149,6 +149,7 @@ namespace CoreKeeperInventoryEditor
             toolTip.SetToolTip(button3, "Spawn in custom item amount + ID.");
             toolTip.SetToolTip(button4, "Start the search for a desired item.");
             toolTip.SetToolTip(button5, "Spawn in custom item with variation.");
+            toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
 
             toolTip.SetToolTip(textBox1, "Enter a name to search for.");
 
