@@ -119,7 +119,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1064, 637);
-            this.tabControl1.TabIndex = 9;
+            this.tabControl1.TabIndex = 10;
             // 
             // tabPage1
             // 
@@ -141,7 +141,7 @@ namespace CoreKeeperInventoryEditor
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1050, 602);
-            this.listView1.TabIndex = 8;
+            this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             this.listView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDown);
@@ -616,7 +616,7 @@ namespace CoreKeeperInventoryEditor
             this.button6.Location = new System.Drawing.Point(915, 12);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(137, 22);
-            this.button6.TabIndex = 10;
+            this.button6.TabIndex = 9;
             this.button6.Text = "Open Food Cookbook";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
