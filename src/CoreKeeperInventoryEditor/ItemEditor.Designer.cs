@@ -100,7 +100,7 @@ namespace CoreKeepersWorkshop
             0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown2.TabIndex = 1;
+            this.numericUpDown2.TabIndex = 4;
             this.numericUpDown2.Value = new decimal(new int[] {
             50,
             0,
