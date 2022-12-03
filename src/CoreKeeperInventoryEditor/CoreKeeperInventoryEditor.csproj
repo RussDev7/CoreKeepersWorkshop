@@ -171,6 +171,8 @@
   <ItemGroup>
     <None Include="images\UnknownItem.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="images\UIBackgroundSingle.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

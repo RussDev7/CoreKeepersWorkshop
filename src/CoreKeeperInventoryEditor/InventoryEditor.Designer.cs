@@ -360,6 +360,8 @@ namespace CoreKeeperInventoryEditor
             this.listView10.Size = new System.Drawing.Size(1056, 608);
             this.listView10.TabIndex = 1;
             this.listView10.UseCompatibleStateImageBehavior = false;
+            this.listView10.SelectedIndexChanged += new System.EventHandler(this.ListView10_SelectedIndexChanged);
+            this.listView10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView10_MouseDown);
             // 
             // tabPage11
             // 

@@ -1,5 +1,10 @@
-﻿using System;
+﻿using CoreKeeperInventoryEditor;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +16,9 @@ namespace CoreKeepersWorkshop
         {
             InitializeComponent();
         }
+
+        // Define texture data.
+        public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Form closing saving.
         int selectedItemType = 0;
@@ -35,6 +43,175 @@ namespace CoreKeepersWorkshop
         {
             return userCancledTask;
         }
+
+        #region Reload Pictureboxes & Labels
+
+        // Reload pictureboxes and labels.
+        public void ReloadPictureBoxes(bool useTextboxeData = false)
+        {
+            // Define base settings.
+            int baseItemID = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
+            int baseItemAmount = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
+            int baseItemVariation = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
+
+            // Get the ingredient ids of the item.
+            string baseIngredient1ID = "0";
+            string baseIngredient2ID = "0";
+
+            // Use defined form data.
+            if (useTextboxeData)
+            {
+                baseItemID = (int)numericUpDown1.Value;
+                baseItemAmount = (int)numericUpDown2.Value;
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
+                {
+                    baseIngredient1ID = numericUpDown4.Value.ToString();
+                    baseIngredient2ID = numericUpDown5.Value.ToString();
+                }
+                else
+                {
+                    // Normal item variant.
+                    baseIngredient1ID = numericUpDown3.Value.ToString();
+                }
+            }
+
+            // Get base item name.
+            if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString()) != null)
+            {
+                label3.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())).Split(',')[0];
+
+                // Load image.
+                pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())));
+                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            }
+            else
+            {
+                label3.Text = "UnkownItem";
+
+                // Load image.
+                pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            }
+
+            // Check if usetextbox mode is enabled.
+            if (!useTextboxeData)
+            {
+                // Check if the items variant is populated.
+                if (baseItemVariation.ToString().Length == 8)
+                {
+                    // Get base item ingrdient 1 name.
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString()) != null)
+                    {
+                        label4.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString())).Split(',')[0];
+
+                        // Load image.
+                        pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString())));
+                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                    else
+                    {
+                        label4.Text = "UnkownItem";
+
+                        // Load image.
+                        pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                }
+                else
+                {
+                    pictureBox2.Image = null;
+                    label4.Text = "";
+                }
+                // Check if the items variant is populated.
+                if (baseItemVariation.ToString().Length == 8)
+                {
+                    // Get base item ingrdient 2 name.
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString()) != null)
+                    {
+                        label5.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString())).Split(',')[0];
+
+                        // Load image.
+                        pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString())));
+                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                    else
+                    {
+                        label5.Text = "UnkownItem";
+
+                        // Load image.
+                        pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                }
+                else
+                {
+                    pictureBox3.Image = null;
+                    label5.Text = "";
+                }
+            }
+            else
+            {
+                // Use texbox data.
+                // Check if the items variant is populated.
+                if (baseIngredient1ID.ToString().Length > 0)
+                {
+                    // Get base item ingrdient 1 name.
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
+                    {
+                        label4.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
+
+                        // Load image.
+                        pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
+                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                    else
+                    {
+                        label4.Text = "UnkownItem";
+
+                        // Load image.
+                        pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                }
+                else
+                {
+                    pictureBox2.Image = null;
+                    label4.Text = "";
+                }
+                // Check if the items variant is populated.
+                if (baseIngredient2ID.ToString().Length > 0 && !numericUpDown3.Visible) // Make sure duel texbox mode is enabled.
+                {
+                    // Get base item ingrdient 2 name.
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID) != null)
+                    {
+                        label5.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)).Split(',')[0];
+
+                        // Load image.
+                        pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)));
+                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                    else
+                    {
+                        label5.Text = "UnkownItem";
+
+                        // Load image.
+                        pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                }
+                else
+                {
+                    pictureBox3.Image = null;
+                    label5.Text = "";
+                }
+            }
+
+            // Reload pictureboxs.
+            pictureBox1.Invalidate();
+            pictureBox2.Invalidate();
+            pictureBox3.Invalidate();
+        }
+        #endregion
 
         #region Form Load And Closing Events
 
@@ -62,7 +239,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
             toolTip.SetToolTip(numericUpDown4, "Enter an ingredient ID. Press enter when done.");
 
-            toolTip.SetToolTip(button3, "Toggle the GUI between food / item variaty.");
+            toolTip.SetToolTip(label2, "Toggle the GUI between food / item variaty.");
             toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
 
@@ -84,7 +261,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
 
                 // Rename button label.
-                button3.Text = "Food Variant [or]";
+                label2.Text = "Variation [Food Ingredients]";
 
                 // Update tooltips.
                 toolTip.SetToolTip(numericUpDown3, "Enter an ingredient ID or full variant ID on this side. Press enter when done.");
@@ -99,6 +276,12 @@ namespace CoreKeepersWorkshop
                 // Update tooltips.
                 toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
             }
+
+            #region Load Pictures & Names
+            
+            // Reload all pictureboxes and labels from the defualt load data.
+            ReloadPictureBoxes();
+            #endregion
         }
 
         // Do closing events.
@@ -293,7 +476,7 @@ namespace CoreKeepersWorkshop
 
         #region Form Controls
         // Toggle variant settings.
-        private void Button3_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
             // Check if item or food mode is enabled.
             if (!numericUpDown3.Visible)
@@ -307,10 +490,13 @@ namespace CoreKeepersWorkshop
                 button4.Visible = false;
 
                 // Rename button label.
-                button3.Text = "Item Variant [or]";
+                label2.Text = "Variation [Items]";
 
                 // Update item variant
                 numericUpDown3.Value = numericUpDown4.Value;
+
+                // Reload all pictureboxes and labels.
+                ReloadPictureBoxes();
             }
             else
             {
@@ -324,10 +510,13 @@ namespace CoreKeepersWorkshop
                 numericUpDown3.Visible = false;
 
                 // Rename button label.
-                button3.Text = "Food Variant [or]";
+                label2.Text = "Variation [Food Ingredients]";
 
                 // Update food variant
                 numericUpDown4.Value = numericUpDown3.Value;
+
+                // Reload all pictureboxes and labels.
+                ReloadPictureBoxes();
             }
         }
 
@@ -355,6 +544,114 @@ namespace CoreKeepersWorkshop
             selectedItemVariation = itemVariation;
             this.Close();
         }
+
+        // Value had changed, reload images and labels.
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            // Reload all pictureboxes and labels from the textboxe data.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
+
+        // Value had changed, reload images and labels.
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            // Reload all pictureboxes and labels from the textboxe data.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
+
+        // Value had changed, reload images and labels.
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            // Reload all pictureboxes and labels from the textboxe data.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
+
+        // Value had changed, reload images and labels.
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            // Reload all pictureboxes and labels from the textboxe data.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
         #endregion // End form controls.
+
+        #region Click Events
+
+        // Launch item explorer.
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // Spawn food cookbook window.
+            InventoryEditor frm3 = new InventoryEditor();
+            DialogResult dr = frm3.ShowDialog(this);
+
+            // Get returned item from picker.
+            int itemType = frm3.GetItemTypeFromList();
+            bool wasAborted = frm3.GetUserCancledTask();
+            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
+            frm3.Close();
+
+            // Check if user closed the form
+            if (wasAborted) { return; };
+
+            // Set the values from returning form.
+            numericUpDown1.Value = itemType;
+
+            // Reload pictureboxes and labels.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
+
+        // Launch item explorer.
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            // Spawn food cookbook window.
+            InventoryEditor frm3 = new InventoryEditor();
+            DialogResult dr = frm3.ShowDialog(this);
+
+            // Get returned item from picker.
+            int itemType = frm3.GetItemTypeFromList();
+            bool wasAborted = frm3.GetUserCancledTask();
+            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
+            frm3.Close();
+
+            // Check if user closed the form
+            if (wasAborted) { return; };
+
+            // Set the values from returning form.
+            // Check if food edit mode is enabled or not.
+            if (numericUpDown3.Visible)
+            {
+                numericUpDown3.Value = itemType;
+            }
+            else
+            {
+                numericUpDown4.Value = itemType;
+            }
+
+            // Reload pictureboxes and labels.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
+
+        // Launch item explorer.
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            // Spawn food cookbook window.
+            InventoryEditor frm3 = new InventoryEditor();
+            DialogResult dr = frm3.ShowDialog(this);
+
+            // Get returned item from picker.
+            int itemType = frm3.GetItemTypeFromList();
+            bool wasAborted = frm3.GetUserCancledTask();
+            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
+            frm3.Close();
+
+            // Check if user closed the form
+            if (wasAborted) { return; };
+
+            // Set the values from returning form.
+            numericUpDown5.Value = itemType;
+
+            // Reload pictureboxes and labels.
+            ReloadPictureBoxes(useTextboxeData: true);
+        }
+        #endregion
     }
 }
