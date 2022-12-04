@@ -96,7 +96,7 @@ namespace CoreKeepersWorkshop
             if (!useTextboxeData)
             {
                 // Check if the items variant is populated.
-                if (baseItemVariation.ToString().Length == 8 && !numericUpDown3.Visible)
+                if (baseItemVariation.ToString().Length == 8 && !numericUpDown3.Visible && )
                 {
                     // Get base item ingrdient 1 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString()) != null)
@@ -152,7 +152,7 @@ namespace CoreKeepersWorkshop
             {
                 // Use texbox data.
                 // Check if the items variant is populated.
-                if (baseIngredient1ID.ToString().Length > 0)
+                if (baseIngredient1ID.ToString().Length > 0 && int.Parse(baseIngredient1ID.ToString()) > 0)
                 {
                     // Get base item ingrdient 1 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
