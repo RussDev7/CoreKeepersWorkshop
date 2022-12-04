@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -234,15 +233,19 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
-            toolTip.SetToolTip(numericUpDown2, "Enter a custom ID. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown1, "Enter the ID you wish to add. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown2, "Enter a custom item quantity. Press enter when done.");
             toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
-            toolTip.SetToolTip(numericUpDown4, "Enter an ingredient ID. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown4, "Enter an ingredient one ID. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown5, "Enter an ingredient two ID. Press enter when done.");
 
             toolTip.SetToolTip(label2, "Toggle the GUI between food / item variaty.");
             toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
 
+            toolTip.SetToolTip(pictureBox1, "Click to open the item explorer.");
+            toolTip.SetToolTip(pictureBox2, "Click to open the item explorer.");
+            toolTip.SetToolTip(pictureBox3, "Click to open the item explorer.");
             #endregion
 
             // Load some settings.
@@ -262,9 +265,6 @@ namespace CoreKeepersWorkshop
 
                 // Rename button label.
                 label2.Text = "Variation [Food Ingredients]";
-
-                // Update tooltips.
-                toolTip.SetToolTip(numericUpDown3, "Enter an ingredient ID or full variant ID on this side. Press enter when done.");
             }
             else
             {
@@ -272,9 +272,6 @@ namespace CoreKeepersWorkshop
                 numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
                 numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
-
-                // Update tooltips.
-                toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
             }
 
             #region Load Pictures & Names
