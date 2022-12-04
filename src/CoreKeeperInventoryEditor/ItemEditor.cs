@@ -123,7 +123,7 @@ namespace CoreKeepersWorkshop
                     label4.Text = "";
                 }
                 // Check if the items variant is populated.
-                if (baseItemVariation.ToString().Length == 8)
+                if (baseItemVariation.ToString().Length == 8 && !numericUpDown3.Visible)
                 {
                     // Get base item ingrdient 2 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString()) != null)

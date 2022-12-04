@@ -161,9 +161,9 @@ namespace CoreKeepersWorkshop
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(153, 142);
+            this.button5.Location = new System.Drawing.Point(138, 142);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(89, 22);
+            this.button5.Size = new System.Drawing.Size(104, 22);
             this.button5.TabIndex = 5;
             this.button5.Text = "Remove Item";
             this.button5.UseVisualStyleBackColor = true;
