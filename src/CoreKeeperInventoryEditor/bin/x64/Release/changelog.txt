@@ -1,3 +1,13 @@
+Changes Since v1.3.2
+===========================================================
+- Fixed spaces in food names within the cookbook.
+- Fixed a rare exception caused from closing the app.
+- Fixed the tab indexes.
+- Fixed quick item editor's wrong info upon first load.
+- Misc bugs fixed.
+
++ Added a change rarity button to the quick item editor.
+
 Changes Since v1.3.1
 ===========================================================
 - Changed some text on forms to be less confusing.
