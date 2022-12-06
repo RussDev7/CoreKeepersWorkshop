@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace CoreKeepersWorkshop
@@ -77,8 +78,12 @@ namespace CoreKeepersWorkshop
                 // Load each object from json to a string array.
                 foreach (var file in result)
                 {
+                    // Remove spaces from food names.
+                    string foodName = (string)file.name;
+                    foodName = new Regex("[ ]{2,}", RegexOptions.None).Replace(foodName, " ");
+
                     // Add the values to the datagridview.
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add((string)file.name, (string)file.stats, (string)file.id, (string)file.variation)));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add((string)foodName, (string)file.stats, (string)file.id, (string)file.variation)));
                 }
             }
 

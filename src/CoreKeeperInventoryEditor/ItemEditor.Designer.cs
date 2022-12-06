@@ -47,6 +47,7 @@ namespace CoreKeepersWorkshop
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -161,10 +162,10 @@ namespace CoreKeepersWorkshop
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(138, 142);
+            this.button5.Location = new System.Drawing.Point(139, 170);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(104, 22);
-            this.button5.TabIndex = 5;
+            this.button5.TabIndex = 7;
             this.button5.Text = "Remove Item";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
@@ -173,9 +174,9 @@ namespace CoreKeepersWorkshop
             // 
             this.button6.Location = new System.Drawing.Point(12, 170);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(230, 22);
+            this.button6.Size = new System.Drawing.Size(120, 22);
             this.button6.TabIndex = 6;
-            this.button6.Text = "Open List of all Cooked Food";
+            this.button6.Text = "Cooked Food List";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -268,12 +269,23 @@ namespace CoreKeepersWorkshop
             this.label5.TabIndex = 15;
             this.label5.Text = "Item3";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(139, 142);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 22);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Change Rarity";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(255, 201);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -330,5 +342,6 @@ namespace CoreKeepersWorkshop
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
     }
 }

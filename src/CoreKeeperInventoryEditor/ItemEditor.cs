@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace CoreKeepersWorkshop
@@ -85,11 +87,20 @@ namespace CoreKeepersWorkshop
             }
             else
             {
-                label3.Text = "UnkownItem";
+                // Check if the first item is not empty.
+                if (numericUpDown1.Value != 0)
+                {
+                    label3.Text = "UnkownItem";
 
-                // Load image.
-                pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                    // Load image.
+                    pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                }
+                else
+                {
+                    pictureBox1.Image = null;
+                    label3.Text = "";
+                }
             }
 
             // Check if usetextbox mode is enabled.
@@ -109,11 +120,20 @@ namespace CoreKeepersWorkshop
                     }
                     else
                     {
-                        label4.Text = "UnkownItem";
+                        // Check if the variant item two is not empty.
+                        if (numericUpDown3.Value != 0 || numericUpDown4.Value != 0)
+                        {
+                            label4.Text = "UnkownItem";
 
-                        // Load image.
-                        pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                            // Load image.
+                            pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                        }
+                        else
+                        {
+                            pictureBox2.Image = null;
+                            label4.Text = "";
+                        }
                     }
                 }
                 else
@@ -135,11 +155,20 @@ namespace CoreKeepersWorkshop
                     }
                     else
                     {
-                        label5.Text = "UnkownItem";
+                        // Check if the third item is not empty.
+                        if (numericUpDown5.Value != 0)
+                        {
+                            label5.Text = "UnkownItem";
 
-                        // Load image.
-                        pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                            // Load image.
+                            pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                        }
+                        else
+                        {
+                            pictureBox3.Image = null;
+                            label5.Text = "";
+                        }
                     }
                 }
                 else
@@ -165,11 +194,20 @@ namespace CoreKeepersWorkshop
                     }
                     else
                     {
-                        label4.Text = "UnkownItem";
+                        // Check if the variant item two is not empty.
+                        if (numericUpDown3.Value != 0 || numericUpDown4.Value != 0)
+                        {
+                            label4.Text = "UnkownItem";
 
-                        // Load image.
-                        pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                            // Load image.
+                            pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                        }
+                        else
+                        {
+                            pictureBox2.Image = null;
+                            label4.Text = "";
+                        }
                     }
                 }
                 else
@@ -191,11 +229,20 @@ namespace CoreKeepersWorkshop
                     }
                     else
                     {
-                        label5.Text = "UnkownItem";
+                        // Check if the third item is not empty.
+                        if (numericUpDown5.Value != 0)
+                        {
+                            label5.Text = "UnkownItem";
 
-                        // Load image.
-                        pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                            // Load image.
+                            pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                        }
+                        else
+                        {
+                            pictureBox3.Image = null;
+                            label5.Text = "";
+                        }
                     }
                 }
                 else
@@ -277,7 +324,7 @@ namespace CoreKeepersWorkshop
             #region Load Pictures & Names
             
             // Reload all pictureboxes and labels from the defualt load data.
-            ReloadPictureBoxes();
+            ReloadPictureBoxes(useTextboxeData: true);
             #endregion
         }
 
@@ -292,29 +339,35 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
 
-            // Save some form settings.
-            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            // Ensure we catch all closing exceptions. // Fix v1.3.3.
+            try
             {
-                // Check if both entrees are populated.
-                if (numericUpDown5.Value != 0)
+                // Save some form settings.
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
-                    // Combine strings into int.
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Combine strings into int.
+                        CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown4.Value;
+                    }
                 }
                 else
                 {
-                    // Only single value exists, treat as a unique variant value.
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown4.Value;
+                    // Normal item variant.
+                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown3.Value;
                 }
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)numericUpDown1.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)numericUpDown2.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = this.Location;
             }
-            else
-            {
-                // Normal item variant.
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)numericUpDown3.Value;
-            }
-            CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)numericUpDown1.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)numericUpDown2.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = this.Location;
+            catch (Exception)
+            { } // Do nothing.
         }
         #endregion // Form loading and closing events.
 
@@ -461,6 +514,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
+
         // Remove item.
         private void Button5_Click(object sender, EventArgs e)
         {
@@ -493,7 +547,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown3.Value = numericUpDown4.Value;
 
                 // Reload all pictureboxes and labels.
-                ReloadPictureBoxes();
+                ReloadPictureBoxes(useTextboxeData: true);
             }
             else
             {
@@ -513,7 +567,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown4.Value = numericUpDown3.Value;
 
                 // Reload all pictureboxes and labels.
-                ReloadPictureBoxes();
+                ReloadPictureBoxes(useTextboxeData: true);
             }
         }
 
@@ -568,6 +622,158 @@ namespace CoreKeepersWorkshop
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
+        }
+
+        // Change item rarity.
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string originalName = "Unkown";
+            string originalRarity = "Uncommon";
+            int originalBase = (int)numericUpDown1.Value;
+            int originalVariation = 0;
+
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Combine strings into int.
+                    originalVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    originalVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                originalVariation = (int)numericUpDown3.Value;
+            }
+
+            // Ensure original variation is 8 in lengh.
+            if (originalVariation.ToString().Length == 8)
+            {
+                // Get the original items prefix.
+                // Get json file from resources.
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.Cookbook.json"))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    // Convert stream into string.
+                    var jsonFileContent = reader.ReadToEnd();
+                    dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
+
+                    // Load each object from json to a string array.
+                    foreach (var file in result)
+                    {
+                        // Remove spaces from food names.
+                        string foodVariation = (string)file.variation;
+                        string foodID = (string)file.id;
+                        string foodName = (string)file.name;
+                        foodName = new Regex("[ ]{2,}", RegexOptions.None).Replace(foodName, " ");
+
+                        // Check if the foodname matches.
+                        if (foodID == originalBase.ToString() && foodVariation == originalVariation.ToString())
+                        {
+                            // Split the name based on properties.
+                            string foodRarity = (foodName.Split(' ')[0].ToString() == "Rare" || foodName.Split(' ')[0].ToString() == "Epic") ? foodName.Split(' ')[0].ToString() : "Uncommon";
+                            string splitFoodName = foodName.Replace("Epic ", "").Replace("Rare ", "");
+
+                            // Set the prefix on the found item.
+                            originalRarity = foodRarity;
+
+                            // Set the food name of the found item.
+                            originalName = splitFoodName;
+
+                            // End loop.
+                            break;
+                        }
+                    }
+                }
+
+                // Determin the next prefix we need to match.
+                string nextRarity = "Uncommon";
+                if (originalRarity == "Uncommon")
+                {
+                    nextRarity = "Rare";
+                }
+                else if (originalRarity == "Rare")
+                {
+                    nextRarity = "Epic";
+                }
+                else if (originalRarity == "Epic")
+                {
+                    nextRarity = "Uncommon";
+                }
+                else
+                {
+                    // This should not happen.
+                    nextRarity = "Uncommon";
+                }
+
+                // Change the items prefix.
+                // Get json file from resources.
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.Cookbook.json"))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    // Convert stream into string.
+                    var jsonFileContent = reader.ReadToEnd();
+                    dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
+
+                    // Load each object from json to a string array.
+                    foreach (var file in result)
+                    {
+                        // Remove spaces from food names.
+                        string foodVariation = (string)file.variation;
+                        string foodID = (string)file.id;
+                        string foodName = (string)file.name;
+                        foodName = new Regex("[ ]{2,}", RegexOptions.None).Replace(foodName, " ");
+
+                        // MessageBox.Show("'" + foodName + "' | '" + originalName + "'");
+
+                        // Split the name based on properties.
+                        string splitFoodName = foodName.Replace("Epic ", "").Replace("Rare ", "");
+
+                        // Check if the foodname matches.
+                        if (splitFoodName == originalName)
+                        {
+                            // Get the food rarity.
+                            string foodRarity = (foodName.Split(' ')[0].ToString() == "Rare" || foodName.Split(' ')[0].ToString() == "Epic") ? foodName.Split(' ')[0].ToString() : "Uncommon";
+
+                            // Check the current prefix matches.
+                            if (foodRarity == nextRarity)
+                            {
+                                // Set the values from the next found food.
+                                // Update base id.
+                                numericUpDown1.Value = int.Parse(foodID);
+
+                                // Update variation.
+                                if (!numericUpDown3.Visible) // Check if item is a food variant.
+                                {
+                                    // Populate both textboxes.
+                                    numericUpDown4.Value = int.Parse(foodVariation.Substring(0, foodVariation.Length / 2));
+                                    numericUpDown5.Value = int.Parse(foodVariation.Substring(foodVariation.ToString().Length / 2));
+                                }
+                                else
+                                {
+                                    // Normal item variant.
+                                    numericUpDown3.Value = int.Parse(foodVariation);
+                                }
+
+                                // Reload pictureboxes and labels.
+                                ReloadPictureBoxes(useTextboxeData: true);
+
+                                // End loop.
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Unfocus the button.
+            this.ActiveControl = numericUpDown1;
         }
         #endregion // End form controls.
 
@@ -650,5 +856,7 @@ namespace CoreKeepersWorkshop
             ReloadPictureBoxes(useTextboxeData: true);
         }
         #endregion
+
+
     }
 }
