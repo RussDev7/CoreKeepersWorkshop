@@ -136,8 +136,8 @@ namespace CoreKeeperInventoryEditor
             // Create a new tooltip.
             ToolTip toolTip = new ToolTip()
             {
-                AutoPopDelay = 5000,
-                InitialDelay = 1500
+                AutoPopDelay = 3000,
+                InitialDelay = 1000
             };
 
             // Set tool texts.
