@@ -276,7 +276,7 @@ namespace CoreKeepersWorkshop
             ToolTip toolTip = new ToolTip()
             {
                 AutoPopDelay = 5000,
-                InitialDelay = 1500
+                InitialDelay = 1200
             };
 
             // Set tool texts.
@@ -287,6 +287,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(numericUpDown5, "Enter an ingredient two ID. Press enter when done.");
 
             toolTip.SetToolTip(label2, "Toggle the GUI between food / item variaty.");
+            toolTip.SetToolTip(button1, "Change your food rarity. Press enter when done.");
             toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
 
