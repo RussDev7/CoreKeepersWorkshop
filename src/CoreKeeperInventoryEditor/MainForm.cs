@@ -134,22 +134,28 @@ namespace CoreKeeperInventoryEditor
         // Reset inventory stats back to defualts.
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Save the previous form location before closing if it's not minimized.
-            Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
-            if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40) && !isMinimized) // isMinimized fix 1.3.1.
+            // Ensure we catch all closing exceptions. // Fix v1.3.3.
+            try
             {
-                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
+                // Save the previous form location before closing if it's not minimized.
+                Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
+                if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40) && !isMinimized) // isMinimized fix 1.3.1.
+                {
+                    CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
+                }
+
+                // Save some form settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = 50;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemID = 110;
+                CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "TabPage1";
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = 0;
+
+                // Save UI form settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount = skinCounter;
+                CoreKeepersWorkshop.Properties.Settings.Default.Save();
             }
-
-            // Save some form settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = 50;
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemID = 110;
-            CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "TabPage1";
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = 0;
-
-            // Save UI form settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount = skinCounter;
-            CoreKeepersWorkshop.Properties.Settings.Default.Save();
+            catch (Exception)
+            { } // Do nothing.
         }
 
         // Move window to the bottom left.

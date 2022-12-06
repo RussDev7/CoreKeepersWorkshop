@@ -103,8 +103,14 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
 
-            // Save some form settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.CookbookLocation = this.Location;
+            // Ensure we catch all closing exceptions. // Fix v1.3.3.
+            try
+            {
+                // Save some form settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.CookbookLocation = this.Location;
+            }
+            catch (Exception)
+            { } // Do nothing.
         }
         #endregion
 

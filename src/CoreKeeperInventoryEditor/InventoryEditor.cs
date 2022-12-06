@@ -76,23 +76,29 @@ namespace CoreKeeperInventoryEditor
                 this.Close();
             }
 
-            // Save some form settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)numericUpDown1.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)numericUpDown2.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)numericUpDown3.Value;
-            CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = this.Location;
+            // Ensure we catch all closing exceptions. // Fix v1.3.3.
+            try
+            {
+                // Save some form settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)numericUpDown1.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)numericUpDown2.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)numericUpDown3.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = this.Location;
 
-            // Ensure current tab is not search, if so, reset.
-            if (tabControl1.SelectedTab == tabPage16)
-            {
-                // Set value to tools.
-                CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "tabPage1";
+                // Ensure current tab is not search, if so, reset.
+                if (tabControl1.SelectedTab == tabPage16)
+                {
+                    // Set value to tools.
+                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "tabPage1";
+                }
+                else
+                {
+                    // Save current tab.
+                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = tabControl1.SelectedTab.Name;
+                }
             }
-            else
-            {
-                // Save current tab.
-                CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = tabControl1.SelectedTab.Name;
-            }
+            catch (Exception)
+            { } // Do nothing.
         }
 
         #endregion
