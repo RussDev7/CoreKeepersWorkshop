@@ -773,16 +773,16 @@ namespace CoreKeepersWorkshop
                         }
                     }
                 }
-
-                // Check if a new item rarity was found or not.
-                if (!foundNewRarity)
-                {
-                    MessageBox.Show("No alternative rarity found for this item.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
 
             // Unfocus the button.
             this.ActiveControl = numericUpDown1;
+
+            // Check if a new item rarity was found or not.
+            if (!foundNewRarity)
+            {
+                MessageBox.Show("No alternative rarity found for this item.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion // End form controls.
 
