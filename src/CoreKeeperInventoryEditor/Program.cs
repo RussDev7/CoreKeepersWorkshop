@@ -14,7 +14,8 @@ namespace CoreKeeperInventoryEditor
         {
             // Prevent other instances of the application from opening.
             // Check if application is already open.
-            var mutex = new Mutex(true, Application.ProductName, out bool result);
+            bool result;
+            var mutex = new Mutex(true, Application.ProductName, out result);
 
             // If application is already open, close thread.
             if (!result)

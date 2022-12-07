@@ -3,6 +3,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
+[assembly: SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.Program.Main")]
 [assembly: SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.PictureBox_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.InventoryEditor.Button6_Click(System.Object,System.EventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.PictureBox_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)")]
