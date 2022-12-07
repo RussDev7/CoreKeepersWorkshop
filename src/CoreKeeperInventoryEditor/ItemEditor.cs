@@ -631,6 +631,8 @@ namespace CoreKeepersWorkshop
             string originalName = "Unkown";
             string originalRarity = "Uncommon";
             int originalBase = (int)numericUpDown1.Value;
+            bool foundNewRarity = false;
+
             int originalVariation;
             if (!numericUpDown3.Visible) // Check if item is a food variant.
             {
@@ -730,8 +732,6 @@ namespace CoreKeepersWorkshop
                         string foodName = (string)file.name;
                         foodName = new Regex("[ ]{2,}", RegexOptions.None).Replace(foodName, " ");
 
-                        // MessageBox.Show("'" + foodName + "' | '" + originalName + "'");
-
                         // Split the name based on properties.
                         string splitFoodName = foodName.Replace("Epic ", "").Replace("Rare ", "");
 
@@ -745,6 +745,9 @@ namespace CoreKeepersWorkshop
                             if (foodRarity == nextRarity)
                             {
                                 // Set the values from the next found food.
+                                // Update found bool.
+                                foundNewRarity = true;
+
                                 // Update base id.
                                 numericUpDown1.Value = int.Parse(foodID);
 
@@ -769,6 +772,12 @@ namespace CoreKeepersWorkshop
                             }
                         }
                     }
+                }
+
+                // Check if a new item rarity was found or not.
+                if (!foundNewRarity)
+                {
+                    MessageBox.Show("No alternative rarity found for this item.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
