@@ -74,7 +74,7 @@ namespace CoreKeepersWorkshop
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
             this.numericUpDown1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown1_KeyDown);
             // 
             // numericUpDown3
@@ -88,7 +88,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(145, 20);
             this.numericUpDown3.TabIndex = 2;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.NumericUpDown3_ValueChanged);
             this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
             // 
             // numericUpDown2
@@ -131,7 +131,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown4.Size = new System.Drawing.Size(60, 20);
             this.numericUpDown4.TabIndex = 3;
             this.numericUpDown4.Visible = false;
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.NumericUpDown4_ValueChanged);
             this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
             // button4
@@ -157,7 +157,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown5.Size = new System.Drawing.Size(60, 20);
             this.numericUpDown5.TabIndex = 4;
             this.numericUpDown5.Visible = false;
-            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
+            this.numericUpDown5.ValueChanged += new System.EventHandler(this.NumericUpDown5_ValueChanged);
             this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
             // 
             // button5
@@ -178,7 +178,7 @@ namespace CoreKeepersWorkshop
             this.button6.TabIndex = 6;
             this.button6.Text = "Cooked Food List";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // label1
             // 
@@ -201,7 +201,7 @@ namespace CoreKeepersWorkshop
             this.label2.Size = new System.Drawing.Size(130, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "Variation [Ingredients]";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // pictureBox1
             // 
@@ -212,7 +212,7 @@ namespace CoreKeepersWorkshop
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -223,7 +223,7 @@ namespace CoreKeepersWorkshop
             this.pictureBox2.Size = new System.Drawing.Size(64, 64);
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBox2.Click += new System.EventHandler(this.PictureBox2_Click);
             // 
             // pictureBox3
             // 
@@ -234,7 +234,7 @@ namespace CoreKeepersWorkshop
             this.pictureBox3.Size = new System.Drawing.Size(64, 64);
             this.pictureBox3.TabIndex = 12;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.pictureBox3.Click += new System.EventHandler(this.PictureBox3_Click);
             // 
             // label3
             // 
@@ -277,7 +277,7 @@ namespace CoreKeepersWorkshop
             this.button1.TabIndex = 5;
             this.button1.Text = "Change Rarity";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // ItemEditor
             // 

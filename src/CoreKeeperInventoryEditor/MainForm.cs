@@ -853,6 +853,7 @@ namespace CoreKeeperInventoryEditor
                                 {
                                     MemLib.WriteMemory(slot3Amount, "int", (MemLib.ReadUInt(slot3Amount) + amount).ToString()); // Write item amount
                                     MemLib.WriteMemory(slot3Variation, "int", variation.ToString()); // Write item variation
+                                    finalItemAmount = (int)MemLib.ReadUInt(slot3Amount); // Update slots amount. // Lost and found fix v1.3.3.1.
                                 }
                             }
                         }
@@ -4115,6 +4116,7 @@ namespace CoreKeeperInventoryEditor
                 System.IO.File.WriteAllText(ExportPlayerName, playerItems);
             }
 
+            // Gather item info and announce.
             #region Announce Item Info
 
             // Ammounce the information.

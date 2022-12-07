@@ -117,7 +117,7 @@ namespace CoreKeepersWorkshop
         #region Form Controls
 
         // Search the datagridview.
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             string searchValue = textBox1.Text;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -206,7 +206,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Do enter events.        
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             // Filter only the enter key.
             if (e.KeyCode == Keys.Enter)
@@ -302,7 +302,7 @@ namespace CoreKeepersWorkshop
         #region Keydown Events
 
         // Select the row.
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Get values from selected row.
             int itemAmount = (int)numericUpDown1.Value;

@@ -528,7 +528,7 @@ namespace CoreKeepersWorkshop
 
         #region Form Controls
         // Toggle variant settings.
-        private void label2_Click(object sender, EventArgs e)
+        private void Label2_Click(object sender, EventArgs e)
         {
             // Check if item or food mode is enabled.
             if (!numericUpDown3.Visible)
@@ -573,7 +573,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Open food cookbook.
-        private void button6_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             FoodCookbook frm4 = new FoodCookbook();
@@ -598,41 +598,40 @@ namespace CoreKeepersWorkshop
         }
 
         // Value had changed, reload images and labels.
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Value had changed, reload images and labels.
-        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Value had changed, reload images and labels.
-        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown5_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Value had changed, reload images and labels.
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Change item rarity.
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             string originalName = "Unkown";
             string originalRarity = "Uncommon";
             int originalBase = (int)numericUpDown1.Value;
-            int originalVariation = 0;
-
+            int originalVariation;
             if (!numericUpDown3.Visible) // Check if item is a food variant.
             {
                 // Check if both entrees are populated.
@@ -694,7 +693,7 @@ namespace CoreKeepersWorkshop
                 }
 
                 // Determin the next prefix we need to match.
-                string nextRarity = "Uncommon";
+                string nextRarity;
                 if (originalRarity == "Uncommon")
                 {
                     nextRarity = "Rare";
@@ -736,8 +735,8 @@ namespace CoreKeepersWorkshop
                         // Split the name based on properties.
                         string splitFoodName = foodName.Replace("Epic ", "").Replace("Rare ", "");
 
-                        // Check if the foodname matches.
-                        if (splitFoodName == originalName)
+                        // Check if the foodname and variation matches.
+                        if (splitFoodName == originalName && foodVariation == originalVariation.ToString())
                         {
                             // Get the food rarity.
                             string foodRarity = (foodName.Split(' ')[0].ToString() == "Rare" || foodName.Split(' ')[0].ToString() == "Epic") ? foodName.Split(' ')[0].ToString() : "Uncommon";
@@ -781,7 +780,7 @@ namespace CoreKeepersWorkshop
         #region Click Events
 
         // Launch item explorer.
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             InventoryEditor frm3 = new InventoryEditor();
@@ -804,7 +803,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Launch item explorer.
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void PictureBox2_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             InventoryEditor frm3 = new InventoryEditor();
@@ -835,7 +834,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Launch item explorer.
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void PictureBox3_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             InventoryEditor frm3 = new InventoryEditor();

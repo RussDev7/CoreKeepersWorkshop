@@ -655,7 +655,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Launch the food cookbook.
-        private void button6_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             FoodCookbook frm4 = new FoodCookbook();
