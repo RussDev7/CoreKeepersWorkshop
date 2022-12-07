@@ -198,7 +198,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure we got the correct tab size to maximize back too.
                 if (tabControl1.SelectedTab == tabPage1)
                 {
-                    this.Size = new Size(804, 371);
+                    this.Size = new Size(756, 360);
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
@@ -227,7 +227,7 @@ namespace CoreKeeperInventoryEditor
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
-                this.Size = new Size(804, 371);
+                this.Size = new Size(756, 360);
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
@@ -656,19 +656,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox1.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)))) == false) // Check if entree exists already.
@@ -773,19 +773,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox2.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)))) == false) // Check if entree exists already.
@@ -890,19 +890,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox3.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)))) == false) // Check if entree exists already.
@@ -1007,19 +1007,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox4.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox4.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)))) == false) // Check if entree exists already.
@@ -1124,19 +1124,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox5.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox5.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)))) == false) // Check if entree exists already.
@@ -1241,19 +1241,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox6.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox6.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)))) == false) // Check if entree exists already.
@@ -1358,19 +1358,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox7.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox7.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)))) == false) // Check if entree exists already.
@@ -1475,19 +1475,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox8.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox8.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)))) == false) // Check if entree exists already.
@@ -1592,19 +1592,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox9.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox9.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)))) == false) // Check if entree exists already.
@@ -1709,19 +1709,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox10.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox10.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)))) == false) // Check if entree exists already.
@@ -1826,19 +1826,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox11.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox11.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)))) == false) // Check if entree exists already.
@@ -1943,19 +1943,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox12.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox12.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)))) == false) // Check if entree exists already.
@@ -2060,19 +2060,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox13.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox13.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)))) == false) // Check if entree exists already.
@@ -2177,19 +2177,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox14.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox14.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)))) == false) // Check if entree exists already.
@@ -2294,19 +2294,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox15.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox15.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)))) == false) // Check if entree exists already.
@@ -2411,19 +2411,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox16.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox16.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)))) == false) // Check if entree exists already.
@@ -2528,19 +2528,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox17.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox17.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)))) == false) // Check if entree exists already.
@@ -2645,19 +2645,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox18.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox18.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)))) == false) // Check if entree exists already.
@@ -2762,19 +2762,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox19.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox19.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)))) == false) // Check if entree exists already.
@@ -2879,19 +2879,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox20.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox20.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)))) == false) // Check if entree exists already.
@@ -2996,19 +2996,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox21.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox21.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)))) == false) // Check if entree exists already.
@@ -3113,19 +3113,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox22.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox22.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)))) == false) // Check if entree exists already.
@@ -3230,19 +3230,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox23.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox23.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)))) == false) // Check if entree exists already.
@@ -3347,19 +3347,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox24.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox24.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)))) == false) // Check if entree exists already.
@@ -3464,19 +3464,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox25.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox25.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)))) == false) // Check if entree exists already.
@@ -3581,19 +3581,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox26.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox26.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)))) == false) // Check if entree exists already.
@@ -3698,19 +3698,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox27.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox27.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)))) == false) // Check if entree exists already.
@@ -3815,19 +3815,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox28.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox28.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)))) == false) // Check if entree exists already.
@@ -3932,19 +3932,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox29.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox29.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)))) == false) // Check if entree exists already.
@@ -4049,19 +4049,19 @@ namespace CoreKeeperInventoryEditor
                                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                                         {
                                             pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                            pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                                         {
                                             // Image without variation exists.
                                             pictureBox30.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                            pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
                                         {
                                             // No image found.
                                             pictureBox30.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                            pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                                            pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
 
                                             // Do debug information.
                                             if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)))) == false) // Check if entree exists already.
@@ -4216,19 +4216,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox1.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4279,19 +4279,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox2.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4342,19 +4342,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox3.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4405,19 +4405,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox4.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox4.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox4.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4468,19 +4468,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox5.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox5.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox5.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4531,19 +4531,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox6.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox6.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox6.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4594,19 +4594,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox7.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox7.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox7.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4657,19 +4657,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox8.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox8.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox8.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4720,19 +4720,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox9.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox9.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox9.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4783,19 +4783,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox10.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox10.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox10.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox10.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4846,19 +4846,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox11.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox11.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox11.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox11.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4909,19 +4909,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox12.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox12.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox12.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox12.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -4972,19 +4972,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox13.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox13.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox13.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox13.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5035,19 +5035,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox14.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox14.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox14.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox14.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5098,19 +5098,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox15.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox15.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox15.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox15.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5161,19 +5161,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox16.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox16.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox16.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox16.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5224,19 +5224,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox17.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox17.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox17.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox17.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5287,19 +5287,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox18.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox18.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox18.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox18.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5350,19 +5350,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox19.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox19.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox19.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox19.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5413,19 +5413,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox20.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox20.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox20.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox20.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5476,19 +5476,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox21.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox21.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox21.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox21.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5539,19 +5539,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox22.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox22.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox22.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox22.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5602,19 +5602,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox23.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox23.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox23.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox23.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5665,19 +5665,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox24.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox24.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox24.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox24.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5728,19 +5728,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox25.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox25.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox25.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox25.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5791,19 +5791,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox26.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox26.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox26.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox26.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5854,19 +5854,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox27.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox27.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox27.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox27.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5917,19 +5917,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox28.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox28.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox28.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox28.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -5980,19 +5980,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox29.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox29.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox29.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox29.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.
@@ -6043,19 +6043,19 @@ namespace CoreKeeperInventoryEditor
                             if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()) != null)
                             {
                                 pictureBox30.Image = new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (variation == 0 ? 0 : variation).ToString()))); // Check if file matches current type, set it.
-                                pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString()) != null)
                             {
                                 // Image without variation exists.
                                 pictureBox30.Image = MakeGrayscale3(new Bitmap(Image.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current type, set it.
-                                pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                             else
                             {
                                 // No image found.
                                 pictureBox30.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                pictureBox30.SizeMode = PictureBoxSizeMode.CenterImage;
+                                pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
                             // Draw item amount.

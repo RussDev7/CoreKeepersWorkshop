@@ -83,7 +83,7 @@ namespace CoreKeepersWorkshop
 
                 // Load image.
                 pictureBox1.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())));
-                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             }
             else
             {
@@ -94,7 +94,7 @@ namespace CoreKeepersWorkshop
 
                     // Load image.
                     pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                    pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace CoreKeepersWorkshop
 
                         // Load image.
                         pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString())));
-                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                        pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
                     {
@@ -127,7 +127,7 @@ namespace CoreKeepersWorkshop
 
                             // Load image.
                             pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                         }
                         else
                         {
@@ -151,7 +151,7 @@ namespace CoreKeepersWorkshop
 
                         // Load image.
                         pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString())));
-                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                        pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
                     {
@@ -162,7 +162,7 @@ namespace CoreKeepersWorkshop
 
                             // Load image.
                             pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                         }
                         else
                         {
@@ -190,7 +190,7 @@ namespace CoreKeepersWorkshop
 
                         // Load image.
                         pictureBox2.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
-                        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                        pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
                     {
@@ -201,7 +201,7 @@ namespace CoreKeepersWorkshop
 
                             // Load image.
                             pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                         }
                         else
                         {
@@ -225,7 +225,7 @@ namespace CoreKeepersWorkshop
 
                         // Load image.
                         pictureBox3.Image = new Bitmap(Image.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)));
-                        pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                        pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
                     {
@@ -236,7 +236,7 @@ namespace CoreKeepersWorkshop
 
                             // Load image.
                             pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+                            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                         }
                         else
                         {
