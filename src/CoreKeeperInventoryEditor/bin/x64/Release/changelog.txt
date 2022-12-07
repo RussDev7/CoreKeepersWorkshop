@@ -3,11 +3,11 @@ Changes Since v1.3.3
 - Added a message to let you know no rarities where found.
 - Fixed change rarity not keeping same ingredients.
 - Fixed slot 3 showing a stack of zero when editing.
-- Minor code improvements accross multiple forms.
+- Minor code improvements across multiple forms.
 - Added intellisense message suppressions.
 - Shrunk the size of the inventory form to be smaller.
 - All assets now properly fit within the pictureboxes.
-- All inventory slots have been ajusted in the frames.
+- All inventory slots have been adjusted in the frames.
 
 Changes Since v1.3.2
 ===========================================================
