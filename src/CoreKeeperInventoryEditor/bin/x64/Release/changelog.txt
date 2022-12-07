@@ -1,3 +1,11 @@
+Changes Since v1.3.3
+===========================================================
+- Added a message to let you know no rarities where found.
+- Fixed change rarity not keeping same ingredients.
+- Fixed slot 3 showing a stack of zero when editing.
+- Minor code improvements accross multiple forms.
+- Added intellisense message suppressions.
+
 Changes Since v1.3.2
 ===========================================================
 - Fixed spaces in food names within the cookbook.
