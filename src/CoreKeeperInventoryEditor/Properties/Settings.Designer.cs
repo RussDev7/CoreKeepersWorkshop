@@ -73,30 +73,6 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UIBackground {
-            get {
-                return ((string)(this["UIBackground"]));
-            }
-            set {
-                this["UIBackground"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int UIBackgroundCount {
-            get {
-                return ((int)(this["UIBackgroundCount"]));
-            }
-            set {
-                this["UIBackgroundCount"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int InfoAmount {
             get {
@@ -176,6 +152,102 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["CookbookLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string InventoryBackground {
+            get {
+                return ((string)(this["InventoryBackground"]));
+            }
+            set {
+                this["InventoryBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int InventoryBackgroundCount {
+            get {
+                return ((int)(this["InventoryBackgroundCount"]));
+            }
+            set {
+                this["InventoryBackgroundCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ChatBackground {
+            get {
+                return ((string)(this["ChatBackground"]));
+            }
+            set {
+                this["ChatBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ChatBackgroundCount {
+            get {
+                return ((int)(this["ChatBackgroundCount"]));
+            }
+            set {
+                this["ChatBackgroundCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PlayerBackground {
+            get {
+                return ((string)(this["PlayerBackground"]));
+            }
+            set {
+                this["PlayerBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int PlayerBackgroundCount {
+            get {
+                return ((int)(this["PlayerBackgroundCount"]));
+            }
+            set {
+                this["PlayerBackgroundCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WorldBackground {
+            get {
+                return ((string)(this["WorldBackground"]));
+            }
+            set {
+                this["WorldBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int WorldBackgroundCount {
+            get {
+                return ((int)(this["WorldBackgroundCount"]));
+            }
+            set {
+                this["WorldBackgroundCount"] = value;
             }
         }
     }
