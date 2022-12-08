@@ -1,3 +1,11 @@
+Changes Since v1.3.3.1
+===========================================================
+- Fixed a crash caused from not having any ui assets.
+- Fixed some items having the incorrect ids.
+- Misc bugs fixed.
+
++ Added unique background skin support for all tabs.
+
 Changes Since v1.3.3
 ===========================================================
 - Added a message to let you know no rarities where found.
