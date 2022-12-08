@@ -94,12 +94,12 @@ namespace CoreKeeperInventoryEditor
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.button7 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -622,7 +622,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox3
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
             this.groupBox3.Controls.Add(this.progressBar1);
             this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.button5);
@@ -665,7 +665,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.button4);
@@ -728,6 +728,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.tabControl2);
             this.groupBox2.Location = new System.Drawing.Point(10, 111);
             this.groupBox2.Name = "groupBox2";
@@ -890,6 +891,7 @@ namespace CoreKeeperInventoryEditor
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.tabPage5.Controls.Add(this.groupBox6);
             this.tabPage5.Controls.Add(this.groupBox5);
             this.tabPage5.Controls.Add(this.groupBox4);
             this.tabPage5.Controls.Add(this.progressBar3);
@@ -901,6 +903,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox5
             // 
+            this.groupBox5.BackColor = System.Drawing.Color.Transparent;
             this.groupBox5.Controls.Add(this.richTextBox4);
             this.groupBox5.Location = new System.Drawing.Point(10, 117);
             this.groupBox5.Name = "groupBox5";
@@ -923,39 +926,28 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox4
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.groupBox4.Controls.Add(this.button7);
-            this.groupBox4.Controls.Add(this.groupBox6);
+            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.ForeColor = System.Drawing.Color.Lime;
             this.groupBox4.Location = new System.Drawing.Point(10, 5);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(364, 111);
+            this.groupBox4.Size = new System.Drawing.Size(232, 111);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chat Commands";
             // 
-            // button7
-            // 
-            this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(233, 83);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(125, 23);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Enable";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
-            // 
             // groupBox6
             // 
+            this.groupBox6.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox6.Controls.Add(this.button7);
             this.groupBox6.Controls.Add(this.numericUpDown1);
             this.groupBox6.Controls.Add(this.radioButton3);
             this.groupBox6.Controls.Add(this.radioButton2);
             this.groupBox6.Controls.Add(this.radioButton1);
             this.groupBox6.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox6.Location = new System.Drawing.Point(233, 0);
+            this.groupBox6.Location = new System.Drawing.Point(241, 5);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(131, 81);
+            this.groupBox6.Size = new System.Drawing.Size(133, 111);
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options";
@@ -986,7 +978,7 @@ namespace CoreKeeperInventoryEditor
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.ForeColor = System.Drawing.Color.Black;
+            this.radioButton3.ForeColor = System.Drawing.Color.Snow;
             this.radioButton3.Location = new System.Drawing.Point(6, 58);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(63, 17);
@@ -998,7 +990,7 @@ namespace CoreKeeperInventoryEditor
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.Color.Black;
+            this.radioButton2.ForeColor = System.Drawing.Color.Snow;
             this.radioButton2.Location = new System.Drawing.Point(6, 37);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(118, 17);
@@ -1010,7 +1002,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.ForeColor = System.Drawing.Color.Black;
+            this.radioButton1.ForeColor = System.Drawing.Color.Snow;
             this.radioButton1.Location = new System.Drawing.Point(6, 15);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(114, 17);
@@ -1018,6 +1010,17 @@ namespace CoreKeeperInventoryEditor
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Overwrite Slot One";
             this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.ForeColor = System.Drawing.Color.Black;
+            this.button7.Location = new System.Drawing.Point(6, 81);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(121, 23);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Enable";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // label3
             // 
@@ -1051,6 +1054,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox8
             // 
+            this.groupBox8.BackColor = System.Drawing.Color.Transparent;
             this.groupBox8.Controls.Add(this.richTextBox5);
             this.groupBox8.Location = new System.Drawing.Point(10, 87);
             this.groupBox8.Name = "groupBox8";
@@ -1081,7 +1085,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // groupBox7
             // 
-            this.groupBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.groupBox7.BackColor = System.Drawing.Color.Transparent;
             this.groupBox7.Controls.Add(this.label10);
             this.groupBox7.Controls.Add(this.button9);
             this.groupBox7.Controls.Add(this.label9);

@@ -31,12 +31,20 @@ namespace CoreKeeperInventoryEditor
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
-        public int skinCounter = CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount;
         public bool isMinimized = false;
 
         // Define texture data.
         public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        public IEnumerable<string> InventorySkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\UI\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        public IEnumerable<string> InventorySkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        public IEnumerable<string> PlayerSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        public IEnumerable<string> ChatSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        public IEnumerable<string> WorldSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+
+        // Define skin counters.
+        public int inventorySkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount;
+        public int playerSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount;
+        public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
+        public int worldSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount;
 
         // Form initialization.
         public MainForm()
@@ -72,17 +80,52 @@ namespace CoreKeeperInventoryEditor
                 #region Set Background
 
                 // Get background from saved settings.
-                // Ensure background is not null.
-                if (CoreKeepersWorkshop.Properties.Settings.Default.UIBackground != "")
+                if (CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground != "") // Ensure background is not null.
                 {
                     // Catch image missing / renamed errors.
                     try
                     {
-                        tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.UIBackground);
+                        tabControl1.TabPages[0].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground);
                     }
                     catch (Exception)
                     {
-                        CoreKeepersWorkshop.Properties.Settings.Default.UIBackground = "";
+                        CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground = "";
+                    }
+                }
+                if (CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground != "") // Ensure background is not null.
+                {
+                    // Catch image missing / renamed errors.
+                    try
+                    {
+                        tabControl1.TabPages[1].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground);
+                    }
+                    catch (Exception)
+                    {
+                        CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground = "";
+                    }
+                }
+                if (CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground != "") // Ensure background is not null.
+                {
+                    // Catch image missing / renamed errors.
+                    try
+                    {
+                        tabControl1.TabPages[2].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground);
+                    }
+                    catch (Exception)
+                    {
+                        CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = "";
+                    }
+                }
+                if (CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground != "") // Ensure background is not null.
+                {
+                    // Catch image missing / renamed errors.
+                    try
+                    {
+                        tabControl1.TabPages[3].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground);
+                    }
+                    catch (Exception)
+                    {
+                        CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = "";
                     }
                 }
                 #endregion
@@ -151,7 +194,10 @@ namespace CoreKeeperInventoryEditor
                 CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = 0;
 
                 // Save UI form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.UIBackgroundCount = skinCounter;
+                CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount = inventorySkinCounter;
+                CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount = playerSkinCounter;
+                CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount = chatSkinCounter;
+                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount = worldSkinCounter;
                 CoreKeepersWorkshop.Properties.Settings.Default.Save();
             }
             catch (Exception)
@@ -223,6 +269,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Control switching tabs.
+        int previousTab = 0;
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab == tabPage1)
@@ -245,30 +292,115 @@ namespace CoreKeeperInventoryEditor
             // Change skin
             if (tabControl1.SelectedTab == tabPage6)
             {
-                // Reset tab page back to one.
-                tabControl1.SelectedTab = tabPage1;
-
-                // Prevent overflow from add or removal of images.
-                if (skinCounter >= InventorySkins.Count()) { skinCounter = 0; }
-
-                // Ensure the skin exists. Fix: v1.2.9.
-                if (!File.Exists(InventorySkins.ToArray()[skinCounter]))
+                // Get the tab we are changing.
+                switch (previousTab)
                 {
-                    // Display an error.
-                    MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+
+                    case 0: // Inventory
+                        // Reset tab page back to one.
+                        tabControl1.SelectedTab = tabPage1;
+
+                        // Prevent overflow from add or removal of images.
+                        if (inventorySkinCounter >= InventorySkins.Count()) { inventorySkinCounter = 0; }
+
+                        // Ensure the skin exists. Fix: v1.2.9.
+                        if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[inventorySkinCounter])) // Check if folder is empty. Fix: v1.3.4
+                        {
+                            // Display an error.
+                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Change the background.
+                        tabControl1.TabPages[0].BackgroundImage = Image.FromFile(InventorySkins.ToArray()[inventorySkinCounter].ToString());
+
+                        // Save the property in the settings.
+                        CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground = InventorySkins.ToArray()[inventorySkinCounter].ToString();
+
+                        // Add to the counter.
+                        inventorySkinCounter++;
+                        if (inventorySkinCounter == InventorySkins.Count()) { inventorySkinCounter = 0; }
+                        break;
+                    case 1: // Player
+                        // Reset tab page back to two.
+                        tabControl1.SelectedTab = tabPage2;
+
+                        // Prevent overflow from add or removal of images.
+                        if (playerSkinCounter >= PlayerSkins.Count()) { playerSkinCounter = 0; }
+
+                        // Ensure the skin exists. Fix: v1.2.9.
+                        if (PlayerSkins.Count() < 1 || !File.Exists(PlayerSkins.ToArray()[playerSkinCounter])) // Check if folder is empty. Fix: v1.3.4
+                        {
+                            // Display an error.
+                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Change the background.
+                        tabControl1.TabPages[1].BackgroundImage = Image.FromFile(PlayerSkins.ToArray()[playerSkinCounter].ToString());
+
+                        // Save the property in the settings.
+                        CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground = PlayerSkins.ToArray()[playerSkinCounter].ToString();
+
+                        // Add to the counter.
+                        playerSkinCounter++;
+                        if (playerSkinCounter == PlayerSkins.Count()) { playerSkinCounter = 0; }
+                        break;
+                    case 2: // Chat
+                        // Reset tab page back to three.
+                        tabControl1.SelectedTab = tabPage5;
+
+                        // Prevent overflow from add or removal of images.
+                        if (chatSkinCounter >= ChatSkins.Count()) { chatSkinCounter = 0; }
+
+                        // Ensure the skin exists. Fix: v1.2.9.
+                        if (ChatSkins.Count() < 1 || !File.Exists(ChatSkins.ToArray()[chatSkinCounter])) // Check if folder is empty. Fix: v1.3.4
+                        {
+                            // Display an error.
+                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Change the background.
+                        tabControl1.TabPages[2].BackgroundImage = Image.FromFile(ChatSkins.ToArray()[chatSkinCounter].ToString());
+
+                        // Save the property in the settings.
+                        CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = ChatSkins.ToArray()[chatSkinCounter].ToString();
+
+                        // Add to the counter.
+                        chatSkinCounter++;
+                        if (chatSkinCounter == ChatSkins.Count()) { chatSkinCounter = 0; }
+                        break;
+                    case 3: // World
+                        // Reset tab page back to four.
+                        tabControl1.SelectedTab = tabPage8;
+
+                        // Prevent overflow from add or removal of images.
+                        if (worldSkinCounter >= WorldSkins.Count()) { worldSkinCounter = 0; }
+
+                        // Ensure the skin exists. Fix: v1.2.9.
+                        if (WorldSkins.Count() < 1 || !File.Exists(WorldSkins.ToArray()[worldSkinCounter])) // Check if folder is empty. Fix: v1.3.4
+                        {
+                            // Display an error.
+                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Change the background.
+                        tabControl1.TabPages[3].BackgroundImage = Image.FromFile(WorldSkins.ToArray()[worldSkinCounter].ToString());
+
+                        // Save the property in the settings.
+                        CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = WorldSkins.ToArray()[worldSkinCounter].ToString();
+
+                        // Add to the counter.
+                        worldSkinCounter++;
+                        if (worldSkinCounter == WorldSkins.Count()) { worldSkinCounter = 0; }
+                        break;
                 }
-
-                // Change the background.
-                tabControl1.TabPages[0].BackgroundImage = Image.FromFile(InventorySkins.ToArray()[skinCounter].ToString());
-
-                // Save the property in the settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.UIBackground = InventorySkins.ToArray()[skinCounter].ToString();
-
-                // Add to the counter.
-                skinCounter++;
-                if (skinCounter == InventorySkins.Count()) { skinCounter = 0; }
             }
+
+            // Update the previous tab value.
+            previousTab = tabControl1.SelectedIndex;
         }
 
         #endregion // End form controls.
