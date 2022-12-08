@@ -91,15 +91,15 @@ namespace CoreKeeperInventoryEditor
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button7 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -155,10 +155,10 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.tabPage5.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -231,7 +231,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.progressBar2.Location = new System.Drawing.Point(160, 8);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(373, 23);
+            this.progressBar2.Size = new System.Drawing.Size(373, 21);
             this.progressBar2.Step = 1;
             this.progressBar2.TabIndex = 32;
             this.progressBar2.Visible = false;
@@ -240,7 +240,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.button3.Location = new System.Drawing.Point(531, 7);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 25);
+            this.button3.Size = new System.Drawing.Size(98, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "Remove All";
             this.button3.UseVisualStyleBackColor = true;
@@ -250,7 +250,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.button2.Location = new System.Drawing.Point(628, 7);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 25);
+            this.button2.Size = new System.Drawing.Size(98, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Reload Inventory";
             this.button2.UseVisualStyleBackColor = true;
@@ -590,7 +590,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.button1.Location = new System.Drawing.Point(6, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 25);
+            this.button1.Size = new System.Drawing.Size(148, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Get Inventory Addresses";
             this.button1.UseVisualStyleBackColor = true;
@@ -603,7 +603,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(373, 23);
+            this.richTextBox1.Size = new System.Drawing.Size(373, 21);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "Addresses Loaded: 0";
             // 
@@ -901,41 +901,6 @@ namespace CoreKeeperInventoryEditor
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Chat";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox5.Controls.Add(this.richTextBox4);
-            this.groupBox5.Location = new System.Drawing.Point(10, 117);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(364, 138);
-            this.groupBox5.TabIndex = 17;
-            this.groupBox5.TabStop = false;
-            // 
-            // richTextBox4
-            // 
-            this.richTextBox4.BackColor = System.Drawing.Color.Black;
-            this.richTextBox4.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox4.Location = new System.Drawing.Point(1, 7);
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.ReadOnly = true;
-            this.richTextBox4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox4.Size = new System.Drawing.Size(362, 129);
-            this.richTextBox4.TabIndex = 16;
-            this.richTextBox4.Text = "Any captured chat messages will appear here.\n------------------------------------" +
-    "-----------------------------------------------------------------------------\n";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox4.Location = new System.Drawing.Point(10, 5);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(232, 111);
-            this.groupBox4.TabIndex = 16;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Chat Commands";
-            // 
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Transparent;
@@ -951,6 +916,17 @@ namespace CoreKeeperInventoryEditor
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options";
+            // 
+            // button7
+            // 
+            this.button7.ForeColor = System.Drawing.Color.Black;
+            this.button7.Location = new System.Drawing.Point(6, 81);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(121, 23);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Enable";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // numericUpDown1
             // 
@@ -1011,16 +987,40 @@ namespace CoreKeeperInventoryEditor
             this.radioButton1.Text = "Overwrite Slot One";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // groupBox5
             // 
-            this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(6, 81);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(121, 23);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Enable";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.groupBox5.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox5.Controls.Add(this.richTextBox4);
+            this.groupBox5.Location = new System.Drawing.Point(10, 117);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(364, 138);
+            this.groupBox5.TabIndex = 17;
+            this.groupBox5.TabStop = false;
+            // 
+            // richTextBox4
+            // 
+            this.richTextBox4.BackColor = System.Drawing.Color.Black;
+            this.richTextBox4.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBox4.Location = new System.Drawing.Point(1, 7);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.ReadOnly = true;
+            this.richTextBox4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.richTextBox4.Size = new System.Drawing.Size(362, 129);
+            this.richTextBox4.TabIndex = 16;
+            this.richTextBox4.Text = "Any captured chat messages will appear here.\n------------------------------------" +
+    "-----------------------------------------------------------------------------\n";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.ForeColor = System.Drawing.Color.Lime;
+            this.groupBox4.Location = new System.Drawing.Point(10, 5);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(232, 111);
+            this.groupBox4.TabIndex = 16;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Chat Commands";
             // 
             // label3
             // 
@@ -1220,12 +1220,12 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.tabPage5.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
