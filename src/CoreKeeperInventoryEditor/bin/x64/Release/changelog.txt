@@ -2,10 +2,11 @@ Changes Since v1.3.3.1
 ===========================================================
 - Fixed a crash caused from not having any ui assets.
 - Fixed some items having the incorrect ids.
+- Adjusted the scalling of the inventory controls.
 - Misc bugs fixed.
 
 + Added unique background skin support for all tabs.
-+ Added some new background assets.
++ Added new background assets.
 + Added missing assets.
 
 Changes Since v1.3.3
