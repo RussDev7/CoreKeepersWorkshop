@@ -5,6 +5,8 @@ Changes Since v1.3.3.1
 - Misc bugs fixed.
 
 + Added unique background skin support for all tabs.
++ Added some new background assets.
++ Added missing assets.
 
 Changes Since v1.3.3
 ===========================================================
