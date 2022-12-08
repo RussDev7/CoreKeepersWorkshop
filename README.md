@@ -88,6 +88,6 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 
 - [Memory.dll](https://github.com/erfg12/memory.dll)
 - [Json.net](https://www.newtonsoft.com/json)
-- [UI-Background](https://discord.com/users/229227672121769984/)
+- [UI-Backgrounds](https://discord.com/users/229227672121769984/)
 - [CK Asset Wiki](https://corekeeper.wikizet.com/en/Core_Keeper_Wiki)
 - [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Donation&currency_code=USD&bn=PP%2dDonationsBF)
