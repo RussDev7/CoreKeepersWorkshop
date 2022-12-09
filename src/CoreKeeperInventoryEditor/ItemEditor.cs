@@ -288,6 +288,7 @@ namespace CoreKeepersWorkshop
 
             toolTip.SetToolTip(label2, "Toggle the GUI between food / item variaty.");
             toolTip.SetToolTip(button1, "Change your food rarity. Press enter when done.");
+            toolTip.SetToolTip(button3, "Finish editing the item.");
             toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
 
@@ -864,8 +865,33 @@ namespace CoreKeepersWorkshop
             // Reload pictureboxes and labels.
             ReloadPictureBoxes(useTextboxeData: true);
         }
+
+        // User clicked done, save and close form.
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            selectedItemType = (int)numericUpDown1.Value;
+            selectedItemAmount = (int)numericUpDown2.Value;
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Combine strings into int.
+                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    selectedItemVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                selectedItemVariation = (int)numericUpDown3.Value;
+            }
+            this.Close();
+        }
         #endregion
-
-
     }
 }
