@@ -649,19 +649,19 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Snow;
-            this.label9.Location = new System.Drawing.Point(131, 24);
+            this.label9.Location = new System.Drawing.Point(131, 25);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(160, 13);
-            this.label9.TabIndex = 19;
+            this.label9.TabIndex = 0;
             this.label9.Text = "- Deletes all active ground items.";
             // 
             // button8
             // 
             this.button8.ForeColor = System.Drawing.Color.Black;
-            this.button8.Location = new System.Drawing.Point(8, 19);
+            this.button8.Location = new System.Drawing.Point(8, 20);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(122, 23);
-            this.button8.TabIndex = 20;
+            this.button8.TabIndex = 18;
             this.button8.Text = "Remove Ground Items";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.Button8_Click);
@@ -687,7 +687,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(362, 162);
-            this.tabControl2.TabIndex = 9;
+            this.tabControl2.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -711,7 +711,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox2.ReadOnly = true;
             this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBox2.Size = new System.Drawing.Size(348, 127);
-            this.richTextBox2.TabIndex = 10;
+            this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
             // 
             // tabPage4
@@ -759,7 +759,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox5.ReadOnly = true;
             this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox5.Size = new System.Drawing.Size(348, 127);
-            this.richTextBox5.TabIndex = 17;
+            this.richTextBox5.TabIndex = 0;
             this.richTextBox5.Text = "Information regarding the world tools will appear here.\n-------------------------" +
     "--------------------------------------------------------------------------------" +
     "---\n";
@@ -883,7 +883,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(70, 20);
-            this.numericUpDown3.TabIndex = 49;
+            this.numericUpDown3.TabIndex = 16;
             this.numericUpDown3.Value = new decimal(new int[] {
             950,
             0,
@@ -897,7 +897,7 @@ namespace CoreKeeperInventoryEditor
             this.label13.Location = new System.Drawing.Point(59, 137);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(120, 13);
-            this.label13.TabIndex = 48;
+            this.label13.TabIndex = 0;
             this.label13.Text = "- Noclip (Use Spacebar)";
             // 
             // siticoneWinToggleSwith4
@@ -907,7 +907,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith4.Location = new System.Drawing.Point(8, 133);
             this.siticoneWinToggleSwith4.Name = "siticoneWinToggleSwith4";
             this.siticoneWinToggleSwith4.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith4.TabIndex = 47;
+            this.siticoneWinToggleSwith4.TabIndex = 17;
             this.siticoneWinToggleSwith4.Text = "siticoneWinToggleSwith4";
             this.siticoneWinToggleSwith4.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith4.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -920,7 +920,7 @@ namespace CoreKeeperInventoryEditor
             this.label12.Location = new System.Drawing.Point(59, 109);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 13);
-            this.label12.TabIndex = 46;
+            this.label12.TabIndex = 0;
             this.label12.Text = "- Speed:";
             // 
             // siticoneWinToggleSwith3
@@ -930,7 +930,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith3.Location = new System.Drawing.Point(8, 105);
             this.siticoneWinToggleSwith3.Name = "siticoneWinToggleSwith3";
             this.siticoneWinToggleSwith3.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith3.TabIndex = 45;
+            this.siticoneWinToggleSwith3.TabIndex = 15;
             this.siticoneWinToggleSwith3.Text = "siticoneWinToggleSwith3";
             this.siticoneWinToggleSwith3.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith3.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -943,7 +943,7 @@ namespace CoreKeeperInventoryEditor
             this.label11.Location = new System.Drawing.Point(59, 80);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 13);
-            this.label11.TabIndex = 44;
+            this.label11.TabIndex = 0;
             this.label11.Text = "- Godmode";
             // 
             // siticoneWinToggleSwith2
@@ -953,7 +953,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith2.Location = new System.Drawing.Point(8, 77);
             this.siticoneWinToggleSwith2.Name = "siticoneWinToggleSwith2";
             this.siticoneWinToggleSwith2.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith2.TabIndex = 43;
+            this.siticoneWinToggleSwith2.TabIndex = 14;
             this.siticoneWinToggleSwith2.Text = "siticoneWinToggleSwith2";
             this.siticoneWinToggleSwith2.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith2.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -966,7 +966,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith1.Location = new System.Drawing.Point(8, 49);
             this.siticoneWinToggleSwith1.Name = "siticoneWinToggleSwith1";
             this.siticoneWinToggleSwith1.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith1.TabIndex = 42;
+            this.siticoneWinToggleSwith1.TabIndex = 13;
             this.siticoneWinToggleSwith1.Text = "siticoneWinToggleSwith1";
             this.siticoneWinToggleSwith1.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith1.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -978,7 +978,7 @@ namespace CoreKeeperInventoryEditor
             this.progressBar5.Name = "progressBar5";
             this.progressBar5.Size = new System.Drawing.Size(230, 21);
             this.progressBar5.Step = 1;
-            this.progressBar5.TabIndex = 41;
+            this.progressBar5.TabIndex = 0;
             this.progressBar5.Visible = false;
             // 
             // button10
@@ -987,7 +987,7 @@ namespace CoreKeeperInventoryEditor
             this.button10.Location = new System.Drawing.Point(8, 17);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(92, 23);
-            this.button10.TabIndex = 39;
+            this.button10.TabIndex = 11;
             this.button10.Text = "Get Addresses";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.Button10_Click);
@@ -1000,7 +1000,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox6.ReadOnly = true;
             this.richTextBox6.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBox6.Size = new System.Drawing.Size(230, 21);
-            this.richTextBox6.TabIndex = 40;
+            this.richTextBox6.TabIndex = 12;
             this.richTextBox6.Text = "Addresses Loaded: 0";
             // 
             // label10
@@ -1010,7 +1010,7 @@ namespace CoreKeeperInventoryEditor
             this.label10.Location = new System.Drawing.Point(59, 52);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 13);
-            this.label10.TabIndex = 20;
+            this.label10.TabIndex = 0;
             this.label10.Text = "- Display Position";
             // 
             // label6
@@ -1163,7 +1163,7 @@ namespace CoreKeeperInventoryEditor
             this.button7.Location = new System.Drawing.Point(6, 81);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(121, 23);
-            this.button7.TabIndex = 11;
+            this.button7.TabIndex = 5;
             this.button7.Text = "Enable";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
@@ -1184,7 +1184,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown1.TabIndex = 15;
+            this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
             0,
@@ -1198,7 +1198,7 @@ namespace CoreKeeperInventoryEditor
             this.radioButton3.Location = new System.Drawing.Point(6, 58);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(63, 17);
-            this.radioButton3.TabIndex = 14;
+            this.radioButton3.TabIndex = 3;
             this.radioButton3.Text = "Custom:";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
@@ -1210,7 +1210,7 @@ namespace CoreKeeperInventoryEditor
             this.radioButton2.Location = new System.Drawing.Point(6, 37);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(118, 17);
-            this.radioButton2.TabIndex = 13;
+            this.radioButton2.TabIndex = 2;
             this.radioButton2.Text = "Add To Empty Slots";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -1222,7 +1222,7 @@ namespace CoreKeeperInventoryEditor
             this.radioButton1.Location = new System.Drawing.Point(6, 15);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(114, 17);
-            this.radioButton1.TabIndex = 12;
+            this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Overwrite Slot One";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -1246,7 +1246,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox4.ReadOnly = true;
             this.richTextBox4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox4.Size = new System.Drawing.Size(362, 129);
-            this.richTextBox4.TabIndex = 16;
+            this.richTextBox4.TabIndex = 0;
             this.richTextBox4.Text = "Any captured chat messages will appear here.\n------------------------------------" +
     "-----------------------------------------------------------------------------\n";
             // 

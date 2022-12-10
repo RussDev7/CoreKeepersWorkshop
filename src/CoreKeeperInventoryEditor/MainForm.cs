@@ -126,7 +126,7 @@ namespace CoreKeeperInventoryEditor
                 ToolTip toolTip = new ToolTip()
                 {
                     AutoPopDelay = 3000,
-                    InitialDelay = 1000
+                    InitialDelay = 750
                 };
 
                 // Set tool texts.
@@ -141,8 +141,15 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button6, "Export a player file to overwrite items.");
                 toolTip.SetToolTip(button7, "Enable / disable in-game chat commands.");
                 toolTip.SetToolTip(button8, "Removes all ground items not picked up by the player.");
+                toolTip.SetToolTip(button10, "Get the required addresses for using player tools.");
 
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
+                toolTip.SetToolTip(richTextBox6, "A list of all found addresses. Used mostly for debugging.");
+
+                toolTip.SetToolTip(siticoneWinToggleSwith1, "Gets the players XY coordinates and displays it.");
+                toolTip.SetToolTip(siticoneWinToggleSwith2, "Enabling will prevent the player from being killed.");
+                toolTip.SetToolTip(siticoneWinToggleSwith3, "Set a custom run speed for the player.");
+                toolTip.SetToolTip(siticoneWinToggleSwith4, "Spacebar will allow the player to pass through walls.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -150,6 +157,7 @@ namespace CoreKeeperInventoryEditor
 
                 toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
                 toolTip.SetToolTip(numericUpDown2, "Change the interval of tools that use times.");
+                toolTip.SetToolTip(numericUpDown2, "Change the base speed the player will walk at.");
 
                 #endregion
             }
@@ -7008,11 +7016,11 @@ namespace CoreKeeperInventoryEditor
             else
             {
                 // Disable player position.
-                // Change appllication text back to defualt.
-                this.Text = "CoreKeeper's Workshop";
-
                 // Stop the timers.
                 playersPositionTimer.Stop();
+
+                // Change appllication text back to defualt.
+                this.Text = "CoreKeeper's Workshop";
 
                 // Update consoile with the status.
                 richTextBox5.AppendText("[PlayerPosition] Player position has been disabled." + Environment.NewLine);
