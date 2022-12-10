@@ -707,7 +707,7 @@ namespace CoreKeeperInventoryEditor
                                 {
                                     MemLib.WriteMemory(slot1Amount, "int", (MemLib.ReadUInt(slot1Amount) + amount).ToString()); // Write item amount
                                     MemLib.WriteMemory(slot1Variation, "int", variation.ToString()); // Write item variation
-                                    finalItemAmount = (int)(MemLib.ReadUInt(slot1Amount) + amount);
+                                    finalItemAmount = (int)MemLib.ReadUInt(slot1Amount);
                                 }
                             }
                         }
