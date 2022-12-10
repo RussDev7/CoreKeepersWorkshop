@@ -21,13 +21,21 @@ namespace CoreKeeperInventoryEditor
 {
     public partial class MainForm : Form
     {
-        // Setup some varibles.
+        // Form initialization.
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        #region Variables
+
+        // Setup some variables.
         public Mem MemLib = new Mem();
         public IEnumerable<long> AoBScanResultsInventory;
         public IEnumerable<long> AoBScanResultsPlayerName;
         public IEnumerable<long> AoBScanResultsChat;
         public IEnumerable<long> AoBScanResultsGroundItems;
-        public IEnumerable<long> AoBScanResultsPlayerPosition;
+        public IEnumerable<long> AoBScanResultsPlayerTools;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -38,7 +46,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<string> InventorySkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
         public IEnumerable<string> PlayerSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
         public IEnumerable<string> ChatSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        public IEnumerable<string> WorldSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        // public IEnumerable<string> WorldSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Define skin counters.
         public int inventorySkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount;
@@ -46,11 +54,7 @@ namespace CoreKeeperInventoryEditor
         public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
         public int worldSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount;
 
-        // Form initialization.
-        public MainForm()
-        {
-            InitializeComponent();
-        }
+        #endregion // End variables.
 
         #region Form Controls
 
@@ -248,13 +252,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
-                    this.Size = new Size(410, 360);
+                    this.Size = new Size(756, 360);
                 }
                 else if (tabControl1.SelectedTab == tabPage5)
-                {
-                    this.Size = new Size(410, 360);
-                }
-                else if (tabControl1.SelectedTab == tabPage8)
                 {
                     this.Size = new Size(410, 360);
                 }
@@ -278,13 +278,9 @@ namespace CoreKeeperInventoryEditor
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
-                this.Size = new Size(410, 360);
+                this.Size = new Size(756, 360);
             }
             else if (tabControl1.SelectedTab == tabPage5)
-            {
-                this.Size = new Size(410, 360);
-            }
-            else if (tabControl1.SelectedTab == tabPage8)
             {
                 this.Size = new Size(410, 360);
             }
@@ -370,31 +366,6 @@ namespace CoreKeeperInventoryEditor
                         // Add to the counter.
                         chatSkinCounter++;
                         if (chatSkinCounter == ChatSkins.Count()) { chatSkinCounter = 0; }
-                        break;
-                    case 3: // World
-                        // Reset tab page back to four.
-                        tabControl1.SelectedTab = tabPage8;
-
-                        // Prevent overflow from add or removal of images.
-                        if (worldSkinCounter >= WorldSkins.Count()) { worldSkinCounter = 0; }
-
-                        // Ensure the skin exists. Fix: v1.2.9.
-                        if (WorldSkins.Count() < 1 || !File.Exists(WorldSkins.ToArray()[worldSkinCounter])) // Check if folder is empty. Fix: v1.3.4
-                        {
-                            // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Change the background.
-                        tabControl1.TabPages[3].BackgroundImage = Image.FromFile(WorldSkins.ToArray()[worldSkinCounter].ToString());
-
-                        // Save the property in the settings.
-                        CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = WorldSkins.ToArray()[worldSkinCounter].ToString();
-
-                        // Add to the counter.
-                        worldSkinCounter++;
-                        if (worldSkinCounter == WorldSkins.Count()) { worldSkinCounter = 0; }
                         break;
                 }
             }
@@ -6563,7 +6534,9 @@ namespace CoreKeeperInventoryEditor
 
         #endregion // End Inventory Region
 
-        #region Misc
+        #region Player
+
+        #region Change Player Name
 
         // Change player name.
         private async void Button4_Click(object sender, EventArgs e)
@@ -6634,6 +6607,10 @@ namespace CoreKeeperInventoryEditor
             textBox1.Text = NewName;
             textBox2.Text = "";
         }
+
+        #endregion // End change playername.
+
+        #region Import / Export
 
         // Import a player file.
         private void Button5_Click(object sender, EventArgs e)
@@ -6784,7 +6761,499 @@ namespace CoreKeeperInventoryEditor
             progressBar1.Value = 100;
         }
 
-        #endregion // End misc tab.
+        #endregion // End import & export.
+
+        #region World Tools
+
+        // Delete all ground items.
+        private async void Button8_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Reset progress bar.
+            progressBar5.Step = 10;
+            progressBar5.Value = 0;
+            progressBar5.PerformStep(); // Progress 10%.
+
+            // Name button to indicate loading.
+            button8.Text = "Removing Items..";
+
+            // Disable button to prevent spamming.
+            button8.Enabled = false;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+
+            // Adjust the max value of the progress bar.
+            progressBar5.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsGroundItems.Count() == 0)
+            {
+                // Rename button back to defualt.
+                button8.Text = "Remove Ground Items";
+
+                // Enable button.
+                button8.Enabled = true;
+
+                // Ensure progressbar is at 100.
+                progressBar5.Value = 100;
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[RemoveGroundItems] You must throw at least one torch on the ground!!" + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
+
+                // Display error message.
+                MessageBox.Show("You must throw at least one torch on the ground!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Perform step.
+            progressBar5.PerformStep();
+
+            // Remove ground items.
+            RemoveGroundItems();
+
+            // Process completed, run finishing tasks.
+            // Rename button back to defualt.
+            button8.Text = "Remove Ground Items";
+
+            // Enable button.
+            button8.Enabled = true;
+        }
+
+        // Remove items function.
+        public void RemoveGroundItems()
+        {
+            // Reset progress bar.
+            progressBar5.Step = 10;
+            progressBar5.Value = 0;
+            progressBar5.PerformStep(); // Progress 10%.
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsGroundItems)
+            {
+                // Get base addresses.
+                string ItemType = res.ToString("X").ToString();
+                string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                string ItemFooter = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                // Climb down the address for each item.
+                bool endAddressFound = false;
+                while (!endAddressFound)
+                {
+                    // Find the next footer value.
+                    ItemFooter = BigInteger.Subtract(BigInteger.Parse(ItemFooter, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+
+                    // Check if this is the last value.
+                    if (MemLib.ReadUInt(ItemFooter).ToString() == "1")
+                    {
+                        // The final value to write too.
+                        // Log the items removed.
+                        if (MemLib.ReadUInt(ItemType).ToString() != "0")
+                        {
+                            richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + Environment.NewLine);
+                            richTextBox5.ScrollToCaret();
+                        }
+
+                        // Use the previous values to wrtite.
+                        MemLib.WriteMemory(ItemType, "int", "0");
+                        MemLib.WriteMemory(ItemAmount, "int", "0");
+                        MemLib.WriteMemory(ItemVariant, "int", "0");
+                    }
+                    else
+                    {
+                        // End the loop.
+                        endAddressFound = true;
+                    }
+
+                    // Get the next footer values.
+                    ItemType = BigInteger.Subtract(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                    ItemAmount = BigInteger.Subtract(BigInteger.Parse(ItemAmount, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                    ItemVariant = BigInteger.Subtract(BigInteger.Parse(ItemVariant, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                }
+
+                // Progress the progress bar.
+                progressBar5.PerformStep();
+            }
+
+            // Ensure progressbar is at 100.
+            progressBar5.Value = 100;
+        }
+        #endregion // End world tools.
+
+        #region Player Tool Addresses
+
+        // Get world address.
+        private void Button10_Click(object sender, EventArgs e)
+        {
+            // Reset progress bar.
+            progressBar5.Value = 0;
+
+            // Load addresses.
+            GetPlayerToolsAddresses();
+        }
+
+        public async void GetPlayerToolsAddresses()
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Name button to indicate loading.
+            button10.Text = "Loading...";
+
+            // Disable button to prevent spamming.
+            button10.Enabled = false;
+
+            // Reset textbox.
+            richTextBox6.Text = "Addresses Loaded: 0";
+
+            // Offset the progress bar to show it's working.
+            progressBar5.Visible = true;
+            progressBar5.Maximum = 100;
+            progressBar5.Value = 10;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsPlayerTools = await MemLib.AoBScan("?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 99 D9 3F", true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerTools.Count() < 1)
+            {
+                // Reset textbox.
+                richTextBox6.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar5.Value = 0;
+                progressBar5.Visible = false;
+
+                // Rename button back to defualt.
+                button10.Text = "Get Addresses";
+
+                // Re-enable button.
+                button10.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerTools = null;
+
+                // Display error message.
+                MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Update richtextbox with found addresses.
+            foreach (long res in AoBScanResultsPlayerTools)
+            {
+                if (richTextBox6.Text == "Addresses Loaded: 0")
+                {
+                    richTextBox6.Text = "Addresses Loaded: " + AoBScanResultsPlayerTools.Count().ToString() + " [" + res.ToString("X").ToString();
+                }
+                else
+                {
+                    richTextBox6.Text += ", " + res.ToString("X").ToString();
+                }
+            }
+            richTextBox6.Text += "]";
+
+            // Re-enable button.
+            button10.Enabled = true;
+
+            // Rename button back to defualt.
+            button10.Text = "Get Addresses";
+
+            // Complete progress bar.
+            progressBar5.Value = 100;
+
+            // Hide progressbar.
+            progressBar5.Visible = false;
+        }
+        #endregion // End get player addresses region.
+
+        #region Player Position
+
+        // Enable player xy tool.
+        readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
+        private void SiticoneWinToggleSwith1_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith1.Checked)
+            {
+                // Start the timed events.
+                playersPositionTimer.Interval = 100; // Custom intervals.
+                playersPositionTimer.Elapsed += new ElapsedEventHandler(PlayersPositionTimedEvent);
+                playersPositionTimer.Start();
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] Player position has been enabled." + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
+            }
+            else
+            {
+                // Disable player position.
+                // Change appllication text back to defualt.
+                this.Text = "CoreKeeper's Workshop";
+
+                // Stop the timers.
+                playersPositionTimer.Stop();
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] Player position has been disabled." + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
+            }
+        }
+
+        // Players position timer.
+        private void PlayersPositionTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Get the addresses.
+            string positionX = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+            string positionY = AoBScanResultsPlayerTools.First().ToString("X");
+
+            // Convert values to number.
+            string playerPositionX = MemLib.ReadFloat(positionX).ToString();
+            string playerPositionY = (MemLib.ReadFloat(positionY) - 1).ToString(); // Correct the offset. 
+
+            // Change the applications tittle based on minimization and tab pages. 
+            if (isMinimized || tabControl1.SelectedTab == tabPage5) // Tab five is smaller.
+            {
+                // Change text based on minimized window.
+                this.Text = "Pos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
+            }
+            else
+            {
+                // Change text based on maximized window.
+                this.Text = "CoreKeeper's Workshop | PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
+            }
+        }
+        #endregion // End player positon.
+
+        #region Godmode
+
+        // Toggle godmode.
+        readonly System.Timers.Timer playersGodmodeTimer = new System.Timers.Timer();
+        string godmodeAddress = "0";
+        private void SiticoneWinToggleSwith2_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith2.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                siticoneWinToggleSwith2.Checked = false;
+                siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith2.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                siticoneWinToggleSwith2.Checked = false;
+                siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2112", NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith2.Checked)
+            {
+                // Slider is being toggled on.
+                // Start the timed events.
+                playersGodmodeTimer.Interval = 1; // Custom intervals.
+                playersGodmodeTimer.Elapsed += new ElapsedEventHandler(PlayersGodmodeTimedEvent);
+                playersGodmodeTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Stop the timers.
+                playersGodmodeTimer.Stop();
+            }
+        }
+
+        // Players position timer.
+        private void PlayersGodmodeTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Write value.
+            MemLib.WriteMemory(godmodeAddress, "int", "100000"); // Overwrite new value.
+        }
+        #endregion // End godmode.
+
+        #region Player Speed
+
+        // Change player speed.
+        string originalSpeed = "336"; // Original max speed.
+        private void SiticoneWinToggleSwith3_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith3.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
+                siticoneWinToggleSwith3.Checked = false;
+                siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith3.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
+                siticoneWinToggleSwith3.Checked = false;
+                siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("712", NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith3.Checked)
+            {
+                // Disable numericupdown.
+                numericUpDown3.Enabled = false;
+
+                // Slider is being toggled on.
+                // Read current value.
+                originalSpeed = MemLib.ReadFloat(playerSpeedAddress).ToString();
+
+                // Write new value.
+                MemLib.WriteMemory(playerSpeedAddress, "float", (numericUpDown3.Value + ".0").ToString()); // Overwrite new value.
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Disable numericupdown.
+                numericUpDown3.Enabled = true;
+
+                // Write value back to original.
+                // Write value.
+                MemLib.WriteMemory(playerSpeedAddress, "float", originalSpeed); // Overwrite new value.
+            }
+        }
+        #endregion // End player speed.
+
+        #region Noclip
+
+        // Toggle godmode.
+        readonly System.Timers.Timer playersNoclipTimer = new System.Timers.Timer();
+        string noclipAddress = "0";
+        string noclipOriginalValue = "2";
+        private void SiticoneWinToggleSwith4_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith4.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                siticoneWinToggleSwith4.Checked = false;
+                siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith4.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                siticoneWinToggleSwith4.Checked = false;
+                siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith4.Checked)
+            {
+                // Slider is being toggled on.
+                // Get original value.
+                noclipOriginalValue = MemLib.ReadUInt(noclipAddress).ToString();
+
+                // Start the timed events.
+                playersNoclipTimer.Interval = 100;
+                playersNoclipTimer.Elapsed += new ElapsedEventHandler(PlayersNoclipTimedEvent);
+                playersNoclipTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Stop the timers.
+                playersNoclipTimer.Stop();
+
+                // Write value.
+                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
+            }
+        }
+
+        // Players position timer.
+        private void PlayersNoclipTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Check if noclip is activated or not.
+            if (!IsKeyPressed(0x20))
+            {
+                // Write value.
+                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
+            }
+            else
+            {
+                // Write value.
+                MemLib.WriteMemory(noclipAddress, "int", "0"); // Overwrite new value.
+            }
+        }
+        #endregion // End noclip.
+
+        #endregion // End player tab.
 
         #region ItemChatCommands
 
@@ -7046,15 +7515,9 @@ namespace CoreKeeperInventoryEditor
                             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
                             AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
 
-                            // Adjust the max value of the progress bar.
-                            progressBar4.Step = AoBScanResultsGroundItems.Count();
-
                             // If the count is zero, the scan had an error.
                             if (AoBScanResultsGroundItems.Count() == 0)
                             {
-                                // Ensure progressbar is at 100.
-                                progressBar4.Value = 100;
-
                                 // Display error message.
                                 richTextBox4.AppendText("[ClearGround] You must throw at least one torch on the ground!!" + Environment.NewLine);
                                 richTextBox4.ScrollToCaret();
@@ -7275,6 +7738,7 @@ namespace CoreKeeperInventoryEditor
         public static bool IsKeyPressed(int testKey)
         {
             // Barrowed From: http://pinvoke.net/default.aspx/user32/GetKeyboardState.html
+            // Virtual Key Values: https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 
             short result = GetKeyState(testKey);
             bool keyPressed;
@@ -7391,264 +7855,5 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End admin tools.
-
-        #region World Tools
-
-        // Delete all ground items.
-        private async void Button8_Click(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Reset progress bar.
-            progressBar4.Step = 10;
-            progressBar4.Value = 0;
-            progressBar4.PerformStep(); // Progress 10%.
-
-            // Name button to indicate loading.
-            button8.Text = "Removing Items..";
-
-            // Disable button to prevent spamming.
-            button8.Enabled = false;
-
-            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
-
-            // Adjust the max value of the progress bar.
-            progressBar4.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
-
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsGroundItems.Count() == 0)
-            {
-                // Rename button back to defualt.
-                button8.Text = "Remove Ground Items";
-
-                // Enable button.
-                button8.Enabled = true;
-
-                // Ensure progressbar is at 100.
-                progressBar4.Value = 100;
-
-                // Update consoile with the status.
-                richTextBox5.AppendText("[PlayerPosition] You must throw at least one torch on the ground!!" + Environment.NewLine);
-                richTextBox5.ScrollToCaret();
-
-                // Display error message.
-                MessageBox.Show("You must throw at least one torch on the ground!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Perform step.
-            progressBar4.PerformStep();
-
-            // Remove ground items.
-            RemoveGroundItems();
-
-            // Process completed, run finishing tasks.
-            // Rename button back to defualt.
-            button8.Text = "Remove Ground Items";
-
-            // Enable button.
-            button8.Enabled = true;
-        }
-
-        // Remove items function.
-        public void RemoveGroundItems()
-        {
-            // Reset progress bar.
-            progressBar4.Step = 10;
-            progressBar4.Value = 0;
-            progressBar4.PerformStep(); // Progress 10%.
-
-            // Iterate through each found address.
-            foreach (long res in AoBScanResultsGroundItems)
-            {
-                // Get base addresses.
-                string ItemType = res.ToString("X").ToString();
-                string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                string ItemFooter = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
-
-                // Climb down the address for each item.
-                bool endAddressFound = false;
-                while (!endAddressFound)
-                {
-                    // Find the next footer value.
-                    ItemFooter = BigInteger.Subtract(BigInteger.Parse(ItemFooter, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-
-                    // Check if this is the last value.
-                    if (MemLib.ReadUInt(ItemFooter).ToString() == "1")
-                    {
-                        // The final value to write too.
-                        // Log the items removed.
-                        if (MemLib.ReadUInt(ItemType).ToString() != "0")
-                        {
-                            richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + Environment.NewLine);
-                            richTextBox5.ScrollToCaret();
-                        }
-
-                        // Use the previous values to wrtite.
-                        MemLib.WriteMemory(ItemType, "int", "0");
-                        MemLib.WriteMemory(ItemAmount, "int", "0");
-                        MemLib.WriteMemory(ItemVariant, "int", "0");
-                    }
-                    else
-                    {
-                        // End the loop.
-                        endAddressFound = true;
-                    }
-
-                    // Get the next footer values.
-                    ItemType = BigInteger.Subtract(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                    ItemAmount = BigInteger.Subtract(BigInteger.Parse(ItemAmount, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                    ItemVariant = BigInteger.Subtract(BigInteger.Parse(ItemVariant, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                }
-
-                // Progress the progress bar.
-                progressBar4.PerformStep();
-            }
-
-            // Ensure progressbar is at 100.
-            progressBar4.Value = 100;
-        }
-
-        // Enable player xy tool.
-        readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
-        bool playerPositionEnabled = false;
-        string playerPositionAddress = "0";
-        private async void Button9_Click(object sender, EventArgs e)
-        {
-            // Check if the players position was already enabled or not.
-            if (!playerPositionEnabled)
-            {
-                // Open the process and check if it was successful before the AoB scan.
-                if (!MemLib.OpenProcess("CoreKeeper"))
-                {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Set the enabled bool
-                playerPositionEnabled = true;
-
-                // Reset progress bar.
-                progressBar4.Step = 10;
-                progressBar4.Value = 0;
-                progressBar4.PerformStep(); // Progress 10%.
-
-                // Name button to indicate loading.
-                button9.Text = "Loading Position..";
-
-                // Disable button to prevent spamming.
-                button9.Enabled = false;
-
-                // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                AoBScanResultsPlayerPosition = await MemLib.AoBScan("00 00 00 00 39 8E E3 3C AB AA 2A 3D 00 00 10 42 00 00 C0 41 00 00 00 00 00 00 00 00 00 00 00 40 00 00 00 00", true, true);
-
-                // Adjust the max value of the progress bar.
-                progressBar4.Step = AoBScanResultsPlayerPosition.Count() == 0 ? 0 : AoBScanResultsPlayerPosition.Count();
-
-                // If the count is bellow 300 results, the scan had an error.
-                if (AoBScanResultsPlayerPosition.Count() < 300)
-                {
-                    // Rename button back to defualt.
-                    button9.Text = "Display Players XY";
-
-                    // Ensure progressbar is at 100.
-                    progressBar4.Value = 100;
-
-                    // Enable button.
-                    button9.Enabled = true;
-
-                    // Set the enabled bool.
-                    playerPositionEnabled = false;
-
-                    // Update consoile with the status.
-                    richTextBox5.AppendText("[PlayerPosition] You must be standing at the core's entrance!!" + Environment.NewLine);
-                    richTextBox5.ScrollToCaret();
-
-                    // Display error message.
-                    MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    // Set the address to use.
-                    playerPositionAddress = AoBScanResultsPlayerPosition.First().ToString("X");
-                }
-
-                // Perform step.
-                progressBar4.PerformStep();
-
-                // Name button to indicate loading.
-                button9.Text = "Click To Disable";
-
-                // Start the timed events.
-                playersPositionTimer.Interval = 100; // Custom intervals.
-                playersPositionTimer.Elapsed += new ElapsedEventHandler(PlayersPositionTimedEvent);
-                playersPositionTimer.Start();
-
-                // Enable button.
-                button9.Enabled = true;
-
-                // Ensure progressbar is at 100.
-                progressBar4.Value = 100;
-
-                // Update consoile with the status.
-                richTextBox5.AppendText("[PlayerPosition] Player position has been enabled." + Environment.NewLine);
-                richTextBox5.ScrollToCaret();
-            }
-            else
-            {
-                // Disable player position.
-                // Change appllication text back to defualt.
-                this.Text = "CoreKeeper's Workshop";
-
-                // Disable bool.
-                playerPositionEnabled = false;
-
-                // Stop the timers.
-                playersPositionTimer.Stop();
-
-                // Rename button back to defualt.
-                button9.Text = "Display Players XY";
-
-                // Enable button.
-                button9.Enabled = true;
-
-                // Update consoile with the status.
-                richTextBox5.AppendText("[PlayerPosition] Player position has been disabled." + Environment.NewLine);
-                richTextBox5.ScrollToCaret();
-            }
-        }
-
-        // Players position timer.
-        private void PlayersPositionTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            // Get the addresses.
-            string positionX = BigInteger.Add(BigInteger.Parse(playerPositionAddress.ToString(), NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
-            string positionY = BigInteger.Add(BigInteger.Parse(playerPositionAddress.ToString(), NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
-
-            // Convert values to number.
-            string playerPositionX = MemLib.ReadFloat(positionX).ToString();
-            string playerPositionY = (MemLib.ReadFloat(positionY) - 1).ToString(); // Correct the offset. 
-
-            // Change the applications tittle based on minimization and tab pages. 
-            if (isMinimized || tabControl1.SelectedTab == tabPage2 || tabControl1.SelectedTab == tabPage5 || tabControl1.SelectedTab == tabPage6 || tabControl1.SelectedTab == tabPage8)
-            {
-                // Change text based on minimized window.
-                this.Text = "PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
-            }
-            else
-            {
-                // Change text based on maximized window.
-                this.Text = "CoreKeeper's Workshop | PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
-            }
-        }
-        #endregion // End world tools.
     }
 }
