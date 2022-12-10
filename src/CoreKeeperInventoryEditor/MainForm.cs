@@ -46,13 +46,11 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<string> InventorySkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
         public IEnumerable<string> PlayerSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
         public IEnumerable<string> ChatSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        // public IEnumerable<string> WorldSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Define skin counters.
         public int inventorySkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount;
         public int playerSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount;
         public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
-        public int worldSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount;
 
         #endregion // End variables.
 
@@ -118,18 +116,6 @@ namespace CoreKeeperInventoryEditor
                     catch (Exception)
                     {
                         CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = "";
-                    }
-                }
-                if (CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground != "") // Ensure background is not null.
-                {
-                    // Catch image missing / renamed errors.
-                    try
-                    {
-                        tabControl1.TabPages[3].BackgroundImage = Image.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground);
-                    }
-                    catch (Exception)
-                    {
-                        CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = "";
                     }
                 }
                 #endregion
@@ -201,7 +187,6 @@ namespace CoreKeeperInventoryEditor
                 CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount = inventorySkinCounter;
                 CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount = playerSkinCounter;
                 CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount = chatSkinCounter;
-                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount = worldSkinCounter;
                 CoreKeepersWorkshop.Properties.Settings.Default.Save();
             }
             catch (Exception)
