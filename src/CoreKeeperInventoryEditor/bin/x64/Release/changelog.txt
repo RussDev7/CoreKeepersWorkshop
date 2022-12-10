@@ -9,6 +9,10 @@ Changes Since v1.3.3.1
 + Added a done button to the quick item editor.
 + Added new background assets.
 + Added missing assets.
++ The world tab was combined with the player tab.
++ Added godmode to player tools.
++ Added speed to player tools.
++ Added noclip to player tools.
 
 Changes Since v1.3.3
 ===========================================================
