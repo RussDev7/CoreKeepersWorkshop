@@ -7204,7 +7204,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith4.Checked)
