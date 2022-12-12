@@ -150,6 +150,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith2, "Enabling will prevent the player from being killed.");
                 toolTip.SetToolTip(siticoneWinToggleSwith3, "Set a custom run speed for the player.");
                 toolTip.SetToolTip(siticoneWinToggleSwith4, "Spacebar will allow the player to pass through walls.");
+                toolTip.SetToolTip(siticoneWinToggleSwith5, "Enabling will keep the players food replenished.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -7302,7 +7303,7 @@ namespace CoreKeeperInventoryEditor
                     siticoneWinToggleSwith5.CheckedChanged += SiticoneWinToggleSwith5_CheckedChanged;
 
                     // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch hunger addresses. Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an issue trying to fetch hunger addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
