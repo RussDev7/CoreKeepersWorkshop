@@ -122,6 +122,8 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.siticoneWinToggleSwith5 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
@@ -852,6 +854,8 @@ namespace CoreKeeperInventoryEditor
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox7.Controls.Add(this.label14);
+            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith5);
             this.groupBox7.Controls.Add(this.numericUpDown3);
             this.groupBox7.Controls.Add(this.label13);
             this.groupBox7.Controls.Add(this.siticoneWinToggleSwith4);
@@ -1288,6 +1292,29 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Snow;
+            this.label14.Location = new System.Drawing.Point(59, 165);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(71, 13);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "- Infinite Food";
+            // 
+            // siticoneWinToggleSwith5
+            // 
+            this.siticoneWinToggleSwith5.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith5.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith5.Location = new System.Drawing.Point(8, 161);
+            this.siticoneWinToggleSwith5.Name = "siticoneWinToggleSwith5";
+            this.siticoneWinToggleSwith5.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith5.TabIndex = 19;
+            this.siticoneWinToggleSwith5.Text = "siticoneWinToggleSwith5";
+            this.siticoneWinToggleSwith5.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith5.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith5.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith5_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1459,6 +1486,8 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label13;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith4;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Label label14;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith5;
     }
 }
 

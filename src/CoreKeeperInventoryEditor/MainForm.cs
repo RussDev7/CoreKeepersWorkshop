@@ -558,7 +558,7 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // Update richtextbox with found addresses.
+            // Update richtextbox with found addresses..
             foreach (long res in AoBScanResultsInventory)
             {
                 if (richTextBox1.Text == "Addresses Loaded: 0")
@@ -7032,8 +7032,8 @@ namespace CoreKeeperInventoryEditor
         private void PlayersPositionTimedEvent(Object source, ElapsedEventArgs e)
         {
             // Get the addresses.
-            string positionX = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-            string positionY = AoBScanResultsPlayerTools.First().ToString("X");
+            string positionX = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+            string positionY = AoBScanResultsPlayerTools.Last().ToString("X");
 
             // Convert values to number.
             string playerPositionX = MemLib.ReadFloat(positionX).ToString();
@@ -7085,7 +7085,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2112", NumberStyles.Integer)).ToString("X");
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2112", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith2.Checked)
@@ -7143,7 +7143,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("712", NumberStyles.Integer)).ToString("X");
+            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("712", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith3.Checked)
@@ -7204,7 +7204,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith4.Checked)
@@ -7245,6 +7245,123 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End noclip.
+
+        #region No Hunger
+
+        // Toggle godmode.
+        readonly System.Timers.Timer playersNoHungerTimer = new System.Timers.Timer();
+        public IEnumerable<long> AoBScanResultsNoHunger1Tools;
+        private async void SiticoneWinToggleSwith5_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith5.CheckedChanged -= SiticoneWinToggleSwith5_CheckedChanged;
+                siticoneWinToggleSwith5.Checked = false;
+                siticoneWinToggleSwith5.CheckedChanged += SiticoneWinToggleSwith5_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith5.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label14.Text = "- Loading Addresses...";
+
+                // Disable button to prevent spamming.
+                button1.Enabled = false;
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AC 00 00 00 01 00 00 00 01 00 00 00", true, true);
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsNoHunger1Tools.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label14.Text = "- Infinite Food";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsNoHunger1Tools = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith5.CheckedChanged -= SiticoneWinToggleSwith5_CheckedChanged;
+                    siticoneWinToggleSwith5.Checked = false;
+                    siticoneWinToggleSwith5.CheckedChanged += SiticoneWinToggleSwith5_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch hunger addresses. Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsNoHunger1Tools)
+                {
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Addresses Loaded: " + AoBScanResultsNoHunger1Tools.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label14.Text = "- Infinite Food";
+
+                // Start the timed events.
+                playersNoHungerTimer.Interval = 1; // Custom intervals.
+                playersNoHungerTimer.Elapsed += new ElapsedEventHandler(PlayersNoHungerTimedEvent);
+                playersNoHungerTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Reset label name.
+                label14.Text = "- Infinite Food";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Stop the timers.
+                playersNoHungerTimer.Stop();
+            }
+        }
+
+        // Players position timer.
+        private void PlayersNoHungerTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Update richtextbox with found addresses.
+            foreach (long res in AoBScanResultsNoHunger1Tools)
+            {
+                // Get the hunger addresses.
+                string foodAddress1 = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("14", NumberStyles.HexNumber)).ToString("X");
+
+                // Write value.
+                MemLib.WriteMemory(foodAddress1, "int", "100"); // Overwrite new value.
+            }
+        }
+        #endregion // End no hunger.
 
         #endregion // End player tab.
 

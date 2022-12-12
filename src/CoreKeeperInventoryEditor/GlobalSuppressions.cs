@@ -72,3 +72,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.ItemEditor.PictureBox3_Click(System.Object,System.EventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersGodmodeTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersNoclipTimer")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersNoHungerTimer")]
