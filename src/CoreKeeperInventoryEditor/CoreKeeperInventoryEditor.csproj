@@ -163,6 +163,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Resources\Cookbook.json" />
+    <EmbeddedResource Include="Resources\BuffIDs.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

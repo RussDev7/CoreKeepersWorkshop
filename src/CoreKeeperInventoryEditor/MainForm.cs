@@ -12,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
@@ -36,6 +37,8 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsChat;
         public IEnumerable<long> AoBScanResultsGroundItems;
         public IEnumerable<long> AoBScanResultsPlayerTools;
+        public IEnumerable<long> AoBScanResultsPlayerLocation;
+        public IEnumerable<long> AoBScanResultsPlayerBuffs;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -141,7 +144,12 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button6, "Export a player file to overwrite items.");
                 toolTip.SetToolTip(button7, "Enable / disable in-game chat commands.");
                 toolTip.SetToolTip(button8, "Removes all ground items not picked up by the player.");
+                toolTip.SetToolTip(button9, "Teleport the player to a desired world position.");
                 toolTip.SetToolTip(button10, "Get the required addresses for using player tools.");
+                toolTip.SetToolTip(button11, "Get the required addresses for using world tools.");
+                toolTip.SetToolTip(button12, "Replaces the glow tulip buff with a desired buff.");
+
+                toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debufs.");
 
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(richTextBox6, "A list of all found addresses. Used mostly for debugging.");
@@ -151,6 +159,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith3, "Set a custom run speed for the player.");
                 toolTip.SetToolTip(siticoneWinToggleSwith4, "Spacebar will allow the player to pass through walls.");
                 toolTip.SetToolTip(siticoneWinToggleSwith5, "Enabling will keep the players food replenished.");
+                toolTip.SetToolTip(siticoneWinToggleSwith6, "Enabling this will instantly kill the player.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -158,12 +167,45 @@ namespace CoreKeeperInventoryEditor
 
                 toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
                 toolTip.SetToolTip(numericUpDown2, "Change the interval of tools that use times.");
-                toolTip.SetToolTip(numericUpDown2, "Change the base speed the player will walk at.");
+                toolTip.SetToolTip(numericUpDown3, "Change the base speed the player will walk at.");
+                toolTip.SetToolTip(numericUpDown4, "Change the x-axis world position to be teleported on.");
+                toolTip.SetToolTip(numericUpDown5, "Change the y-axis world position to be teleported on.");
+                toolTip.SetToolTip(numericUpDown6, "Change the amount of power the buff will contain.");
+                toolTip.SetToolTip(numericUpDown7, "Change the amount of time the buff will be active for.");
 
                 #endregion
             }
             catch (Exception)
             {
+            }
+        }
+
+        // Populate combobox upon dropdown.
+        private void ComboBox1_DropDown(object sender, EventArgs e)
+        {
+            if (comboBox1.Items.Count == 0)
+            {
+                // Get json file from resources.
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.BuffIDs.json"))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    // Convert stream into string.
+                    var jsonFileContent = reader.ReadToEnd();
+                    dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
+
+                    // Load each object from json to a string array.
+                    foreach (var file in result)
+                    {
+                        // Remove spaces from food names.
+                        string buffName = (string)file.name;
+
+                        // Add the values to the combobox if it's not empty.
+                        if (buffName != "")
+                        {
+                            comboBox1.Items.Add((string)buffName);
+                        }
+                    }
+                }
             }
         }
 
@@ -6884,7 +6926,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Player Tool Addresses
 
-        // Get world address.
+        // Get player address.
         private void Button10_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
@@ -6892,6 +6934,16 @@ namespace CoreKeeperInventoryEditor
 
             // Load addresses.
             GetPlayerToolsAddresses();
+        }
+
+        // Get world addresses.
+        private void Button11_Click(object sender, EventArgs e)
+        {
+            // Reset progress bar.
+            progressBar4.Value = 0;
+
+            // Load addresses.
+            GetPlayerLocationAddresses();
         }
 
         public async void GetPlayerToolsAddresses()
@@ -6915,6 +6967,7 @@ namespace CoreKeeperInventoryEditor
             // Offset the progress bar to show it's working.
             progressBar5.Visible = true;
             progressBar5.Maximum = 100;
+            progressBar5.Step = 45;
             progressBar5.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
@@ -6969,6 +7022,132 @@ namespace CoreKeeperInventoryEditor
 
             // Hide progressbar.
             progressBar5.Visible = false;
+        }
+
+        public IEnumerable<long> AoBScanResultsPlayerLocationTemp;
+        public async void GetPlayerLocationAddresses()
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Name button to indicate loading.
+            button11.Text = "Loading...";
+
+            // Disable button to prevent spamming.
+            button11.Enabled = false;
+
+            // Reset textbox.
+            richTextBox7.Text = "Addresses Loaded: 0";
+
+            // Offset the progress bar to show it's working.
+            progressBar4.Visible = true;
+            progressBar4.Maximum = 100;
+            progressBar4.Step = 5;
+            progressBar4.Value = 5;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsPlayerLocationTemp = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerLocationTemp.Count() < 100)
+            {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button11.Text = "Get Addresses";
+
+                // Re-enable button.
+                button11.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationTemp = null;
+
+                // Display error message.
+                MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Re-scan results nineteen times to clear invalid addresses.
+            bool firstRun = true;
+            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTemp);
+            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTemp);
+            for (int a = 0; a < 19 + 1; a++)
+            {
+                // Skip the first loop.
+                if (!firstRun)
+                {
+                    // Wait for one second.
+                    await System.Threading.Tasks.Task.Delay(250);
+                }
+                else
+                {
+                    // Update bool.
+                    firstRun = false;
+                }
+
+                foreach (long res in resultLocationsTemp)
+                {
+                    // Get byte offsets.
+                    string byteTwo = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                    string byteThree = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
+                    string byteFive = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                    string byteSix = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
+                    string byteSeven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("6", NumberStyles.Integer)).ToString("X");
+                    string byteEight = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("7", NumberStyles.Integer)).ToString("X");
+                    string byteTen = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("9", NumberStyles.Integer)).ToString("X");
+                    string byteEleven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.Integer)).ToString("X");
+                    string byteTwelve = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("11", NumberStyles.Integer)).ToString("X");
+
+                    // Check if value does not exist.
+                    if (MemLib.ReadByte(byteTwo).ToString("X").ToString() != "CC" || MemLib.ReadByte(byteThree).ToString("X").ToString() != "CC" || MemLib.ReadByte(byteFive).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSix).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSeven).ToString("X").ToString() != "0" || MemLib.ReadByte(byteEight).ToString("X").ToString() != "0" || MemLib.ReadByte(byteTen).ToString("X").ToString() != "99" || MemLib.ReadByte(byteEleven).ToString("X").ToString() != "D9" || MemLib.ReadByte(byteTwelve).ToString("X").ToString() != "3F")
+                    {
+                        // Result does not match the value it needs to be, remove it.
+                        resultLocations.Remove(res);
+                    }
+                }
+
+                // Progress the progress.
+                progressBar4.PerformStep();
+            }
+
+            // Update the IEnumerable.
+            AoBScanResultsPlayerLocation = resultLocations;
+
+            // Update richtextbox with found addresses.
+            foreach (long res in AoBScanResultsPlayerLocation)
+            {
+                if (richTextBox7.Text == "Addresses Loaded: 0")
+                {
+                    richTextBox7.Text = "Addresses Loaded: " + AoBScanResultsPlayerLocation.Count().ToString() + " [" + res.ToString("X").ToString();
+                }
+                else
+                {
+                    richTextBox7.Text += ", " + res.ToString("X").ToString();
+                }
+            }
+            richTextBox7.Text += "]";
+
+            // Re-enable button.
+            button11.Enabled = true;
+
+            // Rename button back to defualt.
+            button11.Text = "Get Addresses";
+
+            // Complete progress bar.
+            progressBar4.Value = 100;
+
+            // Hide progressbar.
+            progressBar4.Visible = false;
         }
         #endregion // End get player addresses region.
 
@@ -7363,6 +7542,272 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End no hunger.
+
+        #region Teleport Player
+
+        // Teleport the player to a world position.
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerLocation == null)
+            {
+                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change button to indicate loading.
+            button9.Text = "Teleporting...";
+            button9.Enabled = false;
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsPlayerLocation)
+            {
+                // Get address from loop.
+                string playerX = res.ToString("X").ToString();
+                string playerY = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                // Send player to X.
+                MemLib.WriteMemory(playerX, "float", numericUpDown4.Value.ToString());
+
+                // Send player to Y.
+                MemLib.WriteMemory(playerY, "float", numericUpDown5.Value.ToString());
+            }
+
+            // Process completed, run finishing tasks.
+            // Rename button back to defualt.
+            button9.Text = "Teleport Player To XY";
+            button9.Enabled = true;
+        }
+
+        // Numericupdown key down teleport player.
+        private void NumericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Ensure pointers are found.
+                if (AoBScanResultsPlayerLocation == null)
+                {
+                    MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Change button to indicate loading.
+                button9.Text = "Teleporting...";
+                button9.Enabled = false;
+
+                // Iterate through each found address.
+                foreach (long res in AoBScanResultsPlayerLocation)
+                {
+                    // Get address from loop.
+                    string playerX = res.ToString("X").ToString();
+                    string playerY = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                    // Send player to X.
+                    MemLib.WriteMemory(playerX, "float", numericUpDown4.Value.ToString());
+
+                    // Send player to Y.
+                    MemLib.WriteMemory(playerY, "float", numericUpDown5.Value.ToString());
+                }
+
+                // Process completed, run finishing tasks.
+                // Rename button back to defualt.
+                button9.Text = "Teleport Player To XY";
+                button9.Enabled = true;
+            }
+        }
+
+        // Numericupdown key down teleport player.
+        private void NumericUpDown5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Ensure pointers are found.
+                if (AoBScanResultsPlayerLocation == null)
+                {
+                    MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Change button to indicate loading.
+                button9.Text = "Teleporting...";
+                button9.Enabled = false;
+
+                // Iterate through each found address.
+                foreach (long res in AoBScanResultsPlayerLocation)
+                {
+                    // Get address from loop.
+                    string playerX = res.ToString("X").ToString();
+                    string playerY = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                    // Send player to X.
+                    MemLib.WriteMemory(playerX, "float", numericUpDown4.Value.ToString());
+
+                    // Send player to Y.
+                    MemLib.WriteMemory(playerY, "float", numericUpDown5.Value.ToString());
+                }
+
+                // Process completed, run finishing tasks.
+                // Rename button back to defualt.
+                button9.Text = "Teleport Player To XY";
+                button9.Enabled = true;
+
+            }
+        }
+        #endregion // End teleport player.
+
+        #region Buff Editor
+
+        // Change the players buff.
+        private async void Button12_Click(object sender, EventArgs e)
+        {
+            // Check if the combobox has a value and is not null.
+            if (comboBox1.Text == "")
+            {
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change button to indicate loading.
+            button12.Text = "Working";
+            button12.Enabled = false;
+
+            // Find the memory addresses.
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsPlayerBuffs = await MemLib.AoBScan("01 00 00 00 00 00 70 42 04 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00", true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerBuffs.Count() < 1)
+            {
+                // Rename button back to defualt.
+                button12.Text = "Apply";
+
+                // Re-enable button.;
+                button12.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerBuffs = null;
+
+                // Display error message.
+                MessageBox.Show("You must first consume a glow tulip!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get json file from resources.
+            string buffOffset = "00";
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.BuffIDs.json"))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                // Convert stream into string.
+                var jsonFileContent = reader.ReadToEnd();
+                dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
+
+                // Load each object from json to a string array.
+                foreach (var file in result)
+                {
+                    // Remove spaces from food names.
+                    string buffName = (string)file.name;
+
+                    // Add the values to the combobox if it's not empty.
+                    if (buffName == comboBox1.Text)
+                    {
+                        // Update the buffoffset.
+                        buffOffset = (string)file.offset;
+
+                        // End the loop.
+                        break;
+                    }
+                }
+            }
+
+            // Change the buff values.
+            foreach (long res in AoBScanResultsPlayerBuffs)
+            {
+                // Get byte offsets.
+                string buffID = res.ToString("X").ToString();
+                string buffPower = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                string buffTime = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+
+                MemLib.WriteMemory(buffID, "byte", "0x" + buffOffset); // Write buff id.
+                MemLib.WriteMemory(buffPower, "int", numericUpDown6.Value.ToString()); // Write buff power.
+                MemLib.WriteMemory(buffTime, "float", numericUpDown7.Value.ToString()); // Write buff time.
+            }
+
+            // Process completed, run finishing tasks.
+            // Rename button back to defualt.
+            button12.Text = "Apply";
+            button12.Enabled = true;
+        }
+        #endregion // End buff editor.
+
+        #region Suicide
+
+        // Kill the player via suicide.
+        private void SiticoneWinToggleSwith6_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+                siticoneWinToggleSwith6.Checked = false;
+                siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+                siticoneWinToggleSwith6.Checked = false;
+                siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2112", NumberStyles.Integer)).ToString("X");
+
+            // Write value.
+            MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
+
+            // Toggle slider.
+            siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+            siticoneWinToggleSwith6.Checked = false;
+            siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+        }
+        #endregion
 
         #endregion // End player tab.
 
