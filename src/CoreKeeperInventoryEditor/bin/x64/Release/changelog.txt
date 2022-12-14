@@ -3,8 +3,10 @@ Changes Since v1.3.3.1
 - Fixed a crash caused from not having any ui assets.
 - Fixed some items having the incorrect ids.
 - Fixed slot1 not adding item amounts correctly.
+- Fixed wrong tooltips accross multiple forms.
+- Fixed wrong tabindexes accross multiple forms.
+- Fixed the minimized player position text being to large.
 - Adjusted the scalling of the inventory controls.
-- Fixed wrong tooltips.
 - Misc bugs fixed.
 
 + The world tab was combined with the player tab.
@@ -16,6 +18,10 @@ Changes Since v1.3.3.1
 + Added speed to player tools.
 + Added noclip to player tools.
 + Added infinite hunger to player tools.
++ Added all new christmas update assets.
++ Added a world position teleporter to world tools.
++ Added a buff editor to player tools.
++ Added a scuicide toggle to player tools.
 
 Changes Since v1.3.3
 ===========================================================
