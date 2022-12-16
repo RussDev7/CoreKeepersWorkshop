@@ -6924,7 +6924,7 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End world tools.
 
-        #region Player Tool Addresses
+        #region Player / World Tool Addresses
 
         // Get player address.
         private void Button10_Click(object sender, EventArgs e)
@@ -7027,6 +7027,9 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerLocationTemp;
         public async void GetPlayerLocationAddresses()
         {
+			// Amount of times to rescan the address.
+			int scanTimes = 20;
+			
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
@@ -7046,8 +7049,8 @@ namespace CoreKeeperInventoryEditor
             // Offset the progress bar to show it's working.
             progressBar4.Visible = true;
             progressBar4.Maximum = 100;
-            progressBar4.Step = 5;
-            progressBar4.Value = 5;
+            progressBar4.Step = 100 / scanTimes;
+            progressBar4.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             AoBScanResultsPlayerLocationTemp = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
@@ -7076,12 +7079,15 @@ namespace CoreKeeperInventoryEditor
                 MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            // Re-scan results nineteen times to clear invalid addresses.
+			
+			// Reset progress bar.
+            progressBar4.Value = 0;
+			
+            // Re-scan results fourty times to clear invalid addresses.
             bool firstRun = true;
             List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTemp);
             List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTemp);
-            for (int a = 0; a < 19 + 1; a++)
+            for (int a = 0; a < scanTimes; a++)
             {
                 // Skip the first loop.
                 if (!firstRun)
@@ -7571,7 +7577,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Get address from loop.
                 string playerX = res.ToString("X").ToString();
-                string playerY = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
                 // Send player to X.
                 MemLib.WriteMemory(playerX, "float", numericUpDown4.Value.ToString());
@@ -7614,7 +7620,7 @@ namespace CoreKeeperInventoryEditor
                 {
                     // Get address from loop.
                     string playerX = res.ToString("X").ToString();
-                    string playerY = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                    string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
                     // Send player to X.
                     MemLib.WriteMemory(playerX, "float", numericUpDown4.Value.ToString());
@@ -7658,7 +7664,7 @@ namespace CoreKeeperInventoryEditor
                 {
                     // Get address from loop.
                     string playerX = res.ToString("X").ToString();
-                    string playerY = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                    string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
                     // Send player to X.
                     MemLib.WriteMemory(playerX, "float", numericUpDown4.Value.ToString());
