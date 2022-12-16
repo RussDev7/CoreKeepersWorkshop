@@ -73,7 +73,7 @@ namespace CoreKeeperInventoryEditor
                 @"This tool was created with future content and modded content in mind. It currently supports manual item additions by naming images using the following format: ItemName,ItemID,ItemVariation.png - You can add these assets to the ""\assets\inventory\"" directory. For future requests or any issues, please contact me under my discord handle above, thanks!" + Environment.NewLine,
                 @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
                 @"Project source: https://github.com/RussDev7/CoreKeepersWorkshop"
-            });
+                });
                 #endregion
 
                 #region Set Form Locations
@@ -7027,8 +7027,8 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerLocationTemp;
         public async void GetPlayerLocationAddresses()
         {
-			// Amount of times to rescan the address.
-			int scanTimes = 20;
+            // Amount of times to rescan the address.
+            int scanTimes = 20;
 			
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -7080,7 +7080,7 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 			
-			// Reset progress bar.
+            // Reset progress bar.
             progressBar4.Value = 0;
 			
             // Re-scan results fourty times to clear invalid addresses.
