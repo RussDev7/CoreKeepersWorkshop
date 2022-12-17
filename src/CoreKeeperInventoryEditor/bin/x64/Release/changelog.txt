@@ -1,7 +1,10 @@
 Changes Since v1.3.4
 ===========================================================
+- Fixed infinite hunger slider disabling other controls.
 - Fixed the progress bar for get world tools addresses.
 - Fixed improper pointer math within teleport player.
+- Fixed some address text when loaded.
+- Fixed infinite hunger.
 - Added negitive power support within the buff editor.
 - Cleaned the formatting of the code.
 
