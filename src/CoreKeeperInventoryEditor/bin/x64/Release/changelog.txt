@@ -1,6 +1,7 @@
 Changes Since v1.3.4
 ===========================================================
 - Fixed the progress bar for get world tools addresses.
+- Added negitive power support within the buff editor.
 - Fixed improper pointer math within teleport player.
 - Cleaned the formatting of the code.
 
