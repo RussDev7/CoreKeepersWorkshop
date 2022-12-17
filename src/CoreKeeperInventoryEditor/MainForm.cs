@@ -7002,7 +7002,7 @@ namespace CoreKeeperInventoryEditor
             {
                 if (richTextBox6.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox6.Text = "Addresses Loaded: " + AoBScanResultsPlayerTools.Count().ToString() + " [" + res.ToString("X").ToString();
+                    richTextBox6.Text = "Player Addresses Loaded: " + AoBScanResultsPlayerTools.Count().ToString() + " [" + res.ToString("X").ToString();
                 }
                 else
                 {
@@ -7134,7 +7134,7 @@ namespace CoreKeeperInventoryEditor
             {
                 if (richTextBox7.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox7.Text = "Addresses Loaded: " + AoBScanResultsPlayerLocation.Count().ToString() + " [" + res.ToString("X").ToString();
+                    richTextBox7.Text = "World Addresses Loaded: " + AoBScanResultsPlayerLocation.Count().ToString() + " [" + res.ToString("X").ToString();
                 }
                 else
                 {
@@ -7456,10 +7456,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
-                label14.Text = "- Loading Addresses...";
-
-                // Disable button to prevent spamming.
-                button1.Enabled = false;
+                label14.Text = "- Loading..";
 
                 // Offset the progress bar to show it's working.
                 progressBar5.Visible = true;
@@ -7467,7 +7464,8 @@ namespace CoreKeeperInventoryEditor
                 progressBar5.Value = 10;
 
                 // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AC 00 00 00 01 00 00 00 01 00 00 00", true, true);
+                // Depreciated Address 17Dec22: 01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AC 00 00 00 01 00 00 00 01 00 00 00
+                AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F", true, true);
 
                 // If the count is zero, the scan had an error.
                 if (AoBScanResultsNoHunger1Tools.Count() == 0)
@@ -7498,7 +7496,7 @@ namespace CoreKeeperInventoryEditor
                 {
                     if (richTextBox6.Text == "Addresses Loaded: 0")
                     {
-                        richTextBox6.Text = "Addresses Loaded: " + AoBScanResultsNoHunger1Tools.Count() + " [" + res.ToString("X").ToString();
+                        richTextBox6.Text = "Hunger Addresses Loaded: " + AoBScanResultsNoHunger1Tools.Count() + " [" + res.ToString("X").ToString();
                     }
                     else
                     {
