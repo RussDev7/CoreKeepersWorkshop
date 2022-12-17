@@ -1117,6 +1117,11 @@ namespace CoreKeeperInventoryEditor
             0,
             0,
             0});
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(65, 20);
             this.numericUpDown6.TabIndex = 21;
