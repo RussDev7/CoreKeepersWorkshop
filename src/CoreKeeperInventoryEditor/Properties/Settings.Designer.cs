@@ -226,5 +226,29 @@ namespace CoreKeepersWorkshop.Properties {
                 this["PlayerBackgroundCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WorldBackground {
+            get {
+                return ((string)(this["WorldBackground"]));
+            }
+            set {
+                this["WorldBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int WorldBackgroundCount {
+            get {
+                return ((int)(this["WorldBackgroundCount"]));
+            }
+            set {
+                this["WorldBackgroundCount"] = value;
+            }
+        }
     }
 }
