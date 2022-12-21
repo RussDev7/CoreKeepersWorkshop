@@ -1,6 +1,12 @@
 Changes Since v1.3.4.1
 ===========================================================
+- General bug fixes to the main form.
+
 + Application now requires administrator to launch.
++ Added back the world tab for easier tool idenification.
++ Added a load world header information button.
++ Added a change world difficutly button.
++ Added missing tooltips to the world tools.
 
 Changes Since v1.3.4
 ===========================================================
