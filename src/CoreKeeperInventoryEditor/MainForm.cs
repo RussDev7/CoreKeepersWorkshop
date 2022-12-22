@@ -194,6 +194,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown6, "Change the amount of power the buff will contain.");
                 toolTip.SetToolTip(numericUpDown7, "Change the amount of time the buff will be active for.");
 
+                // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
+
                 #endregion
             }
             catch (Exception)
@@ -6879,7 +6881,8 @@ namespace CoreKeeperInventoryEditor
             button10.Text = "Loading...";
 
             // Disable button to prevent spamming.
-            button10.Enabled = false;
+            // button10.Enabled = false;
+            groupBox7.Enabled = false;
 
             // Reset textbox.
             richTextBox6.Text = "Addresses Loaded: 0";
@@ -6907,7 +6910,8 @@ namespace CoreKeeperInventoryEditor
                 button10.Text = "Get Addresses";
 
                 // Re-enable button.
-                button10.Enabled = true;
+                //button10.Enabled = true;
+                groupBox7.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsPlayerTools = null;
@@ -6932,7 +6936,8 @@ namespace CoreKeeperInventoryEditor
             richTextBox6.Text += "]";
 
             // Re-enable button.
-            button10.Enabled = true;
+            // button10.Enabled = true;
+            groupBox7.Enabled = true;
 
             // Rename button back to defualt.
             button10.Text = "Get Addresses";
@@ -7501,7 +7506,8 @@ namespace CoreKeeperInventoryEditor
             button11.Text = "Loading...";
 
             // Disable button to prevent spamming.
-            button11.Enabled = false;
+            // button11.Enabled = false;
+            groupBox11.Enabled = false;
 
             // Reset textbox.
             richTextBox7.Text = "Addresses Loaded: 0";
@@ -7530,6 +7536,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Re-enable button.
                 button11.Enabled = true;
+                // groupBox11.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
@@ -7604,7 +7611,8 @@ namespace CoreKeeperInventoryEditor
             richTextBox7.Text += "]";
 
             // Re-enable button.
-            button11.Enabled = true;
+            // button11.Enabled = true;
+            groupBox11.Enabled = true;
 
             // Rename button back to defualt.
             button11.Text = "Get Addresses";
@@ -7876,7 +7884,6 @@ namespace CoreKeeperInventoryEditor
         #endregion // End teleport player.
 
         #region Get World Information
-
         // Get world information.
         private async void Button16_Click(object sender, EventArgs e)
         {
@@ -7947,24 +7954,32 @@ namespace CoreKeeperInventoryEditor
 
             // Iterate through each found address.
             string getJsonData = "";
+            bool foundData = false;
             foreach (long res in AoBScanResultsWorldData)
             {
+                // Reset found json data.
+                getJsonData = "";
+
                 // Get the cirrent base address.
                 string baseJsonAddress = res.ToString("X");
 
-                // Get 256 chars of the string.
-                for (int a = 0; a < 256; a++)
-                {
-                    // Search result and add it to the string.
-                    string currentChar = MemLib.ReadString(baseJsonAddress.ToString());
-                    getJsonData += (currentChar != "") ? currentChar : "";
+                // Search result and add it to the string.
+                getJsonData = MemLib.ReadString(baseJsonAddress.ToString(), length: 300);
 
-                    // Add one to the address.
-                    baseJsonAddress = BigInteger.Add(BigInteger.Parse(baseJsonAddress.ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                // Trim the world name to remove special characters.
+                StringBuilder sb = new StringBuilder();
+                foreach (char c in getJsonData)
+                {
+                    // Define chars to include.
+                    if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '"' || c == '{' || c == '}' || c == ':')
+                    {
+                        // Build the string.
+                        sb.Append(c);
+                    }
                 }
 
                 // Check if json is completed.
-                string name = Regex.Match(getJsonData, "\\\"name\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
+                string name = Regex.Match(sb.ToString(), "\\\"name\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
                 if ((getJsonData.IndexOf('}') != getJsonData.LastIndexOf('}')) && name != "")
                 {
                     // Extract the data from the string.
@@ -7977,14 +7992,18 @@ namespace CoreKeeperInventoryEditor
                     string mode = Regex.Match(getJsonData, "\\\"mode\":(?<Data>\\w+)\\}").Groups[1].Value.ToString();
 
                     // Add the information to the datagridview.
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Address:", baseJsonAddress)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Name:", name)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("GUID:", guid + "...")));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("GUID:", guid)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Seed:", seed)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Year:", year)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", month)));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month)))));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Day:", day)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", mode)));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
+
+                    // Update data found bool.
+                    foundData = true;
 
                     // Completed, end loop.
                     break;
@@ -7999,6 +8018,13 @@ namespace CoreKeeperInventoryEditor
                 progressBar4.PerformStep();
             }
 
+            // Check if any data was found, do action if not.
+            if (!foundData)
+            {
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("ERROR:", "No information was found!!")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Tips:", "Load the world and play for a few minuites.")));
+            }
+
             // Process completed, run finishing tasks.
             progressBar4.Value = 100;
             progressBar4.Visible = false;
@@ -8008,6 +8034,23 @@ namespace CoreKeeperInventoryEditor
             button16.Enabled = true;
         }
         #endregion // End get world information.
+
+        #region Copy Cell Text
+
+        // Copy the value to the clipboard.
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Define cell text.
+            var cellText = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            // Ensure text is not blank.
+            if (cellText != "")
+            {
+                // Set the clipboard.
+                Clipboard.SetText(cellText);
+            }
+        }
+        #endregion // End copy cell text.
 
         #region Change Difficutly
 
@@ -8081,7 +8124,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldMode = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the correct addresses!!/RTry reloading the world.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -8111,7 +8154,7 @@ namespace CoreKeeperInventoryEditor
                 .Where(r => r.Cells[0].Value.ToString().Equals("Mode:"))
                 .First();
             rowIndex2 = row2.Index;
-            dataGridView1.Rows[rowIndex2].Cells[1].Value = (radioButton4.Checked) ? "0" : (radioButton5.Checked) ? "1" : "0";
+            dataGridView1.Rows[rowIndex2].Cells[1].Value = (radioButton4.Checked) ? "Normal" : (radioButton5.Checked) ? "Hard" : "Normal";
 
             // Update the progress bar.
             progressBar4.Value = 100;
