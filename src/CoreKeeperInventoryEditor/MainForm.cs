@@ -7884,6 +7884,7 @@ namespace CoreKeeperInventoryEditor
         #endregion // End teleport player.
 
         #region Get World Information
+		
         // Get world information.
         private async void Button16_Click(object sender, EventArgs e)
         {
@@ -8102,7 +8103,7 @@ namespace CoreKeeperInventoryEditor
 
             // Convert uInt to hex 4 bytes.
             // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
-            string result = string.Join(" ", BitConverter.GetBytes(a).Select(b => b.ToString("X2"))) + " 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
+            string result = string.Join(" ", BitConverter.GetBytes(a).Select(b => b.ToString("X2"))) + " 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
 
             // Scan for the addresses.
             AoBScanResultsWorldMode = await MemLib.AoBScan(result, true, true);
