@@ -4,6 +4,7 @@ Changes Since v1.3.4.1
 - Loading addresses now disables all relevant controls.
 - Moved contols around to be more user friendly.
 - Corrected the size and graphics of various assets.
+- Fixed a bug with win32 uint's getting overflow errors.
 
 + Application now requires administrator to launch.
 + Added back the world tab for easier tool idenification.
