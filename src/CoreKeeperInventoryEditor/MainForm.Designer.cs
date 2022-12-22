@@ -683,6 +683,7 @@ namespace CoreKeeperInventoryEditor
             // label18
             // 
             this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.ForeColor = System.Drawing.Color.Lime;
             this.label18.Location = new System.Drawing.Point(597, 232);
             this.label18.Name = "label18";
@@ -693,6 +694,7 @@ namespace CoreKeeperInventoryEditor
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.ForeColor = System.Drawing.Color.Lime;
             this.label17.Location = new System.Drawing.Point(664, 232);
             this.label17.Name = "label17";
@@ -703,6 +705,7 @@ namespace CoreKeeperInventoryEditor
             // label19
             // 
             this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.ForeColor = System.Drawing.Color.Lime;
             this.label19.Location = new System.Drawing.Point(489, 232);
             this.label19.Name = "label19";
