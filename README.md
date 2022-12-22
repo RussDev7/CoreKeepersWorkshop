@@ -10,6 +10,7 @@ CoreKeepersWorkshop - The simple GUI inventory editor for Core Keeper. This app 
 ## Features
  - [x] Inventory Editor. 
  - [x] Name changer. 
+ - [x] World difficulty changer. 
  - [x] Export / Import players. 
  - [x] Minimization support. 
  - [x] Unknown ID debugger. 
