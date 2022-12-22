@@ -7946,7 +7946,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldData = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the world information!!\rTry reloading the world.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
