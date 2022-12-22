@@ -6656,7 +6656,7 @@ namespace CoreKeeperInventoryEditor
             StringBuilder builder = new StringBuilder();
             foreach (char c in textBox1.Text)
             {
-                builder.Append(Convert.ToInt32(c).ToString("X"));
+                builder.Append(Convert.ToInt64(c).ToString("X"));
             }
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
@@ -7922,7 +7922,7 @@ namespace CoreKeeperInventoryEditor
             StringBuilder builder = new StringBuilder();
             foreach (char c in searchString)
             {
-                builder.Append(Convert.ToInt32(c).ToString("X"));
+                builder.Append(Convert.ToInt64(c).ToString("X"));
             }
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
