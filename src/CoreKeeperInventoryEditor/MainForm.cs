@@ -7887,7 +7887,7 @@ namespace CoreKeeperInventoryEditor
         #region Get World Information
 		
         // Get world information.
-        private void Button16_Click(object sender, EventArgs e)
+        private async void Button16_Click(object sender, EventArgs e)
         {
             // Ensure properties are filled.
             if (textBox3.Text == "")
@@ -7905,7 +7905,33 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Load world information.
-            Task.Run(async () => { await LoadWorldInformation(); }).Wait();
+            await LoadWorldInformation();
+        }
+
+        // Get world information keydown.
+        private async void TextBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Get enter key.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Ensure properties are filled.
+                if (textBox3.Text == "")
+                {
+                    // Display error message.
+                    MessageBox.Show("Your must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Load world information.
+                await LoadWorldInformation();
+            }
         }
 
         // Function to load world information.
