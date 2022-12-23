@@ -8043,7 +8043,7 @@ namespace CoreKeeperInventoryEditor
                     string guid = Regex.Match(getJsonData, "\\\"guid\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
                     string seed = Regex.Match(getJsonData, "\\\"seed\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
                     string activatedCrystals = Regex.Match(getJsonData, "\\\"activatedCrystals\":\\[(?<TextInsideBrackets>[a-z A-Z 0-9 ,]*\\w+)]").Groups[1].Value.ToString();
-					string year = Regex.Match(getJsonData, "\\\"year\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
+                    string year = Regex.Match(getJsonData, "\\\"year\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
                     string month = Regex.Match(getJsonData, "\\\"month\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
                     string day = Regex.Match(getJsonData, "\\\"day\":(?<Data>\\w+)\\}").Groups[1].Value.ToString();
                     string iconIndex = Regex.Match(getJsonData, "\\\"iconIndex\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
@@ -8054,7 +8054,7 @@ namespace CoreKeeperInventoryEditor
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Name:", name)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("GUID:", guid)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Seed:", seed)));
-					dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", activatedCrystals)));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", activatedCrystals)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Year:", year)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month)))));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Day:", day)));
