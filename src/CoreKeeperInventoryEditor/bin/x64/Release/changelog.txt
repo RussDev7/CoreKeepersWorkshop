@@ -4,13 +4,16 @@ Changes Since v1.3.4.1
 - Loading addresses now disables all relevant controls.
 - Moved contols around to be more user friendly.
 - Corrected the size and graphics of various assets.
+- Redid some form text and form colors.
 - Fixed a bug with win32 uint's getting overflow errors.
+- Fixed issues reguarding chat commands.
 
 + Application now requires administrator to launch.
 + Added back the world tab for easier tool idenification.
 + Added a load world header information button.
 + Added a change world difficutly button.
 + Added missing tooltips to the world tools.
++ Added change world difficutly to chat commands.
 
 Changes Since v1.3.4
 ===========================================================
