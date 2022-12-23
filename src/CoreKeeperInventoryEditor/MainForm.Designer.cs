@@ -1746,7 +1746,7 @@ namespace CoreKeeperInventoryEditor
             this.label3.ForeColor = System.Drawing.Color.Snow;
             this.label3.Location = new System.Drawing.Point(2, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(231, 78);
+            this.label3.Size = new System.Drawing.Size(231, 91);
             this.label3.TabIndex = 2;
             this.label3.Text = resources.GetString("label3.Text");
             // 

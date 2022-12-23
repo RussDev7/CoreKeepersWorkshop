@@ -78,3 +78,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.Button12_Click(System.Object,System.EventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.ComboBox1_DropDown(System.Object,System.EventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.Button16_Click(System.Object,System.EventArgs)")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.LoadWorldInformation(System.String)~System.Threading.Tasks.Task")]

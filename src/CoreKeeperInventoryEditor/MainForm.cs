@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -7886,10 +7887,32 @@ namespace CoreKeeperInventoryEditor
         #region Get World Information
 		
         // Get world information.
-        private async void Button16_Click(object sender, EventArgs e)
+        private void Button16_Click(object sender, EventArgs e)
         {
             // Ensure properties are filled.
             if (textBox3.Text == "")
+            {
+                // Display error message.
+                MessageBox.Show("Your must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Load world information.
+            Task.Run(async () => { await LoadWorldInformation(); }).Wait();
+        }
+
+        // Function to load world information.
+        public async Task LoadWorldInformation(string worldName = "")
+        {
+            // Ensure properties are filled.
+            if (textBox3.Text == "" && worldName == "")
             {
                 // Display error message.
                 MessageBox.Show("Your must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -7914,12 +7937,14 @@ namespace CoreKeeperInventoryEditor
             button16.Enabled = false;
 
             // Clear the datagridview.
+            dataGridView1.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
             dataGridView1.DataSource = null;
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
 
             // Get current player name.
-            string searchString = "{\"name\":\"" + textBox3.Text + "\"";
+            string world = (worldName != "") ? worldName : textBox3.Text; // Check if world name override is active.
+            string searchString = "{\"name\":\"" + world + "\"";
             StringBuilder builder = new StringBuilder();
             foreach (char c in searchString)
             {
@@ -7946,7 +7971,12 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldData = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Red;
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("ERROR:", "No information was found!!")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("", "")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Tips:", "1) Load the world and play for a few minutes.")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("", "2) Ensure the spelling of your world is correct.")));
                 return;
             }
 
@@ -8003,6 +8033,13 @@ namespace CoreKeeperInventoryEditor
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
 
+                    #region Adjust Controls
+
+                    // Toggle controls based on world difficutly.
+                    radioButton4.Checked = (mode == "0");
+                    radioButton5.Checked = (mode == "1");
+                    #endregion
+
                     // Update data found bool.
                     foundData = true;
 
@@ -8022,8 +8059,11 @@ namespace CoreKeeperInventoryEditor
             // Check if any data was found, do action if not.
             if (!foundData)
             {
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Red;
                 dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("ERROR:", "No information was found!!")));
-                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Tips:", "Load the world and play for a few minuites.")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("", "")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Tips:", "1) Load the world and play for a few minutes.")));
+                dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("", "2) Ensure the spelling of your world is correct.")));
             }
 
             // Process completed, run finishing tasks.
@@ -8056,8 +8096,36 @@ namespace CoreKeeperInventoryEditor
         #region Change Difficutly
 
         // Change world difficulty.
+        private void Button17_Click(object sender, EventArgs e)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change difficutky.
+            ChangeWorldDifficulty();
+        }
+
+        // Change world difficutly.
         public IEnumerable<long> AoBScanResultsWorldMode;
-        private async void Button17_Click(object sender, EventArgs e)
+        public async void ChangeWorldDifficulty(int difficutly = -1)
         {
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
@@ -8140,6 +8208,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Get the new mode.
                 string modeType = (radioButton4.Checked) ? "0" : (radioButton5.Checked) ? "1" : "0";
+                modeType = (difficutly != -1) ? difficutly.ToString() : modeType; // Check if mode override was selected.
 
                 // Set the new mode value.
                 MemLib.WriteMemory(mode, "int", modeType);
@@ -8155,7 +8224,7 @@ namespace CoreKeeperInventoryEditor
                 .Where(r => r.Cells[0].Value.ToString().Equals("Mode:"))
                 .First();
             rowIndex2 = row2.Index;
-            dataGridView1.Rows[rowIndex2].Cells[1].Value = (radioButton4.Checked) ? "Normal" : (radioButton5.Checked) ? "Hard" : "Normal";
+            dataGridView1.Rows[rowIndex2].Cells[1].Value = (difficutly != -1) ? ((difficutly == 0) ? "Normal" : (difficutly == 1) ? "Hard" : "Normal") : (radioButton4.Checked) ? "Normal" : (radioButton5.Checked) ? "Hard" : "Normal";
 
             // Update the progress bar.
             progressBar4.Value = 100;
@@ -8186,6 +8255,8 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
+        #region Toggle Chat Commands
+
         // Toggle chat commands.
         bool chatEnabled = false;
         public System.Timers.Timer chatTimer = new System.Timers.Timer(500);
@@ -8195,13 +8266,6 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Ensure pointers are found.
-            if (AoBScanResultsInventory == null)
-            {
-                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -8255,7 +8319,14 @@ namespace CoreKeeperInventoryEditor
                 button7.Enabled = true;
 
                 // Reset richtextbox.
-                richTextBox4.Text = "Any captured chat messages will appear here." + Environment.NewLine + "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+                richTextBox4.Text = "Welcome to the chat commands! Available CMDS are below."+ Environment.NewLine + Environment.NewLine +
+                    "/item [type] [amount] [variation] - Give the player an item." + Environment.NewLine + 
+                    "/clearground - Remove ground items." + Environment.NewLine + 
+                    "/cls - Clear the console." + Environment.NewLine + 
+                    "/mode [worldName] [difficutly] - Change the world difficutly." + Environment.NewLine + 
+                    "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+                richTextBox4.AppendText("Any captured chat messages will appear here." + Environment.NewLine + 
+                    "------------------------------------------------------------------------------------------------------------" + Environment.NewLine);
 
                 // Advance progress bar.
                 progressBar3.Value = 100;
@@ -8266,6 +8337,9 @@ namespace CoreKeeperInventoryEditor
                 chatTimer.Start();
             }
         }
+        #endregion // End toggle chat commands.
+
+        #region Chat Events
 
         // Do events for the chat.
         bool firstRun = true; // Do text reset bool.
@@ -8281,8 +8355,11 @@ namespace CoreKeeperInventoryEditor
                 // Get address value.
                 string currentCommand = MemLib.ReadString(baseAddress);
 
+                // Do chat actions.
                 try
                 {
+                    #region Give Item
+
                     // Check if current value is valid command and it's unique.
                     if (currentCommand.Split(' ')[0] == "/item")
                     {
@@ -8292,123 +8369,148 @@ namespace CoreKeeperInventoryEditor
                         // Update last chat command
                         LastChatCommand.Add(currentCommand);
 
+                        string itemName = currentCommand.Split(' ')[1];
+                        string itemAmount = currentCommand.Split(' ')[2];
+                        string itemVariation = "";
+
                         // Log command if it does not exist.
                         if (currentCommand != richTextBox4.Lines[richTextBox4.Lines.Length - 1] && firstRun)
                         {
                             // Prevent further entries this loop.
                             firstRun = false;
 
-                            richTextBox4.AppendText(currentCommand + Environment.NewLine);
-                            richTextBox4.ScrollToCaret();
-                        }
-
-                        string itemName = currentCommand.Split(' ')[1];
-                        string itemAmount = currentCommand.Split(' ')[2];
-                        string itemVariation = "";
-
-                        try
-                        {
-                            // With item variation.
-                            itemVariation = currentCommand.Split(' ')[3];
-
-                            // Make sure assets exist.
-                            if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                            // Display the chat command.
+                            if (itemName != "")
                             {
-                                // Get each folder in inventory.
-                                foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                                // Display message.
+                                richTextBox4.AppendText(currentCommand + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                            }
+                            else
+                            {
+                                // End loop.
+                                break;
+                            }
+
+                            // Ensure pointers are found.
+                            if (AoBScanResultsInventory == null)
+                            {
+                                richTextBox4.AppendText("ERROR: You need to first scan for the Inventory addresses!" + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                                break;
+                            }
+
+                            try
+                            {
+                                // With item variation.
+                                itemVariation = currentCommand.Split(' ')[3];
+
+                                // Make sure assets exist.
+                                if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
                                 {
-                                    // Get current folder name.
-                                    var catergoryName = new DirectoryInfo(catergoryFolder).Name;
-
-                                    // Retrieve all image files
-                                    foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
+                                    // Get each folder in inventory.
+                                    foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
                                     {
-                                        // Get file infomration.
-                                        var fi = new FileInfo(file);
-                                        string[] filenameData = fi.Name.Split(',');
+                                        // Get current folder name.
+                                        var catergoryName = new DirectoryInfo(catergoryFolder).Name;
 
-                                        // Catch desktop.ini from throwing errors.
-                                        if (filenameData[0] == "desktop.ini") continue;
-
-                                        // Get all matches.
-                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
+                                        // Retrieve all image files
+                                        foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                                         {
-                                            // Check if to overwrite or to add to empty slots.
-                                            if (radioButton1.Checked) // Overwrite slot1.
-                                            {
-                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
-                                            }
-                                            else if (radioButton2.Checked) // Add item to an empty slot.
-                                            {
-                                                // Reload inventory if add to empty is checked.
-                                                if (radioButton2.Checked && firstItem)
-                                                {
-                                                    // Mark item as first.
-                                                    firstItem = false;
+                                            // Get file infomration.
+                                            var fi = new FileInfo(file);
+                                            string[] filenameData = fi.Name.Split(',');
 
-                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
+                                            // Catch desktop.ini from throwing errors.
+                                            if (filenameData[0] == "desktop.ini") continue;
+
+                                            // Get all matches.
+                                            if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
+                                            {
+                                                // Check if to overwrite or to add to empty slots.
+                                                if (radioButton1.Checked) // Overwrite slot1.
+                                                {
+                                                    AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
+                                                }
+                                                else if (radioButton2.Checked) // Add item to an empty slot.
+                                                {
+                                                    // Reload inventory if add to empty is checked.
+                                                    if (radioButton2.Checked && firstItem)
+                                                    {
+                                                        // Mark item as first.
+                                                        firstItem = false;
+
+                                                        AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
+                                                    }
+                                                }
+                                                else if (radioButton3.Checked) // Custom slot.
+                                                {
+                                                    AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
                                                 }
                                             }
-                                            else if (radioButton3.Checked) // Custom slot.
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                // Without item variation.
+                                // Make sure assets exist.
+                                if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                                {
+                                    // Get each folder in inventory.
+                                    foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
+                                    {
+                                        // Get current folder name.
+                                        var catergoryName = new DirectoryInfo(catergoryFolder).Name;
+
+                                        // Retrieve all image files
+                                        foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
+                                        {
+                                            // Get file infomration.
+                                            var fi = new FileInfo(file);
+                                            string[] filenameData = fi.Name.Split(',');
+
+                                            // Catch desktop.ini from throwing errors.
+                                            if (filenameData[0] == "desktop.ini") continue;
+
+                                            // Get all matches.
+                                            if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
                                             {
-                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
+                                                // Check if to overwrite or to add to empty slots.
+                                                if (radioButton1.Checked) // Overwrite slot1.
+                                                {
+                                                    AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
+                                                }
+                                                else if (radioButton2.Checked) // Add item to an empty slot.
+                                                {
+                                                    // Reload inventory if add to empty is checked.
+                                                    if (radioButton2.Checked && firstItem)
+                                                    {
+                                                        // Mark item as first.
+                                                        firstItem = false;
+
+                                                        AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
+                                                    }
+                                                }
+                                                else if (radioButton3.Checked) // Custom slot.
+                                                {
+                                                    AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                        catch (Exception)
-                        {
-                            // Without item variation.
-                            // Make sure assets exist.
-                            if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
-                            {
-                                // Get each folder in inventory.
-                                foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
-                                {
-                                    // Get current folder name.
-                                    var catergoryName = new DirectoryInfo(catergoryFolder).Name;
 
-                                    // Retrieve all image files
-                                    foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
-                                    {
-                                        // Get file infomration.
-                                        var fi = new FileInfo(file);
-                                        string[] filenameData = fi.Name.Split(',');
-
-                                        // Catch desktop.ini from throwing errors.
-                                        if (filenameData[0] == "desktop.ini") continue;
-
-                                        // Get all matches.
-                                        if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
-                                        {
-                                            // Check if to overwrite or to add to empty slots.
-                                            if (radioButton1.Checked) // Overwrite slot1.
-                                            {
-                                                AddItemToInv(itemSlot: 1, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
-                                            }
-                                            else if (radioButton2.Checked) // Add item to an empty slot.
-                                            {
-                                                // Reload inventory if add to empty is checked.
-                                                if (radioButton2.Checked && firstItem)
-                                                {
-                                                    // Mark item as first.
-                                                    firstItem = false;
-
-                                                    AddItemToInv(AddToEmpty: true, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
-                                                }
-                                            }
-                                            else if (radioButton3.Checked) // Custom slot.
-                                            {
-                                                AddItemToInv(itemSlot: (int)numericUpDown1.Value, type: int.Parse(filenameData[1]), amount: int.Parse(itemAmount), Overwrite: true);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        // End chat command.
+                        break;
                     }
+                    #endregion // End give item.
+
+                    #region Clear Ground Items
+
                     if (currentCommand.Split(' ')[0] == "/clearground")
                     {
                         // Erase current chat values.
@@ -8444,8 +8546,15 @@ namespace CoreKeeperInventoryEditor
                             // Log evensts.
                             richTextBox4.AppendText("[ClearGround] Ground items cleared!" + Environment.NewLine);
                             richTextBox4.ScrollToCaret();
+
+                            // End chat command.
+                            break;
                         }
                     }
+                    #endregion // End clear ground items.
+
+                    #region Clear CMD
+
                     if (currentCommand.Split(' ')[0] == "/cls")
                     {
                         // Erase current chat values.
@@ -8462,8 +8571,79 @@ namespace CoreKeeperInventoryEditor
 
                             // Reset richtextbox.
                             richTextBox4.Text = "Any captured chat messages will appear here." + Environment.NewLine + "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+
+                            // End chat command.
+                            break;
                         }
                     }
+                    #endregion // End clear CMD.
+
+                    #region Change World Difficulty
+
+                    if (currentCommand.Split(' ')[0] == "/mode")
+                    {
+                        // Erase current chat values.
+                        MemLib.WriteMemory(baseAddress, "string", "                                ");
+
+                        // Update last chat command
+                        LastChatCommand.Add(currentCommand);
+
+                        // Log command if it does not exist.
+                        if (currentCommand != richTextBox4.Lines[richTextBox4.Lines.Length - 1] && firstRun)
+                        {
+                            // Prevent further entries this loop.
+                            firstRun = false;
+
+                            // Get strings.
+                            string worldName = currentCommand.Split(' ')[1].Split(' ')[0];
+                            string mode = currentCommand.Split(' ')[2];
+
+                            // Ensure command is fully populated.
+                            if (worldName == "" || mode == "")
+                            {
+                                // Log evensts.
+                                richTextBox4.AppendText("[WorldMode] CMD ERROR: /mode [worldName] [Difficutly = 'normal' or 'hard']" + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                                break;
+                            }
+
+                            // Open the process and check if it was successful before the AoB scan.
+                            if (!MemLib.OpenProcess("CoreKeeper"))
+                            {
+                                // Log evensts.
+                                richTextBox4.AppendText("[WorldMode] ERROR: Process Is Not Found or Open!" + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                                break;
+                            }
+
+                            // Load world information.
+                            Task.Run(async () => { await LoadWorldInformation(worldName); }).Wait();
+
+                            // Change world difficutly.
+                            if (mode.ToLower() == "normal")
+                            {
+                                // Change world difficutly to normal.
+                                ChangeWorldDifficulty(0);
+
+                                // Log evensts.
+                                richTextBox4.AppendText("[WorldMode] Difficulty set to normal!" + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                            }
+                            else if (mode.ToLower() == "hard")
+                            {
+                                // Change world difficutly to hard.
+                                ChangeWorldDifficulty(1);
+
+                                // Log evensts.
+                                richTextBox4.AppendText("[WorldMode] Difficulty set to hard!" + Environment.NewLine);
+                                richTextBox4.ScrollToCaret();
+                            }
+
+                            // End chat command.
+                            break;
+                        }
+                    }
+                    #endregion // End change world difficutly.
                 }
                 catch (Exception)
                 {
@@ -8475,8 +8655,9 @@ namespace CoreKeeperInventoryEditor
             firstRun = true;
             firstItem = true;
         }
+        #endregion // End chat events.
 
-        #endregion
+        #endregion // End toggle chat commands
 
         #region Admin Tools
 
