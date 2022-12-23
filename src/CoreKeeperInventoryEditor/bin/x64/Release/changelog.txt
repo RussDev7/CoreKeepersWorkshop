@@ -5,7 +5,7 @@ Changes Since v1.3.4.1
 - Moved contols around to be more user friendly.
 - Corrected the size and graphics of various assets.
 - Redid some form text and form colors.
-- Fixed a bug with win32 uint's getting overflow errors.
+- Fixed a bug with win32 units getting overflow errors.
 - Fixed issues reguarding chat commands.
 
 + Application now requires administrator to launch.
@@ -13,7 +13,7 @@ Changes Since v1.3.4.1
 + Added a load world header information button.
 + Added a change world difficutly button.
 + Added missing tooltips to the world tools.
-+ Added change world difficutly to chat commands.
++ Added change world difficulty to chat commands.
 
 Changes Since v1.3.4
 ===========================================================
