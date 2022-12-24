@@ -168,6 +168,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button12, "Replaces the glow tulip buff with a desired buff.");
                 toolTip.SetToolTip(button16, "Fills the datagridview with the world header information.");
                 toolTip.SetToolTip(button17, "Change the difficutly of the current world.");
+                toolTip.SetToolTip(button15, "Change the date created of the current world.");
+                toolTip.SetToolTip(button18, "Change the activated crystals of the current world.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debufs.");
 
@@ -7961,6 +7963,7 @@ namespace CoreKeeperInventoryEditor
             // Change button to indicate loading.
             button16.Text = "Loading...";
             button16.Enabled = false;
+            textBox3.Enabled = false;
 
             // Clear the datagridview.
             dataGridView1.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
@@ -7992,6 +7995,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Re-enable button.
                 button16.Enabled = true;
+                textBox3.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsWorldData = null;
@@ -8054,9 +8058,9 @@ namespace CoreKeeperInventoryEditor
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Name:", name)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("GUID:", guid)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Seed:", seed)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", activatedCrystals)));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", (activatedCrystals != "") ? activatedCrystals : "0,0,0")));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Year:", year)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month)))));
+                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month) + 1))));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Day:", day)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
                     dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
@@ -8066,6 +8070,16 @@ namespace CoreKeeperInventoryEditor
                     // Toggle controls based on world difficutly.
                     radioButton4.Checked = (mode == "0");
                     radioButton5.Checked = (mode == "1");
+
+                    // Set world creation.
+                    numericUpDown8.Value = int.Parse(year);
+                    numericUpDown9.Value = int.Parse(month) + 1;
+                    numericUpDown10.Value = int.Parse(day);
+
+                    // Set activated crystals.
+                    numericUpDown11.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0;
+                    numericUpDown12.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0;
+                    numericUpDown13.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0;
                     #endregion
 
                     // Update data found bool.
@@ -8101,6 +8115,7 @@ namespace CoreKeeperInventoryEditor
             // Rename button back to defualt.
             button16.Text = "Get World Information";
             button16.Enabled = true;
+            textBox3.Enabled = true;
         }
         #endregion // End get world information.
 
@@ -8263,6 +8278,247 @@ namespace CoreKeeperInventoryEditor
             button17.Enabled = true;
         }
         #endregion // End change world difficutly.
+
+        #region Change Creation Date.
+
+        // Change world date.
+        private async void Button15_Click(object sender, EventArgs e)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Offset the progress bar to show it's working.
+            progressBar4.Visible = true;
+            progressBar4.Maximum = 100;
+            progressBar4.Step = 50;
+            progressBar4.Value = 10;
+
+            // Change button to indicate loading.
+            button15.Text = "Loading...";
+            button15.Enabled = false;
+            numericUpDown8.Enabled = false;
+            numericUpDown9.Enabled = false;
+            numericUpDown10.Enabled = false;
+
+            // Get year, month, day from datagridview.
+            DataGridViewRow yearRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Year:"))
+                .First();
+            string year = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[yearRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
+            DataGridViewRow monthRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Month:"))
+                .First();
+            string month = string.Join(" ", BitConverter.GetBytes(uint.Parse((DateTime.ParseExact(dataGridView1.Rows[monthRow.Index].Cells[1].Value.ToString(), "MMMM", CultureInfo.CurrentCulture).Month - 1).ToString())).Select(b => b.ToString("X2")));
+            DataGridViewRow dayRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Day:"))
+                .First();
+            string day = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[dayRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
+
+            // Get current date string.
+            string searchString = year + " " + month + " " + day;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsWorldData = await MemLib.AoBScan(searchString, true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsWorldData.Count() < 1)
+            {
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button15.Text = "Change World Date";
+
+                // Re-enable button.
+                button15.Enabled = true;
+                numericUpDown8.Enabled = true;
+                numericUpDown9.Enabled = true;
+                numericUpDown10.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsWorldData = null;
+                return;
+            }
+
+            // Update the progressbar step.
+            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsWorldData)
+            {
+                // Get the cirrent base address.
+                string yearAddress = res.ToString("X");
+                string MonthAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                string DayAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                MemLib.WriteMemory(yearAddress, "int", numericUpDown8.Value.ToString()); // Write year address.
+                MemLib.WriteMemory(MonthAddress, "int", (numericUpDown9.Value - 1).ToString()); // Write month address.
+                MemLib.WriteMemory(DayAddress, "int", numericUpDown10.Value.ToString()); // Write day address.
+
+                // Perform progress step.
+                progressBar4.PerformStep();
+            }
+
+            // Update datagridview.
+            dataGridView1.Rows[yearRow.Index].Cells[1].Value = numericUpDown8.Value.ToString();
+            dataGridView1.Rows[monthRow.Index].Cells[1].Value = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(numericUpDown9.Value.ToString()));
+            dataGridView1.Rows[dayRow.Index].Cells[1].Value = numericUpDown10.Value.ToString();
+
+            // Process completed, run finishing tasks.
+            progressBar4.Value = 100;
+            progressBar4.Visible = false;
+
+            // Rename button back to defualt.
+            button15.Text = "Change World Date";
+            button15.Enabled = true;
+            numericUpDown8.Enabled = true;
+            numericUpDown9.Enabled = true;
+            numericUpDown10.Enabled = true;
+        }
+        #endregion // End world creation date.
+
+        #region Activated Crystals
+
+        // Activated crystals.
+        private async void Button18_Click(object sender, EventArgs e)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Offset the progress bar to show it's working.
+            progressBar4.Visible = true;
+            progressBar4.Maximum = 100;
+            progressBar4.Step = 50;
+            progressBar4.Value = 10;
+
+            // Change button to indicate loading.
+            button18.Text = "Loading...";
+            button18.Enabled = false;
+            numericUpDown11.Enabled = false;
+            numericUpDown12.Enabled = false;
+            numericUpDown13.Enabled = false;
+
+            // Get year, month, day from datagridview.
+            DataGridViewRow yearRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Year:"))
+                .First();
+            string year = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[yearRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
+            DataGridViewRow monthRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Month:"))
+                .First();
+            string month = string.Join(" ", BitConverter.GetBytes(uint.Parse((DateTime.ParseExact(dataGridView1.Rows[monthRow.Index].Cells[1].Value.ToString(), "MMMM", CultureInfo.CurrentCulture).Month - 1).ToString())).Select(b => b.ToString("X2")));
+            DataGridViewRow dayRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Day:"))
+                .First();
+            string day = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[dayRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
+
+            // Get year, month, day from datagridview.
+            DataGridViewRow crystalOneRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Crystals:"))
+                .First();
+            string crystalOne = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',')[0] != "") ? dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',')[0] : "0")).Select(b => b.ToString("X2")));
+            DataGridViewRow crystalTwoRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Crystals:"))
+                .First();
+            string crystalTwo = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',')[1] != "") ? dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',')[1] : "0")).Select(b => b.ToString("X2")));
+            DataGridViewRow crystalThreeRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Crystals:"))
+                .First();
+            string crystalThree = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',')[2] != "") ? dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',')[2] : "0")).Select(b => b.ToString("X2")));
+
+            // Get current date string.
+            string searchString = year + " " + month + " " + day;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsWorldData = await MemLib.AoBScan(searchString, true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsWorldData.Count() < 1)
+            {
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button18.Text = "Activated Crystals";
+
+                // Re-enable button.
+                button18.Enabled = true;
+                numericUpDown11.Enabled = true;
+                numericUpDown12.Enabled = true;
+                numericUpDown13.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsWorldData = null;
+                return;
+            }
+
+            // Update the progressbar step.
+            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsWorldData)
+            {
+                // Get the cirrent base address.
+                string CrystalOneAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
+                string CrystalTwoAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
+                string CrystalThreeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
+
+                MemLib.WriteMemory(CrystalOneAddress, "int", numericUpDown11.Value.ToString()); // Write crystal one address.
+                MemLib.WriteMemory(CrystalTwoAddress, "int", numericUpDown12.Value.ToString()); // Write crystal two address.
+                MemLib.WriteMemory(CrystalThreeAddress, "int", numericUpDown13.Value.ToString()); // Write crystal three address.
+
+                // Perform progress step.
+                progressBar4.PerformStep();
+            }
+
+            // Update datagridview.
+            dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value = numericUpDown11.Value.ToString() + "," + numericUpDown12.Value.ToString() + "," + numericUpDown13.Value.ToString();
+
+            // Process completed, run finishing tasks.
+            progressBar4.Value = 100;
+            progressBar4.Visible = false;
+
+            // Rename button back to defualt.
+            button18.Text = "Activated Crystals";
+            button18.Enabled = true;
+            numericUpDown11.Enabled = true;
+            numericUpDown12.Enabled = true;
+            numericUpDown13.Enabled = true;
+        }
+        #endregion // End activated crystals.
 
         #endregion // End player tools.
 
