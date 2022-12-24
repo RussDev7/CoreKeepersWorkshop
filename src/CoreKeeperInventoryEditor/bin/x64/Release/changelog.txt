@@ -14,6 +14,8 @@ Changes Since v1.3.4.1
 + Added a change world difficutly button.
 + Added missing tooltips to the world tools.
 + Added change world difficulty to chat commands.
++ Added change world creation date button.
++ Added change activated world crystals button.
 
 Changes Since v1.3.4
 ===========================================================
