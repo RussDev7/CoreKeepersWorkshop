@@ -7505,7 +7505,7 @@ namespace CoreKeeperInventoryEditor
             GetPlayerLocationAddresses();
         }
 
-        public IEnumerable<long> AoBScanResultsPlayerLocationTempOne;
+        public IEnumerable<long> AoBScanResultsPlayerLocationTemp;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -7535,10 +7535,10 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerLocationTempOne = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
+            AoBScanResultsPlayerLocationTemp = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerLocationTempOne.Count() < 100)
+            if (AoBScanResultsPlayerLocationTemp.Count() < 100)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -7556,7 +7556,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
-                AoBScanResultsPlayerLocationTempOne = null;
+                AoBScanResultsPlayerLocationTemp = null;
 
                 // Display error message.
                 MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -7574,8 +7574,8 @@ namespace CoreKeeperInventoryEditor
 
             // Re-scan results x times to clear invalid addresses.
             bool firstRun = true;
-            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTempOne);
-            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTempOne);
+            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTemp);
+            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTemp);
             for (int a = 0; a < scanTimes; a++)
             {
                 // Skip the first loop.
