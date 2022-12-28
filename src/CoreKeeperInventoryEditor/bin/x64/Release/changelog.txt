@@ -16,6 +16,7 @@ Changes Since v1.3.4.1
 + Added change world difficulty to chat commands.
 + Added change world creation date button.
 + Added change activated world crystals button.
++ Added automatic fishing bot.
 + Added missing assets.
 
 Changes Since v1.3.4
