@@ -123,7 +123,9 @@ namespace CoreKeeperInventoryEditor
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
+            this.button19 = new System.Windows.Forms.Button();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -1337,7 +1339,9 @@ namespace CoreKeeperInventoryEditor
             // groupBox12
             // 
             this.groupBox12.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox12.Controls.Add(this.label26);
             this.groupBox12.Controls.Add(this.numericUpDown13);
+            this.groupBox12.Controls.Add(this.button19);
             this.groupBox12.Controls.Add(this.numericUpDown12);
             this.groupBox12.Controls.Add(this.label25);
             this.groupBox12.Controls.Add(this.label24);
@@ -1368,6 +1372,16 @@ namespace CoreKeeperInventoryEditor
             this.groupBox12.Text = "World Tools";
             this.groupBox12.UseCompatibleTextRendering = true;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.Snow;
+            this.label26.Location = new System.Drawing.Point(127, 169);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(201, 13);
+            this.label26.TabIndex = 48;
+            this.label26.Text = "- Automatically throw lines and catch fish.";
+            // 
             // numericUpDown13
             // 
             this.numericUpDown13.Location = new System.Drawing.Point(315, 108);
@@ -1384,6 +1398,17 @@ namespace CoreKeeperInventoryEditor
             0,
             0,
             0});
+            // 
+            // button19
+            // 
+            this.button19.ForeColor = System.Drawing.Color.Black;
+            this.button19.Location = new System.Drawing.Point(5, 164);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(122, 23);
+            this.button19.TabIndex = 49;
+            this.button19.Text = "Automatic Fishing";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.Button19_Click);
             // 
             // numericUpDown12
             // 
@@ -1561,7 +1586,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Snow;
-            this.label9.Location = new System.Drawing.Point(127, 170);
+            this.label9.Location = new System.Drawing.Point(127, 140);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(230, 13);
             this.label9.TabIndex = 0;
@@ -1582,7 +1607,7 @@ namespace CoreKeeperInventoryEditor
             // button8
             // 
             this.button8.ForeColor = System.Drawing.Color.Black;
-            this.button8.Location = new System.Drawing.Point(5, 165);
+            this.button8.Location = new System.Drawing.Point(5, 135);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(122, 23);
             this.button8.TabIndex = 41;
@@ -1640,7 +1665,7 @@ namespace CoreKeeperInventoryEditor
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(122, 23);
             this.button17.TabIndex = 30;
-            this.button17.Text = "Change Difficutly";
+            this.button17.Text = "Change Difficulty";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.Button17_Click);
             // 
@@ -2223,6 +2248,8 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.NumericUpDown numericUpDown12;
         private System.Windows.Forms.NumericUpDown numericUpDown13;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button19;
     }
 }
 

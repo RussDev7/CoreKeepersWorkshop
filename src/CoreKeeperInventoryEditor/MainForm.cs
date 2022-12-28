@@ -42,6 +42,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerLocation;
         public IEnumerable<long> AoBScanResultsPlayerBuffs;
         public IEnumerable<long> AoBScanResultsWorldData;
+        public IEnumerable<long> AoBScanResultsFishingData;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -59,6 +60,17 @@ namespace CoreKeeperInventoryEditor
         public int playerSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount;
         public int worldSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount;
         public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
+
+        // Set the mouse event class.
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+        private const int MOUSEEVENT_LEFTDOWN = 0x02;
+        private const int MOUSEEVENT_LEFTUP = 0x04;
+        private const int MOUSEEVENT_MIDDLEDOWN = 0x20;
+        private const int MOUSEEVENT_MIDDLEUP = 0x40;
+        private const int MOUSEEVENT_RIGHTDOWN = 0x08;
+        private const int MOUSEEVENT_RIGHTUP = 0x10;
 
         #endregion // End variables.
 
@@ -170,6 +182,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button17, "Change the difficutly of the current world.");
                 toolTip.SetToolTip(button15, "Change the date created of the current world.");
                 toolTip.SetToolTip(button18, "Change the activated crystals of the current world.");
+                toolTip.SetToolTip(button19, "Automatically fishes for you. First throw reel into water.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debufs.");
 
@@ -7539,7 +7552,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Re-enable button.
                 button11.Enabled = true;
-                // groupBox11.Enabled = true;
+                groupBox11.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
@@ -8519,6 +8532,186 @@ namespace CoreKeeperInventoryEditor
             numericUpDown13.Enabled = true;
         }
         #endregion // End activated crystals.
+
+        #region Auto Fishing Bot
+
+        // Toggle auto fishing.
+        readonly System.Timers.Timer autoFishingTimer = new System.Timers.Timer();
+        string baseFishingAddress = "0";
+        string fishTypeAddress = "0";
+        string fishFightAddress = "0";
+        bool autoFishingChecked = false;
+        private async void Button19_Click(object sender, EventArgs e)
+        {
+            // Check if button was toggled.
+            if (!autoFishingChecked)
+            {
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Toggle fishing bool.
+                autoFishingChecked = true;
+
+                // Name button to indicate loading.
+                button19.Text = "Loading...";
+                button19.Enabled = true;
+
+                // Disable button to prevent spamming.
+                // button11.Enabled = false;
+                groupBox12.Enabled = false;
+
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Offset the progress bar to show it's working.
+                progressBar4.Visible = true;
+                progressBar4.Maximum = 100;
+                progressBar4.Step = 100;
+                progressBar4.Value = 10;
+
+                // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                AoBScanResultsFishingData = await MemLib.AoBScan("01 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 01 00 00 00", true, true);
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsFishingData.Count() < 1)
+                {
+                    // Reset textbox.
+                    richTextBox7.Text = "Addresses Loaded: 0";
+
+                    // Reset progress bar.
+                    progressBar4.Value = 0;
+                    progressBar4.Visible = false;
+
+                    // Rename button back to defualt.
+                    button19.Text = "Automatic Fishing";
+
+                    // Re-enable button.
+                    button19.Enabled = true;
+                    groupBox12.Enabled = true;
+
+                    // Toggle fishing bool.
+                    autoFishingChecked = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsFishingData = null;
+
+                    // Display error message.
+                    MessageBox.Show("Try throwing a line into the water first!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                foreach (long res in AoBScanResultsFishingData)
+                {
+                    if (richTextBox7.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox7.Text = "Fishing Addresses Loaded: " + AoBScanResultsFishingData.Count().ToString() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox7.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                richTextBox7.Text += "]";
+
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Get the addresses.
+                baseFishingAddress = AoBScanResultsFishingData.Last().ToString("X");
+                fishTypeAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("204", NumberStyles.Integer)).ToString("X");
+                fishFightAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X");
+
+                // Rename button back to defualt.
+                button19.Text = "Disable Fishing Bot";
+
+                // Re-enable button.
+                button19.Enabled = true;
+                groupBox12.Enabled = true;
+
+                // Slider is being toggled on.
+                // Start the timed events.
+                autoFishingTimer.Interval = 1; // Custom intervals.
+                autoFishingTimer.Elapsed += new ElapsedEventHandler(AutoFishingTimedEvent);
+                autoFishingTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Stop the timers.
+                autoFishingTimer.Stop();
+
+                // Rename button back to defualt.
+                button19.Text = "Automatic Fishing";
+
+                // Toggle bool.
+                autoFishingChecked = false;
+            }
+        }
+
+        // Auto fishing timer.
+        int fishType = 0;
+        bool fishFighting = false;
+        bool reelingActive = false;
+        private async void AutoFishingTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Fetch current addresses.
+            fishType = MemLib.ReadInt(fishTypeAddress);
+            fishFighting = (MemLib.ReadInt(fishFightAddress) == 1);
+
+            // Check if a fish was caught.
+            if (fishType != 0)
+            {
+                // Check if fish is currently fighting.
+                if (!fishFighting)
+                {
+                    // Add some delay.
+                    await Task.Delay(100);
+
+                    // Pull fish in.
+                    mouse_event(MOUSEEVENT_RIGHTDOWN, 0, 0, 0, 0);
+                    mouse_event(MOUSEEVENT_RIGHTUP, 0, 0, 0, 0);
+
+                    // Activate bool.
+                    reelingActive = true;
+                }
+                else
+                {
+                    // Do nothing.
+                    return;
+                }
+            }
+
+            // Check if reeling.
+            if (reelingActive && fishType == 0)
+            {
+                // Add some delay.
+                await Task.Delay(100);
+
+                // Cought finished.
+                mouse_event(MOUSEEVENT_RIGHTDOWN, 0, 0, 0, 0);
+                mouse_event(MOUSEEVENT_RIGHTUP, 0, 0, 0, 0);
+
+                // Reset bool.
+                reelingActive = false;
+            }
+
+            // Add some delay.
+            await Task.Delay(100);
+        }
+        #endregion // End auto fishing bot.
 
         #endregion // End player tools.
 
