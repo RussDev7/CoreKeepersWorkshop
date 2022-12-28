@@ -2,14 +2,15 @@ Changes Since v1.3.4.1
 ===========================================================
 - General bug fixes to the main form.
 - Loading addresses now disables all relevant controls.
-- Moved contols around to be more user friendly.
+- Moved controls around to be more user friendly.
 - Corrected the size and graphics of various assets.
 - Redid some form text and form colors.
 - Fixed a bug with win32 units getting overflow errors.
-- Fixed issues reguarding chat commands.
+- Fixed issues regarding chat commands.
+- Fixed game crashes with using teleport player.
 
 + Application now requires administrator to launch.
-+ Added back the world tab for easier tool idenification.
++ Added back the world tab for easier tool identification.
 + Added a load world header information button.
 + Added a change world difficutly button.
 + Added missing tooltips to the world tools.
