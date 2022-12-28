@@ -6933,7 +6933,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerTools = null;
 
                 // Display error message.
-                MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -7505,7 +7505,7 @@ namespace CoreKeeperInventoryEditor
             GetPlayerLocationAddresses();
         }
 
-        public IEnumerable<long> AoBScanResultsPlayerLocationTemp;
+        public IEnumerable<long> AoBScanResultsPlayerLocationTempOne;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -7535,10 +7535,10 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerLocationTemp = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
+            AoBScanResultsPlayerLocationTempOne = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerLocationTemp.Count() < 100)
+            if (AoBScanResultsPlayerLocationTempOne.Count() < 100)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -7556,20 +7556,26 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
-                AoBScanResultsPlayerLocationTemp = null;
+                AoBScanResultsPlayerLocationTempOne = null;
 
                 // Display error message.
-                MessageBox.Show("You must be standing at the core's entrance!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Reset progress bar.
+            progressBar4.Value = 50;
+
+            // Display info message.
+            MessageBox.Show("Now stand in the 'Glurch the Abominous Mass's entrance.\r\rPress 'ok' when ready!", "SUCCESS - STEP 2 OF 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Reset progress bar.
             progressBar4.Value = 0;
 
-            // Re-scan results fourty times to clear invalid addresses.
+            // Re-scan results x times to clear invalid addresses.
             bool firstRun = true;
-            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTemp);
-            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTemp);
+            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTempOne);
+            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTempOne);
             for (int a = 0; a < scanTimes; a++)
             {
                 // Skip the first loop.
@@ -7587,18 +7593,18 @@ namespace CoreKeeperInventoryEditor
                 foreach (long res in resultLocationsTemp)
                 {
                     // Get byte offsets.
-                    string byteTwo = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                    string byteThree = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
+                    // string byteTwo = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                    // string byteThree = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
                     string byteFive = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                     string byteSix = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
                     string byteSeven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("6", NumberStyles.Integer)).ToString("X");
                     string byteEight = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("7", NumberStyles.Integer)).ToString("X");
-                    string byteTen = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("9", NumberStyles.Integer)).ToString("X");
-                    string byteEleven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.Integer)).ToString("X");
+                    // string byteTen = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("9", NumberStyles.Integer)).ToString("X");
+                    // string byteEleven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.Integer)).ToString("X");
                     string byteTwelve = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("11", NumberStyles.Integer)).ToString("X");
 
                     // Check if value does not exist.
-                    if (MemLib.ReadByte(byteTwo).ToString("X").ToString() != "CC" || MemLib.ReadByte(byteThree).ToString("X").ToString() != "CC" || MemLib.ReadByte(byteFive).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSix).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSeven).ToString("X").ToString() != "0" || MemLib.ReadByte(byteEight).ToString("X").ToString() != "0" || MemLib.ReadByte(byteTen).ToString("X").ToString() != "99" || MemLib.ReadByte(byteEleven).ToString("X").ToString() != "D9" || MemLib.ReadByte(byteTwelve).ToString("X").ToString() != "3F")
+                    if (MemLib.ReadByte(byteFive).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSix).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSeven).ToString("X").ToString() != "0" || MemLib.ReadByte(byteEight).ToString("X").ToString() != "0" || MemLib.ReadByte(byteTwelve).ToString("X").ToString() != "41")
                     {
                         // Result does not match the value it needs to be, remove it.
                         resultLocations.Remove(res);
