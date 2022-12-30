@@ -44,6 +44,12 @@ namespace CoreKeepersWorkshop
         // Do loading events for the form.
         private void FoodCookbook_Load(object sender, EventArgs e)
         {
+            #region Set Custom Cusror
+
+            // Set the applications cursor.
+            Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
+            #endregion
+
             #region Set Form Locations
 
             // Set the forms active location based on previous save.

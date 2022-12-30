@@ -81,6 +81,12 @@ namespace CoreKeeperInventoryEditor
         {
             try // Further catch possible errors.
             {
+                #region Set Custom Cusror
+
+                // Set the applications cursor.
+                Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
+                #endregion
+
                 #region Set Controls
 
                 // Set the about tabs content.

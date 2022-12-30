@@ -184,5 +184,8 @@
   <ItemGroup>
     <None Include="images\UIBackgroundSingle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\UICursor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
