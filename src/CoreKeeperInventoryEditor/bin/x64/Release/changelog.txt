@@ -1,6 +1,7 @@
 Changes Since v1.3.4.2
 ===========================================================
 + Added a custom core keeper themed cursor to all forms.
++ Added a fail catcher to the player teleporter.
 
 Changes Since v1.3.4.1
 ===========================================================
