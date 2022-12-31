@@ -7624,6 +7624,32 @@ namespace CoreKeeperInventoryEditor
             // Update the IEnumerable.
             AoBScanResultsPlayerLocation = resultLocations;
 
+            // If the count is less then five, the scan had an error.
+            if (AoBScanResultsPlayerLocation.Count() < 5)
+            {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button11.Text = "Get Addresses";
+
+                // Re-enable button.
+                button11.Enabled = true;
+                groupBox11.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationTemp = null;
+
+                // Display error message.
+                MessageBox.Show("You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Update richtextbox with found addresses.
             foreach (long res in AoBScanResultsPlayerLocation)
             {
