@@ -1,3 +1,7 @@
+Changes Since v1.3.4.3
+===========================================================
+- Tweaked the addresses for the automatic fishing bot.
+
 Changes Since v1.3.4.2
 ===========================================================
 + Added a custom core keeper themed cursor to all forms.
