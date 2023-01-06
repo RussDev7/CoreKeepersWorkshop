@@ -5,18 +5,18 @@
 
 ![thumbCKWNew](https://user-images.githubusercontent.com/33048298/190870510-69e52e39-fd39-4fea-a705-fdb44dac93df.png)
 
-**CoreKeepersWorkshop** - The simple GUI inventory editor for Core Keeper. This app further lets you edit basic player features such as name.
+**CoreKeepersWorkshop** - The simple GUI inventory editor for Core Keeper. This app further lets you edit basic player features as well as world header information.
 
 ## Features
- - [x] Inventory Editor. 
+ - [x] Inventory editor. 
  - [x] Name changer. 
  - [x] World difficulty changer. 
  - [x] Automatic fishing bot. 
- - [x] Export / Import players. 
+ - [x] Export / import players. 
  - [x] Minimization support. 
  - [x] Unknown ID debugger. 
  - [x] Modded support.
- - [x] No Game File Replacement. 
+ - [x] No game file replacement. 
  - [x] Future proof resiliency.
  
 ## How It Works / How Do I Use It?
