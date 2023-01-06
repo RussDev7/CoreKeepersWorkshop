@@ -1,6 +1,7 @@
 Changes Since v1.3.4.3
 ===========================================================
 - Tweaked the addresses for the automatic fishing bot.
+- Fixed a few error message typos.
 
 Changes Since v1.3.4.2
 ===========================================================
