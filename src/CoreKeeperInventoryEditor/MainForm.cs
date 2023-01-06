@@ -6660,7 +6660,7 @@ namespace CoreKeeperInventoryEditor
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 // Display error message.
-                MessageBox.Show("Your must type your playername and a new name!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type your playername and a new name!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -7946,7 +7946,7 @@ namespace CoreKeeperInventoryEditor
             if (textBox3.Text == "")
             {
                 // Display error message.
-                MessageBox.Show("Your must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -7971,7 +7971,7 @@ namespace CoreKeeperInventoryEditor
                 if (textBox3.Text == "")
                 {
                     // Display error message.
-                    MessageBox.Show("Your must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -7994,7 +7994,7 @@ namespace CoreKeeperInventoryEditor
             if (textBox3.Text == "" && worldName == "")
             {
                 // Display error message.
-                MessageBox.Show("Your must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
