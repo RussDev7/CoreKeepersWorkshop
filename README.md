@@ -5,7 +5,7 @@
 
 ![thumbCKWNew](https://user-images.githubusercontent.com/33048298/190870510-69e52e39-fd39-4fea-a705-fdb44dac93df.png)
 
-CoreKeepersWorkshop - The simple GUI inventory editor for Core Keeper. This app further lets you edit basic player features such as name.
+**CoreKeepersWorkshop** - The simple GUI inventory editor for Core Keeper. This app further lets you edit basic player features such as name.
 
 ## Features
  - [x] Inventory Editor. 
