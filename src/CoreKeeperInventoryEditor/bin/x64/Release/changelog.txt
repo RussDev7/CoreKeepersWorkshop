@@ -2,7 +2,10 @@ Changes Since v1.3.4.3
 ===========================================================
 - Tweaked the addresses for the automatic fishing bot.
 - Tweaked the addresses for the infinite food mod.
+- Fixed a bug with quick item editor and negivive stacks.
 - Fixed a few error message typos.
+
++ Added infinite resource to the player mods.
 
 Changes Since v1.3.4.2
 ===========================================================
