@@ -7280,7 +7280,7 @@ namespace CoreKeeperInventoryEditor
 
                 // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
                 // Depreciated Address 17Dec22: 01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AC 00 00 00 01 00 00 00 01 00 00 00
-                AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F", true, true);
+                AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F", true, true);
 
                 // If the count is zero, the scan had an error.
                 if (AoBScanResultsNoHunger1Tools.Count() == 0)
