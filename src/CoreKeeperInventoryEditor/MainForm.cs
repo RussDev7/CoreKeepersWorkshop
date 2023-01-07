@@ -6347,6 +6347,21 @@ namespace CoreKeeperInventoryEditor
         // Click Events
         private void PictureBox_MouseClick(object sender, MouseEventArgs e)
         {
+            // Stop infinite recourses if enabled.
+            if (playersInfiniteResourcesTimer.Enabled)
+            {
+                // Stop timer.
+                playersInfiniteResourcesTimer.Stop();
+
+                // Clear the list of items.
+                inventoryInformation = null;
+
+                // Toggle slider.
+                siticoneWinToggleSwith7.CheckedChanged -= SiticoneWinToggleSwith7_CheckedChanged;
+                siticoneWinToggleSwith7.Checked = false;
+                siticoneWinToggleSwith7.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
+            }
+
             PictureBox pic = sender as PictureBox;
 
             // Ensure picturebox control exists.
@@ -6409,7 +6424,7 @@ namespace CoreKeeperInventoryEditor
 
                     // Save some form settings.
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoID = itemInfo[0];
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = itemInfo[1];
+                    CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negitive numbers throwing an exception. // Fix v1.3.4.4.
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
 
                     // Spawn item picker window.
@@ -6633,6 +6648,12 @@ namespace CoreKeeperInventoryEditor
                     infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("464", NumberStyles.Integer)).ToString("X"));
                     infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("468", NumberStyles.Integer)).ToString("X"));
                     infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("472", NumberStyles.Integer)).ToString("X"));
+                }
+                else // Prevent out of range errors.
+                {
+                    infoType = 0;
+                    infoAmount = 0;
+                    infoVariant = 0;
                 }
             }
 
@@ -7494,6 +7515,133 @@ namespace CoreKeeperInventoryEditor
             siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
         }
         #endregion
+
+        #region Infinite Resources
+
+        // Toggle infinite resources.
+        readonly System.Timers.Timer playersInfiniteResourcesTimer = new System.Timers.Timer();
+        List<Tuple<int, int[]>> inventoryInformation = new List<Tuple<int, int[]>>();
+        private void SiticoneWinToggleSwith7_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith7.CheckedChanged -= SiticoneWinToggleSwith7_CheckedChanged;
+                siticoneWinToggleSwith7.Checked = false;
+                siticoneWinToggleSwith7.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure the inventory was loaded.
+            if (AoBScanResultsInventory == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith7.CheckedChanged -= SiticoneWinToggleSwith7_CheckedChanged;
+                siticoneWinToggleSwith7.Checked = false;
+                siticoneWinToggleSwith7.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith7.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label27.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Step = 100 / 30;
+
+                // Loop through each slot.
+                for (int a = 1; a < 30 + 1; a++)
+                {
+                    // Get information from the item slot.
+                    int[] itemInfo = new int[3];
+                    itemInfo = GetSlotInfo(a);
+
+                    // Update the inventory info list.
+                    inventoryInformation.Add(new Tuple<int, int[]>(a, itemInfo));
+
+                    // Advance the progress bar.
+                    progressBar5.PerformStep();
+                }
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label27.Text = "- Infinite Resources";
+
+                // Start the timed events.
+                playersInfiniteResourcesTimer.Interval = 100; // Custom intervals.
+                playersInfiniteResourcesTimer.Elapsed += new ElapsedEventHandler(PlayersInfiniteResourcesTimedEvent);
+                playersInfiniteResourcesTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Reset label name.
+                label27.Text = "- Infinite Resources";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Stop the timers.
+                playersInfiniteResourcesTimer.Stop();
+
+                // Clear the list of items.
+                inventoryInformation = null;
+            }
+        }
+
+        // Infinite recourses timer.
+        private void PlayersInfiniteResourcesTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Iterate through each inventory item.
+            foreach (var inventorySlot in inventoryInformation)
+            {
+                // Ensure the item is still the same as saved. 
+                int slotNumber = inventorySlot.Item1;
+                int savedItemType = inventorySlot.Item2[0];
+                int savedItemAmount = inventorySlot.Item2[1];
+                int savedItemVariation = inventorySlot.Item2[2];
+
+                // Get the updated slot's item type.
+                int currentItemType = GetSlotInfo(slotNumber)[0];
+
+                // Check if the current slots item was changed or is nothing.
+                if (currentItemType == savedItemType)
+                {
+                    // Ensure the item is not null.
+                    if (currentItemType == 0)
+                    {
+                        // Skip entree.
+                        continue;
+                    }
+                    else
+                    {
+                        // Proper item was found within the inventory slot.
+                        // Change the existing items durability to it's original.
+                        AddItemToInv(itemSlot: slotNumber, type: savedItemType, amount: savedItemAmount, variation: savedItemVariation, Overwrite: true);
+                    }
+                }
+                else
+                {
+                    // Item was changed, update it.
+                    inventoryInformation[slotNumber - 1] = new Tuple<int, int[]>(slotNumber, GetSlotInfo(slotNumber));
+                }
+            }
+        }
+        #endregion // End infinite resources.
 
         #endregion // End player tab.
 
