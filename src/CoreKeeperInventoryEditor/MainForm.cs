@@ -6826,7 +6826,15 @@ namespace CoreKeeperInventoryEditor
                 }
                 else
                 {
-                    baseItemName = "UnkownItem";
+                    // Check if the item id is 0.
+                    if (infoType == 0)
+                    {
+                        baseItemName = "Empty";
+                    }
+                    else
+                    {
+                        baseItemName = "UnkownItem";
+                    }
                 }
                 // Check if the items variant is an lengh of 8. 
                 if (infoVariant.ToString().Length == 8)
@@ -6838,7 +6846,15 @@ namespace CoreKeeperInventoryEditor
                     }
                     else
                     {
-                        baseIngrdient1Name = "UnkownItem";
+                        // Check if the item id is 0.
+                        if (infoType == 0)
+                        {
+                            baseIngrdient1Name = "Empty";
+                        }
+                        else
+                        {
+                            baseIngrdient1Name = "UnkownItem";
+                        }
                     }
                     // Get base item ingrdient 2 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoVariant.ToString().Substring(infoVariant.ToString().Length / 2).ToString()) != null)
@@ -6847,7 +6863,15 @@ namespace CoreKeeperInventoryEditor
                     }
                     else
                     {
-                        baseIngrdient2Name = "UnkownItem";
+                        // Check if the item id is 0.
+                        if (infoType == 0)
+                        {
+                            baseIngrdient2Name = "Empty";
+                        }
+                        else
+                        {
+                            baseIngrdient2Name = "UnkownItem";
+                        }
                     }
                 }
 
