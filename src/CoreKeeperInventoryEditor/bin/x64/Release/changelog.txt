@@ -2,10 +2,16 @@ Changes Since v1.3.4.3
 ===========================================================
 - Tweaked the addresses for the automatic fishing bot.
 - Tweaked the addresses for the infinite food mod.
-- Fixed a bug with quick item editor and negivive stacks.
+- Sped up inventory load and refresh times by x70.
+- Fixed a bug with quick item editor and negative stacks.
 - Fixed a few error message typos.
+- Fixed misinformation within some errors.
+- Fixed infinite food addresses to work on co-op.
+- Fixed the player inventory addresses to work on co-op.
 
 + Added infinite resource to the player mods.
++ Added a honorable mentions tab within players.
++ Load and edit players' inventories while playing as host.
 
 Changes Since v1.3.4.2
 ===========================================================
