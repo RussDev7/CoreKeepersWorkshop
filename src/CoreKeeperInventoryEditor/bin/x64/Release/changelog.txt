@@ -11,7 +11,8 @@ Changes Since v1.3.4.3
 
 + Added infinite resource to the player mods.
 + Added a honorable mentions tab within players.
-+ Load and edit players' inventories while playing as host.
++ Load and edit players inventories while playing as host.
++ Added 20 inventory slots for a total of 50.
 
 Changes Since v1.3.4.2
 ===========================================================
