@@ -77,7 +77,7 @@ Here is the list of all the available categories:
  - Seasonal
 
 ## How To Add Custom Skins
-Adding background UI skins is now supported. You can add custom skins to the `\assets\backgrounds\{folder name}` directory by any name. These images must be 695x288. It's very important you keep the inventory boxes where they are, these do not move with the skins. You can cycle through the skins using the "Change Skin" tab-button at the top. These will save when you close and appear when re-opened.
+Adding background UI skins is now supported. You can add custom skins to the `\assets\backgrounds\{folder name}` directory by any name. These images must be 695x420. It's very important you keep the inventory boxes where they are, these do not move with the skins. You can cycle through the skins using the "Change Skin" tab-button at the top. These will save when you close and appear when re-opened.
 
 ![CK-UISkins2](https://user-images.githubusercontent.com/33048298/206583351-3a6dde45-43f2-43b2-991d-b931b17d9bf3.gif)
 
