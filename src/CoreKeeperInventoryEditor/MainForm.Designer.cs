@@ -29,12 +29,14 @@ namespace CoreKeeperInventoryEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -89,6 +91,8 @@ namespace CoreKeeperInventoryEditor
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.siticoneWinToggleSwith7 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label20 = new System.Windows.Forms.Label();
             this.siticoneWinToggleSwith6 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label14 = new System.Windows.Forms.Label();
@@ -173,8 +177,8 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.label27 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith7 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
@@ -240,6 +244,7 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -263,6 +268,8 @@ namespace CoreKeeperInventoryEditor
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
             this.tabPage1.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackground;
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage1.Controls.Add(this.button21);
+            this.tabPage1.Controls.Add(this.button20);
             this.tabPage1.Controls.Add(this.progressBar2);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.button2);
@@ -305,17 +312,40 @@ namespace CoreKeeperInventoryEditor
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Inventory";
             // 
+            // button21
+            // 
+            this.button21.Enabled = false;
+            this.button21.Location = new System.Drawing.Point(466, 7);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(59, 23);
+            this.button21.TabIndex = 34;
+            this.button21.Text = "Next";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.Button21_Click);
+            // 
+            // button20
+            // 
+            this.button20.Enabled = false;
+            this.button20.Location = new System.Drawing.Point(160, 7);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(59, 23);
+            this.button20.TabIndex = 33;
+            this.button20.Text = "Previous";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.Button20_Click);
+            // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(160, 8);
+            this.progressBar2.Location = new System.Drawing.Point(218, 8);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(373, 21);
+            this.progressBar2.Size = new System.Drawing.Size(250, 21);
             this.progressBar2.Step = 1;
             this.progressBar2.TabIndex = 32;
             this.progressBar2.Visible = false;
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(531, 7);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(98, 23);
@@ -326,6 +356,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(628, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 23);
@@ -677,11 +708,11 @@ namespace CoreKeeperInventoryEditor
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.richTextBox1.Location = new System.Drawing.Point(160, 8);
+            this.richTextBox1.Location = new System.Drawing.Point(218, 8);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(373, 21);
+            this.richTextBox1.Size = new System.Drawing.Size(250, 21);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "Addresses Loaded: 0";
             // 
@@ -754,6 +785,7 @@ namespace CoreKeeperInventoryEditor
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage9);
             this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Controls.Add(this.tabPage10);
             this.tabControl2.Location = new System.Drawing.Point(2, 8);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -949,6 +981,29 @@ namespace CoreKeeperInventoryEditor
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Player Tools";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.Snow;
+            this.label27.Location = new System.Drawing.Point(59, 133);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(98, 13);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "- Infinite Resources";
+            // 
+            // siticoneWinToggleSwith7
+            // 
+            this.siticoneWinToggleSwith7.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith7.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith7.Location = new System.Drawing.Point(8, 128);
+            this.siticoneWinToggleSwith7.Name = "siticoneWinToggleSwith7";
+            this.siticoneWinToggleSwith7.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith7.TabIndex = 20;
+            this.siticoneWinToggleSwith7.Text = "siticoneWinToggleSwith7";
+            this.siticoneWinToggleSwith7.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith7.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith7.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith7_CheckedChanged);
             // 
             // label20
             // 
@@ -1691,21 +1746,21 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1715,9 +1770,9 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellErrors = false;
@@ -2019,28 +2074,29 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
-            // label27
+            // tabPage10
             // 
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.Color.Snow;
-            this.label27.Location = new System.Drawing.Point(59, 133);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(98, 13);
-            this.label27.TabIndex = 19;
-            this.label27.Text = "- Infinite Resources";
+            this.tabPage10.Controls.Add(this.richTextBox8);
+            this.tabPage10.Location = new System.Drawing.Point(4, 25);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(354, 133);
+            this.tabPage10.TabIndex = 4;
+            this.tabPage10.Text = "Special Thanks";
+            this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // siticoneWinToggleSwith7
+            // richTextBox8
             // 
-            this.siticoneWinToggleSwith7.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith7.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.Location = new System.Drawing.Point(8, 128);
-            this.siticoneWinToggleSwith7.Name = "siticoneWinToggleSwith7";
-            this.siticoneWinToggleSwith7.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith7.TabIndex = 20;
-            this.siticoneWinToggleSwith7.Text = "siticoneWinToggleSwith7";
-            this.siticoneWinToggleSwith7.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith7_CheckedChanged);
+            this.richTextBox8.BackColor = System.Drawing.Color.Black;
+            this.richTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox8.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBox8.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox8.Name = "richTextBox8";
+            this.richTextBox8.ReadOnly = true;
+            this.richTextBox8.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox8.Size = new System.Drawing.Size(354, 133);
+            this.richTextBox8.TabIndex = 1;
+            this.richTextBox8.Text = "";
             // 
             // MainForm
             // 
@@ -2131,6 +2187,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2279,6 +2336,10 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Label label27;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith7;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.RichTextBox richTextBox8;
     }
 }
 
