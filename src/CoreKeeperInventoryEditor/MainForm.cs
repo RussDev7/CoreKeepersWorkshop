@@ -731,8 +731,8 @@ namespace CoreKeeperInventoryEditor
                 else
                 {
                     // Disable arrow buttons.
-                    button20.Enabled = true; // Previous.
-                    button21.Enabled = true; // Next.
+                    button20.Enabled = false; // Previous.
+                    button21.Enabled = false; // Next.
                 }
             }
             else
