@@ -11754,6 +11754,7 @@ namespace CoreKeeperInventoryEditor
             // Hide progressbar.
             progressBar4.Visible = false;
         }
+        #endregion // End world tool addresses.
 
         #region Render Map
 
@@ -11865,11 +11866,9 @@ namespace CoreKeeperInventoryEditor
             button22.Text = "Render Map";
             button22.Enabled = true;
 
-            MessageBox.Show(Count + " have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show(Count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         #endregion // End render map.
-
-        #endregion // End world tool addresses.
 
         #region Remove Ground Items
 
