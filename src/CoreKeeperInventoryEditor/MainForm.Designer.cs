@@ -178,6 +178,11 @@ namespace CoreKeeperInventoryEditor
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.button24 = new System.Windows.Forms.Button();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.button23 = new System.Windows.Forms.Button();
+            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+            this.button22 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
@@ -278,6 +283,8 @@ namespace CoreKeeperInventoryEditor
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.tabPage5.SuspendLayout();
@@ -1727,7 +1734,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox12.Controls.Add(this.button16);
             this.groupBox12.Controls.Add(this.button17);
             this.groupBox12.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox12.Location = new System.Drawing.Point(10, 90);
+            this.groupBox12.Location = new System.Drawing.Point(10, 117);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(366, 194);
             this.groupBox12.TabIndex = 42;
@@ -2039,7 +2046,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox10.ForeColor = System.Drawing.Color.Lime;
             this.groupBox10.Location = new System.Drawing.Point(382, 5);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(342, 279);
+            this.groupBox10.Size = new System.Drawing.Size(342, 306);
             this.groupBox10.TabIndex = 41;
             this.groupBox10.TabStop = false;
             this.groupBox10.UseCompatibleTextRendering = true;
@@ -2083,7 +2090,7 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(340, 270);
+            this.dataGridView1.Size = new System.Drawing.Size(340, 296);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             // 
@@ -2104,6 +2111,11 @@ namespace CoreKeeperInventoryEditor
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox11.Controls.Add(this.button24);
+            this.groupBox11.Controls.Add(this.numericUpDown15);
+            this.groupBox11.Controls.Add(this.button23);
+            this.groupBox11.Controls.Add(this.numericUpDown14);
+            this.groupBox11.Controls.Add(this.button22);
             this.groupBox11.Controls.Add(this.button14);
             this.groupBox11.Controls.Add(this.button13);
             this.groupBox11.Controls.Add(this.numericUpDown5);
@@ -2115,10 +2127,87 @@ namespace CoreKeeperInventoryEditor
             this.groupBox11.ForeColor = System.Drawing.Color.Lime;
             this.groupBox11.Location = new System.Drawing.Point(10, 5);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(366, 79);
+            this.groupBox11.Size = new System.Drawing.Size(366, 106);
             this.groupBox11.TabIndex = 40;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Teleport Player";
+            // 
+            // button24
+            // 
+            this.button24.Enabled = false;
+            this.button24.ForeColor = System.Drawing.Color.Black;
+            this.button24.Location = new System.Drawing.Point(236, 77);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(54, 22);
+            this.button24.TabIndex = 31;
+            this.button24.Text = "Speed:";
+            this.button24.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown15
+            // 
+            this.numericUpDown15.Location = new System.Drawing.Point(289, 78);
+            this.numericUpDown15.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Name = "numericUpDown15";
+            this.numericUpDown15.Size = new System.Drawing.Size(71, 20);
+            this.numericUpDown15.TabIndex = 32;
+            this.numericUpDown15.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            // 
+            // button23
+            // 
+            this.button23.Enabled = false;
+            this.button23.ForeColor = System.Drawing.Color.Black;
+            this.button23.Location = new System.Drawing.Point(104, 77);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(54, 22);
+            this.button23.TabIndex = 29;
+            this.button23.Text = "Radius:";
+            this.button23.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown14
+            // 
+            this.numericUpDown14.Location = new System.Drawing.Point(157, 78);
+            this.numericUpDown14.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Name = "numericUpDown14";
+            this.numericUpDown14.Size = new System.Drawing.Size(71, 20);
+            this.numericUpDown14.TabIndex = 30;
+            this.numericUpDown14.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
+            // button22
+            // 
+            this.button22.ForeColor = System.Drawing.Color.Black;
+            this.button22.Location = new System.Drawing.Point(6, 77);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(92, 23);
+            this.button22.TabIndex = 28;
+            this.button22.Text = "Render Map";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.Button22_Click);
             // 
             // button14
             // 
@@ -2479,6 +2568,8 @@ namespace CoreKeeperInventoryEditor
             this.groupBox10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.tabPage5.ResumeLayout(false);
@@ -2660,6 +2751,11 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.PictureBox pictureBox45;
         private System.Windows.Forms.PictureBox pictureBox44;
         private System.Windows.Forms.PictureBox pictureBox50;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.NumericUpDown numericUpDown14;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.NumericUpDown numericUpDown15;
     }
 }
 

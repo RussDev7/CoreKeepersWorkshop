@@ -204,6 +204,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button19, "Automatically fishes for you. First throw reel into water.");
                 toolTip.SetToolTip(button20, "Switch to the previous found inventory.");
                 toolTip.SetToolTip(button21, "Switch to the next found inventory.");
+                toolTip.SetToolTip(button22, "Render a desired radius of the map.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debufs.");
 
@@ -353,7 +354,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 else if (tabControl1.SelectedTab == tabPage8) // World.
                 {
-                    this.Size = new Size(756, 360);
+                    this.Size = new Size(756, 386);
                 }
                 else if (tabControl1.SelectedTab == tabPage5) // Chat.
                 {
@@ -383,7 +384,7 @@ namespace CoreKeeperInventoryEditor
             }
             else if (tabControl1.SelectedTab == tabPage8) // World.
             {
-                this.Size = new Size(756, 360);
+                this.Size = new Size(756, 386);
             }
             else if (tabControl1.SelectedTab == tabPage5) // Chat.
             {
@@ -704,7 +705,7 @@ namespace CoreKeeperInventoryEditor
             {
                 if (richTextBox1.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox1.Text = "Addresses Loaded: " + AoBScanResultsInventory.Count().ToString() + ", Selected: "  + useAddress + ", [" + res.ToString("X").ToString();
+                    richTextBox1.Text = "Addresses Loaded: " + AoBScanResultsInventory.Count().ToString() + ", Selected: " + useAddress + ", [" + res.ToString("X").ToString();
                 }
                 else
                 {
@@ -11590,7 +11591,8 @@ namespace CoreKeeperInventoryEditor
             GetPlayerLocationAddresses();
         }
 
-        public IEnumerable<long> AoBScanResultsPlayerLocationTemp;
+        public IEnumerable<long> AoBScanResultsPlayerLocationFirst;
+        public IEnumerable<long> AoBScanResultsPlayerLocationSecond;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -11620,10 +11622,10 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerLocationTemp = await MemLib.AoBScan("?? CC CC ?? 00 00 00 00 ?? 99 D9 3F", true, true);
+            AoBScanResultsPlayerLocationFirst = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?0 ?? ?? ?? ?? 0? 00 00 ?0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0? ?0 ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? 0? ?? ?? ?0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?0 ?? ?? ?? ?? 0? ?? ?? 00 00 ?0 ?? 00 00", true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerLocationTemp.Count() < 100)
+            if (AoBScanResultsPlayerLocationFirst.Count() < 1)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -11641,26 +11643,31 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
-                AoBScanResultsPlayerLocationTemp = null;
+                AoBScanResultsPlayerLocationFirst = null;
+                AoBScanResultsPlayerLocationSecond = null;
 
                 // Display error message.
                 MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Reset progress bar.
-            progressBar4.Value = 50;
+            // Update the progress bar.
+            progressBar4.Value = 25;
 
             // Display info message.
             MessageBox.Show("Now stand in the 'Glurch the Abominous Mass's entrance.\r\rPress 'ok' when ready!", "SUCCESS - STEP 2 OF 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Reset progress bar.
+            // Update the progress bar.
+            progressBar4.Value = 50;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsPlayerLocationSecond = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 CD CC 0C 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?0 ?? ?? ?? ?? 0? 00 00 ?0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0? ?0 ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? 0? ?? ?? ?0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?0 ?? ?? ?? ?? 0? ?? ?? 00 00 ?0 ?? 00 00", true, true);
+
+            // Reset the progress bar.
             progressBar4.Value = 0;
 
             // Re-scan results x times to clear invalid addresses.
             bool firstRun = true;
-            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationTemp);
-            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationTemp);
             for (int a = 0; a < scanTimes; a++)
             {
                 // Skip the first loop.
@@ -11675,36 +11682,15 @@ namespace CoreKeeperInventoryEditor
                     firstRun = false;
                 }
 
-                foreach (long res in resultLocationsTemp)
-                {
-                    // Get byte offsets.
-                    // string byteTwo = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                    // string byteThree = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
-                    string byteFive = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                    string byteSix = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
-                    string byteSeven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("6", NumberStyles.Integer)).ToString("X");
-                    string byteEight = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("7", NumberStyles.Integer)).ToString("X");
-                    // string byteTen = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("9", NumberStyles.Integer)).ToString("X");
-                    // string byteEleven = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.Integer)).ToString("X");
-                    string byteTwelve = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("11", NumberStyles.Integer)).ToString("X");
-
-                    // Check if value does not exist.
-                    if (MemLib.ReadByte(byteFive).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSix).ToString("X").ToString() != "0" || MemLib.ReadByte(byteSeven).ToString("X").ToString() != "0" || MemLib.ReadByte(byteEight).ToString("X").ToString() != "0" || MemLib.ReadByte(byteTwelve).ToString("X").ToString() != "41")
-                    {
-                        // Result does not match the value it needs to be, remove it.
-                        resultLocations.Remove(res);
-                    }
-                }
+                // Keep duplicates and update the IEnumerable.
+                AoBScanResultsPlayerLocation = AoBScanResultsPlayerLocationFirst.Intersect(AoBScanResultsPlayerLocationSecond);
 
                 // Progress the progress.
                 progressBar4.PerformStep();
             }
 
-            // Update the IEnumerable.
-            AoBScanResultsPlayerLocation = resultLocations;
-
             // If the count is less then five, the scan had an error.
-            if (AoBScanResultsPlayerLocation.Count() < 5)
+            if (AoBScanResultsPlayerLocation.Count() < 1)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -11722,7 +11708,8 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
-                AoBScanResultsPlayerLocationTemp = null;
+                AoBScanResultsPlayerLocationFirst = null;
+                AoBScanResultsPlayerLocationSecond = null;
 
                 // Display error message.
                 MessageBox.Show("You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -11756,6 +11743,123 @@ namespace CoreKeeperInventoryEditor
             // Hide progressbar.
             progressBar4.Visible = false;
         }
+
+        #region Render Map
+
+        // Rebnder the map.
+        private async void Button22_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerLocation == null)
+            {
+                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Calculate time and primpt user.
+            int calculateCount = 0;
+
+            // Get each XY value within x radius of player.
+            float calculateAxisX = 0 - (int)numericUpDown14.Value;
+            while (calculateAxisX < (int)numericUpDown14.Value + 0)
+            {
+                float calculateAxisY = 0 - (int)numericUpDown14.Value;
+                while (calculateAxisY < (int)numericUpDown14.Value + 0)
+                {
+                    calculateCount++;
+                    calculateAxisY++;
+                }
+
+                calculateAxisX += 10;
+            }
+            if (MessageBox.Show("This operaration will take " + ((calculateCount * 250) / 60000) + " minutes.\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                // User cancled, exit void.
+                return;
+            }
+
+            // Change button to indicate loading.
+            button22.Text = "Loading...";
+            button22.Enabled = false;
+            button22.Visible = false;
+
+            // Define players initial position.
+            var initialres = AoBScanResultsPlayerLocation.Last();
+            Vector2 initialPosition = new Vector2(MemLib.ReadFloat(initialres.ToString("X").ToString()), MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X")));
+
+            // Define entree values.
+            Vector2 localPosition = initialPosition;
+            float Radius = (int)numericUpDown14.Value;
+            int Count = 0;
+
+            // Get each XY value within x radius of player.
+            float AxisX = localPosition.X - Radius;
+            while (AxisX < Radius + localPosition.X)
+            {
+                float AxisY = localPosition.Y - Radius;
+                while (AxisY < Radius + localPosition.Y)
+                {
+                    // Define current position.
+                    Vector2 newPosition = new Vector2(AxisX, AxisY);
+
+                    // Iterate through each found address and update the players position.
+                    foreach (long res in AoBScanResultsPlayerLocation)
+                    {
+                        // Get address from loop.
+                        string playerX = res.ToString("X").ToString();
+                        string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                        // Send player to X.
+                        MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
+
+                        // Send player to Y.
+                        MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
+                    }
+
+                    // Add a cooldown.
+                    await Task.Delay((int)numericUpDown15.Value);
+
+                    // Add one to total count.
+                    Count++;
+                    AxisY++;
+                }
+
+                AxisX += 10;
+            }
+
+            // Enable the stop button.
+            button22.Text = "Teleporting...";
+
+            // Send the player back to the starting position.
+            foreach (long res in AoBScanResultsPlayerLocation)
+            {
+                // Get address from loop.
+                string playerX = res.ToString("X").ToString();
+                string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                // Send player to X.
+                MemLib.WriteMemory(playerX, "float", initialPosition.X.ToString());
+
+                // Send player to Y.
+                MemLib.WriteMemory(playerY, "float", initialPosition.Y.ToString());
+            }
+
+            // Change button to indicate loading.
+            button22.Text = "Render Map";
+            button22.Enabled = true;
+            button22.Visible = true;
+
+            MessageBox.Show(Count + " have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        #endregion // End render map.
+
         #endregion // End world tool addresses.
 
         #region Remove Ground Items
@@ -12017,7 +12121,7 @@ namespace CoreKeeperInventoryEditor
         #endregion // End teleport player.
 
         #region Get World Information
-        
+
         // Get world information.
         private async void Button16_Click(object sender, EventArgs e)
         {
@@ -12913,13 +13017,13 @@ namespace CoreKeeperInventoryEditor
                 button7.Enabled = true;
 
                 // Reset richtextbox.
-                richTextBox4.Text = "Welcome to the chat commands! Available CMDS are below."+ Environment.NewLine + Environment.NewLine +
-                    "/item [type] [amount] [variation] - Give the player an item." + Environment.NewLine + 
-                    "/clearground - Remove ground items." + Environment.NewLine + 
-                    "/cls - Clear the console." + Environment.NewLine + 
-                    "/mode [worldName] [difficutly] - Change the world difficutly." + Environment.NewLine + 
+                richTextBox4.Text = "Welcome to the chat commands! Available CMDS are below." + Environment.NewLine + Environment.NewLine +
+                    "/item [type] [amount] [variation] - Give the player an item." + Environment.NewLine +
+                    "/clearground - Remove ground items." + Environment.NewLine +
+                    "/cls - Clear the console." + Environment.NewLine +
+                    "/mode [worldName] [difficutly] - Change the world difficutly." + Environment.NewLine +
                     "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
-                richTextBox4.AppendText("Any captured chat messages will appear here." + Environment.NewLine + 
+                richTextBox4.AppendText("Any captured chat messages will appear here." + Environment.NewLine +
                     "------------------------------------------------------------------------------------------------------------" + Environment.NewLine);
 
                 // Advance progress bar.
