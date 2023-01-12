@@ -2160,7 +2160,7 @@ namespace CoreKeeperInventoryEditor
             this.numericUpDown15.Size = new System.Drawing.Size(71, 20);
             this.numericUpDown15.TabIndex = 32;
             this.numericUpDown15.Value = new decimal(new int[] {
-            200,
+            300,
             0,
             0,
             0});
