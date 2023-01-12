@@ -11779,7 +11779,7 @@ namespace CoreKeeperInventoryEditor
 
                 calculateAxisX += 10;
             }
-            if (MessageBox.Show("This operaration will take " + ((calculateCount * 250) / 60000) + " minutes.\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if (MessageBox.Show("This operaration will take " + ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
                 // User cancled, exit void.
                 return;
