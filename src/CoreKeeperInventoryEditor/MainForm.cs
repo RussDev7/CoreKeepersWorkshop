@@ -11604,6 +11604,7 @@ namespace CoreKeeperInventoryEditor
 
         public IEnumerable<long> AoBScanResultsPlayerLocationFirst;
         public IEnumerable<long> AoBScanResultsPlayerLocationSecond;
+        public IEnumerable<long> AoBScanResultsPlayerToolsCache;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -11775,6 +11776,13 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Calculate time and primpt user.
             int calculateCount = 0;
 
@@ -11810,6 +11818,11 @@ namespace CoreKeeperInventoryEditor
             float Radius = (int)numericUpDown14.Value;
             int Count = 0;
 
+            // Get the noclip addresses.
+            AoBScanResultsPlayerToolsCache = AoBScanResultsPlayerTools; // Save player tools encase it changes.
+            string noclipAddressCache = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
+            string noclipOriginalValueCache = MemLib.ReadUInt(noclipAddressCache).ToString();
+
             // Get each XY value within x radius of player.
             float AxisX = localPosition.X - Radius;
             while (AxisX < Radius + localPosition.X)
@@ -11833,6 +11846,10 @@ namespace CoreKeeperInventoryEditor
                         // Send player to Y.
                         MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
                     }
+
+                    // Reset the stuck in wall kill timer.
+                    MemLib.WriteMemory(noclipAddressCache, "int", "0");
+                    MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
 
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
