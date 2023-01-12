@@ -1,8 +1,10 @@
 Changes Since v1.3.4.4
 ===========================================================
 - Fixed addresses with teleport player.
+- Fixed enter key within player teleport numericupdowns.
 
 + Added a render map button.
++ Editing or adding items now reloads the inventory.
 
 Changes Since v1.3.4.3
 ===========================================================
