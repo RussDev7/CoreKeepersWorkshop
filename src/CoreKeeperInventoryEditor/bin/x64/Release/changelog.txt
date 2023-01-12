@@ -1,3 +1,9 @@
+Changes Since v1.3.4.4
+===========================================================
+- Fixed addresses with teleport player.
+
++ Added a render map button.
+
 Changes Since v1.3.4.3
 ===========================================================
 - Tweaked the addresses for the automatic fishing bot.
