@@ -11788,7 +11788,6 @@ namespace CoreKeeperInventoryEditor
             // Change button to indicate loading.
             button22.Text = "Loading...";
             button22.Enabled = false;
-            button22.Visible = false;
 
             // Define players initial position.
             var initialres = AoBScanResultsPlayerLocation.Last();
@@ -11854,7 +11853,6 @@ namespace CoreKeeperInventoryEditor
             // Change button to indicate loading.
             button22.Text = "Render Map";
             button22.Enabled = true;
-            button22.Visible = true;
 
             MessageBox.Show(Count + " have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
