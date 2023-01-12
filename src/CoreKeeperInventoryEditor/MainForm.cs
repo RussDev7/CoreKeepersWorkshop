@@ -103,9 +103,9 @@ namespace CoreKeeperInventoryEditor
                 @"// Here we give thanks to those who have helped the project grow!" + Environment.NewLine,
                 @"// This project would never have grown if not for the following:" + Environment.NewLine + Environment.NewLine,
 
-                @"1) ultimaton2	- Most helpful debugger in the projects lifetime." + Environment.NewLine,
-                @"2) ZeroGravitas	- Helped get food tested!" + Environment.NewLine,
-                @"3) Roupiks	- Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
+                @"1) ultimaton2    - Most helpful debugger in the projects lifetime." + Environment.NewLine,
+                @"2) ZeroGravitas    - Helped get food tested!" + Environment.NewLine,
+                @"3) Roupiks    - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
 
                 @"Honorable Mentions:" + Environment.NewLine,
                 @"BourbonCrow, puxxy5layer, Flux, pharuxtan, Iskrownik, Yumiko Abe, edgar131, Ice",
@@ -231,6 +231,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown5, "Change the y-axis world position to be teleported on.");
                 toolTip.SetToolTip(numericUpDown6, "Change the amount of power the buff will contain.");
                 toolTip.SetToolTip(numericUpDown7, "Change the amount of time the buff will be active for.");
+                toolTip.SetToolTip(numericUpDown14, "Change the radius in tile to render around the player.");
+                toolTip.SetToolTip(numericUpDown15, "Change the cooldown time (miliseconds) before the next teleport.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -10200,6 +10202,9 @@ namespace CoreKeeperInventoryEditor
 
                     // Spawn the item.
                     AddItemToInv(slotNumber, type: itemType, amount: itemAmount, variation: itemVariation, Overwrite: itemOverwrite);
+
+                    // Reload Inventory. Added: v1.3.4.5.
+                    AddItemToInv(loadInventory: true);
                 }
                 else if (e.Button == MouseButtons.Middle) // Get item stats.
                 {
@@ -10208,6 +10213,9 @@ namespace CoreKeeperInventoryEditor
 
                     // Get item stats.
                     AddItemToInv(slotNumber, GetItemInfo: true);
+
+                    // Reload Inventory. Added: v1.3.4.5.
+                    AddItemToInv(loadInventory: true);
                 }
                 else if (e.Button == MouseButtons.Right) // Change item amount value.
                 {
@@ -10255,6 +10263,9 @@ namespace CoreKeeperInventoryEditor
 
                     // Edit the item.
                     AddItemToInv(slotNumber, type: itemType, amount: itemAmount, variation: itemVariation, Overwrite: true);
+
+                    // Reload Inventory. Added: v1.3.4.5.
+                    AddItemToInv(loadInventory: true);
                 }
             }
         }
