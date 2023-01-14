@@ -12085,7 +12085,8 @@ namespace CoreKeeperInventoryEditor
                             cancleRenderingOperation = false;
                             button22.Enabled = true;
                             button22.Visible = true;
-                            button28.Visible = false;
+                            button22.Text = "Auto Map Renderer";
+                            button28.Visible = false; // Hide cancle button.
 
                             // End look.
                             goto exitLoop;
@@ -12099,8 +12100,12 @@ namespace CoreKeeperInventoryEditor
             // Leave the loop and put the player to spawn.
             exitLoop:;
 
-            // Enable the stop button.
+            // Reenable controls.
+            cancleRenderingOperation = false;
+            button22.Enabled = true;
+            button22.Visible = true;
             button22.Text = "Auto Map Renderer";
+            button28.Visible = false; // Hide cancle button.
 
             // Send the player back to the starting position.
             foreach (long res in AoBScanResultsPlayerLocation)
