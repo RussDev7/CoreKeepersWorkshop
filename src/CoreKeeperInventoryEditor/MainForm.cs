@@ -41,8 +41,9 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerTools;
         public IEnumerable<long> AoBScanResultsPlayerLocation;
         public IEnumerable<long> AoBScanResultsPlayerBuffs;
-        public IEnumerable<long> AoBScanResultsWorldData;
+        public IEnumerable<long> AoBScanResultsTeleportData;
         public IEnumerable<long> AoBScanResultsFishingData;
+        public IEnumerable<long> AoBScanResultsMapReveal;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -108,7 +109,7 @@ namespace CoreKeeperInventoryEditor
                 @"3) Roupiks    - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
 
                 @"Honorable Mentions:" + Environment.NewLine,
-                @"BourbonCrow, puxxy5layer, Flux, pharuxtan, Iskrownik, Yumiko Abe, edgar131, Ice",
+                @"BourbonCrow, puxxy5layer, Flux, pharuxtan, Iskrownik, Yumiko Abe, Ice, Kremnev8",
                 });
                 #endregion
 
@@ -204,9 +205,13 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button19, "Automatically fishes for you. First throw reel into water.");
                 toolTip.SetToolTip(button20, "Switch to the previous found inventory.");
                 toolTip.SetToolTip(button21, "Switch to the next found inventory.");
-                toolTip.SetToolTip(button22, "Render a desired radius of the map.");
+                toolTip.SetToolTip(button22, "Automatically render very large areas around the player.");
+                toolTip.SetToolTip(button25, "Restore the default range and disable full map brightness.");
+                toolTip.SetToolTip(button27, "Turn on custom map render distance with full map brightness.");
+                toolTip.SetToolTip(button28, "Cancel the map rendering operation.");
+                toolTip.SetToolTip(button30, "Get the required addresses for custom map rendering.");
 
-                toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debufs.");
+                toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
 
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(richTextBox6, "A list of all found addresses. Used mostly for debugging.");
@@ -231,8 +236,9 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown5, "Change the y-axis world position to be teleported on.");
                 toolTip.SetToolTip(numericUpDown6, "Change the amount of power the buff will contain.");
                 toolTip.SetToolTip(numericUpDown7, "Change the amount of time the buff will be active for.");
-                toolTip.SetToolTip(numericUpDown14, "Change the radius in tile to render around the player.");
-                toolTip.SetToolTip(numericUpDown15, "Change the cooldown time (miliseconds) before the next teleport.");
+                toolTip.SetToolTip(numericUpDown14, "The (radius x range) of tiles to render around the player.");
+                toolTip.SetToolTip(numericUpDown15, "Change the cooldown time (milliseconds) before the next teleport.");
+                toolTip.SetToolTip(numericUpDown17, "Set the range in tiles to render the map by.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -356,7 +362,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 else if (tabControl1.SelectedTab == tabPage8) // World.
                 {
-                    this.Size = new Size(756, 386);
+                    this.Size = new Size(756, 476);
                 }
                 else if (tabControl1.SelectedTab == tabPage5) // Chat.
                 {
@@ -386,7 +392,7 @@ namespace CoreKeeperInventoryEditor
             }
             else if (tabControl1.SelectedTab == tabPage8) // World.
             {
-                this.Size = new Size(756, 386);
+                this.Size = new Size(756, 476);
             }
             else if (tabControl1.SelectedTab == tabPage5) // Chat.
             {
@@ -11590,9 +11596,9 @@ namespace CoreKeeperInventoryEditor
 
         #region World Tab
 
-        #region World Tool Addresses
+        #region Teleport Tool Addresses
 
-        // Get world addresses.
+        // Get Teleport Player addresses.
         private void Button11_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
@@ -11604,6 +11610,7 @@ namespace CoreKeeperInventoryEditor
 
         public IEnumerable<long> AoBScanResultsPlayerLocationFirst;
         public IEnumerable<long> AoBScanResultsPlayerLocationSecond;
+        public IEnumerable<long> AoBScanResultsPlayerToolsCache;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -11633,7 +11640,7 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerLocationFirst = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0? 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0? ?0 ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? 0? ?? ?? ?0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?0 ?? ?? ?? ?? 0? ?? ?? 00 00 ?0 ?? 00 00", true, true);
+            AoBScanResultsPlayerLocationFirst = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00", true, true);
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsPlayerLocationFirst.Count() < 1)
@@ -11672,7 +11679,7 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 50;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerLocationSecond = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 CD CC 0C 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0? 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0? ?0 ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? 0? ?? ?? ?0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?0 ?? ?? ?? ?? 0? ?? ?? 00 00 ?0 ?? 00 00", true, true);
+            AoBScanResultsPlayerLocationSecond = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 CD CC 0C 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00", true, true);
 
             // Reset the progress bar.
             progressBar4.Value = 0;
@@ -11732,7 +11739,7 @@ namespace CoreKeeperInventoryEditor
             {
                 if (richTextBox7.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox7.Text = "World Addresses Loaded: " + AoBScanResultsPlayerLocation.Count().ToString() + " [" + res.ToString("X").ToString();
+                    richTextBox7.Text = "Teleport Addresses Loaded: " + AoBScanResultsPlayerLocation.Count().ToString() + " [" + res.ToString("X").ToString();
                 }
                 else
                 {
@@ -11756,9 +11763,196 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End world tool addresses.
 
-        #region Render Map
+        #region Map Rendering Addresses
 
-        // Rebnder the map.
+        // Get map rendering addresses.
+        private void Button30_Click(object sender, EventArgs e)
+        {
+            // Reset progress bar.
+            progressBar6.Value = 0;
+
+            // Load addresses.
+            GetMapRevealAddresses();
+        }
+
+        public string SetRevealRangeAddress = "GameAssembly.dll+381D950";
+        public async void GetMapRevealAddresses()
+        { 
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Name button to indicate loading.
+            button30.Text = "Loading...";
+
+            // Disable button to prevent spamming.
+            // button11.Enabled = false;
+            groupBox8.Enabled = false;
+
+            // Reset textbox.
+            richTextBox9.Text = "Addresses Loaded: 0";
+
+            // Offset the progress bar to show it's working.
+            progressBar6.Visible = true;
+            progressBar6.Maximum = 100;
+            progressBar6.Step = 80;
+            progressBar6.Value = 10;
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsMapReveal = await MemLib.AoBScan("04 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 D4 01 00 04 00 00 00", true, true);
+
+            // Perform progressbar step.
+            progressBar6.PerformStep();
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsMapReveal.Count() < 1)
+            {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar6.Value = 0;
+                progressBar6.Visible = false;
+
+                // Rename button back to defualt.
+                button30.Text = "Get Addresses";
+
+                // Re-enable button.
+                button30.Enabled = true;
+                groupBox8.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsMapReveal = null;
+
+                // Display error message.
+                MessageBox.Show("Could not find the reveal map addresses!!\r\rTry restarting your game.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Update richtextbox with found addresses.
+            foreach (long res in AoBScanResultsMapReveal)
+            {
+                if (richTextBox9.Text == "Addresses Loaded: 0")
+                {
+                    richTextBox9.Text = "Render Addresses Loaded: " + AoBScanResultsMapReveal.Count().ToString() + " [" + res.ToString("X").ToString();
+                }
+                else
+                {
+                    richTextBox9.Text += ", " + res.ToString("X").ToString();
+                }
+            }
+            richTextBox9.Text += "]";
+
+            // Re-enable button.
+            // button11.Enabled = true;
+            groupBox8.Enabled = true;
+
+            // Rename button back to defualt.
+            button30.Text = "Get Addresses";
+
+            // Complete progress bar.
+            progressBar6.Value = 100;
+
+            // Hide progressbar.
+            progressBar6.Visible = false;
+        }
+        #endregion // End map rendering addresses.
+
+        #region Set Render Distance
+
+        // Set custom render distaance.
+        private void Button27_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsMapReveal == null)
+            {
+                MessageBox.Show("You need to first scan for the map rendering addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Reset progress bar.
+            progressBar6.Visible = true;
+            progressBar6.Value = 0;
+
+            // Enable custom render.
+            foreach (long res in AoBScanResultsMapReveal)
+            {
+                // Get the offset.
+                string enableAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
+                MemLib.WriteMemory(enableAddress, "int", "1");
+            }
+
+            // Set the custom render.
+            MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
+
+            // Update the progress bar.
+            progressBar6.Value = 100;
+        }
+        #endregion // End set render distance.
+
+        #region Set Defualt Render Distance
+
+        // Restore defualt render.
+        private void Button25_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsMapReveal == null)
+            {
+                MessageBox.Show("You need to first scan for the map rendering addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Reset progress bar.
+            progressBar6.Visible = true;
+            progressBar6.Value = 0;
+
+            // Enable custom render.
+            foreach (long res in AoBScanResultsMapReveal)
+            {
+                // Get the offset.
+                string enableAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
+                MemLib.WriteMemory(enableAddress, "int", "0");
+            }
+
+            // Set the custom render.
+            MemLib.WriteMemory(SetRevealRangeAddress, "float", "12");
+
+            // Update the progress bar.
+            progressBar6.Value = 100;
+        }
+        #endregion // End set defualt render distance.
+
+        #region Auto Render Map
+
+        // Cancle auto renderer.
+        private void Button28_Click(object sender, EventArgs e)
+        {
+            // Ensure the button is visable first.
+            if (button28.Visible)
+            {
+                cancleRenderingOperation = true;
+            }
+        }
+
+        // Auto rebnder the map.
+        public bool cancleRenderingOperation = false;
         private async void Button22_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -11771,27 +11965,58 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsPlayerLocation == null)
             {
-                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsMapReveal == null)
+            {
+                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Define players initial position.
+            var initialres = AoBScanResultsPlayerLocation.Last();
+            Vector2 initialPosition = new Vector2(MemLib.ReadFloat(initialres.ToString("X").ToString()), MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X")));
+
+            // Define entree values.
+            Vector2 localPosition = initialPosition;
+            int radius = (int)numericUpDown14.Value;
+            int count = 0;
+
+            // Get each XY value within x radius of player.
+            int x = (int)localPosition.X;
+            int y = (int)localPosition.Y;
+
+            // Do hollow mode true or false.
+            bool hollow = false;
 
             // Calculate time and primpt user.
             int calculateCount = 0;
 
-            // Get each XY value within x radius of player.
-            float calculateAxisX = 0 - (int)numericUpDown14.Value;
-            while (calculateAxisX < (int)numericUpDown14.Value + 0)
+            // Calculate the total time required.
+            for (int i = x - radius; i <= x + radius;)
             {
-                float calculateAxisY = 0 - (int)numericUpDown14.Value;
-                while (calculateAxisY < (int)numericUpDown14.Value + 0)
+                for (int j = y - radius; j <= y + radius;)
                 {
-                    calculateCount++;
-                    calculateAxisY++;
+                    double num = (double)((x - i) * (x - i) + (y - j) * (y - j));
+                    if (num < (double)(radius * radius) && (!hollow || num >= (double)((radius - 1) * (radius - 1))))
+                    {
+                        calculateCount++;
+                    }
+                    j += ((int)numericUpDown17.Value / 8); // Y. -> Range
                 }
-
-                calculateAxisX += 10;
+                i += (int)numericUpDown17.Value; // X. -> Range
             }
-            if (MessageBox.Show("This operaration will take " + ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if (MessageBox.Show("This operaration will take ~" + ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
                 // User cancled, exit void.
                 return;
@@ -11800,53 +12025,82 @@ namespace CoreKeeperInventoryEditor
             // Change button to indicate loading.
             button22.Text = "Loading...";
             button22.Enabled = false;
+            button22.Visible = false;
+            button28.Visible = true;
+            cancleRenderingOperation = false;
 
-            // Define players initial position.
-            var initialres = AoBScanResultsPlayerLocation.Last();
-            Vector2 initialPosition = new Vector2(MemLib.ReadFloat(initialres.ToString("X").ToString()), MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X")));
-
-            // Define entree values.
-            Vector2 localPosition = initialPosition;
-            float Radius = (int)numericUpDown14.Value;
-            int Count = 0;
-
-            // Get each XY value within x radius of player.
-            float AxisX = localPosition.X - Radius;
-            while (AxisX < Radius + localPosition.X)
+            // Enable custom render.
+            foreach (long res in AoBScanResultsMapReveal)
             {
-                float AxisY = localPosition.Y - Radius;
-                while (AxisY < Radius + localPosition.Y)
-                {
-                    // Define current position.
-                    Vector2 newPosition = new Vector2(AxisX, AxisY);
-
-                    // Iterate through each found address and update the players position.
-                    foreach (long res in AoBScanResultsPlayerLocation)
-                    {
-                        // Get address from loop.
-                        string playerX = res.ToString("X").ToString();
-                        string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-
-                        // Send player to X.
-                        MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
-
-                        // Send player to Y.
-                        MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
-                    }
-
-                    // Add a cooldown.
-                    await Task.Delay((int)numericUpDown15.Value);
-
-                    // Add one to total count.
-                    Count++;
-                    AxisY++;
-                }
-
-                AxisX += 10;
+                // Get the offset.
+                string enableAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
+                MemLib.WriteMemory(enableAddress, "int", "1");
             }
 
+            // Set the custom render.
+            MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
+
+            // Get the noclip addresses.
+            AoBScanResultsPlayerToolsCache = AoBScanResultsPlayerTools; // Save player tools encase it changes.
+            string noclipAddressCache = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
+            string noclipOriginalValueCache = MemLib.ReadUInt(noclipAddressCache).ToString();
+
+            // Math for creating a filled / hollow circle.
+            for (int i = x - radius; i <= x + radius;)
+            {
+                for (int j = y - radius; j <= y + radius;)
+                {
+                    double num = (double)((x - i) * (x - i) + (y - j) * (y - j));
+                    if (num < (double)(radius * radius) && (!hollow || num >= (double)((radius - 1) * (radius - 1))))
+                    {
+                        // Define current position.
+                        Vector2 newPosition = new Vector2(i, j);
+
+                        // Iterate through each found address and update the players position.
+                        foreach (long res in AoBScanResultsPlayerLocation)
+                        {
+                            // Get address from loop.
+                            string playerX = res.ToString("X").ToString();
+                            string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                            // Send player to X.
+                            MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
+
+                            // Send player to Y.
+                            MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
+                        }
+
+                        // Reset the stuck in wall kill timer.
+                        MemLib.WriteMemory(noclipAddressCache, "int", "0");
+                        await Task.Delay(20);
+                        MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
+
+                        // Add a cooldown.
+                        await Task.Delay((int)numericUpDown15.Value);
+
+                        // Cancle the rendering operation.
+                        if (cancleRenderingOperation)
+                        {
+                            // Reenable controls.
+                            cancleRenderingOperation = false;
+                            button22.Enabled = true;
+                            button22.Visible = true;
+                            button28.Visible = false;
+
+                            // End look.
+                            goto exitLoop;
+                        }
+                    }
+                    j += ((int)numericUpDown17.Value / 8); // Y. -> Range
+                }
+                i += (int)numericUpDown17.Value; // X. -> Range
+            }
+
+            // Leave the loop and put the player to spawn.
+            exitLoop:;
+
             // Enable the stop button.
-            button22.Text = "Teleporting...";
+            button22.Text = "Auto Map Renderer";
 
             // Send the player back to the starting position.
             foreach (long res in AoBScanResultsPlayerLocation)
@@ -11866,7 +12120,19 @@ namespace CoreKeeperInventoryEditor
             button22.Text = "Render Map";
             button22.Enabled = true;
 
-            MessageBox.Show(Count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            // Calculate the total tiles and display result.
+            for (int i = x - radius; i <= x + radius; i++)
+            {
+                for (int j = y - radius; j <= y + radius; j++)
+                {
+                    double num = (double)((x - i) * (x - i) + (y - j) * (y - j));
+                    if (num < (double)(radius * radius) && (!hollow || num >= (double)((radius - 1) * (radius - 1))))
+                    {
+                        count++;
+                    }
+                }
+            }
+            MessageBox.Show("~" + count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         #endregion // End render map.
 
@@ -12010,7 +12276,7 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsPlayerLocation == null)
             {
-                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12053,7 +12319,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure pointers are found.
                 if (AoBScanResultsPlayerLocation == null)
                 {
-                    MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -12097,7 +12363,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure pointers are found.
                 if (AoBScanResultsPlayerLocation == null)
                 {
-                    MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -12223,10 +12489,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsWorldData = await MemLib.AoBScan(string.Join(string.Empty, builder.ToString().Select((x, i) => i > 0 && i % 2 == 0 ? string.Format(" {0}", x) : x.ToString())), true, true);
+            AoBScanResultsTeleportData = await MemLib.AoBScan(string.Join(string.Empty, builder.ToString().Select((x, i) => i > 0 && i % 2 == 0 ? string.Format(" {0}", x) : x.ToString())), true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsWorldData.Count() < 1)
+            if (AoBScanResultsTeleportData.Count() < 1)
             {
                 // Reset progress bar.
                 progressBar4.Value = 0;
@@ -12240,7 +12506,7 @@ namespace CoreKeeperInventoryEditor
                 textBox3.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsWorldData = null;
+                AoBScanResultsTeleportData = null;
 
                 // Display error message.
                 // MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -12253,12 +12519,12 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+            progressBar4.Step = 100 / AoBScanResultsTeleportData.Count();
 
             // Iterate through each found address.
             string getJsonData = "";
             bool foundData = false;
-            foreach (long res in AoBScanResultsWorldData)
+            foreach (long res in AoBScanResultsTeleportData)
             {
                 // Reset found json data.
                 getJsonData = "";
@@ -12398,9 +12664,9 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsWorldData == null)
+            if (AoBScanResultsTeleportData == null)
             {
-                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12427,9 +12693,9 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsWorldData == null)
+            if (AoBScanResultsTeleportData == null)
             {
-                MessageBox.Show("You need to first scan for the World addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12574,10 +12840,10 @@ namespace CoreKeeperInventoryEditor
             string searchString = year + " " + month + " " + day;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsWorldData = await MemLib.AoBScan(searchString, true, true);
+            AoBScanResultsTeleportData = await MemLib.AoBScan(searchString, true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsWorldData.Count() < 1)
+            if (AoBScanResultsTeleportData.Count() < 1)
             {
                 // Reset progress bar.
                 progressBar4.Value = 0;
@@ -12593,15 +12859,15 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown10.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsWorldData = null;
+                AoBScanResultsTeleportData = null;
                 return;
             }
 
             // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+            progressBar4.Step = 100 / AoBScanResultsTeleportData.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsWorldData)
+            foreach (long res in AoBScanResultsTeleportData)
             {
                 // Get the cirrent base address.
                 string yearAddress = res.ToString("X");
@@ -12704,10 +12970,10 @@ namespace CoreKeeperInventoryEditor
             string searchString = year + " " + month + " " + day;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsWorldData = await MemLib.AoBScan(searchString, true, true);
+            AoBScanResultsTeleportData = await MemLib.AoBScan(searchString, true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsWorldData.Count() < 1)
+            if (AoBScanResultsTeleportData.Count() < 1)
             {
                 // Reset progress bar.
                 progressBar4.Value = 0;
@@ -12723,15 +12989,15 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown13.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsWorldData = null;
+                AoBScanResultsTeleportData = null;
                 return;
             }
 
             // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+            progressBar4.Step = 100 / AoBScanResultsTeleportData.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsWorldData)
+            foreach (long res in AoBScanResultsTeleportData)
             {
                 // Get the cirrent base address.
                 string CrystalOneAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
