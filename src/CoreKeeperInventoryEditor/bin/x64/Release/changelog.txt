@@ -2,8 +2,11 @@ Changes Since v1.3.4.4
 ===========================================================
 - Fixed addresses with teleport player.
 - Fixed enter key within player teleport numericupdowns.
+- Adjusted the background image sizes for the world tab.
+- Misc bugs fixed and improved performance.
 
-+ Added a render map button.
++ Added a set reveal range feature for the map.
++ Added an auto reveal map feature.
 + Editing or adding items now reloads the inventory.
 
 Changes Since v1.3.4.3
