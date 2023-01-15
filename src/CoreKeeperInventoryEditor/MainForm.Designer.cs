@@ -1813,7 +1813,7 @@ namespace CoreKeeperInventoryEditor
             this.numericUpDown15.Size = new System.Drawing.Size(50, 20);
             this.numericUpDown15.TabIndex = 32;
             this.numericUpDown15.Value = new decimal(new int[] {
-            1000,
+            150,
             0,
             0,
             0});
