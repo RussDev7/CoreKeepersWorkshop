@@ -3,6 +3,7 @@ Changes Since v1.3.4.5
 - Redid the auto map renders math to start inwards out.
 - Fixed chat commands progress bar placement.
 - Fixed the cancel rendering button not re-hiding.
+- Fixed the auto map renderer sometimes starting at spawn.
 
 Changes Since v1.3.4.4
 ===========================================================
