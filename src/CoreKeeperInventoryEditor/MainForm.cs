@@ -222,6 +222,9 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith4, "Spacebar will allow the player to pass through walls.");
                 toolTip.SetToolTip(siticoneWinToggleSwith5, "Enabling will keep the players food replenished.");
                 toolTip.SetToolTip(siticoneWinToggleSwith6, "Enabling this will instantly kill the player.");
+                toolTip.SetToolTip(siticoneWinToggleSwith7, "Prevents the diminishing of inventory items.");
+                toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls.");
+                toolTip.SetToolTip(siticoneWinToggleSwith9, "Recalls the player to spawn immediately.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -11592,6 +11595,106 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End infinite resources.
 
+        #region Force Recall
+
+        // Kill the player via suicide.
+        private void SiticoneWinToggleSwith9_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith9.CheckedChanged -= SiticoneWinToggleSwith9_CheckedChanged;
+                siticoneWinToggleSwith9.Checked = false;
+                siticoneWinToggleSwith9.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith9.CheckedChanged -= SiticoneWinToggleSwith9_CheckedChanged;
+                siticoneWinToggleSwith9.Checked = false;
+                siticoneWinToggleSwith9.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Fetch some addresses.
+            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
+            string playerStateSpawnAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("472", NumberStyles.Integer)).ToString("X");
+
+            // Write value.
+            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateSpawnAddress).ToString());
+
+            // Toggle slider.
+            siticoneWinToggleSwith9.CheckedChanged -= SiticoneWinToggleSwith9_CheckedChanged;
+            siticoneWinToggleSwith9.Checked = false;
+            siticoneWinToggleSwith9.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
+        }
+        #endregion // End goto spawn.
+
+        #region Anti Collision
+
+        // Toggle anti collision.
+        string playerStateOriginalValue;
+        private void SiticoneWinToggleSwith8_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith8.CheckedChanged -= SiticoneWinToggleSwith8_CheckedChanged;
+                siticoneWinToggleSwith8.Checked = false;
+                siticoneWinToggleSwith8.CheckedChanged += SiticoneWinToggleSwith8_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith8.CheckedChanged -= SiticoneWinToggleSwith8_CheckedChanged;
+                siticoneWinToggleSwith8.Checked = false;
+                siticoneWinToggleSwith8.CheckedChanged += SiticoneWinToggleSwith8_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            // Get the noclip addresses.
+            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
+            string playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith8.Checked)
+            {
+                // Slider is being toggled on.
+
+                // Read current value.
+                playerStateOriginalValue = MemLib.ReadInt(playerStateAddress).ToString();
+
+                // Write new value.
+                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString()); // Overwrite new value.
+            }
+            else
+            {
+                // Slider is being toggled off.
+
+                // Write value back to original.
+                // Write new value.
+                MemLib.WriteMemory(playerStateAddress, "int", playerStateOriginalValue); // Overwrite new value.
+            }
+        }
+        #endregion // End anti collision.
+
         #endregion // End player tab.
 
         #region World Tab
@@ -12046,8 +12149,12 @@ namespace CoreKeeperInventoryEditor
 
             // Get the noclip addresses.
             AoBScanResultsPlayerToolsCache = AoBScanResultsPlayerTools; // Save player tools encase it changes.
-            string noclipAddressCache = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
-            string noclipOriginalValueCache = MemLib.ReadUInt(noclipAddressCache).ToString();
+            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
+            string playerStateOriginalAddress = playerStateAddress; // Save state for returning later.
+            string playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
+
+            // Enable noclip.
+            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
 
             // Math for creating a filled / hollow circle.
             int x = xoffset;
@@ -12074,11 +12181,6 @@ namespace CoreKeeperInventoryEditor
                         // Send player to Y.
                         MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
                     }
-
-                    // Reset the stuck in wall kill timer.
-                    MemLib.WriteMemory(noclipAddressCache, "int", "0");
-                    await Task.Delay(20);
-                    MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
 
                     // Add to steps completed.
                     stepsCompleted++;
@@ -12123,11 +12225,6 @@ namespace CoreKeeperInventoryEditor
                         // Send player to Y.
                         MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
                     }
-
-                    // Reset the stuck in wall kill timer.
-                    MemLib.WriteMemory(noclipAddressCache, "int", "0");
-                    await Task.Delay(20);
-                    MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
 
                     // Add to steps completed.
                     stepsCompleted++;
@@ -12174,6 +12271,9 @@ namespace CoreKeeperInventoryEditor
                 // Send player to Y.
                 MemLib.WriteMemory(playerY, "float", initialPosition.Y.ToString());
             }
+
+            // Disable noclip.
+            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateOriginalAddress).ToString());
 
             // Change button to indicate loading.
             button22.Text = "Render Map";
