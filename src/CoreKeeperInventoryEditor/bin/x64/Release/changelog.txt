@@ -1,3 +1,7 @@
+Changes Since v1.3.4.5
+===========================================================
+- Redid the auto render map utilities math.
+
 Changes Since v1.3.4.4
 ===========================================================
 - Fixed addresses with teleport player.
