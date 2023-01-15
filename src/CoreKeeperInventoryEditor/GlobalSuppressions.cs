@@ -84,3 +84,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersInfiniteResourcesTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.inventoryInformation")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.Button22_Click(System.Object,System.EventArgs)")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersAntiCollisionTimer")]

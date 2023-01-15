@@ -11177,7 +11177,8 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
+            // Old alternitive address: 124 // Fix 1.3.4.6 15Jan23.
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith4.Checked)
@@ -11642,6 +11643,9 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle anti collision.
         string playerStateOriginalValue;
+        string playerStateAddress;
+        string playerStateNoClipAddress;
+        readonly System.Timers.Timer playersAntiCollisionTimer = new System.Timers.Timer();
         private void SiticoneWinToggleSwith8_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -11670,8 +11674,8 @@ namespace CoreKeeperInventoryEditor
 
             // Get the addresses.
             // Get the noclip addresses.
-            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
-            string playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
+            playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
+            playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith8.Checked)
@@ -11681,17 +11685,29 @@ namespace CoreKeeperInventoryEditor
                 // Read current value.
                 playerStateOriginalValue = MemLib.ReadInt(playerStateAddress).ToString();
 
-                // Write new value.
-                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString()); // Overwrite new value.
+                // Start the timed events.
+                playersAntiCollisionTimer.Interval = 1; // Custom intervals.
+                playersAntiCollisionTimer.Elapsed += new ElapsedEventHandler(PlayersAntiCollisionTimedEvent);
+                playersAntiCollisionTimer.Start();
             }
             else
             {
                 // Slider is being toggled off.
 
+                // Stop the timers.
+                playersAntiCollisionTimer.Stop();
+
                 // Write value back to original.
                 // Write new value.
                 MemLib.WriteMemory(playerStateAddress, "int", playerStateOriginalValue); // Overwrite new value.
             }
+        }
+
+        // Players anti collision timer.
+        private void PlayersAntiCollisionTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Write new value.
+            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString()); // Overwrite new value.
         }
         #endregion // End anti collision.
 
@@ -11769,6 +11785,33 @@ namespace CoreKeeperInventoryEditor
 
                 // Display error message.
                 MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerLocationFirst.Count() > 12)
+            {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button11.Text = "Get Addresses";
+
+                // Re-enable button.
+                button11.Enabled = true;
+                groupBox11.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationFirst = null;
+                AoBScanResultsPlayerLocationSecond = null;
+
+                // Display error message.
+                MessageBox.Show("Woah there! We found too many addresses!\r\rPlease try launching the game as vannila via steam!\rTIP: Some mod managers do not launch it as true vanilla.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
