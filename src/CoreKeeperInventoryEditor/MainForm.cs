@@ -11990,33 +11990,31 @@ namespace CoreKeeperInventoryEditor
             // Define entree values.
             Vector2 localPosition = initialPosition;
             int radius = (int)numericUpDown14.Value;
+            int stepSize = (int)numericUpDown17.Value;
+            double radialMoveScale = 0.1;
+            int stepsCompleted = 0;
             int count = 0;
 
             // Get each XY value within x radius of player.
-            int x = (int)localPosition.X;
-            int y = (int)localPosition.Y;
-
-            // Do hollow mode true or false.
-            bool hollow = false;
+            int xoffset = (int)localPosition.X + 1;
+            int yoffset = (int)localPosition.Y + 1;
 
             // Calculate time and primpt user.
             int calculateCount = 0;
 
             // Calculate the total time required.
-            for (int i = x - radius; i <= x + radius;)
+            for (int r = stepSize; r <= radius; r += stepSize)
             {
-                for (int j = y - radius; j <= y + radius;)
+                double delta = (double)((double)stepSize / (double)r);
+                double theta;
+                for (theta = 0; theta <= 2 * Math.PI; theta += (delta * radialMoveScale))
                 {
-                    double num = (double)((x - i) * (x - i) + (y - j) * (y - j));
-                    if (num < (double)(radius * radius) && (!hollow || num >= (double)((radius - 1) * (radius - 1))))
-                    {
-                        calculateCount++;
-                    }
-                    j += ((int)numericUpDown17.Value / 8); // Y. -> Range
+                    calculateCount++;
                 }
-                i += (int)numericUpDown17.Value; // X. -> Range
             }
-            if (MessageBox.Show("This operaration will take ~" + ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            string time = (((calculateCount * (int)numericUpDown15.Value) / 60000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) + " hours." : ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.";
+            time = (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) >= 24) ? (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) / 24) + " days." : time;
+            if (MessageBox.Show("This operaration will take ~" + time + "\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
                 // User cancled, exit void.
                 return;
@@ -12046,55 +12044,57 @@ namespace CoreKeeperInventoryEditor
             string noclipOriginalValueCache = MemLib.ReadUInt(noclipAddressCache).ToString();
 
             // Math for creating a filled / hollow circle.
-            for (int i = x - radius; i <= x + radius;)
+            for (int r = stepSize; r <= radius; r += stepSize)
             {
-                for (int j = y - radius; j <= y + radius;)
+                double delta = (double)((double)stepSize / (double)r);
+                double theta;
+                for (theta = 0; theta <= 2 * Math.PI; theta += (delta * radialMoveScale))
                 {
-                    double num = (double)((x - i) * (x - i) + (y - j) * (y - j));
-                    if (num < (double)(radius * radius) && (!hollow || num >= (double)((radius - 1) * (radius - 1))))
+                    int x = (int)(Math.Sin(theta) * r) + xoffset;
+                    int y = (int)(Math.Cos(theta) * r) + yoffset;
+
+                    // Define current position.
+                    Vector2 newPosition = new Vector2(x, y);
+
+                    // Iterate through each found address and update the players position.
+                    foreach (long res in AoBScanResultsPlayerLocation)
                     {
-                        // Define current position.
-                        Vector2 newPosition = new Vector2(i, j);
+                        // Get address from loop.
+                        string playerX = res.ToString("X").ToString();
+                        string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
-                        // Iterate through each found address and update the players position.
-                        foreach (long res in AoBScanResultsPlayerLocation)
-                        {
-                            // Get address from loop.
-                            string playerX = res.ToString("X").ToString();
-                            string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                        // Send player to X.
+                        MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
 
-                            // Send player to X.
-                            MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
-
-                            // Send player to Y.
-                            MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
-                        }
-
-                        // Reset the stuck in wall kill timer.
-                        MemLib.WriteMemory(noclipAddressCache, "int", "0");
-                        await Task.Delay(20);
-                        MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
-
-                        // Add a cooldown.
-                        await Task.Delay((int)numericUpDown15.Value);
-
-                        // Cancle the rendering operation.
-                        if (cancleRenderingOperation)
-                        {
-                            // Reenable controls.
-                            cancleRenderingOperation = false;
-                            button22.Enabled = true;
-                            button22.Visible = true;
-                            button22.Text = "Auto Map Renderer";
-                            button28.Visible = false; // Hide cancle button.
-
-                            // End look.
-                            goto exitLoop;
-                        }
+                        // Send player to Y.
+                        MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
                     }
-                    j += ((int)numericUpDown17.Value / 8); // Y. -> Range
+
+                    // Reset the stuck in wall kill timer.
+                    MemLib.WriteMemory(noclipAddressCache, "int", "0");
+                    await Task.Delay(20);
+                    MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
+
+                    // Add to steps completed.
+                    stepsCompleted++;
+
+                    // Add a cooldown.
+                    await Task.Delay((int)numericUpDown15.Value);
+
+                    // Cancle the rendering operation.
+                    if (cancleRenderingOperation)
+                    {
+                        // Reenable controls.
+                        cancleRenderingOperation = false;
+                        button22.Enabled = true;
+                        button22.Visible = true;
+                        button22.Text = "Auto Map Renderer";
+                        button28.Visible = false; // Hide cancle button.
+
+                        // End look.
+                        goto exitLoop;
+                    }
                 }
-                i += (int)numericUpDown17.Value; // X. -> Range
             }
 
             // Leave the loop and put the player to spawn.
@@ -12126,18 +12126,23 @@ namespace CoreKeeperInventoryEditor
             button22.Enabled = true;
 
             // Calculate the total tiles and display result.
-            for (int i = x - radius; i <= x + radius; i++)
+            for (int r = stepSize; r <= radius; r += stepSize)
             {
-                for (int j = y - radius; j <= y + radius; j++)
+                double delta = (double)((double)stepSize / (double)r);
+                double theta;
+                for (theta = 0; theta <= 2 * Math.PI; theta += (delta * radialMoveScale))
                 {
-                    double num = (double)((x - i) * (x - i) + (y - j) * (y - j));
-                    if (num < (double)(radius * radius) && (!hollow || num >= (double)((radius - 1) * (radius - 1))))
+                    if (count >= stepsCompleted)
                     {
-                        count++;
+                        goto FinishCounting;
                     }
+                    count++;
                 }
             }
-            MessageBox.Show("~" + count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            // Leave counting loop.
+            FinishCounting:;
+            MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         #endregion // End render map.
 
