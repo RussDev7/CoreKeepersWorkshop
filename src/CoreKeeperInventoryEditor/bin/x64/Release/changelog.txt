@@ -5,6 +5,9 @@ Changes Since v1.3.4.5
 - Fixed the cancel rendering button not re-hiding.
 - Fixed the auto map renderer sometimes starting at spawn.
 
++ Added an anti collision to the players tools.
++ Added force recall to the player tools.
+
 Changes Since v1.3.4.4
 ===========================================================
 - Fixed addresses with teleport player.
