@@ -11984,8 +11984,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Define players initial position.
-            var initialres = AoBScanResultsPlayerLocation.Last();
-            Vector2 initialPosition = new Vector2(MemLib.ReadFloat(initialres.ToString("X").ToString()), MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X")));
+            var initialres = AoBScanResultsPlayerTools.Last();
+            float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("152", NumberStyles.Integer)).ToString("X"));
+            float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("156", NumberStyles.Integer)).ToString("X"));
+            Vector2 initialPosition = new Vector2(xlocres, ylocres);
 
             // Define entree values.
             Vector2 localPosition = initialPosition;
@@ -12005,9 +12007,13 @@ namespace CoreKeeperInventoryEditor
             // Calculate the total time required.
             for (int r = stepSize; r <= radius; r += stepSize)
             {
+                for (int up = 0; up < stepSize; up += (int)((double)stepSize * radialMoveScale))
+                {
+                    calculateCount++;
+                }
                 double delta = (double)((double)stepSize / (double)r);
                 double theta;
-                for (theta = 0; theta <= 2 * Math.PI; theta += (delta * radialMoveScale))
+                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale))
                 {
                     calculateCount++;
                 }
@@ -12044,14 +12050,62 @@ namespace CoreKeeperInventoryEditor
             string noclipOriginalValueCache = MemLib.ReadUInt(noclipAddressCache).ToString();
 
             // Math for creating a filled / hollow circle.
+            int x = xoffset;
+            int y;
             for (int r = stepSize; r <= radius; r += stepSize)
             {
+                for (int up = 0; up < stepSize; up += (int)((double)stepSize * radialMoveScale))
+                {
+                    y = r - stepSize + up + yoffset;
+
+                    // Define current position.
+                    Vector2 newPosition = new Vector2(x, y);
+
+                    // Iterate through each found address and update the players position.
+                    foreach (long res in AoBScanResultsPlayerLocation)
+                    {
+                        // Get address from loop.
+                        string playerX = res.ToString("X").ToString();
+                        string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                        // Send player to X.
+                        MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
+
+                        // Send player to Y.
+                        MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
+                    }
+
+                    // Reset the stuck in wall kill timer.
+                    MemLib.WriteMemory(noclipAddressCache, "int", "0");
+                    await Task.Delay(20);
+                    MemLib.WriteMemory(noclipAddressCache, "int", noclipOriginalValueCache);
+
+                    // Add to steps completed.
+                    stepsCompleted++;
+
+                    // Add a cooldown.
+                    await Task.Delay((int)numericUpDown15.Value);
+
+                    // Cancle the rendering operation.
+                    if (cancleRenderingOperation)
+                    {
+                        // Reenable controls.
+                        cancleRenderingOperation = false;
+                        button22.Enabled = true;
+                        button22.Visible = true;
+                        button22.Text = "Auto Map Renderer";
+                        button28.Visible = false; // Hide cancle button.
+
+                        // End look.
+                        goto exitLoop;
+                    }
+                }
                 double delta = (double)((double)stepSize / (double)r);
                 double theta;
-                for (theta = 0; theta <= 2 * Math.PI; theta += (delta * radialMoveScale))
+                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale))
                 {
-                    int x = (int)(Math.Sin(theta) * r) + xoffset;
-                    int y = (int)(Math.Cos(theta) * r) + yoffset;
+                    x = (int)(Math.Sin(theta) * r) + xoffset;
+                    y = (int)(Math.Cos(theta) * r) + yoffset;
 
                     // Define current position.
                     Vector2 newPosition = new Vector2(x, y);
@@ -12128,9 +12182,17 @@ namespace CoreKeeperInventoryEditor
             // Calculate the total tiles and display result.
             for (int r = stepSize; r <= radius; r += stepSize)
             {
+                for (int up = 0; up < stepSize; up += (int)((double)stepSize * radialMoveScale))
+                {
+                    if (count >= stepsCompleted)
+                    {
+                        goto FinishCounting;
+                    }
+                    count++;
+                }
                 double delta = (double)((double)stepSize / (double)r);
                 double theta;
-                for (theta = 0; theta <= 2 * Math.PI; theta += (delta * radialMoveScale))
+                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale))
                 {
                     if (count >= stepsCompleted)
                     {
