@@ -4,10 +4,13 @@ Changes Since v1.3.4.5
 - Fixed chat commands progress bar placement.
 - Fixed the cancel rendering button not re-hiding.
 - Fixed the auto map renderer sometimes starting at spawn.
+- Fixed some bugs with the teleport player tool.
 
 + Added an anti collision to the players tools.
 + Added force recall to the player tools.
 + Added new background assets.
++ Added a minumum radius for the auto map renderer.
++ Added a hollow mode for the auto map renderer.
 
 Changes Since v1.3.4.4
 ===========================================================
