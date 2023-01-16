@@ -250,5 +250,29 @@ namespace CoreKeepersWorkshop.Properties {
                 this["WorldBackgroundCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public int DevToolDelay {
+            get {
+                return ((int)(this["DevToolDelay"]));
+            }
+            set {
+                this["DevToolDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal RadialMoveScale {
+            get {
+                return ((decimal)(this["RadialMoveScale"]));
+            }
+            set {
+                this["RadialMoveScale"] = value;
+            }
+        }
     }
 }
