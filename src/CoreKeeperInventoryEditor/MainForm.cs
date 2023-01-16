@@ -113,6 +113,12 @@ namespace CoreKeeperInventoryEditor
                 });
                 #endregion
 
+                #region Set Dev-Tool Controls
+
+                numericUpDown2.Value = (decimal)CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay; // Dev tool operation delay.
+                numericUpDown18.Value = CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
+                #endregion
+
                 #region Set Form Locations
 
                 // Set the forms active location based on previous save.
@@ -210,6 +216,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button27, "Turn on custom map render distance with full map brightness.");
                 toolTip.SetToolTip(button28, "Cancel the map rendering operation.");
                 toolTip.SetToolTip(button30, "Get the required addresses for custom map rendering.");
+                toolTip.SetToolTip(button31, "Pause or resume the auto map rendering operation.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
 
@@ -235,7 +242,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(radioButton5, "Hard world difficutly.");
 
                 toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
-                toolTip.SetToolTip(numericUpDown2, "Change the interval of tools that use times.");
+                toolTip.SetToolTip(numericUpDown2, "Change the interval of dev-tools that use delays. (defualt: 80)");
                 toolTip.SetToolTip(numericUpDown3, "Change the base speed the player will walk at.");
                 toolTip.SetToolTip(numericUpDown4, "Change the x-axis world position to be teleported on.");
                 toolTip.SetToolTip(numericUpDown5, "Change the y-axis world position to be teleported on.");
@@ -245,6 +252,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown15, "Change the cooldown time (milliseconds) before the next teleport.");
                 toolTip.SetToolTip(numericUpDown16, "Set the mininum range in tiles away from the player to start the map render.");
                 toolTip.SetToolTip(numericUpDown17, "Set the maximum range in tiles to render the map by.");
+                toolTip.SetToolTip(numericUpDown17, "Set a custom radialMoveScale for auto map rendering. (defualt: 0.1)");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -314,6 +322,10 @@ namespace CoreKeeperInventoryEditor
                 CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount = playerSkinCounter;
                 CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount = worldSkinCounter;
                 CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount = chatSkinCounter;
+
+                // Save some form controls.
+                CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay = (int)numericUpDown2.Value; // Dev tool operation delay.
+                CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale = numericUpDown18.Value; // Auto render maps radialMoveScale.
                 CoreKeepersWorkshop.Properties.Settings.Default.Save();
             }
             catch (Exception)
@@ -12094,6 +12106,36 @@ namespace CoreKeeperInventoryEditor
 
         #region Auto Render Map
 
+        // Pause operations.
+        private void Button31_Click(object sender, EventArgs e)
+        {
+            // Ensure the button is enabled first.
+            if (button31.Enabled)
+            {
+                // Get the button state.
+                if (button31.Text == "Pause Operation")
+                {
+                    pauseRenderingOperation = true;
+
+                    // Update the buttons text.
+                    button31.Text = "Resume Operation";
+
+                    // Disable some controls.
+                    button28.Enabled = false;
+                }
+                else if (button31.Text == "Resume Operation")
+                {
+                    pauseRenderingOperation = false;
+
+                    // Update the buttons text.
+                    button31.Text = "Pause Operation";
+
+                    // Enable some controls.
+                    button28.Enabled = true;
+                }
+            }
+        }
+
         // Cancle auto renderer.
         private void Button28_Click(object sender, EventArgs e)
         {
@@ -12132,6 +12174,7 @@ namespace CoreKeeperInventoryEditor
 
         // Auto rebnder the map.
         public bool cancleRenderingOperation = false;
+        public bool pauseRenderingOperation = false;
         private async void Button22_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -12178,10 +12221,10 @@ namespace CoreKeeperInventoryEditor
 
             // Define entree values.
             Vector2 localPosition = initialPosition;
-            int maxRadius = (int)numericUpDown14.Value;
-            int minRadius = (int)numericUpDown16.Value;
-            int stepSize = (int)numericUpDown17.Value;
-            double radialMoveScale = 0.1;
+            int maxRadius = (int)numericUpDown14.Value; // Min radius.
+            int minRadius = (int)numericUpDown16.Value; // Max radius.
+            int stepSize = (int)numericUpDown17.Value; // Range.
+            double radialMoveScale = (double)numericUpDown18.Value; // radialMoveScale.
             int stepsCompleted = 0;
             int count = 0;
 
@@ -12197,6 +12240,8 @@ namespace CoreKeeperInventoryEditor
 
             // Calculate time and primpt user.
             int calculateCount = 0;
+
+            #region Calculate Render Time
 
             // Calculate the total time required.
             if ((int)numericUpDown16.Value > 0)
@@ -12226,12 +12271,14 @@ namespace CoreKeeperInventoryEditor
                 // User cancled, exit void.
                 return;
             }
+            #endregion
 
             // Change button to indicate loading.
             button22.Text = "Loading...";
             button22.Enabled = false;
             button22.Visible = false;
             button28.Visible = true;
+            button31.Enabled = true;
             cancleRenderingOperation = false;
             checkBox1.Enabled = false;
 
@@ -12249,11 +12296,13 @@ namespace CoreKeeperInventoryEditor
             // Get the noclip addresses.
             AoBScanResultsPlayerToolsCache = AoBScanResultsPlayerTools; // Save player tools encase it changes.
             string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
-            string playerStateOriginalAddress = playerStateAddress; // Save state for returning later.
+            string playerStateOriginalValue = MemLib.ReadInt(playerStateAddress).ToString(); // Save state for returning later.
             string playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerToolsCache.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
 
             // Enable noclip.
             MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+
+            #region Do Rendering
 
             // Math for creating a filled / hollow circle.
             #region Initial Y Offset
@@ -12284,6 +12333,20 @@ namespace CoreKeeperInventoryEditor
                 // Add a long cooldown.
                 await Task.Delay(10000);
 
+                // Pause the rendering operation.
+                while (pauseRenderingOperation)
+                {
+                    try
+                    {
+                        // Keep the thread busy.
+                        await Task.Delay(10);
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        pauseRenderingOperation = false;
+                    }
+                }
+
                 // Cancle the rendering operation.
                 if (cancleRenderingOperation)
                 {
@@ -12294,6 +12357,7 @@ namespace CoreKeeperInventoryEditor
                     button22.Text = "Auto Map Renderer";
                     button28.Visible = false; // Hide cancle button.
                     checkBox1.Enabled = true;
+                    button31.Enabled = false;
 
                     // End look.
                     goto exitLoop;
@@ -12330,6 +12394,20 @@ namespace CoreKeeperInventoryEditor
 
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
+
+                    // Pause the rendering operation.
+                    while (pauseRenderingOperation)
+                    {
+                        try
+                        {
+                            // Keep the thread busy.
+                            await Task.Delay(10);
+                        }
+                        catch (TaskCanceledException)
+                        {
+                            pauseRenderingOperation = false;
+                        }
+                    }
 
                     // Cancle the rendering operation.
                     if (cancleRenderingOperation)
@@ -12379,6 +12457,20 @@ namespace CoreKeeperInventoryEditor
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
 
+                    // Pause the rendering operation.
+                    while (pauseRenderingOperation)
+                    {
+                        try
+                        {
+                            // Keep the thread busy.
+                            await Task.Delay(10);
+                        }
+                        catch (TaskCanceledException)
+                        {
+                            pauseRenderingOperation = false;
+                        }
+                    }
+
                     // Cancle the rendering operation.
                     if (cancleRenderingOperation)
                     {
@@ -12398,6 +12490,7 @@ namespace CoreKeeperInventoryEditor
 
                 rPrevious = r;
             }
+            #endregion
 
             // Leave the loop and put the player to spawn.
             exitLoop:;
@@ -12409,6 +12502,7 @@ namespace CoreKeeperInventoryEditor
             button22.Text = "Auto Map Renderer";
             button28.Visible = false; // Hide cancle button.
             checkBox1.Enabled = true;
+            button31.Enabled = false;
 
             // Send the player back to the starting position.
             foreach (long res in AoBScanResultsPlayerLocation)
@@ -12425,7 +12519,9 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Disable noclip.
-            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateOriginalAddress).ToString());
+            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateOriginalValue).ToString());
+
+            #region Calculate Total Tiles Rendered
 
             // Calculate the total tiles and display result.
             if ((int)numericUpDown16.Value > 0)
@@ -12458,6 +12554,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 rPrevious = r;
             }
+            #endregion
 
             // Leave counting loop.
             FinishCounting:;
