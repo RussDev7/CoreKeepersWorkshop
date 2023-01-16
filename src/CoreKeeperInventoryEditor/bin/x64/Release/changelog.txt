@@ -11,6 +11,9 @@ Changes Since v1.3.4.5
 + Added new background assets.
 + Added a minumum radius for the auto map renderer.
 + Added a hollow mode for the auto map renderer.
++ Added a pause button to auto map renderer.
++ Added some varible controls to the dev tools.
++ Fixed tooltip timing accross all forms.
 
 Changes Since v1.3.4.4
 ===========================================================
