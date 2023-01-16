@@ -61,7 +61,7 @@ namespace CoreKeepersWorkshop
             // Create a new tooltip.
             ToolTip toolTip = new ToolTip()
             {
-                AutoPopDelay = 3000,
+                AutoPopDelay = 5000,
                 InitialDelay = 750
             };
 

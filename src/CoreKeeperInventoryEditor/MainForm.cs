@@ -177,7 +177,7 @@ namespace CoreKeeperInventoryEditor
                 // Create a new tooltip.
                 ToolTip toolTip = new ToolTip()
                 {
-                    AutoPopDelay = 3000,
+                    AutoPopDelay = 5000,
                     InitialDelay = 750
                 };
 
@@ -213,6 +213,8 @@ namespace CoreKeeperInventoryEditor
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
 
+                toolTip.SetToolTip(checkBox1, "Render only the final ring within the circle.");
+
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(richTextBox6, "A list of all found addresses. Used mostly for debugging.");
 
@@ -241,7 +243,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown7, "Change the amount of time the buff will be active for.");
                 toolTip.SetToolTip(numericUpDown14, "The (radius x range) of tiles to render around the player.");
                 toolTip.SetToolTip(numericUpDown15, "Change the cooldown time (milliseconds) before the next teleport.");
-                toolTip.SetToolTip(numericUpDown17, "Set the range in tiles to render the map by.");
+                toolTip.SetToolTip(numericUpDown16, "Set the mininum range in tiles away from the player to start the map render.");
+                toolTip.SetToolTip(numericUpDown17, "Set the maximum range in tiles to render the map by.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -365,7 +368,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 else if (tabControl1.SelectedTab == tabPage8) // World.
                 {
-                    this.Size = new Size(756, 476);
+                    this.Size = new Size(756, 494);
                 }
                 else if (tabControl1.SelectedTab == tabPage5) // Chat.
                 {
@@ -395,7 +398,7 @@ namespace CoreKeeperInventoryEditor
             }
             else if (tabControl1.SelectedTab == tabPage8) // World.
             {
-                this.Size = new Size(756, 476);
+                this.Size = new Size(756, 494);
             }
             else if (tabControl1.SelectedTab == tabPage5) // Chat.
             {
@@ -11788,33 +11791,6 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerLocationFirst.Count() > 12)
-            {
-                // Reset textbox.
-                richTextBox7.Text = "Addresses Loaded: 0";
-
-                // Reset progress bar.
-                progressBar4.Value = 0;
-                progressBar4.Visible = false;
-
-                // Rename button back to defualt.
-                button11.Text = "Get Addresses";
-
-                // Re-enable button.
-                button11.Enabled = true;
-                groupBox11.Enabled = true;
-
-                // Reset aob scan results
-                AoBScanResultsPlayerLocation = null;
-                AoBScanResultsPlayerLocationFirst = null;
-                AoBScanResultsPlayerLocationSecond = null;
-
-                // Display error message.
-                MessageBox.Show("Woah there! We found too many addresses!\r\rPlease try launching the game as vannila via steam!\rTIP: Some mod managers do not launch it as true vanilla.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             // Update the progress bar.
             progressBar4.Value = 25;
 
@@ -11877,6 +11853,33 @@ namespace CoreKeeperInventoryEditor
 
                 // Display error message.
                 MessageBox.Show("You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerLocation.Count() > 12)
+            {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button11.Text = "Get Addresses";
+
+                // Re-enable button.
+                button11.Enabled = true;
+                groupBox11.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationFirst = null;
+                AoBScanResultsPlayerLocationSecond = null;
+
+                // Display error message.
+                MessageBox.Show("Woah there! We found too many addresses!\r\rPlease try launching the game as vannila via steam!\rTIP: Some mod managers do not launch it as true vanilla.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12010,7 +12013,7 @@ namespace CoreKeeperInventoryEditor
         #region Set Render Distance
 
         // Set custom render distaance.
-        private void Button27_Click(object sender, EventArgs e)
+        private async void Button27_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -12043,13 +12046,15 @@ namespace CoreKeeperInventoryEditor
 
             // Update the progress bar.
             progressBar6.Value = 100;
+            await Task.Delay(1000);
+            progressBar6.Visible = false;
         }
         #endregion // End set render distance.
 
         #region Set Defualt Render Distance
 
         // Restore defualt render.
-        private void Button25_Click(object sender, EventArgs e)
+        private async void Button25_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -12082,6 +12087,8 @@ namespace CoreKeeperInventoryEditor
 
             // Update the progress bar.
             progressBar6.Value = 100;
+            await Task.Delay(1000);
+            progressBar6.Visible = false;
         }
         #endregion // End set defualt render distance.
 
@@ -12094,6 +12101,32 @@ namespace CoreKeeperInventoryEditor
             if (button28.Visible)
             {
                 cancleRenderingOperation = true;
+            }
+        }
+
+        // Toggle hollow mode.
+        int minCircleRadiusOriginalValue;
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            // Check if the checkbox is enabled or not.
+            if (checkBox1.Checked)
+            {
+                // Save the original value.
+                minCircleRadiusOriginalValue = (int)numericUpDown16.Value;
+
+                // Disable some controls.
+                numericUpDown16.Enabled = false;
+
+                // Set the same value as the max.
+                numericUpDown16.Value = numericUpDown14.Value;
+            }
+            else
+            {
+                // Enable some controls.
+                numericUpDown16.Enabled = true;
+
+                // Set the original value.
+                numericUpDown16.Value = minCircleRadiusOriginalValue;
             }
         }
 
@@ -12129,6 +12162,14 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Ensure the min radius is not larger then the max.
+            if (numericUpDown16.Value > numericUpDown14.Value)
+            {
+                MessageBox.Show("The minimum radius cannot be larger then the max radius!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                numericUpDown16.Value = numericUpDown14.Value; // Reset the min to the max value.
+                return;
+            }
+
             // Define players initial position.
             var initialres = AoBScanResultsPlayerTools.Last();
             float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("152", NumberStyles.Integer)).ToString("X"));
@@ -12137,7 +12178,8 @@ namespace CoreKeeperInventoryEditor
 
             // Define entree values.
             Vector2 localPosition = initialPosition;
-            int radius = (int)numericUpDown14.Value;
+            int maxRadius = (int)numericUpDown14.Value;
+            int minRadius = (int)numericUpDown16.Value;
             int stepSize = (int)numericUpDown17.Value;
             double radialMoveScale = 0.1;
             int stepsCompleted = 0;
@@ -12147,22 +12189,35 @@ namespace CoreKeeperInventoryEditor
             int xoffset = (int)localPosition.X + 1;
             int yoffset = (int)localPosition.Y + 1;
 
+            // Define starting vars.
+            int x = xoffset;
+            int y;
+            int r;
+            int rPrevious = minRadius;
+
             // Calculate time and primpt user.
             int calculateCount = 0;
 
             // Calculate the total time required.
-            for (int r = stepSize; r <= radius; r += stepSize)
+            if ((int)numericUpDown16.Value > 0)
             {
-                for (int up = 0; up < stepSize; up += (int)((double)stepSize * radialMoveScale))
+                calculateCount++;
+            }
+            for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
+            {
+                x = xoffset;
+                for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
                 {
                     calculateCount++;
                 }
                 double delta = (double)((double)stepSize / (double)r);
                 double theta;
-                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale))
+                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
                 {
+                    x = (int)(Math.Sin(theta) * r) + xoffset;
                     calculateCount++;
                 }
+                rPrevious = r;
             }
             string time = (((calculateCount * (int)numericUpDown15.Value) / 60000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) + " hours." : ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.";
             time = (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) >= 24) ? (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) / 24) + " days." : time;
@@ -12178,6 +12233,7 @@ namespace CoreKeeperInventoryEditor
             button22.Visible = false;
             button28.Visible = true;
             cancleRenderingOperation = false;
+            checkBox1.Enabled = false;
 
             // Enable custom render.
             foreach (long res in AoBScanResultsMapReveal)
@@ -12200,16 +12256,60 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
 
             // Math for creating a filled / hollow circle.
-            int x = xoffset;
-            int y;
-            for (int r = stepSize; r <= radius; r += stepSize)
+            #region Initial Y Offset
+            if ((int)numericUpDown16.Value > 0)
             {
-                for (int up = 0; up < stepSize; up += (int)((double)stepSize * radialMoveScale))
-                {
-                    y = r - stepSize + up + yoffset;
+                y = minRadius + yoffset;
 
+                // Define current position.
+                Vector2 newPosition = new Vector2(x, y);
+
+                // Iterate through each found address and update the players position.
+                foreach (long res in AoBScanResultsPlayerLocation)
+                {
+                    // Get address from loop.
+                    string playerX = res.ToString("X").ToString();
+                    string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                    // Send player to X.
+                    MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
+
+                    // Send player to Y.
+                    MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
+                }
+
+                // Add to steps completed.
+                stepsCompleted++;
+
+                // Add a long cooldown.
+                await Task.Delay(10000);
+
+                // Cancle the rendering operation.
+                if (cancleRenderingOperation)
+                {
+                    // Reenable controls.
+                    cancleRenderingOperation = false;
+                    button22.Enabled = true;
+                    button22.Visible = true;
+                    button22.Text = "Auto Map Renderer";
+                    button28.Visible = false; // Hide cancle button.
+                    checkBox1.Enabled = true;
+
+                    // End look.
+                    goto exitLoop;
+                }
+            }
+            #endregion
+
+            for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
+            {
+                x = xoffset;
+
+                #region Moving Between Circles
+                for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
+                {
                     // Define current position.
-                    Vector2 newPosition = new Vector2(x, y);
+                    Vector2 newPosition = new Vector2(x, y + yoffset);
 
                     // Iterate through each found address and update the players position.
                     foreach (long res in AoBScanResultsPlayerLocation)
@@ -12240,14 +12340,18 @@ namespace CoreKeeperInventoryEditor
                         button22.Visible = true;
                         button22.Text = "Auto Map Renderer";
                         button28.Visible = false; // Hide cancle button.
+                        checkBox1.Enabled = true;
 
                         // End look.
                         goto exitLoop;
                     }
                 }
+                #endregion
+
+                #region Move Around Circle
                 double delta = (double)((double)stepSize / (double)r);
                 double theta;
-                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale))
+                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
                 {
                     x = (int)(Math.Sin(theta) * r) + xoffset;
                     y = (int)(Math.Cos(theta) * r) + yoffset;
@@ -12284,11 +12388,15 @@ namespace CoreKeeperInventoryEditor
                         button22.Visible = true;
                         button22.Text = "Auto Map Renderer";
                         button28.Visible = false; // Hide cancle button.
+                        checkBox1.Enabled = true;
 
                         // End look.
                         goto exitLoop;
                     }
                 }
+                #endregion
+
+                rPrevious = r;
             }
 
             // Leave the loop and put the player to spawn.
@@ -12300,6 +12408,7 @@ namespace CoreKeeperInventoryEditor
             button22.Visible = true;
             button22.Text = "Auto Map Renderer";
             button28.Visible = false; // Hide cancle button.
+            checkBox1.Enabled = true;
 
             // Send the player back to the starting position.
             foreach (long res in AoBScanResultsPlayerLocation)
@@ -12318,35 +12427,41 @@ namespace CoreKeeperInventoryEditor
             // Disable noclip.
             MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateOriginalAddress).ToString());
 
-            // Change button to indicate loading.
-            button22.Text = "Render Map";
-            button22.Enabled = true;
-
             // Calculate the total tiles and display result.
-            for (int r = stepSize; r <= radius; r += stepSize)
+            if ((int)numericUpDown16.Value > 0)
             {
-                for (int up = 0; up < stepSize; up += (int)((double)stepSize * radialMoveScale))
+                count++;
+                if (count >= stepsCompleted)
                 {
+                    goto FinishCounting;
+                }
+            }
+            for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
+            {
+                for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
+                {
+                    count++;
                     if (count >= stepsCompleted)
                     {
                         goto FinishCounting;
                     }
-                    count++;
                 }
                 double delta = (double)((double)stepSize / (double)r);
                 double theta;
-                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale))
+                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
                 {
+                    count++;
                     if (count >= stepsCompleted)
                     {
                         goto FinishCounting;
                     }
-                    count++;
                 }
+                rPrevious = r;
             }
 
             // Leave counting loop.
             FinishCounting:;
+
             MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         #endregion // End render map.
