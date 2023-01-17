@@ -5,6 +5,8 @@ Changes Since v1.3.4.5
 - Fixed the cancel rendering button not re-hiding.
 - Fixed the auto map renderer sometimes starting at spawn.
 - Fixed some bugs with the teleport player tool.
+- Fixed the tab indexes for new additions.
+- Food address no longer needs rescanned each time.
 
 + Added an anti collision to the players tools.
 + Added force recall to the player tools.
@@ -14,6 +16,7 @@ Changes Since v1.3.4.5
 + Added a pause button to auto map renderer.
 + Added some varible controls to the dev tools.
 + Fixed tooltip timing accross all forms.
++ Added a progressbar to show the map renderers completion.
 
 Changes Since v1.3.4.4
 ===========================================================
