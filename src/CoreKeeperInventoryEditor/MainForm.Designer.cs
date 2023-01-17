@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox50 = new System.Windows.Forms.PictureBox();
@@ -110,6 +110,7 @@ namespace CoreKeeperInventoryEditor
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -221,7 +222,6 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).BeginInit();
@@ -282,6 +282,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage9.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
             this.tabPage10.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -313,7 +314,6 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -627,7 +627,7 @@ namespace CoreKeeperInventoryEditor
             this.button21.Location = new System.Drawing.Point(466, 7);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(59, 23);
-            this.button21.TabIndex = 34;
+            this.button21.TabIndex = 4;
             this.button21.Text = "Next";
             this.button21.UseVisualStyleBackColor = true;
             this.button21.Click += new System.EventHandler(this.Button21_Click);
@@ -638,7 +638,7 @@ namespace CoreKeeperInventoryEditor
             this.button20.Location = new System.Drawing.Point(160, 7);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(59, 23);
-            this.button20.TabIndex = 33;
+            this.button20.TabIndex = 2;
             this.button20.Text = "Previous";
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.Button20_Click);
@@ -658,7 +658,7 @@ namespace CoreKeeperInventoryEditor
             this.button3.Location = new System.Drawing.Point(531, 7);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(98, 23);
-            this.button3.TabIndex = 2;
+            this.button3.TabIndex = 5;
             this.button3.Text = "Remove All";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
@@ -669,7 +669,7 @@ namespace CoreKeeperInventoryEditor
             this.button2.Location = new System.Drawing.Point(628, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 23);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 6;
             this.button2.Text = "Reload Inventory";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
@@ -1009,7 +1009,7 @@ namespace CoreKeeperInventoryEditor
             this.button1.Location = new System.Drawing.Point(6, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Get Inventory Addresses";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
@@ -1022,7 +1022,7 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBox1.Size = new System.Drawing.Size(250, 21);
-            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "Addresses Loaded: 0";
             // 
             // tabPage2
@@ -1262,6 +1262,37 @@ namespace CoreKeeperInventoryEditor
             0,
             0});
             // 
+            // numericUpDown18
+            // 
+            this.numericUpDown18.BackColor = System.Drawing.SystemColors.Window;
+            this.numericUpDown18.DecimalPlaces = 2;
+            this.numericUpDown18.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown18.InterceptArrowKeys = false;
+            this.numericUpDown18.Location = new System.Drawing.Point(302, 113);
+            this.numericUpDown18.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown18.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown18.Name = "numericUpDown18";
+            this.numericUpDown18.Size = new System.Drawing.Size(45, 20);
+            this.numericUpDown18.TabIndex = 8;
+            this.numericUpDown18.ThousandsSeparator = true;
+            this.numericUpDown18.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
             // tabPage10
             // 
             this.tabPage10.Controls.Add(this.richTextBox8);
@@ -1337,7 +1368,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith9.Location = new System.Drawing.Point(8, 157);
             this.siticoneWinToggleSwith9.Name = "siticoneWinToggleSwith9";
             this.siticoneWinToggleSwith9.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith9.TabIndex = 24;
+            this.siticoneWinToggleSwith9.TabIndex = 16;
             this.siticoneWinToggleSwith9.Text = "siticoneWinToggleSwith9";
             this.siticoneWinToggleSwith9.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith9.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1370,7 +1401,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith7.Location = new System.Drawing.Point(157, 129);
             this.siticoneWinToggleSwith7.Name = "siticoneWinToggleSwith7";
             this.siticoneWinToggleSwith7.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith7.TabIndex = 20;
+            this.siticoneWinToggleSwith7.TabIndex = 15;
             this.siticoneWinToggleSwith7.Text = "siticoneWinToggleSwith7";
             this.siticoneWinToggleSwith7.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith7.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1383,7 +1414,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith8.Location = new System.Drawing.Point(8, 129);
             this.siticoneWinToggleSwith8.Name = "siticoneWinToggleSwith8";
             this.siticoneWinToggleSwith8.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith8.TabIndex = 22;
+            this.siticoneWinToggleSwith8.TabIndex = 14;
             this.siticoneWinToggleSwith8.Text = "siticoneWinToggleSwith8";
             this.siticoneWinToggleSwith8.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith8.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1406,7 +1437,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith6.Location = new System.Drawing.Point(157, 101);
             this.siticoneWinToggleSwith6.Name = "siticoneWinToggleSwith6";
             this.siticoneWinToggleSwith6.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith6.TabIndex = 18;
+            this.siticoneWinToggleSwith6.TabIndex = 13;
             this.siticoneWinToggleSwith6.Text = "siticoneWinToggleSwith6";
             this.siticoneWinToggleSwith6.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith6.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1429,7 +1460,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith5.Location = new System.Drawing.Point(8, 101);
             this.siticoneWinToggleSwith5.Name = "siticoneWinToggleSwith5";
             this.siticoneWinToggleSwith5.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith5.TabIndex = 17;
+            this.siticoneWinToggleSwith5.TabIndex = 12;
             this.siticoneWinToggleSwith5.Text = "siticoneWinToggleSwith5";
             this.siticoneWinToggleSwith5.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith5.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1445,7 +1476,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(70, 20);
-            this.numericUpDown3.TabIndex = 16;
+            this.numericUpDown3.TabIndex = 11;
             this.numericUpDown3.Value = new decimal(new int[] {
             950,
             0,
@@ -1469,7 +1500,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith4.Location = new System.Drawing.Point(157, 47);
             this.siticoneWinToggleSwith4.Name = "siticoneWinToggleSwith4";
             this.siticoneWinToggleSwith4.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith4.TabIndex = 13;
+            this.siticoneWinToggleSwith4.TabIndex = 8;
             this.siticoneWinToggleSwith4.Text = "siticoneWinToggleSwith4";
             this.siticoneWinToggleSwith4.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith4.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1492,7 +1523,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith3.Location = new System.Drawing.Point(157, 74);
             this.siticoneWinToggleSwith3.Name = "siticoneWinToggleSwith3";
             this.siticoneWinToggleSwith3.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith3.TabIndex = 15;
+            this.siticoneWinToggleSwith3.TabIndex = 10;
             this.siticoneWinToggleSwith3.Text = "siticoneWinToggleSwith3";
             this.siticoneWinToggleSwith3.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith3.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1515,7 +1546,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith2.Location = new System.Drawing.Point(8, 74);
             this.siticoneWinToggleSwith2.Name = "siticoneWinToggleSwith2";
             this.siticoneWinToggleSwith2.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith2.TabIndex = 14;
+            this.siticoneWinToggleSwith2.TabIndex = 9;
             this.siticoneWinToggleSwith2.Text = "siticoneWinToggleSwith2";
             this.siticoneWinToggleSwith2.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith2.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1528,7 +1559,7 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith1.Location = new System.Drawing.Point(8, 47);
             this.siticoneWinToggleSwith1.Name = "siticoneWinToggleSwith1";
             this.siticoneWinToggleSwith1.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith1.TabIndex = 12;
+            this.siticoneWinToggleSwith1.TabIndex = 7;
             this.siticoneWinToggleSwith1.Text = "siticoneWinToggleSwith1";
             this.siticoneWinToggleSwith1.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith1.UncheckInnerColor = System.Drawing.Color.Snow;
@@ -1549,7 +1580,7 @@ namespace CoreKeeperInventoryEditor
             this.button10.Location = new System.Drawing.Point(8, 17);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(92, 23);
-            this.button10.TabIndex = 11;
+            this.button10.TabIndex = 6;
             this.button10.Text = "Get Addresses";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.Button10_Click);
@@ -1611,7 +1642,7 @@ namespace CoreKeeperInventoryEditor
             this.button6.Location = new System.Drawing.Point(10, 43);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(103, 23);
-            this.button6.TabIndex = 10;
+            this.button6.TabIndex = 5;
             this.button6.Text = "Export Player";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
@@ -1622,7 +1653,7 @@ namespace CoreKeeperInventoryEditor
             this.button5.Location = new System.Drawing.Point(10, 17);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(103, 23);
-            this.button5.TabIndex = 9;
+            this.button5.TabIndex = 4;
             this.button5.Text = "Import Player";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
@@ -1669,7 +1700,7 @@ namespace CoreKeeperInventoryEditor
             this.button4.Location = new System.Drawing.Point(11, 71);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(218, 23);
-            this.button4.TabIndex = 8;
+            this.button4.TabIndex = 3;
             this.button4.Text = "Change Name";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
@@ -1680,7 +1711,7 @@ namespace CoreKeeperInventoryEditor
             this.textBox2.MaxLength = 29;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(140, 20);
-            this.textBox2.TabIndex = 7;
+            this.textBox2.TabIndex = 2;
             // 
             // textBox1
             // 
@@ -1688,7 +1719,7 @@ namespace CoreKeeperInventoryEditor
             this.textBox1.MaxLength = 29;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(140, 20);
-            this.textBox1.TabIndex = 6;
+            this.textBox1.TabIndex = 1;
             // 
             // groupBox9
             // 
@@ -1715,9 +1746,9 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown7.Name = "numericUpDown7";
             this.numericUpDown7.Size = new System.Drawing.Size(65, 20);
-            this.numericUpDown7.TabIndex = 22;
+            this.numericUpDown7.TabIndex = 25;
             this.numericUpDown7.Value = new decimal(new int[] {
-            60,
+            20,
             0,
             0,
             0});
@@ -1728,7 +1759,7 @@ namespace CoreKeeperInventoryEditor
             this.button12.Location = new System.Drawing.Point(6, 19);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(59, 23);
-            this.button12.TabIndex = 19;
+            this.button12.TabIndex = 17;
             this.button12.Text = "Apply";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.Button12_Click);
@@ -1748,9 +1779,9 @@ namespace CoreKeeperInventoryEditor
             -2147483648});
             this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(65, 20);
-            this.numericUpDown6.TabIndex = 21;
+            this.numericUpDown6.TabIndex = 24;
             this.numericUpDown6.Value = new decimal(new int[] {
-            4,
+            19,
             0,
             0,
             0});
@@ -1762,7 +1793,7 @@ namespace CoreKeeperInventoryEditor
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(127, 21);
             this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 20;
+            this.comboBox1.TabIndex = 18;
             this.comboBox1.Text = "None";
             this.comboBox1.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
             // 
@@ -1815,7 +1846,7 @@ namespace CoreKeeperInventoryEditor
             this.button31.Location = new System.Drawing.Point(6, 99);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(110, 22);
-            this.button31.TabIndex = 44;
+            this.button31.TabIndex = 15;
             this.button31.Text = "Pause Operation";
             this.button31.UseVisualStyleBackColor = true;
             this.button31.Click += new System.EventHandler(this.Button31_Click);
@@ -1827,7 +1858,7 @@ namespace CoreKeeperInventoryEditor
             this.checkBox1.Location = new System.Drawing.Point(259, 103);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(105, 17);
-            this.checkBox1.TabIndex = 43;
+            this.checkBox1.TabIndex = 18;
             this.checkBox1.Text = "Outer Layer Only";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
@@ -1839,7 +1870,7 @@ namespace CoreKeeperInventoryEditor
             this.button29.Location = new System.Drawing.Point(122, 99);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(82, 22);
-            this.button29.TabIndex = 41;
+            this.button29.TabIndex = 16;
             this.button29.Text = "Start Radius:";
             this.button29.UseVisualStyleBackColor = true;
             // 
@@ -1853,7 +1884,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown16.Name = "numericUpDown16";
             this.numericUpDown16.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown16.TabIndex = 42;
+            this.numericUpDown16.TabIndex = 17;
             // 
             // numericUpDown15
             // 
@@ -1870,7 +1901,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown15.Name = "numericUpDown15";
             this.numericUpDown15.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown15.TabIndex = 32;
+            this.numericUpDown15.TabIndex = 14;
             this.numericUpDown15.Value = new decimal(new int[] {
             150,
             0,
@@ -1884,7 +1915,7 @@ namespace CoreKeeperInventoryEditor
             this.button24.Location = new System.Drawing.Point(259, 77);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(54, 22);
-            this.button24.TabIndex = 31;
+            this.button24.TabIndex = 13;
             this.button24.Text = "Delay:";
             this.button24.UseVisualStyleBackColor = true;
             // 
@@ -1894,7 +1925,7 @@ namespace CoreKeeperInventoryEditor
             this.button25.Location = new System.Drawing.Point(231, 48);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(129, 23);
-            this.button25.TabIndex = 40;
+            this.button25.TabIndex = 9;
             this.button25.Text = "Restore Default Range";
             this.button25.UseVisualStyleBackColor = true;
             this.button25.Click += new System.EventHandler(this.Button25_Click);
@@ -1905,7 +1936,7 @@ namespace CoreKeeperInventoryEditor
             this.button27.Location = new System.Drawing.Point(6, 48);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(110, 23);
-            this.button27.TabIndex = 39;
+            this.button27.TabIndex = 6;
             this.button27.Text = "Set Reveal Range";
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.Button27_Click);
@@ -1917,7 +1948,7 @@ namespace CoreKeeperInventoryEditor
             this.button26.Location = new System.Drawing.Point(122, 48);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(54, 22);
-            this.button26.TabIndex = 35;
+            this.button26.TabIndex = 7;
             this.button26.Text = "Range:";
             this.button26.UseVisualStyleBackColor = true;
             // 
@@ -1936,7 +1967,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown17.Name = "numericUpDown17";
             this.numericUpDown17.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown17.TabIndex = 36;
+            this.numericUpDown17.TabIndex = 8;
             this.numericUpDown17.Value = new decimal(new int[] {
             30,
             0,
@@ -1950,7 +1981,7 @@ namespace CoreKeeperInventoryEditor
             this.button23.Location = new System.Drawing.Point(122, 77);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(82, 22);
-            this.button23.TabIndex = 29;
+            this.button23.TabIndex = 11;
             this.button23.Text = "Max Radius:";
             this.button23.UseVisualStyleBackColor = true;
             // 
@@ -1960,7 +1991,7 @@ namespace CoreKeeperInventoryEditor
             this.progressBar6.Name = "progressBar6";
             this.progressBar6.Size = new System.Drawing.Size(256, 21);
             this.progressBar6.Step = 1;
-            this.progressBar6.TabIndex = 24;
+            this.progressBar6.TabIndex = 29;
             this.progressBar6.Visible = false;
             // 
             // numericUpDown14
@@ -1978,7 +2009,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown14.Name = "numericUpDown14";
             this.numericUpDown14.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown14.TabIndex = 30;
+            this.numericUpDown14.TabIndex = 12;
             this.numericUpDown14.Value = new decimal(new int[] {
             150,
             0,
@@ -1991,7 +2022,7 @@ namespace CoreKeeperInventoryEditor
             this.button30.Location = new System.Drawing.Point(6, 19);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(92, 23);
-            this.button30.TabIndex = 23;
+            this.button30.TabIndex = 5;
             this.button30.Text = "Get Addresses";
             this.button30.UseVisualStyleBackColor = true;
             this.button30.Click += new System.EventHandler(this.Button30_Click);
@@ -2013,7 +2044,7 @@ namespace CoreKeeperInventoryEditor
             this.button22.Location = new System.Drawing.Point(6, 77);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(110, 22);
-            this.button22.TabIndex = 28;
+            this.button22.TabIndex = 10;
             this.button22.Text = "Auto Map Renderer";
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.Button22_Click);
@@ -2086,7 +2117,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown13.Name = "numericUpDown13";
             this.numericUpDown13.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown13.TabIndex = 40;
+            this.numericUpDown13.TabIndex = 31;
             this.numericUpDown13.Value = new decimal(new int[] {
             2502,
             0,
@@ -2099,7 +2130,7 @@ namespace CoreKeeperInventoryEditor
             this.button19.Location = new System.Drawing.Point(5, 164);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(122, 23);
-            this.button19.TabIndex = 49;
+            this.button19.TabIndex = 33;
             this.button19.Text = "Automatic Fishing";
             this.button19.UseVisualStyleBackColor = true;
             this.button19.Click += new System.EventHandler(this.Button19_Click);
@@ -2114,7 +2145,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown12.Name = "numericUpDown12";
             this.numericUpDown12.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown12.TabIndex = 39;
+            this.numericUpDown12.TabIndex = 30;
             this.numericUpDown12.Value = new decimal(new int[] {
             2501,
             0,
@@ -2161,7 +2192,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown11.Name = "numericUpDown11";
             this.numericUpDown11.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown11.TabIndex = 38;
+            this.numericUpDown11.TabIndex = 29;
             this.numericUpDown11.Value = new decimal(new int[] {
             2500,
             0,
@@ -2174,7 +2205,7 @@ namespace CoreKeeperInventoryEditor
             this.button18.Location = new System.Drawing.Point(5, 106);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(122, 23);
-            this.button18.TabIndex = 37;
+            this.button18.TabIndex = 28;
             this.button18.Text = "Activated Crystals";
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.Button18_Click);
@@ -2189,7 +2220,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown10.Name = "numericUpDown10";
             this.numericUpDown10.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown10.TabIndex = 36;
+            this.numericUpDown10.TabIndex = 27;
             this.numericUpDown10.Value = new decimal(new int[] {
             23,
             0,
@@ -2221,7 +2252,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown9.Name = "numericUpDown9";
             this.numericUpDown9.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown9.TabIndex = 35;
+            this.numericUpDown9.TabIndex = 26;
             this.numericUpDown9.Value = new decimal(new int[] {
             12,
             0,
@@ -2248,7 +2279,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown8.Name = "numericUpDown8";
             this.numericUpDown8.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown8.TabIndex = 34;
+            this.numericUpDown8.TabIndex = 25;
             this.numericUpDown8.Value = new decimal(new int[] {
             2022,
             0,
@@ -2271,7 +2302,7 @@ namespace CoreKeeperInventoryEditor
             this.button15.Location = new System.Drawing.Point(5, 77);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(122, 23);
-            this.button15.TabIndex = 33;
+            this.button15.TabIndex = 24;
             this.button15.Text = "Change World Date";
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.Button15_Click);
@@ -2294,7 +2325,7 @@ namespace CoreKeeperInventoryEditor
             this.radioButton5.Location = new System.Drawing.Point(199, 51);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(52, 17);
-            this.radioButton5.TabIndex = 32;
+            this.radioButton5.TabIndex = 23;
             this.radioButton5.Text = "Hard";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
@@ -2304,7 +2335,7 @@ namespace CoreKeeperInventoryEditor
             this.button8.Location = new System.Drawing.Point(5, 135);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(122, 23);
-            this.button8.TabIndex = 41;
+            this.button8.TabIndex = 32;
             this.button8.Text = "Remove Ground Items";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.Button8_Click);
@@ -2318,7 +2349,7 @@ namespace CoreKeeperInventoryEditor
             this.radioButton4.Location = new System.Drawing.Point(131, 51);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(64, 17);
-            this.radioButton4.TabIndex = 31;
+            this.radioButton4.TabIndex = 22;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Normal";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -2338,7 +2369,7 @@ namespace CoreKeeperInventoryEditor
             this.textBox3.Location = new System.Drawing.Point(199, 22);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(161, 20);
-            this.textBox3.TabIndex = 29;
+            this.textBox3.TabIndex = 20;
             this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyDown);
             // 
             // button16
@@ -2347,7 +2378,7 @@ namespace CoreKeeperInventoryEditor
             this.button16.Location = new System.Drawing.Point(5, 19);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(122, 23);
-            this.button16.TabIndex = 28;
+            this.button16.TabIndex = 19;
             this.button16.Text = "Get World Information";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.Button16_Click);
@@ -2358,7 +2389,7 @@ namespace CoreKeeperInventoryEditor
             this.button17.Location = new System.Drawing.Point(5, 48);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(122, 23);
-            this.button17.TabIndex = 30;
+            this.button17.TabIndex = 21;
             this.button17.Text = "Change Difficulty";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.Button17_Click);
@@ -2381,21 +2412,21 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -2405,9 +2436,9 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellErrors = false;
@@ -2488,7 +2519,7 @@ namespace CoreKeeperInventoryEditor
             -2147483648});
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(98, 20);
-            this.numericUpDown5.TabIndex = 27;
+            this.numericUpDown5.TabIndex = 4;
             this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
             // 
             // progressBar4
@@ -2506,7 +2537,7 @@ namespace CoreKeeperInventoryEditor
             this.button11.Location = new System.Drawing.Point(6, 19);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(92, 23);
-            this.button11.TabIndex = 23;
+            this.button11.TabIndex = 1;
             this.button11.Text = "Get Addresses";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.Button11_Click);
@@ -2537,7 +2568,7 @@ namespace CoreKeeperInventoryEditor
             -2147483648});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(98, 20);
-            this.numericUpDown4.TabIndex = 26;
+            this.numericUpDown4.TabIndex = 3;
             this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
             // button9
@@ -2546,7 +2577,7 @@ namespace CoreKeeperInventoryEditor
             this.button9.Location = new System.Drawing.Point(6, 48);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(92, 23);
-            this.button9.TabIndex = 25;
+            this.button9.TabIndex = 2;
             this.button9.Text = "Teleport XY";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.Button9_Click);
@@ -2711,37 +2742,6 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
-            // numericUpDown18
-            // 
-            this.numericUpDown18.BackColor = System.Drawing.SystemColors.Window;
-            this.numericUpDown18.DecimalPlaces = 2;
-            this.numericUpDown18.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown18.InterceptArrowKeys = false;
-            this.numericUpDown18.Location = new System.Drawing.Point(302, 113);
-            this.numericUpDown18.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown18.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.numericUpDown18.Name = "numericUpDown18";
-            this.numericUpDown18.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown18.TabIndex = 8;
-            this.numericUpDown18.ThousandsSeparator = true;
-            this.numericUpDown18.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2821,6 +2821,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
             this.tabPage10.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -2858,7 +2859,6 @@ namespace CoreKeeperInventoryEditor
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
             this.ResumeLayout(false);
 
         }
