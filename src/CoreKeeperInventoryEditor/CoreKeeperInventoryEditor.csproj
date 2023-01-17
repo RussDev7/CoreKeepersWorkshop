@@ -133,6 +133,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="FoodCookbook.resx">
       <DependentUpon>FoodCookbook.cs</DependentUpon>
     </EmbeddedResource>

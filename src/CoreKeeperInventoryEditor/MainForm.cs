@@ -11280,7 +11280,7 @@ namespace CoreKeeperInventoryEditor
                     }
                 }
                 else
-                { 
+                {
                     // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
                     // Depreciated Address 17Dec22: 01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AC 00 00 00 01 00 00 00 01 00 00 00
                     // Depreciated Address 09Jan23: 01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F
@@ -11815,7 +11815,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerLocationSecond = null;
 
                 // Display error message.
-                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Core entrance alcove.\r(2) Tap [D].\r(3) Release [W].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11830,6 +11830,33 @@ namespace CoreKeeperInventoryEditor
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             AoBScanResultsPlayerLocationSecond = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 CD CC 0C 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00", true, true);
+
+            // If the count is less then five, the scan had an error.
+            if (AoBScanResultsPlayerLocationSecond.Count() < 1)
+            {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar4.Value = 0;
+                progressBar4.Visible = false;
+
+                // Rename button back to defualt.
+                button11.Text = "Get Addresses";
+
+                // Re-enable button.
+                button11.Enabled = true;
+                groupBox11.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationFirst = null;
+                AoBScanResultsPlayerLocationSecond = null;
+
+                // Display error message.
+                MessageBox.Show("You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Glurch the Abominous Mass's entrance alcove.\r(2) Tap [D].\r(3) Release [W].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Reset the progress bar.
             progressBar4.Value = 0;
@@ -11880,7 +11907,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerLocationSecond = null;
 
                 // Display error message.
-                MessageBox.Show("You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue finding the addresses!\r\rTry restarting / leaving the world!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11954,7 +11981,7 @@ namespace CoreKeeperInventoryEditor
 
         public string SetRevealRangeAddress = "GameAssembly.dll+381D950";
         public async void GetMapRevealAddresses()
-        { 
+        {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
@@ -12073,7 +12100,8 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
 
             // Update the progress bar.
-            progressBar6.Value = 100;
+            if (progressBar6.Maximum >= 100)
+                progressBar6.Value = 100;
             await Task.Delay(1000);
             progressBar6.Visible = false;
         }
@@ -12114,7 +12142,8 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(SetRevealRangeAddress, "float", "12");
 
             // Update the progress bar.
-            progressBar6.Value = 100;
+            if (progressBar6.Maximum >= 100)
+                progressBar6.Value = 100;
             await Task.Delay(1000);
             progressBar6.Visible = false;
         }
@@ -12280,7 +12309,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 rPrevious = r;
             }
-            string time = (((calculateCount * (int)numericUpDown15.Value) / 60000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) + " hours." : ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes.";
+            string time = (((calculateCount * (int)numericUpDown15.Value) / 60000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) + " hours." : (((calculateCount * (int)numericUpDown15.Value) / 1000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes." : ((calculateCount * (int)numericUpDown15.Value) / 1000) + " seconds";
             time = (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) >= 24) ? (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) / 24) + " days." : time;
             if (MessageBox.Show("This operaration will take ~" + time + "\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
@@ -12290,10 +12319,11 @@ namespace CoreKeeperInventoryEditor
             #endregion
 
             // Reset the progress bar.
-            progressBar6.Visible = true;
-            progressBar6.Maximum = calculateCount; // Set the progress bar total to the total required points to complete.
-            progressBar6.Step = 1;
-            progressBar6.Value = 0;
+            textProgressBar1.Visible = true;
+            textProgressBar1.Maximum = calculateCount; // Set the progress bar total to the total required points to complete.
+            textProgressBar1.Step = 1;
+            textProgressBar1.Value = 0;
+            textProgressBar1.CustomText = "Rendering Progress: 0%";
 
             // Change button to indicate loading.
             button22.Text = "Loading...";
@@ -12353,7 +12383,8 @@ namespace CoreKeeperInventoryEditor
                 stepsCompleted++;
 
                 // Progress the progress bar.
-                progressBar6.PerformStep();
+                textProgressBar1.PerformStep();
+                textProgressBar1.CustomText = "Rendering Progress: " + decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "%";
 
                 // Add a long cooldown.
                 await Task.Delay(10000);
@@ -12418,7 +12449,8 @@ namespace CoreKeeperInventoryEditor
                     stepsCompleted++;
 
                     // Progress the progress bar.
-                    progressBar6.PerformStep();
+                    textProgressBar1.PerformStep();
+                    textProgressBar1.CustomText = "Rendering Progress: " + decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "%";
 
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
@@ -12483,7 +12515,8 @@ namespace CoreKeeperInventoryEditor
                     stepsCompleted++;
 
                     // Progress the progress bar.
-                    progressBar6.PerformStep();
+                    textProgressBar1.PerformStep();
+                    textProgressBar1.CustomText = "Rendering Progress: " + decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "%";
 
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
@@ -12521,10 +12554,10 @@ namespace CoreKeeperInventoryEditor
 
                 rPrevious = r;
             }
-            #endregion
+        #endregion
 
-            // Leave the loop and put the player to spawn.
-            exitLoop:;
+        // Leave the loop and put the player to spawn.
+        exitLoop:;
 
             // Reenable controls.
             cancleRenderingOperation = false;
@@ -12534,8 +12567,9 @@ namespace CoreKeeperInventoryEditor
             button28.Visible = false; // Hide cancle button.
             checkBox1.Enabled = true;
             button31.Enabled = false;
-            progressBar6.Visible = false;
-            progressBar6.Maximum = 100;
+            textProgressBar1.Visible = false;
+            textProgressBar1.Maximum = 100;
+            textProgressBar1.CustomText = "";
 
             // Send the player back to the starting position.
             foreach (long res in AoBScanResultsPlayerLocation)
@@ -12587,10 +12621,10 @@ namespace CoreKeeperInventoryEditor
                 }
                 rPrevious = r;
             }
-            #endregion
+        #endregion
 
-            // Leave counting loop.
-            FinishCounting:;
+        // Leave counting loop.
+        FinishCounting:;
 
             MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
