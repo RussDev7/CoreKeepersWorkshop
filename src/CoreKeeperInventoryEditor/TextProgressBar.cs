@@ -19,8 +19,8 @@ namespace CoreKeepersWorkshop
     public class TextProgressBar : ProgressBar
     {
         [Description("Font of the text on ProgressBar"), Category("Additional Options")]
-        public Font TextFont { get; set; } = new Font(FontFamily.GenericSerif, 11, FontStyle.Bold | FontStyle.Italic);
-
+        public Font TextFont { get; set; }
+        
         private SolidBrush _textColourBrush = (SolidBrush)Brushes.Black;
         [Category("Additional Options")]
         public Color TextColor
@@ -97,10 +97,10 @@ namespace CoreKeepersWorkshop
                         text = CurrProgressStr;
                         break;
                     case (ProgressBarDisplayMode.TextAndCurrProgress):
-                        text = $"{CustomText}: {CurrProgressStr}";
+                        text = CustomText + ": " + CurrProgressStr;
                         break;
                     case (ProgressBarDisplayMode.TextAndPercentage):
-                        text = $"{CustomText}: {PercentageStr}";
+                        text = CustomText + ": " + PercentageStr;
                         break;
                 }
 
@@ -109,18 +109,19 @@ namespace CoreKeepersWorkshop
             set { }
         }
 
-        private string PercentageStr { get { return $"{(int)((float)Value - Minimum) / ((float)Maximum - Minimum) * 100 } %"; } }
+        private string PercentageStr { get { return ((int)((float)Value - Minimum) / ((float)Maximum - Minimum) * 100) + "%"; } }
 
         private string CurrProgressStr
         {
             get
             {
-                return $"{Value}/{Maximum}";
+                return Value + "/" + Maximum;
             }
         }
 
         public TextProgressBar()
         {
+            TextFont = new Font(FontFamily.GenericSerif, 11, FontStyle.Bold | FontStyle.Italic);
             Value = Minimum;
             FixComponentBlinking();
         }
