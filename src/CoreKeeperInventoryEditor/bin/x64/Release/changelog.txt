@@ -17,6 +17,7 @@ Changes Since v1.3.4.5
 + Added some varible controls to the dev tools.
 + Fixed tooltip timing accross all forms.
 + Added a progressbar to show the map renderers completion.
++ Added seconds to the auto map renderers time estimate.
 
 Changes Since v1.3.4.4
 ===========================================================
