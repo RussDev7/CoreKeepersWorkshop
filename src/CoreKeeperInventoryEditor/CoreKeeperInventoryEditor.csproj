@@ -113,6 +113,7 @@
       <DependentUpon>FoodCookbook.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ImageFast.cs" />
     <Compile Include="ItemEditor.cs">
       <SubType>Form</SubType>
     </Compile>

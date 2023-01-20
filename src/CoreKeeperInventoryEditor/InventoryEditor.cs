@@ -252,8 +252,8 @@ namespace CoreKeeperInventoryEditor
                             if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(0)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistTools.Images.Add(Image.FromFile(file));
-                                ImagelistLargeTools.Images.Add(Image.FromFile(file));
+                                ImagelistTools.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeTools.Images.Add(ImageFast.FromFile(file));
 
                                 listView1.LargeImageList = ImagelistTools;
 
@@ -264,8 +264,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(1)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistPlaceableItems.Images.Add(Image.FromFile(file));
-                                ImagelistLargePlaceableItems.Images.Add(Image.FromFile(file));
+                                ImagelistPlaceableItems.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargePlaceableItems.Images.Add(ImageFast.FromFile(file));
 
                                 listView2.LargeImageList = ImagelistPlaceableItems;
 
@@ -276,8 +276,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(2)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistNature.Images.Add(Image.FromFile(file));
-                                ImagelistLargeNature.Images.Add(Image.FromFile(file));
+                                ImagelistNature.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeNature.Images.Add(ImageFast.FromFile(file));
 
                                 listView3.LargeImageList = ImagelistNature;
 
@@ -288,8 +288,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(3)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistMaterials.Images.Add(Image.FromFile(file));
-                                ImagelistLargeMaterials.Images.Add(Image.FromFile(file));
+                                ImagelistMaterials.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeMaterials.Images.Add(ImageFast.FromFile(file));
 
                                 listView4.LargeImageList = ImagelistMaterials;
 
@@ -300,8 +300,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(4)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistSpecial.Images.Add(Image.FromFile(file));
-                                ImagelistLargeSpecial.Images.Add(Image.FromFile(file));
+                                ImagelistSpecial.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeSpecial.Images.Add(ImageFast.FromFile(file));
 
                                 listView5.LargeImageList = ImagelistSpecial;
 
@@ -312,8 +312,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(5)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistMobItems.Images.Add(Image.FromFile(file));
-                                ImagelistLargeMobItems.Images.Add(Image.FromFile(file));
+                                ImagelistMobItems.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeMobItems.Images.Add(ImageFast.FromFile(file));
 
                                 listView6.LargeImageList = ImagelistMobItems;
 
@@ -324,8 +324,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(6)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistBaseBuilding.Images.Add(Image.FromFile(file));
-                                ImagelistLargeBaseBuilding.Images.Add(Image.FromFile(file));
+                                ImagelistBaseBuilding.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeBaseBuilding.Images.Add(ImageFast.FromFile(file));
 
                                 listView7.LargeImageList = ImagelistBaseBuilding;
 
@@ -336,8 +336,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(7)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistTreasures.Images.Add(Image.FromFile(file));
-                                ImagelistLargeTreasures.Images.Add(Image.FromFile(file));
+                                ImagelistTreasures.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeTreasures.Images.Add(ImageFast.FromFile(file));
 
                                 listView8.LargeImageList = ImagelistTreasures;
 
@@ -348,8 +348,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(8)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistWiring.Images.Add(Image.FromFile(file));
-                                ImagelistLargeWiring.Images.Add(Image.FromFile(file));
+                                ImagelistWiring.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeWiring.Images.Add(ImageFast.FromFile(file));
 
                                 listView9.LargeImageList = ImagelistWiring;
 
@@ -360,8 +360,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(9)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistPlants.Images.Add(Image.FromFile(file));
-                                ImagelistLargePlants.Images.Add(Image.FromFile(file));
+                                ImagelistPlants.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargePlants.Images.Add(ImageFast.FromFile(file));
 
                                 listView10.LargeImageList = ImagelistPlants;
 
@@ -372,8 +372,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(10)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistArmors.Images.Add(Image.FromFile(file));
-                                ImagelistLargeArmors.Images.Add(Image.FromFile(file));
+                                ImagelistArmors.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeArmors.Images.Add(ImageFast.FromFile(file));
 
                                 listView11.LargeImageList = ImagelistArmors;
 
@@ -384,8 +384,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(11)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistAccessories.Images.Add(Image.FromFile(file));
-                                ImagelistLargeAccessories.Images.Add(Image.FromFile(file));
+                                ImagelistAccessories.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeAccessories.Images.Add(ImageFast.FromFile(file));
 
                                 listView12.LargeImageList = ImagelistAccessories;
 
@@ -396,8 +396,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(12)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistWeapons.Images.Add(Image.FromFile(file));
-                                ImagelistLargeWeapons.Images.Add(Image.FromFile(file));
+                                ImagelistWeapons.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeWeapons.Images.Add(ImageFast.FromFile(file));
 
                                 listView13.LargeImageList = ImagelistWeapons;
 
@@ -408,8 +408,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(13)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistConsumables.Images.Add(Image.FromFile(file));
-                                ImagelistLargeConsumables.Images.Add(Image.FromFile(file));
+                                ImagelistConsumables.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeConsumables.Images.Add(ImageFast.FromFile(file));
 
                                 listView14.LargeImageList = ImagelistConsumables;
 
@@ -420,8 +420,8 @@ namespace CoreKeeperInventoryEditor
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(14)).Name)
                             {
                                 //Add images to Imagelist
-                                ImagelistSeasonal.Images.Add(Image.FromFile(file));
-                                ImagelistLargeSeasonal.Images.Add(Image.FromFile(file));
+                                ImagelistSeasonal.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeSeasonal.Images.Add(ImageFast.FromFile(file));
 
                                 listView15.LargeImageList = ImagelistSeasonal;
 
@@ -576,8 +576,8 @@ namespace CoreKeeperInventoryEditor
                         if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
                         {
                             //Add images to Imagelist
-                            ImagelistSearch.Images.Add(Image.FromFile(file));
-                            ImagelistLargeSearch.Images.Add(Image.FromFile(file));
+                            ImagelistSearch.Images.Add(ImageFast.FromFile(file));
+                            ImagelistLargeSearch.Images.Add(ImageFast.FromFile(file));
 
                             listView16.LargeImageList = ImagelistSearch;
 
@@ -641,8 +641,8 @@ namespace CoreKeeperInventoryEditor
                             if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
                             {
                                 //Add images to Imagelist
-                                ImagelistSearch.Images.Add(Image.FromFile(file));
-                                ImagelistLargeSearch.Images.Add(Image.FromFile(file));
+                                ImagelistSearch.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeSearch.Images.Add(ImageFast.FromFile(file));
 
                                 listView16.LargeImageList = ImagelistSearch;
 
