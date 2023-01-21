@@ -1,8 +1,10 @@
 Changes Since v1.3.4.6
 ===========================================================
+- Mitigated the teleport player address count to one.
+
 + Tweaked the render map progress bar readout.
 + Increased the global image loading times.
-+ Increased the teleport player address load times.
++ Decreased the teleport player address load times.
 
 Changes Since v1.3.4.5
 ===========================================================
