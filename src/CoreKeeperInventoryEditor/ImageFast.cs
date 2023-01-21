@@ -45,8 +45,9 @@ public class ImageFast
     private static readonly Type bmpType = typeof(System.Drawing.Bitmap);
     private static readonly Type emfType = typeof(System.Drawing.Imaging.Metafile);
 
-    public static Image FromFile(string filename) {
-        filename = Path.GetFullPath(filename);
+    public static Image FromFile(string filename)
+    {
+        filename = Path.GetFullPath(filename);
 
         // We are not using ICM at all, fudge that, this should be FAAAAAST!
         if (GdipLoadImageFromFile(filename, out IntPtr loadingImage) != 0)
@@ -65,8 +66,6 @@ public class ImageFast
                 return (Bitmap)bmpType.InvokeMember("FromGDIplus", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.InvokeMethod, null, null, new object[] { loadingImage });
             case GdipImageTypeEnum.Metafile:
                 return (Metafile)emfType.InvokeMember("FromGDIplus", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.InvokeMethod, null, null, new object[] { loadingImage });
-            case GdipImageTypeEnum.Unknown:
-                break;
         }
 
         throw new Exception("Couldn't convert underlying GDI+ object to managed object");

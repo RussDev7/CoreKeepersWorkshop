@@ -3,6 +3,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
+[assembly: SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:ImageFast.#cctor")]
 [assembly: SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.Program.Main")]
 [assembly: SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.PictureBox_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.InventoryEditor.Button6_Click(System.Object,System.EventArgs)")]
@@ -15,6 +16,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.MakeGrayscale3(System.Drawing.Bitmap)~System.Drawing.Bitmap")]
 [assembly: SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.ComboBox1_DropDown(System.Object,System.EventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.IsKeyPressed(System.Int32)~System.Boolean")]
+[assembly: SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:ImageFast.FromFile(System.String)~System.Drawing.Image")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.InventoryEditor.ImagelistAccessories")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.InventoryEditor.ImagelistArmors")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.InventoryEditor.ImagelistBaseBuilding")]
@@ -83,9 +85,8 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.autoFishingTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersInfiniteResourcesTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.inventoryInformation")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.Button22_Click(System.Object,System.EventArgs)")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersAntiCollisionTimer")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawProgressBar(System.Drawing.Graphics)")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawStringIfNeeded(System.Drawing.Graphics)")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:StartupInput.GetDefaultStartupInput~StartupInput")]
-[assembly: SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "<Pending>", Scope = "member", Target = "~M:ImageFast.#cctor")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.Button22_Click(System.Object,System.EventArgs)")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersAntiCollisionTimer")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawProgressBar(System.Drawing.Graphics)")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawStringIfNeeded(System.Drawing.Graphics)")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:StartupInput.GetDefaultStartupInput~StartupInput")]
