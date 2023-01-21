@@ -11758,7 +11758,7 @@ namespace CoreKeeperInventoryEditor
             GetPlayerLocationAddresses();
         }
 
-        public IEnumerable<long> AoBScanResultsPlayerLocationFirst;
+        public IEnumerable<long> AoBScanResultsPlayerLocationScanner;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -11784,14 +11784,14 @@ namespace CoreKeeperInventoryEditor
             // Offset the progress bar to show it's working.
             progressBar4.Visible = true;
             progressBar4.Maximum = 100;
-            progressBar4.Step = 100 / scanTimes;
+            progressBar4.Step = 70 / scanTimes;
             progressBar4.Value = 10;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerLocationFirst = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00", true, true);
+            AoBScanResultsPlayerLocationScanner = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00", true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerLocationFirst.Count() < 1)
+            if (AoBScanResultsPlayerLocationScanner.Count() < 1)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -11809,7 +11809,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
-                AoBScanResultsPlayerLocationFirst = null;
+                AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
                 MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Core entrance alcove.\r(2) Tap [D].\r(3) Release [W].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -11817,27 +11817,21 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Update the progress bar.
-            progressBar4.Value = 25;
+            progressBar4.Value = 20;
 
             // Display info message.
             MessageBox.Show("Now stand in the 'Glurch the Abominous Mass's entrance.\r\rPress 'ok' when ready!", "SUCCESS - STEP 2 OF 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Update the progress bar.
-            progressBar4.Value = 50;
-
-            // Reset the progress bar.
-            progressBar4.Value = 0;
-
             // Re-scan results x times to clear invalid addresses.
             bool firstRun = true;
-            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationFirst);
-            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationFirst);
+            List<long> resultLocations = new List<long>(AoBScanResultsPlayerLocationScanner);
+            List<long> resultLocationsTemp = new List<long>(AoBScanResultsPlayerLocationScanner);
             for (int a = 0; a < scanTimes; a++)
             {
                 // Skip the first loop.
                 if (!firstRun)
                 {
-                    // Wait for one second.
+                    // Wait for 0.25 seconds.
                     await System.Threading.Tasks.Task.Delay(250);
                 }
                 else
@@ -11889,7 +11883,61 @@ namespace CoreKeeperInventoryEditor
                         catch (Exception) { }
                     }
                 }
-			
+
+                // Progress the progress.
+                progressBar4.PerformStep();
+            }
+
+            // Update the progressbar step.
+            progressBar4.Step = (resultLocations.Count() == 0) ? 1 : 10 / resultLocations.Count();
+
+            // Test the remaining values.
+            resultLocationsTemp = new List<long>(resultLocations);
+            foreach (long res in resultLocationsTemp)
+            {
+                // Get address from loop.
+                string playerX = res.ToString("X").ToString();
+                string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                // Store original values.
+                float playerXOriginal = MemLib.ReadFloat(playerX);
+                float playerYOriginal = MemLib.ReadFloat(playerY);
+
+                // Write zeros to the players position.
+                MemLib.WriteMemory(playerX, "float", "0");
+                MemLib.WriteMemory(playerY, "float", "0");
+
+                // Wait for 0.30 seconds.
+                await System.Threading.Tasks.Task.Delay(300);
+
+                // Check to see if the remaining values returned 0.
+                if (MemLib.ReadFloat(playerX).ToString() != "0" || MemLib.ReadFloat(playerY).ToString() != "0")
+                {
+                    // Result does not match the value it needs to be, remove it.
+                    try
+                    {
+                        // Further remove addresses.
+                        resultLocations.Remove(res);
+
+                        // Write the original values back.
+                        MemLib.WriteMemory(playerX, "float", playerXOriginal.ToString());
+                        MemLib.WriteMemory(playerY, "float", playerYOriginal.ToString());
+
+                        // Wait for one second.
+                        await System.Threading.Tasks.Task.Delay(300);
+                    }
+                    catch (Exception) { }
+                }
+                else
+                {
+                    // Write the original values back.
+                    MemLib.WriteMemory(playerX, "float", playerXOriginal.ToString());
+                    MemLib.WriteMemory(playerY, "float", playerYOriginal.ToString());
+
+                    // Wait for 0.30 seconds.
+                    await System.Threading.Tasks.Task.Delay(300);
+                }
+
                 // Progress the progress.
                 progressBar4.PerformStep();
             }
@@ -11916,14 +11964,20 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
-                MessageBox.Show("There was an issue finding the addresses!\r\rTry restarting / leaving the world!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue finding the address!\r\rTry leaving the world or restarting the game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else if (AoBScanResultsPlayerLocation.Count() > 1 && AoBScanResultsPlayerLocation.Count() < 10) // Check if or between 1 & 9.
+            {
+                // Display error message.
+                MessageBox.Show("WARNING! There is more than a single address found! While this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerLocation.Count() > 10)
+                // return; No return is needed.
+            }
+            else if (AoBScanResultsPlayerLocation.Count() > 10)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -11941,9 +11995,10 @@ namespace CoreKeeperInventoryEditor
 
                 // Reset aob scan results
                 AoBScanResultsPlayerLocation = null;
+                AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
-                MessageBox.Show("Woah there! We found too many addresses!\r\rPlease try launching the game as vannila via steam!\rTIP: Some mod managers do not launch it as true vanilla.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Whoa there! We found too many addresses!\r\rPlease try launching the game as vanilla via steam!\rTIP: Some mod managers do not launch it as true vanilla.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
