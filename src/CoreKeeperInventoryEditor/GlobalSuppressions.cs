@@ -88,3 +88,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawProgressBar(System.Drawing.Graphics)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawStringIfNeeded(System.Drawing.Graphics)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:StartupInput.GetDefaultStartupInput~StartupInput")]
+[assembly: SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "<Pending>", Scope = "member", Target = "~M:ImageFast.#cctor")]

@@ -5,42 +5,47 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-public class ImageFast {
-	// Code taken from: http://web.archive.org/web/20120707213018/http://weblogs.asp.net/justin_rogers/pages/131704.aspx
-    [DllImport("gdiplus.dll", ExactSpelling=true, CharSet=CharSet.Unicode)]
-    private static extern int GdipLoadImageFromFile(string filename, out IntPtr image);
-   
-    [DllImport("gdiplus.dll", ExactSpelling=true, CharSet=CharSet.Unicode)]
-    private static extern int GdiplusStartup(out IntPtr token, ref StartupInput input, out StartupOutput output);
-   
-    [DllImport("gdiplus.dll", ExactSpelling=true, CharSet=CharSet.Unicode)]
-    private static extern int GdiplusShutdown(IntPtr token);
+public class ImageFast
+{
+    // Code taken from: http://web.archive.org/web/20120707213018/http://weblogs.asp.net/justin_rogers/pages/131704.aspx
+    [DllImport("gdiplus.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+    private static extern int GdipLoadImageFromFile(string filename, out IntPtr image);
 
-    [DllImport("gdiplus.dll", ExactSpelling=true, CharSet=CharSet.Unicode)]
-    private static extern int GdipGetImageType(IntPtr image, out GdipImageTypeEnum type);
-   
-    private static readonly IntPtr gdipToken = IntPtr.Zero;
-   
-    static ImageFast() {
-        if ( gdipToken == IntPtr.Zero ) {
-            StartupInput input = StartupInput.GetDefaultStartupInput();
+    [DllImport("gdiplus.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+    private static extern int GdiplusStartup(out IntPtr token, ref StartupInput input, out StartupOutput output);
 
-            int status = GdiplusStartup(out gdipToken, ref input, out StartupOutput output);
+    [DllImport("gdiplus.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+    private static extern int GdiplusShutdown(IntPtr token);
 
-            if ( status == 0 )
-                AppDomain.CurrentDomain.ProcessExit += new EventHandler(Cleanup_Gdiplus);
-        }
-    }
-   
-    private static void Cleanup_Gdiplus(object sender, EventArgs e) {
-        if ( gdipToken != IntPtr.Zero )
-            GdiplusShutdown(gdipToken);
-    }
-   
-    private static readonly Type bmpType = typeof(System.Drawing.Bitmap);
-    private static readonly Type emfType = typeof(System.Drawing.Imaging.Metafile);
+    [DllImport("gdiplus.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+    private static extern int GdipGetImageType(IntPtr image, out GdipImageTypeEnum type);
 
-    public static Image FromFile(string filename) {
+    private static readonly IntPtr gdipToken = IntPtr.Zero;
+
+    static ImageFast()
+    {
+        if (gdipToken == IntPtr.Zero)
+        {
+            StartupInput input = StartupInput.GetDefaultStartupInput();
+            StartupOutput output;
+
+            int status = GdiplusStartup(out gdipToken, ref input, out output);
+
+            if (status == 0)
+                AppDomain.CurrentDomain.ProcessExit += new EventHandler(Cleanup_Gdiplus);
+        }
+    }
+
+    private static void Cleanup_Gdiplus(object sender, EventArgs e)
+    {
+        if (gdipToken != IntPtr.Zero)
+            GdiplusShutdown(gdipToken);
+    }
+
+    private static readonly Type bmpType = typeof(System.Drawing.Bitmap);
+    private static readonly Type emfType = typeof(System.Drawing.Imaging.Metafile);
+
+    public static Image FromFile(string filename) {
         filename = Path.GetFullPath(filename);
 
         // We are not using ICM at all, fudge that, this should be FAAAAAST!
