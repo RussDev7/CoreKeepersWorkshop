@@ -48,14 +48,16 @@ public class ImageFast
     public static Image FromFile(string filename)
     {
         filename = Path.GetFullPath(filename);
+        IntPtr loadingImage = IntPtr.Zero;
 
         // We are not using ICM at all, fudge that, this should be FAAAAAST!
-        if (GdipLoadImageFromFile(filename, out IntPtr loadingImage) != 0)
+        if (GdipLoadImageFromFile(filename, out loadingImage) != 0)
         {
             throw new Exception("GDI+ threw a status error code.");
         }
 
-        if (GdipGetImageType(loadingImage, out GdipImageTypeEnum imageType) != 0)
+        GdipImageTypeEnum imageType;
+        if (GdipGetImageType(loadingImage, out imageType) != 0)
         {
             throw new Exception("GDI+ couldn't get the image type");
         }
