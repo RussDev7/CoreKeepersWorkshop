@@ -91,4 +91,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersAntiCollisionTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawProgressBar(System.Drawing.Graphics)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawStringIfNeeded(System.Drawing.Graphics)")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:StartupInput.GetDefaultStartupInput~StartupInput")]]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:StartupInput.GetDefaultStartupInput~StartupInput")]
