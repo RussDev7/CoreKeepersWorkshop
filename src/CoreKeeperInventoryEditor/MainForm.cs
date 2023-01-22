@@ -12409,7 +12409,7 @@ namespace CoreKeeperInventoryEditor
             // Set the custom render.
             MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
 
-            // Reset varible.
+            // Reset variable.
             rPrevious = minRadius;
 
             // Get the noclip addresses.
@@ -12660,7 +12660,7 @@ namespace CoreKeeperInventoryEditor
             // Disable noclip.
             MemLib.WriteMemory(playerStateAddress, "int", playerStateOriginalValue);
 
-            // Reset varible.
+            // Reset variable.
             rPrevious = minRadius;
 
             #region Calculate Total Tiles Rendered
