@@ -1,5 +1,7 @@
 Changes Since v1.3.4.6
 ===========================================================
+- Fixed progress bar text with the auto map renderer.
+- Fixed issues with the anti collision getting disabled.
 - Mitigated the teleport player address count to one.
 
 + Tweaked the render map progress bar readout.
