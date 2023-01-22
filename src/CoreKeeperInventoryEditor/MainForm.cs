@@ -12409,6 +12409,9 @@ namespace CoreKeeperInventoryEditor
             // Set the custom render.
             MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
 
+            // Reset varible.
+            rPrevious = minRadius;
+
             // Get the noclip addresses.
             string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
             string playerStateOriginalValue = MemLib.ReadInt(playerStateAddress).ToString(); // Save state for returning later.
@@ -12547,6 +12550,9 @@ namespace CoreKeeperInventoryEditor
                         goto exitLoop;
                     }
                 }
+
+                // Enable noclip.
+                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
                 #endregion
 
                 #region Move Around Circle
@@ -12613,6 +12619,9 @@ namespace CoreKeeperInventoryEditor
                         goto exitLoop;
                     }
                 }
+
+                // Enable noclip.
+                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
                 #endregion
 
                 rPrevious = r;
@@ -12650,6 +12659,9 @@ namespace CoreKeeperInventoryEditor
 
             // Disable noclip.
             MemLib.WriteMemory(playerStateAddress, "int", playerStateOriginalValue);
+
+            // Reset varible.
+            rPrevious = minRadius;
 
             #region Calculate Total Tiles Rendered
 
