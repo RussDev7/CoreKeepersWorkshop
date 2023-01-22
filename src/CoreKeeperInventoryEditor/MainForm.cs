@@ -12494,6 +12494,9 @@ namespace CoreKeeperInventoryEditor
                 #region Moving Between Circles
                 for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
                 {
+                    // Force enable noclip to prevent unclipping.
+                    MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+
                     // Define current position.
                     Vector2 newPosition = new Vector2(x, y + yoffset);
 
@@ -12550,9 +12553,6 @@ namespace CoreKeeperInventoryEditor
                         goto exitLoop;
                     }
                 }
-
-                // Enable noclip.
-                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
                 #endregion
 
                 #region Move Around Circle
@@ -12560,6 +12560,9 @@ namespace CoreKeeperInventoryEditor
                 double theta;
                 for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
                 {
+                    // Force enable noclip to prevent unclipping.
+                    MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+
                     x = (int)(Math.Sin(theta) * r) + xoffset;
                     y = (int)(Math.Cos(theta) * r) + yoffset;
 
@@ -12619,9 +12622,6 @@ namespace CoreKeeperInventoryEditor
                         goto exitLoop;
                     }
                 }
-
-                // Enable noclip.
-                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
                 #endregion
 
                 rPrevious = r;
