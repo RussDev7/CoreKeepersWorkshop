@@ -3,6 +3,7 @@ Changes Since v1.3.4.6
 - Fixed progress bar text with the auto map renderer.
 - Fixed issues with the anti collision getting disabled.
 - Fixed anti collision unclipping when rendering map.
+- Fixed a double error message bug when loading item menu.
 - Mitigated the teleport player address count to one.
 
 + Tweaked the render map progress bar readout.
