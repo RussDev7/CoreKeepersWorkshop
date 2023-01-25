@@ -11967,7 +11967,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
-                MessageBox.Show("There was an issue finding the address!\r\rTry leaving the world or restarting the game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue finding the address!\rTry leaving the world or restarting the game!\r\rINFORMATION: You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Glurch the Abominous Mass's entrance alcove.\r(2) Tap [D].\r(3) Release [W].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (AoBScanResultsPlayerLocation.Count() > 1 && AoBScanResultsPlayerLocation.Count() < 10) // Check if or between 1 & 9.
@@ -12280,6 +12280,19 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown16.Value = minCircleRadiusOriginalValue;
             }
         }
+        
+        // Set anti collision timer variables.
+        string renderMapPlayerStateAddress;
+        string renderMapPlayerStateOriginalValue;
+        string renderMapPlayerStateNoClipAddress;
+        
+        // Render map anti collision timer.
+        readonly System.Timers.Timer renderMapAntiCollisionTimer = new System.Timers.Timer();
+        private void RenderMapAntiCollisionTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Write new value.
+            MemLib.WriteMemory(renderMapPlayerStateAddress, "int", MemLib.ReadInt(renderMapPlayerStateNoClipAddress).ToString()); // Overwrite new value.
+        }
 
         // Auto rebnder the map.
         public bool cancleRenderingOperation = false;
@@ -12322,6 +12335,11 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Do initial varible reset.
+            renderMapPlayerStateAddress = "";
+            renderMapPlayerStateOriginalValue = "";
+            renderMapPlayerStateNoClipAddress = "";
+
             // Define players initial position.
             var initialres = AoBScanResultsPlayerTools.Last();
             float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("152", NumberStyles.Integer)).ToString("X"));
@@ -12338,8 +12356,8 @@ namespace CoreKeeperInventoryEditor
             int count = 0;
 
             // Get each XY value within x radius of player.
-            int xoffset = (int)localPosition.X + 1;
-            int yoffset = (int)localPosition.Y + 1;
+            int xoffset = (int)localPosition.X;
+            int yoffset = (int)localPosition.Y;
 
             // Define starting vars.
             int x = xoffset;
@@ -12413,12 +12431,14 @@ namespace CoreKeeperInventoryEditor
             rPrevious = minRadius;
 
             // Get the noclip addresses.
-            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
-            string playerStateOriginalValue = MemLib.ReadInt(playerStateAddress).ToString(); // Save state for returning later.
-            string playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
+            renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
+            renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
+            renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
 
-            // Enable noclip.
-            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+            // Enable noclip, start the timed events.
+            renderMapAntiCollisionTimer.Interval = 1; // Custom intervals.
+            renderMapAntiCollisionTimer.Elapsed += new ElapsedEventHandler(RenderMapAntiCollisionTimedEvent);
+            renderMapAntiCollisionTimer.Start();
 
             #region Do Rendering
 
@@ -12657,10 +12677,11 @@ namespace CoreKeeperInventoryEditor
                 MemLib.WriteMemory(playerY, "float", initialPosition.Y.ToString());
             }
 
-            // Disable noclip.
-            MemLib.WriteMemory(playerStateAddress, "int", playerStateOriginalValue);
+            // Stop timed events, disable noclip.
+            renderMapAntiCollisionTimer.Stop();
+            MemLib.WriteMemory(renderMapPlayerStateAddress, "int", renderMapPlayerStateOriginalValue);
 
-            // Reset variable.
+            // Reset variables.
             rPrevious = minRadius;
 
             #region Calculate Total Tiles Rendered
@@ -12698,8 +12719,8 @@ namespace CoreKeeperInventoryEditor
             }
         #endregion
 
-        // Leave counting loop.
-        FinishCounting:;
+            // Leave counting loop.
+            FinishCounting:;
 
             MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }

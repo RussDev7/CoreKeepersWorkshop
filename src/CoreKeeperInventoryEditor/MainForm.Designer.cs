@@ -1846,7 +1846,7 @@ namespace CoreKeeperInventoryEditor
             this.textProgressBar1.CustomText = "0.00% | Current Radius: 0";
             this.textProgressBar1.Location = new System.Drawing.Point(104, 20);
             this.textProgressBar1.Name = "textProgressBar1";
-            this.textProgressBar1.ProgressColor = System.Drawing.Color.LightGreen;
+            this.textProgressBar1.ProgressColor = System.Drawing.Color.Green;
             this.textProgressBar1.Size = new System.Drawing.Size(256, 21);
             this.textProgressBar1.TabIndex = 30;
             this.textProgressBar1.TextColor = System.Drawing.Color.Black;
