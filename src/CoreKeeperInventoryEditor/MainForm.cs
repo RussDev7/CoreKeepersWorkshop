@@ -796,7 +796,9 @@ namespace CoreKeeperInventoryEditor
                 progressBar2.Value = 0;
                 progressBar2.Visible = false;
 
-                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!loadInventory) // Prevent double error messages. // Fix: v1.3.4.7.
+                    MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
