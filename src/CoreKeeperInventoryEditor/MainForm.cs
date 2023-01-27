@@ -12217,6 +12217,8 @@ namespace CoreKeeperInventoryEditor
 
         #region Auto Render Map
 
+        #region Controls
+
         // Pause operations.
         private void Button31_Click(object sender, EventArgs e)
         {
@@ -12282,18 +12284,21 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown16.Value = minCircleRadiusOriginalValue;
             }
         }
-        
-        // Set anti collision timer variables.
+        #endregion
+
+        // Set anti collision and godmode timer variables.
         string renderMapPlayerStateAddress;
         string renderMapPlayerStateOriginalValue;
         string renderMapPlayerStateNoClipAddress;
+        string renderMapGodmodeAddress;
         
         // Render map anti collision timer.
-        readonly System.Timers.Timer renderMapAntiCollisionTimer = new System.Timers.Timer();
-        private void RenderMapAntiCollisionTimedEvent(Object source, ElapsedEventArgs e)
+        readonly System.Timers.Timer renderMapOperationsTimer = new System.Timers.Timer();
+        private void RenderMapOperationsTimedEvent(Object source, ElapsedEventArgs e)
         {
-            // Write new value.
-            MemLib.WriteMemory(renderMapPlayerStateAddress, "int", MemLib.ReadInt(renderMapPlayerStateNoClipAddress).ToString()); // Overwrite new value.
+            // Write new values.
+            MemLib.WriteMemory(renderMapPlayerStateAddress, "int", MemLib.ReadInt(renderMapPlayerStateNoClipAddress).ToString()); // Anti collision.
+            MemLib.WriteMemory(renderMapGodmodeAddress, "int", "100000"); // Godmode.
         }
 
         // Auto rebnder the map.
@@ -12341,6 +12346,7 @@ namespace CoreKeeperInventoryEditor
             renderMapPlayerStateAddress = "";
             renderMapPlayerStateOriginalValue = "";
             renderMapPlayerStateNoClipAddress = "";
+            renderMapGodmodeAddress = "";
 
             // Define players initial position.
             var initialres = AoBScanResultsPlayerTools.Last();
@@ -12437,10 +12443,13 @@ namespace CoreKeeperInventoryEditor
             renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
             renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
 
-            // Enable noclip, start the timed events.
-            renderMapAntiCollisionTimer.Interval = 1; // Custom intervals.
-            renderMapAntiCollisionTimer.Elapsed += new ElapsedEventHandler(RenderMapAntiCollisionTimedEvent);
-            renderMapAntiCollisionTimer.Start();
+            // Get the godmode address.
+            renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2112", NumberStyles.Integer)).ToString("X");
+
+            // Enable noclip, godmode, and start the timed events.
+            renderMapOperationsTimer.Interval = 1; // Custom intervals.
+            renderMapOperationsTimer.Elapsed += new ElapsedEventHandler(RenderMapOperationsTimedEvent);
+            renderMapOperationsTimer.Start();
 
             #region Do Rendering
 
@@ -12679,8 +12688,8 @@ namespace CoreKeeperInventoryEditor
                 MemLib.WriteMemory(playerY, "float", initialPosition.Y.ToString());
             }
 
-            // Stop timed events, disable noclip.
-            renderMapAntiCollisionTimer.Stop();
+            // Stop timed events, disable noclip, disable godmode.
+            renderMapOperationsTimer.Stop();
             MemLib.WriteMemory(renderMapPlayerStateAddress, "int", renderMapPlayerStateOriginalValue);
 
             // Reset variables.
