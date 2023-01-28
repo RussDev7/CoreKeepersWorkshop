@@ -11,6 +11,7 @@ Changes Since v1.3.4.6
 + Increased the global image loading times.
 + Decreased the teleport player address load times.
 + Added clean.bat to the protect files.
++ Fixed some wrong ids for item asset.
 
 Changes Since v1.3.4.5
 ===========================================================
