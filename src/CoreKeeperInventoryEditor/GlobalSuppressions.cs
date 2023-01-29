@@ -92,4 +92,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawProgressBar(System.Drawing.Graphics)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeepersWorkshop.TextProgressBar.DrawStringIfNeeded(System.Drawing.Graphics)")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:StartupInput.GetDefaultStartupInput~StartupInput")]
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.renderMapAntiCollisionTimer")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.Label30_Click(System.Object,System.EventArgs)")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.renderMapOperationsTimer")]

@@ -19,6 +19,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using static Siticone.UI.Native.WinApi;
 
 namespace CoreKeeperInventoryEditor
 {
@@ -73,6 +74,15 @@ namespace CoreKeeperInventoryEditor
         private const int MOUSEEVENT_MIDDLEUP = 0x40;
         private const int MOUSEEVENT_RIGHTDOWN = 0x08;
         private const int MOUSEEVENT_RIGHTUP = 0x10;
+
+        // Set the process handle resize class.
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+
+        private const int SWP_NOSIZE = 0x0001;
+        private const int SWP_NOZORDER = 0x0004;
+        private const int SWP_SHOWWINDOW = 0x0040;
 
         #endregion // End variables.
 
@@ -14234,6 +14244,8 @@ namespace CoreKeeperInventoryEditor
 
         #region Admin Tools
 
+        #region Upgrade Legacy Items
+
         // Upgrade legacy version vanity items to the new system.
         private void Label7_Click(object sender, EventArgs e)
         {
@@ -14326,6 +14338,9 @@ namespace CoreKeeperInventoryEditor
             // Recolor label.
             label7.ForeColor = Color.Red;
         }
+        #endregion // End upgrade legacy items.
+
+        #region Random Food ID
 
         // Get a random food ID.
         private void Label4_Click(object sender, EventArgs e)
@@ -14399,6 +14414,9 @@ namespace CoreKeeperInventoryEditor
             // Recolor label.
             label4.ForeColor = Color.Lime;
         }
+        #endregion // End random food id.
+
+        #region Quick Edit Slot2
 
         // Quick edit Slot2s item using arrow keys.
         [DllImport("user32.dll")]
@@ -14522,6 +14540,32 @@ namespace CoreKeeperInventoryEditor
                 AddItemToInv(itemSlot: 2, type: currentSwapItem, amount: currentSwapAmount -= 1, variation: currentSwapVariation, Overwrite: true);
             }
         }
+        #endregion // End quick edit slot2.
+
+        #region Recenter Game
+
+        // Bring game window back to the center and resize.
+        private void Label30_Click(object sender, EventArgs e)
+        {
+            // Get the process of the game.
+            Process process = Process.GetProcessesByName("CoreKeeper").First();
+
+            while (process.MainWindowHandle == IntPtr.Zero)
+                process.Refresh();
+
+            // Define the handle.
+            IntPtr handle = process.MainWindowHandle;
+            Rectangle screen = Screen.FromHandle(handle).Bounds;
+
+            // Define the new rectangle size and find the screen center.
+            Rectangle newSize = new Rectangle(0, 0, 600, 400);
+            Point pt = new Point(screen.Left + screen.Width / 2 - (newSize.Right - newSize.Left) / 2, screen.Top + screen.Height / 2 - (newSize.Bottom - newSize.Top) / 2);
+
+            // Send the process to a new location.
+            SetWindowPos(handle, IntPtr.Zero, pt.X, pt.Y, 600, 400, SWP_SHOWWINDOW);
+        }
+        #endregion // End recenter game.
+
         #endregion // End admin tools.
     }
 }

@@ -105,6 +105,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -1180,6 +1181,7 @@ namespace CoreKeeperInventoryEditor
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.Black;
+            this.tabPage7.Controls.Add(this.label30);
             this.tabPage7.Controls.Add(this.label8);
             this.tabPage7.Controls.Add(this.label7);
             this.tabPage7.Controls.Add(this.label5);
@@ -1192,6 +1194,17 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "Dev-Tools";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.ForeColor = System.Drawing.Color.Red;
+            this.label30.Location = new System.Drawing.Point(1, 91);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(163, 13);
+            this.label30.TabIndex = 9;
+            this.label30.Text = "[Click Me] Center Game Process.";
+            this.label30.Click += new System.EventHandler(this.Label30_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -1201,6 +1214,7 @@ namespace CoreKeeperInventoryEditor
             this.label8.Size = new System.Drawing.Size(277, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
+            this.label8.Click += new System.EventHandler(this.Label8_Click);
             // 
             // label7
             // 
@@ -3070,6 +3084,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button button31;
         private System.Windows.Forms.NumericUpDown numericUpDown18;
         private CoreKeepersWorkshop.TextProgressBar textProgressBar1;
+        private System.Windows.Forms.Label label30;
     }
 }
 
