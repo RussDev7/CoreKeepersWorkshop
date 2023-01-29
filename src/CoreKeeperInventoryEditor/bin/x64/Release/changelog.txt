@@ -5,6 +5,7 @@ Changes Since v1.3.4.6
 - Fixed anti collision unclipping when rendering map.
 - Fixed a double error message bug when loading item menu.
 - Fixed issues with the player dying while rendering map.
+- Fixed map renderers progressbar to display correct info.
 - Mitigated the teleport player address count to one.
 
 + Tweaked the render map progress bar readout.
