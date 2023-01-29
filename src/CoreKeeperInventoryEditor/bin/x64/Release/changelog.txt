@@ -6,13 +6,14 @@ Changes Since v1.3.4.6
 - Fixed a double error message bug when loading item menu.
 - Fixed issues with the player dying while rendering map.
 - Fixed map renderers progressbar to display correct info.
+- Fixed some wrong ids for item asset.
 - Mitigated the teleport player address count to one.
 
 + Tweaked the render map progress bar readout.
 + Increased the global image loading times.
 + Decreased the teleport player address load times.
 + Added clean.bat to the protect files.
-+ Fixed some wrong ids for item asset.
++ Added center game process dev tool.
 
 Changes Since v1.3.4.5
 ===========================================================
