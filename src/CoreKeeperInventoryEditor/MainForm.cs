@@ -12356,8 +12356,8 @@ namespace CoreKeeperInventoryEditor
 
             // Define entree values.
             Vector2 localPosition = initialPosition;
-            int maxRadius = (int)numericUpDown14.Value; // Min radius.
-            int minRadius = (int)numericUpDown16.Value; // Max radius.
+            int maxRadius = (int)numericUpDown14.Value; // Max radius.
+            int minRadius = (int)numericUpDown16.Value; // Min radius.
             int stepSize = (int)numericUpDown17.Value; // Range.
             double radialMoveScale = (double)numericUpDown18.Value; // radialMoveScale.
             int stepsCompleted = 0;
@@ -12481,7 +12481,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Progress the progress bar.
                 textProgressBar1.PerformStep();
-                textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + (rPrevious + stepSize);
+                textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + (int)numericUpDown16.Value;
 
                 // Add a long cooldown.
                 await Task.Delay(10000);
@@ -12550,7 +12550,7 @@ namespace CoreKeeperInventoryEditor
 
                     // Progress the progress bar.
                     textProgressBar1.PerformStep();
-                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + (rPrevious + stepSize);
+                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + r;
 
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
@@ -12619,7 +12619,7 @@ namespace CoreKeeperInventoryEditor
 
                     // Progress the progress bar.
                     textProgressBar1.PerformStep();
-                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + (rPrevious + stepSize);
+                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + r;
 
                     // Add a cooldown.
                     await Task.Delay((int)numericUpDown15.Value);
