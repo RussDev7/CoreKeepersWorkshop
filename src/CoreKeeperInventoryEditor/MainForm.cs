@@ -230,7 +230,7 @@ namespace CoreKeeperInventoryEditor
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
 
-                toolTip.SetToolTip(checkBox1, "Render only the final ring within the circle.");
+                toolTip.SetToolTip(checkBox1, "Save the map to file after each completed ring.");
 
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(richTextBox6, "A list of all found addresses. Used mostly for debugging.");
@@ -12268,32 +12268,6 @@ namespace CoreKeeperInventoryEditor
                 cancleRenderingOperation = true;
             }
         }
-
-        // Toggle hollow mode.
-        int minCircleRadiusOriginalValue;
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            // Check if the checkbox is enabled or not.
-            if (checkBox1.Checked)
-            {
-                // Save the original value.
-                minCircleRadiusOriginalValue = (int)numericUpDown16.Value;
-
-                // Disable some controls.
-                numericUpDown16.Enabled = false;
-
-                // Set the same value as the max.
-                numericUpDown16.Value = numericUpDown14.Value;
-            }
-            else
-            {
-                // Enable some controls.
-                numericUpDown16.Enabled = true;
-
-                // Set the original value.
-                numericUpDown16.Value = minCircleRadiusOriginalValue;
-            }
-        }
         #endregion
 
         // Set anti collision and godmode timer variables.
@@ -12666,6 +12640,19 @@ namespace CoreKeeperInventoryEditor
                 #endregion
 
                 rPrevious = r;
+
+                // Save the maps progress before starting next ring.
+                if (checkBox1.Checked)
+                {
+                    // Press the "M" key to open the map.
+                    SendKeys.SendWait("m");
+
+                    // Add a long cooldown.
+                    await Task.Delay(10000);
+
+                    // Press the "M" key to close the map.
+                    SendKeys.SendWait("m");
+                }
             }
             #endregion
 
@@ -13074,15 +13061,14 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Offset the progress bar to show it's working.
-            progressBar4.Visible = true;
-            progressBar4.Maximum = 100;
-            progressBar4.Step = 50;
-            progressBar4.Value = 10;
+            progressBar7.Visible = true;
+            progressBar7.Maximum = 100;
+            progressBar7.Step = 50;
+            progressBar7.Value = 10;
 
             // Change button to indicate loading.
             button16.Text = "Loading...";
-            button16.Enabled = false;
-            textBox3.Enabled = false;
+            groupBox12.Enabled = false;
 
             // Clear the datagridview.
             dataGridView1.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
@@ -13106,15 +13092,14 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsTeleportData.Count() < 1)
             {
                 // Reset progress bar.
-                progressBar4.Value = 0;
-                progressBar4.Visible = false;
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
 
                 // Rename button back to defualt.
                 button16.Text = "Get World Information";
 
                 // Re-enable button.
-                button16.Enabled = true;
-                textBox3.Enabled = true;
+                groupBox12.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsTeleportData = null;
@@ -13130,7 +13115,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsTeleportData.Count();
+            progressBar7.Step = 100 / AoBScanResultsTeleportData.Count();
 
             // Iterate through each found address.
             string getJsonData = "";
@@ -13214,7 +13199,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Perform progress step.
-                progressBar4.PerformStep();
+                progressBar7.PerformStep();
             }
 
             // Check if any data was found, do action if not.
@@ -13228,13 +13213,12 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Process completed, run finishing tasks.
-            progressBar4.Value = 100;
-            progressBar4.Visible = false;
+            progressBar7.Value = 100;
+            progressBar7.Visible = false;
 
             // Rename button back to defualt.
             button16.Text = "Get World Information";
-            button16.Enabled = true;
-            textBox3.Enabled = true;
+            groupBox12.Enabled = true;
         }
         #endregion // End get world information.
 
