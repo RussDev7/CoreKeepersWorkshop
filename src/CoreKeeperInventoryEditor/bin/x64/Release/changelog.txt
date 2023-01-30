@@ -15,6 +15,7 @@ Changes Since v1.3.4.6
 + Added clean.bat to the protect files.
 + Added center game process dev tool.
 + Organized the world tab gui to allow for more mods.
++ Added a save feature to the auto map renderer.
 
 Changes Since v1.3.4.5
 ===========================================================
