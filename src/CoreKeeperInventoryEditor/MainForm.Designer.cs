@@ -1838,9 +1838,9 @@ namespace CoreKeeperInventoryEditor
             this.groupBox13.Controls.Add(this.label9);
             this.groupBox13.Controls.Add(this.button19);
             this.groupBox13.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox13.Location = new System.Drawing.Point(11, 224);
+            this.groupBox13.Location = new System.Drawing.Point(11, 227);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(366, 194);
+            this.groupBox13.Size = new System.Drawing.Size(366, 191);
             this.groupBox13.TabIndex = 49;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "World Utilities";
@@ -1911,7 +1911,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox8.ForeColor = System.Drawing.Color.Lime;
             this.groupBox8.Location = new System.Drawing.Point(10, 91);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(366, 127);
+            this.groupBox8.Size = new System.Drawing.Size(366, 130);
             this.groupBox8.TabIndex = 43;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Map Rendering";

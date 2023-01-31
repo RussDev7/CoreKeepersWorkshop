@@ -74,11 +74,19 @@ namespace CoreKeeperInventoryEditor
         private const int MOUSEEVENT_RIGHTDOWN = 0x08;
         private const int MOUSEEVENT_RIGHTUP = 0x10;
 
+        #region Proccess Handle Classes
+
         // Set the process handle resize class.
+        [DllImport("user32.dll")]
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
-
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
 
@@ -94,6 +102,8 @@ namespace CoreKeeperInventoryEditor
         private const int SWP_NOSIZE = 0x0001;
         private const int SWP_NOZORDER = 0x0004;
         private const int SWP_SHOWWINDOW = 0x0040;
+
+        #endregion
 
         #endregion // End variables.
 
@@ -11866,45 +11876,49 @@ namespace CoreKeeperInventoryEditor
                 // Get byte offsets.
                 foreach (long res in resultLocationsTemp)
                 {
-                    string byte1 = res.ToString("X"); // C? CC CC 3D 00 00 00 00 CD CC 0C 41
-                    string byte2 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                    string byte3 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
-                    string byte4 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("3", NumberStyles.Integer)).ToString("X");
-                    string byte5 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                    string byte6 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
-                    string byte7 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("6", NumberStyles.Integer)).ToString("X");
-                    string byte8 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("7", NumberStyles.Integer)).ToString("X");
-                    string byte9 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                    string byte10 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("9", NumberStyles.Integer)).ToString("X");
-
-                    // Check if value does not exist.
-                    if (
-                        MemLib.ReadByte(byte1).ToString("X").ToCharArray()[0].ToString() != "C" || // C? CC CC 3D 00 00 00 00 CD CC 0C 41
-                        MemLib.ReadByte(byte2).ToString("X").ToCharArray()[0].ToString() != "C" ||
-                        MemLib.ReadByte(byte2).ToString("X").ToCharArray()[1].ToString() != "C" ||
-                        MemLib.ReadByte(byte3).ToString("X").ToCharArray()[0].ToString() != "C" ||
-                        MemLib.ReadByte(byte3).ToString("X").ToCharArray()[1].ToString() != "C" ||
-                        MemLib.ReadByte(byte4).ToString("X").ToCharArray()[0].ToString() != "3" ||
-                        MemLib.ReadByte(byte4).ToString("X").ToCharArray()[1].ToString() != "D" ||
-
-                        MemLib.ReadByte(byte5).ToString("X").ToString() != "0" ||
-                        MemLib.ReadByte(byte6).ToString("X").ToString() != "0" ||
-                        MemLib.ReadByte(byte7).ToString("X").ToString() != "0" ||
-                        MemLib.ReadByte(byte8).ToString("X").ToString() != "0" ||
-
-                        MemLib.ReadByte(byte9).ToString("X").ToCharArray()[0].ToString() != "C" ||
-                        MemLib.ReadByte(byte9).ToString("X").ToCharArray()[1].ToString() != "D" ||
-                        MemLib.ReadByte(byte10).ToString("X").ToCharArray()[0].ToString() != "C" ||
-                        MemLib.ReadByte(byte10).ToString("X").ToCharArray()[1].ToString() != "C"
-                    )
+                    try
                     {
-                        // Result does not match the value it needs to be, remove it.
-                        try
+                        string byte1 = res.ToString("X"); // C? CC CC 3D 00 00 00 00 CD CC 0C 41
+                        string byte2 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                        string byte3 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
+                        string byte4 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("3", NumberStyles.Integer)).ToString("X");
+                        string byte5 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                        string byte6 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
+                        string byte7 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("6", NumberStyles.Integer)).ToString("X");
+                        string byte8 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("7", NumberStyles.Integer)).ToString("X");
+                        string byte9 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                        string byte10 = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("9", NumberStyles.Integer)).ToString("X");
+
+                        // Check if value does not exist.
+                        if (
+                            MemLib.ReadByte(byte1).ToString("X").ToCharArray()[0].ToString() != "C" || // C? CC CC 3D 00 00 00 00 CD CC 0C 41
+                            MemLib.ReadByte(byte2).ToString("X").ToCharArray()[0].ToString() != "C" ||
+                            MemLib.ReadByte(byte2).ToString("X").ToCharArray()[1].ToString() != "C" ||
+                            MemLib.ReadByte(byte3).ToString("X").ToCharArray()[0].ToString() != "C" ||
+                            MemLib.ReadByte(byte3).ToString("X").ToCharArray()[1].ToString() != "C" ||
+                            MemLib.ReadByte(byte4).ToString("X").ToCharArray()[0].ToString() != "3" ||
+                            MemLib.ReadByte(byte4).ToString("X").ToCharArray()[1].ToString() != "D" ||
+
+                            MemLib.ReadByte(byte5).ToString("X").ToString() != "0" ||
+                            MemLib.ReadByte(byte6).ToString("X").ToString() != "0" ||
+                            MemLib.ReadByte(byte7).ToString("X").ToString() != "0" ||
+                            MemLib.ReadByte(byte8).ToString("X").ToString() != "0" ||
+
+                            MemLib.ReadByte(byte9).ToString("X").ToCharArray()[0].ToString() != "C" ||
+                            MemLib.ReadByte(byte9).ToString("X").ToCharArray()[1].ToString() != "D" ||
+                            MemLib.ReadByte(byte10).ToString("X").ToCharArray()[0].ToString() != "C" ||
+                            MemLib.ReadByte(byte10).ToString("X").ToCharArray()[1].ToString() != "C"
+                        )
                         {
-                            resultLocations.Remove(res);
+                            // Result does not match the value it needs to be, remove it.
+                            try
+                            {
+                                resultLocations.Remove(res);
+                            }
+                            catch (Exception) { }
                         }
-                        catch (Exception) { }
                     }
+                    catch (Exception) { }
                 }
 
                 // Progress the progress.
@@ -12660,16 +12674,50 @@ namespace CoreKeeperInventoryEditor
                 rPrevious = r;
 
                 // Save the maps progress before starting next ring.
-                if (checkBox1.Checked)
+                if (checkBox1.Checked && r != (int)numericUpDown16.Value)
                 {
+                    // Add a cooldown.
+                    await Task.Delay(100);
+
                     // Press the "M" key to open the map.
-                    SendKeys.SendWait("m");
+                    if (Process.GetProcessesByName("CoreKeeper").FirstOrDefault() != null)
+                    {
+                        SetForegroundWindow(FindWindow(null, "Core Keeper"));
+                        keybd_event((byte)0x4D, 0, 0x0001 | 0, 0);
+                        keybd_event((byte)0x4D, 0, 0x0001 | 2, 0);
+                    }
 
                     // Add a long cooldown.
                     await Task.Delay(10000);
 
                     // Press the "M" key to close the map.
-                    SendKeys.SendWait("m");
+                    if (Process.GetProcessesByName("CoreKeeper").FirstOrDefault() != null)
+                    {
+                        SetForegroundWindow(FindWindow(null, "Core Keeper"));
+                        keybd_event((byte)0x4D, 0, 0x0001 | 0, 0);
+                        keybd_event((byte)0x4D, 0, 0x0001 | 2, 0);
+                    }
+
+                    // Add a cooldown.
+                    await Task.Delay(100);
+                }
+
+                // Ensure the game process still exists.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    // Show error message.
+                    MessageBox.Show("The Core Keeper proccess was no longer found!\rRecord your progress!\r\rCurrent Radius: " + r, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Reenable controls.
+                    cancleRenderingOperation = false;
+                    button22.Enabled = true;
+                    button22.Visible = true;
+                    button22.Text = "Auto Map Renderer";
+                    button28.Visible = false; // Hide cancle button.
+                    checkBox1.Enabled = true;
+
+                    // End look.
+                    goto exitLoop;
                 }
             }
             #endregion
