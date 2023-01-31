@@ -12287,6 +12287,9 @@ namespace CoreKeeperInventoryEditor
         // Cancle auto renderer.
         private void Button28_Click(object sender, EventArgs e)
         {
+            // Disable the groupbox.
+            groupBox8.Enabled = false;
+
             // Ensure the button is visable first.
             if (button28.Visible)
             {
@@ -12525,8 +12528,8 @@ namespace CoreKeeperInventoryEditor
                     button22.Visible = true;
                     button22.Text = "Auto Map Renderer";
                     button28.Visible = false; // Hide cancle button.
-                    checkBox1.Enabled = true;
                     button31.Enabled = false;
+                    groupBox8.Enabled = true;
 
                     // End look.
                     goto exitLoop;
@@ -12594,7 +12597,7 @@ namespace CoreKeeperInventoryEditor
                         button22.Visible = true;
                         button22.Text = "Auto Map Renderer";
                         button28.Visible = false; // Hide cancle button.
-                        checkBox1.Enabled = true;
+                        groupBox8.Enabled = true;
 
                         // End look.
                         goto exitLoop;
@@ -12663,7 +12666,7 @@ namespace CoreKeeperInventoryEditor
                         button22.Visible = true;
                         button22.Text = "Auto Map Renderer";
                         button28.Visible = false; // Hide cancle button.
-                        checkBox1.Enabled = true;
+                        groupBox8.Enabled = true;
 
                         // End look.
                         goto exitLoop;
@@ -12709,12 +12712,13 @@ namespace CoreKeeperInventoryEditor
                     MessageBox.Show("The Core Keeper proccess was no longer found!\rRecord your progress!\r\rCurrent Radius: " + r, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     // Reenable controls.
+                    groupBox8.Enabled = true;
                     cancleRenderingOperation = false;
                     button22.Enabled = true;
                     button22.Visible = true;
                     button22.Text = "Auto Map Renderer";
                     button28.Visible = false; // Hide cancle button.
-                    checkBox1.Enabled = true;
+                    groupBox8.Enabled = true;
 
                     // End look.
                     goto exitLoop;
@@ -12726,6 +12730,7 @@ namespace CoreKeeperInventoryEditor
             exitLoop:;
 
             // Reenable controls.
+            groupBox8.Enabled = true;
             cancleRenderingOperation = false;
             button22.Enabled = true;
             button22.Visible = true;
