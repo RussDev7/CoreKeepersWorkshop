@@ -12279,6 +12279,14 @@ namespace CoreKeeperInventoryEditor
                 cancleRenderingOperation = true;
             }
         }
+
+        // Prevent value from being larger then the max radius.
+        private void NumericUpDown16_ValueChanged(object sender, EventArgs e)
+        {
+            // Check value.
+            if (numericUpDown16.Value > numericUpDown14.Value)
+                numericUpDown16.Value = numericUpDown14.Value;
+        }
         #endregion
 
         // Set anti collision and godmode timer variables.
@@ -12417,7 +12425,6 @@ namespace CoreKeeperInventoryEditor
             button28.Visible = true;
             button31.Enabled = true;
             cancleRenderingOperation = false;
-            checkBox1.Enabled = false;
 
             // Enable custom render.
             foreach (long res in AoBScanResultsMapReveal)
@@ -12676,7 +12683,6 @@ namespace CoreKeeperInventoryEditor
             button22.Visible = true;
             button22.Text = "Auto Map Renderer";
             button28.Visible = false; // Hide cancle button.
-            checkBox1.Enabled = true;
             button31.Enabled = false;
             textProgressBar1.Visible = false;
             textProgressBar1.Maximum = 100;

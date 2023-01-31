@@ -1974,6 +1974,7 @@ namespace CoreKeeperInventoryEditor
             this.numericUpDown16.Name = "numericUpDown16";
             this.numericUpDown16.Size = new System.Drawing.Size(50, 20);
             this.numericUpDown16.TabIndex = 17;
+            this.numericUpDown16.ValueChanged += new System.EventHandler(this.NumericUpDown16_ValueChanged);
             // 
             // numericUpDown15
             // 
