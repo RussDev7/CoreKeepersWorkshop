@@ -105,6 +105,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -1184,6 +1185,7 @@ namespace CoreKeeperInventoryEditor
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.Black;
+            this.tabPage7.Controls.Add(this.label31);
             this.tabPage7.Controls.Add(this.label30);
             this.tabPage7.Controls.Add(this.label8);
             this.tabPage7.Controls.Add(this.label7);
@@ -1197,22 +1199,33 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "Dev-Tools";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.Color.Red;
+            this.label31.Location = new System.Drawing.Point(1, 108);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(218, 13);
+            this.label31.TabIndex = 10;
+            this.label31.Text = "[Click Me] Auto map renderer memory logger.";
+            this.label31.Click += new System.EventHandler(this.Label31_Click);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
             this.label30.ForeColor = System.Drawing.Color.Red;
-            this.label30.Location = new System.Drawing.Point(1, 91);
+            this.label30.Location = new System.Drawing.Point(1, 88);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(163, 13);
+            this.label30.Size = new System.Drawing.Size(160, 13);
             this.label30.TabIndex = 9;
-            this.label30.Text = "[Click Me] Center Game Process.";
+            this.label30.Text = "[Click Me] Center game process.";
             this.label30.Click += new System.EventHandler(this.Label30_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(1, 70);
+            this.label8.Location = new System.Drawing.Point(1, 68);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(277, 13);
             this.label8.TabIndex = 7;
@@ -1245,11 +1258,12 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(1, 49);
+            this.label4.Location = new System.Drawing.Point(1, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(250, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "[Click Me] Randomize slot2\'s variety based on a list.\r\n";
+            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // numericUpDown2
             // 
@@ -3114,6 +3128,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.ProgressBar progressBar7;
+        private System.Windows.Forms.Label label31;
     }
 }
 

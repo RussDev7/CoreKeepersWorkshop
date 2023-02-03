@@ -123,6 +123,7 @@ namespace CoreKeeperInventoryEditor
                 #region Set Controls
 
                 // Set the about tabs content.
+                // About.
                 richTextBox2.Text = String.Concat(new string[] {
                 @"// CoreKeepersWorkshop v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion + " - Written kindly by: D.RUSS#2430" + Environment.NewLine,
                 @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
@@ -131,13 +132,14 @@ namespace CoreKeeperInventoryEditor
                 @"Project source: https://github.com/RussDev7/CoreKeepersWorkshop"
                 });
 
+                // Honorable mentions.
                 richTextBox8.Text = String.Concat(new string[] {
                 @"// Here we give thanks to those who have helped the project grow!" + Environment.NewLine,
                 @"// This project would never have grown if not for the following:" + Environment.NewLine + Environment.NewLine,
 
-                @"1) ultimaton2    - Most helpful debugger in the projects lifetime." + Environment.NewLine,
-                @"2) ZeroGravitas    - Helped get food tested!" + Environment.NewLine,
-                @"3) Roupiks    - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
+                @"1) ultimaton2   - Most helpful debugger in the projects lifetime." + Environment.NewLine,
+                @"2) ZeroGravitas - Helped get food tested!" + Environment.NewLine,
+                @"3) Roupiks      - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
 
                 @"Honorable Mentions:" + Environment.NewLine,
                 @"BourbonCrow, puxxy5layer, Flux, pharuxtan, Iskrownik, Yumiko Abe, Ice, Kremnev8",
@@ -283,7 +285,13 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown15, "Change the cooldown time (milliseconds) before the next teleport.");
                 toolTip.SetToolTip(numericUpDown16, "Set the mininum range in tiles away from the player to start the map render.");
                 toolTip.SetToolTip(numericUpDown17, "Set the maximum range in tiles to render the map by.");
-                toolTip.SetToolTip(numericUpDown17, "Set a custom radialMoveScale for auto map rendering. (defualt: 0.1)");
+                toolTip.SetToolTip(numericUpDown18, "Set a custom radialMoveScale for auto map rendering. (defualt: 0.1)");
+
+                toolTip.SetToolTip(label7, "Rename assets from an older version of this mod to the new system.");
+                toolTip.SetToolTip(label4, "Sets the variant of item slot2 based on a file list.");
+                toolTip.SetToolTip(label8, "Change item slot2s variant based on the left/right arrow keys.");
+                toolTip.SetToolTip(label30, "Grabs the application and sends it to the center of the screen.");
+                toolTip.SetToolTip(label31, "Stores the games private bytes with timestamps for each completed rotation.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -12311,7 +12319,7 @@ namespace CoreKeeperInventoryEditor
         string renderMapPlayerStateOriginalValue;
         string renderMapPlayerStateNoClipAddress;
         string renderMapGodmodeAddress;
-        
+
         // Render map anti collision timer.
         readonly System.Timers.Timer renderMapOperationsTimer = new System.Timers.Timer();
         private void RenderMapOperationsTimedEvent(Object source, ElapsedEventArgs e)
@@ -12464,6 +12472,9 @@ namespace CoreKeeperInventoryEditor
 
             // Get the godmode address.
             renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2112", NumberStyles.Integer)).ToString("X");
+
+            // Declare the current start time.
+            DateTime startTime = DateTime.Now;
 
             // Enable noclip, godmode, and start the timed events.
             renderMapOperationsTimer.Interval = 1; // Custom intervals.
@@ -12676,6 +12687,8 @@ namespace CoreKeeperInventoryEditor
 
                 rPrevious = r;
 
+                #region After Completed Ring Operations
+
                 // Save the maps progress before starting next ring.
                 if (checkBox1.Checked && r != (int)numericUpDown16.Value)
                 {
@@ -12723,6 +12736,12 @@ namespace CoreKeeperInventoryEditor
                     // End look.
                     goto exitLoop;
                 }
+
+                // Check if memory logging is enabled.
+                if (memoryLoggerActive)
+                    MemoryLogger();
+
+                #endregion
             }
             #endregion
 
@@ -12797,10 +12816,15 @@ namespace CoreKeeperInventoryEditor
             }
         #endregion
 
-            // Leave counting loop.
-            FinishCounting:;
+        // Leave counting loop.
+        FinishCounting:;
 
-            MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered!", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            // Declare the finish time and get difference of two dates.
+            DateTime finishTime = DateTime.Now;
+            TimeSpan timeDifference = finishTime - startTime;
+
+            // Display results.
+            MessageBox.Show("Task ran for " + timeDifference.Days + " day(s), " + timeDifference.Hours + " hour(s), " + timeDifference.Minutes + " minute(s), " + timeDifference.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.\r\r", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         #endregion // End render map.
 
@@ -14619,6 +14643,52 @@ namespace CoreKeeperInventoryEditor
             SetWindowPos(handle, IntPtr.Zero, pt.X, pt.Y, 600, 400, SWP_SHOWWINDOW);
         }
         #endregion // End recenter game.
+
+        #region Memory Logger
+
+        // Auto render map memory logger.
+        bool memoryLoggerActive = false; // Define toggle for on / off.
+        private void Label31_Click(object sender, EventArgs e)
+        {
+            // Create directories if they do not exist.
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
+            {
+                // Create directory.
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
+            }
+
+            // Check if item swap is active or not.
+            if (!memoryLoggerActive)
+            {
+                // Recolor label.
+                label31.ForeColor = Color.Lime;
+
+                // Enable bool.
+                memoryLoggerActive = true;
+            }
+            else
+            {
+                // Recolor label.
+                label31.ForeColor = Color.Red;
+
+                // Disable bool.
+                memoryLoggerActive = false;
+            }
+        }
+
+        // Callable Memory logger.
+        private void MemoryLogger()
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                return;
+            }
+
+            // Record information.
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\MemoryLogger.txt", DateTime.Now + " -> " + Math.Round(new PerformanceCounter("Process", "Private Bytes", "CoreKeeper", true).NextValue() / 1024 / 1024 / 1000, 2).ToString() + " GB");
+        }
+        #endregion
 
         #endregion // End admin tools.
     }
