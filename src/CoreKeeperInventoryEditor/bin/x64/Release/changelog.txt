@@ -18,6 +18,7 @@ Changes Since v1.3.4.6
 + Added a save feature to the auto map renderer.
 + Addded auto map renderer memory logger dev tool.
 + Added more features to the auto map renderer.
++ Added missing tooltips to the dev tools.
 
 Changes Since v1.3.4.5
 ===========================================================
