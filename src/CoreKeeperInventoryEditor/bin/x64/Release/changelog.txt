@@ -16,7 +16,7 @@ Changes Since v1.3.4.6
 + Added center game process dev tool.
 + Organized the world tab gui to allow for more mods.
 + Added a save feature to the auto map renderer.
-+ Addded auto map renderer memory logger dev tool.
++ Added auto map renderer memory logger dev tool.
 + Added more features to the auto map renderer.
 + Added missing tooltips to the dev tools.
 
