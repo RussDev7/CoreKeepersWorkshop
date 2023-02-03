@@ -14688,7 +14688,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Record information.
-            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\MemoryLogger.txt", DateTime.Now + " -> " + Math.Round(new PerformanceCounter("Process", "Private Bytes", "CoreKeeper", true).NextValue() / 1024 / 1024 / 1000, 2).ToString() + " GB");
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\MemoryLogger.txt", DateTime.Now + " -> " + Math.Round(new PerformanceCounter("Process", "Private Bytes", "CoreKeeper", true).NextValue() / 1024 / 1024 / 1000, 2).ToString() + " GBs" + Environment.NewLine);
         }
         #endregion
 
