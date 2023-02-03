@@ -12739,8 +12739,10 @@ namespace CoreKeeperInventoryEditor
 
                 // Check if memory logging is enabled.
                 if (memoryLoggerActive)
-                    MemoryLogger();
-
+                {
+                    MemoryLogger(); // Do logging.
+                    await Task.Delay(1000); // Add a cooldown.
+                }
                 #endregion
             }
             #endregion
