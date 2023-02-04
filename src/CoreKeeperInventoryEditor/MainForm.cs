@@ -12721,8 +12721,12 @@ namespace CoreKeeperInventoryEditor
                 // Ensure the game process still exists.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
+                    // Declare the finish time and get difference of two dates.
+                    DateTime finishTimeCrashed = DateTime.Now;
+                    TimeSpan timeDifferenceCrashed = finishTimeCrashed - startTime;
+
                     // Show error message.
-                    MessageBox.Show("The Core Keeper proccess was no longer found!\rRecord your progress!\r\rCurrent Radius: " + r, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The Core Keeper proccess was no longer found!\rRecord your progress!\r\rTask ran for " + timeDifferenceCrashed.Days + " day(s), " + timeDifferenceCrashed.Hours + " hour(s), " + timeDifferenceCrashed.Minutes + " minute(s), " + timeDifferenceCrashed.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     // Reenable controls.
                     groupBox8.Enabled = true;
@@ -12818,15 +12822,24 @@ namespace CoreKeeperInventoryEditor
             }
         #endregion
 
-        // Leave counting loop.
-        FinishCounting:;
+            // Leave counting loop.
+            FinishCounting:;
 
             // Declare the finish time and get difference of two dates.
             DateTime finishTime = DateTime.Now;
             TimeSpan timeDifference = finishTime - startTime;
 
-            // Display results.
-            MessageBox.Show("Task ran for " + timeDifference.Days + " day(s), " + timeDifference.Hours + " hour(s), " + timeDifference.Minutes + " minute(s), " + timeDifference.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.\r\r", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            // Display results based on if the game is running or not.
+            if (MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Game is still running.
+                MessageBox.Show("Task ran for " + timeDifference.Days + " day(s), " + timeDifference.Hours + " hour(s), " + timeDifference.Minutes + " minute(s), " + timeDifference.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                // No game found.
+                // MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         #endregion // End render map.
 
