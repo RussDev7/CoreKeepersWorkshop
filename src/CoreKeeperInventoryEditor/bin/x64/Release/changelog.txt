@@ -1,3 +1,9 @@
+Changes Since v1.3.4.7
+===========================================================
+- Removed rename legacy assets dev tool.
+
++ Added generate id list dev tool.
+
 Changes Since v1.3.4.6
 ===========================================================
 - Fixed progress bar text with the auto map renderer.
