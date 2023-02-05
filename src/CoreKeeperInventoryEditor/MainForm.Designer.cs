@@ -1238,9 +1238,10 @@ namespace CoreKeeperInventoryEditor
             this.label7.ForeColor = System.Drawing.Color.Red;
             this.label7.Location = new System.Drawing.Point(1, 29);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(300, 13);
+            this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "[Click Me] Rename pre-1.2.7 assets to the new variety system.";
+            this.label7.Text = "[Click Me] Create an ID list from all installed assets.";
+            this.label7.Click += new System.EventHandler(this.Label7_Click);
             // 
             // label5
             // 
