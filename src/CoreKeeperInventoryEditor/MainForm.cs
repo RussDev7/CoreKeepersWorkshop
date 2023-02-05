@@ -287,7 +287,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown17, "Set the maximum range in tiles to render the map by.");
                 toolTip.SetToolTip(numericUpDown18, "Set a custom radialMoveScale for auto map rendering. (defualt: 0.1)");
 
-                toolTip.SetToolTip(label7, "Rename assets from an older version of this mod to the new system.");
+                toolTip.SetToolTip(label7, "Create an ID list from all installed assets.");
                 toolTip.SetToolTip(label4, "Sets the variant of item slot2 based on a file list.");
                 toolTip.SetToolTip(label8, "Change item slot2s variant based on the left/right arrow keys.");
                 toolTip.SetToolTip(label30, "Grabs the application and sends it to the center of the screen.");
@@ -14339,28 +14339,16 @@ namespace CoreKeeperInventoryEditor
 
         #region Upgrade Legacy Items
 
-        // Upgrade legacy version vanity items to the new system.
+        // Create an ID list from all installed assets.
         private void Label7_Click(object sender, EventArgs e)
         {
-            // Create directories if they do not exist.
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
-            {
-                // Create directory.
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\");
-            }
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out"))
-            {
-                // Create directory.
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out");
-            }
-
             // Recolor label.
             label7.ForeColor = Color.Lime;
 
             // Delete files in out if they exist.
-            if (Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out", "*.png").Length != 0)
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt"))
             {
-                Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out").ToList().ForEach(File.Delete);
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt");
             }
 
             // Define counter for total items.
@@ -14382,6 +14370,12 @@ namespace CoreKeeperInventoryEditor
                     // Get each file in the directory.
                     string[] Files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories);
 
+                    // Sort array based on item ids.
+                    Array.Sort(Files, (a, b) => int.Parse(Regex.Replace(Path.GetFileName(a).Split(',')[1], "[^0-9]", "")) - int.Parse(Regex.Replace(Path.GetFileName(b).Split(',')[1], "[^0-9]", "")));
+
+                    // Append first lineset.
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "public enum ObjectID\r{\r");
+
                     // Get each image file in directory.
                     foreach (string file in Files)
                     {
@@ -14392,17 +14386,19 @@ namespace CoreKeeperInventoryEditor
                             string imageID = Path.GetFileName(file).Split(',')[1];
                             string imageVariant = Path.GetFileName(file).Split(',')[2].Split('.')[0];
 
-                            // Check if variant lengh is 8 and value is not zero.
-                            if (imageVariant.Length != 8 && int.Parse(imageVariant) != 0)
+                            // Check if variant is not zero and not the last entree.
+                            if (int.Parse(imageVariant) == 0 && Path.GetFileName(Files.Last()).Split(',')[0] != imageName)
                             {
                                 // Define new filename.
-                                string newImageName = imageName + "," + imageID + "," + (int.Parse(imageVariant) + 80068096) + ".png";
+                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "  " + imageName + " = " + imageID + "," + Environment.NewLine);
 
-                                // Match was found, log it.
-                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\log.txt", @"\assets\inventory\" + Path.GetDirectoryName(file) + @"\" + Path.GetFileName(file) + " -> " + @"\assets\debug\out\" + newImageName + Environment.NewLine);
-
-                                // Copy and save the rename image file.
-                                File.Copy(file, AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\out\" + newImageName);
+                                // Add to count.
+                                renamedImagesCount++;
+                            }
+                            else if (int.Parse(imageVariant) == 0 && Path.GetFileName(Files.Last()).Split(',')[0] == imageName) // Last entree.
+                            {
+                                // Define new filename.
+                                File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "  " + imageName + " = " + imageID + Environment.NewLine);
 
                                 // Add to count.
                                 renamedImagesCount++;
@@ -14414,8 +14410,11 @@ namespace CoreKeeperInventoryEditor
                         }
                     }
 
+                    // Append first lineset.
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "}");
+
                     // Display results.
-                    MessageBox.Show(renamedImagesCount.ToString() + " images where found and renamed.", "Legacy Upgrade", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(renamedImagesCount.ToString() + " IDs where found and recorded.\r\rOutput: \r" + AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "ItemID List Builder", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception a)
