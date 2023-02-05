@@ -14374,7 +14374,7 @@ namespace CoreKeeperInventoryEditor
                     Array.Sort(Files, (a, b) => int.Parse(Regex.Replace(Path.GetFileName(a).Split(',')[1], "[^0-9]", "")) - int.Parse(Regex.Replace(Path.GetFileName(b).Split(',')[1], "[^0-9]", "")));
 
                     // Append first lineset.
-                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "public enum ObjectID\r{\r");
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"ItemIDList.txt", "public enum ObjectID\r{\r  None = 0,\r");
 
                     // Get each image file in directory.
                     foreach (string file in Files)
