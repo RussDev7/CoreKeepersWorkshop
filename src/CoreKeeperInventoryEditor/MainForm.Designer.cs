@@ -1501,6 +1501,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // numericUpDown3
             // 
+            this.numericUpDown3.Enabled = false;
             this.numericUpDown3.Location = new System.Drawing.Point(258, 75);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             9999999,
@@ -1542,6 +1543,7 @@ namespace CoreKeeperInventoryEditor
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Enabled = false;
             this.label12.ForeColor = System.Drawing.Color.Snow;
             this.label12.Location = new System.Drawing.Point(208, 78);
             this.label12.Name = "label12";
@@ -1553,6 +1555,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.siticoneWinToggleSwith3.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
             this.siticoneWinToggleSwith3.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith3.Enabled = false;
             this.siticoneWinToggleSwith3.Location = new System.Drawing.Point(157, 74);
             this.siticoneWinToggleSwith3.Name = "siticoneWinToggleSwith3";
             this.siticoneWinToggleSwith3.Size = new System.Drawing.Size(45, 22);
