@@ -3,7 +3,8 @@ Changes Since v1.3.4.7
 - Removed rename legacy assets dev tool.
 
 + Added generate id list dev tool.
-+ Added missing assets.
++ Added missing and new update assets.
++ Updated all addresses for the new update.
 
 Changes Since v1.3.4.6
 ===========================================================
