@@ -1,7 +1,10 @@
+Changes Since v1.3.4.8
+===========================================================
+- Added exception protection to get world info.
+
 Changes Since v1.3.4.7
 ===========================================================
 - Removed rename legacy assets dev tool.
-- Added exception protection to get world info.
 
 + Added generate id list dev tool.
 + Added missing and new update assets.
