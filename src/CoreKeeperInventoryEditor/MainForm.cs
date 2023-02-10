@@ -13243,71 +13243,80 @@ namespace CoreKeeperInventoryEditor
                 // Search result and add it to the string.
                 getJsonData = MemLib.ReadString(baseJsonAddress.ToString(), length: 300);
 
-                // Trim the world name to remove special characters.
-                StringBuilder sb = new StringBuilder();
-                foreach (char c in getJsonData)
+                // Add a catch to prevent exceptions to bad addresses.
+                try
                 {
-                    // Define chars to include.
-                    if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '"' || c == '{' || c == '}' || c == ':')
+                    // Trim the world name to remove special characters.
+                    StringBuilder sb = new StringBuilder();
+                    foreach (char c in getJsonData)
                     {
-                        // Build the string.
-                        sb.Append(c);
+                        // Define chars to include.
+                        if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '"' || c == '{' || c == '}' || c == ':')
+                        {
+                            // Build the string.
+                            sb.Append(c);
+                        }
+                    }
+
+                    // Check if json is completed.
+                    string name = Regex.Match(sb.ToString(), "\\\"name\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
+                    if ((getJsonData.IndexOf('}') != getJsonData.LastIndexOf('}')) && name != "")
+                    {
+                        // Extract the data from the string.
+                        string guid = Regex.Match(getJsonData, "\\\"guid\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
+                        string seed = Regex.Match(getJsonData, "\\\"seed\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
+                        string activatedCrystals = Regex.Match(getJsonData, "\\\"activatedCrystals\":\\[(?<TextInsideBrackets>[a-z A-Z 0-9 ,]*\\w+)]").Groups[1].Value.ToString();
+                        string year = Regex.Match(getJsonData, "\\\"year\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
+                        string month = Regex.Match(getJsonData, "\\\"month\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
+                        string day = Regex.Match(getJsonData, "\\\"day\":(?<Data>\\w+)\\}").Groups[1].Value.ToString();
+                        string iconIndex = Regex.Match(getJsonData, "\\\"iconIndex\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
+                        string mode = Regex.Match(getJsonData, "\\\"mode\":(?<Data>\\w+)\\}").Groups[1].Value.ToString();
+
+                        // Add the information to the datagridview.
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Address:", baseJsonAddress)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Name:", name)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("GUID:", guid)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Seed:", seed)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", (activatedCrystals != "") ? activatedCrystals : "0,0,0")));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Year:", year)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month) + 1))));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Day:", day)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
+
+                        #region Adjust Controls
+
+                        // Toggle controls based on world difficutly.
+                        radioButton4.Checked = (mode == "0");
+                        radioButton5.Checked = (mode == "1");
+
+                        // Set world creation.
+                        numericUpDown8.Value = int.Parse(year);
+                        numericUpDown9.Value = int.Parse(month) + 1;
+                        numericUpDown10.Value = int.Parse(day);
+
+                        // Set activated crystals.
+                        numericUpDown11.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0;
+                        numericUpDown12.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0;
+                        numericUpDown13.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0;
+                        #endregion
+
+                        // Update data found bool.
+                        foundData = true;
+
+                        // Completed, end loop.
+                        break;
+                    }
+                    else
+                    {
+                        // Unfinished, reset.
+                        getJsonData = "";
                     }
                 }
-
-                // Check if json is completed.
-                string name = Regex.Match(sb.ToString(), "\\\"name\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
-                if ((getJsonData.IndexOf('}') != getJsonData.LastIndexOf('}')) && name != "")
+                catch (Exception)
                 {
-                    // Extract the data from the string.
-                    string guid = Regex.Match(getJsonData, "\\\"guid\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
-                    string seed = Regex.Match(getJsonData, "\\\"seed\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
-                    string activatedCrystals = Regex.Match(getJsonData, "\\\"activatedCrystals\":\\[(?<TextInsideBrackets>[a-z A-Z 0-9 ,]*\\w+)]").Groups[1].Value.ToString();
-                    string year = Regex.Match(getJsonData, "\\\"year\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
-                    string month = Regex.Match(getJsonData, "\\\"month\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
-                    string day = Regex.Match(getJsonData, "\\\"day\":(?<Data>\\w+)\\}").Groups[1].Value.ToString();
-                    string iconIndex = Regex.Match(getJsonData, "\\\"iconIndex\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
-                    string mode = Regex.Match(getJsonData, "\\\"mode\":(?<Data>\\w+)\\}").Groups[1].Value.ToString();
-
-                    // Add the information to the datagridview.
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Address:", baseJsonAddress)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Name:", name)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("GUID:", guid)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Seed:", seed)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", (activatedCrystals != "") ? activatedCrystals : "0,0,0")));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Year:", year)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month) + 1))));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Day:", day)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
-
-                    #region Adjust Controls
-
-                    // Toggle controls based on world difficutly.
-                    radioButton4.Checked = (mode == "0");
-                    radioButton5.Checked = (mode == "1");
-
-                    // Set world creation.
-                    numericUpDown8.Value = int.Parse(year);
-                    numericUpDown9.Value = int.Parse(month) + 1;
-                    numericUpDown10.Value = int.Parse(day);
-
-                    // Set activated crystals.
-                    numericUpDown11.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0;
-                    numericUpDown12.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0;
-                    numericUpDown13.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0;
-                    #endregion
-
-                    // Update data found bool.
-                    foundData = true;
-
-                    // Completed, end loop.
-                    break;
-                }
-                else
-                {
-                    // Unfinished, reset.
-                    getJsonData = "";
+                    // Ignore the exception as it's probably just a bad address.
+                    continue;
                 }
 
                 // Perform progress step.
