@@ -6,6 +6,7 @@ Changes Since v1.3.4.8
 - Fixed save each ring not working on first rotation.
 - Fixed the teleport mod to filter to only one address.
 - Fixed the teleport player addresses to work in MP.
+- Fixed wrong controls being reset on various errors.
 
 Changes Since v1.3.4.7
 ===========================================================
