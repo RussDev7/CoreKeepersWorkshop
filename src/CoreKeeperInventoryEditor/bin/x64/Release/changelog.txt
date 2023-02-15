@@ -5,6 +5,7 @@ Changes Since v1.3.4.8
 - Updated the set reveal range address.
 - Fixed save each ring not working on first rotation.
 - Fixed the teleport mod to filter to only one address.
+- Fixed the teleport player addresses to work in MP.
 
 Changes Since v1.3.4.7
 ===========================================================
