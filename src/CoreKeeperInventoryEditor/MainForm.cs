@@ -12148,13 +12148,20 @@ namespace CoreKeeperInventoryEditor
                 MessageBox.Show("Could not find the reveal map addresses!!\r\rTry restarting your game.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsMapReveal.Count() > 1)
+            {
+                // Display error message.
+                MessageBox.Show("WARNING! There is more than a single address found! While this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // Update richtextbox with found addresses.
             foreach (long res in AoBScanResultsMapReveal)
             {
                 if (richTextBox9.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox9.Text = "Render Addresses Loaded: " + AoBScanResultsMapReveal.Count().ToString() + " [" + res.ToString("X").ToString();
+                    richTextBox9.Text = "Render Addresses Loaded: " + (AoBScanResultsMapReveal.Count() + 1).ToString() + " [" + res.ToString("X").ToString() + ", GameAssembly.dll+3877D1C";
                 }
                 else
                 {
