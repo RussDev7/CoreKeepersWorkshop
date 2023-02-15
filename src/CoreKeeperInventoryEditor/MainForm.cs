@@ -12128,7 +12128,7 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsMapReveal.Count() < 1)
             {
                 // Reset textbox.
-                richTextBox7.Text = "Addresses Loaded: 0";
+                richTextBox9.Text = "Addresses Loaded: 0";
 
                 // Reset progress bar.
                 progressBar6.Value = 0;
