@@ -3,11 +3,11 @@ Changes Since v1.3.4.8
 - Added exception protection to get world info.
 - Added checks to the get map rendering address.
 - Reverted the noclip address to pre 1.3.4.6.
-- Updated the set reveal range address.
 - Fixed save each ring not working on first rotation.
 - Fixed the teleport mod to filter to only one address.
 - Fixed the teleport player addresses to work in MP.
 - Fixed wrong controls being reset on various errors.
+- Updated the set reveal range address.
 
 Changes Since v1.3.4.7
 ===========================================================
