@@ -44,6 +44,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsTeleportData;
         public IEnumerable<long> AoBScanResultsFishingData;
         public IEnumerable<long> AoBScanResultsMapReveal;
+        public IEnumerable<long> AoBScanResultsRevealRange;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -11832,7 +11833,7 @@ namespace CoreKeeperInventoryEditor
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             // Depreciated Address 08Feb23: C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00
-            AoBScanResultsPlayerLocationScanner = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00", true, true);
+            AoBScanResultsPlayerLocationScanner = await MemLib.AoBScan("C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00", true, true);
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsPlayerLocationScanner.Count() < 1)
@@ -12092,7 +12093,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Depreciated Address 10Feb23: GameAssembly.dll+381D950
-        public string SetRevealRangeAddress = "GameAssembly.dll+3877D1C";
+        // public string SetRevealRangeAddress = "GameAssembly.dll+3877D1C";
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -12115,8 +12116,62 @@ namespace CoreKeeperInventoryEditor
             // Offset the progress bar to show it's working.
             progressBar6.Visible = true;
             progressBar6.Maximum = 100;
-            progressBar6.Step = 80;
+            progressBar6.Step = 40;
             progressBar6.Value = 10;
+
+            // Find the GameAssembly.dll module start and end region within memory.
+            // Get a collection of all modules within a procces.
+            ProcessModuleCollection modules = Process.GetProcessesByName("CoreKeeper")[0].Modules;
+
+            // Loop through each of the modules.
+            ProcessModule dllBaseAdressIWant = null;
+            foreach (ProcessModule i in modules)
+            {
+                // Check if the module name matches.
+                if (i.ModuleName == "GameAssembly.dll")
+                {
+                    // Record the modules address.
+                    dllBaseAdressIWant = i;
+                    break;
+                }
+            }
+
+            // Display the collected address.
+            long moduleStart = Convert.ToInt64(dllBaseAdressIWant.BaseAddress.ToString("X"), 16);
+            long moduleEnd = Convert.ToInt64(BigInteger.Add(BigInteger.Parse(dllBaseAdressIWant.BaseAddress.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dllBaseAdressIWant.ModuleMemorySize.ToString("X"), NumberStyles.HexNumber)).ToString("X"), 16);
+
+            // Define reveal range address varible.
+            AoBScanResultsRevealRange = await MemLib.AoBScan(moduleStart, moduleEnd, "41 00 00 40 41", false, false);
+            MessageBox.Show(AoBScanResultsRevealRange.Count().ToString());
+
+            // Adjust the offset of the address.
+            List<long> AoBScanResultsRevealRangeTemp = new List<long>();
+            foreach (long res in AoBScanResultsRevealRange)
+            {
+                // Add the new offset to the list.
+                //AoBScanResultsRevealRangeTemp.Add(long.Parse(BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X").ToString()));
+
+                // MessageBox.Show(MemLib.ReadByte(BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X")).ToString("X"));
+                MessageBox.Show(BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X")).ToString("X").ToString();
+                if (MemLib.ReadByte(BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X")).ToString("X") == "41")
+                {
+                    MessageBox.Show(MemLib.ReadByte(BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X")).ToString("X"));
+                }
+            }
+            MessageBox.Show("");
+
+            // Build the completed list.
+            AoBScanResultsRevealRange = AoBScanResultsRevealRangeTemp;
+
+            // Check for the reveal range addresses.
+            if (AoBScanResultsMapReveal.Count() < 1 || AoBScanResultsMapReveal.Count() > 1)
+            {
+                MessageBox.Show("There was an issue gathing the reveal range addresses!\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Progress progress bar.
+            progressBar6.PerformStep();
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             AoBScanResultsMapReveal = await MemLib.AoBScan("04 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 D4 01 00 04 00 00 00", true, true);
@@ -12128,7 +12183,7 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsMapReveal.Count() < 1)
             {
                 // Reset textbox.
-                richTextBox9.Text = "Addresses Loaded: 0";
+                richTextBox7.Text = "Addresses Loaded: 0";
 
                 // Reset progress bar.
                 progressBar6.Value = 0;
@@ -12148,20 +12203,13 @@ namespace CoreKeeperInventoryEditor
                 MessageBox.Show("Could not find the reveal map addresses!!\r\rTry restarting your game.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsMapReveal.Count() > 1)
-            {
-                // Display error message.
-                MessageBox.Show("WARNING! There is more than a single address found! While this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
             // Update richtextbox with found addresses.
             foreach (long res in AoBScanResultsMapReveal)
             {
                 if (richTextBox9.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox9.Text = "Render Addresses Loaded: " + (AoBScanResultsMapReveal.Count() + 1).ToString() + " [" + res.ToString("X").ToString() + ", GameAssembly.dll+3877D1C";
+                    richTextBox9.Text = "Render Addresses Loaded: " + AoBScanResultsMapReveal.Count().ToString() + " [" + res.ToString("X").ToString();
                 }
                 else
                 {
@@ -12204,6 +12252,13 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Check for the reveal range addresses.
+            if (AoBScanResultsMapReveal.Count() < 1 || AoBScanResultsMapReveal.Count() > 1)
+            {
+                MessageBox.Show("There was an issue gathing the reveal range addresses!\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Reset progress bar.
             progressBar6.Visible = true;
             progressBar6.Value = 0;
@@ -12217,7 +12272,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
+            MemLib.WriteMemory(AoBScanResultsRevealRange.Last().ToString("X"), "float", numericUpDown17.Value.ToString());
 
             // Update the progress bar.
             if (progressBar6.Maximum >= 100)
@@ -12246,6 +12301,13 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Check for the reveal range addresses.
+            if (AoBScanResultsMapReveal.Count() < 1 || AoBScanResultsMapReveal.Count() > 1)
+            {
+                MessageBox.Show("There was an issue gathing the reveal range addresses!\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Reset progress bar.
             progressBar6.Visible = true;
             progressBar6.Value = 0;
@@ -12259,7 +12321,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            MemLib.WriteMemory(SetRevealRangeAddress, "float", "12");
+            MemLib.WriteMemory(AoBScanResultsRevealRange.Last().ToString("X"), "float", "12");
 
             // Update the progress bar.
             if (progressBar6.Maximum >= 100)
@@ -12381,6 +12443,13 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
+            // Check for the reveal range addresses.
+            if (AoBScanResultsMapReveal.Count() < 1 || AoBScanResultsMapReveal.Count() > 1)
+            {
+                MessageBox.Show("There was an issue gathing the reveal range addresses!\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Do initial varible reset.
             renderMapPlayerStateAddress = "";
             renderMapPlayerStateOriginalValue = "";
@@ -12471,7 +12540,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
+            MemLib.WriteMemory(AoBScanResultsRevealRange.Last().ToString("X"), "float", numericUpDown17.Value.ToString());
 
             // Reset variable.
             rPrevious = minRadius;
@@ -12832,7 +12901,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 rPrevious = r;
             }
-        #endregion
+            #endregion
 
             // Leave counting loop.
             FinishCounting:;
@@ -14728,5 +14797,30 @@ namespace CoreKeeperInventoryEditor
         #endregion
 
         #endregion // End admin tools.
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            // Get a collection of all modules within a procces.
+            ProcessModuleCollection modules = Process.GetProcessesByName("CoreKeeper")[0].Modules;
+
+            // Loop through each of the modules.
+            ProcessModule dllBaseAdressIWant = null;
+            foreach (ProcessModule i in modules)
+            {
+                // Check if the module name matches.
+                if (i.ModuleName == "GameAssembly.dll")
+                {
+                    // Record the modules address.
+                    dllBaseAdressIWant = i;
+                    break;
+                }
+            }
+
+            // Display the collected address.
+            string moduleStart = "0x" + dllBaseAdressIWant.BaseAddress.ToString("X").ToString();
+            string moduleEnd = "0x" + BigInteger.Add(BigInteger.Parse(dllBaseAdressIWant.BaseAddress.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dllBaseAdressIWant.ModuleMemorySize.ToString("X"), NumberStyles.HexNumber)).ToString("X");
+
+            MessageBox.Show("Find the GameAssembly.dll module within memory:\r\rModuleStartAddress: " + moduleStart + " | ModuleEndAddress: " + moduleEnd);
+        }
     }
 }
