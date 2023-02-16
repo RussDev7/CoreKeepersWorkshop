@@ -12092,7 +12092,8 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Depreciated Address 10Feb23: GameAssembly.dll+381D950
-        public string SetRevealRangeAddress = "GameAssembly.dll+3877D1C";
+		// Depreciated Address 15Feb23: GameAssembly.dll+3877D1C
+        public string SetRevealRangeAddress = "GameAssembly.dll+387DDAC"; 
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
