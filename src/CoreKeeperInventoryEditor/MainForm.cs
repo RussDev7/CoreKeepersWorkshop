@@ -12163,7 +12163,7 @@ namespace CoreKeeperInventoryEditor
             {
                 if (richTextBox9.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox9.Text = "Render Addresses Loaded: " + (AoBScanResultsMapReveal.Count() + 1).ToString() + " [" + res.ToString("X").ToString() + ", GameAssembly.dll+3877D1C";
+                    richTextBox9.Text = "Render Addresses Loaded: " + (AoBScanResultsMapReveal.Count() + 1).ToString() + " [" + res.ToString("X").ToString() + ", " + SetRevealRangeAddress;
                 }
                 else
                 {
