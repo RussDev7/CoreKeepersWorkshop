@@ -8,6 +8,9 @@ Changes Since v1.3.4.8
 - Fixed the teleport player addresses to work in MP.
 - Fixed wrong controls being reset on various errors.
 - Updated the set reveal range address.
+- Added an dev-tool option to remove the forms top most.
+- Added a toggle t-key for the anti-collision mod.
+- Reworked some message prompts and updated tooltips.
 
 Changes Since v1.3.4.7
 ===========================================================
