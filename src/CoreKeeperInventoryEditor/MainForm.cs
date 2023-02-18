@@ -150,6 +150,7 @@ namespace CoreKeeperInventoryEditor
 
                 numericUpDown2.Value = (decimal)CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay; // Dev tool operation delay.
                 numericUpDown18.Value = CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
+                checkBox2.Checked = CoreKeepersWorkshop.Properties.Settings.Default.TopMost; // Set as top most.
                 #endregion
 
                 #region Set Form Locations
@@ -254,6 +255,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
 
                 toolTip.SetToolTip(checkBox1, "Save the map to file after each completed ring.");
+                toolTip.SetToolTip(checkBox2, "Keep this application always on top of other applications.");
 
                 toolTip.SetToolTip(richTextBox1, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(richTextBox6, "A list of all found addresses. Used mostly for debugging.");
@@ -265,7 +267,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith5, "Enabling will keep the players food replenished.");
                 toolTip.SetToolTip(siticoneWinToggleSwith6, "Enabling this will instantly kill the player.");
                 toolTip.SetToolTip(siticoneWinToggleSwith7, "Prevents the diminishing of inventory items.");
-                toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls.");
+                toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls. Use the t-key to toggle.");
                 toolTip.SetToolTip(siticoneWinToggleSwith9, "Recalls the player to spawn immediately.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
@@ -299,6 +301,28 @@ namespace CoreKeeperInventoryEditor
             }
             catch (Exception)
             {
+            }
+        }
+
+        // Change the top most varible.
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            // Check if the application is already set to top most or not.
+            if (!checkBox2.Checked)
+            {
+                // Turn top most off.
+                this.TopMost = false;
+
+                // Save the property.
+                CoreKeepersWorkshop.Properties.Settings.Default.TopMost = false;
+            }
+            else
+            {
+                // Turn top most on.
+                this.TopMost = true;
+
+                // Save the property.
+                CoreKeepersWorkshop.Properties.Settings.Default.TopMost = true;
             }
         }
 
@@ -384,7 +408,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get window states.
-            if (WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized && checkBox2.Checked)
             {
                 // Adjust window properties
                 this.WindowState = FormWindowState.Normal;
@@ -11756,6 +11780,9 @@ namespace CoreKeeperInventoryEditor
             {
                 // Slider is being toggled on.
 
+                // Reset the toggle bool.
+                antiCollisionToggleHold = false;
+
                 // Read current value.
                 playerStateOriginalValue = MemLib.ReadInt(playerStateAddress).ToString();
 
@@ -11774,14 +11801,39 @@ namespace CoreKeeperInventoryEditor
                 // Write value back to original.
                 // Write new value.
                 MemLib.WriteMemory(playerStateAddress, "int", playerStateOriginalValue); // Overwrite new value.
+
+                // Reset the toggle bool.
+                antiCollisionToggleHold = false;
             }
         }
 
         // Players anti collision timer.
-        private void PlayersAntiCollisionTimedEvent(Object source, ElapsedEventArgs e)
+        bool antiCollisionToggleHold = false;
+        private async void PlayersAntiCollisionTimedEvent(Object source, ElapsedEventArgs e)
         {
-            // Write new value.
-            MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString()); // Overwrite new value.
+            // Get keydown events.
+            if (IsKeyPressed(0x54))  // Get t-key press.
+            {
+                // Toggle bool value.
+                if (antiCollisionToggleHold)
+                {
+                    antiCollisionToggleHold = false;
+                }
+                else
+                {
+                    antiCollisionToggleHold = true;
+                }
+
+                // Add await time for release.
+                await Task.Delay(300);
+            }
+
+            // Check to run or not using the toggle.
+            if (!antiCollisionToggleHold)
+            {
+                // Write new value.
+                MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString()); // Overwrite new value.
+            }
         }
         #endregion // End anti collision.
 
@@ -11864,7 +11916,7 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 20;
 
             // Display info message.
-            MessageBox.Show("Now stand in the 'Glurch the Abominous Mass's entrance.\r\rPress 'ok' when ready!", "SUCCESS - STEP 2 OF 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Now stand in the Glurch (slime boss) statue entrance.\rHold W and then tap D for precise positioning.\r\rPress 'ok' when ready!", "SUCCESS - STEP 2 OF 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Re-scan results x times to clear invalid addresses.
             bool firstRun = true;
