@@ -11,6 +11,7 @@ Changes Since v1.3.4.8
 - Added an dev-tool option to remove the forms top most.
 - Added a toggle t-key for the anti-collision mod.
 - Reworked some message prompts and updated tooltips.
+- Updated the set reveal range address to be dynamic.
 
 Changes Since v1.3.4.7
 ===========================================================
