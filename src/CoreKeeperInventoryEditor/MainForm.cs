@@ -43,8 +43,8 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerBuffs;
         public IEnumerable<long> AoBScanResultsTeleportData;
         public IEnumerable<long> AoBScanResultsFishingData;
-        public IEnumerable<long> AoBScanResultsMapReveal;
-        public IEnumerable<long> AoBScanResultsRevealRange;
+        public IEnumerable<long> AoBScanResultsDevMapReveal;
+        public IEnumerable<long> AoBScanResultsRevealMapRange;
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -12147,7 +12147,6 @@ namespace CoreKeeperInventoryEditor
         // Depreciated Address 10Feb23: GameAssembly.dll+381D950
         // Depreciated Address 15Feb23: GameAssembly.dll+3877D1C
         // Depreciated Address 19Feb23: GameAssembly.dll+387DDAC
-        public string SetRevealRangeAddress = ""; // Set the varible for the results.
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -12195,11 +12194,11 @@ namespace CoreKeeperInventoryEditor
             long moduleEnd = Convert.ToInt64(BigInteger.Add(BigInteger.Parse(dllBaseAdressIWant.BaseAddress.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dllBaseAdressIWant.ModuleMemorySize.ToString("X"), NumberStyles.HexNumber)).ToString("X"), 16);
 
             // Define reveal range address varible.
-            AoBScanResultsRevealRange = await MemLib.AoBScan(moduleStart, moduleEnd, "41 00 00 40 41", true, false, false);
+            AoBScanResultsRevealMapRange = await MemLib.AoBScan(moduleStart, moduleEnd, "41 00 00 40 41", true, true, false);
 
             // Adjust the offset of the address.
-            List<long> AoBScanResultsRevealRangeTemp = new List<long>();
-            foreach (long res in AoBScanResultsRevealRange)
+            List<long> AoBScanResultsRevealMapRangeTemp = new List<long>();
+            foreach (long res in AoBScanResultsRevealMapRange)
             {
                 // Add the new offset to the list.
                 long revealRange = (long)BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer));
@@ -12207,17 +12206,17 @@ namespace CoreKeeperInventoryEditor
                 // Ensure the defualt value is 12.
                 if (MemLib.ReadFloat(revealRange.ToString("X")).ToString() == "12")
                 {
-                    AoBScanResultsRevealRangeTemp.Add(revealRange);
+                    AoBScanResultsRevealMapRangeTemp.Add(revealRange);
                 }
             }
 
             // Build the completed list.
-            AoBScanResultsRevealRange = AoBScanResultsRevealRangeTemp;
+            AoBScanResultsRevealMapRange = AoBScanResultsRevealMapRangeTemp;
 
             // Check for the reveal range addresses.
-            if (AoBScanResultsRevealRange.Count() < 1 || AoBScanResultsRevealRange.Count() > 1)
+            if (AoBScanResultsRevealMapRange.Count() < 1 || AoBScanResultsRevealMapRange.Count() > 1)
             {
-                MessageBox.Show("There was an issue gathing the reveal range addresses!\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue gathing the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count()  + "\r\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12225,13 +12224,13 @@ namespace CoreKeeperInventoryEditor
             progressBar6.PerformStep();
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsMapReveal = await MemLib.AoBScan("04 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00", true, true);
+            AoBScanResultsDevMapReveal = await MemLib.AoBScan("04 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00", true, true);
 
             // Perform progressbar step.
             progressBar6.PerformStep();
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsMapReveal.Count() < 1)
+            if (AoBScanResultsDevMapReveal.Count() < 1)
             {
                 // Reset textbox.
                 richTextBox7.Text = "Addresses Loaded: 0";
@@ -12248,7 +12247,7 @@ namespace CoreKeeperInventoryEditor
                 groupBox8.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsMapReveal = null;
+                AoBScanResultsDevMapReveal = null;
 
                 // Display error message.
                 MessageBox.Show("Could not find the reveal map addresses!!\r\rTry restarting your game.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -12256,11 +12255,11 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Update richtextbox with found addresses.
-            foreach (long res in AoBScanResultsMapReveal)
+            foreach (long res in AoBScanResultsDevMapReveal)
             {
                 if (richTextBox9.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox9.Text = "Render Addresses Loaded: " + (AoBScanResultsMapReveal.Count() + 1).ToString() + " [" + AoBScanResultsRevealRange.Last().ToString("X") + ", " + res.ToString("X").ToString();
+                    richTextBox9.Text = "Render Addresses Loaded: " + (AoBScanResultsDevMapReveal.Count() + 1).ToString() + " [" + AoBScanResultsRevealMapRange.Last().ToString("X") + ", " + res.ToString("X").ToString();
                 }
                 else
                 {
@@ -12297,7 +12296,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsMapReveal == null)
+            if (AoBScanResultsDevMapReveal == null || AoBScanResultsRevealMapRange == null)
             {
                 MessageBox.Show("You need to first scan for the map rendering addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12308,7 +12307,7 @@ namespace CoreKeeperInventoryEditor
             progressBar6.Value = 0;
 
             // Enable custom render.
-            foreach (long res in AoBScanResultsMapReveal)
+            foreach (long res in AoBScanResultsDevMapReveal)
             {
                 // Get the offset.
                 string enableAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
@@ -12316,7 +12315,11 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
+            foreach (long res in AoBScanResultsRevealMapRange)
+            {
+                // Set the new value within memory.
+                MemLib.WriteMemory(res.ToString("X"), "float", numericUpDown17.Value.ToString());
+            }
 
             // Update the progress bar.
             if (progressBar6.Maximum >= 100)
@@ -12339,7 +12342,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsMapReveal == null)
+            if (AoBScanResultsDevMapReveal == null || AoBScanResultsRevealMapRange == null)
             {
                 MessageBox.Show("You need to first scan for the map rendering addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12350,7 +12353,7 @@ namespace CoreKeeperInventoryEditor
             progressBar6.Value = 0;
 
             // Enable custom render.
-            foreach (long res in AoBScanResultsMapReveal)
+            foreach (long res in AoBScanResultsDevMapReveal)
             {
                 // Get the offset.
                 string enableAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
@@ -12358,7 +12361,11 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            MemLib.WriteMemory(SetRevealRangeAddress, "float", "12");
+            foreach (long res in AoBScanResultsRevealMapRange)
+            {
+                // Set the new value within memory.
+                MemLib.WriteMemory(res.ToString("X"), "float", "12");
+            }
 
             // Update the progress bar.
             if (progressBar6.Maximum >= 100)
@@ -12466,7 +12473,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsMapReveal == null)
+            if (AoBScanResultsDevMapReveal == null)
             {
                 MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12562,7 +12569,7 @@ namespace CoreKeeperInventoryEditor
             cancleRenderingOperation = false;
 
             // Enable custom render.
-            foreach (long res in AoBScanResultsMapReveal)
+            foreach (long res in AoBScanResultsDevMapReveal)
             {
                 // Get the offset.
                 string enableAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
@@ -12570,7 +12577,11 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            MemLib.WriteMemory(SetRevealRangeAddress, "float", numericUpDown17.Value.ToString());
+            foreach (long res in AoBScanResultsDevMapReveal)
+            {
+                // Set the new value within memory.
+                MemLib.WriteMemory(res.ToString("X").ToString(), "float", numericUpDown17.Value.ToString());
+            }
 
             // Reset variable.
             rPrevious = minRadius;
