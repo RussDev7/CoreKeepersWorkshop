@@ -12,6 +12,7 @@ Changes Since v1.3.4.8
 - Added a toggle t-key for the anti-collision mod.
 - Reworked some message prompts and updated tooltips.
 - Updated the set reveal range address to be dynamic.
+- Fixed the map reveal using deprecated variables.
 
 Changes Since v1.3.4.7
 ===========================================================
