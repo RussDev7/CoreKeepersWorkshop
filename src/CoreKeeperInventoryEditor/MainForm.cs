@@ -11964,7 +11964,7 @@ namespace CoreKeeperInventoryEditor
                 }
             }
         }
-        #endregion // End no hunger.
+        #endregion // End free crafting.
 
         #endregion // End player tab.
 
