@@ -270,6 +270,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith7, "Prevents the diminishing of inventory items.");
                 toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls. Use the t-key to toggle.");
                 toolTip.SetToolTip(siticoneWinToggleSwith9, "Recalls the player to spawn immediately.");
+                toolTip.SetToolTip(siticoneWinToggleSwith10, "Enables the ability to craft without consuming recourses.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -11198,7 +11199,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("712", NumberStyles.Integer)).ToString("X");
+            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith3.Checked)
@@ -11374,7 +11375,7 @@ namespace CoreKeeperInventoryEditor
                     siticoneWinToggleSwith5.CheckedChanged += SiticoneWinToggleSwith5_CheckedChanged;
 
                     // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch hunger addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an issue trying to fetch the hunger addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -11837,6 +11838,133 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End anti collision.
+
+        #region Free Crafting
+
+        // Toggle godmode.
+        public IEnumerable<long> AoBScanResultsFreeCraftingTools = null;
+        private async void SiticoneWinToggleSwith10_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith10.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
+                siticoneWinToggleSwith10.Checked = false;
+                siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith10.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label32.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // Check if we need to rescan the addresses or not.
+                if (AoBScanResultsFreeCraftingTools != null)
+                {
+                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.HexNumber)).ToString("X");
+                    int freeCrafting = MemLib.ReadInt(freeCraftingAddress);
+
+                    // Check if we need to rescan food or not.
+                    if (freeCrafting != 0 && freeCrafting != 1)
+                    {
+                        // Rescan food address.
+                        AoBScanResultsFreeCraftingTools = await MemLib.AoBScan("00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F E9 DD 25 3E 79 2B 7B 3F C6 AF 56 3E 00 00 80 3F", true, true);
+                    }
+                }
+                else
+                {
+                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                    AoBScanResultsFreeCraftingTools = await MemLib.AoBScan("00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F E9 DD 25 3E 79 2B 7B 3F C6 AF 56 3E 00 00 80 3F", true, true);
+                }
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsFreeCraftingTools.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label32.Text = "- Free Crafting";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsFreeCraftingTools = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith10.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
+                    siticoneWinToggleSwith10.Checked = false;
+                    siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsFreeCraftingTools)
+                {
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Free Crafting Addresses Loaded: " + AoBScanResultsFreeCraftingTools.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label32.Text = "- Free Crafting";
+
+                // Toggle on free item crafting.
+                foreach (long res in AoBScanResultsFreeCraftingTools)
+                {
+                    // Get the free crafting addresses.
+                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.HexNumber)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(freeCraftingAddress, "int", "1"); // Overwrite new value.
+                }
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Reset label name.
+                label32.Text = "- Free Crafting";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Toggle off free item crafting.
+                foreach (long res in AoBScanResultsFreeCraftingTools)
+                {
+                    // Get the free crafting addresses.
+                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.HexNumber)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(freeCraftingAddress, "int", "0"); // Overwrite new value.
+                }
+            }
+        }
+        #endregion // End no hunger.
 
         #endregion // End player tab.
 
