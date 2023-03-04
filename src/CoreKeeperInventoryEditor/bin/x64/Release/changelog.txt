@@ -1,18 +1,24 @@
+Changes Since v1.3.4.9
+===========================================================
++ Updated the player speed address.
++ Added a free crafting mod to player tools.
+
 Changes Since v1.3.4.8
 ===========================================================
-- Added exception protection to get world info.
-- Added checks to the get map rendering address.
 - Reverted the noclip address to pre 1.3.4.6.
 - Fixed save each ring not working on first rotation.
 - Fixed the teleport mod to filter to only one address.
 - Fixed the teleport player addresses to work in MP.
 - Fixed wrong controls being reset on various errors.
-- Updated the set reveal range address.
-- Added an dev-tool option to remove the forms top most.
-- Added a toggle t-key for the anti-collision mod.
 - Reworked some message prompts and updated tooltips.
-- Updated the set reveal range address to be dynamic.
 - Fixed the map reveal using deprecated variables.
+
++ Added exception protection to get world info.
++ Added checks to the get map rendering address.
++ Added an dev-tool option to remove the forms top most.
++ Added a toggle t-key for the anti-collision mod.
++ Updated the set reveal range address to be dynamic.
++ Updated the set reveal range address.
 
 Changes Since v1.3.4.7
 ===========================================================
