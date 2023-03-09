@@ -107,7 +107,7 @@ namespace CoreKeepersWorkshop
             if (!useTextboxeData)
             {
                 // Check if the items variant is populated.
-                if (baseItemVariation.ToString().Length == 8)
+                if (baseItemVariation.ToString().Length >= 8)
                 {
                     // Get base item ingrdient 1 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString()) != null)
@@ -142,7 +142,7 @@ namespace CoreKeepersWorkshop
                     label4.Text = "";
                 }
                 // Check if the items variant is populated.
-                if (baseItemVariation.ToString().Length == 8 && !numericUpDown3.Visible)
+                if (baseItemVariation.ToString().Length >= 8 && !numericUpDown3.Visible)
                 {
                     // Get base item ingrdient 2 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString()) != null)
@@ -304,7 +304,7 @@ namespace CoreKeepersWorkshop
             #endregion
 
             // Load some settings.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length == 8) // Check if item is a food variant.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length >= 8) // Check if item is a food variant.
             {
                 // Change some form items.
                 numericUpDown3.Visible = false;
@@ -330,7 +330,7 @@ namespace CoreKeepersWorkshop
             }
 
             #region Load Pictures & Names
-            
+
             // Reload all pictureboxes and labels from the defualt load data.
             ReloadPictureBoxes(useTextboxeData: true);
             #endregion
@@ -356,6 +356,17 @@ namespace CoreKeepersWorkshop
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
                     {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
                         // Combine strings into int.
                         CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
@@ -393,6 +404,17 @@ namespace CoreKeepersWorkshop
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
                     {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
                         // Combine strings into int.
                         selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
@@ -421,6 +443,17 @@ namespace CoreKeepersWorkshop
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
                     {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
                         // Combine strings into int.
                         selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
@@ -449,6 +482,17 @@ namespace CoreKeepersWorkshop
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
                     {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
                         // Combine strings into int.
                         selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
@@ -477,6 +521,17 @@ namespace CoreKeepersWorkshop
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
                     {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
                         // Combine strings into int.
                         selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
@@ -505,6 +560,17 @@ namespace CoreKeepersWorkshop
                     // Check if both entrees are populated.
                     if (numericUpDown5.Value != 0)
                     {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
                         // Combine strings into int.
                         selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
@@ -662,7 +728,7 @@ namespace CoreKeepersWorkshop
             }
 
             // Ensure original variation is 8 in lengh.
-            if (originalVariation.ToString().Length == 8)
+            if (originalVariation.ToString().Length >= 8)
             {
                 // Get the original items prefix.
                 // Get json file from resources.
@@ -882,6 +948,17 @@ namespace CoreKeepersWorkshop
                 // Check if both entrees are populated.
                 if (numericUpDown5.Value != 0)
                 {
+                    // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                    if (numericUpDown4.Value > numericUpDown5.Value)
+                    {
+                        // Flip values.
+                        decimal item2 = numericUpDown4.Value;
+                        decimal item3 = numericUpDown5.Value;
+
+                        numericUpDown4.Value = item3;
+                        numericUpDown5.Value = item2;
+                    }
+
                     // Combine strings into int.
                     selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
