@@ -1,4 +1,4 @@
-Changes Since v1.3.5.1
+Changes Since v1.3.5.0
 ===========================================================
 - Changed the autoscalemode from font to dpi.
 
