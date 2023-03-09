@@ -2,6 +2,7 @@ Changes Since v1.3.4.9
 ===========================================================
 + Updated the player speed address.
 + Added a free crafting mod to player tools.
++ Added new birthday seasonal content.
 
 Changes Since v1.3.4.8
 ===========================================================
