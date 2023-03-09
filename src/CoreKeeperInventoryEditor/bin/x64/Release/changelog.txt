@@ -1,3 +1,7 @@
+Changes Since v1.3.5.1
+===========================================================
+- Changed the autoscalemode from font to dpi.
+
 Changes Since v1.3.4.9
 ===========================================================
 + Updated the player speed address.
