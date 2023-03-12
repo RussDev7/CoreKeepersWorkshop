@@ -6,6 +6,7 @@ Changes Since v1.3.5.0
 - Changed the autoscalemode from font to dpi.
 
 + Added future id support for food variants in item editor.
++ Added a brute force option for the teleport mod.
 
 Changes Since v1.3.4.9
 ===========================================================
