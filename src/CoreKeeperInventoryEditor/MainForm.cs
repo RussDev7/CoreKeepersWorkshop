@@ -12344,6 +12344,23 @@ namespace CoreKeeperInventoryEditor
             // Check for the reveal range addresses.
             if (AoBScanResultsRevealMapRange.Count() < 1 || AoBScanResultsRevealMapRange.Count() > 1)
             {
+                // Reset textbox.
+                richTextBox7.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                progressBar6.Value = 0;
+                progressBar6.Visible = false;
+
+                // Rename button back to defualt.
+                button30.Text = "Get Addresses";
+
+                // Re-enable button.
+                button30.Enabled = true;
+                groupBox8.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsDevMapReveal = null;
+
                 MessageBox.Show("There was an issue gathing the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count()  + "\r\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
