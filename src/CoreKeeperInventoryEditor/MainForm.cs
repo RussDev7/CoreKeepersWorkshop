@@ -12722,10 +12722,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Set the custom render.
-            foreach (long res in AoBScanResultsDevMapReveal)
+            foreach (long res in AoBScanResultsRevealMapRange)
             {
                 // Set the new value within memory.
-                MemLib.WriteMemory(res.ToString("X").ToString(), "float", numericUpDown17.Value.ToString());
+                MemLib.WriteMemory(res.ToString("X"), "float", numericUpDown17.Value.ToString());
             }
 
             // Reset variable.
