@@ -2,6 +2,7 @@ Changes Since v1.3.5.0
 ===========================================================
 - Fixed reveal map addresses failing breaking the ui.
 - Fixed a few wrong item IDs.
+- Fixed render range not auto enabling when auto rendering.
 - Changed the autoscalemode from font to dpi.
 
 + Added future id support for food variants in item editor.
