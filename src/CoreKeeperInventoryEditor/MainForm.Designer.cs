@@ -230,6 +230,7 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).BeginInit();
@@ -1896,9 +1897,9 @@ namespace CoreKeeperInventoryEditor
             this.groupBox13.Controls.Add(this.label9);
             this.groupBox13.Controls.Add(this.button19);
             this.groupBox13.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox13.Location = new System.Drawing.Point(11, 227);
+            this.groupBox13.Location = new System.Drawing.Point(11, 245);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(366, 191);
+            this.groupBox13.Size = new System.Drawing.Size(366, 173);
             this.groupBox13.TabIndex = 49;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "World Utilities";
@@ -1967,7 +1968,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox8.Controls.Add(this.button22);
             this.groupBox8.Controls.Add(this.button28);
             this.groupBox8.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox8.Location = new System.Drawing.Point(10, 91);
+            this.groupBox8.Location = new System.Drawing.Point(10, 109);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(366, 130);
             this.groupBox8.TabIndex = 43;
@@ -2578,6 +2579,7 @@ namespace CoreKeeperInventoryEditor
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox11.Controls.Add(this.checkBox3);
             this.groupBox11.Controls.Add(this.button14);
             this.groupBox11.Controls.Add(this.button13);
             this.groupBox11.Controls.Add(this.numericUpDown5);
@@ -2589,7 +2591,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox11.ForeColor = System.Drawing.Color.Lime;
             this.groupBox11.Location = new System.Drawing.Point(10, 5);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(366, 80);
+            this.groupBox11.Size = new System.Drawing.Size(366, 98);
             this.groupBox11.TabIndex = 40;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Teleport Player";
@@ -2854,6 +2856,18 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.ForeColor = System.Drawing.Color.Snow;
+            this.checkBox3.Location = new System.Drawing.Point(7, 76);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(81, 17);
+            this.checkBox3.TabIndex = 27;
+            this.checkBox3.Text = "Brute Force";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2964,6 +2978,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.tabPage5.ResumeLayout(false);
@@ -3176,6 +3191,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label32;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith10;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 
