@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -147,8 +148,15 @@ namespace CoreKeeperInventoryEditor
                 });
                 #endregion
 
-                #region Set Dev-Tool Controls
+                #region Set Dev-Tool / Main Control Contents
 
+                // Main controls.
+                numericUpDown14.Value = CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax; // Map rendering max radius.
+                numericUpDown16.Value = CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart; // Map rendering start radius.
+                numericUpDown19.Value = CoreKeepersWorkshop.Properties.Settings.Default.FishingCast; // Fishing bot casting delay.
+                numericUpDown20.Value = CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding; // Fishing bot padding delay.
+
+                // Dev tools.
                 numericUpDown2.Value = (decimal)CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay; // Dev tool operation delay.
                 numericUpDown18.Value = CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
                 checkBox2.Checked = CoreKeepersWorkshop.Properties.Settings.Default.TopMost; // Set as top most.
@@ -291,6 +299,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(numericUpDown16, "Set the mininum range in tiles away from the player to start the map render.");
                 toolTip.SetToolTip(numericUpDown17, "Set the maximum range in tiles to render the map by.");
                 toolTip.SetToolTip(numericUpDown18, "Set a custom radialMoveScale for auto map rendering. (defualt: 0.1)");
+                toolTip.SetToolTip(numericUpDown19, "Set the delay for re-casting the fishing pole.");
+                toolTip.SetToolTip(numericUpDown20, "Set the delay for loop operations. Ex: Cought fish checking.");
 
                 toolTip.SetToolTip(label7, "Create an ID list from all installed assets.");
                 toolTip.SetToolTip(label4, "Sets the variant of item slot2 based on a file list.");
@@ -392,6 +402,10 @@ namespace CoreKeeperInventoryEditor
                 // Save some form controls.
                 CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay = (int)numericUpDown2.Value; // Dev tool operation delay.
                 CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale = numericUpDown18.Value; // Auto render maps radialMoveScale.
+                CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax = numericUpDown14.Value; // Map rendering max radius.
+                CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart = numericUpDown16.Value; // Map rendering start radius.
+                CoreKeepersWorkshop.Properties.Settings.Default.FishingCast = numericUpDown19.Value; // Fishing bot casting delay.
+                CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding = numericUpDown20.Value; // Fishing bot padding delay.
                 CoreKeepersWorkshop.Properties.Settings.Default.Save();
             }
             catch (Exception)
@@ -11987,7 +12001,7 @@ namespace CoreKeeperInventoryEditor
         private void CheckBox3_CheckedChanged(object sender, EventArgs e)
         {
             // Double check if the player wishes to enable this.
-            if (checkBox3.Checked && MessageBox.Show("Are you sure you wish to brute force the address searching?\n\nThis could crash your game in the process and saving prior is reccomeneded!", "Brute Force Teleport Address Search", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (checkBox3.Checked && MessageBox.Show("This option should only be used if normal scaning brings no results.\n\nThis could crash your game in the process -\nSaving prior is recommended!\n\nAre you sure you wish to brute force the address searching?", "Brute Force Teleport Address Search", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 // Disable the checkbox.
                 checkBox3.Checked = false;
@@ -14169,15 +14183,13 @@ namespace CoreKeeperInventoryEditor
             fishType = MemLib.ReadInt(fishTypeAddress);
             fishFighting = (MemLib.ReadInt(fishFightAddress) == 1);
 
+            // Fish is on the hook, attempt to reel in. //
             // Check if a fish was caught.
             if (fishType != 0)
             {
                 // Check if fish is currently fighting.
                 if (!fishFighting)
                 {
-                    // Add some delay.
-                    await Task.Delay(100);
-
                     // Pull fish in.
                     mouse_event(MOUSEEVENT_RIGHTDOWN, 0, 0, 0, 0);
                     mouse_event(MOUSEEVENT_RIGHTUP, 0, 0, 0, 0);
@@ -14192,11 +14204,12 @@ namespace CoreKeeperInventoryEditor
                 }
             }
 
+            // Throw rod back into the water. //
             // Check if reeling.
-            if (reelingActive && fishType == 0)
+            else if (reelingActive && fishType == 0)
             {
                 // Add some delay.
-                await Task.Delay(100);
+                await Task.Delay((int)numericUpDown19.Value);
 
                 // Cought finished.
                 mouse_event(MOUSEEVENT_RIGHTDOWN, 0, 0, 0, 0);
@@ -14207,7 +14220,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Add some delay.
-            await Task.Delay(100);
+            await Task.Delay((int)numericUpDown20.Value);
         }
         #endregion // End auto fishing bot.
 
@@ -14636,7 +14649,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Admin Tools
 
-        #region Upgrade Legacy Items
+        #region Item ID List Builder
 
         // Create an ID list from all installed assets.
         private void Label7_Click(object sender, EventArgs e)
@@ -14938,6 +14951,13 @@ namespace CoreKeeperInventoryEditor
         // Bring game window back to the center and resize.
         private void Label30_Click(object sender, EventArgs e)
         {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Get the process of the game.
             Process process = Process.GetProcessesByName("CoreKeeper").First();
 
@@ -15000,6 +15020,31 @@ namespace CoreKeeperInventoryEditor
 
             // Record information.
             File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\MemoryLogger.txt", DateTime.Now + " -> " + Math.Round(new PerformanceCounter("Process", "Private Bytes", "CoreKeeper", true).NextValue() / 1024 / 1024 / 1000, 2).ToString() + " GBs" + Environment.NewLine);
+        }
+        #endregion
+
+        #region Reset All Controls
+
+        // Reset all controls.
+        private void Button34_Click(object sender, EventArgs e)
+        {
+            // Ask user if they are sure to reset all controls.
+            if (MessageBox.Show("Are you sure you wish to reset all form controls?", "Reset All Controls", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                // Main controls.
+                numericUpDown14.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
+                numericUpDown16.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
+                numericUpDown19.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
+                numericUpDown20.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
+
+                // Dev tools.
+                numericUpDown2.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
+                numericUpDown18.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
+                checkBox2.Checked = bool.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
+
+                // Display completed message.
+                MessageBox.Show("All controls have been reset!", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         #endregion
 

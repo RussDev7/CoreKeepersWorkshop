@@ -159,8 +159,11 @@ namespace CoreKeeperInventoryEditor
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown20 = new System.Windows.Forms.NumericUpDown();
+            this.button33 = new System.Windows.Forms.Button();
+            this.numericUpDown19 = new System.Windows.Forms.NumericUpDown();
+            this.button32 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.label26 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button19 = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -209,6 +212,8 @@ namespace CoreKeeperInventoryEditor
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
@@ -230,7 +235,7 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.button34 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).BeginInit();
@@ -302,6 +307,8 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.groupBox13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
@@ -1198,6 +1205,7 @@ namespace CoreKeeperInventoryEditor
             this.tabPage7.Controls.Add(this.label4);
             this.tabPage7.Controls.Add(this.numericUpDown2);
             this.tabPage7.Controls.Add(this.numericUpDown18);
+            this.tabPage7.Controls.Add(this.button34);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(354, 133);
@@ -1892,8 +1900,11 @@ namespace CoreKeeperInventoryEditor
             // groupBox13
             // 
             this.groupBox13.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox13.Controls.Add(this.numericUpDown20);
+            this.groupBox13.Controls.Add(this.button33);
+            this.groupBox13.Controls.Add(this.numericUpDown19);
+            this.groupBox13.Controls.Add(this.button32);
             this.groupBox13.Controls.Add(this.button8);
-            this.groupBox13.Controls.Add(this.label26);
             this.groupBox13.Controls.Add(this.label9);
             this.groupBox13.Controls.Add(this.button19);
             this.groupBox13.ForeColor = System.Drawing.Color.Lime;
@@ -1904,32 +1915,88 @@ namespace CoreKeeperInventoryEditor
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "World Utilities";
             // 
+            // numericUpDown20
+            // 
+            this.numericUpDown20.Location = new System.Drawing.Point(310, 49);
+            this.numericUpDown20.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown20.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown20.Name = "numericUpDown20";
+            this.numericUpDown20.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown20.TabIndex = 52;
+            this.numericUpDown20.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // button33
+            // 
+            this.button33.Enabled = false;
+            this.button33.ForeColor = System.Drawing.Color.Black;
+            this.button33.Location = new System.Drawing.Point(247, 48);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(64, 22);
+            this.button33.TabIndex = 51;
+            this.button33.Text = "Padding:";
+            this.button33.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown19
+            // 
+            this.numericUpDown19.Location = new System.Drawing.Point(191, 49);
+            this.numericUpDown19.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown19.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown19.Name = "numericUpDown19";
+            this.numericUpDown19.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown19.TabIndex = 32;
+            this.numericUpDown19.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // button32
+            // 
+            this.button32.Enabled = false;
+            this.button32.ForeColor = System.Drawing.Color.Black;
+            this.button32.Location = new System.Drawing.Point(121, 48);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(71, 22);
+            this.button32.TabIndex = 31;
+            this.button32.Text = "Cast Delay:";
+            this.button32.UseVisualStyleBackColor = true;
+            // 
             // button8
             // 
             this.button8.ForeColor = System.Drawing.Color.Black;
             this.button8.Location = new System.Drawing.Point(5, 19);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(122, 23);
+            this.button8.Size = new System.Drawing.Size(110, 23);
             this.button8.TabIndex = 32;
-            this.button8.Text = "Remove Ground Items";
+            this.button8.Text = "Trash Ground Items";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.Button8_Click);
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.Snow;
-            this.label26.Location = new System.Drawing.Point(127, 53);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(201, 13);
-            this.label26.TabIndex = 48;
-            this.label26.Text = "- Automatically throw lines and catch fish.";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Snow;
-            this.label9.Location = new System.Drawing.Point(127, 24);
+            this.label9.Location = new System.Drawing.Point(118, 24);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(230, 13);
             this.label9.TabIndex = 0;
@@ -1940,7 +2007,7 @@ namespace CoreKeeperInventoryEditor
             this.button19.ForeColor = System.Drawing.Color.Black;
             this.button19.Location = new System.Drawing.Point(5, 48);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(122, 23);
+            this.button19.Size = new System.Drawing.Size(110, 23);
             this.button19.TabIndex = 33;
             this.button19.Text = "Automatic Fishing";
             this.button19.UseVisualStyleBackColor = true;
@@ -2579,6 +2646,7 @@ namespace CoreKeeperInventoryEditor
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox11.Controls.Add(this.label26);
             this.groupBox11.Controls.Add(this.checkBox3);
             this.groupBox11.Controls.Add(this.button14);
             this.groupBox11.Controls.Add(this.button13);
@@ -2595,6 +2663,28 @@ namespace CoreKeeperInventoryEditor
             this.groupBox11.TabIndex = 40;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Teleport Player";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.Snow;
+            this.label26.Location = new System.Drawing.Point(101, 77);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(240, 13);
+            this.label26.TabIndex = 28;
+            this.label26.Text = "- Uses raw positions rather then a filtered position.";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.ForeColor = System.Drawing.Color.Snow;
+            this.checkBox3.Location = new System.Drawing.Point(7, 76);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(81, 17);
+            this.checkBox3.TabIndex = 27;
+            this.checkBox3.Text = "Brute Force";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
             // 
             // button14
             // 
@@ -2856,17 +2946,15 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
-            // checkBox3
+            // button34
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.ForeColor = System.Drawing.Color.Snow;
-            this.checkBox3.Location = new System.Drawing.Point(7, 76);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(81, 17);
-            this.checkBox3.TabIndex = 27;
-            this.checkBox3.Text = "Brute Force";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            this.button34.Location = new System.Drawing.Point(302, 73);
+            this.button34.Name = "button34";
+            this.button34.Size = new System.Drawing.Size(53, 38);
+            this.button34.TabIndex = 12;
+            this.button34.Text = "Reset\r\nControls";
+            this.button34.UseVisualStyleBackColor = true;
+            this.button34.Click += new System.EventHandler(this.Button34_Click);
             // 
             // MainForm
             // 
@@ -2961,6 +3049,8 @@ namespace CoreKeeperInventoryEditor
             this.tabPage8.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
@@ -3132,7 +3222,6 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.NumericUpDown numericUpDown12;
         private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Label label27;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith7;
@@ -3192,6 +3281,12 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label32;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith10;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.NumericUpDown numericUpDown19;
+        private System.Windows.Forms.Button button32;
+        private System.Windows.Forms.NumericUpDown numericUpDown20;
+        private System.Windows.Forms.Button button33;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button34;
     }
 }
 
