@@ -3,10 +3,15 @@ Changes Since v1.3.5.0
 - Fixed reveal map addresses failing breaking the ui.
 - Fixed a few wrong item IDs.
 - Fixed render range not auto enabling when auto rendering.
+- Fixed the ability to run some dev-tools with no process.
 - Changed the autoscalemode from font to dpi.
+- Improved the auto fishing bots performance.
 
 + Added future id support for food variants in item editor.
 + Added a brute force option for the teleport mod.
++ Added delay variables to the auto fishing bot.
++ Added retention to some of the main controls.
++ Added a reset all controls dev-tool.
 
 Changes Since v1.3.4.9
 ===========================================================
