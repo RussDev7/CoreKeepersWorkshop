@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace CoreKeeperInventoryEditor
 {
@@ -15033,33 +15034,29 @@ namespace CoreKeeperInventoryEditor
             if (MessageBox.Show("Are you sure you wish to reset all form controls?", "Reset All Controls", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 // Main controls.
-                numericUpDown14.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
-                numericUpDown16.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
-                numericUpDown19.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
-                numericUpDown20.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
+                numericUpDown14.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
+                numericUpDown16.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
+                numericUpDown19.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
+                numericUpDown20.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
 
                 // Dev tools.
-                numericUpDown2.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
-                numericUpDown18.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
-                checkBox2.Checked = bool.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(nameof(CoreKeepersWorkshop.Properties.Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
+                numericUpDown2.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
+                numericUpDown18.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
+                checkBox2.Checked = bool.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
 
                 // Display completed message.
                 MessageBox.Show("All controls have been reset!", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        // Added support for earlier dotnet.
+        public static string GetNameOf<T>(Expression<Func<T>> expression)
+        {
+            var body = (MemberExpression)expression.Body;
+
+            return body.Member.Name;
+        }
         #endregion
 
         #endregion // End admin tools.
-    }
-
-    public class Nameof<T>
-    {
-        public static string Property<TProp>(Expression<Func<T, TProp>> expression)
-        {
-            var body = expression.Body as MemberExpression;
-            if (body == null)
-                throw new ArgumentException("'expression' should be a member expression");
-            return body.Member.Name;
-        }
     }
 }
