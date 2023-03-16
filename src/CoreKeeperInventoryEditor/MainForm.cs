@@ -12,6 +12,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -15049,5 +15050,16 @@ namespace CoreKeeperInventoryEditor
         #endregion
 
         #endregion // End admin tools.
+    }
+
+    public class Nameof<T>
+    {
+        public static string Property<TProp>(Expression<Func<T, TProp>> expression)
+        {
+            var body = expression.Body as MemberExpression;
+            if (body == null)
+                throw new ArgumentException("'expression' should be a member expression");
+            return body.Member.Name;
+        }
     }
 }
