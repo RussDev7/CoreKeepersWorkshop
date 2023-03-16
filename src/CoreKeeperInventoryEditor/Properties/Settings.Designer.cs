@@ -286,5 +286,53 @@ namespace CoreKeepersWorkshop.Properties {
                 this["TopMost"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("150")]
+        public decimal MapRenderingMax {
+            get {
+                return ((decimal)(this["MapRenderingMax"]));
+            }
+            set {
+                this["MapRenderingMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal MapRenderingStart {
+            get {
+                return ((decimal)(this["MapRenderingStart"]));
+            }
+            set {
+                this["MapRenderingStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal FishingCast {
+            get {
+                return ((decimal)(this["FishingCast"]));
+            }
+            set {
+                this["FishingCast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal FishingPadding {
+            get {
+                return ((decimal)(this["FishingPadding"]));
+            }
+            set {
+                this["FishingPadding"] = value;
+            }
+        }
     }
 }
