@@ -31,9 +31,10 @@ After launching, you will need to put some torches in both your first and last i
 ![start2](https://user-images.githubusercontent.com/33048298/190875320-ac4f5496-2b0f-480c-b7f4-0f7179d2d423.png)
 
 The features for the application is as follows:
-![InventoryAbout3](https://user-images.githubusercontent.com/33048298/202617651-b8d8ccfb-4e39-45f9-9fa4-f2a66dcb2797.png)
-![PlayerAbout](https://user-images.githubusercontent.com/33048298/190877329-170e2c23-2271-4de6-8d4a-e4fafa9f5b43.png)
-![EditorAbout](https://user-images.githubusercontent.com/33048298/190877333-99fda451-1cfe-4962-941b-e8bb7d54a30d.PNG)
+![InventoryTab](https://user-images.githubusercontent.com/33048298/226137050-78fca5fa-9a07-4189-aaa2-d7977cbe5d63.png)
+![PlayerTab](https://user-images.githubusercontent.com/33048298/226137073-3e014414-1ad4-4a49-9fea-6041aca59c9e.png)
+![WorldTab](https://user-images.githubusercontent.com/33048298/226137088-bf037f45-4536-49e9-b8ea-8cf7a837c76e.png)
+![ChatTab](https://user-images.githubusercontent.com/33048298/226137097-9470e16b-ede3-409b-bd89-b159cd3e1c55.png)
 
 ## Explanation On Item Variants
 Variants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items regardless of variant all have a base ID. There is not a unique ID assosiated with each item variant, only the base ID. Refer to the formula below to understand how these are built.
