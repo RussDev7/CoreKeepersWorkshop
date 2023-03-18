@@ -2672,7 +2672,7 @@ namespace CoreKeeperInventoryEditor
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(240, 13);
             this.label26.TabIndex = 28;
-            this.label26.Text = "- Uses raw positions rather then a filtered position.";
+            this.label26.Text = "- Scan using raw positions rather then filtered positions.";
             // 
             // checkBox3
             // 
