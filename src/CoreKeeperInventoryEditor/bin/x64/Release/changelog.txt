@@ -12,6 +12,7 @@ Changes Since v1.3.5.0
 + Added delay variables to the auto fishing bot.
 + Added retention to some of the main controls.
 + Added a reset all controls dev-tool.
++ Added missing and new update assets.
 
 Changes Since v1.3.4.9
 ===========================================================
