@@ -12050,7 +12050,7 @@ namespace CoreKeeperInventoryEditor
                     siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
 
                     // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an issue trying to fetch the passive AI addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -12079,7 +12079,7 @@ namespace CoreKeeperInventoryEditor
                 // Toggle on passive AI.
                 foreach (long res in AoBScanResultsPassiveAITools)
                 {
-                    // Get the free crafting addresses.
+                    // Get the passive AI addresses.
                     string passiveAIAddress = res.ToString("X");
 
                     // Write value.
@@ -12099,7 +12099,7 @@ namespace CoreKeeperInventoryEditor
                 // Toggle off passive AI.
                 foreach (long res in AoBScanResultsPassiveAITools)
                 {
-                    // Get the free crafting addresses.
+                    // Get the passive AI addresses.
                     string passiveAIAddress = res.ToString("X");
 
                     // Write value.
@@ -12107,7 +12107,7 @@ namespace CoreKeeperInventoryEditor
                 }
             }
         }
-        #endregion
+        #endregion // End passive AI.
 
         #endregion // End player tab.
 
