@@ -6,6 +6,7 @@ Changes Since v1.3.5.0
 - Fixed the ability to run some dev-tools with no process.
 - Changed the autoscalemode from font to dpi.
 - Improved the auto fishing bots performance.
+- Improved the image offsets for the inventory editor.
 
 + Added future id support for food variants in item editor.
 + Added a brute force option for the teleport mod.
@@ -13,6 +14,7 @@ Changes Since v1.3.5.0
 + Added retention to some of the main controls.
 + Added a reset all controls dev-tool.
 + Added missing and new update assets.
++ Added passive ai mod to player tools.
 
 Changes Since v1.3.4.9
 ===========================================================
