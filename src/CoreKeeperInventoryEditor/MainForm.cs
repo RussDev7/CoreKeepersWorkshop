@@ -12005,7 +12005,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
-                label32.Text = "- Loading..";
+                label33.Text = "- Loading..";
 
                 // Offset the progress bar to show it's working.
                 progressBar5.Visible = true;
@@ -12035,7 +12035,7 @@ namespace CoreKeeperInventoryEditor
                 if (AoBScanResultsPassiveAITools.Count() == 0)
                 {
                     // Name label to indicate loading.
-                    label32.Text = "- Passive AI";
+                    label33.Text = "- Passive AI";
 
                     // Reset progress bar.
                     progressBar5.Value = 0;
@@ -12074,7 +12074,7 @@ namespace CoreKeeperInventoryEditor
                 progressBar5.Visible = false;
 
                 // Rename label to defualt text.
-                label32.Text = "- Passive AI";
+                label33.Text = "- Passive AI";
 
                 // Toggle on passive AI.
                 foreach (long res in AoBScanResultsPassiveAITools)
@@ -12090,7 +12090,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Slider is being toggled off.
                 // Reset label name.
-                label32.Text = "- Passive AI";
+                label33.Text = "- Passive AI";
 
                 // Complete progress bar.
                 progressBar5.Value = 100;
