@@ -15,6 +15,7 @@ Changes Since v1.3.5.0
 + Added a reset all controls dev-tool.
 + Added missing and new update assets.
 + Added passive ai mod to player tools.
++ Added new update content.
 
 Changes Since v1.3.4.9
 ===========================================================
