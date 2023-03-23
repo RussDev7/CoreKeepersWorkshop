@@ -1,3 +1,9 @@
+Changes Since v1.3.5.1
+===========================================================
+- Fixed infinite resources not allowing forward stacking.
+- Fixed godmode addresses.
+- Improved passive ai addresses searching.
+
 Changes Since v1.3.5.0
 ===========================================================
 - Fixed reveal map addresses failing breaking the ui.
