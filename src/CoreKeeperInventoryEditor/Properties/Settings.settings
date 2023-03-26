@@ -80,5 +80,20 @@
     <Setting Name="FishingPadding" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
+    <Setting Name="ChunkViewerLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="ChunkViewerAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00000000000</Value>
+    </Setting>
+    <Setting Name="ChunkViewerDebug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ChunkViewerDebugScale" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">377</Value>
+    </Setting>
+    <Setting Name="ChunkViewerMobs" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -334,5 +334,65 @@ namespace CoreKeepersWorkshop.Properties {
                 this["FishingPadding"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point ChunkViewerLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ChunkViewerLocation"]));
+            }
+            set {
+                this["ChunkViewerLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("00000000000")]
+        public string ChunkViewerAddress {
+            get {
+                return ((string)(this["ChunkViewerAddress"]));
+            }
+            set {
+                this["ChunkViewerAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ChunkViewerDebug {
+            get {
+                return ((bool)(this["ChunkViewerDebug"]));
+            }
+            set {
+                this["ChunkViewerDebug"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("377")]
+        public decimal ChunkViewerDebugScale {
+            get {
+                return ((decimal)(this["ChunkViewerDebugScale"]));
+            }
+            set {
+                this["ChunkViewerDebugScale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ChunkViewerMobs {
+            get {
+                return ((bool)(this["ChunkViewerMobs"]));
+            }
+            set {
+                this["ChunkViewerMobs"] = value;
+            }
+        }
     }
 }
