@@ -1,6 +1,14 @@
 Changes Since v1.3.5.2
 ===========================================================
+- Fixed first negitive chunks not retaining negitive signs.
+- Fxed some issues with debug mode removing coordinates.
+- Fxed issues with transparancy slider.
+
 + Added a chunk viewer to player tools.
++ Added scale slder to chunk viewer.
++ Added various debugging tools to chunk viewer.
++ Added auto form scaling for the scale slider.
++ Added retention to some of the chunk viewer controls.
 
 Changes Since v1.3.5.1
 ===========================================================
