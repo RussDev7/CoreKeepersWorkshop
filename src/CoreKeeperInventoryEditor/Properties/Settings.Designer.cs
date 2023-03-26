@@ -373,7 +373,7 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("377")]
+        [global::System.Configuration.DefaultSettingValueAttribute("364")]
         public decimal ChunkViewerDebugScale {
             get {
                 return ((decimal)(this["ChunkViewerDebugScale"]));
@@ -392,6 +392,18 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["ChunkViewerMobs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2")]
+        public float ChunkViewerScale {
+            get {
+                return ((float)(this["ChunkViewerScale"]));
+            }
+            set {
+                this["ChunkViewerScale"] = value;
             }
         }
     }

@@ -90,10 +90,13 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ChunkViewerDebugScale" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">377</Value>
+      <Value Profile="(Default)">364</Value>
     </Setting>
     <Setting Name="ChunkViewerMobs" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ChunkViewerScale" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">4.2</Value>
     </Setting>
   </Settings>
 </SettingsFile>
