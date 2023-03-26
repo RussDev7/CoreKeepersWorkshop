@@ -1,3 +1,7 @@
+Changes Since v1.3.5.2
+===========================================================
++ Added a chunk viewer to player tools.
+
 Changes Since v1.3.5.1
 ===========================================================
 - Fixed infinite resources not allowing forward stacking.
