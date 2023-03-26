@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChunkViewer));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -38,14 +40,12 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,6 +62,42 @@
             this.panel1.Size = new System.Drawing.Size(338, 338);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(69, 88);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown3.TabIndex = 2;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            160,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Visible = false;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(69, 62);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown2.TabIndex = 1;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Visible = false;
             // 
             // numericUpDown1
             // 
@@ -93,7 +129,7 @@
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(159, 366);
+            this.checkBox1.Location = new System.Drawing.Point(166, 366);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(100, 17);
             this.checkBox1.TabIndex = 1;
@@ -105,7 +141,7 @@
             // 
             this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(159, 343);
+            this.checkBox2.Location = new System.Drawing.Point(166, 343);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(163, 17);
             this.checkBox2.TabIndex = 2;
@@ -140,7 +176,7 @@
             // 
             this.checkBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(264, 366);
+            this.checkBox3.Location = new System.Drawing.Point(271, 366);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(58, 17);
             this.checkBox3.TabIndex = 5;
@@ -152,7 +188,7 @@
             // 
             this.trackBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trackBar2.LargeChange = 1;
-            this.trackBar2.Location = new System.Drawing.Point(76, 360);
+            this.trackBar2.Location = new System.Drawing.Point(74, 360);
             this.trackBar2.Maximum = 100;
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
@@ -166,47 +202,11 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(93, 344);
+            this.label2.Location = new System.Drawing.Point(91, 344);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Scale";
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(69, 62);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            700,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown2.TabIndex = 1;
-            this.numericUpDown2.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Visible = false;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Location = new System.Drawing.Point(69, 88);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            700,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown3.TabIndex = 2;
-            this.numericUpDown3.Value = new decimal(new int[] {
-            160,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Visible = false;
             // 
             // ChunkViewer
             // 
@@ -215,13 +215,13 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(334, 388);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.trackBar2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -231,11 +231,11 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChunkViewer_FormClosing);
             this.Load += new System.EventHandler(this.ChunkViewer_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
