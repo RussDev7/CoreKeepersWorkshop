@@ -90,9 +90,15 @@ namespace CoreKeepersWorkshop
             // Set controls based on saved settings.
             checkBox2.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs;
             checkBox3.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
+
             numericUpDown1.Visible = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
             numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale;
+
             // ActiveForm.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity;
+            trackBar2.Value = (int)(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale / 0.2);
+            mapScale = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale;
+
+            this.Size = new Size((int)Math.Round(64 * mapScale) + 80, (int)Math.Round(64 * mapScale) + 160); // Form size.
             #endregion
 
             #region Timed Events
@@ -116,8 +122,11 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(checkBox1, "Hides the main form making usability much better.");
             toolTip.SetToolTip(checkBox2, "Shows the chunks the game uses to spawn enemies.");
             toolTip.SetToolTip(checkBox3, "Hide or show debug tools.");
-            toolTip.SetToolTip(numericUpDown1, "Adjust the display area for the grid box");
+            toolTip.SetToolTip(numericUpDown1, "Adjust the display area for the grid box.");
+            toolTip.SetToolTip(numericUpDown2, "Adjust the forms x-axis size offset.");
+            toolTip.SetToolTip(numericUpDown3, "Adjust the forms y-axis size offset.");
             toolTip.SetToolTip(trackBar1, "Adjust the transparency of the form.");
+            toolTip.SetToolTip(trackBar2, "Adjust the scale of the grid.");
             #endregion
         }
 
@@ -218,12 +227,37 @@ namespace CoreKeepersWorkshop
             // Save the opacity.
             // CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity = newOpacity;
         }
+
+        // Adjust the grid scale.
+        private void TrackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            // Get the scale to multiply by to get a larger range.
+            float sliderScale = 0.2f;
+
+            // Set the map scale value.
+            mapScale = sliderScale * trackBar2.Value;
+
+            // Save the new scale.
+            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale = mapScale;
+
+            // Define the offsets for the form size.
+            int xOffset = 80;
+            int yOffset = 160;
+            if (checkBox3.Checked)
+            {
+                xOffset = (int)numericUpDown2.Value;
+                yOffset = (int)numericUpDown3.Value;
+            }
+
+            // Set the form size.
+            this.Size = new Size((int)Math.Round(64 * mapScale) + xOffset, (int)Math.Round(64 * mapScale) + yOffset);
+        }
         #endregion
 
         #region Do Painting
 
         // Get the players position timer.
-        readonly float mapScale = 4.2f;
+        float mapScale = 4.2f;
         Vector2 playersPosition = new Vector2(0, 0);
         private void TimedEvents(Object source, ElapsedEventArgs e)
         {
@@ -288,11 +322,29 @@ namespace CoreKeepersWorkshop
             Vector2 corner3 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);   // C: 63,63
             Vector2 corner4 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, currentChunk.Y);                                                           // D: 63,0
 
+            // Check if values are -64 to 0, adjust offsets. // Fix for negitive chunks.
+            if (IsNegative(playersPosition.X) && (currentChunk.X / 64) - 1 == -1) // Adjust X axis.
+            {
+                corner3 = new Vector2((IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63) * -1, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);   // C: 63,63
+                corner4 = new Vector2((IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63) * -1, currentChunk.Y);                                                           // D: 63,0
+                
+                // corner1 = new Vector2(currentChunk.X * -1, currentChunk.Y);                                                                                                                  // A: 0,0
+                // corner2 = new Vector2(currentChunk.X * -1, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);                                                          // B: 0,63
+            }
+            if (IsNegative(playersPosition.Y) && (currentChunk.Y / 64) - 1 == -1) // Adjust Y axis.
+            {
+                corner2 = new Vector2(currentChunk.X, (IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63) * -1);                                                           // B: 0,63
+                corner3 = new Vector2(corner3.X, (IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63) * -1);   // C: 63,63
+
+                // corner1 = new Vector2(currentChunk.X, currentChunk.Y * -1);                                                                                                                  // A: 0,0
+                // corner4 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, currentChunk.Y * -1);                                                          // D: 63,0
+            }
+
             // Draw coordinates.
-            e.Graphics.DrawString("A(" + (IsNegative(playersPosition.X) ? corner4.X : corner1.X) + ", " + (IsNegative(playersPosition.Y) ? corner2.Y : corner1.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, (int)Math.Round(64 * mapScale) + 40));                              // 0,0
-            e.Graphics.DrawString("B(" + (IsNegative(playersPosition.X) ? corner3.X : corner2.X) + ", " + (IsNegative(playersPosition.Y) ? corner1.Y : corner2.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, 16));                                                               // 0,63
-            e.Graphics.DrawString("C(" + (IsNegative(playersPosition.X) ? corner2.X : corner3.X) + ", " + (IsNegative(playersPosition.Y) ? corner4.Y : corner3.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, 16));                                  // 63,63
-            e.Graphics.DrawString("D(" + (IsNegative(playersPosition.X) ? corner1.X : corner4.X) + ", " + (IsNegative(playersPosition.Y) ? corner3.Y : corner4.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, (int)Math.Round(64 * mapScale) + 40)); // 63,0
+            e.Graphics.DrawString((checkBox3.Checked ? "A" : "") + "(" + (IsNegative(playersPosition.X) ? corner4.X : corner1.X) + ", " + (IsNegative(playersPosition.Y) ? corner2.Y : corner1.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, (int)Math.Round(64 * mapScale) + 40));                              // A: 0,0
+            e.Graphics.DrawString((checkBox3.Checked ? "B" : "") + "(" + (IsNegative(playersPosition.X) ? corner3.X : corner2.X) + ", " + (IsNegative(playersPosition.Y) ? corner1.Y : corner2.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, 16));                                                               // B: 0,63
+            e.Graphics.DrawString((checkBox3.Checked ? "C" : "") + "(" + (IsNegative(playersPosition.X) ? corner2.X : corner3.X) + ", " + (IsNegative(playersPosition.Y) ? corner4.Y : corner3.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, 16));                                  // C: 63,63
+            e.Graphics.DrawString((checkBox3.Checked ? "D" : "") + "(" + (IsNegative(playersPosition.X) ? corner1.X : corner4.X) + ", " + (IsNegative(playersPosition.Y) ? corner3.Y : corner4.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, (int)Math.Round(64 * mapScale) + 40)); // D: 63,0
             e.Graphics.DrawString("CHUNK: [" + (IsNegative(playersPosition.X) ? (currentChunk.X / 64) - 1 : (currentChunk.X / 64)) + ", " + (IsNegative(playersPosition.Y) ? (currentChunk.Y / 64) - 1 : (currentChunk.Y / 64)) + "]", new Font("Arial", 10, FontStyle.Italic), Brushes.Lime, new Point((((int)Math.Round(64 * mapScale) + 32) / 3) + 10, 16)); // Area
 
             // Begin graphics container
@@ -302,7 +354,7 @@ namespace CoreKeepersWorkshop
             e.Graphics.ScaleTransform(1.0F, -1.0F);
 
             // Translate the drawing area accordingly
-            var translateScale = (checkBox3.Checked) ? numericUpDown1.Value : 377;
+            var translateScale = (checkBox3.Checked) ? numericUpDown1.Value : (int)Math.Round(64 * mapScale) + 108;
             e.Graphics.TranslateTransform(0.0F, -(float)translateScale);
 
             //Apply a smoothing mode to smooth out the line.
