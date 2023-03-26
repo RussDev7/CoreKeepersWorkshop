@@ -1,7 +1,7 @@
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::Clean The CoreKeepersWorkshop Project Via Batch                ::
 ::Gihub https://github.com/RussDev7/CoreKeepersWorkshop          ::
-::Devoloped, Maintained, And Sponsored By D.RUSS#2430            ::
+::Developed, Maintained, And Sponsored By D.RUSS#2430            ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
 
