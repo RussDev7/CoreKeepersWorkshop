@@ -106,6 +106,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChunkViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChunkViewer.Designer.cs">
+      <DependentUpon>ChunkViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FoodCookbook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="TextProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="ChunkViewer.resx">
+      <DependentUpon>ChunkViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FoodCookbook.resx">
       <DependentUpon>FoodCookbook.cs</DependentUpon>
     </EmbeddedResource>

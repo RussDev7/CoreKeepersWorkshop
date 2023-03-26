@@ -14,6 +14,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -260,6 +261,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button28, "Cancel the map rendering operation.");
                 toolTip.SetToolTip(button30, "Get the required addresses for custom map rendering.");
                 toolTip.SetToolTip(button31, "Pause or resume the auto map rendering operation.");
+                toolTip.SetToolTip(button35, "Open a chunk viewer to display real-time chunk position tracking.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
 
@@ -11124,6 +11126,72 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End player positon.
+
+        #region Player Position Chunk
+
+        #region Chunk Math Functions
+
+        // Get the nearest XY position of a chunk based on position.
+        public Vector2 GetChunk(Vector2 Position)
+        {
+            return new Vector2(IRoundTo((int)((Vector2)Position).X, 64), IRoundTo((int)((Vector2)Position).Y, 64));
+        }
+
+        // Algorithm for compairing two intagers.
+        public static int IRoundTo(int inval, int nearest)
+        {
+            inval /= nearest;
+            return (int)((float)Math.Round((double)inval) * (float)nearest);
+        }
+        #endregion // End player math.
+
+        // Get chunk information.
+        private void Button35_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith1.Checked)
+            {
+                // Ensure pointers are found.
+                if (AoBScanResultsPlayerTools == null)
+                {
+                    MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Save some form settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerAddress = AoBScanResultsPlayerTools.Last().ToString("X");
+
+                // Spawn item picker window.
+                try
+                {
+                    ChunkViewer frm4 = new ChunkViewer(this);
+                    DialogResult dr = frm4.ShowDialog(this);
+
+                    // Get returned item from chunk viewer.
+                    frm4.Close();
+                }
+                catch
+                { }
+            }
+            else
+            {
+                // Display position is not enabled.
+                MessageBox.Show("Display position is not enabled!\nEnable this feature first!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion // End player position chunk.
 
         #region Godmode
 
