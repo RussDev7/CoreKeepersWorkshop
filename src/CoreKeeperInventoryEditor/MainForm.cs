@@ -15315,7 +15315,8 @@ namespace CoreKeeperInventoryEditor
         private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Try to get the priority based on a string.
-            if (Enum.TryParse<ProcessPriorityClass>(comboBox2.SelectedItem.ToString().Replace(" ", ""), out ProcessPriorityClass priority))
+            ProcessPriorityClass priority = ProcessPriorityClass.Normal; // Define defualt priority.
+            if (Enum.TryParse<ProcessPriorityClass>(comboBox2.SelectedItem.ToString().Replace(" ", ""), out priority))
             {
                 // Double check if the player wishes to enable this.
                 if (CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex != 0 && priority == ProcessPriorityClass.RealTime && MessageBox.Show("Are you sure you wish to enable real time priority?\n\nThis setting may cause your PC to freeze while memory scanning or performing some operations.", "Enable Real Time Priority:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
