@@ -1238,7 +1238,7 @@ namespace CoreKeeperInventoryEditor
             "High",
             "Above Normal",
             "Normal",
-            "Bellow Normal",
+            "Below Normal",
             "Idle"});
             this.comboBox2.Location = new System.Drawing.Point(270, 50);
             this.comboBox2.Name = "comboBox2";
