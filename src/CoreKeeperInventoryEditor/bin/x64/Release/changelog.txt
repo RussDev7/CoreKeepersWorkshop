@@ -1,14 +1,16 @@
 Changes Since v1.3.5.2
 ===========================================================
 - Fixed first negitive chunks not retaining negitive signs.
-- Fxed some issues with debug mode removing coordinates.
-- Fxed issues with transparancy slider.
+- Fixed some issues with debug mode removing coordinates.
+- Fixed issues with transparancy slider.
+- Fixed all tab indexes for multiple forms.
 
 + Added a chunk viewer to player tools.
 + Added scale slder to chunk viewer.
 + Added various debugging tools to chunk viewer.
 + Added auto form scaling for the scale slider.
 + Added retention to some of the chunk viewer controls.
++ Added an process priority dropdown to admin tools.
 
 Changes Since v1.3.5.1
 ===========================================================
