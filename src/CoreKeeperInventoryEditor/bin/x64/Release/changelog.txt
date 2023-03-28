@@ -11,6 +11,7 @@ Changes Since v1.3.5.2
 + Added auto form scaling for the scale slider.
 + Added retention to some of the chunk viewer controls.
 + Added an process priority dropdown to admin tools.
++ Added a failsafe for application not launched as admin.
 
 Changes Since v1.3.5.1
 ===========================================================
