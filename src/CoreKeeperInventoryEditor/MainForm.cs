@@ -15250,7 +15250,7 @@ namespace CoreKeeperInventoryEditor
             File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\MemoryLogger.txt", DateTime.Now + " -> " + Math.Round(new PerformanceCounter("Process", "Private Bytes", "CoreKeeper", true).NextValue() / 1024 / 1024 / 1000, 2).ToString() + " GBs" + Environment.NewLine);
         }
         #endregion
-
+            
         #region Reset All Controls
 
         // Reset all controls.
@@ -15259,6 +15259,23 @@ namespace CoreKeeperInventoryEditor
             // Ask user if they are sure to reset all controls.
             if (MessageBox.Show("Are you sure you wish to reset all form controls?", "Reset All Controls", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                // Backgrounds.
+                CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground = "";
+                CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount = 0;
+                CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = "";
+                CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount = 0;
+                CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground = "";
+                CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount = 0;
+                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = "";
+                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount = 0;
+                if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount])) // Check if folder is empty. Fix: v1.3.4
+                    tabControl1.TabPages[0].BackgroundImage = null;
+                else
+                    tabControl1.TabPages[0].BackgroundImage = ImageFast.FromFile(InventorySkins.ToArray()[CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount].ToString());
+                tabControl1.TabPages[1].BackgroundImage = null;
+                tabControl1.TabPages[2].BackgroundImage = null;
+                tabControl1.TabPages[3].BackgroundImage = null;
+
                 // Main controls.
                 numericUpDown14.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
                 numericUpDown16.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
@@ -15298,8 +15315,7 @@ namespace CoreKeeperInventoryEditor
         private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Try to get the priority based on a string.
-            ProcessPriorityClass priority = ProcessPriorityClass.Normal; // Define defualt priority.
-            if (Enum.TryParse<ProcessPriorityClass>(comboBox2.SelectedItem.ToString().Replace(" ", ""), out priority))
+            if (Enum.TryParse<ProcessPriorityClass>(comboBox2.SelectedItem.ToString().Replace(" ", ""), out ProcessPriorityClass priority))
             {
                 // Double check if the player wishes to enable this.
                 if (CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex != 0 && priority == ProcessPriorityClass.RealTime && MessageBox.Show("Are you sure you wish to enable real time priority?\n\nThis setting may cause your PC to freeze while memory scanning or performing some operations.", "Enable Real Time Priority:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
