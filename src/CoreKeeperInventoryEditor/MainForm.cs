@@ -15329,7 +15329,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Set a new priority for all iterations of the core keeper process.
-                Process[] processes = Process.GetProcessesByName("CoreKeeper");
+                Process[] processes = Process.GetProcessesByName("CoreKeepersWorkshop");
                 foreach (Process proc in processes)
                 {
                     // Set the piority of the found process.
