@@ -98,5 +98,8 @@
     <Setting Name="ChunkViewerScale" Type="System.Single" Scope="User">
       <Value Profile="(Default)">4.2</Value>
     </Setting>
+    <Setting Name="ProcessPriorityIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

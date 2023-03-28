@@ -406,5 +406,17 @@ namespace CoreKeepersWorkshop.Properties {
                 this["ChunkViewerScale"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int ProcessPriorityIndex {
+            get {
+                return ((int)(this["ProcessPriorityIndex"]));
+            }
+            set {
+                this["ProcessPriorityIndex"] = value;
+            }
+        }
     }
 }
