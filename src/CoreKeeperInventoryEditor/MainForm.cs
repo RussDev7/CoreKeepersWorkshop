@@ -14,8 +14,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -77,7 +77,7 @@ namespace CoreKeeperInventoryEditor
         private const int MOUSEEVENT_RIGHTDOWN = 0x08;
         private const int MOUSEEVENT_RIGHTUP = 0x10;
 
-        #region Proccess Handle Classes
+        #region Process Handle Classes
 
         // Set the process handle resize class.
         [DllImport("user32.dll")]
@@ -117,6 +117,16 @@ namespace CoreKeeperInventoryEditor
         {
             try // Further catch possible errors.
             {
+                #region Are We Admin?
+
+                // Check if the application was started in administrator mode.
+                if (!IsAdministrator() && MessageBox.Show("The mods in this application require administrator privileges.\n\nWould you like to proceed anyways? (not reccomended)", "WARNING: LAUNCHED WITHOUT ADMINISTRATIVE RIGHTS", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
+                {
+                    // Close the application.
+                    this.Close();
+                }
+                #endregion
+
                 #region Set Custom Cusror
 
                 // Set the applications cursor.
@@ -161,6 +171,7 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown2.Value = (decimal)CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay; // Dev tool operation delay.
                 numericUpDown18.Value = CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
                 checkBox2.Checked = CoreKeepersWorkshop.Properties.Settings.Default.TopMost; // Set as top most.
+                comboBox2.SelectedIndex = CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex; // Set the process priority.
                 #endregion
 
                 #region Set Form Locations
@@ -264,6 +275,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button35, "Open a chunk viewer to display real-time chunk position tracking.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
+                toolTip.SetToolTip(comboBox2, "Set this applications process priority.");
 
                 toolTip.SetToolTip(checkBox1, "Save the map to file after each completed ring.");
                 toolTip.SetToolTip(checkBox2, "Keep this application always on top of other applications.");
@@ -318,6 +330,13 @@ namespace CoreKeeperInventoryEditor
             catch (Exception)
             {
             }
+        }
+
+        // Checks for administrator.
+        public static bool IsAdministrator()
+        {
+            return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+                      .IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         // Change the top most varible.
@@ -13237,7 +13256,7 @@ namespace CoreKeeperInventoryEditor
                     TimeSpan timeDifferenceCrashed = finishTimeCrashed - startTime;
 
                     // Show error message.
-                    MessageBox.Show("The Core Keeper proccess was no longer found!\rRecord your progress!\r\rTask ran for " + timeDifferenceCrashed.Days + " day(s), " + timeDifferenceCrashed.Hours + " hour(s), " + timeDifferenceCrashed.Minutes + " minute(s), " + timeDifferenceCrashed.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("The Core Keeper process was no longer found!\rRecord your progress!\r\rTask ran for " + timeDifferenceCrashed.Days + " day(s), " + timeDifferenceCrashed.Hours + " hour(s), " + timeDifferenceCrashed.Minutes + " minute(s), " + timeDifferenceCrashed.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     // Reenable controls.
                     groupBox8.Enabled = true;
@@ -15250,6 +15269,7 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown2.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
                 numericUpDown18.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
                 checkBox2.Checked = bool.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
+                comboBox2.SelectedIndex = int.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set the priority.
 
                 // Display completed message.
                 MessageBox.Show("All controls have been reset!", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -15263,6 +15283,47 @@ namespace CoreKeeperInventoryEditor
             return body.Member.Name;
         }
         #endregion
+
+        #region Set Process Priority.
+
+        // Save the previous priority value.
+        public string originalPriorityValue = "Normal";
+        private void ComboBox2_Enter(object sender, EventArgs e)
+        {
+            // Update the global string with the new value.
+            originalPriorityValue = comboBox2.Text;
+        }
+
+        // Change process priority.
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Try to get the priority based on a string.
+            ProcessPriorityClass priority = ProcessPriorityClass.Normal; // Define defualt priority.
+            if (Enum.TryParse<ProcessPriorityClass>(comboBox2.SelectedItem.ToString().Replace(" ", ""), out priority))
+            {
+                // Double check if the player wishes to enable this.
+                if (CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex != 0 && priority == ProcessPriorityClass.RealTime && MessageBox.Show("Are you sure you wish to enable real time priority?\n\nThis setting may cause your PC to freeze while memory scanning or performing some operations.", "Enable Real Time Priority:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    // User cancled, revert changes.
+                    comboBox2.SelectedIndex = CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex;
+
+                    // Close function.
+                    return;
+                }
+
+                // Set a new priority for all iterations of the core keeper process.
+                Process[] processes = Process.GetProcessesByName("CoreKeeper");
+                foreach (Process proc in processes)
+                {
+                    // Set the piority of the found process.
+                    proc.PriorityClass = priority;
+                }
+
+                // Save the new index value.
+                CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex = comboBox2.SelectedIndex;
+            }
+        }
+        #endregion // End set process priority.
 
         #endregion // End admin tools.
     }
