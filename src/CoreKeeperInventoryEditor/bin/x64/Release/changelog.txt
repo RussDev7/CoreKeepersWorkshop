@@ -4,6 +4,7 @@ Changes Since v1.3.5.2
 - Fixed some issues with debug mode removing coordinates.
 - Fixed issues with transparancy slider.
 - Fixed all tab indexes for multiple forms.
+- Fixed issues with the reveal range addresses.
 
 + Added a chunk viewer to player tools.
 + Added scale slder to chunk viewer.
@@ -12,6 +13,7 @@ Changes Since v1.3.5.2
 + Added retention to some of the chunk viewer controls.
 + Added an process priority dropdown to admin tools.
 + Added a failsafe for application not launched as admin.
++ Added new assets from the easter seasonal event.
 
 Changes Since v1.3.5.1
 ===========================================================
