@@ -12538,6 +12538,7 @@ namespace CoreKeeperInventoryEditor
         // Depreciated Address 10Feb23: GameAssembly.dll+381D950
         // Depreciated Address 15Feb23: GameAssembly.dll+3877D1C
         // Depreciated Address 19Feb23: GameAssembly.dll+387DDAC
+        // Depreciated Address 05Apr23: 41 00 00 40 41
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -12585,14 +12586,14 @@ namespace CoreKeeperInventoryEditor
             long moduleEnd = Convert.ToInt64(BigInteger.Add(BigInteger.Parse(dllBaseAdressIWant.BaseAddress.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dllBaseAdressIWant.ModuleMemorySize.ToString("X"), NumberStyles.HexNumber)).ToString("X"), 16);
 
             // Define reveal range address varible.
-            AoBScanResultsRevealMapRange = await MemLib.AoBScan(moduleStart, moduleEnd, "41 00 00 40 41", true, true, false);
+            AoBScanResultsRevealMapRange = await MemLib.AoBScan(moduleStart, moduleEnd, "00 00 30 41 00 00 40 41", true, true, false);
 
             // Adjust the offset of the address.
             List<long> AoBScanResultsRevealMapRangeTemp = new List<long>();
             foreach (long res in AoBScanResultsRevealMapRange)
             {
                 // Add the new offset to the list.
-                long revealRange = (long)BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer));
+                long revealRange = (long)BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer));
 
                 // Ensure the defualt value is 12.
                 if (MemLib.ReadFloat(revealRange.ToString("X")).ToString() == "12")
