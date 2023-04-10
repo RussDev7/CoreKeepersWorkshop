@@ -293,7 +293,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith7, "Prevents the diminishing of inventory items.");
                 toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls. Use the t-key to toggle.");
                 toolTip.SetToolTip(siticoneWinToggleSwith9, "Recalls the player to spawn immediately.");
-                toolTip.SetToolTip(siticoneWinToggleSwith10, "Enables the ability to craft without consuming recourses.");
+                toolTip.SetToolTip(siticoneWinToggleSwith10, "Enables the ability to craft without consuming resources.");
                 toolTip.SetToolTip(siticoneWinToggleSwith11, "Toggles enemies aggression torwards the player.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
@@ -12399,8 +12399,8 @@ namespace CoreKeeperInventoryEditor
                 MemLib.WriteMemory(playerX, "float", "0");
                 MemLib.WriteMemory(playerY, "float", "0");
 
-                // Wait for 0.30 seconds.
-                await System.Threading.Tasks.Task.Delay(300);
+                // Wait for 0.35 seconds.
+                await System.Threading.Tasks.Task.Delay(350);
 
                 // Check to see if the remaining values returned 0.
                 if (MemLib.ReadFloat(playerX).ToString() != "0" || MemLib.ReadFloat(playerY).ToString() != "0")
@@ -12415,8 +12415,8 @@ namespace CoreKeeperInventoryEditor
                         MemLib.WriteMemory(playerX, "float", playerXOriginal.ToString());
                         MemLib.WriteMemory(playerY, "float", playerYOriginal.ToString());
 
-                        // Wait for one second.
-                        await System.Threading.Tasks.Task.Delay(300);
+                        // Wait for 0.35 seconds.
+                        await System.Threading.Tasks.Task.Delay(350);
                     }
                     catch (Exception) { }
                 }
@@ -14371,7 +14371,7 @@ namespace CoreKeeperInventoryEditor
                 progressBar4.Visible = false;
 
                 // Get the addresses.
-                baseFishingAddress = AoBScanResultsFishingData.Last().ToString("X");
+                baseFishingAddress = AoBScanResultsFishingData.First().ToString("X");
                 fishTypeAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("944", NumberStyles.Integer)).ToString("X");
                 fishFightAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X");
 
