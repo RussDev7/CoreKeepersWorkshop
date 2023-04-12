@@ -1,3 +1,8 @@
+Changes Since v1.3.5.3
+===========================================================
+- Reworked error messages to include the products version.
+- Corrected a typo within the tooltips.
+
 Changes Since v1.3.5.2
 ===========================================================
 - Fixed first negitive chunks not retaining negitive signs.
