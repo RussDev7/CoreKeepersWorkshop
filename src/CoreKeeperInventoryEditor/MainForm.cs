@@ -66,6 +66,9 @@ namespace CoreKeeperInventoryEditor
         public int worldSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount;
         public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
 
+        // Define error title.
+        public readonly string errorTitle = "ERROR: " + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName + " v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion;
+
         // Set the mouse event class.
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
@@ -537,7 +540,7 @@ namespace CoreKeeperInventoryEditor
                         if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[inventorySkinCounter])) // Check if folder is empty. Fix: v1.3.4
                         {
                             // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -562,7 +565,7 @@ namespace CoreKeeperInventoryEditor
                         if (PlayerSkins.Count() < 1 || !File.Exists(PlayerSkins.ToArray()[playerSkinCounter])) // Check if folder is empty. Fix: v1.3.4
                         {
                             // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -587,7 +590,7 @@ namespace CoreKeeperInventoryEditor
                         if (WorldSkins.Count() < 1 || !File.Exists(WorldSkins.ToArray()[worldSkinCounter])) // Check if folder is empty. Fix: v1.3.4
                         {
                             // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -612,7 +615,7 @@ namespace CoreKeeperInventoryEditor
                         if (ChatSkins.Count() < 1 || !File.Exists(ChatSkins.ToArray()[chatSkinCounter])) // Check if folder is empty. Fix: v1.3.4
                         {
                             // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -779,7 +782,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -824,7 +827,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsInventory = null;
 
                 // Display error message.
-                MessageBox.Show("You need to have torches in the first and last Inventory slots!!\n\nPlease ignore added inventory rows.\n\nNOTE: This tool is host only!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to have torches in the first and last Inventory slots!!\n\nPlease ignore added inventory rows.\n\nNOTE: This tool is host only!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -899,7 +902,7 @@ namespace CoreKeeperInventoryEditor
                 progressBar2.Visible = false;
 
                 if (!loadInventory) // Prevent double error messages. // Fix: v1.3.4.7.
-                    MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
@@ -10185,7 +10188,7 @@ namespace CoreKeeperInventoryEditor
             // Check if there was no slots empty.
             if (AddToEmpty && !emptySlotFound)
             {
-                MessageBox.Show("Your inventoy is full!" + Environment.NewLine + Environment.NewLine + "Try using the reload inventory button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Your inventoy is full!" + Environment.NewLine + Environment.NewLine + "Try using the reload inventory button.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // Rename button back to defualt.
@@ -10359,7 +10362,7 @@ namespace CoreKeeperInventoryEditor
                         progressBar2.Value = 0;
                         progressBar2.Visible = false;
 
-                        MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -10751,14 +10754,14 @@ namespace CoreKeeperInventoryEditor
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 // Display error message.
-                MessageBox.Show("You must type your playername and a new name!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type your playername and a new name!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -10782,7 +10785,7 @@ namespace CoreKeeperInventoryEditor
                 button4.Text = "Change Name";
 
                 // Display error message.
-                MessageBox.Show("Your name must be of your current in-game player!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Your name must be of your current in-game player!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -10824,7 +10827,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -10836,7 +10839,7 @@ namespace CoreKeeperInventoryEditor
                 button2.Text = "Reload Inventory";
                 button3.Text = "Remove All";
 
-                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -10930,7 +10933,7 @@ namespace CoreKeeperInventoryEditor
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("There was an error reading this file!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an error reading this file!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 // Ensure progressbar is at 100.
@@ -10944,7 +10947,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -10956,7 +10959,7 @@ namespace CoreKeeperInventoryEditor
                 button2.Text = "Reload Inventory";
                 button3.Text = "Remove All";
 
-                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -10986,7 +10989,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11031,7 +11034,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerTools = null;
 
                 // Display error message.
-                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11078,7 +11081,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith1.Checked = false;
                 siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11090,7 +11093,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith1.Checked = false;
                 siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11175,7 +11178,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith1.Checked = false;
                 siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11185,7 +11188,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure pointers are found.
                 if (AoBScanResultsPlayerTools == null)
                 {
-                    MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -11207,7 +11210,7 @@ namespace CoreKeeperInventoryEditor
             else
             {
                 // Display position is not enabled.
-                MessageBox.Show("Display position is not enabled!\nEnable this feature first!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Display position is not enabled!\nEnable this feature first!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion // End player position chunk.
@@ -11227,7 +11230,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith2.Checked = false;
                 siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11239,7 +11242,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith2.Checked = false;
                 siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11285,7 +11288,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith3.Checked = false;
                 siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11297,7 +11300,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith3.Checked = false;
                 siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11346,7 +11349,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith4.Checked = false;
                 siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11358,7 +11361,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith4.Checked = false;
                 siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11421,7 +11424,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith5.Checked = false;
                 siticoneWinToggleSwith5.CheckedChanged += SiticoneWinToggleSwith5_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11478,7 +11481,7 @@ namespace CoreKeeperInventoryEditor
                     siticoneWinToggleSwith5.CheckedChanged += SiticoneWinToggleSwith5_CheckedChanged;
 
                     // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch the hunger addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an issue trying to fetch the hunger addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -11547,14 +11550,14 @@ namespace CoreKeeperInventoryEditor
             // Check if the combobox has a value and is not null.
             if (comboBox1.Text == "")
             {
-                MessageBox.Show("The buff type cannot be null!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The buff type cannot be null!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11579,7 +11582,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerBuffs = null;
 
                 // Display error message.
-                MessageBox.Show("You must first consume a glow tulip!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must first consume a glow tulip!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11643,7 +11646,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith6.Checked = false;
                 siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11655,7 +11658,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith6.Checked = false;
                 siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11687,7 +11690,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith7.Checked = false;
                 siticoneWinToggleSwith7.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11699,7 +11702,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith7.Checked = false;
                 siticoneWinToggleSwith7.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11824,7 +11827,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith9.Checked = false;
                 siticoneWinToggleSwith9.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11836,7 +11839,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith9.Checked = false;
                 siticoneWinToggleSwith9.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11871,7 +11874,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith8.Checked = false;
                 siticoneWinToggleSwith8.CheckedChanged += SiticoneWinToggleSwith8_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11883,7 +11886,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith8.Checked = false;
                 siticoneWinToggleSwith8.CheckedChanged += SiticoneWinToggleSwith8_CheckedChanged;
 
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11968,7 +11971,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith10.Checked = false;
                 siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12022,7 +12025,7 @@ namespace CoreKeeperInventoryEditor
                     siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
 
                     // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -12095,7 +12098,7 @@ namespace CoreKeeperInventoryEditor
                 siticoneWinToggleSwith11.Checked = false;
                 siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
 
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12150,7 +12153,7 @@ namespace CoreKeeperInventoryEditor
                     siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
 
                     // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch the passive AI addresses." + Environment.NewLine + "Try reloading the game!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an issue trying to fetch the passive AI addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -12245,7 +12248,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12300,7 +12303,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
-                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Core entrance alcove.\r(2) Tap [D].\r(3) Release [W].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must be standing at the core's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the core's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Core entrance alcove.\r(2) Tap [D].\r(3) Release [W].", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12459,13 +12462,13 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
-                MessageBox.Show("There was an issue finding the address!\rTry leaving the world or restarting the game!\r\rINFORMATION: You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Glurch the Abominous Mass's entrance alcove.\r(2) Tap [D].\r(3) Release [W].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue finding the address!\rTry leaving the world or restarting the game!\r\rINFORMATION: You must be standing at the 'Glurch the Abominous Mass's entrance!!\r\rTIP: Press 'W' & 'D' keys when at the 'Glurch the Abominous Mass's entrance.\r\rCommunity Feedback Support:\r(1) Hold [W] into The Glurch the Abominous Mass's entrance alcove.\r(2) Tap [D].\r(3) Release [W].", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (AoBScanResultsPlayerLocation.Count() > 1 && AoBScanResultsPlayerLocation.Count() < 10) // Check if or between 1 & 9.
             {
                 // Display error message.
-                MessageBox.Show("WARNING! There is more than a single address found! While this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("WARNING! There is more than a single address found! While this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 // return; No return is needed.
             }
@@ -12490,7 +12493,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerLocationScanner = null;
 
                 // Display error message.
-                MessageBox.Show("Whoa there! We found too many addresses!\r\rPlease try launching the game as vanilla via steam!\rTIP: Some mod managers do not launch it as true vanilla.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Whoa there! We found too many addresses!\r\rPlease try launching the game as vanilla via steam!\rTIP: Some mod managers do not launch it as true vanilla.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12544,7 +12547,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12625,7 +12628,7 @@ namespace CoreKeeperInventoryEditor
                 // Reset aob scan results
                 AoBScanResultsDevMapReveal = null;
 
-                MessageBox.Show("There was an issue gathing the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count() + "\r\rTry restarting your game!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue gathing the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count() + "\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12659,7 +12662,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsDevMapReveal = null;
 
                 // Display error message.
-                MessageBox.Show("Could not find the reveal map addresses!!\r\rTry restarting your game.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find the reveal map addresses!!\r\rTry restarting your game.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12700,14 +12703,14 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsDevMapReveal == null || AoBScanResultsRevealMapRange == null)
             {
-                MessageBox.Show("You need to first scan for the map rendering addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the map rendering addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12746,14 +12749,14 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsDevMapReveal == null || AoBScanResultsRevealMapRange == null)
             {
-                MessageBox.Show("You need to first scan for the map rendering addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the map rendering addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -12863,35 +12866,35 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsPlayerLocation == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsPlayerTools == null)
             {
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsDevMapReveal == null)
             {
-                MessageBox.Show("You need to first scan for the Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure the min radius is not larger then the max.
             if (numericUpDown16.Value > numericUpDown14.Value)
             {
-                MessageBox.Show("The minimum radius cannot be larger then the max radius!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The minimum radius cannot be larger then the max radius!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 numericUpDown16.Value = numericUpDown14.Value; // Reset the min to the max value.
                 return;
             }
@@ -13382,7 +13385,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13420,7 +13423,7 @@ namespace CoreKeeperInventoryEditor
                 richTextBox5.ScrollToCaret();
 
                 // Display error message.
-                MessageBox.Show("You must throw at least one torch on the ground!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must throw at least one torch on the ground!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13507,14 +13510,14 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsPlayerLocation == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13550,14 +13553,14 @@ namespace CoreKeeperInventoryEditor
                 // Open the process and check if it was successful before the AoB scan.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Ensure pointers are found.
                 if (AoBScanResultsPlayerLocation == null)
                 {
-                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -13594,14 +13597,14 @@ namespace CoreKeeperInventoryEditor
                 // Open the process and check if it was successful before the AoB scan.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Ensure pointers are found.
                 if (AoBScanResultsPlayerLocation == null)
                 {
-                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -13641,14 +13644,14 @@ namespace CoreKeeperInventoryEditor
             if (textBox3.Text == "")
             {
                 // Display error message.
-                MessageBox.Show("You must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type the world name you wish to use!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13666,14 +13669,14 @@ namespace CoreKeeperInventoryEditor
                 if (textBox3.Text == "")
                 {
                     // Display error message.
-                    MessageBox.Show("You must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You must type the world name you wish to use!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Open the process and check if it was successful before the AoB scan.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -13689,14 +13692,14 @@ namespace CoreKeeperInventoryEditor
             if (textBox3.Text == "" && worldName == "")
             {
                 // Display error message.
-                MessageBox.Show("You must type the world name you wish to use!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type the world name you wish to use!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13745,7 +13748,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsTeleportData = null;
 
                 // Display error message.
-                // MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Red;
                 dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("ERROR:", "No information was found!!")));
                 dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("", "")));
@@ -13896,21 +13899,21 @@ namespace CoreKeeperInventoryEditor
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsTeleportData == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13925,21 +13928,21 @@ namespace CoreKeeperInventoryEditor
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsTeleportData == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13988,7 +13991,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldMode = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14039,14 +14042,14 @@ namespace CoreKeeperInventoryEditor
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14152,14 +14155,14 @@ namespace CoreKeeperInventoryEditor
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("You first need to get the world information!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14288,14 +14291,14 @@ namespace CoreKeeperInventoryEditor
                 // Open the process and check if it was successful before the AoB scan.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Open the process and check if it was successful before the AoB scan.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -14348,7 +14351,7 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsFishingData = null;
 
                     // Display error message.
-                    MessageBox.Show("Try throwing a fishing rod's line into water first!!\rTIP: This can be of any variation.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Try throwing a fishing rod's line into water first!!\rTIP: This can be of any variation.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -14482,7 +14485,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14527,7 +14530,7 @@ namespace CoreKeeperInventoryEditor
                     // groupBox6.Enabled = true;
 
                     // Display error message.
-                    MessageBox.Show("You must type \"/item\" in the player chat first!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You must type \"/item\" in the player chat first!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -14903,7 +14906,7 @@ namespace CoreKeeperInventoryEditor
                     // Recolor label.
                     label7.ForeColor = Color.Red;
 
-                    MessageBox.Show("No assets found within the inventory directory.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No assets found within the inventory directory.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else
@@ -14964,7 +14967,7 @@ namespace CoreKeeperInventoryEditor
                 label7.ForeColor = Color.Red;
 
                 // Display error.
-                MessageBox.Show(a.Message.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(a.Message.ToString(), errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14981,14 +14984,14 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ensure pointers are found.
             if (AoBScanResultsInventory == null)
             {
-                MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -15008,7 +15011,7 @@ namespace CoreKeeperInventoryEditor
                 // Recolor label.
                 label4.ForeColor = Color.Red;
 
-                MessageBox.Show(@"The file '\assets\debug\data.txt' does not exist!" + Environment.NewLine + "Create one with random IDs per line.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"The file '\assets\debug\data.txt' does not exist!" + Environment.NewLine + "Create one with random IDs per line.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
@@ -15095,14 +15098,14 @@ namespace CoreKeeperInventoryEditor
                 // Open the process and check if it was successful before the AoB scan.
                 if (!MemLib.OpenProcess("CoreKeeper"))
                 {
-                    MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Ensure pointers are found.
                 if (AoBScanResultsInventory == null)
                 {
-                    MessageBox.Show("You need to first scan for the Inventory addresses!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -15183,7 +15186,7 @@ namespace CoreKeeperInventoryEditor
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
-                MessageBox.Show("Process Is Not Found or Open!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
