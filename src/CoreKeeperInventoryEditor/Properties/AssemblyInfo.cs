@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("CoreKeepers Inventory Editor!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RussDev Inc©")]
-[assembly: AssemblyProduct("CoreKeepers Workshop")]
+[assembly: AssemblyProduct("CoreKeepersWorkshop")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
