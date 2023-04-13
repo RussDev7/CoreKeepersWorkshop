@@ -291,17 +291,43 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Press enter when done.");
             toolTip.SetToolTip(numericUpDown4, "Enter an ingredient one ID. Press enter when done.");
             toolTip.SetToolTip(numericUpDown5, "Enter an ingredient two ID. Press enter when done.");
+            toolTip.SetToolTip(numericUpDown6, "Press the enter key when finished.");
+            toolTip.SetToolTip(numericUpDown7, "Press the enter key when finished.");
+            toolTip.SetToolTip(numericUpDown8, "Press the enter key when finished.");
+            toolTip.SetToolTip(numericUpDown9, "Press the enter key when finished.");
+            toolTip.SetToolTip(numericUpDown10, "Press the enter key when finished.");
 
             toolTip.SetToolTip(label2, "Toggle the GUI between food / item variaty.");
+
             toolTip.SetToolTip(button1, "Change your food rarity. Press enter when done.");
             toolTip.SetToolTip(button3, "Finish editing the item.");
             toolTip.SetToolTip(button5, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
+            toolTip.SetToolTip(button7, "Quick change the items quanitity. Right click to edit.");
+            toolTip.SetToolTip(button8, "Quick change the items quanitity. Right click to edit.");
+            toolTip.SetToolTip(button9, "Quick change the items quanitity. Right click to edit.");
+            toolTip.SetToolTip(button10, "Quick change the items quanitity. Right click to edit.");
+            toolTip.SetToolTip(button11, "Quick change the items quanitity. Right click to edit.");
 
             toolTip.SetToolTip(pictureBox1, "Click to open the item explorer.");
             toolTip.SetToolTip(pictureBox2, "Click to open the item explorer.");
             toolTip.SetToolTip(pictureBox3, "Click to open the item explorer.");
             #endregion
+
+            #region Load Form Settings
+
+            // Load quantity select numerics and buttons.
+            button7.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton1.ToString();
+            numericUpDown6.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton1;
+            button8.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2.ToString();
+            numericUpDown7.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2;
+            button9.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3.ToString();
+            numericUpDown8.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3;
+            button10.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton4.ToString();
+            numericUpDown9.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton4;
+            button11.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5.ToString();
+            numericUpDown10.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5;
+
 
             // Load some settings.
             if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length >= 8) // Check if item is a food variant.
@@ -328,6 +354,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
                 numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
             }
+            #endregion
 
             #region Load Pictures & Names
 
@@ -860,6 +887,357 @@ namespace CoreKeepersWorkshop
         #endregion // End form controls.
 
         #region Click Events
+
+        #region Quick Quantity Selector.
+
+        // Quick change the items quantity to 1.
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            // Change the existing items quanitity. 
+            selectedItemType = (int)numericUpDown1.Value;
+            selectedItemAmount = (int)numericUpDown6.Value; // QQS Button 1.
+
+            // Reserve the items variation.
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                    if (numericUpDown4.Value > numericUpDown5.Value)
+                    {
+                        // Flip values.
+                        decimal item2 = numericUpDown4.Value;
+                        decimal item3 = numericUpDown5.Value;
+
+                        numericUpDown4.Value = item3;
+                        numericUpDown5.Value = item2;
+                    }
+
+                    // Combine strings into int.
+                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    selectedItemVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                selectedItemVariation = (int)numericUpDown3.Value;
+            }
+            this.Close();
+        }
+
+        // Quick change the items quantity to 50.
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            // Change the existing items quanitity. 
+            selectedItemType = (int)numericUpDown1.Value;
+            selectedItemAmount = (int)numericUpDown7.Value; // QQS Button 2.
+
+            // Reserve the items variation.
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                    if (numericUpDown4.Value > numericUpDown5.Value)
+                    {
+                        // Flip values.
+                        decimal item2 = numericUpDown4.Value;
+                        decimal item3 = numericUpDown5.Value;
+
+                        numericUpDown4.Value = item3;
+                        numericUpDown5.Value = item2;
+                    }
+
+                    // Combine strings into int.
+                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    selectedItemVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                selectedItemVariation = (int)numericUpDown3.Value;
+            }
+            this.Close();
+        }
+
+        // Quick change the items quantity to 500.
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            // Change the existing items quanitity. 
+            selectedItemType = (int)numericUpDown1.Value;
+            selectedItemAmount = (int)numericUpDown8.Value; // QQS Button 3.
+
+            // Reserve the items variation.
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                    if (numericUpDown4.Value > numericUpDown5.Value)
+                    {
+                        // Flip values.
+                        decimal item2 = numericUpDown4.Value;
+                        decimal item3 = numericUpDown5.Value;
+
+                        numericUpDown4.Value = item3;
+                        numericUpDown5.Value = item2;
+                    }
+
+                    // Combine strings into int.
+                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    selectedItemVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                selectedItemVariation = (int)numericUpDown3.Value;
+            }
+            this.Close();
+        }
+
+        // Quick change the items quantity to 5000.
+        private void Button10_Click(object sender, EventArgs e)
+        {
+            // Change the existing items quanitity. 
+            selectedItemType = (int)numericUpDown1.Value;
+            selectedItemAmount = (int)numericUpDown9.Value; // QQS Button 4.
+
+            // Reserve the items variation.
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                    if (numericUpDown4.Value > numericUpDown5.Value)
+                    {
+                        // Flip values.
+                        decimal item2 = numericUpDown4.Value;
+                        decimal item3 = numericUpDown5.Value;
+
+                        numericUpDown4.Value = item3;
+                        numericUpDown5.Value = item2;
+                    }
+
+                    // Combine strings into int.
+                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    selectedItemVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                selectedItemVariation = (int)numericUpDown3.Value;
+            }
+            this.Close();
+        }
+
+        // Quick change the items quantity to 9999.
+        private void Button11_Click(object sender, EventArgs e)
+        {
+            // Change the existing items quanitity. 
+            selectedItemType = (int)numericUpDown1.Value;
+            selectedItemAmount = (int)numericUpDown10.Value; // QQS Button 5.
+
+            // Reserve the items variation.
+            if (!numericUpDown3.Visible) // Check if item is a food variant.
+            {
+                // Check if both entrees are populated.
+                if (numericUpDown5.Value != 0)
+                {
+                    // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                    if (numericUpDown4.Value > numericUpDown5.Value)
+                    {
+                        // Flip values.
+                        decimal item2 = numericUpDown4.Value;
+                        decimal item3 = numericUpDown5.Value;
+
+                        numericUpDown4.Value = item3;
+                        numericUpDown5.Value = item2;
+                    }
+
+                    // Combine strings into int.
+                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                }
+                else
+                {
+                    // Only single value exists, treat as a unique variant value.
+                    selectedItemVariation = (int)numericUpDown4.Value;
+                }
+            }
+            else
+            {
+                // Normal item variant.
+                selectedItemVariation = (int)numericUpDown3.Value;
+            }
+            this.Close();
+        }
+        #endregion // End quick quantity selector.
+
+        #region Set Custom Quick Quantity Selector Values
+
+        // QQS Button 1.
+        private void Button7_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Detect if the right mouse was pressed.
+            if (e.Button == MouseButtons.Right)
+            {
+                // Unhide the numericupdown and hide button.
+                button7.Visible = false;
+                numericUpDown6.Visible = true;
+            }
+        }
+        private void NumericUpDown6_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Detect if enter was pressesed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Save settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton1 = (int)numericUpDown6.Value;
+
+                // Change button text.
+                button7.Text = ((int)numericUpDown6.Value).ToString();
+
+                // Hide the numericupdown and unhide button.
+                button7.Visible = true;
+                numericUpDown6.Visible = false;
+            }
+        }
+
+        // QQS Button 2.
+        private void Button8_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Detect if the right mouse was pressed.
+            if (e.Button == MouseButtons.Right)
+            {
+                // Unhide the numericupdown and hide button.
+                button8.Visible = false;
+                numericUpDown7.Visible = true;
+            }
+        }
+        private void NumericUpDown7_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Detect if enter was pressesed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Save settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2 = (int)numericUpDown7.Value;
+
+                // Change button text.
+                button8.Text = ((int)numericUpDown7.Value).ToString();
+
+                // Hide the numericupdown and unhide button.
+                button8.Visible = true;
+                numericUpDown7.Visible = false;
+            }
+        }
+
+        // QQS Button 3.
+        private void Button9_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Detect if the right mouse was pressed.
+            if (e.Button == MouseButtons.Right)
+            {
+                // Unhide the numericupdown and hide button.
+                button9.Visible = false;
+                numericUpDown8.Visible = true;
+            }
+        }
+        private void NumericUpDown8_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Detect if enter was pressesed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Save settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3 = (int)numericUpDown8.Value;
+
+                // Change button text.
+                button9.Text = ((int)numericUpDown8.Value).ToString();
+
+                // Hide the numericupdown and unhide button.
+                button9.Visible = true;
+                numericUpDown8.Visible = false;
+            }
+        }
+
+        // QQS Button 4.
+        private void Button10_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Detect if the right mouse was pressed.
+            if (e.Button == MouseButtons.Right)
+            {
+                // Unhide the numericupdown and hide button.
+                button10.Visible = false;
+                numericUpDown9.Visible = true;
+            }
+        }
+        private void NumericUpDown9_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Detect if enter was pressesed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Save settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton4 = (int)numericUpDown9.Value;
+
+                // Change button text.
+                button10.Text = ((int)numericUpDown9.Value).ToString();
+
+                // Hide the numericupdown and unhide button.
+                button10.Visible = true;
+                numericUpDown9.Visible = false;
+            }
+        }
+
+        // QQS Button 5.
+        private void Button11_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Detect if the right mouse was pressed.
+            if (e.Button == MouseButtons.Right)
+            {
+                // Unhide the numericupdown and hide button.
+                button11.Visible = false;
+                numericUpDown10.Visible = true;
+            }
+        }
+        private void NumericUpDown10_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Detect if enter was pressesed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Save settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5 = (int)numericUpDown10.Value;
+
+                // Change button text.
+                button11.Text = ((int)numericUpDown10.Value).ToString();
+
+                // Hide the numericupdown and unhide button.
+                button11.Visible = true;
+                numericUpDown10.Visible = false;
+            }
+        }
+        #endregion // End set quick quantity selector values.
 
         // Launch item explorer.
         private void PictureBox1_Click(object sender, EventArgs e)

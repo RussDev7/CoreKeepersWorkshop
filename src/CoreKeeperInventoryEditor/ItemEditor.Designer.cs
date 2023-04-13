@@ -49,6 +49,17 @@ namespace CoreKeepersWorkshop
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.button8 = new System.Windows.Forms.Button();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.button9 = new System.Windows.Forms.Button();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.button10 = new System.Windows.Forms.Button();
+            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.button11 = new System.Windows.Forms.Button();
+            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -57,6 +68,12 @@ namespace CoreKeepersWorkshop
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDown1
@@ -96,7 +113,12 @@ namespace CoreKeepersWorkshop
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(72, 143);
             this.numericUpDown2.Maximum = new decimal(new int[] {
-            999999999,
+            2000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -290,12 +312,213 @@ namespace CoreKeepersWorkshop
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.button10);
+            this.groupBox1.Controls.Add(this.button11);
+            this.groupBox1.Controls.Add(this.numericUpDown6);
+            this.groupBox1.Controls.Add(this.numericUpDown8);
+            this.groupBox1.Controls.Add(this.numericUpDown9);
+            this.groupBox1.Controls.Add(this.numericUpDown10);
+            this.groupBox1.Controls.Add(this.button8);
+            this.groupBox1.Controls.Add(this.numericUpDown7);
+            this.groupBox1.ForeColor = System.Drawing.Color.Snow;
+            this.groupBox1.Location = new System.Drawing.Point(12, 226);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(230, 51);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Quick Quantity Selector";
+            // 
+            // button7
+            // 
+            this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button7.Location = new System.Drawing.Point(6, 19);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(39, 22);
+            this.button7.TabIndex = 17;
+            this.button7.Text = "1";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.button7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button7_MouseDown);
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.Location = new System.Drawing.Point(6, 20);
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            2000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown6.TabIndex = 22;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Visible = false;
+            this.numericUpDown6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown6_KeyDown);
+            // 
+            // button8
+            // 
+            this.button8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button8.Location = new System.Drawing.Point(50, 19);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(39, 22);
+            this.button8.TabIndex = 18;
+            this.button8.Text = "50";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            this.button8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button8_MouseDown);
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.Location = new System.Drawing.Point(50, 20);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            2000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown7.TabIndex = 23;
+            this.numericUpDown7.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Visible = false;
+            this.numericUpDown7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown7_KeyDown);
+            // 
+            // button9
+            // 
+            this.button9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button9.Location = new System.Drawing.Point(95, 19);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(39, 22);
+            this.button9.TabIndex = 19;
+            this.button9.Text = "500";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9_Click);
+            this.button9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button9_MouseDown);
+            // 
+            // numericUpDown8
+            // 
+            this.numericUpDown8.Location = new System.Drawing.Point(95, 20);
+            this.numericUpDown8.Maximum = new decimal(new int[] {
+            2000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown8.TabIndex = 23;
+            this.numericUpDown8.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Visible = false;
+            this.numericUpDown8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown8_KeyDown);
+            // 
+            // button10
+            // 
+            this.button10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button10.Location = new System.Drawing.Point(140, 19);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(39, 22);
+            this.button10.TabIndex = 20;
+            this.button10.Text = "5000";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.Button10_Click);
+            this.button10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button10_MouseDown);
+            // 
+            // numericUpDown9
+            // 
+            this.numericUpDown9.Location = new System.Drawing.Point(140, 20);
+            this.numericUpDown9.Maximum = new decimal(new int[] {
+            2000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Name = "numericUpDown9";
+            this.numericUpDown9.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown9.TabIndex = 23;
+            this.numericUpDown9.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Visible = false;
+            this.numericUpDown9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown9_KeyDown);
+            // 
+            // button11
+            // 
+            this.button11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button11.Location = new System.Drawing.Point(185, 19);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(39, 22);
+            this.button11.TabIndex = 21;
+            this.button11.Text = "9999";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.Button11_Click);
+            this.button11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button11_MouseDown);
+            // 
+            // numericUpDown10
+            // 
+            this.numericUpDown10.Location = new System.Drawing.Point(185, 20);
+            this.numericUpDown10.Maximum = new decimal(new int[] {
+            2000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Name = "numericUpDown10";
+            this.numericUpDown10.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown10.TabIndex = 23;
+            this.numericUpDown10.Value = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Visible = false;
+            this.numericUpDown10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown10_KeyDown);
+            // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(254, 231);
+            this.ClientSize = new System.Drawing.Size(254, 289);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
@@ -331,6 +554,12 @@ namespace CoreKeepersWorkshop
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,5 +585,16 @@ namespace CoreKeepersWorkshop
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.NumericUpDown numericUpDown8;
+        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown numericUpDown10;
     }
 }
