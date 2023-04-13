@@ -418,5 +418,65 @@ namespace CoreKeepersWorkshop.Properties {
                 this["ProcessPriorityIndex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int QuantitySelectButton1 {
+            get {
+                return ((int)(this["QuantitySelectButton1"]));
+            }
+            set {
+                this["QuantitySelectButton1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int QuantitySelectButton2 {
+            get {
+                return ((int)(this["QuantitySelectButton2"]));
+            }
+            set {
+                this["QuantitySelectButton2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int QuantitySelectButton3 {
+            get {
+                return ((int)(this["QuantitySelectButton3"]));
+            }
+            set {
+                this["QuantitySelectButton3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int QuantitySelectButton4 {
+            get {
+                return ((int)(this["QuantitySelectButton4"]));
+            }
+            set {
+                this["QuantitySelectButton4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9999")]
+        public int QuantitySelectButton5 {
+            get {
+                return ((int)(this["QuantitySelectButton5"]));
+            }
+            set {
+                this["QuantitySelectButton5"] = value;
+            }
+        }
     }
 }
