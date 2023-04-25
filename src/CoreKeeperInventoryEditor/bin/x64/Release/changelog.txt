@@ -4,6 +4,7 @@ Changes Since v1.3.5.3
 - Corrected a typo within the tooltips.
 
 + Added a quick quantity feature to the quick item editor.
++ Updated all the buff ids for the buff editor.
 
 Changes Since v1.3.5.2
 ===========================================================
