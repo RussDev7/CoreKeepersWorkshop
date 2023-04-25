@@ -5,517 +5,517 @@
       "offset":"00"
    },
    {
-      "name":"Glow (Food)",
+      "name":"Blue Glow",
       "id":"001",
       "offset":"01"
    },
    {
-      "name":"Slime Slow",
+      "name":"Slowed By Slime",
       "id":"002",
       "offset":"02"
    },
    {
-      "name":"",
+      "name":"Health Addition",
       "id":"003",
       "offset":"03"
    },
    {
-      "name":"Movement SPD (Food/Skill Level)",
+      "name":"Movement Speed Increase",
       "id":"004",
       "offset":"04"
    },
    {
-      "name":"HP/S (Snack/Food)",
+      "name":"Heal Over Time",
       "id":"005",
       "offset":"05"
    },
    {
-      "name":"Max HP (Snack/Food/Skill Level)",
+      "name":"Increased Max Health",
       "id":"006",
       "offset":"06"
    },
    {
-      "name":"",
+      "name":"Starving Movement Speed Decrease",
       "id":"007",
       "offset":"07"
    },
    {
-      "name":"",
+      "name":"Hunger Addition",
       "id":"008",
       "offset":"08"
    },
    {
-      "name":"Mining DMG (Snack/Food/Skill Level)",
+      "name":"Mining Increase",
       "id":"009",
       "offset":"09"
    },
    {
-      "name":"Melee DMG (Food/Skill Level)",
+      "name":"Melee Damage Increase",
       "id":"010",
       "offset":"0A"
    },
    {
-      "name":"Armor (Food)",
+      "name":"Armor Increase",
       "id":"011",
       "offset":"0B"
    },
    {
-      "name":"Critical Chance (Snack/Food)",
+      "name":"Crit Chance",
       "id":"012",
       "offset":"0C"
    },
    {
-      "name":"Apply Poison on hit (Skill)",
+      "name":"Chance To Apply Poisoned",
       "id":"013",
       "offset":"0D"
    },
    {
-      "name":"Poisoned (less healing 75%)",
+      "name":"Poisoned",
       "id":"014",
       "offset":"0E"
    },
    {
-      "name":"Dodge Chance (Food/Skill)",
+      "name":"Dodge Chance",
       "id":"015",
       "offset":"0F"
    },
    {
-      "name":"Max HP (Base)",
+      "name":"Increased Max Health Permanent",
       "id":"016",
       "offset":"10"
    },
    {
-      "name":"Acid Damage/S",
+      "name":"Acid Damage",
       "id":"017",
       "offset":"11"
    },
    {
-      "name":"",
+      "name":"Apply Slowed By Slime",
       "id":"018",
       "offset":"12"
    },
    {
-      "name":"Life on Melee",
+      "name":"Life On Hit",
       "id":"019",
       "offset":"13"
    },
    {
-      "name":"Immune Slime Slow",
+      "name":"Immune To Slime Slow",
       "id":"020",
       "offset":"14"
    },
    {
-      "name":"Throns (Food/Skill)",
+      "name":"Thorns Damage",
       "id":"021",
       "offset":"15"
    },
    {
-      "name":"Range DMG (Food/Skill Level)",
+      "name":"Range Damage Increase",
       "id":"022",
       "offset":"16"
    },
    {
-      "name":"Extra Harvest (Skill Level)",
+      "name":"Extra Harvest Chance",
       "id":"023",
       "offset":"17"
    },
    {
-      "name":"",
+      "name":"Suffocating",
       "id":"024",
       "offset":"18"
    },
    {
-      "name":"Knockback Chance (Snack/Food/Skill)",
+      "name":"Chance On Hit To Knockback",
       "id":"025",
       "offset":"19"
    },
    {
-      "name":"Apply Snare on hit",
+      "name":"Apply Snare",
       "id":"026",
       "offset":"1A"
    },
    {
-      "name":"Snared (Farmer Plant)",
+      "name":"Snared",
       "id":"027",
       "offset":"1B"
    },
    {
-      "name":"Disguised as Larva",
+      "name":"Larva Disguise",
       "id":"028",
       "offset":"1C"
    },
    {
-      "name":"Burn Damage/S",
+      "name":"Burning",
       "id":"029",
       "offset":"1D"
    },
    {
-      "name":"Apply Burn DMG on hit",
+      "name":"Apply Burning",
       "id":"030",
       "offset":"1E"
    },
    {
-      "name":"",
+      "name":"Chance On Crit To Spawn Thunder Beam",
       "id":"031",
       "offset":"1F"
    },
    {
-      "name":"Movement SPD (Well Fed)",
+      "name":"Well Fed Movement Speed Increase",
       "id":"032",
       "offset":"20"
    },
    {
-      "name":"Reduce DMG from Boss (Food/Skill)",
+      "name":"Reduced Damage From Bosses",
       "id":"033",
       "offset":"21"
    },
    {
-      "name":"",
+      "name":"Immune To Poison",
       "id":"034",
       "offset":"22"
    },
    {
-      "name":"Movement SPD (mold Stack 7%)",
+      "name":"Infected With Mold",
       "id":"035",
       "offset":"23"
    },
    {
-      "name":"Immune Mold (Food)",
+      "name":"Immune To Mold",
       "id":"036",
       "offset":"24"
    },
    {
-      "name":"Immune Acid (Food)",
+      "name":"Immune To Acid",
       "id":"037",
       "offset":"25"
    },
    {
-      "name":"",
+      "name":"Health Reduction",
       "id":"038",
       "offset":"26"
    },
    {
-      "name":"Movement SPD (Snack)",
+      "name":"Movement Speed Decrease",
       "id":"039",
       "offset":"27"
    },
    {
-      "name":"",
+      "name":"Starving Health Decrease",
       "id":"040",
       "offset":"28"
    },
    {
-      "name":"Max HP (Well Fed)",
+      "name":"Well Fed Health Increase",
       "id":"041",
       "offset":"29"
    },
    {
-      "name":"",
+      "name":"Starving Damage Decrease",
       "id":"042",
       "offset":"2A"
    },
    {
-      "name":"DMG (Well Fed)",
+      "name":"Well Fed Damage Increase",
       "id":"043",
       "offset":"2B"
    },
    {
-      "name":"HP (?)",
+      "name":"Health Addition Percentage",
       "id":"044",
       "offset":"2C"
    },
    {
-      "name":"Glow (Offhand)",
+      "name":"Orange Glow",
       "id":"045",
       "offset":"2D"
    },
    {
-      "name":"Fishing (Food/Skill Level)",
+      "name":"Increased Fishing",
       "id":"046",
       "offset":"2E"
    },
    {
-      "name":"Heart Warming Feeling (Snack)",
+      "name":"Love",
       "id":"047",
       "offset":"2F"
    },
    {
-      "name":"Armor (Skill Level)",
+      "name":"Armor Percentage Increase",
       "id":"048",
       "offset":"30"
    },
    {
-      "name":"Mining DMG (Skill)",
+      "name":"Mining Percentage Increase",
       "id":"049",
       "offset":"31"
    },
    {
-      "name":"Mining SPD (Food/Skill)",
+      "name":"Mining Speed Increase",
       "id":"050",
       "offset":"32"
    },
    {
-      "name":"Melee SPD (Food/Skill)",
+      "name":"Melee Attack Speed Increase",
       "id":"051",
       "offset":"33"
    },
    {
-      "name":"Range SPD (Food/Skill)",
+      "name":"Range Attack Speed Increase",
       "id":"052",
       "offset":"34"
    },
    {
-      "name":"Tile Visible Distance (Skill)",
+      "name":"Visible Ore Distance Increase",
       "id":"053",
       "offset":"35"
    },
    {
-      "name":"Mining DMG add to Melee DMG (Skill)",
+      "name":"Percentage Of Mining As Melee",
       "id":"054",
       "offset":"36"
    },
    {
-      "name":"Fishing DMG add to Range DMG (Skill)",
+      "name":"Percentage Of Fishing As Range",
       "id":"055",
       "offset":"37"
    },
    {
-      "name":"Gain Addition Ore from Ore Wall (Skill)",
+      "name":"Chance For Additional Ore",
       "id":"056",
       "offset":"38"
    },
    {
-      "name":"Explosive DMG (Skill)",
+      "name":"Increased Explosives Damage",
       "id":"057",
       "offset":"39"
    },
    {
-      "name":"Movement SPD after Mining Wall (Skill)",
+      "name":"Movement Speed Boost After Mining",
       "id":"058",
       "offset":"3A"
    },
    {
-      "name":"Movement SPD (Skill)",
+      "name":"Short Movement Speed Boost",
       "id":"059",
       "offset":"3B"
    },
    {
-      "name":"Gain Valuable from Wall (Skill)",
+      "name":"Chance For Random Loot From Wall",
       "id":"060",
       "offset":"3C"
    },
    {
-      "name":"Slippery (Movement)",
+      "name":"Slippery Movement",
       "id":"061",
       "offset":"3D"
    },
    {
-      "name":"Immune Slippery",
+      "name":"Immune To Slippery Movement",
       "id":"062",
       "offset":"3E"
    },
    {
-      "name":"Apply Slippery on hit",
+      "name":"Chance On Hit To Apply Slippery Movement",
       "id":"063",
       "offset":"3F"
    },
    {
-      "name":"Slippery (Ground)",
+      "name":"Slippery Movement From Ground",
       "id":"064",
       "offset":"40"
    },
    {
-      "name":"Critical Chance (Kill Stack 3%)",
+      "name":"Kills Increase Crit Chance",
       "id":"065",
       "offset":"41"
    },
    {
-      "name":"Critical Chance (Stack 3%)",
+      "name":"Stacked Crit Chance",
       "id":"066",
       "offset":"42"
    },
    {
-      "name":"Less Food Drain (Food/Skill)",
+      "name":"Drain Less Hunger",
       "id":"067",
       "offset":"43"
    },
    {
-      "name":"Armor from Movement SPD (Skill)",
+      "name":"Armor Increase From Movement Speed",
       "id":"068",
       "offset":"44"
    },
    {
-      "name":"Reduce Stun & Snare (Skill)",
+      "name":"Snare And Stun Duration Reduction",
       "id":"069",
       "offset":"45"
    },
    {
-      "name":"Dodge Chance at Standing (Skill)",
+      "name":"Gain Dodge Increase While Standing Still",
       "id":"070",
       "offset":"46"
    },
    {
-      "name":"Dodge Chance (Skill)",
+      "name":"Dodge Increase From Standing Still",
       "id":"071",
       "offset":"47"
    },
    {
-      "name":"Movement SPD at Running (Skill)",
+      "name":"Gain Movement Speed From Running Consistently",
       "id":"072",
       "offset":"48"
    },
    {
-      "name":"Movement SPD (Skill)",
+      "name":"Movement Speed Increase From Running Consistently",
       "id":"073",
       "offset":"49"
    },
    {
-      "name":"Movement SPD (Dodge Attack) (Skill)",
+      "name":"Movement Speed Boost After Dodge",
       "id":"074",
       "offset":"4A"
    },
    {
-      "name":"DMG (Running) (Skill)",
+      "name":"Gain Damage Increase From Running",
       "id":"075",
       "offset":"4B"
    },
    {
-      "name":"DMG (Skill)",
+      "name":"Damage Increase From Running",
       "id":"076",
       "offset":"4C"
    },
    {
-      "name":"Nearby Enemy SPD (negative for slow) (Skill)",
+      "name":"Aura Apply Movement Speed Decrease",
       "id":"077",
       "offset":"4D"
    },
    {
-      "name":"Slow from Nearby Aura",
+      "name":"Aura Movement Speed Decrease",
       "id":"078",
       "offset":"4E"
    },
    {
-      "name":"Extra Cooked Food (Skill Level)",
+      "name":"Chance To Gain Extra Cooked Food",
       "id":"079",
       "offset":"4F"
    },
    {
-      "name":"Extra Food Rare (Skill)",
+      "name":"Chance For Extra Cooked Food To Be Rare",
       "id":"080",
       "offset":"50"
    },
    {
-      "name":"Immune DMG",
+      "name":"Immune To Damage After Respawn",
       "id":"081",
       "offset":"51"
    },
    {
-      "name":"Melee DMG (Hit Stack 2%) (Skill)",
+      "name":"Gain Melee Damage From Hitting",
       "id":"082",
       "offset":"52"
    },
    {
-      "name":"Melee DMG (Stack 2%) (Skill)",
+      "name":"Melee Damage Increase From Hitting",
       "id":"083",
       "offset":"53"
    },
    {
-      "name":"Range DMG (Hit Stack 2%) (Skill)",
+      "name":"Gain Range Damage From Shooting",
       "id":"084",
       "offset":"54"
    },
    {
-      "name":"Range DMG (Stack 2%) (Skill)",
+      "name":"Range Damage Increase From Shooting",
       "id":"085",
       "offset":"55"
    },
    {
-      "name":"Melee Hit Increase Melee SPD (50%) (Skill)",
+      "name":"Chance On Hit To Gain Melee Attack Speed",
       "id":"086",
       "offset":"56"
    },
    {
-      "name":"Melee SPD (Skill)",
+      "name":"Melee Attack Speed From Chance On Hit",
       "id":"087",
       "offset":"57"
    },
    {
-      "name":"Range Hit Increase Critical Chance (100%) (Skill)",
+      "name":"Chance On Shot To Gain Critical Hit Chance",
       "id":"088",
       "offset":"58"
    },
    {
-      "name":"Critical Chance (Skill)",
+      "name":"Critical Hit Chance From Shot",
       "id":"089",
       "offset":"59"
    },
    {
-      "name":"Melee Hit Increase Range DMG (15%) (Skill)",
+      "name":"Chance On Hit To Increase Range Damage",
       "id":"090",
       "offset":"5A"
    },
    {
-      "name":"Range DMG (Skill)",
+      "name":"Increased Range Damage From Melee Hit",
       "id":"091",
       "offset":"5B"
    },
    {
-      "name":"Range Hit Increase Melee DMG (15%) (Skill)",
+      "name":"Chance On Shot To Increase Melee Damage",
       "id":"092",
       "offset":"5C"
    },
    {
-      "name":"Melee DMG (Skill)",
+      "name":"Increased Melee Damage From Shot",
       "id":"093",
       "offset":"5D"
    },
    {
-      "name":"Melee DMG by Hit Same Target (Skill)",
+      "name":"Gain Melee Damage Increase From Hitting Same Target",
       "id":"094",
       "offset":"5E"
    },
    {
-      "name":"Melee DMG (Skill)",
+      "name":"Melee Damage Increase From Hitting Same Target",
       "id":"095",
       "offset":"5F"
    },
    {
-      "name":"DMG To Boss (Food/Skill)",
+      "name":"Increased Damage Against Bosses",
       "id":"096",
       "offset":"60"
    },
    {
-      "name":"Restore HP (Melee Hit 10%) (Skill)",
+      "name":"Chance To Restore Health On Melee Hit",
       "id":"097",
       "offset":"61"
    },
    {
-      "name":"Slow Target (Range Hit 20%) (Skill)",
+      "name":"Chance On Range Shot To Apply Slowed By Slime",
       "id":"098",
       "offset":"62"
    },
    {
-      "name":"Critical DMG (Food)",
+      "name":"Critical Damage Percentage Increase",
       "id":"099",
       "offset":"63"
    },
    {
-      "name":"Range DMG (Standing) (Skill)",
+      "name":"Gain Range Damage Increase From Standing Still",
       "id":"100",
       "offset":"64"
    },
    {
-      "name":"Range DMG (Skill)",
+      "name":"Range Damage Increase From Standing Still",
       "id":"101",
       "offset":"65"
    },
    {
-      "name":"Stun Target (Range Hit) (Skill)",
+      "name":"Chance On Range Shot To Stun",
       "id":"102",
       "offset":"66"
    },
    {
-      "name":"Immune Stun",
+      "name":"Immune To Stun",
       "id":"103",
       "offset":"67"
    },
@@ -525,548 +525,578 @@
       "offset":"68"
    },
    {
-      "name":"Heal From Regeneration (Food) (Skill)",
+      "name":"Increased Health Regen Effectiveness",
       "id":"105",
       "offset":"69"
    },
    {
-      "name":"HP While Below Half (Skill)",
+      "name":"Gain Health Regen While Below Half Health",
       "id":"106",
       "offset":"6A"
    },
    {
-      "name":"HP/S (Skill)",
+      "name":"Health Regen From Being Below Half Health",
       "id":"107",
       "offset":"6B"
    },
    {
-      "name":"Restore HP When Dying (Skill)",
+      "name":"Cheat Death",
       "id":"108",
       "offset":"6C"
    },
    {
-      "name":"DMG (Max HP) (Skill)",
+      "name":"Gain Damage Increase At Max Health",
       "id":"109",
       "offset":"6D"
    },
    {
-      "name":"DMG (Skill)",
+      "name":"Damage Increase At Max Health",
       "id":"110",
       "offset":"6E"
    },
    {
-      "name":"DMG (Low HP) (Skill)",
+      "name":"Gain Damage Increase At Low Health",
       "id":"111",
       "offset":"6F"
    },
    {
-      "name":"DMG (Skill)",
+      "name":"Damage Increase At Low Health",
       "id":"112",
       "offset":"70"
    },
    {
-      "name":"HP Potion over Time (Skill)",
+      "name":"Healing Potion Add Heal Over Time",
       "id":"113",
       "offset":"71"
    },
    {
-      "name":"HP/S (Skill)",
+      "name":"Heal Over Time From Potion",
       "id":"114",
       "offset":"72"
    },
    {
-      "name":"Skill Points Add to Max HP (Skill)",
+      "name":"Gain Increased Max Health From All Skill Points",
       "id":"115",
       "offset":"73"
    },
    {
-      "name":"Max HP (Skill)",
+      "name":"Increased Max Health From All Skill Points",
       "id":"116",
       "offset":"74"
    },
    {
-      "name":"Not lose tool/weapon durability (Skill)",
+      "name":"Tool Durability Lasts Longer",
       "id":"117",
       "offset":"75"
    },
    {
-      "name":"Not lose equipment durability (Skill)",
+      "name":"Equipment Durability Lasts Longer",
       "id":"118",
       "offset":"76"
    },
    {
-      "name":"Extra wall/bridge/fence (Skill)",
+      "name":"Chance To Gain Extra Item From Base Building",
       "id":"119",
       "offset":"77"
    },
    {
-      "name":"Extra potion (Skill)",
+      "name":"Chance To Gain Extra Item From Alchemy",
       "id":"120",
       "offset":"78"
    },
    {
-      "name":"Extra rail/wire/belt (Skill)",
+      "name":"Gain Extra Industry Items",
       "id":"121",
       "offset":"79"
    },
    {
-      "name":"Polished jewelry (Skill)",
+      "name":"Chance For Polished Jewelry",
       "id":"122",
       "offset":"7A"
    },
    {
-      "name":"Less material Repair (Skill)",
+      "name":"Reduced Anvil Equipment Costs",
       "id":"123",
       "offset":"7B"
    },
    {
-      "name":"Armor at low HP (Skill)",
+      "name":"Gain Armor At Low Health",
       "id":"124",
       "offset":"7C"
    },
    {
-      "name":"Armor (Skill)",
+      "name":"Increased Armor From Low Health",
       "id":"125",
       "offset":"7D"
    },
    {
-      "name":"Plant Golden (Skill)",
+      "name":"Chance To Gain Rare Plant",
       "id":"126",
       "offset":"7E"
    },
    {
-      "name":"Gain seed (Skill)",
+      "name":"Seed Drop Chance",
       "id":"127",
       "offset":"7F"
    },
    {
-      "name":"Not lose water durability (Skill)",
+      "name":"Chance To Not Consume Water Can",
       "id":"128",
       "offset":"80"
    },
    {
-      "name":"Food from Plant Food (Skill)",
+      "name":"Gain More Food From Plants",
       "id":"129",
       "offset":"81"
    },
    {
-      "name":"DMG Against Poison (Skill)",
+      "name":"Damage Increase Against Poisoned",
       "id":"130",
       "offset":"82"
    },
    {
-      "name":"Fish on hook (Skill)",
+      "name":"Increased Chance To Get Fish",
       "id":"131",
       "offset":"83"
    },
    {
-      "name":"Fishing rod range (Skill)",
+      "name":"Increased Rod Range",
       "id":"132",
       "offset":"84"
    },
    {
-      "name":"Fish bites faster (Skill)",
+      "name":"Fish Bites Faster",
       "id":"133",
       "offset":"85"
    },
    {
-      "name":"DMG To Boss from Fish Food (Skill)",
+      "name":"Gain Increased Boss Damage From Eating Fish",
       "id":"134",
       "offset":"86"
    },
    {
-      "name":"DMG To Boss (Skill)",
+      "name":"Increased Boss Damage From Eating Fish",
       "id":"135",
       "offset":"87"
    },
    {
-      "name":"Fish Closer (Skill)",
+      "name":"Fish Starts Closer To Be Reeled In",
       "id":"136",
       "offset":"88"
    },
    {
-      "name":"Reduce Slippery (Skill)",
+      "name":"Reduced Impact Of Slippery Movement",
       "id":"137",
       "offset":"89"
    },
    {
-      "name":"Longer food buff (Skill)",
+      "name":"Longer Cooked Food Buffs",
       "id":"138",
       "offset":"8A"
    },
    {
-      "name":"Food trigger Well Fed (Skill)",
+      "name":"Well Fed Buffs Threshold Reduction",
       "id":"139",
       "offset":"8B"
    },
    {
-      "name":"Well Fed Stronger (Skill)",
+      "name":"Stronger Well Fed Buffs",
       "id":"140",
       "offset":"8C"
    },
    {
-      "name":"Melee SPD from Cooked Food (Skill)",
+      "name":"Gain Melee Attack Speed From Cooked Food",
       "id":"141",
       "offset":"8D"
    },
    {
-      "name":"Melee SPD (Skill)",
+      "name":"Melee Attack Speed From Cooked Food",
       "id":"142",
       "offset":"8E"
    },
    {
-      "name":"Food from Cooked Food (Skill)",
+      "name":"Gain More Food From Cooked Food",
       "id":"143",
       "offset":"8F"
    },
    {
-      "name":"DMG to Nearby (Skill)",
+      "name":"Aura Apply Damage Increase",
       "id":"144",
       "offset":"90"
    },
    {
-      "name":"DMG (Skill)",
+      "name":"Aura Damage Increase",
       "id":"145",
       "offset":"91"
    },
    {
-      "name":"HP/S to Nearby (Skill)",
+      "name":"Aura Apply Healing Over Time",
       "id":"146",
       "offset":"92"
    },
    {
-      "name":"HP/S (Skill)",
+      "name":"Aura Healing Over Time",
       "id":"147",
       "offset":"93"
    },
    {
-      "name":"Critical DMG (Plant Skill)",
+      "name":"Critical Damage Percentage Increase From Gardening",
       "id":"148",
       "offset":"94"
    },
    {
-      "name":"Critical DMG (Range Skill)",
+      "name":"Critical Damage Percentage Increase From Range",
       "id":"149",
       "offset":"95"
    },
    {
-      "name":"DMG (Food / Hidden)",
+      "name":"All Damage Increase",
       "id":"150",
       "offset":"96"
    },
    {
-      "name":"DMG after Mining Wall",
+      "name":"Gain Damage Increase After Mining",
       "id":"151",
       "offset":"97"
    },
    {
-      "name":"DMG",
+      "name":"Damage Increase After Mining",
       "id":"152",
       "offset":"98"
    },
    {
-      "name":"Critical Chance at Standing",
+      "name":"Gain Critical Hit Chance From Standing Still",
       "id":"153",
       "offset":"99"
    },
    {
-      "name":"Critical Chance",
+      "name":"Critical Hit Chance From Standing Still",
       "id":"154",
       "offset":"9A"
    },
    {
-      "name":"Kill which HP below player",
+      "name":"Chance On Hit To Kill Target With Lower Health",
       "id":"155",
       "offset":"9B"
    },
    {
-      "name":"Apply Poision on blocking",
+      "name":"Chance To Apply Poison On Block",
       "id":"156",
       "offset":"9C"
    },
    {
-      "name":"Critical Chance on Poision Hit",
+      "name":"Increase Crit Chance After Poison Apply",
       "id":"157",
       "offset":"9D"
    },
    {
-      "name":"Critical Chance",
+      "name":"Crit Chance Increase From Poison Apply",
       "id":"158",
       "offset":"9E"
    },
    {
-      "name":"Immune Burn (Food)",
+      "name":"Immune To Burning",
       "id":"159",
       "offset":"9F"
    },
    {
-      "name":"",
+      "name":"Aura Apply Damage Decrease",
       "id":"160",
       "offset":"A0"
    },
    {
-      "name":"DMG",
+      "name":"Aura Damage Decrease",
       "id":"161",
       "offset":"A1"
    },
    {
-      "name":"",
+      "name":"All Damage Decrease",
       "id":"162",
       "offset":"A2"
    },
    {
-      "name":"",
+      "name":"Aura Apply Burning",
       "id":"163",
       "offset":"A3"
    },
    {
-      "name":"Burn Damage/S",
+      "name":"Aura Burning",
       "id":"164",
       "offset":"A4"
    },
    {
-      "name":"Remove Poison (Potion)",
+      "name":"Remove Poison",
       "id":"165",
       "offset":"A5"
    },
    {
-      "name":"Melee DMG (Potion)",
+      "name":"Melee Damage Increase From Potion",
       "id":"166",
       "offset":"A6"
    },
    {
-      "name":"Range DMG (Potion)",
+      "name":"Range Damage Increase From Potion",
       "id":"167",
       "offset":"A7"
    },
    {
-      "name":"Reduce DMG from Boss (Potion)",
+      "name":"Reduced Damage From Bosses From Potion",
       "id":"168",
       "offset":"A8"
    },
    {
-      "name":"Armor (Potion)",
+      "name":"Armor Increase From Potion",
       "id":"169",
       "offset":"A9"
    },
    {
-      "name":"Movement SPD on hit (negative for slow)",
+      "name":"Apply Movement Speed Reduction",
       "id":"170",
       "offset":"AA"
    },
    {
-      "name":"Attack SPD increase with HP loss(0.2%/1% loss)",
+      "name":"Gain Attack Speed From Missing Health",
       "id":"171",
       "offset":"AB"
    },
    {
-      "name":"Attack SPD",
+      "name":"Attack Speed From Missing Health",
       "id":"172",
       "offset":"AC"
    },
    {
-      "name":"Melee & Range SPD (Food)",
+      "name":"Attack Speed",
       "id":"173",
       "offset":"AD"
    },
    {
-      "name":"Digging DMG",
+      "name":"Digging Increase",
       "id":"174",
       "offset":"AE"
    },
    {
-      "name":"Summon Ghost Caveling on kill",
+      "name":"Chance On Kill To Summon Ghost",
       "id":"175",
       "offset":"AF"
    },
    {
-      "name":"Non-Fish on hook",
+      "name":"Increased Chance To Get Fish Loot",
       "id":"176",
       "offset":"B0"
    },
    {
-      "name":"",
+      "name":"Chance On Range Hit To Spawn Octopus Boss Projectile",
       "id":"177",
       "offset":"B1"
    },
    {
-      "name":"Double fish",
+      "name":"Chance To Get Double Fish",
       "id":"178",
       "offset":"B2"
    },
    {
-      "name":"Movement SPD (Snack)",
+      "name":"Movement Speed Increase From Potion",
       "id":"179",
       "offset":"B3"
    },
    {
-      "name":"High rare fish bite",
+      "name":"Increased Chance For Higher Rarity Fish",
       "id":"180",
       "offset":"B4"
    },
    {
-      "name":"Pick up radius",
+      "name":"Increased Pick Up Radius",
       "id":"181",
       "offset":"B5"
    },
    {
-      "name":"Boat speed",
+      "name":"Increased Boat Speed",
       "id":"182",
       "offset":"B6"
    },
    {
-      "name":"Melee Attacker become Slippery",
+      "name":"Apply Slippery Movement When Hit",
       "id":"183",
       "offset":"B7"
    },
    {
-      "name":"Release shockwave on blocking",
+      "name":"Chance To Shoot Shock Wave On Block",
       "id":"184",
       "offset":"B8"
    },
    {
-      "name":"Armor Near Water",
+      "name":"Increased Armor Percentage While Adjacent To Water",
       "id":"185",
       "offset":"B9"
    },
    {
-      "name":"Armor",
+      "name":"Increased Armor Percentage From Adjacent Water",
       "id":"186",
       "offset":"BA"
    },
    {
-      "name":"",
+      "name":"Immune To Damage After Login",
       "id":"187",
       "offset":"BB"
    },
    {
-      "name":"King of Slimes (3)",
+      "name":"King Of Slimes",
       "id":"188",
       "offset":"BC"
    },
    {
-      "name":"Eye Glow Red (Halloween)",
+      "name":"Red Glowing Eyes",
       "id":"189",
       "offset":"BD"
    },
    {
-      "name":"Ghost (Halloween)",
+      "name":"Look Like Ghost",
       "id":"190",
       "offset":"BE"
    },
    {
-      "name":"Melee & Range SPD",
+      "name":"Attack Speed Boost After Dodge",
       "id":"191",
       "offset":"BF"
    },
    {
-      "name":"Burn nearby enemies on blocking",
+      "name":"Deal Aoe Fire Damage On Block",
       "id":"192",
       "offset":"C0"
    },
    {
-      "name":"Gain Addition Ore from Wall's biome",
+      "name":"Chance For Ore On Mining Wall",
       "id":"193",
       "offset":"C1"
    },
    {
-      "name":"DMG against Burning",
+      "name":"Damage Increase Against Burning",
       "id":"194",
       "offset":"C2"
    },
    {
-      "name":"",
+      "name":"Crit Damage Increase Against Burning",
       "id":"195",
       "offset":"C3"
    },
    {
-      "name":"Throns added to DMG",
+      "name":"Thorns Damage Added To Melee And Range",
       "id":"196",
       "offset":"C4"
    },
    {
-      "name":"",
+      "name":"Chance On Hit To Spawn Scarab Boss Projectile",
       "id":"197",
       "offset":"C5"
    },
    {
-      "name":"Melee & Range SPD on Dodge",
+      "name":"Gain Attack Speed Boost After Dodge",
       "id":"198",
       "offset":"C6"
    },
    {
-      "name":"Max HP (Mushroom)",
+      "name":"Giant Mushroom Buff",
       "id":"199",
       "offset":"C7"
    },
    {
-      "name":"Max HP (Larva)",
+      "name":"Amber Larva Buff",
       "id":"200",
       "offset":"C8"
    },
    {
-      "name":"Max HP (Nautilus)",
+      "name":"Starlight Nautilus Buff",
       "id":"201",
       "offset":"C9"
    },
    {
-      "name":"Trigger Azeos Power",
+      "name":"Additional Chance On Crit To Spawn Thunder Beam",
       "id":"202",
       "offset":"CA"
    },
    {
-      "name":"Trigger Ra-Akar Power",
+      "name":"Additional Chance On Hit To Spawn Scarab Boss Projectile",
       "id":"203",
       "offset":"CB"
    },
    {
-      "name":"Trigger Omoroth Power",
+      "name":"Additional Chance On Range Hit To Spawn Octopus Boss Projectile",
       "id":"204",
       "offset":"CC"
    },
    {
-      "name":"Longer Dash Duration",
+      "name":"Increased Dash Duration",
       "id":"205",
       "offset":"CD"
    },
    {
-      "name":"",
+      "name":"Aura Apply Radioactive Damage Over Time",
       "id":"206",
       "offset":"CE"
    },
    {
-      "name":"Radioactive Damage/S",
+      "name":"Aura Radioactive Damage Over Time",
       "id":"207",
       "offset":"CF"
    },
    {
-      "name":"Winter Embracing (Christmas)",
+      "name":"Snowing",
       "id":"208",
       "offset":"D0"
    },
    {
-      "name":"Melee & Range SPD (Christmas)",
+      "name":"Attack Speed Increase From Potion",
       "id":"209",
       "offset":"D1"
    },
    {
-      "name":"Fall Asleep (Christmas)",
+      "name":"Sleeping",
       "id":"210",
       "offset":"D2"
    },
    {
-      "name":"",
+      "name":"Heal Over Time Percentage",
       "id":"211",
       "offset":"D3"
    },
    {
-      "name":"Max HP (Golden Chocolate)",
+      "name":"Golden Chocolate Buff",
       "id":"212",
       "offset":"D4"
    },
    {
-      "name":"",
+      "name":"Immune To Charm",
       "id":"213",
       "offset":"D5"
+   },
+   {
+      "name":"Chance To Apply Charmed",
+      "id":"214",
+      "offset":"D6"
+   },
+   {
+      "name":"Charmed",
+      "id":"215",
+      "offset":"D7"
+   },
+   {
+      "name":"Increased Charm Duration",
+      "id":"216",
+      "offset":"D8"
+   },
+   {
+      "name":"Pink Glow",
+      "id":"217",
+      "offset":"D9"
+   },
+   {
+      "name":"Anniversary Cake Buff",
+      "id":"218",
+      "offset":"DA"
+   },
+   {
+      "name":"M A X_ V A L U E S",
+      "id":"219",
+      "offset":"DB"
    }
 ]
