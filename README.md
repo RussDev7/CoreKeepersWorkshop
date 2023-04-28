@@ -24,7 +24,7 @@
 ## How It Works / How Do I Use It?
 Due to how Core Keeper is as a unity game, the devolopers have protected their source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection techniques to scramble regions of memory to prevent address pointers. So using some clevor AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
 
-Included in this application's directory is a file named `build.bat`. This file can be used to compile the applications source code from a single click. You can also download an already compiled version from the releases. After building, your application can be found in the releases directory.
+Included in this application's directory is a file named `build.bat`. This file can be used to compile the applications source code from a single click. You can also download an already compiled version from the releases. After building, your application can be found in the releases directory. If you downloaded it pre-compiled, you will need to simply extract it to any desired location.
 
 After launching, you will need to put some torches in both your first and last inventory slots (don't use added storage slots from bags, exc).
 
