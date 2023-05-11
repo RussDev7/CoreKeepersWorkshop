@@ -802,7 +802,9 @@ namespace CoreKeeperInventoryEditor
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             // AoB scan is offset +1 bit to increase loading times.
-            AoBScanResultsInventory = await MemLib.AoBScan("08 00 00 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00", true, true);
+            // Creative update 10May23 added a fifth byte.
+            // Depreciated header 10May23: 08 00 00 00 00 00 00.
+            AoBScanResultsInventory = await MemLib.AoBScan("0A 00 00 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00", true, true);
 
             // Get the progress bar maximum.
             progressBar2.Maximum = AoBScanResultsInventory.Count() * 50;
@@ -1128,9 +1130,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 2 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot2Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
-                    string slot2Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
-                    string slot2Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                    string slot2Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
+                    string slot2Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                    string slot2Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1245,9 +1247,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 3 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot3Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                    string slot3Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
-                    string slot3Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X");
+                    string slot3Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X");
+                    string slot3Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X");
+                    string slot3Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1362,9 +1364,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 4 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot4Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X");
-                    string slot4Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("52", NumberStyles.Integer)).ToString("X");
-                    string slot4Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
+                    string slot4Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X");
+                    string slot4Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
+                    string slot4Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1479,9 +1481,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 5 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot5Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
-                    string slot5Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
-                    string slot5Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
+                    string slot5Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X");
+                    string slot5Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X");
+                    string slot5Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1596,9 +1598,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 6 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot6Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X");
-                    string slot6Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X");
-                    string slot6Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X");
+                    string slot6Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("100", NumberStyles.Integer)).ToString("X");
+                    string slot6Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
+                    string slot6Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("108", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1713,9 +1715,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 7 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot7Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X");
-                    string slot7Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("100", NumberStyles.Integer)).ToString("X");
-                    string slot7Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
+                    string slot7Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X");
+                    string slot7Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
+                    string slot7Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("128", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1830,9 +1832,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 8 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot8Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("112", NumberStyles.Integer)).ToString("X");
-                    string slot8Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("116", NumberStyles.Integer)).ToString("X");
-                    string slot8Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X");
+                    string slot8Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("140", NumberStyles.Integer)).ToString("X");
+                    string slot8Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("144", NumberStyles.Integer)).ToString("X");
+                    string slot8Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("148", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1947,9 +1949,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 9 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot9Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("128", NumberStyles.Integer)).ToString("X");
-                    string slot9Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X");
-                    string slot9Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("136", NumberStyles.Integer)).ToString("X");
+                    string slot9Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("160", NumberStyles.Integer)).ToString("X");
+                    string slot9Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("164", NumberStyles.Integer)).ToString("X");
+                    string slot9Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2064,9 +2066,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 10 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot10Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("144", NumberStyles.Integer)).ToString("X");
-                    string slot10Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("148", NumberStyles.Integer)).ToString("X");
-                    string slot10Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("152", NumberStyles.Integer)).ToString("X");
+                    string slot10Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("180", NumberStyles.Integer)).ToString("X");
+                    string slot10Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("184", NumberStyles.Integer)).ToString("X");
+                    string slot10Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("188", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2181,9 +2183,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 11 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot11Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("160", NumberStyles.Integer)).ToString("X");
-                    string slot11Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("164", NumberStyles.Integer)).ToString("X");
-                    string slot11Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X");
+                    string slot11Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("200", NumberStyles.Integer)).ToString("X");
+                    string slot11Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("204", NumberStyles.Integer)).ToString("X");
+                    string slot11Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("208", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2298,9 +2300,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 12 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot12Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("176", NumberStyles.Integer)).ToString("X");
-                    string slot12Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("180", NumberStyles.Integer)).ToString("X");
-                    string slot12Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("184", NumberStyles.Integer)).ToString("X");
+                    string slot12Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("220", NumberStyles.Integer)).ToString("X");
+                    string slot12Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X");
+                    string slot12Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("228", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2415,9 +2417,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 13 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot13Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("192", NumberStyles.Integer)).ToString("X");
-                    string slot13Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("196", NumberStyles.Integer)).ToString("X");
-                    string slot13Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("200", NumberStyles.Integer)).ToString("X");
+                    string slot13Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("240", NumberStyles.Integer)).ToString("X");
+                    string slot13Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
+                    string slot13Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("248", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2532,9 +2534,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 14 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot14Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("208", NumberStyles.Integer)).ToString("X");
-                    string slot14Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("212", NumberStyles.Integer)).ToString("X");
-                    string slot14Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("216", NumberStyles.Integer)).ToString("X");
+                    string slot14Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("260", NumberStyles.Integer)).ToString("X");
+                    string slot14Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("264", NumberStyles.Integer)).ToString("X");
+                    string slot14Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("268", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2649,9 +2651,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 15 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot15Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X");
-                    string slot15Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("228", NumberStyles.Integer)).ToString("X");
-                    string slot15Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("232", NumberStyles.Integer)).ToString("X");
+                    string slot15Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("280", NumberStyles.Integer)).ToString("X");
+                    string slot15Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("284", NumberStyles.Integer)).ToString("X");
+                    string slot15Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2766,9 +2768,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 16 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot16Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("240", NumberStyles.Integer)).ToString("X");
-                    string slot16Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
-                    string slot16Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("248", NumberStyles.Integer)).ToString("X");
+                    string slot16Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("300", NumberStyles.Integer)).ToString("X");
+                    string slot16Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("304", NumberStyles.Integer)).ToString("X");
+                    string slot16Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2883,9 +2885,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 17 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot17Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("256", NumberStyles.Integer)).ToString("X");
-                    string slot17Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("260", NumberStyles.Integer)).ToString("X");
-                    string slot17Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("264", NumberStyles.Integer)).ToString("X");
+                    string slot17Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("320", NumberStyles.Integer)).ToString("X");
+                    string slot17Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("324", NumberStyles.Integer)).ToString("X");
+                    string slot17Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("328", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3000,9 +3002,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 18 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot18Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("272", NumberStyles.Integer)).ToString("X");
-                    string slot18Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("276", NumberStyles.Integer)).ToString("X");
-                    string slot18Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("280", NumberStyles.Integer)).ToString("X");
+                    string slot18Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("340", NumberStyles.Integer)).ToString("X");
+                    string slot18Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X");
+                    string slot18Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("348", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3117,9 +3119,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 19 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot19Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X");
-                    string slot19Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("292", NumberStyles.Integer)).ToString("X");
-                    string slot19Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("296", NumberStyles.Integer)).ToString("X");
+                    string slot19Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X");
+                    string slot19Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("364", NumberStyles.Integer)).ToString("X");
+                    string slot19Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3234,9 +3236,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 20 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot20Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("304", NumberStyles.Integer)).ToString("X");
-                    string slot20Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
-                    string slot20Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("312", NumberStyles.Integer)).ToString("X");
+                    string slot20Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("380", NumberStyles.Integer)).ToString("X");
+                    string slot20Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X");
+                    string slot20Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3351,9 +3353,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 21 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot21Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("320", NumberStyles.Integer)).ToString("X");
-                    string slot21Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("324", NumberStyles.Integer)).ToString("X");
-                    string slot21Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("328", NumberStyles.Integer)).ToString("X");
+                    string slot21Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("400", NumberStyles.Integer)).ToString("X");
+                    string slot21Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("404", NumberStyles.Integer)).ToString("X");
+                    string slot21Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3468,9 +3470,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 22 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot22Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
-                    string slot22Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("340", NumberStyles.Integer)).ToString("X");
-                    string slot22Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X");
+                    string slot22Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("420", NumberStyles.Integer)).ToString("X");
+                    string slot22Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X");
+                    string slot22Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("428", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3585,9 +3587,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 23 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot23Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("352", NumberStyles.Integer)).ToString("X");
-                    string slot23Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("356", NumberStyles.Integer)).ToString("X");
-                    string slot23Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X");
+                    string slot23Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("440", NumberStyles.Integer)).ToString("X");
+                    string slot23Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("444", NumberStyles.Integer)).ToString("X");
+                    string slot23Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("448", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3702,9 +3704,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 24 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot24Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X");
-                    string slot24Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("372", NumberStyles.Integer)).ToString("X");
-                    string slot24Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X");
+                    string slot24Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("460", NumberStyles.Integer)).ToString("X");
+                    string slot24Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("464", NumberStyles.Integer)).ToString("X");
+                    string slot24Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("468", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3819,9 +3821,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 25 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot25Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X");
-                    string slot25Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X");
-                    string slot25Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("392", NumberStyles.Integer)).ToString("X");
+                    string slot25Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("480", NumberStyles.Integer)).ToString("X");
+                    string slot25Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("484", NumberStyles.Integer)).ToString("X");
+                    string slot25Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("488", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3936,9 +3938,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 26 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot26Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("400", NumberStyles.Integer)).ToString("X");
-                    string slot26Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("404", NumberStyles.Integer)).ToString("X");
-                    string slot26Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
+                    string slot26Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("500", NumberStyles.Integer)).ToString("X");
+                    string slot26Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("504", NumberStyles.Integer)).ToString("X");
+                    string slot26Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("508", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4053,9 +4055,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 27 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot27Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("416", NumberStyles.Integer)).ToString("X");
-                    string slot27Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("420", NumberStyles.Integer)).ToString("X");
-                    string slot27Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X");
+                    string slot27Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("520", NumberStyles.Integer)).ToString("X");
+                    string slot27Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("524", NumberStyles.Integer)).ToString("X");
+                    string slot27Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("528", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4170,9 +4172,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 28 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot28Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("432", NumberStyles.Integer)).ToString("X");
-                    string slot28Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("436", NumberStyles.Integer)).ToString("X");
-                    string slot28Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("440", NumberStyles.Integer)).ToString("X");
+                    string slot28Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("540", NumberStyles.Integer)).ToString("X");
+                    string slot28Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("544", NumberStyles.Integer)).ToString("X");
+                    string slot28Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("548", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4287,9 +4289,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 29 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot29Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("448", NumberStyles.Integer)).ToString("X");
-                    string slot29Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("452", NumberStyles.Integer)).ToString("X");
-                    string slot29Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("456", NumberStyles.Integer)).ToString("X");
+                    string slot29Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("560", NumberStyles.Integer)).ToString("X");
+                    string slot29Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("564", NumberStyles.Integer)).ToString("X");
+                    string slot29Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("568", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4404,9 +4406,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 30 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot30Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("464", NumberStyles.Integer)).ToString("X");
-                    string slot30Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("468", NumberStyles.Integer)).ToString("X");
-                    string slot30Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("472", NumberStyles.Integer)).ToString("X");
+                    string slot30Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("580", NumberStyles.Integer)).ToString("X");
+                    string slot30Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("584", NumberStyles.Integer)).ToString("X");
+                    string slot30Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("588", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4524,9 +4526,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 31 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot31Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("480", NumberStyles.Integer)).ToString("X");
-                    string slot31Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("484", NumberStyles.Integer)).ToString("X");
-                    string slot31Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("488", NumberStyles.Integer)).ToString("X");
+                    string slot31Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("600", NumberStyles.Integer)).ToString("X");
+                    string slot31Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("604", NumberStyles.Integer)).ToString("X");
+                    string slot31Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("608", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4644,9 +4646,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 32 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot32Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("496", NumberStyles.Integer)).ToString("X");
-                    string slot32Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("500", NumberStyles.Integer)).ToString("X");
-                    string slot32Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("504", NumberStyles.Integer)).ToString("X");
+                    string slot32Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("620", NumberStyles.Integer)).ToString("X");
+                    string slot32Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("624", NumberStyles.Integer)).ToString("X");
+                    string slot32Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("628", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4764,9 +4766,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 33 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot33Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("512", NumberStyles.Integer)).ToString("X");
-                    string slot33Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("516", NumberStyles.Integer)).ToString("X");
-                    string slot33Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("520", NumberStyles.Integer)).ToString("X");
+                    string slot33Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("640", NumberStyles.Integer)).ToString("X");
+                    string slot33Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("644", NumberStyles.Integer)).ToString("X");
+                    string slot33Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("648", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4884,9 +4886,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 34 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot34Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("528", NumberStyles.Integer)).ToString("X");
-                    string slot34Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("532", NumberStyles.Integer)).ToString("X");
-                    string slot34Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("536", NumberStyles.Integer)).ToString("X");
+                    string slot34Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("660", NumberStyles.Integer)).ToString("X");
+                    string slot34Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("664", NumberStyles.Integer)).ToString("X");
+                    string slot34Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("668", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5004,9 +5006,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 35 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot35Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("544", NumberStyles.Integer)).ToString("X");
-                    string slot35Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("548", NumberStyles.Integer)).ToString("X");
-                    string slot35Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("552", NumberStyles.Integer)).ToString("X");
+                    string slot35Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("680", NumberStyles.Integer)).ToString("X");
+                    string slot35Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("684", NumberStyles.Integer)).ToString("X");
+                    string slot35Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("688", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5124,9 +5126,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 36 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot36Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("560", NumberStyles.Integer)).ToString("X");
-                    string slot36Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("564", NumberStyles.Integer)).ToString("X");
-                    string slot36Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("568", NumberStyles.Integer)).ToString("X");
+                    string slot36Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("700", NumberStyles.Integer)).ToString("X");
+                    string slot36Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("704", NumberStyles.Integer)).ToString("X");
+                    string slot36Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("708", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5244,9 +5246,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 37 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot37Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("576", NumberStyles.Integer)).ToString("X");
-                    string slot37Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("580", NumberStyles.Integer)).ToString("X");
-                    string slot37Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("584", NumberStyles.Integer)).ToString("X");
+                    string slot37Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("720", NumberStyles.Integer)).ToString("X");
+                    string slot37Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("724", NumberStyles.Integer)).ToString("X");
+                    string slot37Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5364,9 +5366,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 38 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot38Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("592", NumberStyles.Integer)).ToString("X");
-                    string slot38Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("596", NumberStyles.Integer)).ToString("X");
-                    string slot38Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("600", NumberStyles.Integer)).ToString("X");
+                    string slot38Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("740", NumberStyles.Integer)).ToString("X");
+                    string slot38Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("744", NumberStyles.Integer)).ToString("X");
+                    string slot38Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("748", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5484,9 +5486,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 39 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot39Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("608", NumberStyles.Integer)).ToString("X");
-                    string slot39Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("612", NumberStyles.Integer)).ToString("X");
-                    string slot39Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("616", NumberStyles.Integer)).ToString("X");
+                    string slot39Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("760", NumberStyles.Integer)).ToString("X");
+                    string slot39Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("764", NumberStyles.Integer)).ToString("X");
+                    string slot39Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("768", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5604,9 +5606,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 40 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot40Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("624", NumberStyles.Integer)).ToString("X");
-                    string slot40Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("628", NumberStyles.Integer)).ToString("X");
-                    string slot40Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("632", NumberStyles.Integer)).ToString("X");
+                    string slot40Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("780", NumberStyles.Integer)).ToString("X");
+                    string slot40Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X");
+                    string slot40Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("788", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5724,9 +5726,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 41 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot41Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("640", NumberStyles.Integer)).ToString("X");
-                    string slot41Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("644", NumberStyles.Integer)).ToString("X");
-                    string slot41Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("648", NumberStyles.Integer)).ToString("X");
+                    string slot41Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("800", NumberStyles.Integer)).ToString("X");
+                    string slot41Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X");
+                    string slot41Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("808", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5844,9 +5846,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 42 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot42Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("656", NumberStyles.Integer)).ToString("X");
-                    string slot42Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("660", NumberStyles.Integer)).ToString("X");
-                    string slot42Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("664", NumberStyles.Integer)).ToString("X");
+                    string slot42Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("820", NumberStyles.Integer)).ToString("X");
+                    string slot42Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("824", NumberStyles.Integer)).ToString("X");
+                    string slot42Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("828", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5964,9 +5966,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 43 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot43Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("672", NumberStyles.Integer)).ToString("X");
-                    string slot43Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("676", NumberStyles.Integer)).ToString("X");
-                    string slot43Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("680", NumberStyles.Integer)).ToString("X");
+                    string slot43Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("840", NumberStyles.Integer)).ToString("X");
+                    string slot43Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("844", NumberStyles.Integer)).ToString("X");
+                    string slot43Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("848", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6084,9 +6086,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 44 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot44Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("688", NumberStyles.Integer)).ToString("X");
-                    string slot44Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("692", NumberStyles.Integer)).ToString("X");
-                    string slot44Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("696", NumberStyles.Integer)).ToString("X");
+                    string slot44Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("860", NumberStyles.Integer)).ToString("X");
+                    string slot44Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("864", NumberStyles.Integer)).ToString("X");
+                    string slot44Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("868", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6204,9 +6206,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 45 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot45Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("704", NumberStyles.Integer)).ToString("X");
-                    string slot45Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("708", NumberStyles.Integer)).ToString("X");
-                    string slot45Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("712", NumberStyles.Integer)).ToString("X");
+                    string slot45Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("880", NumberStyles.Integer)).ToString("X");
+                    string slot45Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("884", NumberStyles.Integer)).ToString("X");
+                    string slot45Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("888", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6324,9 +6326,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 46 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot46Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("720", NumberStyles.Integer)).ToString("X");
-                    string slot46Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("724", NumberStyles.Integer)).ToString("X");
-                    string slot46Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X");
+                    string slot46Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("900", NumberStyles.Integer)).ToString("X");
+                    string slot46Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("904", NumberStyles.Integer)).ToString("X");
+                    string slot46Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("908", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6444,9 +6446,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 47 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot47Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("736", NumberStyles.Integer)).ToString("X");
-                    string slot47Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("740", NumberStyles.Integer)).ToString("X");
-                    string slot47Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("744", NumberStyles.Integer)).ToString("X");
+                    string slot47Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("920", NumberStyles.Integer)).ToString("X");
+                    string slot47Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("924", NumberStyles.Integer)).ToString("X");
+                    string slot47Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("928", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6564,9 +6566,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 48 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot48Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("752", NumberStyles.Integer)).ToString("X");
-                    string slot48Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("756", NumberStyles.Integer)).ToString("X");
-                    string slot48Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("760", NumberStyles.Integer)).ToString("X");
+                    string slot48Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("940", NumberStyles.Integer)).ToString("X");
+                    string slot48Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("944", NumberStyles.Integer)).ToString("X");
+                    string slot48Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("948", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6684,9 +6686,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 49 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot49Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("768", NumberStyles.Integer)).ToString("X");
-                    string slot49Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("772", NumberStyles.Integer)).ToString("X");
-                    string slot49Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("776", NumberStyles.Integer)).ToString("X");
+                    string slot49Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("960", NumberStyles.Integer)).ToString("X");
+                    string slot49Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X");
+                    string slot49Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("968", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6804,9 +6806,9 @@ namespace CoreKeeperInventoryEditor
                 }
                 if (itemSlot == 50 || loadInventory || CycleAll || ExportInventory)
                 {
-                    string slot50Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X");
-                    string slot50Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("788", NumberStyles.Integer)).ToString("X");
-                    string slot50Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("792", NumberStyles.Integer)).ToString("X");
+                    string slot50Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("980", NumberStyles.Integer)).ToString("X");
+                    string slot50Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("984", NumberStyles.Integer)).ToString("X");
+                    string slot50Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("988", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -10431,297 +10433,297 @@ namespace CoreKeeperInventoryEditor
             }
             else if (itemSlot == 2)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 3)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 4)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("52", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 5)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 6)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X"));
             }
+            else if (itemSlot == 6)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("100", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("108", NumberStyles.Integer)).ToString("X"));
+            }
             else if (itemSlot == 7)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("100", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("128", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 8)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("112", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("116", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("140", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("144", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("148", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 9)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("128", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("132", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("136", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 10)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("144", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("148", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("152", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 11)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("160", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("164", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X"));
             }
+            else if (itemSlot == 10)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("180", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("184", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("188", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 11)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("200", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("204", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("208", NumberStyles.Integer)).ToString("X"));
+            }
             else if (itemSlot == 12)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("176", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("180", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("184", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("220", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("228", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 13)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("192", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("196", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("200", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 14)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("208", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("212", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("216", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 15)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("228", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("232", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 16)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("240", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("248", NumberStyles.Integer)).ToString("X"));
             }
+            else if (itemSlot == 14)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("260", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("264", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("268", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 15)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("280", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("284", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 16)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("300", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("304", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X"));
+            }
             else if (itemSlot == 17)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("256", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("260", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("264", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 18)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("272", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("276", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("280", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 19)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("292", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("296", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 20)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("304", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("312", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 21)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("320", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("324", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("328", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 22)
+            else if (itemSlot == 18)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("340", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("340", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("348", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 23)
+            else if (itemSlot == 19)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("352", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("356", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("364", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 24)
+            else if (itemSlot == 20)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("372", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("380", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 25)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("392", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 26)
+            else if (itemSlot == 21)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("400", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("404", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X"));
             }
+            else if (itemSlot == 22)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("420", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("428", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 23)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("440", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("444", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("448", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 24)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("364", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 25)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("380", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 26)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("500", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("504", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("508", NumberStyles.Integer)).ToString("X"));
+            }
             else if (itemSlot == 27)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("416", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("420", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("520", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("524", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("528", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 28)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("432", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("436", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("440", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("540", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("544", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("548", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 29)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("448", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("452", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("456", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 30)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("464", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("468", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("472", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 31)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("480", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("484", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("488", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 32)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("496", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("500", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("504", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 33)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("512", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("516", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("520", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 34)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("528", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("532", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("536", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 35)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("544", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("548", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("552", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 36)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("560", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("564", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("568", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 37)
+            else if (itemSlot == 30)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("576", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("580", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("584", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("580", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("584", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("588", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 38)
+            else if (itemSlot == 31)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("592", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("596", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("600", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("600", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("604", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("608", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 39)
+            else if (itemSlot == 32)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("608", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("612", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("616", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("620", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("624", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("628", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 40)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("624", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("628", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("632", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 41)
+            else if (itemSlot == 33)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("640", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("644", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("648", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 42)
+            else if (itemSlot == 34)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("656", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("660", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("664", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("660", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("664", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("668", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 43)
+            else if (itemSlot == 35)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("672", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("676", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("680", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("680", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("684", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("688", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 44)
+            else if (itemSlot == 36)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("688", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("692", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("696", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("700", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("704", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("708", NumberStyles.Integer)).ToString("X"));
             }
-            else if (itemSlot == 45)
-            {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("704", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("708", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("712", NumberStyles.Integer)).ToString("X"));
-            }
-            else if (itemSlot == 46)
+            else if (itemSlot == 37)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("720", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("724", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X"));
             }
+            else if (itemSlot == 38)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("740", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("744", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("748", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 39)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("760", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("764", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("768", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 40)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("780", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("788", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 41)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("800", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("808", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 42)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("820", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("824", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("828", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 43)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("840", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("844", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("848", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 44)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("860", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("868", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 45)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("880", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("884", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("888", NumberStyles.Integer)).ToString("X"));
+            }
+            else if (itemSlot == 46)
+            {
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("900", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("904", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("908", NumberStyles.Integer)).ToString("X"));
+            }
             else if (itemSlot == 47)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("736", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("740", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("744", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("920", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("924", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("928", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 48)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("752", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("756", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("760", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("940", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("944", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("948", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 49)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("768", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("772", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("776", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("960", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("968", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 50)
             {
-                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X"));
-                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("788", NumberStyles.Integer)).ToString("X"));
-                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("792", NumberStyles.Integer)).ToString("X"));
+                infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("980", NumberStyles.Integer)).ToString("X"));
+                infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("984", NumberStyles.Integer)).ToString("X"));
+                infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("988", NumberStyles.Integer)).ToString("X"));
             }
             else // Prevent out of range errors.
             {
@@ -11011,7 +11013,8 @@ namespace CoreKeeperInventoryEditor
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             // Depreciated Address 08Feb23: ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 99 D9 3F
-            AoBScanResultsPlayerTools = await MemLib.AoBScan("?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 99 D9 3F", true, true);
+            // Depreciated Address 10May23: ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 99 D9 3F
+            AoBScanResultsPlayerTools = await MemLib.AoBScan("?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 99 D9 3F", true, true);
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsPlayerTools.Count() < 1)
@@ -11247,7 +11250,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2200", NumberStyles.Integer)).ToString("X");
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2456", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith2.Checked)
@@ -11305,7 +11308,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X");
+            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("792", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith3.Checked)
@@ -11367,7 +11370,8 @@ namespace CoreKeeperInventoryEditor
 
             // Get the addresses.
             // Old alternitive address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
-            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
+            // POINTER MAP: 03 ?? (02) - Use the second one.
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("140", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith4.Checked)
@@ -11459,7 +11463,8 @@ namespace CoreKeeperInventoryEditor
                     // Depreciated Address 17Dec22: 01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 48 44 44 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AC 00 00 00 01 00 00 00 01 00 00 00
                     // Depreciated Address 09Jan23: 01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F
                     // Depreciated Address 08Feb23: 01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 08 00 00 00
-                    AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 08 00 00 00", true, true);
+                    // Depreciated Address 10May23: 01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 08 00 00 00
+                    AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F", true, true);
                 }
 
                 // If the count is zero, the scan had an error.
@@ -11527,14 +11532,15 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
-        // Players position timer.
+        // Players no hunger timer.
         private void PlayersNoHungerTimedEvent(Object source, ElapsedEventArgs e)
         {
             // Update richtextbox with found addresses.
             foreach (long res in AoBScanResultsNoHunger1Tools)
             {
                 // Get the hunger addresses.
-                string foodAddress1 = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("14", NumberStyles.HexNumber)).ToString("X");
+                // Depreciated Offset 10May23: 14
+                string foodAddress1 = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.HexNumber)).ToString("X");
 
                 // Write value.
                 MemLib.WriteMemory(foodAddress1, "int", "100"); // Overwrite new value.
@@ -11663,7 +11669,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2200", NumberStyles.Integer)).ToString("X");
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2456", NumberStyles.Integer)).ToString("X");
 
             // Write value.
             MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
@@ -11844,8 +11850,8 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Fetch some addresses.
-            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X");
-            string playerStateSpawnAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("480", NumberStyles.Integer)).ToString("X");
+            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X");
+            string playerStateSpawnAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("512", NumberStyles.Integer)).ToString("X");
 
             // Write value.
             MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateSpawnAddress).ToString());
@@ -11892,8 +11898,8 @@ namespace CoreKeeperInventoryEditor
 
             // Get the addresses.
             // Get the noclip addresses.
-            playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X");
-            playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("416", NumberStyles.Integer)).ToString("X");
+            playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X");
+            playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith8.Checked)
@@ -12542,6 +12548,7 @@ namespace CoreKeeperInventoryEditor
         // Depreciated Address 15Feb23: GameAssembly.dll+3877D1C
         // Depreciated Address 19Feb23: GameAssembly.dll+387DDAC
         // Depreciated Address 05Apr23: 41 00 00 40 41
+        // Depreciated Address 10May23: 00 00 30 41 00 00 40 41
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -12589,19 +12596,19 @@ namespace CoreKeeperInventoryEditor
             long moduleEnd = Convert.ToInt64(BigInteger.Add(BigInteger.Parse(dllBaseAdressIWant.BaseAddress.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dllBaseAdressIWant.ModuleMemorySize.ToString("X"), NumberStyles.HexNumber)).ToString("X"), 16);
 
             // Define reveal range address varible.
-            AoBScanResultsRevealMapRange = await MemLib.AoBScan(moduleStart, moduleEnd, "00 00 30 41 00 00 40 41", true, true, false);
+            AoBScanResultsRevealMapRange = await MemLib.AoBScan(moduleStart, moduleEnd, "00 00 40 41 00 00 10 42", true, true, false);
 
             // Adjust the offset of the address.
             List<long> AoBScanResultsRevealMapRangeTemp = new List<long>();
             foreach (long res in AoBScanResultsRevealMapRange)
             {
                 // Add the new offset to the list.
-                long revealRange = (long)BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer));
+                // long revealRange = (long)BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer));
 
                 // Ensure the defualt value is 12.
-                if (MemLib.ReadFloat(revealRange.ToString("X")).ToString() == "12")
+                if (MemLib.ReadFloat(res.ToString("X")).ToString() == "12")
                 {
-                    AoBScanResultsRevealMapRangeTemp.Add(revealRange);
+                    AoBScanResultsRevealMapRangeTemp.Add(res);
                 }
             }
 
@@ -12998,13 +13005,13 @@ namespace CoreKeeperInventoryEditor
             // Reset variable.
             rPrevious = minRadius;
 
-            // Get the noclip addresses.
-            renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X");
+            // Get the anti collision addresses.
+            renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X");
             renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
-            renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("416", NumberStyles.Integer)).ToString("X");
+            renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X");
 
             // Get the godmode address.
-            renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2200", NumberStyles.Integer)).ToString("X");
+            renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2456", NumberStyles.Integer)).ToString("X");
 
             // Declare the current start time.
             DateTime startTime = DateTime.Now;
