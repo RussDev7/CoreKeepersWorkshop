@@ -5,6 +5,7 @@ Changes Since v1.3.5.3
 
 + Added a quick quantity feature to the quick item editor.
 + Updated all the buff ids for the buff editor.
++ Updated all addresses to the new creative update.
 
 Changes Since v1.3.5.2
 ===========================================================
