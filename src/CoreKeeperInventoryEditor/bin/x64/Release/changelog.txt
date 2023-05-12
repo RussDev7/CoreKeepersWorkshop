@@ -2,6 +2,7 @@ Changes Since v1.3.5.3
 ===========================================================
 - Reworked error messages to include the products version.
 - Corrected a typo within the tooltips.
+- Fixed an issue with quick editing null items.
 
 + Added a quick quantity feature to the quick item editor.
 + Updated all the buff ids for the buff editor.
