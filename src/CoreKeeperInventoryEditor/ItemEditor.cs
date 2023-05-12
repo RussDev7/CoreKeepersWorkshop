@@ -328,6 +328,11 @@ namespace CoreKeepersWorkshop
             button11.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5.ToString();
             numericUpDown10.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5;
 
+            // Ensure the quantity is more then zero. // Fix v1.3.5.4.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount < 1)
+            {
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = 1;
+            }
 
             // Load some settings.
             if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length >= 8) // Check if item is a food variant.
