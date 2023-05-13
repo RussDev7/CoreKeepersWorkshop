@@ -4,6 +4,7 @@ Changes Since v1.3.5.4
 - Fixed nammed pets preventing inventory discovery.
 - Fixed import players progressbar display wrong info.
 - Fixed exceptions caused from out of range item data.
+- Fixed two wrong item slot offsets.
 
 + Added support for items using the new skillset metadata.
 + Added skilltype to the quick item editor.
