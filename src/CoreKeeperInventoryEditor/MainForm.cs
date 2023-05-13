@@ -804,7 +804,7 @@ namespace CoreKeeperInventoryEditor
             // AoB scan is offset +1 bit to increase loading times.
             // Creative update 10May23 added a fifth byte.
             // Depreciated header 10May23: 08 00 00 00 00 00 00.
-            AoBScanResultsInventory = await MemLib.AoBScan("0A 00 00 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00", true, true);
+            AoBScanResultsInventory = await MemLib.AoBScan("0A 00 00 00 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00", true, true);
 
             // Get the progress bar maximum.
             progressBar2.Maximum = AoBScanResultsInventory.Count() * 50;
@@ -888,7 +888,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // this function is async, which means it does not block other code
-        public void AddItemToInv(int itemSlot = 1, int type = 1, int variation = 0, int amount = 1, bool loadInventory = false, bool CycleAll = false, bool ExportInventory = false, bool Overwrite = false, bool GetItemInfo = false, bool AddToEmpty = false)
+        public void AddItemToInv(int itemSlot = 1, int type = 1, int variation = 0, int amount = 1, int skillset = 0, bool loadInventory = false, bool CycleAll = false, bool ExportInventory = false, bool Overwrite = false, bool GetItemInfo = false, bool AddToEmpty = false)
         {
             #region Add Items Upon Editing
 
@@ -938,6 +938,7 @@ namespace CoreKeeperInventoryEditor
             int infoType = 0;
             int infoAmount = 0;
             int infoVariant = 0;
+            int infoSkillset = 0;
 
             // Define a varible to hold the new item amount information.
             int finalItemAmount = 0;
@@ -1016,6 +1017,7 @@ namespace CoreKeeperInventoryEditor
                     string slot1Item = baseAddress;
                     string slot1Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                     string slot1Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                    string slot1Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1029,6 +1031,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot1Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot1Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot1Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1037,12 +1040,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot1Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot1Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot1Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot1Amount, "int", (MemLib.ReadUInt(slot1Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot1Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot1Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot1Amount);
                             }
                         }
@@ -1057,6 +1062,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot1-ID", MemLib.ReadInt(slot1Item));
                                 ExportPlayerItems.Add("itemSlot1-Amount", MemLib.ReadInt(slot1Amount));
                                 ExportPlayerItems.Add("itemSlot1-Variation", MemLib.ReadInt(slot1Variation));
+                                ExportPlayerItems.Add("itemSlot1-Skillset", MemLib.ReadInt(slot1Skillset));
                             }
                         }
                         else
@@ -1064,6 +1070,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot1Item);
                             variation = MemLib.ReadInt(slot1Variation);
+                            skillset = MemLib.ReadInt(slot1Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1095,9 +1102,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + " | Skillset: " + (MemLib.ReadInt(slot1Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + " | Skillset: " + (MemLib.ReadInt(slot1Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1126,6 +1133,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot1Item);
                         infoAmount = MemLib.ReadInt(slot1Amount);
                         infoVariant = MemLib.ReadInt(slot1Variation);
+                        infoSkillset = MemLib.ReadInt(slot1Skillset);
                     }
                 }
                 if (itemSlot == 2 || loadInventory || CycleAll || ExportInventory)
@@ -1133,6 +1141,7 @@ namespace CoreKeeperInventoryEditor
                     string slot2Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
                     string slot2Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
                     string slot2Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
+                    string slot2Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1146,6 +1155,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot2Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot2Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot2Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1154,12 +1164,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot2Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot2Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot2Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot2Amount, "int", (MemLib.ReadUInt(slot2Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot2Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot2Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot2Amount);
                             }
                         }
@@ -1174,6 +1186,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot2-ID", MemLib.ReadInt(slot2Item));
                                 ExportPlayerItems.Add("itemSlot2-Amount", MemLib.ReadInt(slot2Amount));
                                 ExportPlayerItems.Add("itemSlot2-Variation", MemLib.ReadInt(slot2Variation));
+                                ExportPlayerItems.Add("itemSlot2-Skillset", MemLib.ReadInt(slot2Skillset));
                             }
                         }
                         else
@@ -1181,6 +1194,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot2Item);
                             variation = MemLib.ReadInt(slot2Variation);
+                            skillset = MemLib.ReadInt(slot2Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1212,9 +1226,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + " | Skillset: " + (MemLib.ReadInt(slot2Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + " | Skillset: " + (MemLib.ReadInt(slot2Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1243,6 +1257,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot2Item);
                         infoAmount = MemLib.ReadInt(slot2Amount);
                         infoVariant = MemLib.ReadInt(slot2Variation);
+                        infoSkillset = MemLib.ReadInt(slot2Skillset);
                     }
                 }
                 if (itemSlot == 3 || loadInventory || CycleAll || ExportInventory)
@@ -1250,6 +1265,7 @@ namespace CoreKeeperInventoryEditor
                     string slot3Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X");
                     string slot3Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X");
                     string slot3Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X");
+                    string slot3Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1263,6 +1279,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot3Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot3Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot3Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1271,12 +1288,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot3Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot3Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot3Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot3Amount, "int", (MemLib.ReadUInt(slot3Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot3Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot3Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot3Amount); // Update slots amount. // Lost and found fix v1.3.3.1.
                             }
                         }
@@ -1291,6 +1310,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot3-ID", MemLib.ReadInt(slot3Item));
                                 ExportPlayerItems.Add("itemSlot3-Amount", MemLib.ReadInt(slot3Amount));
                                 ExportPlayerItems.Add("itemSlot3-Variation", MemLib.ReadInt(slot3Variation));
+                                ExportPlayerItems.Add("itemSlot3-Skillset", MemLib.ReadInt(slot3Skillset));
                             }
                         }
                         else
@@ -1298,6 +1318,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot3Item);
                             variation = MemLib.ReadInt(slot3Variation);
+                            skillset = MemLib.ReadInt(slot3Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1329,9 +1350,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + " | Skillset: " + (MemLib.ReadInt(slot3Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + " | Skillset: " + (MemLib.ReadInt(slot3Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1360,6 +1381,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot3Item);
                         infoAmount = MemLib.ReadInt(slot3Amount);
                         infoVariant = MemLib.ReadInt(slot3Variation);
+                        infoSkillset = MemLib.ReadInt(slot3Skillset);
                     }
                 }
                 if (itemSlot == 4 || loadInventory || CycleAll || ExportInventory)
@@ -1367,6 +1389,7 @@ namespace CoreKeeperInventoryEditor
                     string slot4Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X");
                     string slot4Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
                     string slot4Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
+                    string slot4Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("76", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1380,6 +1403,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot4Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot4Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot4Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1388,12 +1412,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot4Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot4Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot4Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot4Amount, "int", (MemLib.ReadUInt(slot4Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot4Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot4Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot4Amount);
                             }
                         }
@@ -1408,6 +1434,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot4-ID", MemLib.ReadInt(slot4Item));
                                 ExportPlayerItems.Add("itemSlot4-Amount", MemLib.ReadInt(slot4Amount));
                                 ExportPlayerItems.Add("itemSlot4-Variation", MemLib.ReadInt(slot4Variation));
+                                ExportPlayerItems.Add("itemSlot4-Skillset", MemLib.ReadInt(slot4Skillset));
                             }
                         }
                         else
@@ -1415,6 +1442,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot4Item);
                             variation = MemLib.ReadInt(slot4Variation);
+                            skillset = MemLib.ReadInt(slot4Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1446,9 +1474,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + " | Skillset: " + (MemLib.ReadInt(slot4Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + " | Skillset: " + (MemLib.ReadInt(slot4Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1477,6 +1505,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot4Item);
                         infoAmount = MemLib.ReadInt(slot4Amount);
                         infoVariant = MemLib.ReadInt(slot4Variation);
+                        infoSkillset = MemLib.ReadInt(slot4Skillset);
                     }
                 }
                 if (itemSlot == 5 || loadInventory || CycleAll || ExportInventory)
@@ -1484,6 +1513,7 @@ namespace CoreKeeperInventoryEditor
                     string slot5Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X");
                     string slot5Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X");
                     string slot5Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X");
+                    string slot5Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1497,6 +1527,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot5Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot5Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot5Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1505,12 +1536,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot5Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot5Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot5Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot5Amount, "int", (MemLib.ReadUInt(slot5Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot5Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot5Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot5Amount);
                             }
                         }
@@ -1525,6 +1558,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot5-ID", MemLib.ReadInt(slot5Item));
                                 ExportPlayerItems.Add("itemSlot5-Amount", MemLib.ReadInt(slot5Amount));
                                 ExportPlayerItems.Add("itemSlot5-Variation", MemLib.ReadInt(slot5Variation));
+                                ExportPlayerItems.Add("itemSlot5-Skillset", MemLib.ReadInt(slot5Skillset));
                             }
                         }
                         else
@@ -1532,6 +1566,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot5Item);
                             variation = MemLib.ReadInt(slot5Variation);
+                            skillset = MemLib.ReadInt(slot5Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1563,9 +1598,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + " | Skillset: " + (MemLib.ReadInt(slot5Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + " | Skillset: " + (MemLib.ReadInt(slot5Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1594,6 +1629,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot5Item);
                         infoAmount = MemLib.ReadInt(slot5Amount);
                         infoVariant = MemLib.ReadInt(slot5Variation);
+                        infoSkillset = MemLib.ReadInt(slot5Skillset);
                     }
                 }
                 if (itemSlot == 6 || loadInventory || CycleAll || ExportInventory)
@@ -1601,6 +1637,7 @@ namespace CoreKeeperInventoryEditor
                     string slot6Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("100", NumberStyles.Integer)).ToString("X");
                     string slot6Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X");
                     string slot6Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("108", NumberStyles.Integer)).ToString("X");
+                    string slot6Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("116", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1614,6 +1651,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot6Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot6Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot6Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1622,12 +1660,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot6Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot6Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot6Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot6Amount, "int", (MemLib.ReadUInt(slot6Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot6Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot6Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot6Amount);
                             }
                         }
@@ -1642,6 +1682,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot6-ID", MemLib.ReadInt(slot6Item));
                                 ExportPlayerItems.Add("itemSlot6-Amount", MemLib.ReadInt(slot6Amount));
                                 ExportPlayerItems.Add("itemSlot6-Variation", MemLib.ReadInt(slot6Variation));
+                                ExportPlayerItems.Add("itemSlot6-Skillset", MemLib.ReadInt(slot6Skillset));
                             }
                         }
                         else
@@ -1649,6 +1690,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot6Item);
                             variation = MemLib.ReadInt(slot6Variation);
+                            skillset = MemLib.ReadInt(slot6Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1680,9 +1722,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + " | Skillset: " + (MemLib.ReadInt(slot6Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + " | Skillset: " + (MemLib.ReadInt(slot6Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1711,6 +1753,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot6Item);
                         infoAmount = MemLib.ReadInt(slot6Amount);
                         infoVariant = MemLib.ReadInt(slot6Variation);
+                        infoSkillset = MemLib.ReadInt(slot6Skillset);
                     }
                 }
                 if (itemSlot == 7 || loadInventory || CycleAll || ExportInventory)
@@ -1718,6 +1761,7 @@ namespace CoreKeeperInventoryEditor
                     string slot7Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X");
                     string slot7Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
                     string slot7Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("128", NumberStyles.Integer)).ToString("X");
+                    string slot7Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("136", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1731,6 +1775,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot7Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot7Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot7Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1739,12 +1784,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot7Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot7Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot7Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot7Amount, "int", (MemLib.ReadUInt(slot7Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot7Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot7Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot7Amount);
                             }
                         }
@@ -1759,6 +1806,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot7-ID", MemLib.ReadInt(slot7Item));
                                 ExportPlayerItems.Add("itemSlot7-Amount", MemLib.ReadInt(slot7Amount));
                                 ExportPlayerItems.Add("itemSlot7-Variation", MemLib.ReadInt(slot7Variation));
+                                ExportPlayerItems.Add("itemSlot7-Skillset", MemLib.ReadInt(slot7Skillset));
                             }
                         }
                         else
@@ -1766,6 +1814,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot7Item);
                             variation = MemLib.ReadInt(slot7Variation);
+                            skillset = MemLib.ReadInt(slot7Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1797,9 +1846,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + " | Skillset: " + (MemLib.ReadInt(slot7Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + " | Skillset: " + (MemLib.ReadInt(slot7Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1828,6 +1877,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot7Item);
                         infoAmount = MemLib.ReadInt(slot7Amount);
                         infoVariant = MemLib.ReadInt(slot7Variation);
+                        infoSkillset = MemLib.ReadInt(slot7Skillset);
                     }
                 }
                 if (itemSlot == 8 || loadInventory || CycleAll || ExportInventory)
@@ -1835,6 +1885,7 @@ namespace CoreKeeperInventoryEditor
                     string slot8Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("140", NumberStyles.Integer)).ToString("X");
                     string slot8Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("144", NumberStyles.Integer)).ToString("X");
                     string slot8Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("148", NumberStyles.Integer)).ToString("X");
+                    string slot8Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("156", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1848,6 +1899,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot8Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot8Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot8Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1856,12 +1908,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot8Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot8Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot8Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot8Amount, "int", (MemLib.ReadUInt(slot8Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot8Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot8Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot8Amount);
                             }
                         }
@@ -1876,6 +1930,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot8-ID", MemLib.ReadInt(slot8Item));
                                 ExportPlayerItems.Add("itemSlot8-Amount", MemLib.ReadInt(slot8Amount));
                                 ExportPlayerItems.Add("itemSlot8-Variation", MemLib.ReadInt(slot8Variation));
+                                ExportPlayerItems.Add("itemSlot8-Skillset", MemLib.ReadInt(slot8Skillset));
                             }
                         }
                         else
@@ -1883,6 +1938,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot8Item);
                             variation = MemLib.ReadInt(slot8Variation);
+                            skillset = MemLib.ReadInt(slot8Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -1914,9 +1970,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + " | Skillset: " + (MemLib.ReadInt(slot8Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + " | Skillset: " + (MemLib.ReadInt(slot8Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -1945,6 +2001,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot8Item);
                         infoAmount = MemLib.ReadInt(slot8Amount);
                         infoVariant = MemLib.ReadInt(slot8Variation);
+                        infoSkillset = MemLib.ReadInt(slot8Skillset);
                     }
                 }
                 if (itemSlot == 9 || loadInventory || CycleAll || ExportInventory)
@@ -1952,6 +2009,7 @@ namespace CoreKeeperInventoryEditor
                     string slot9Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("160", NumberStyles.Integer)).ToString("X");
                     string slot9Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("164", NumberStyles.Integer)).ToString("X");
                     string slot9Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X");
+                    string slot9Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("176", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -1965,6 +2023,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot9Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot9Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot9Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -1973,12 +2032,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot9Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot9Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot9Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot9Amount, "int", (MemLib.ReadUInt(slot9Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot9Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot9Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot9Amount);
                             }
                         }
@@ -1993,6 +2054,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot9-ID", MemLib.ReadInt(slot9Item));
                                 ExportPlayerItems.Add("itemSlot9-Amount", MemLib.ReadInt(slot9Amount));
                                 ExportPlayerItems.Add("itemSlot9-Variation", MemLib.ReadInt(slot9Variation));
+                                ExportPlayerItems.Add("itemSlot9-Skillset", MemLib.ReadInt(slot9Skillset));
                             }
                         }
                         else
@@ -2000,6 +2062,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot9Item);
                             variation = MemLib.ReadInt(slot9Variation);
+                            skillset = MemLib.ReadInt(slot9Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2031,9 +2094,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + " | Skillset: " + (MemLib.ReadInt(slot9Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + " | Skillset: " + (MemLib.ReadInt(slot9Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2062,6 +2125,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot9Item);
                         infoAmount = MemLib.ReadInt(slot9Amount);
                         infoVariant = MemLib.ReadInt(slot9Variation);
+                        infoSkillset = MemLib.ReadInt(slot9Skillset);
                     }
                 }
                 if (itemSlot == 10 || loadInventory || CycleAll || ExportInventory)
@@ -2069,6 +2133,7 @@ namespace CoreKeeperInventoryEditor
                     string slot10Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("180", NumberStyles.Integer)).ToString("X");
                     string slot10Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("184", NumberStyles.Integer)).ToString("X");
                     string slot10Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("188", NumberStyles.Integer)).ToString("X");
+                    string slot10Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("196", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2082,6 +2147,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot10Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot10Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot10Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2090,12 +2156,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot10Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot10Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot10Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot10Amount, "int", (MemLib.ReadUInt(slot10Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot10Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot10Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot10Amount);
                             }
                         }
@@ -2110,6 +2178,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot10-ID", MemLib.ReadInt(slot10Item));
                                 ExportPlayerItems.Add("itemSlot10-Amount", MemLib.ReadInt(slot10Amount));
                                 ExportPlayerItems.Add("itemSlot10-Variation", MemLib.ReadInt(slot10Variation));
+                                ExportPlayerItems.Add("itemSlot10-Skillset", MemLib.ReadInt(slot10Skillset));
                             }
                         }
                         else
@@ -2117,6 +2186,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot10Item);
                             variation = MemLib.ReadInt(slot10Variation);
+                            skillset = MemLib.ReadInt(slot10Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2148,9 +2218,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + " | Skillset: " + (MemLib.ReadInt(slot10Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + " | Skillset: " + (MemLib.ReadInt(slot10Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2179,6 +2249,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot10Item);
                         infoAmount = MemLib.ReadInt(slot10Amount);
                         infoVariant = MemLib.ReadInt(slot10Variation);
+                        infoSkillset = MemLib.ReadInt(slot10Skillset);
                     }
                 }
                 if (itemSlot == 11 || loadInventory || CycleAll || ExportInventory)
@@ -2186,6 +2257,7 @@ namespace CoreKeeperInventoryEditor
                     string slot11Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("200", NumberStyles.Integer)).ToString("X");
                     string slot11Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("204", NumberStyles.Integer)).ToString("X");
                     string slot11Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("208", NumberStyles.Integer)).ToString("X");
+                    string slot11Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("216", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2199,6 +2271,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot11Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot11Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot11Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2207,12 +2280,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot11Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot11Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot11Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot11Amount, "int", (MemLib.ReadUInt(slot11Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot11Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot11Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot11Amount);
                             }
                         }
@@ -2227,6 +2302,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot11-ID", MemLib.ReadInt(slot11Item));
                                 ExportPlayerItems.Add("itemSlot11-Amount", MemLib.ReadInt(slot11Amount));
                                 ExportPlayerItems.Add("itemSlot11-Variation", MemLib.ReadInt(slot11Variation));
+                                ExportPlayerItems.Add("itemSlot11-Skillset", MemLib.ReadInt(slot11Skillset));
                             }
                         }
                         else
@@ -2234,6 +2310,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot11Item);
                             variation = MemLib.ReadInt(slot11Variation);
+                            skillset = MemLib.ReadInt(slot11Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2265,9 +2342,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + " | Skillset: " + (MemLib.ReadInt(slot11Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + " | Skillset: " + (MemLib.ReadInt(slot11Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2296,6 +2373,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot11Item);
                         infoAmount = MemLib.ReadInt(slot11Amount);
                         infoVariant = MemLib.ReadInt(slot11Variation);
+                        infoSkillset = MemLib.ReadInt(slot11Skillset);
                     }
                 }
                 if (itemSlot == 12 || loadInventory || CycleAll || ExportInventory)
@@ -2303,6 +2381,7 @@ namespace CoreKeeperInventoryEditor
                     string slot12Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("220", NumberStyles.Integer)).ToString("X");
                     string slot12Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X");
                     string slot12Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("228", NumberStyles.Integer)).ToString("X");
+                    string slot12Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("236", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2316,6 +2395,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot12Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot12Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot12Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2324,12 +2404,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot12Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot12Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot12Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot12Amount, "int", (MemLib.ReadUInt(slot12Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot12Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot12Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot12Amount);
                             }
                         }
@@ -2344,6 +2426,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot12-ID", MemLib.ReadInt(slot12Item));
                                 ExportPlayerItems.Add("itemSlot12-Amount", MemLib.ReadInt(slot12Amount));
                                 ExportPlayerItems.Add("itemSlot12-Variation", MemLib.ReadInt(slot12Variation));
+                                ExportPlayerItems.Add("itemSlot12-Skillset", MemLib.ReadInt(slot12Skillset));
                             }
                         }
                         else
@@ -2351,6 +2434,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot12Item);
                             variation = MemLib.ReadInt(slot12Variation);
+                            skillset = MemLib.ReadInt(slot12Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2382,9 +2466,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + " | Skillset: " + (MemLib.ReadInt(slot12Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + " | Skillset: " + (MemLib.ReadInt(slot12Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2413,6 +2497,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot12Item);
                         infoAmount = MemLib.ReadInt(slot12Amount);
                         infoVariant = MemLib.ReadInt(slot12Variation);
+                        infoSkillset = MemLib.ReadInt(slot12Skillset);
                     }
                 }
                 if (itemSlot == 13 || loadInventory || CycleAll || ExportInventory)
@@ -2420,6 +2505,7 @@ namespace CoreKeeperInventoryEditor
                     string slot13Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("240", NumberStyles.Integer)).ToString("X");
                     string slot13Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
                     string slot13Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("248", NumberStyles.Integer)).ToString("X");
+                    string slot13Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("256", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2433,6 +2519,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot13Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot13Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot13Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2441,12 +2528,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot13Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot13Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot13Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot13Amount, "int", (MemLib.ReadUInt(slot13Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot13Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot13Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot13Amount);
                             }
                         }
@@ -2461,6 +2550,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot13-ID", MemLib.ReadInt(slot13Item));
                                 ExportPlayerItems.Add("itemSlot13-Amount", MemLib.ReadInt(slot13Amount));
                                 ExportPlayerItems.Add("itemSlot13-Variation", MemLib.ReadInt(slot13Variation));
+                                ExportPlayerItems.Add("itemSlot13-Skillset", MemLib.ReadInt(slot13Skillset));
                             }
                         }
                         else
@@ -2468,6 +2558,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot13Item);
                             variation = MemLib.ReadInt(slot13Variation);
+                            skillset = MemLib.ReadInt(slot13Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2499,9 +2590,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + " | Skillset: " + (MemLib.ReadInt(slot13Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + " | Skillset: " + (MemLib.ReadInt(slot13Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2530,6 +2621,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot13Item);
                         infoAmount = MemLib.ReadInt(slot13Amount);
                         infoVariant = MemLib.ReadInt(slot13Variation);
+                        infoSkillset = MemLib.ReadInt(slot13Skillset);
                     }
                 }
                 if (itemSlot == 14 || loadInventory || CycleAll || ExportInventory)
@@ -2537,6 +2629,7 @@ namespace CoreKeeperInventoryEditor
                     string slot14Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("260", NumberStyles.Integer)).ToString("X");
                     string slot14Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("264", NumberStyles.Integer)).ToString("X");
                     string slot14Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("268", NumberStyles.Integer)).ToString("X");
+                    string slot14Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("276", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2550,6 +2643,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot14Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot14Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot14Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2558,12 +2652,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot14Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot14Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot14Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot14Amount, "int", (MemLib.ReadUInt(slot14Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot14Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot14Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot14Amount);
                             }
                         }
@@ -2578,6 +2674,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot14-ID", MemLib.ReadInt(slot14Item));
                                 ExportPlayerItems.Add("itemSlot14-Amount", MemLib.ReadInt(slot14Amount));
                                 ExportPlayerItems.Add("itemSlot14-Variation", MemLib.ReadInt(slot14Variation));
+                                ExportPlayerItems.Add("itemSlot14-Skillset", MemLib.ReadInt(slot14Skillset));
                             }
                         }
                         else
@@ -2585,6 +2682,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot14Item);
                             variation = MemLib.ReadInt(slot14Variation);
+                            skillset = MemLib.ReadInt(slot14Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2616,9 +2714,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + " | Skillset: " + (MemLib.ReadInt(slot14Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + " | Skillset: " + (MemLib.ReadInt(slot14Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2647,6 +2745,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot14Item);
                         infoAmount = MemLib.ReadInt(slot14Amount);
                         infoVariant = MemLib.ReadInt(slot14Variation);
+                        infoSkillset = MemLib.ReadInt(slot14Skillset);
                     }
                 }
                 if (itemSlot == 15 || loadInventory || CycleAll || ExportInventory)
@@ -2654,6 +2753,7 @@ namespace CoreKeeperInventoryEditor
                     string slot15Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("280", NumberStyles.Integer)).ToString("X");
                     string slot15Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("284", NumberStyles.Integer)).ToString("X");
                     string slot15Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X");
+                    string slot15Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("296", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2667,6 +2767,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot15Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot15Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot15Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2675,12 +2776,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot15Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot15Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot15Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot15Amount, "int", (MemLib.ReadUInt(slot15Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot15Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot15Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot15Amount);
                             }
                         }
@@ -2695,6 +2798,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot15-ID", MemLib.ReadInt(slot15Item));
                                 ExportPlayerItems.Add("itemSlot15-Amount", MemLib.ReadInt(slot15Amount));
                                 ExportPlayerItems.Add("itemSlot15-Variation", MemLib.ReadInt(slot15Variation));
+                                ExportPlayerItems.Add("itemSlot15-Skillset", MemLib.ReadInt(slot15Skillset));
                             }
                         }
                         else
@@ -2702,6 +2806,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot15Item);
                             variation = MemLib.ReadInt(slot15Variation);
+                            skillset = MemLib.ReadInt(slot15Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2733,9 +2838,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + " | Skillset: " + (MemLib.ReadInt(slot15Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + " | Skillset: " + (MemLib.ReadInt(slot15Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2764,6 +2869,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot15Item);
                         infoAmount = MemLib.ReadInt(slot15Amount);
                         infoVariant = MemLib.ReadInt(slot15Variation);
+                        infoSkillset = MemLib.ReadInt(slot15Skillset);
                     }
                 }
                 if (itemSlot == 16 || loadInventory || CycleAll || ExportInventory)
@@ -2771,6 +2877,7 @@ namespace CoreKeeperInventoryEditor
                     string slot16Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("300", NumberStyles.Integer)).ToString("X");
                     string slot16Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("304", NumberStyles.Integer)).ToString("X");
                     string slot16Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
+                    string slot16Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("316", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2784,6 +2891,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot16Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot16Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot16Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2792,12 +2900,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot16Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot16Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot16Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot16Amount, "int", (MemLib.ReadUInt(slot16Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot16Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot16Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot16Amount);
                             }
                         }
@@ -2812,6 +2922,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot16-ID", MemLib.ReadInt(slot16Item));
                                 ExportPlayerItems.Add("itemSlot16-Amount", MemLib.ReadInt(slot16Amount));
                                 ExportPlayerItems.Add("itemSlot16-Variation", MemLib.ReadInt(slot16Variation));
+                                ExportPlayerItems.Add("itemSlot16-Skillset", MemLib.ReadInt(slot16Skillset));
                             }
                         }
                         else
@@ -2819,6 +2930,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot16Item);
                             variation = MemLib.ReadInt(slot16Variation);
+                            skillset = MemLib.ReadInt(slot16Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2850,9 +2962,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + " | Skillset: " + (MemLib.ReadInt(slot16Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + " | Skillset: " + (MemLib.ReadInt(slot16Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2881,6 +2993,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot16Item);
                         infoAmount = MemLib.ReadInt(slot16Amount);
                         infoVariant = MemLib.ReadInt(slot16Variation);
+                        infoSkillset = MemLib.ReadInt(slot16Skillset);
                     }
                 }
                 if (itemSlot == 17 || loadInventory || CycleAll || ExportInventory)
@@ -2888,6 +3001,7 @@ namespace CoreKeeperInventoryEditor
                     string slot17Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("320", NumberStyles.Integer)).ToString("X");
                     string slot17Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("324", NumberStyles.Integer)).ToString("X");
                     string slot17Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("328", NumberStyles.Integer)).ToString("X");
+                    string slot17Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -2901,6 +3015,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot17Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot17Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot17Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -2909,12 +3024,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot17Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot17Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot17Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot17Amount, "int", (MemLib.ReadUInt(slot17Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot17Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot17Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot17Amount);
                             }
                         }
@@ -2929,6 +3046,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot17-ID", MemLib.ReadInt(slot17Item));
                                 ExportPlayerItems.Add("itemSlot17-Amount", MemLib.ReadInt(slot17Amount));
                                 ExportPlayerItems.Add("itemSlot17-Variation", MemLib.ReadInt(slot17Variation));
+                                ExportPlayerItems.Add("itemSlot17-Skillset", MemLib.ReadInt(slot17Skillset));
                             }
                         }
                         else
@@ -2936,6 +3054,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot17Item);
                             variation = MemLib.ReadInt(slot17Variation);
+                            skillset = MemLib.ReadInt(slot17Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -2967,9 +3086,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + " | Skillset: " + (MemLib.ReadInt(slot17Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + " | Skillset: " + (MemLib.ReadInt(slot17Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -2998,6 +3117,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot17Item);
                         infoAmount = MemLib.ReadInt(slot17Amount);
                         infoVariant = MemLib.ReadInt(slot17Variation);
+                        infoSkillset = MemLib.ReadInt(slot17Skillset);
                     }
                 }
                 if (itemSlot == 18 || loadInventory || CycleAll || ExportInventory)
@@ -3005,6 +3125,7 @@ namespace CoreKeeperInventoryEditor
                     string slot18Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("340", NumberStyles.Integer)).ToString("X");
                     string slot18Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X");
                     string slot18Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("348", NumberStyles.Integer)).ToString("X");
+                    string slot18Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("356", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3018,6 +3139,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot18Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot18Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot18Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3026,12 +3148,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot18Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot18Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot18Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot18Amount, "int", (MemLib.ReadUInt(slot18Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot18Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot18Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot18Amount);
                             }
                         }
@@ -3046,6 +3170,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot18-ID", MemLib.ReadInt(slot18Item));
                                 ExportPlayerItems.Add("itemSlot18-Amount", MemLib.ReadInt(slot18Amount));
                                 ExportPlayerItems.Add("itemSlot18-Variation", MemLib.ReadInt(slot18Variation));
+                                ExportPlayerItems.Add("itemSlot18-Skillset", MemLib.ReadInt(slot18Skillset));
                             }
                         }
                         else
@@ -3053,6 +3178,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot18Item);
                             variation = MemLib.ReadInt(slot18Variation);
+                            skillset = MemLib.ReadInt(slot18Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3084,9 +3210,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + " | Skillset: " + (MemLib.ReadInt(slot18Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + " | Skillset: " + (MemLib.ReadInt(slot18Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3115,6 +3241,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot18Item);
                         infoAmount = MemLib.ReadInt(slot18Amount);
                         infoVariant = MemLib.ReadInt(slot18Variation);
+                        infoSkillset = MemLib.ReadInt(slot18Skillset);
                     }
                 }
                 if (itemSlot == 19 || loadInventory || CycleAll || ExportInventory)
@@ -3122,6 +3249,7 @@ namespace CoreKeeperInventoryEditor
                     string slot19Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X");
                     string slot19Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("364", NumberStyles.Integer)).ToString("X");
                     string slot19Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X");
+                    string slot19Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3135,6 +3263,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot19Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot19Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot19Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3143,12 +3272,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot19Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot19Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot19Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot19Amount, "int", (MemLib.ReadUInt(slot19Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot19Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot19Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot19Amount);
                             }
                         }
@@ -3163,6 +3294,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot19-ID", MemLib.ReadInt(slot19Item));
                                 ExportPlayerItems.Add("itemSlot19-Amount", MemLib.ReadInt(slot19Amount));
                                 ExportPlayerItems.Add("itemSlot19-Variation", MemLib.ReadInt(slot19Variation));
+                                ExportPlayerItems.Add("itemSlot19-Skillset", MemLib.ReadInt(slot19Skillset));
                             }
                         }
                         else
@@ -3170,6 +3302,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot19Item);
                             variation = MemLib.ReadInt(slot19Variation);
+                            skillset = MemLib.ReadInt(slot19Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3201,9 +3334,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + " | Skillset: " + (MemLib.ReadInt(slot19Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + " | Skillset: " + (MemLib.ReadInt(slot19Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3232,6 +3365,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot19Item);
                         infoAmount = MemLib.ReadInt(slot19Amount);
                         infoVariant = MemLib.ReadInt(slot19Variation);
+                        infoSkillset = MemLib.ReadInt(slot19Skillset);
                     }
                 }
                 if (itemSlot == 20 || loadInventory || CycleAll || ExportInventory)
@@ -3239,6 +3373,7 @@ namespace CoreKeeperInventoryEditor
                     string slot20Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("380", NumberStyles.Integer)).ToString("X");
                     string slot20Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X");
                     string slot20Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X");
+                    string slot20Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("396", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3252,6 +3387,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot20Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot20Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot20Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3260,12 +3396,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot20Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot20Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot20Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot20Amount, "int", (MemLib.ReadUInt(slot20Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot20Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot20Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot20Amount);
                             }
                         }
@@ -3280,6 +3418,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot20-ID", MemLib.ReadInt(slot20Item));
                                 ExportPlayerItems.Add("itemSlot20-Amount", MemLib.ReadInt(slot20Amount));
                                 ExportPlayerItems.Add("itemSlot20-Variation", MemLib.ReadInt(slot20Variation));
+                                ExportPlayerItems.Add("itemSlot20-Skillset", MemLib.ReadInt(slot20Skillset));
                             }
                         }
                         else
@@ -3287,6 +3426,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot20Item);
                             variation = MemLib.ReadInt(slot20Variation);
+                            skillset = MemLib.ReadInt(slot20Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3318,9 +3458,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + " | Skillset: " + (MemLib.ReadInt(slot20Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + " | Skillset: " + (MemLib.ReadInt(slot20Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3349,6 +3489,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot20Item);
                         infoAmount = MemLib.ReadInt(slot20Amount);
                         infoVariant = MemLib.ReadInt(slot20Variation);
+                        infoSkillset = MemLib.ReadInt(slot20Skillset);
                     }
                 }
                 if (itemSlot == 21 || loadInventory || CycleAll || ExportInventory)
@@ -3356,6 +3497,7 @@ namespace CoreKeeperInventoryEditor
                     string slot21Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("400", NumberStyles.Integer)).ToString("X");
                     string slot21Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("404", NumberStyles.Integer)).ToString("X");
                     string slot21Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X");
+                    string slot21Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("416", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3369,6 +3511,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot21Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot21Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot21Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3377,12 +3520,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot21Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot21Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot21Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot21Amount, "int", (MemLib.ReadUInt(slot21Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot21Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot21Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot21Amount);
                             }
                         }
@@ -3397,6 +3542,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot21-ID", MemLib.ReadInt(slot21Item));
                                 ExportPlayerItems.Add("itemSlot21-Amount", MemLib.ReadInt(slot21Amount));
                                 ExportPlayerItems.Add("itemSlot21-Variation", MemLib.ReadInt(slot21Variation));
+                                ExportPlayerItems.Add("itemSlot21-Skillset", MemLib.ReadInt(slot21Skillset));
                             }
                         }
                         else
@@ -3404,6 +3550,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot21Item);
                             variation = MemLib.ReadInt(slot21Variation);
+                            skillset = MemLib.ReadInt(slot21Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3435,9 +3582,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + " | Skillset: " + (MemLib.ReadInt(slot21Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + " | Skillset: " + (MemLib.ReadInt(slot21Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3466,6 +3613,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot21Item);
                         infoAmount = MemLib.ReadInt(slot21Amount);
                         infoVariant = MemLib.ReadInt(slot21Variation);
+                        infoSkillset = MemLib.ReadInt(slot21Skillset);
                     }
                 }
                 if (itemSlot == 22 || loadInventory || CycleAll || ExportInventory)
@@ -3473,6 +3621,7 @@ namespace CoreKeeperInventoryEditor
                     string slot22Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("420", NumberStyles.Integer)).ToString("X");
                     string slot22Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X");
                     string slot22Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("428", NumberStyles.Integer)).ToString("X");
+                    string slot22Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("436", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3486,6 +3635,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot22Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot22Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot22Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3494,12 +3644,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot22Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot22Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot22Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot22Amount, "int", (MemLib.ReadUInt(slot22Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot22Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot22Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot22Amount);
                             }
                         }
@@ -3514,6 +3666,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot22-ID", MemLib.ReadInt(slot22Item));
                                 ExportPlayerItems.Add("itemSlot22-Amount", MemLib.ReadInt(slot22Amount));
                                 ExportPlayerItems.Add("itemSlot22-Variation", MemLib.ReadInt(slot22Variation));
+                                ExportPlayerItems.Add("itemSlot22-Skillset", MemLib.ReadInt(slot22Skillset));
                             }
                         }
                         else
@@ -3521,6 +3674,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot22Item);
                             variation = MemLib.ReadInt(slot22Variation);
+                            skillset = MemLib.ReadInt(slot22Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3552,9 +3706,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + " | Skillset: " + (MemLib.ReadInt(slot22Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + " | Skillset: " + (MemLib.ReadInt(slot22Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3583,6 +3737,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot22Item);
                         infoAmount = MemLib.ReadInt(slot22Amount);
                         infoVariant = MemLib.ReadInt(slot22Variation);
+                        infoSkillset = MemLib.ReadInt(slot22Skillset);
                     }
                 }
                 if (itemSlot == 23 || loadInventory || CycleAll || ExportInventory)
@@ -3590,6 +3745,7 @@ namespace CoreKeeperInventoryEditor
                     string slot23Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("440", NumberStyles.Integer)).ToString("X");
                     string slot23Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("444", NumberStyles.Integer)).ToString("X");
                     string slot23Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("448", NumberStyles.Integer)).ToString("X");
+                    string slot23Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("456", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3603,6 +3759,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot23Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot23Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot23Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3611,12 +3768,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot23Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot23Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot23Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot23Amount, "int", (MemLib.ReadUInt(slot23Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot23Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot23Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot23Amount);
                             }
                         }
@@ -3631,6 +3790,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot23-ID", MemLib.ReadInt(slot23Item));
                                 ExportPlayerItems.Add("itemSlot23-Amount", MemLib.ReadInt(slot23Amount));
                                 ExportPlayerItems.Add("itemSlot23-Variation", MemLib.ReadInt(slot23Variation));
+                                ExportPlayerItems.Add("itemSlot23-Skillset", MemLib.ReadInt(slot23Skillset));
                             }
                         }
                         else
@@ -3638,6 +3798,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot23Item);
                             variation = MemLib.ReadInt(slot23Variation);
+                            skillset = MemLib.ReadInt(slot23Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3669,9 +3830,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + " | Skillset: " + (MemLib.ReadInt(slot23Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + " | Skillset: " + (MemLib.ReadInt(slot23Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3700,6 +3861,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot23Item);
                         infoAmount = MemLib.ReadInt(slot23Amount);
                         infoVariant = MemLib.ReadInt(slot23Variation);
+                        infoSkillset = MemLib.ReadInt(slot23Skillset);
                     }
                 }
                 if (itemSlot == 24 || loadInventory || CycleAll || ExportInventory)
@@ -3707,6 +3869,7 @@ namespace CoreKeeperInventoryEditor
                     string slot24Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("460", NumberStyles.Integer)).ToString("X");
                     string slot24Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("464", NumberStyles.Integer)).ToString("X");
                     string slot24Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("468", NumberStyles.Integer)).ToString("X");
+                    string slot24Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("476", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3720,6 +3883,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot24Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot24Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot24Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3728,12 +3892,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot24Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot24Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot24Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot24Amount, "int", (MemLib.ReadUInt(slot24Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot24Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot24Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot24Amount);
                             }
                         }
@@ -3748,6 +3914,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot24-ID", MemLib.ReadInt(slot24Item));
                                 ExportPlayerItems.Add("itemSlot24-Amount", MemLib.ReadInt(slot24Amount));
                                 ExportPlayerItems.Add("itemSlot24-Variation", MemLib.ReadInt(slot24Variation));
+                                ExportPlayerItems.Add("itemSlot24-Skillset", MemLib.ReadInt(slot24Skillset));
                             }
                         }
                         else
@@ -3755,6 +3922,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot24Item);
                             variation = MemLib.ReadInt(slot24Variation);
+                            skillset = MemLib.ReadInt(slot24Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3786,9 +3954,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + " | Skillset: " + (MemLib.ReadInt(slot24Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + " | Skillset: " + (MemLib.ReadInt(slot24Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3817,6 +3985,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot24Item);
                         infoAmount = MemLib.ReadInt(slot24Amount);
                         infoVariant = MemLib.ReadInt(slot24Variation);
+                        infoSkillset = MemLib.ReadInt(slot24Skillset);
                     }
                 }
                 if (itemSlot == 25 || loadInventory || CycleAll || ExportInventory)
@@ -3824,6 +3993,7 @@ namespace CoreKeeperInventoryEditor
                     string slot25Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("480", NumberStyles.Integer)).ToString("X");
                     string slot25Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("484", NumberStyles.Integer)).ToString("X");
                     string slot25Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("488", NumberStyles.Integer)).ToString("X");
+                    string slot25Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("496", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3837,6 +4007,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot25Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot25Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot25Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3845,12 +4016,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot25Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot25Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot25Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot25Amount, "int", (MemLib.ReadUInt(slot25Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot25Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot25Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot25Amount);
                             }
                         }
@@ -3865,6 +4038,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot25-ID", MemLib.ReadInt(slot25Item));
                                 ExportPlayerItems.Add("itemSlot25-Amount", MemLib.ReadInt(slot25Amount));
                                 ExportPlayerItems.Add("itemSlot25-Variation", MemLib.ReadInt(slot25Variation));
+                                ExportPlayerItems.Add("itemSlot25-Skillset", MemLib.ReadInt(slot25Skillset));
                             }
                         }
                         else
@@ -3872,6 +4046,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot25Item);
                             variation = MemLib.ReadInt(slot25Variation);
+                            skillset = MemLib.ReadInt(slot25Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -3903,9 +4078,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + " | Skillset: " + (MemLib.ReadInt(slot25Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + " | Skillset: " + (MemLib.ReadInt(slot25Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -3934,6 +4109,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot25Item);
                         infoAmount = MemLib.ReadInt(slot25Amount);
                         infoVariant = MemLib.ReadInt(slot25Variation);
+                        infoSkillset = MemLib.ReadInt(slot25Skillset);
                     }
                 }
                 if (itemSlot == 26 || loadInventory || CycleAll || ExportInventory)
@@ -3941,6 +4117,7 @@ namespace CoreKeeperInventoryEditor
                     string slot26Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("500", NumberStyles.Integer)).ToString("X");
                     string slot26Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("504", NumberStyles.Integer)).ToString("X");
                     string slot26Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("508", NumberStyles.Integer)).ToString("X");
+                    string slot26Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("516", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -3954,6 +4131,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot26Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot26Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot26Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -3962,12 +4140,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot26Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot26Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot26Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot26Amount, "int", (MemLib.ReadUInt(slot26Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot26Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot26Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot26Amount);
                             }
                         }
@@ -3982,6 +4162,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot26-ID", MemLib.ReadInt(slot26Item));
                                 ExportPlayerItems.Add("itemSlot26-Amount", MemLib.ReadInt(slot26Amount));
                                 ExportPlayerItems.Add("itemSlot26-Variation", MemLib.ReadInt(slot26Variation));
+                                ExportPlayerItems.Add("itemSlot26-Skillset", MemLib.ReadInt(slot26Skillset));
                             }
                         }
                         else
@@ -3989,6 +4170,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot26Item);
                             variation = MemLib.ReadInt(slot26Variation);
+                            skillset = MemLib.ReadInt(slot26Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4020,9 +4202,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + " | Skillset: " + (MemLib.ReadInt(slot26Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + " | Skillset: " + (MemLib.ReadInt(slot26Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4051,6 +4233,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot26Item);
                         infoAmount = MemLib.ReadInt(slot26Amount);
                         infoVariant = MemLib.ReadInt(slot26Variation);
+                        infoSkillset = MemLib.ReadInt(slot26Skillset);
                     }
                 }
                 if (itemSlot == 27 || loadInventory || CycleAll || ExportInventory)
@@ -4058,6 +4241,7 @@ namespace CoreKeeperInventoryEditor
                     string slot27Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("520", NumberStyles.Integer)).ToString("X");
                     string slot27Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("524", NumberStyles.Integer)).ToString("X");
                     string slot27Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("528", NumberStyles.Integer)).ToString("X");
+                    string slot27Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("536", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4071,6 +4255,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot27Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot27Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot27Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4079,12 +4264,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot27Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot27Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot27Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot27Amount, "int", (MemLib.ReadUInt(slot27Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot27Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot27Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot27Amount);
                             }
                         }
@@ -4099,6 +4286,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot27-ID", MemLib.ReadInt(slot27Item));
                                 ExportPlayerItems.Add("itemSlot27-Amount", MemLib.ReadInt(slot27Amount));
                                 ExportPlayerItems.Add("itemSlot27-Variation", MemLib.ReadInt(slot27Variation));
+                                ExportPlayerItems.Add("itemSlot27-Skillset", MemLib.ReadInt(slot27Skillset));
                             }
                         }
                         else
@@ -4106,6 +4294,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot27Item);
                             variation = MemLib.ReadInt(slot27Variation);
+                            skillset = MemLib.ReadInt(slot27Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4137,9 +4326,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + " | Skillset: " + (MemLib.ReadInt(slot27Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + " | Skillset: " + (MemLib.ReadInt(slot27Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4168,6 +4357,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot27Item);
                         infoAmount = MemLib.ReadInt(slot27Amount);
                         infoVariant = MemLib.ReadInt(slot27Variation);
+                        infoSkillset = MemLib.ReadInt(slot27Skillset);
                     }
                 }
                 if (itemSlot == 28 || loadInventory || CycleAll || ExportInventory)
@@ -4175,6 +4365,7 @@ namespace CoreKeeperInventoryEditor
                     string slot28Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("540", NumberStyles.Integer)).ToString("X");
                     string slot28Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("544", NumberStyles.Integer)).ToString("X");
                     string slot28Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("548", NumberStyles.Integer)).ToString("X");
+                    string slot28Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("556", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4188,6 +4379,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot28Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot28Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot28Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4196,12 +4388,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot28Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot28Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot28Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot28Amount, "int", (MemLib.ReadUInt(slot28Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot28Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot28Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot28Amount);
                             }
                         }
@@ -4216,6 +4410,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot28-ID", MemLib.ReadInt(slot28Item));
                                 ExportPlayerItems.Add("itemSlot28-Amount", MemLib.ReadInt(slot28Amount));
                                 ExportPlayerItems.Add("itemSlot28-Variation", MemLib.ReadInt(slot28Variation));
+                                ExportPlayerItems.Add("itemSlot28-Skillset", MemLib.ReadInt(slot28Skillset));
                             }
                         }
                         else
@@ -4223,6 +4418,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot28Item);
                             variation = MemLib.ReadInt(slot28Variation);
+                            skillset = MemLib.ReadInt(slot28Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4254,9 +4450,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + " | Skillset: " + (MemLib.ReadInt(slot28Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + " | Skillset: " + (MemLib.ReadInt(slot28Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4285,6 +4481,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot28Item);
                         infoAmount = MemLib.ReadInt(slot28Amount);
                         infoVariant = MemLib.ReadInt(slot28Variation);
+                        infoSkillset = MemLib.ReadInt(slot28Skillset);
                     }
                 }
                 if (itemSlot == 29 || loadInventory || CycleAll || ExportInventory)
@@ -4292,6 +4489,7 @@ namespace CoreKeeperInventoryEditor
                     string slot29Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("560", NumberStyles.Integer)).ToString("X");
                     string slot29Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("564", NumberStyles.Integer)).ToString("X");
                     string slot29Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("568", NumberStyles.Integer)).ToString("X");
+                    string slot29Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("576", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4305,6 +4503,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot29Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot29Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot29Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4313,12 +4512,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot29Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot29Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot29Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot29Amount, "int", (MemLib.ReadUInt(slot29Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot29Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot29Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot29Amount);
                             }
                         }
@@ -4333,6 +4534,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot29-ID", MemLib.ReadInt(slot29Item));
                                 ExportPlayerItems.Add("itemSlot29-Amount", MemLib.ReadInt(slot29Amount));
                                 ExportPlayerItems.Add("itemSlot29-Variation", MemLib.ReadInt(slot29Variation));
+                                ExportPlayerItems.Add("itemSlot29-Skillset", MemLib.ReadInt(slot29Skillset));
                             }
                         }
                         else
@@ -4340,6 +4542,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot29Item);
                             variation = MemLib.ReadInt(slot29Variation);
+                            skillset = MemLib.ReadInt(slot29Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4371,9 +4574,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + " | Skillset: " + (MemLib.ReadInt(slot29Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + " | Skillset: " + (MemLib.ReadInt(slot29Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4402,6 +4605,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot29Item);
                         infoAmount = MemLib.ReadInt(slot29Amount);
                         infoVariant = MemLib.ReadInt(slot29Variation);
+                        infoSkillset = MemLib.ReadInt(slot29Skillset);
                     }
                 }
                 if (itemSlot == 30 || loadInventory || CycleAll || ExportInventory)
@@ -4409,6 +4613,7 @@ namespace CoreKeeperInventoryEditor
                     string slot30Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("580", NumberStyles.Integer)).ToString("X");
                     string slot30Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("584", NumberStyles.Integer)).ToString("X");
                     string slot30Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("588", NumberStyles.Integer)).ToString("X");
+                    string slot30Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("596", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4422,6 +4627,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot30Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot30Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot30Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4430,12 +4636,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot30Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot30Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot30Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot30Amount, "int", (MemLib.ReadUInt(slot30Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot30Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot30Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot30Amount);
                             }
                         }
@@ -4450,6 +4658,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot30-ID", MemLib.ReadInt(slot30Item));
                                 ExportPlayerItems.Add("itemSlot30-Amount", MemLib.ReadInt(slot30Amount));
                                 ExportPlayerItems.Add("itemSlot30-Variation", MemLib.ReadInt(slot30Variation));
+                                ExportPlayerItems.Add("itemSlot30-Skillset", MemLib.ReadInt(slot30Skillset));
                             }
                         }
                         else
@@ -4457,6 +4666,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot30Item);
                             variation = MemLib.ReadInt(slot30Variation);
+                            skillset = MemLib.ReadInt(slot30Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4488,9 +4698,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + " | Skillset: " + (MemLib.ReadInt(slot30Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + " | Skillset: " + (MemLib.ReadInt(slot30Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4522,6 +4732,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot30Item);
                         infoAmount = MemLib.ReadInt(slot30Amount);
                         infoVariant = MemLib.ReadInt(slot30Variation);
+                        infoSkillset = MemLib.ReadInt(slot30Skillset);
                     }
                 }
                 if (itemSlot == 31 || loadInventory || CycleAll || ExportInventory)
@@ -4529,6 +4740,7 @@ namespace CoreKeeperInventoryEditor
                     string slot31Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("600", NumberStyles.Integer)).ToString("X");
                     string slot31Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("604", NumberStyles.Integer)).ToString("X");
                     string slot31Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("608", NumberStyles.Integer)).ToString("X");
+                    string slot31Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("616", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4542,6 +4754,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot31Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot31Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot31Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4550,12 +4763,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot31Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot31Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot31Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot31Amount, "int", (MemLib.ReadUInt(slot31Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot31Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot31Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot31Amount);
                             }
                         }
@@ -4570,6 +4785,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot31-ID", MemLib.ReadInt(slot31Item));
                                 ExportPlayerItems.Add("itemSlot31-Amount", MemLib.ReadInt(slot31Amount));
                                 ExportPlayerItems.Add("itemSlot31-Variation", MemLib.ReadInt(slot31Variation));
+                                ExportPlayerItems.Add("itemSlot31-Skillset", MemLib.ReadInt(slot31Skillset));
                             }
                         }
                         else
@@ -4577,6 +4793,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot31Item);
                             variation = MemLib.ReadInt(slot31Variation);
+                            skillset = MemLib.ReadInt(slot31Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4608,9 +4825,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox31.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)) + " | Skillset: " + (MemLib.ReadInt(slot31Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)) + " | Skillset: " + (MemLib.ReadInt(slot31Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4642,6 +4859,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot31Item);
                         infoAmount = MemLib.ReadInt(slot31Amount);
                         infoVariant = MemLib.ReadInt(slot31Variation);
+                        infoSkillset = MemLib.ReadInt(slot31Skillset);
                     }
                 }
                 if (itemSlot == 32 || loadInventory || CycleAll || ExportInventory)
@@ -4649,6 +4867,7 @@ namespace CoreKeeperInventoryEditor
                     string slot32Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("620", NumberStyles.Integer)).ToString("X");
                     string slot32Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("624", NumberStyles.Integer)).ToString("X");
                     string slot32Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("628", NumberStyles.Integer)).ToString("X");
+                    string slot32Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("636", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4662,6 +4881,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot32Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot32Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot32Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4670,12 +4890,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot32Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot32Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot32Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot32Amount, "int", (MemLib.ReadUInt(slot32Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot32Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot32Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot32Amount);
                             }
                         }
@@ -4690,6 +4912,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot32-ID", MemLib.ReadInt(slot32Item));
                                 ExportPlayerItems.Add("itemSlot32-Amount", MemLib.ReadInt(slot32Amount));
                                 ExportPlayerItems.Add("itemSlot32-Variation", MemLib.ReadInt(slot32Variation));
+                                ExportPlayerItems.Add("itemSlot32-Skillset", MemLib.ReadInt(slot32Skillset));
                             }
                         }
                         else
@@ -4697,6 +4920,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot32Item);
                             variation = MemLib.ReadInt(slot32Variation);
+                            skillset = MemLib.ReadInt(slot32Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4728,9 +4952,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox32.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)) + " | Skillset: " + (MemLib.ReadInt(slot32Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)) + " | Skillset: " + (MemLib.ReadInt(slot32Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4762,6 +4986,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot32Item);
                         infoAmount = MemLib.ReadInt(slot32Amount);
                         infoVariant = MemLib.ReadInt(slot32Variation);
+                        infoSkillset = MemLib.ReadInt(slot32Skillset);
                     }
                 }
                 if (itemSlot == 33 || loadInventory || CycleAll || ExportInventory)
@@ -4769,6 +4994,7 @@ namespace CoreKeeperInventoryEditor
                     string slot33Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("640", NumberStyles.Integer)).ToString("X");
                     string slot33Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("644", NumberStyles.Integer)).ToString("X");
                     string slot33Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("648", NumberStyles.Integer)).ToString("X");
+                    string slot33Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("656", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4782,6 +5008,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot33Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot33Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot33Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4790,12 +5017,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot33Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot33Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot33Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot33Amount, "int", (MemLib.ReadUInt(slot33Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot33Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot33Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot33Amount);
                             }
                         }
@@ -4810,6 +5039,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot33-ID", MemLib.ReadInt(slot33Item));
                                 ExportPlayerItems.Add("itemSlot33-Amount", MemLib.ReadInt(slot33Amount));
                                 ExportPlayerItems.Add("itemSlot33-Variation", MemLib.ReadInt(slot33Variation));
+                                ExportPlayerItems.Add("itemSlot33-Skillset", MemLib.ReadInt(slot33Skillset));
                             }
                         }
                         else
@@ -4817,6 +5047,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot33Item);
                             variation = MemLib.ReadInt(slot33Variation);
+                            skillset = MemLib.ReadInt(slot33Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4848,9 +5079,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox33.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)) + " | Skillset: " + (MemLib.ReadInt(slot33Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)) + " | Skillset: " + (MemLib.ReadInt(slot33Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -4882,6 +5113,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot33Item);
                         infoAmount = MemLib.ReadInt(slot33Amount);
                         infoVariant = MemLib.ReadInt(slot33Variation);
+                        infoSkillset = MemLib.ReadInt(slot33Skillset);
                     }
                 }
                 if (itemSlot == 34 || loadInventory || CycleAll || ExportInventory)
@@ -4889,6 +5121,7 @@ namespace CoreKeeperInventoryEditor
                     string slot34Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("660", NumberStyles.Integer)).ToString("X");
                     string slot34Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("664", NumberStyles.Integer)).ToString("X");
                     string slot34Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("668", NumberStyles.Integer)).ToString("X");
+                    string slot34Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("676", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -4902,6 +5135,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot34Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot34Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot34Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -4910,12 +5144,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot34Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot34Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot34Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot34Amount, "int", (MemLib.ReadUInt(slot34Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot34Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot34Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot34Amount);
                             }
                         }
@@ -4930,6 +5166,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot34-ID", MemLib.ReadInt(slot34Item));
                                 ExportPlayerItems.Add("itemSlot34-Amount", MemLib.ReadInt(slot34Amount));
                                 ExportPlayerItems.Add("itemSlot34-Variation", MemLib.ReadInt(slot34Variation));
+                                ExportPlayerItems.Add("itemSlot34-Skillset", MemLib.ReadInt(slot34Skillset));
                             }
                         }
                         else
@@ -4937,6 +5174,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot34Item);
                             variation = MemLib.ReadInt(slot34Variation);
+                            skillset = MemLib.ReadInt(slot34Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -4968,9 +5206,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox34.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)) + " | Skillset: " + (MemLib.ReadInt(slot34Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)) + " | Skillset: " + (MemLib.ReadInt(slot34Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5002,6 +5240,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot34Item);
                         infoAmount = MemLib.ReadInt(slot34Amount);
                         infoVariant = MemLib.ReadInt(slot34Variation);
+                        infoSkillset = MemLib.ReadInt(slot34Skillset);
                     }
                 }
                 if (itemSlot == 35 || loadInventory || CycleAll || ExportInventory)
@@ -5009,6 +5248,7 @@ namespace CoreKeeperInventoryEditor
                     string slot35Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("680", NumberStyles.Integer)).ToString("X");
                     string slot35Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("684", NumberStyles.Integer)).ToString("X");
                     string slot35Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("688", NumberStyles.Integer)).ToString("X");
+                    string slot35Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("696", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5022,6 +5262,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot35Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot35Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot35Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5030,12 +5271,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot35Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot35Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot35Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot35Amount, "int", (MemLib.ReadUInt(slot35Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot35Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot35Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot35Amount);
                             }
                         }
@@ -5050,6 +5293,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot35-ID", MemLib.ReadInt(slot35Item));
                                 ExportPlayerItems.Add("itemSlot35-Amount", MemLib.ReadInt(slot35Amount));
                                 ExportPlayerItems.Add("itemSlot35-Variation", MemLib.ReadInt(slot35Variation));
+                                ExportPlayerItems.Add("itemSlot35-Skillset", MemLib.ReadInt(slot35Skillset));
                             }
                         }
                         else
@@ -5057,6 +5301,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot35Item);
                             variation = MemLib.ReadInt(slot35Variation);
+                            skillset = MemLib.ReadInt(slot35Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5088,9 +5333,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox35.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)) + " | Skillset: " + (MemLib.ReadInt(slot35Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)) + " | Skillset: " + (MemLib.ReadInt(slot35Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5122,6 +5367,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot35Item);
                         infoAmount = MemLib.ReadInt(slot35Amount);
                         infoVariant = MemLib.ReadInt(slot35Variation);
+                        infoSkillset = MemLib.ReadInt(slot35Skillset);
                     }
                 }
                 if (itemSlot == 36 || loadInventory || CycleAll || ExportInventory)
@@ -5129,6 +5375,7 @@ namespace CoreKeeperInventoryEditor
                     string slot36Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("700", NumberStyles.Integer)).ToString("X");
                     string slot36Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("704", NumberStyles.Integer)).ToString("X");
                     string slot36Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("708", NumberStyles.Integer)).ToString("X");
+                    string slot36Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("716", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5142,6 +5389,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot36Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot36Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot36Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5150,12 +5398,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot36Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot36Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot36Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot36Amount, "int", (MemLib.ReadUInt(slot36Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot36Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot36Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot36Amount);
                             }
                         }
@@ -5170,6 +5420,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot36-ID", MemLib.ReadInt(slot36Item));
                                 ExportPlayerItems.Add("itemSlot36-Amount", MemLib.ReadInt(slot36Amount));
                                 ExportPlayerItems.Add("itemSlot36-Variation", MemLib.ReadInt(slot36Variation));
+                                ExportPlayerItems.Add("itemSlot36-Skillset", MemLib.ReadInt(slot36Skillset));
                             }
                         }
                         else
@@ -5177,6 +5428,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot36Item);
                             variation = MemLib.ReadInt(slot36Variation);
+                            skillset = MemLib.ReadInt(slot36Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5208,9 +5460,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox36.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)) + " | Skillset: " + (MemLib.ReadInt(slot36Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)) + " | Skillset: " + (MemLib.ReadInt(slot36Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5242,6 +5494,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot36Item);
                         infoAmount = MemLib.ReadInt(slot36Amount);
                         infoVariant = MemLib.ReadInt(slot36Variation);
+                        infoSkillset = MemLib.ReadInt(slot36Skillset);
                     }
                 }
                 if (itemSlot == 37 || loadInventory || CycleAll || ExportInventory)
@@ -5249,6 +5502,7 @@ namespace CoreKeeperInventoryEditor
                     string slot37Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("720", NumberStyles.Integer)).ToString("X");
                     string slot37Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("724", NumberStyles.Integer)).ToString("X");
                     string slot37Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X");
+                    string slot37Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("736", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5262,6 +5516,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot37Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot37Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot37Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5270,12 +5525,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot37Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot37Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot37Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot37Amount, "int", (MemLib.ReadUInt(slot37Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot37Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot37Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot37Amount);
                             }
                         }
@@ -5290,6 +5547,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot37-ID", MemLib.ReadInt(slot37Item));
                                 ExportPlayerItems.Add("itemSlot37-Amount", MemLib.ReadInt(slot37Amount));
                                 ExportPlayerItems.Add("itemSlot37-Variation", MemLib.ReadInt(slot37Variation));
+                                ExportPlayerItems.Add("itemSlot37-Skillset", MemLib.ReadInt(slot37Skillset));
                             }
                         }
                         else
@@ -5297,6 +5555,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot37Item);
                             variation = MemLib.ReadInt(slot37Variation);
+                            skillset = MemLib.ReadInt(slot37Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5328,9 +5587,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox37.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)) + " | Skillset: " + (MemLib.ReadInt(slot37Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)) + " | Skillset: " + (MemLib.ReadInt(slot37Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5362,6 +5621,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot37Item);
                         infoAmount = MemLib.ReadInt(slot37Amount);
                         infoVariant = MemLib.ReadInt(slot37Variation);
+                        infoSkillset = MemLib.ReadInt(slot37Skillset);
                     }
                 }
                 if (itemSlot == 38 || loadInventory || CycleAll || ExportInventory)
@@ -5369,6 +5629,7 @@ namespace CoreKeeperInventoryEditor
                     string slot38Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("740", NumberStyles.Integer)).ToString("X");
                     string slot38Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("744", NumberStyles.Integer)).ToString("X");
                     string slot38Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("748", NumberStyles.Integer)).ToString("X");
+                    string slot38Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("756", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5382,6 +5643,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot38Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot38Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot38Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5390,12 +5652,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot38Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot38Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot38Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot38Amount, "int", (MemLib.ReadUInt(slot38Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot38Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot38Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot38Amount);
                             }
                         }
@@ -5410,6 +5674,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot38-ID", MemLib.ReadInt(slot38Item));
                                 ExportPlayerItems.Add("itemSlot38-Amount", MemLib.ReadInt(slot38Amount));
                                 ExportPlayerItems.Add("itemSlot38-Variation", MemLib.ReadInt(slot38Variation));
+                                ExportPlayerItems.Add("itemSlot38-Skillset", MemLib.ReadInt(slot38Skillset));
                             }
                         }
                         else
@@ -5417,6 +5682,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot38Item);
                             variation = MemLib.ReadInt(slot38Variation);
+                            skillset = MemLib.ReadInt(slot38Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5448,9 +5714,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox38.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)) + " | Skillset: " + (MemLib.ReadInt(slot38Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)) + " | Skillset: " + (MemLib.ReadInt(slot38Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5482,6 +5748,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot38Item);
                         infoAmount = MemLib.ReadInt(slot38Amount);
                         infoVariant = MemLib.ReadInt(slot38Variation);
+                        infoSkillset = MemLib.ReadInt(slot38Skillset);
                     }
                 }
                 if (itemSlot == 39 || loadInventory || CycleAll || ExportInventory)
@@ -5489,6 +5756,7 @@ namespace CoreKeeperInventoryEditor
                     string slot39Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("760", NumberStyles.Integer)).ToString("X");
                     string slot39Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("764", NumberStyles.Integer)).ToString("X");
                     string slot39Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("768", NumberStyles.Integer)).ToString("X");
+                    string slot39Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("776", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5502,6 +5770,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot39Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot39Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot39Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5510,12 +5779,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot39Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot39Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot39Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot39Amount, "int", (MemLib.ReadUInt(slot39Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot39Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot39Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot39Amount);
                             }
                         }
@@ -5530,6 +5801,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot39-ID", MemLib.ReadInt(slot39Item));
                                 ExportPlayerItems.Add("itemSlot39-Amount", MemLib.ReadInt(slot39Amount));
                                 ExportPlayerItems.Add("itemSlot39-Variation", MemLib.ReadInt(slot39Variation));
+                                ExportPlayerItems.Add("itemSlot39-Skillset", MemLib.ReadInt(slot39Skillset));
                             }
                         }
                         else
@@ -5537,6 +5809,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot39Item);
                             variation = MemLib.ReadInt(slot39Variation);
+                            skillset = MemLib.ReadInt(slot39Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5568,9 +5841,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox39.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)) + " | Skillset: " + (MemLib.ReadInt(slot39Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)) + " | Skillset: " + (MemLib.ReadInt(slot39Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5602,6 +5875,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot39Item);
                         infoAmount = MemLib.ReadInt(slot39Amount);
                         infoVariant = MemLib.ReadInt(slot39Variation);
+                        infoSkillset = MemLib.ReadInt(slot39Skillset);
                     }
                 }
                 if (itemSlot == 40 || loadInventory || CycleAll || ExportInventory)
@@ -5609,6 +5883,7 @@ namespace CoreKeeperInventoryEditor
                     string slot40Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("780", NumberStyles.Integer)).ToString("X");
                     string slot40Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X");
                     string slot40Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("788", NumberStyles.Integer)).ToString("X");
+                    string slot40Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("796", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5622,6 +5897,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot40Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot40Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot40Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5630,12 +5906,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot40Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot40Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot40Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot40Amount, "int", (MemLib.ReadUInt(slot40Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot40Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot40Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot40Amount);
                             }
                         }
@@ -5650,6 +5928,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot40-ID", MemLib.ReadInt(slot40Item));
                                 ExportPlayerItems.Add("itemSlot40-Amount", MemLib.ReadInt(slot40Amount));
                                 ExportPlayerItems.Add("itemSlot40-Variation", MemLib.ReadInt(slot40Variation));
+                                ExportPlayerItems.Add("itemSlot40-Skillset", MemLib.ReadInt(slot40Skillset));
                             }
                         }
                         else
@@ -5657,6 +5936,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot40Item);
                             variation = MemLib.ReadInt(slot40Variation);
+                            skillset = MemLib.ReadInt(slot40Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5688,9 +5968,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox40.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)) + " | Skillset: " + (MemLib.ReadInt(slot40Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)) + " | Skillset: " + (MemLib.ReadInt(slot40Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5722,6 +6002,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot40Item);
                         infoAmount = MemLib.ReadInt(slot40Amount);
                         infoVariant = MemLib.ReadInt(slot40Variation);
+                        infoSkillset = MemLib.ReadInt(slot40Skillset);
                     }
                 }
                 if (itemSlot == 41 || loadInventory || CycleAll || ExportInventory)
@@ -5729,6 +6010,7 @@ namespace CoreKeeperInventoryEditor
                     string slot41Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("800", NumberStyles.Integer)).ToString("X");
                     string slot41Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X");
                     string slot41Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("808", NumberStyles.Integer)).ToString("X");
+                    string slot41Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("816", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5742,6 +6024,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot41Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot41Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot41Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5750,12 +6033,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot41Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot41Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot41Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot41Amount, "int", (MemLib.ReadUInt(slot41Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot41Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot41Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot41Amount);
                             }
                         }
@@ -5770,6 +6055,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot41-ID", MemLib.ReadInt(slot41Item));
                                 ExportPlayerItems.Add("itemSlot41-Amount", MemLib.ReadInt(slot41Amount));
                                 ExportPlayerItems.Add("itemSlot41-Variation", MemLib.ReadInt(slot41Variation));
+                                ExportPlayerItems.Add("itemSlot41-Skillset", MemLib.ReadInt(slot41Skillset));
                             }
                         }
                         else
@@ -5777,6 +6063,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot41Item);
                             variation = MemLib.ReadInt(slot41Variation);
+                            skillset = MemLib.ReadInt(slot41Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5808,9 +6095,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox41.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)) + " | Skillset: " + (MemLib.ReadInt(slot41Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)) + " | Skillset: " + (MemLib.ReadInt(slot41Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5842,6 +6129,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot41Item);
                         infoAmount = MemLib.ReadInt(slot41Amount);
                         infoVariant = MemLib.ReadInt(slot41Variation);
+                        infoSkillset = MemLib.ReadInt(slot41Skillset);
                     }
                 }
                 if (itemSlot == 42 || loadInventory || CycleAll || ExportInventory)
@@ -5849,6 +6137,7 @@ namespace CoreKeeperInventoryEditor
                     string slot42Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("820", NumberStyles.Integer)).ToString("X");
                     string slot42Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("824", NumberStyles.Integer)).ToString("X");
                     string slot42Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("828", NumberStyles.Integer)).ToString("X");
+                    string slot42Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("836", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5862,6 +6151,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot42Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot42Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot42Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5870,12 +6160,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot42Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot42Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot42Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot42Amount, "int", (MemLib.ReadUInt(slot42Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot42Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot42Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot42Amount);
                             }
                         }
@@ -5890,6 +6182,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot42-ID", MemLib.ReadInt(slot42Item));
                                 ExportPlayerItems.Add("itemSlot42-Amount", MemLib.ReadInt(slot42Amount));
                                 ExportPlayerItems.Add("itemSlot42-Variation", MemLib.ReadInt(slot42Variation));
+                                ExportPlayerItems.Add("itemSlot42-Skillset", MemLib.ReadInt(slot42Skillset));
                             }
                         }
                         else
@@ -5897,6 +6190,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot42Item);
                             variation = MemLib.ReadInt(slot42Variation);
+                            skillset = MemLib.ReadInt(slot42Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -5928,9 +6222,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox42.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)))) == false) // Check if entree exists already.
-                                        {
-                                            richTextBox3.AppendText("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)) + Environment.NewLine); // Record the midding values.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)) + " | Skillset: " + (MemLib.ReadInt(slot42Skillset)))) == false) // Check if entree exists already.
+                                        {                                                                                                                                                                                                                                                                  // {
+                                            richTextBox3.AppendText("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)) + " | Skillset: " + (MemLib.ReadInt(slot42Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -5962,6 +6256,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot42Item);
                         infoAmount = MemLib.ReadInt(slot42Amount);
                         infoVariant = MemLib.ReadInt(slot42Variation);
+                        infoSkillset = MemLib.ReadInt(slot42Skillset);
                     }
                 }
                 if (itemSlot == 43 || loadInventory || CycleAll || ExportInventory)
@@ -5969,6 +6264,7 @@ namespace CoreKeeperInventoryEditor
                     string slot43Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("840", NumberStyles.Integer)).ToString("X");
                     string slot43Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("844", NumberStyles.Integer)).ToString("X");
                     string slot43Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("848", NumberStyles.Integer)).ToString("X");
+                    string slot43Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("856", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -5982,6 +6278,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot43Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot43Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot43Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -5990,12 +6287,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot43Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot43Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot43Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot43Amount, "int", (MemLib.ReadUInt(slot43Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot43Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot43Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot43Amount);
                             }
                         }
@@ -6010,6 +6309,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot43-ID", MemLib.ReadInt(slot43Item));
                                 ExportPlayerItems.Add("itemSlot43-Amount", MemLib.ReadInt(slot43Amount));
                                 ExportPlayerItems.Add("itemSlot43-Variation", MemLib.ReadInt(slot43Variation));
+                                ExportPlayerItems.Add("itemSlot43-Skillset", MemLib.ReadInt(slot43Skillset));
                             }
                         }
                         else
@@ -6017,6 +6317,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot43Item);
                             variation = MemLib.ReadInt(slot43Variation);
+                            skillset = MemLib.ReadInt(slot43Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6048,9 +6349,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox43.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)) + " | Skillset: " + (MemLib.ReadInt(slot43Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)) + " | Skillset: " + (MemLib.ReadInt(slot43Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6082,6 +6383,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot43Item);
                         infoAmount = MemLib.ReadInt(slot43Amount);
                         infoVariant = MemLib.ReadInt(slot43Variation);
+                        infoSkillset = MemLib.ReadInt(slot43Skillset);
                     }
                 }
                 if (itemSlot == 44 || loadInventory || CycleAll || ExportInventory)
@@ -6089,6 +6391,7 @@ namespace CoreKeeperInventoryEditor
                     string slot44Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("860", NumberStyles.Integer)).ToString("X");
                     string slot44Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("864", NumberStyles.Integer)).ToString("X");
                     string slot44Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("868", NumberStyles.Integer)).ToString("X");
+                    string slot44Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("876", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6102,6 +6405,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot44Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot44Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot44Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6110,12 +6414,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot44Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot44Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot44Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot44Amount, "int", (MemLib.ReadUInt(slot44Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot44Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot44Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot44Amount);
                             }
                         }
@@ -6130,6 +6436,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot44-ID", MemLib.ReadInt(slot44Item));
                                 ExportPlayerItems.Add("itemSlot44-Amount", MemLib.ReadInt(slot44Amount));
                                 ExportPlayerItems.Add("itemSlot44-Variation", MemLib.ReadInt(slot44Variation));
+                                ExportPlayerItems.Add("itemSlot44-Skillset", MemLib.ReadInt(slot44Skillset));
                             }
                         }
                         else
@@ -6137,6 +6444,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot44Item);
                             variation = MemLib.ReadInt(slot44Variation);
+                            skillset = MemLib.ReadInt(slot44Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6168,9 +6476,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox44.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)) + " | Skillset: " + (MemLib.ReadInt(slot44Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)) + " | Skillset: " + (MemLib.ReadInt(slot44Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6202,6 +6510,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot44Item);
                         infoAmount = MemLib.ReadInt(slot44Amount);
                         infoVariant = MemLib.ReadInt(slot44Variation);
+                        infoSkillset = MemLib.ReadInt(slot44Skillset);
                     }
                 }
                 if (itemSlot == 45 || loadInventory || CycleAll || ExportInventory)
@@ -6209,6 +6518,7 @@ namespace CoreKeeperInventoryEditor
                     string slot45Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("880", NumberStyles.Integer)).ToString("X");
                     string slot45Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("884", NumberStyles.Integer)).ToString("X");
                     string slot45Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("888", NumberStyles.Integer)).ToString("X");
+                    string slot45Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("896", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6222,6 +6532,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot45Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot45Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot45Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6230,12 +6541,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot45Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot45Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot45Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot45Amount, "int", (MemLib.ReadUInt(slot45Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot45Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot45Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot45Amount);
                             }
                         }
@@ -6250,6 +6563,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot45-ID", MemLib.ReadInt(slot45Item));
                                 ExportPlayerItems.Add("itemSlot45-Amount", MemLib.ReadInt(slot45Amount));
                                 ExportPlayerItems.Add("itemSlot45-Variation", MemLib.ReadInt(slot45Variation));
+                                ExportPlayerItems.Add("itemSlot45-Skillset", MemLib.ReadInt(slot45Skillset));
                             }
                         }
                         else
@@ -6257,6 +6571,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot45Item);
                             variation = MemLib.ReadInt(slot45Variation);
+                            skillset = MemLib.ReadInt(slot45Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6288,9 +6603,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox45.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)) + " | Skillset: " + (MemLib.ReadInt(slot45Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)) + " | Skillset: " + (MemLib.ReadInt(slot45Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6322,6 +6637,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot45Item);
                         infoAmount = MemLib.ReadInt(slot45Amount);
                         infoVariant = MemLib.ReadInt(slot45Variation);
+                        infoSkillset = MemLib.ReadInt(slot45Skillset);
                     }
                 }
                 if (itemSlot == 46 || loadInventory || CycleAll || ExportInventory)
@@ -6329,6 +6645,7 @@ namespace CoreKeeperInventoryEditor
                     string slot46Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("900", NumberStyles.Integer)).ToString("X");
                     string slot46Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("904", NumberStyles.Integer)).ToString("X");
                     string slot46Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("908", NumberStyles.Integer)).ToString("X");
+                    string slot46Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("916", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6342,6 +6659,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot46Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot46Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot46Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6350,12 +6668,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot46Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot46Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot46Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot46Amount, "int", (MemLib.ReadUInt(slot46Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot46Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot46Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot46Amount);
                             }
                         }
@@ -6370,6 +6690,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot46-ID", MemLib.ReadInt(slot46Item));
                                 ExportPlayerItems.Add("itemSlot46-Amount", MemLib.ReadInt(slot46Amount));
                                 ExportPlayerItems.Add("itemSlot46-Variation", MemLib.ReadInt(slot46Variation));
+                                ExportPlayerItems.Add("itemSlot46-Skillset", MemLib.ReadInt(slot46Skillset));
                             }
                         }
                         else
@@ -6377,6 +6698,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot46Item);
                             variation = MemLib.ReadInt(slot46Variation);
+                            skillset = MemLib.ReadInt(slot46Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6408,9 +6730,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox46.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)) + " | Skillset: " + (MemLib.ReadInt(slot46Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)) + " | Skillset: " + (MemLib.ReadInt(slot46Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6442,6 +6764,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot46Item);
                         infoAmount = MemLib.ReadInt(slot46Amount);
                         infoVariant = MemLib.ReadInt(slot46Variation);
+                        infoSkillset = MemLib.ReadInt(slot46Skillset);
                     }
                 }
                 if (itemSlot == 47 || loadInventory || CycleAll || ExportInventory)
@@ -6449,6 +6772,7 @@ namespace CoreKeeperInventoryEditor
                     string slot47Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("920", NumberStyles.Integer)).ToString("X");
                     string slot47Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("924", NumberStyles.Integer)).ToString("X");
                     string slot47Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("928", NumberStyles.Integer)).ToString("X");
+                    string slot47Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("936", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6462,6 +6786,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot47Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot47Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot47Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6470,12 +6795,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot47Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot47Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot47Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot47Amount, "int", (MemLib.ReadUInt(slot47Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot47Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot47Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot47Amount);
                             }
                         }
@@ -6490,6 +6817,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot47-ID", MemLib.ReadInt(slot47Item));
                                 ExportPlayerItems.Add("itemSlot47-Amount", MemLib.ReadInt(slot47Amount));
                                 ExportPlayerItems.Add("itemSlot47-Variation", MemLib.ReadInt(slot47Variation));
+                                ExportPlayerItems.Add("itemSlot47-Skillset", MemLib.ReadInt(slot47Skillset));
                             }
                         }
                         else
@@ -6497,6 +6825,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot47Item);
                             variation = MemLib.ReadInt(slot47Variation);
+                            skillset = MemLib.ReadInt(slot47Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6528,9 +6857,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox47.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)) + " | Skillset: " + (MemLib.ReadInt(slot47Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)) + " | Skillset: " + (MemLib.ReadInt(slot47Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6562,6 +6891,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot47Item);
                         infoAmount = MemLib.ReadInt(slot47Amount);
                         infoVariant = MemLib.ReadInt(slot47Variation);
+                        infoSkillset = MemLib.ReadInt(slot47Skillset);
                     }
                 }
                 if (itemSlot == 48 || loadInventory || CycleAll || ExportInventory)
@@ -6569,6 +6899,7 @@ namespace CoreKeeperInventoryEditor
                     string slot48Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("940", NumberStyles.Integer)).ToString("X");
                     string slot48Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("944", NumberStyles.Integer)).ToString("X");
                     string slot48Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("948", NumberStyles.Integer)).ToString("X");
+                    string slot48Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("956", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6582,6 +6913,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot48Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot48Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot48Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6590,12 +6922,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot48Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot48Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot48Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot48Amount, "int", (MemLib.ReadUInt(slot48Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot48Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot48Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot48Amount);
                             }
                         }
@@ -6610,6 +6944,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot48-ID", MemLib.ReadInt(slot48Item));
                                 ExportPlayerItems.Add("itemSlot48-Amount", MemLib.ReadInt(slot48Amount));
                                 ExportPlayerItems.Add("itemSlot48-Variation", MemLib.ReadInt(slot48Variation));
+                                ExportPlayerItems.Add("itemSlot48-Skillset", MemLib.ReadInt(slot48Skillset));
                             }
                         }
                         else
@@ -6617,6 +6952,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot48Item);
                             variation = MemLib.ReadInt(slot48Variation);
+                            skillset = MemLib.ReadInt(slot48Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6648,9 +6984,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox48.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)) + " | Skillset: " + (MemLib.ReadInt(slot48Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)) + " | Skillset: " + (MemLib.ReadInt(slot48Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6682,6 +7018,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot48Item);
                         infoAmount = MemLib.ReadInt(slot48Amount);
                         infoVariant = MemLib.ReadInt(slot48Variation);
+                        infoSkillset = MemLib.ReadInt(slot48Skillset);
                     }
                 }
                 if (itemSlot == 49 || loadInventory || CycleAll || ExportInventory)
@@ -6689,6 +7026,7 @@ namespace CoreKeeperInventoryEditor
                     string slot49Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("960", NumberStyles.Integer)).ToString("X");
                     string slot49Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X");
                     string slot49Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("968", NumberStyles.Integer)).ToString("X");
+                    string slot49Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("976", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6702,6 +7040,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot49Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot49Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot49Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6710,12 +7049,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot49Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot49Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot49Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot49Amount, "int", (MemLib.ReadUInt(slot49Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot49Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot49Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot49Amount);
                             }
                         }
@@ -6730,6 +7071,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot49-ID", MemLib.ReadInt(slot49Item));
                                 ExportPlayerItems.Add("itemSlot49-Amount", MemLib.ReadInt(slot49Amount));
                                 ExportPlayerItems.Add("itemSlot49-Variation", MemLib.ReadInt(slot49Variation));
+                                ExportPlayerItems.Add("itemSlot49-Skillset", MemLib.ReadInt(slot49Skillset));
                             }
                         }
                         else
@@ -6737,6 +7079,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot49Item);
                             variation = MemLib.ReadInt(slot49Variation);
+                            skillset = MemLib.ReadInt(slot49Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6768,9 +7111,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox49.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)) + " | Skillset: " + (MemLib.ReadInt(slot49Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)) + " | Skillset: " + (MemLib.ReadInt(slot49Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6802,6 +7145,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot49Item);
                         infoAmount = MemLib.ReadInt(slot49Amount);
                         infoVariant = MemLib.ReadInt(slot49Variation);
+                        infoSkillset = MemLib.ReadInt(slot49Skillset);
                     }
                 }
                 if (itemSlot == 50 || loadInventory || CycleAll || ExportInventory)
@@ -6809,6 +7153,7 @@ namespace CoreKeeperInventoryEditor
                     string slot50Item = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("980", NumberStyles.Integer)).ToString("X");
                     string slot50Amount = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("984", NumberStyles.Integer)).ToString("X");
                     string slot50Variation = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("988", NumberStyles.Integer)).ToString("X");
+                    string slot50Skillset = BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("996", NumberStyles.Integer)).ToString("X");
 
                     // Perform progress step.
                     progressBar2.PerformStep();
@@ -6822,6 +7167,7 @@ namespace CoreKeeperInventoryEditor
                         {
                             MemLib.WriteMemory(slot50Amount, "int", "0"); // Write item amount
                             MemLib.WriteMemory(slot50Variation, "int", "0"); // Write item variation
+                            MemLib.WriteMemory(slot50Skillset, "int", "0"); // Write item skillset
                             finalItemAmount = 0;
                         }
                         else
@@ -6830,12 +7176,14 @@ namespace CoreKeeperInventoryEditor
                             {
                                 MemLib.WriteMemory(slot50Amount, "int", amount.ToString()); // Write item amount
                                 MemLib.WriteMemory(slot50Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot50Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = amount;
                             }
                             else
                             {
                                 MemLib.WriteMemory(slot50Amount, "int", (MemLib.ReadUInt(slot50Amount) + amount).ToString()); // Write item amount
                                 MemLib.WriteMemory(slot50Variation, "int", variation.ToString()); // Write item variation
+                                MemLib.WriteMemory(slot50Skillset, "int", skillset.ToString()); // Write item skillset
                                 finalItemAmount = (int)MemLib.ReadUInt(slot50Amount);
                             }
                         }
@@ -6850,6 +7198,7 @@ namespace CoreKeeperInventoryEditor
                                 ExportPlayerItems.Add("itemSlot50-ID", MemLib.ReadInt(slot50Item));
                                 ExportPlayerItems.Add("itemSlot50-Amount", MemLib.ReadInt(slot50Amount));
                                 ExportPlayerItems.Add("itemSlot50-Variation", MemLib.ReadInt(slot50Variation));
+                                ExportPlayerItems.Add("itemSlot50-Skillset", MemLib.ReadInt(slot50Skillset));
                             }
                         }
                         else
@@ -6857,6 +7206,7 @@ namespace CoreKeeperInventoryEditor
                             // First Load
                             type = MemLib.ReadInt(slot50Item);
                             variation = MemLib.ReadInt(slot50Variation);
+                            skillset = MemLib.ReadInt(slot50Skillset);
 
                             // Load Picture
                             // Set image to null if type is zero.
@@ -6888,9 +7238,9 @@ namespace CoreKeeperInventoryEditor
                                         pictureBox50.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
-                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)))) == false) // Check if entree exists already.
+                                        if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)) + " | Skillset: " + (MemLib.ReadInt(slot50Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)) + " | Skillset: " + (MemLib.ReadInt(slot50Skillset)) + Environment.NewLine); // Record the midding values.
                                         }
                                     }
 
@@ -6922,6 +7272,7 @@ namespace CoreKeeperInventoryEditor
                         infoType = MemLib.ReadInt(slot50Item);
                         infoAmount = MemLib.ReadInt(slot50Amount);
                         infoVariant = MemLib.ReadInt(slot50Variation);
+                        infoSkillset = MemLib.ReadInt(slot50Skillset);
                     }
                 }
             }
@@ -7014,11 +7365,11 @@ namespace CoreKeeperInventoryEditor
                 string itemMessage = "";
                 if (infoVariant.ToString().Length == 8)
                 {
-                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "Base ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + Environment.NewLine + "Variant IDs:" + Environment.NewLine + "- Ingrdient1: " + baseIngrdient1Name + " [" + infoVariant.ToString().Substring(0, infoVariant.ToString().Length / 2) + "]" + Environment.NewLine + "- Ingrdient2: " + baseIngrdient2Name + " [" + infoVariant.ToString().Substring(infoVariant.ToString().Length / 2) + "]";
+                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "Base ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Skillset: " + infoSkillset + Environment.NewLine + Environment.NewLine + "Variant IDs:" + Environment.NewLine + "- Ingrdient1: " + baseIngrdient1Name + " [" + infoVariant.ToString().Substring(0, infoVariant.ToString().Length / 2) + "]" + Environment.NewLine + "- Ingrdient2: " + baseIngrdient2Name + " [" + infoVariant.ToString().Substring(infoVariant.ToString().Length / 2) + "]";
                 }
                 else
                 {
-                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + Environment.NewLine + "Variant ID: " + infoVariant;
+                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Skillset: " + infoSkillset + Environment.NewLine + Environment.NewLine + "Variant ID: " + infoVariant;
                 }
 
                 // Display informational messagebox.
@@ -10326,6 +10677,7 @@ namespace CoreKeeperInventoryEditor
                     int itemType = frm2.GetItemTypeFromList();
                     int itemAmount = frm2.GetItemAmountFromList();
                     int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : (frm2.GetItemVeriationFromList()); // If variation is not zero, add offset.
+                    int itemSkillset = frm2.GetItemSkillsetFromList();
                     bool wasAborted = frm2.GetUserCancledTask();
                     bool itemOverwrite = frm2.GetSelectedOverwriteTask();
                     frm2.Close();
@@ -10378,6 +10730,7 @@ namespace CoreKeeperInventoryEditor
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoID = itemInfo[0];
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negitive numbers throwing an exception. // Fix v1.3.4.4.
                     CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
+                    CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = itemInfo[3];
 
                     // Spawn item picker window.
                     ItemEditor frm3 = new ItemEditor();
@@ -10387,6 +10740,7 @@ namespace CoreKeeperInventoryEditor
                     int itemType = frm3.GetItemTypeFromList();
                     int itemAmount = frm3.GetItemAmountFromList();
                     int itemVariation = frm3.GetItemVeriationFromList() == 0 ? 0 : (frm3.GetItemVeriationFromList()); // If variation is not zero, add offset.
+                    int itemSkillset = frm3.GetItemSkillsetFromList();
                     bool wasAborted = frm3.GetUserCancledTask();
                     // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
                     frm3.Close();
@@ -10395,7 +10749,7 @@ namespace CoreKeeperInventoryEditor
                     if (wasAborted) { return; };
 
                     // Edit the item.
-                    AddItemToInv(slotNumber, type: itemType, amount: itemAmount, variation: itemVariation, Overwrite: true);
+                    AddItemToInv(slotNumber, type: itemType, amount: itemAmount, variation: itemVariation, skillset: itemSkillset, Overwrite: true);
 
                     // Reload Inventory. Added: v1.3.4.5.
                     AddItemToInv(loadInventory: true);
@@ -10411,12 +10765,13 @@ namespace CoreKeeperInventoryEditor
         public int[] GetSlotInfo(int itemSlot)
         {
             // Define main string.
-            int[] itemInfo = new int[3];
+            int[] itemInfo = new int[4];
 
             // Define some varibles for item info.
             int infoType;
             int infoAmount;
             int infoVariant;
+            int infoSkillset;
 
             // Select the inventory to use.
             var res = AoBScanResultsInventory.ElementAt(useAddress - 1);
@@ -10430,312 +10785,364 @@ namespace CoreKeeperInventoryEditor
                 infoType = (int)MemLib.ReadUInt(baseAddress);
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 2)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 3)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 4)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("76", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 5)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 6)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("100", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("104", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("108", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("116", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 7)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("128", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("136", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 8)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("140", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("144", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("148", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("156", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 9)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("160", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("164", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("176", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 10)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("180", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("184", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("188", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("196", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 11)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("200", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("204", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("208", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("216", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 12)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("220", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("224", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("228", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("236", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 13)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("240", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("248", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("256", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 14)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("260", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("264", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("268", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("276", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 15)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("280", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("284", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("296", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 16)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("300", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("304", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("316", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 17)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("320", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("324", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("328", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("336", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 18)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("340", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("344", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("348", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("356", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 19)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("364", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 20)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("380", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("396", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 21)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("400", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("404", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("408", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("416", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 22)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("420", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("424", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("428", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("436", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 23)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("440", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("444", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("448", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("456", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 24)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("360", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("364", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("368", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("376", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 25)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("380", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("384", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("388", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("396", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 26)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("500", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("504", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("508", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("516", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 27)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("520", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("524", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("528", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("536", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 28)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("540", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("544", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("548", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("556", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 29)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("560", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("564", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("568", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("576", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 30)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("580", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("584", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("588", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("596", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 31)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("600", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("604", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("608", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("616", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 32)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("620", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("624", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("628", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("636", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 33)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("640", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("644", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("648", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("656", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 34)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("660", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("664", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("668", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("676", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 35)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("680", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("684", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("688", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("696", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 36)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("700", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("704", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("708", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("716", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 37)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("720", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("724", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("728", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("736", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 38)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("740", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("744", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("748", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("756", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 39)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("760", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("764", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("768", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("776", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 40)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("780", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("788", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("796", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 41)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("800", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("808", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("816", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 42)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("820", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("824", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("828", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("836", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 43)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("840", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("844", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("848", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("856", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 44)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("860", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("868", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("876", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 45)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("880", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("884", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("888", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("896", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 46)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("900", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("904", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("908", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("916", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 47)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("920", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("924", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("928", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("936", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 48)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("940", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("944", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("948", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("956", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 49)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("960", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("964", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("968", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("976", NumberStyles.Integer)).ToString("X"));
             }
             else if (itemSlot == 50)
             {
                 infoType = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("980", NumberStyles.Integer)).ToString("X"));
                 infoAmount = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("984", NumberStyles.Integer)).ToString("X"));
                 infoVariant = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("988", NumberStyles.Integer)).ToString("X"));
+                infoSkillset = (int)MemLib.ReadUInt(BigInteger.Add(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("996", NumberStyles.Integer)).ToString("X"));
             }
             else // Prevent out of range errors.
             {
                 infoType = 0;
                 infoAmount = 0;
                 infoVariant = 0;
+                infoSkillset = 0;
             }
 
             // Define item info string.
             itemInfo[0] = infoType;
             itemInfo[1] = infoAmount;
             itemInfo[2] = infoVariant;
+            itemInfo[3] = infoSkillset;
 
             // Return value.
             return itemInfo;
@@ -10855,7 +11262,7 @@ namespace CoreKeeperInventoryEditor
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 // Reset progress bar.
-                progressBar1.Step = 90;
+                progressBar1.Step = 25;
                 progressBar1.Value = 0;
 
                 // Define playername
@@ -10882,6 +11289,7 @@ namespace CoreKeeperInventoryEditor
                                 int itemID = 0;
                                 int itemAmount = 0;
                                 int itemVariation = 0;
+                                int itemSkillset = 0;
 
                                 // Loop through each item in object.
                                 foreach (var ex in playerData)
@@ -10908,9 +11316,18 @@ namespace CoreKeeperInventoryEditor
                                     }
                                     else if (ex.Key.Contains("-Variation"))
                                     {
-                                        // Get item amount.
-                                        string slotNumberAmount = "itemSlot" + ItemSlotCount.ToString() + "-Variation";
-                                        itemVariation = int.Parse(playerData[slotNumberAmount].ToString().Replace("itemSlot", "").Replace("-Variation", ""));
+                                        // Get item variation.
+                                        string slotNumberVariation = "itemSlot" + ItemSlotCount.ToString() + "-Variation";
+                                        itemVariation = int.Parse(playerData[slotNumberVariation].ToString().Replace("itemSlot", "").Replace("-Variation", ""));
+
+                                        // Advance the protgress bar.
+                                        progressBar1.PerformStep();
+                                    }
+                                    else if (ex.Key.Contains("-Skillset"))
+                                    {
+                                        // Get item skillset.
+                                        string slotNumberSkillset = "itemSlot" + ItemSlotCount.ToString() + "-Skillset";
+                                        itemSkillset = int.Parse(playerData[slotNumberSkillset].ToString().Replace("itemSlot", "").Replace("-Skillset", ""));
 
                                         // Advance the protgress bar.
                                         progressBar1.PerformStep();
@@ -10918,11 +11335,11 @@ namespace CoreKeeperInventoryEditor
                                         // Add the item to the inventory.
                                         if (itemVariation == 0)
                                         {
-                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
+                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, skillset: itemSkillset, Overwrite: true);
                                         }
                                         else
                                         {
-                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, Overwrite: true);
+                                            AddItemToInv(itemSlot: ItemSlotCount, type: itemID, amount: itemAmount, variation: itemVariation, skillset: itemSkillset, Overwrite: true);
                                         }
 
                                         // Add one to the loopcount.

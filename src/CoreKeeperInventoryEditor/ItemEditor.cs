@@ -25,6 +25,7 @@ namespace CoreKeepersWorkshop
         int selectedItemType = 0;
         int selectedItemAmount = 0;
         int selectedItemVariation = 0;
+        int selectedItemSkillset = 0;
         bool userCancledTask = false;
 
         // Define closing varibles.
@@ -39,6 +40,10 @@ namespace CoreKeepersWorkshop
         public int GetItemVeriationFromList()
         {
             return selectedItemVariation;
+        }
+        public int GetItemSkillsetFromList()
+        {
+            return selectedItemSkillset;
         }
         public bool GetUserCancledTask()
         {
@@ -296,6 +301,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(numericUpDown8, "Press the enter key when finished.");
             toolTip.SetToolTip(numericUpDown9, "Press the enter key when finished.");
             toolTip.SetToolTip(numericUpDown10, "Press the enter key when finished.");
+            toolTip.SetToolTip(numericUpDown11, "Enter a custom skillset ID. Either press enter when done or use the botton.");
 
             toolTip.SetToolTip(label2, "Toggle the GUI between food / item variaty.");
 
@@ -333,6 +339,18 @@ namespace CoreKeepersWorkshop
             {
                 CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = 1;
             }
+            // Ensure the skillset is more then -1.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset < 0)
+            {
+                MessageBox.Show("The skillset was lower then 0! -> Current value: " + CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset + "\n\nValue will be set to 0.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = 0;
+            }
+            // Ensure the skillset is less then 4.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset > 4)
+            {
+                MessageBox.Show("The skillset was higher then 3! -> Current value: " + CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset + "\n\nValue will be set to 4.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = 4;
+            }
 
             // Load some settings.
             if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length >= 8) // Check if item is a food variant.
@@ -348,6 +366,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
                 numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
                 numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+                numericUpDown11.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset;
 
                 // Rename button label.
                 label2.Text = "Variation [Food Ingredients]";
@@ -358,6 +377,7 @@ namespace CoreKeepersWorkshop
                 numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
                 numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
+                numericUpDown11.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset;
             }
             #endregion
 
@@ -415,6 +435,7 @@ namespace CoreKeepersWorkshop
                 }
                 CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)numericUpDown1.Value;
                 CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)numericUpDown2.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = (int)numericUpDown11.Value;
                 CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = this.Location;
             }
             catch (Exception)
@@ -431,6 +452,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
+                selectedItemSkillset = (int)numericUpDown11.Value;
                 if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
@@ -470,6 +492,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
+                selectedItemSkillset = (int)numericUpDown11.Value;
                 if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
@@ -509,6 +532,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
+                selectedItemSkillset = (int)numericUpDown11.Value;
                 if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
@@ -548,6 +572,7 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
+                selectedItemSkillset = (int)numericUpDown11.Value;
                 if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
@@ -587,6 +612,47 @@ namespace CoreKeepersWorkshop
             {
                 selectedItemType = (int)numericUpDown1.Value;
                 selectedItemAmount = (int)numericUpDown2.Value;
+                selectedItemSkillset = (int)numericUpDown11.Value;
+                if (!numericUpDown3.Visible) // Check if item is a food variant.
+                {
+                    // Check if both entrees are populated.
+                    if (numericUpDown5.Value != 0)
+                    {
+                        // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
+                        if (numericUpDown4.Value > numericUpDown5.Value)
+                        {
+                            // Flip values.
+                            decimal item2 = numericUpDown4.Value;
+                            decimal item3 = numericUpDown5.Value;
+
+                            numericUpDown4.Value = item3;
+                            numericUpDown5.Value = item2;
+                        }
+
+                        // Combine strings into int.
+                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    }
+                    else
+                    {
+                        // Only single value exists, treat as a unique variant value.
+                        selectedItemVariation = (int)numericUpDown4.Value;
+                    }
+                }
+                else
+                {
+                    // Normal item variant.
+                    selectedItemVariation = (int)numericUpDown3.Value;
+                }
+                this.Close();
+            }
+        }
+        private void NumericUpDown11_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                selectedItemType = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)numericUpDown2.Value;
+                selectedItemSkillset = (int)numericUpDown11.Value;
                 if (!numericUpDown3.Visible) // Check if item is a food variant.
                 {
                     // Check if both entrees are populated.
@@ -627,6 +693,7 @@ namespace CoreKeepersWorkshop
             selectedItemType = 0;
             selectedItemAmount = 1;
             selectedItemVariation = 0;
+            selectedItemSkillset = 0;
             this.Close();
         }
         #endregion // Keydown Events.
@@ -901,6 +968,7 @@ namespace CoreKeepersWorkshop
             // Change the existing items quanitity. 
             selectedItemType = (int)numericUpDown1.Value;
             selectedItemAmount = (int)numericUpDown6.Value; // QQS Button 1.
+            selectedItemSkillset = (int)numericUpDown11.Value;
 
             // Reserve the items variation.
             if (!numericUpDown3.Visible) // Check if item is a food variant.
@@ -942,6 +1010,7 @@ namespace CoreKeepersWorkshop
             // Change the existing items quanitity. 
             selectedItemType = (int)numericUpDown1.Value;
             selectedItemAmount = (int)numericUpDown7.Value; // QQS Button 2.
+            selectedItemSkillset = (int)numericUpDown11.Value;
 
             // Reserve the items variation.
             if (!numericUpDown3.Visible) // Check if item is a food variant.
@@ -983,6 +1052,7 @@ namespace CoreKeepersWorkshop
             // Change the existing items quanitity. 
             selectedItemType = (int)numericUpDown1.Value;
             selectedItemAmount = (int)numericUpDown8.Value; // QQS Button 3.
+            selectedItemSkillset = (int)numericUpDown11.Value;
 
             // Reserve the items variation.
             if (!numericUpDown3.Visible) // Check if item is a food variant.
@@ -1024,6 +1094,7 @@ namespace CoreKeepersWorkshop
             // Change the existing items quanitity. 
             selectedItemType = (int)numericUpDown1.Value;
             selectedItemAmount = (int)numericUpDown9.Value; // QQS Button 4.
+            selectedItemSkillset = (int)numericUpDown11.Value;
 
             // Reserve the items variation.
             if (!numericUpDown3.Visible) // Check if item is a food variant.
@@ -1065,6 +1136,7 @@ namespace CoreKeepersWorkshop
             // Change the existing items quanitity. 
             selectedItemType = (int)numericUpDown1.Value;
             selectedItemAmount = (int)numericUpDown10.Value; // QQS Button 5.
+            selectedItemSkillset = (int)numericUpDown11.Value;
 
             // Reserve the items variation.
             if (!numericUpDown3.Visible) // Check if item is a food variant.
@@ -1326,6 +1398,7 @@ namespace CoreKeepersWorkshop
         {
             selectedItemType = (int)numericUpDown1.Value;
             selectedItemAmount = (int)numericUpDown2.Value;
+            selectedItemSkillset = (int)numericUpDown11.Value;
             if (!numericUpDown3.Visible) // Check if item is a food variant.
             {
                 // Check if both entrees are populated.

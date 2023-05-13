@@ -1,4 +1,5 @@
 ﻿using CoreKeepersWorkshop;
+using Siticone.UI.WinForms.Suite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ namespace CoreKeeperInventoryEditor
         int selectedItemType = 0;
         int selectedItemAmount = 0;
         int selectedItemVariation = 0;
+        int selectedItemSkillset = 0;
         bool selectedOverwrite = false;
         bool userCancledTask = false;
 
@@ -83,6 +85,7 @@ namespace CoreKeeperInventoryEditor
                 CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)numericUpDown1.Value;
                 CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)numericUpDown2.Value;
                 CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)numericUpDown3.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = (int)numericUpDown4.Value;
                 CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = this.Location;
 
                 // Ensure current tab is not search, if so, reset.
@@ -117,6 +120,10 @@ namespace CoreKeeperInventoryEditor
         public int GetItemVeriationFromList()
         {
             return selectedItemVariation;
+        }
+        public int GetItemSkillsetFromList()
+        {
+            return selectedItemSkillset;
         }
         public bool GetUserCancledTask()
         {
@@ -156,6 +163,7 @@ namespace CoreKeeperInventoryEditor
             toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
             toolTip.SetToolTip(numericUpDown2, "Enter a custom ID. Either press enter when done or use the button.");
             toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(numericUpDown4, "Enter a custom skillset ID. Either press enter when done or use the button.");
 
             toolTip.SetToolTip(button1, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(button3, "Spawn in custom item amount + ID.");
@@ -186,10 +194,22 @@ namespace CoreKeeperInventoryEditor
             tabControl1.TabPages[13].Text = new DirectoryInfo(FolderNames.ElementAt(13)).Name;
             tabControl1.TabPages[14].Text = new DirectoryInfo(FolderNames.ElementAt(14)).Name;
 
+            // Ensure the skillset is more then -1.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset < 0)
+            {
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = 0;
+            }
+            // Ensure the skillset is less then 4.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset > 4)
+            {
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = 4;
+            }
+
             // Load some settings.
             numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
             numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemID;
             numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation;
+            numericUpDown4.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset;
             tabControl1.SelectedTab = tabControl1.TabPages[CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab];
 
             // Set Image Size
@@ -482,6 +502,7 @@ namespace CoreKeeperInventoryEditor
             selectedItemType = (int)numericUpDown2.Value;
             selectedItemAmount = (int)numericUpDown1.Value;
             selectedItemVariation = (int)numericUpDown3.Value;
+            selectedItemSkillset = (int)numericUpDown4.Value;
             selectedOverwrite = true;
             this.Close();
         }
@@ -492,6 +513,18 @@ namespace CoreKeeperInventoryEditor
             selectedItemType = (int)numericUpDown2.Value;
             selectedItemAmount = (int)numericUpDown1.Value;
             selectedItemVariation = (int)numericUpDown3.Value;
+            selectedItemSkillset = (int)numericUpDown4.Value;
+            selectedOverwrite = true;
+            this.Close();
+        }
+
+        // Add custom skillset.
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            selectedItemType = (int)numericUpDown2.Value;
+            selectedItemAmount = (int)numericUpDown1.Value;
+            selectedItemVariation = (int)numericUpDown3.Value;
+            selectedItemSkillset = (int)numericUpDown4.Value;
             selectedOverwrite = true;
             this.Close();
         }
@@ -504,6 +537,7 @@ namespace CoreKeeperInventoryEditor
                 selectedItemType = (int)numericUpDown2.Value;
                 selectedItemAmount = (int)numericUpDown1.Value;
                 selectedItemVariation = (int)numericUpDown3.Value;
+                selectedItemSkillset = (int)numericUpDown4.Value;
                 selectedOverwrite = true;
                 this.Close();
             }
@@ -517,6 +551,21 @@ namespace CoreKeeperInventoryEditor
                 selectedItemType = (int)numericUpDown2.Value;
                 selectedItemAmount = (int)numericUpDown1.Value;
                 selectedItemVariation = (int)numericUpDown3.Value;
+                selectedItemSkillset = (int)numericUpDown4.Value;
+                selectedOverwrite = true;
+                this.Close();
+            }
+        }
+
+        // Add custom skillset - Enter shortcut.
+        private void NumericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                selectedItemType = (int)numericUpDown2.Value;
+                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemVariation = (int)numericUpDown3.Value;
+                selectedItemSkillset = (int)numericUpDown4.Value;
                 selectedOverwrite = true;
                 this.Close();
             }
@@ -528,6 +577,7 @@ namespace CoreKeeperInventoryEditor
             selectedItemType = 0;
             selectedItemAmount = 1;
             selectedItemVariation = 0;
+            selectedItemSkillset = 0;
             this.Close();
         }
 
@@ -671,6 +721,7 @@ namespace CoreKeeperInventoryEditor
             int itemType = frm4.GetItemTypeFromList();
             int itemAmount = frm4.GetItemAmountFromList();
             int itemVariation = frm4.GetItemVeriationFromList() == 0 ? 0 : (frm4.GetItemVeriationFromList()); // If variation is not zero, add offset.
+            // int itemSkillset = frm4.GetItemSkillsetFromList(); // Not implimented yet;
             bool wasAborted = frm4.GetUserCancledTask();
             // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
             frm4.Close();
@@ -682,6 +733,7 @@ namespace CoreKeeperInventoryEditor
             selectedItemType = itemType;
             selectedItemAmount = itemAmount;
             selectedItemVariation = itemVariation;
+            // selectedItemSkillset = itemSkillset; // Not implimented yet;
             this.Close();
         }
         #endregion
@@ -696,6 +748,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView1.Items[listView1.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -721,6 +774,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView2.Items[listView2.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -746,6 +800,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView3.Items[listView3.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -771,6 +826,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView4.Items[listView4.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -796,6 +852,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView5.Items[listView5.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -821,6 +878,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView6.Items[listView6.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -846,6 +904,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView7.Items[listView7.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -871,6 +930,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView8.Items[listView8.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -896,6 +956,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView9.Items[listView9.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -921,6 +982,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView10.Items[listView10.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -946,6 +1008,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView11.Items[listView11.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -971,6 +1034,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView12.Items[listView12.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -996,6 +1060,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView13.Items[listView13.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -1021,6 +1086,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView14.Items[listView14.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -1046,6 +1112,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView15.Items[listView15.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
@@ -1071,6 +1138,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listView16.Items[listView16.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
                 this.Close();
             }
         }
