@@ -2,7 +2,7 @@ Changes Since v1.3.5.4
 ===========================================================
 - Fixed issues with a few added assets.
 - Fixed nammed pets preventing inventory discovery.
-- Fixed import players progressbar display wrong info.
+- Fixed import players progressbar displaying wrong info.
 - Fixed exceptions caused from out of range item data.
 - Fixed two wrong item slot offsets.
 
