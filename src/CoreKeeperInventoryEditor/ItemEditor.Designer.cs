@@ -529,7 +529,7 @@ namespace CoreKeepersWorkshop
             // 
             this.numericUpDown11.Location = new System.Drawing.Point(72, 171);
             this.numericUpDown11.Maximum = new decimal(new int[] {
-            4,
+            2000000000,
             0,
             0,
             0});

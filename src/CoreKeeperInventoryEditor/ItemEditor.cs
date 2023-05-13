@@ -345,12 +345,6 @@ namespace CoreKeepersWorkshop
                 MessageBox.Show("The skillset was lower then 0! -> Current value: " + CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset + "\n\nValue will be set to 0.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = 0;
             }
-            // Ensure the skillset is less then 4.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset > 4)
-            {
-                MessageBox.Show("The skillset was higher then 3! -> Current value: " + CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset + "\n\nValue will be set to 4.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = 4;
-            }
 
             // Load some settings.
             if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length >= 8) // Check if item is a food variant.

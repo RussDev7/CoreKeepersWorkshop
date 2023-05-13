@@ -199,11 +199,6 @@ namespace CoreKeeperInventoryEditor
             {
                 CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = 0;
             }
-            // Ensure the skillset is less then 4.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset > 4)
-            {
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = 4;
-            }
 
             // Load some settings.
             numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
