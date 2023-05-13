@@ -116,5 +116,11 @@
     <Setting Name="QuantitySelectButton5" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9999</Value>
     </Setting>
+    <Setting Name="ItemSkillset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="InfoSkillset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

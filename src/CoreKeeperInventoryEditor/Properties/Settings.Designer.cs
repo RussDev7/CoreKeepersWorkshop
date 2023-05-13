@@ -478,5 +478,29 @@ namespace CoreKeepersWorkshop.Properties {
                 this["QuantitySelectButton5"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ItemSkillset {
+            get {
+                return ((int)(this["ItemSkillset"]));
+            }
+            set {
+                this["ItemSkillset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int InfoSkillset {
+            get {
+                return ((int)(this["InfoSkillset"]));
+            }
+            set {
+                this["InfoSkillset"] = value;
+            }
+        }
     }
 }
