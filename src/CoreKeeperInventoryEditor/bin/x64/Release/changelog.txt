@@ -5,6 +5,8 @@ Changes Since v1.3.5.4
 - Fixed import players progressbar displaying wrong info.
 - Fixed exceptions caused from out of range item data.
 - Fixed two wrong item slot offsets.
+- Fixed maximum values on inventory editor.
+- Removed limit on max skillset value.
 
 + Added support for items using the new skillset metadata.
 + Added skilltype to the quick item editor.
