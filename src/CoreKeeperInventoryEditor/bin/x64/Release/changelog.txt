@@ -1,3 +1,16 @@
+Changes Since v1.3.5.4
+===========================================================
+- Fixed issues with a few added assets.
+- Fixed nammed pets preventing inventory discovery.
+- Fixed import players progressbar display wrong info.
+- Fixed exceptions caused from out of range item data.
+
++ Added support for items using the new skillset metadata.
++ Added skilltype to the quick item editor.
++ Added skilltype to the inventory editor.
++ Added skilltype to the import and export player feature.
++ Added support for future content.
+
 Changes Since v1.3.5.3
 ===========================================================
 - Reworked error messages to include the products version.
