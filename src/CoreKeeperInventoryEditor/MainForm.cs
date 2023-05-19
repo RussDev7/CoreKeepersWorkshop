@@ -836,13 +836,16 @@ namespace CoreKeeperInventoryEditor
             // Update richtextbox with found addresses..
             foreach (long res in AoBScanResultsInventory)
             {
+                // Get display address.
+                string displayAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                
                 if (richTextBox1.Text == "Addresses Loaded: 0")
                 {
-                    richTextBox1.Text = "Addresses Loaded: " + AoBScanResultsInventory.Count().ToString() + ", Selected: " + useAddress + ", [" + res.ToString("X").ToString();
+                    richTextBox1.Text = "Addresses Loaded: " + AoBScanResultsInventory.Count().ToString() + ", Selected: " + useAddress + ", [" + displayAddress.ToString();
                 }
                 else
                 {
-                    richTextBox1.Text += ", " + res.ToString("X").ToString();
+                    richTextBox1.Text += ", " + displayAddress.ToString();
                 }
             }
             richTextBox1.Text += "]";
