@@ -10,6 +10,7 @@ Changes Since v1.3.5.4
 - Offset the displayed inventory address value.
 - Updated the fishing addresses.
 - Updated the dev rendering addresses.
+- Corrected two wrong asset ids.
 
 + Added support for items using the new skillset metadata.
 + Added skilltype to the quick item editor.
