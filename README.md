@@ -90,6 +90,10 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 - [GitHub Releases](https://github.com/RussDev7/CoreKeepersWorkshop/releases)
 - [Skin Template](https://raw.githubusercontent.com/RussDev7/CoreKeepersWorkshop/main/src/CoreKeeperInventoryEditor/images/SkinTemplate.png)
 
+## Requirements
+
+- [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+
 ## Legal
 - [License (MS-PL)](https://github.com/RussDev7/CoreKeepersWorkshop/blob/main/LICENSE)
 
