@@ -12,9 +12,6 @@ namespace CoreKeepersWorkshop
             InitializeComponent();
         }
 
-        // Form closng variables.
-        bool userCancledTask = false;
-
         // Do loadng events.
         private void TeleportAddressExplanation_Load(object sender, EventArgs e)
         {
@@ -39,7 +36,6 @@ namespace CoreKeepersWorkshop
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
                 // User pressed the "X" button cancle task.
-                userCancledTask = true;
                 this.Close();
             }
 
