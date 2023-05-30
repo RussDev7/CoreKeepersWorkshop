@@ -502,5 +502,17 @@ namespace CoreKeepersWorkshop.Properties {
                 this["InfoSkillset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point TeleportAddressGuideLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["TeleportAddressGuideLocation"]));
+            }
+            set {
+                this["TeleportAddressGuideLocation"] = value;
+            }
+        }
     }
 }

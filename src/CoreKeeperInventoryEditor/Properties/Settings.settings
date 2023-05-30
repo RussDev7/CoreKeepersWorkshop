@@ -122,5 +122,8 @@
     <Setting Name="InfoSkillset" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="TeleportAddressGuideLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
