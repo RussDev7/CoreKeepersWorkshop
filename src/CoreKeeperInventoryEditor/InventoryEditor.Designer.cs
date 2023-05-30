@@ -75,6 +75,7 @@ namespace CoreKeeperInventoryEditor
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -652,12 +653,23 @@ namespace CoreKeeperInventoryEditor
             this.numericUpDown4.TabIndex = 11;
             this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(555, 12);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(21, 22);
+            this.button8.TabIndex = 13;
+            this.button8.Text = "?";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            // 
             // InventoryEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -753,5 +765,6 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.Button button8;
     }
 }

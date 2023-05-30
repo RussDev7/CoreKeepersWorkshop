@@ -314,6 +314,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(button9, "Quick change the items quanitity. Right click to edit.");
             toolTip.SetToolTip(button10, "Quick change the items quanitity. Right click to edit.");
             toolTip.SetToolTip(button11, "Quick change the items quanitity. Right click to edit.");
+            toolTip.SetToolTip(button13, "Launch a guide on how to find skillset IDs.");
 
             toolTip.SetToolTip(pictureBox1, "Click to open the item explorer.");
             toolTip.SetToolTip(pictureBox2, "Click to open the item explorer.");
@@ -949,6 +950,13 @@ namespace CoreKeepersWorkshop
             {
                 MessageBox.Show("No alternative rarity found for this item.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Lanch about skillset message.
+        private void Button13_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("How to find my pet's skillset ID?\r\n    - Each pet only has 4 skillsets and are typically +4/-4 the current pets skillset. For example, if your pet has an assigned skillset of 150 then the 4 skillset IDs will be within the 146-154 range. For fresh pets first name the pet and it will be assigned a skillset id.\r\n\r\nWhy is it like this?\r\n    - The game generates progressive \"skill tables\" rather than using a static ID for a pets skills. Bad system I know, nothing I can do about it.\r\n", "How To Use --> Get Skllset ID", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            return;
         }
         #endregion // End form controls.
 

@@ -62,6 +62,7 @@ namespace CoreKeepersWorkshop
             this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.button12 = new System.Windows.Forms.Button();
             this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.button13 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -523,6 +524,7 @@ namespace CoreKeepersWorkshop
             this.button12.Size = new System.Drawing.Size(60, 22);
             this.button12.TabIndex = 17;
             this.button12.Text = "Skillset";
+            this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button12.UseVisualStyleBackColor = true;
             // 
             // numericUpDown11
@@ -538,12 +540,23 @@ namespace CoreKeepersWorkshop
             this.numericUpDown11.TabIndex = 18;
             this.numericUpDown11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown11_KeyDown);
             // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(55, 170);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(17, 22);
+            this.button13.TabIndex = 19;
+            this.button13.Text = "?";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.Button13_Click);
+            // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(254, 317);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.numericUpDown11);
             this.Controls.Add(this.groupBox1);
@@ -627,5 +640,6 @@ namespace CoreKeepersWorkshop
         private System.Windows.Forms.NumericUpDown numericUpDown10;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.NumericUpDown numericUpDown11;
+        private System.Windows.Forms.Button button13;
     }
 }

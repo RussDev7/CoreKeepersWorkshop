@@ -276,6 +276,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button30, "Get the required addresses for custom map rendering.");
                 toolTip.SetToolTip(button31, "Pause or resume the auto map rendering operation.");
                 toolTip.SetToolTip(button35, "Open a chunk viewer to display real-time chunk position tracking.");
+                toolTip.SetToolTip(button36, "Launch a visualization guide on how to set your teleport addresses.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
                 toolTip.SetToolTip(comboBox2, "Set this applications process priority.");
@@ -12652,6 +12653,21 @@ namespace CoreKeeperInventoryEditor
 
             // Load addresses.
             GetPlayerLocationAddresses();
+        }
+
+        // Launch the teleport address guide.
+        private void Button36_Click(object sender, EventArgs e)
+        {
+            // De-select button.
+            button36.Enabled = false;
+            button36.Enabled = true;
+
+            // Spawn teleport address guide window.
+            TeleportAddressGuide frm6 = new TeleportAddressGuide();
+            DialogResult dr = frm6.ShowDialog(this);
+
+            // Close returning form.
+            frm6.Close();
         }
 
         // Toggle brute force teleport player addresses.
