@@ -1,3 +1,7 @@
+Changes Since v1.3.5.5
+===========================================================
+- Fixed the teleport player addresses for new update.
+
 Changes Since v1.3.5.4
 ===========================================================
 - Fixed issues with a few added assets.
