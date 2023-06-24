@@ -6,7 +6,7 @@
 @ECHO OFF
 
 Rem | Set Params
-Set "VersionPrefix=1.3.5.5"
+Set "VersionPrefix=1.3.5.6"
 Set "filename=CoreKeeperInventoryEditor-%VersionPrefix%"
 
 Rem | Install SLN Under x64 Profile
