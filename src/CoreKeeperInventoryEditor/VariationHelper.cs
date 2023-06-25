@@ -76,9 +76,9 @@
 
         public static bool IngredientIsGoldenPlant(int ingredient)
         {
-            if (ingredient >= 8109) // GoldenGrumpkin.
+            if (ingredient >= 8100 && ingredient <= 8149) // GoldenHeartBerry.
             {
-                return ingredient <= 8150;
+                return true;
             }
 
             return false;

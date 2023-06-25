@@ -153,12 +153,12 @@ namespace CoreKeeperInventoryEditor
                 @"// Here we give thanks to those who have helped the project grow!" + Environment.NewLine,
                 @"// This project would never have grown if not for the following:" + Environment.NewLine + Environment.NewLine,
 
-                @"1) ultimaton2   - Most helpful debugger in the projects lifetime." + Environment.NewLine,
-                @"2) ZeroGravitas - Helped get food tested!" + Environment.NewLine,
-                @"3) Roupiks      - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
+                @"1) Ultimaton2   - Most helpful debugger in the projects lifetime." + Environment.NewLine,
+                @"2) Pharuxtan    - Helped get the new variaton system working." + Environment.NewLine,
+                @"3) Roupiks       - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
 
                 @"Honorable Mentions:" + Environment.NewLine,
-                @"BourbonCrow, puxxy5layer, Flux, pharuxtan, Iskrownik, Yumiko Abe, Ice, Kremnev8, pharuxtan",
+                @"BourbonCrow, puxxy5layer, Flux, ZeroGravitas, kremnev8, Iskrownik, Ice, Yumiko Abe, TheBgNaz, Arne, Bosh, Smuke.",
                 });
                 #endregion
 
