@@ -1,6 +1,8 @@
 Changes Since v1.3.5.5
 ===========================================================
 - Fixed the teleport player addresses for new update.
+- Updated the food cookbook to the latest version.
+- Updated the mod to the new item variation system.
 
 Changes Since v1.3.5.4
 ===========================================================
