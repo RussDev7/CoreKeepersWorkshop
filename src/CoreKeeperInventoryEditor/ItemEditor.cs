@@ -371,21 +371,21 @@ namespace CoreKeepersWorkshop
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
 
                 // New format. // Fix v1.3.5.6.
-                int num4 = VariationHelper.GetIngredient1FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
-                int num5 = VariationHelper.GetIngredient2FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
+                numericUpDown4.Value = VariationHelper.GetIngredient1FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
+                numericUpDown5.Value = VariationHelper.GetIngredient2FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
 
                 // Ensure the largest value loads in the front.
-                if (num5 > num4)
-                {
-                    // Flip values.
-                    numericUpDown5.Value = num4;
-                    numericUpDown4.Value = num5;
-                }
-                else
-                {
-                    numericUpDown4.Value = num4;
-                    numericUpDown5.Value = num5;
-                }
+                // if (num5 > num4)
+                // {
+                //     // Flip values.
+                //     numericUpDown5.Value = num4;
+                //     numericUpDown4.Value = num5;
+                // }
+                // else
+                // {
+                //     numericUpDown4.Value = num4;
+                //     numericUpDown5.Value = num5;
+                // }
 
                 // Legacy format.
                 // numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
@@ -742,7 +742,7 @@ namespace CoreKeepersWorkshop
                 button4.Visible = false;
 
                 // Rename button label.
-                label2.Text = "Variation [Custom]";
+                label2.Text = "Variation [Raw]";
 
                 // Update item variant
                 numericUpDown3.Value = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
