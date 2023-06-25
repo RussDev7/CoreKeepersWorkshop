@@ -189,22 +189,22 @@ namespace CoreKeepersWorkshop
                 // Check if the items variant is populated.
                 if (baseIngredient1ID.ToString().Length > 0 && int.Parse(baseIngredient1ID.ToString()) > 0)
                 {
-                    // Get base item ingrdient 1 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
+                    // Check if target is item mode or not. // Fix v1.3.5.6.
+                    if (!numericUpDown3.Visible)
                     {
-                        label4.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
-
-                        // Load image.
-                        pictureBox2.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
-                        pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-                    }
-                    else
-                    {
-                        // Check if the variant item two is not empty.
-                        if (numericUpDown3.Value != 0 || numericUpDown4.Value != 0)
+                        // Get base item ingrdient 1 name.
+                        if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
                         {
-                            // Check if target is item mode or not. // Fix v1.3.5.6.
-                            if (!numericUpDown3.Visible)
+                            label4.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
+
+                            // Load image.
+                            pictureBox2.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
+                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                        }
+                        else
+                        {
+                            // Check if the variant item two is not empty.
+                            if (numericUpDown3.Value != 0 || numericUpDown4.Value != 0)
                             {
                                 label4.Text = "UnkownItem";
 
@@ -218,11 +218,11 @@ namespace CoreKeepersWorkshop
                                 label4.Text = "";
                             }
                         }
-                        else
-                        {
-                            pictureBox2.Image = null;
-                            label4.Text = "";
-                        }
+                    }
+                    else
+                    {
+                        pictureBox2.Image = null;
+                        label4.Text = "";
                     }
                 }
                 else
@@ -1397,14 +1397,14 @@ namespace CoreKeepersWorkshop
 
             // Set the values from returning form.
             // Check if food edit mode is enabled or not.
-            if (numericUpDown3.Visible)
-            {
-                numericUpDown3.Value = itemType;
-            }
-            else
-            {
-                numericUpDown4.Value = itemType;
-            }
+            // if (numericUpDown3.Visible)
+            // {
+            //     numericUpDown3.Value = itemType;
+            // }
+            // else
+            // {
+            //     numericUpDown4.Value = itemType;
+            // }
 
             // Reload pictureboxes and labels.
             ReloadPictureBoxes(useTextboxeData: true);
