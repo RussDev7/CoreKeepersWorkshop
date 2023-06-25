@@ -7326,13 +7326,13 @@ namespace CoreKeeperInventoryEditor
                         baseItemName = "UnkownItem";
                     }
                 }
-                // Check if the items variant is an lengh of 8. 
-                if (infoVariant.ToString().Length == 8)
+                // Check if the items variant is an lengh of 1. 
+                if (infoVariant >= 1)
                 {
                     // Get base item ingrdient 1 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoVariant.ToString().Substring(0, infoVariant.ToString().Length / 2).ToString()) != null)
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseIngrdient1Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoVariant.ToString().Substring(0, infoVariant.ToString().Length / 2).ToString())).Split(',')[0];
+                        baseIngrdient1Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
@@ -7347,9 +7347,9 @@ namespace CoreKeeperInventoryEditor
                         }
                     }
                     // Get base item ingrdient 2 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoVariant.ToString().Substring(infoVariant.ToString().Length / 2).ToString()) != null)
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseIngrdient2Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoVariant.ToString().Substring(infoVariant.ToString().Length / 2).ToString())).Split(',')[0];
+                        baseIngrdient2Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
@@ -7365,11 +7365,11 @@ namespace CoreKeeperInventoryEditor
                     }
                 }
 
-                // Check if the items variant is an lengh of 8. 
+                // Check if the items variant is an lengh of 1. 
                 string itemMessage = "";
-                if (infoVariant.ToString().Length == 8)
+                if (infoVariant >= 1)
                 {
-                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "Base ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Skillset: " + infoSkillset + Environment.NewLine + Environment.NewLine + "Variant IDs:" + Environment.NewLine + "- Ingrdient1: " + baseIngrdient1Name + " [" + infoVariant.ToString().Substring(0, infoVariant.ToString().Length / 2) + "]" + Environment.NewLine + "- Ingrdient2: " + baseIngrdient2Name + " [" + infoVariant.ToString().Substring(infoVariant.ToString().Length / 2) + "]";
+                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "Base ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Skillset: " + infoSkillset + Environment.NewLine + Environment.NewLine + "Variant IDs: (" + infoVariant + ")" + Environment.NewLine + "- Ingrdient1: " + baseIngrdient1Name + " [" + VariationHelper.GetIngredient1FromFoodVariation(infoVariant) + "]" + Environment.NewLine + "- Ingrdient2: " + baseIngrdient2Name + " [" + VariationHelper.GetIngredient2FromFoodVariation(infoVariant) + "]";
                 }
                 else
                 {

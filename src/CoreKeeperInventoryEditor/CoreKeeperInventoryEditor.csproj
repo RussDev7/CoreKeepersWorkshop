@@ -149,6 +149,7 @@
     <Compile Include="TextProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="VariationHelper.cs" />
     <EmbeddedResource Include="ChunkViewer.resx">
       <DependentUpon>ChunkViewer.cs</DependentUpon>
     </EmbeddedResource>

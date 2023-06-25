@@ -112,15 +112,15 @@ namespace CoreKeepersWorkshop
             if (!useTextboxeData)
             {
                 // Check if the items variant is populated.
-                if (baseItemVariation.ToString().Length >= 8)
+                if (baseItemVariation >= 1)
                 {
                     // Get base item ingrdient 1 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString()) != null)
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString()) != null)
                     {
-                        label4.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString())).Split(',')[0];
+                        label4.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
 
                         // Load image.
-                        pictureBox2.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(0, baseItemVariation.ToString().Length / 2).ToString())));
+                        pictureBox2.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())));
                         pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
@@ -147,15 +147,15 @@ namespace CoreKeepersWorkshop
                     label4.Text = "";
                 }
                 // Check if the items variant is populated.
-                if (baseItemVariation.ToString().Length >= 8 && !numericUpDown3.Visible)
+                if (baseItemVariation >= 1 && !numericUpDown3.Visible)
                 {
                     // Get base item ingrdient 2 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString()) != null)
+                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString()) != null)
                     {
-                        label5.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString())).Split(',')[0];
+                        label5.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
 
                         // Load image.
-                        pictureBox3.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemVariation.ToString().Substring(baseItemVariation.ToString().Length / 2).ToString())));
+                        pictureBox3.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())));
                         pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
@@ -178,6 +178,7 @@ namespace CoreKeepersWorkshop
                 }
                 else
                 {
+                    
                     pictureBox3.Image = null;
                     label5.Text = "";
                 }
@@ -202,11 +203,20 @@ namespace CoreKeepersWorkshop
                         // Check if the variant item two is not empty.
                         if (numericUpDown3.Value != 0 || numericUpDown4.Value != 0)
                         {
-                            label4.Text = "UnkownItem";
+                            // Check if target is item mode or not. // Fix v1.3.5.6.
+                            if (!numericUpDown3.Visible)
+                            {
+                                label4.Text = "UnkownItem";
 
-                            // Load image.
-                            pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                                // Load image.
+                                pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                            else
+                            {
+                                pictureBox2.Image = null;
+                                label4.Text = "";
+                            }
                         }
                         else
                         {
@@ -348,7 +358,7 @@ namespace CoreKeepersWorkshop
             }
 
             // Load some settings.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length >= 8) // Check if item is a food variant.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation >= 1) // Check if item is a food variant.
             {
                 // Change some form items.
                 numericUpDown3.Visible = false;
@@ -359,8 +369,28 @@ namespace CoreKeepersWorkshop
                 // Update settings.
                 numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
                 numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
-                numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
-                numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+
+                // New format. // Fix v1.3.5.6.
+                int num4 = VariationHelper.GetIngredient1FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
+                int num5 = VariationHelper.GetIngredient2FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
+
+                // Ensure the largest value loads in the front.
+                if (num5 > num4)
+                {
+                    // Flip values.
+                    numericUpDown5.Value = num4;
+                    numericUpDown4.Value = num5;
+                }
+                else
+                {
+                    numericUpDown4.Value = num4;
+                    numericUpDown5.Value = num5;
+                }
+
+                // Legacy format.
+                // numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+                // numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+
                 numericUpDown11.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset;
 
                 // Rename button label.
@@ -404,18 +434,21 @@ namespace CoreKeepersWorkshop
                     if (numericUpDown5.Value != 0)
                     {
                         // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                        if (numericUpDown4.Value > numericUpDown5.Value)
-                        {
-                            // Flip values.
-                            decimal item2 = numericUpDown4.Value;
-                            decimal item3 = numericUpDown5.Value;
+                        // if (numericUpDown4.Value > numericUpDown5.Value)
+                        // {
+                        //     // Flip values.
+                        //     decimal item2 = numericUpDown4.Value;
+                        //     decimal item3 = numericUpDown5.Value;
+                        // 
+                        //     numericUpDown4.Value = item3;
+                        //     numericUpDown5.Value = item2;
+                        // }
 
-                            numericUpDown4.Value = item3;
-                            numericUpDown5.Value = item2;
-                        }
+                        // Combine strings into int. // Fix v1.3.5.6.
+                        CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                        // Combine strings into int.
-                        CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Legacy format.
+                        // CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -709,10 +742,10 @@ namespace CoreKeepersWorkshop
                 button4.Visible = false;
 
                 // Rename button label.
-                label2.Text = "Variation [Items]";
+                label2.Text = "Variation [Custom]";
 
                 // Update item variant
-                numericUpDown3.Value = numericUpDown4.Value;
+                numericUpDown3.Value = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
                 // Reload all pictureboxes and labels.
                 ReloadPictureBoxes(useTextboxeData: true);
@@ -732,7 +765,8 @@ namespace CoreKeepersWorkshop
                 label2.Text = "Variation [Food Ingredients]";
 
                 // Update food variant
-                numericUpDown4.Value = numericUpDown3.Value;
+                numericUpDown4.Value = VariationHelper.GetIngredient1FromFoodVariation((int)numericUpDown3.Value);
+                numericUpDown5.Value = VariationHelper.GetIngredient2FromFoodVariation((int)numericUpDown3.Value);
 
                 // Reload all pictureboxes and labels.
                 ReloadPictureBoxes(useTextboxeData: true);
@@ -807,12 +841,12 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Combine strings into int.
-                    originalVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    originalVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
                 }
                 else
                 {
                     // Only single value exists, treat as a unique variant value.
-                    originalVariation = (int)numericUpDown4.Value;
+                    originalVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, 0);
                 }
             }
             else
@@ -822,7 +856,7 @@ namespace CoreKeepersWorkshop
             }
 
             // Ensure original variation is 8 in lengh.
-            if (originalVariation.ToString().Length >= 8)
+            if (originalVariation >= 1)
             {
                 // Get the original items prefix.
                 // Get json file from resources.
@@ -922,8 +956,12 @@ namespace CoreKeepersWorkshop
                                 if (!numericUpDown3.Visible) // Check if item is a food variant.
                                 {
                                     // Populate both textboxes.
-                                    numericUpDown4.Value = int.Parse(foodVariation.Substring(0, foodVariation.Length / 2));
-                                    numericUpDown5.Value = int.Parse(foodVariation.Substring(foodVariation.ToString().Length / 2));
+                                    numericUpDown4.Value = VariationHelper.GetIngredient1FromFoodVariation(int.Parse(foodVariation));
+                                    numericUpDown5.Value = VariationHelper.GetIngredient2FromFoodVariation(int.Parse(foodVariation));
+
+                                    // Legacy format.
+                                    // numericUpDown4.Value = int.Parse(foodVariation.Substring(0, foodVariation.Length / 2));
+                                    // numericUpDown5.Value = int.Parse(foodVariation.Substring(foodVariation.ToString().Length / 2));
                                 }
                                 else
                                 {
@@ -1407,18 +1445,21 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                    if (numericUpDown4.Value > numericUpDown5.Value)
-                    {
-                        // Flip values.
-                        decimal item2 = numericUpDown4.Value;
-                        decimal item3 = numericUpDown5.Value;
+                    // if (numericUpDown4.Value > numericUpDown5.Value)
+                    // {
+                    //     // Flip values.
+                    //     decimal item2 = numericUpDown4.Value;
+                    //     decimal item3 = numericUpDown5.Value;
+                    // 
+                    //     numericUpDown4.Value = item3;
+                    //     numericUpDown5.Value = item2;
+                    // }
 
-                        numericUpDown4.Value = item3;
-                        numericUpDown5.Value = item2;
-                    }
+                    // Combine strings into int. // Fix v1.3.5.6.
+                    selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                    // Combine strings into int.
-                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Legacy format.
+                    // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
                 else
                 {
