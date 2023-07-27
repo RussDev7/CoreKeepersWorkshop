@@ -1,7 +1,7 @@
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::Install CoreKeepersWorkshop Via MSBuild                        ::
 ::Gihub https://github.com/RussDev7/CoreKeepersWorkshop          ::
-::Developed, Maintained, And Sponsored By D.RUSS#2430            ::
+::Developed, Maintained, And Sponsored By Discord:dannyruss      ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
 
