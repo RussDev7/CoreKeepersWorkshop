@@ -1,3 +1,7 @@
+Changes Since v1.3.5.6
+===========================================================
+- Fixed the quick item editors variation system conflicts.
+
 Changes Since v1.3.5.5
 ===========================================================
 - Fixed the teleport player addresses for new update.
