@@ -487,18 +487,21 @@ namespace CoreKeepersWorkshop
                     if (numericUpDown5.Value != 0)
                     {
                         // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                        if (numericUpDown4.Value > numericUpDown5.Value)
-                        {
-                            // Flip values.
-                            decimal item2 = numericUpDown4.Value;
-                            decimal item3 = numericUpDown5.Value;
+                        // if (numericUpDown4.Value > numericUpDown5.Value)
+                        // {
+                        //     // Flip values.
+                        //     decimal item2 = numericUpDown4.Value;
+                        //     decimal item3 = numericUpDown5.Value;
+                        // 
+                        //     numericUpDown4.Value = item3;
+                        //     numericUpDown5.Value = item2;
+                        // }
 
-                            numericUpDown4.Value = item3;
-                            numericUpDown5.Value = item2;
-                        }
+                        // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                        selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                        // Combine strings into int.
-                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Legacy format.
+                        // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -527,18 +530,21 @@ namespace CoreKeepersWorkshop
                     if (numericUpDown5.Value != 0)
                     {
                         // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                        if (numericUpDown4.Value > numericUpDown5.Value)
-                        {
-                            // Flip values.
-                            decimal item2 = numericUpDown4.Value;
-                            decimal item3 = numericUpDown5.Value;
+                        // if (numericUpDown4.Value > numericUpDown5.Value)
+                        // {
+                        //     // Flip values.
+                        //     decimal item2 = numericUpDown4.Value;
+                        //     decimal item3 = numericUpDown5.Value;
+                        // 
+                        //     numericUpDown4.Value = item3;
+                        //     numericUpDown5.Value = item2;
+                        // }
 
-                            numericUpDown4.Value = item3;
-                            numericUpDown5.Value = item2;
-                        }
+                        // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                        selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                        // Combine strings into int.
-                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Legacy format.
+                        // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -577,8 +583,11 @@ namespace CoreKeepersWorkshop
                             numericUpDown5.Value = item2;
                         }
 
-                        // Combine strings into int.
-                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                        selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
+
+                        // Legacy format.
+                        // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -607,18 +616,21 @@ namespace CoreKeepersWorkshop
                     if (numericUpDown5.Value != 0)
                     {
                         // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                        if (numericUpDown4.Value > numericUpDown5.Value)
-                        {
-                            // Flip values.
-                            decimal item2 = numericUpDown4.Value;
-                            decimal item3 = numericUpDown5.Value;
+                        // if (numericUpDown4.Value > numericUpDown5.Value)
+                        // {
+                        //     // Flip values.
+                        //     decimal item2 = numericUpDown4.Value;
+                        //     decimal item3 = numericUpDown5.Value;
+                        // 
+                        //     numericUpDown4.Value = item3;
+                        //     numericUpDown5.Value = item2;
+                        // }
 
-                            numericUpDown4.Value = item3;
-                            numericUpDown5.Value = item2;
-                        }
+                        // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                        selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                        // Combine strings into int.
-                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Legacy format.
+                        // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -647,18 +659,21 @@ namespace CoreKeepersWorkshop
                     if (numericUpDown5.Value != 0)
                     {
                         // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                        if (numericUpDown4.Value > numericUpDown5.Value)
-                        {
-                            // Flip values.
-                            decimal item2 = numericUpDown4.Value;
-                            decimal item3 = numericUpDown5.Value;
+                        // if (numericUpDown4.Value > numericUpDown5.Value)
+                        // {
+                        //     // Flip values.
+                        //     decimal item2 = numericUpDown4.Value;
+                        //     decimal item3 = numericUpDown5.Value;
+                        // 
+                        //     numericUpDown4.Value = item3;
+                        //     numericUpDown5.Value = item2;
+                        // }
 
-                            numericUpDown4.Value = item3;
-                            numericUpDown5.Value = item2;
-                        }
+                        // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                        selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                        // Combine strings into int.
-                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Legacy format.
+                        // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -687,18 +702,21 @@ namespace CoreKeepersWorkshop
                     if (numericUpDown5.Value != 0)
                     {
                         // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                        if (numericUpDown4.Value > numericUpDown5.Value)
-                        {
-                            // Flip values.
-                            decimal item2 = numericUpDown4.Value;
-                            decimal item3 = numericUpDown5.Value;
+                        // if (numericUpDown4.Value > numericUpDown5.Value)
+                        // {
+                        //     // Flip values.
+                        //     decimal item2 = numericUpDown4.Value;
+                        //     decimal item3 = numericUpDown5.Value;
+                        // 
+                        //     numericUpDown4.Value = item3;
+                        //     numericUpDown5.Value = item2;
+                        // }
 
-                            numericUpDown4.Value = item3;
-                            numericUpDown5.Value = item2;
-                        }
+                        // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                        selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                        // Combine strings into int.
-                        selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Legacy format.
+                        // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
@@ -1017,18 +1035,21 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                    if (numericUpDown4.Value > numericUpDown5.Value)
-                    {
-                        // Flip values.
-                        decimal item2 = numericUpDown4.Value;
-                        decimal item3 = numericUpDown5.Value;
+                    // if (numericUpDown4.Value > numericUpDown5.Value)
+                    // {
+                    //     // Flip values.
+                    //     decimal item2 = numericUpDown4.Value;
+                    //     decimal item3 = numericUpDown5.Value;
+                    // 
+                    //     numericUpDown4.Value = item3;
+                    //     numericUpDown5.Value = item2;
+                    // }
 
-                        numericUpDown4.Value = item3;
-                        numericUpDown5.Value = item2;
-                    }
+                    // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                    selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                    // Combine strings into int.
-                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Legacy format.
+                    // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
                 else
                 {
@@ -1059,18 +1080,21 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                    if (numericUpDown4.Value > numericUpDown5.Value)
-                    {
-                        // Flip values.
-                        decimal item2 = numericUpDown4.Value;
-                        decimal item3 = numericUpDown5.Value;
+                    // if (numericUpDown4.Value > numericUpDown5.Value)
+                    // {
+                    //     // Flip values.
+                    //     decimal item2 = numericUpDown4.Value;
+                    //     decimal item3 = numericUpDown5.Value;
+                    // 
+                    //     numericUpDown4.Value = item3;
+                    //     numericUpDown5.Value = item2;
+                    // }
 
-                        numericUpDown4.Value = item3;
-                        numericUpDown5.Value = item2;
-                    }
+                    // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                    selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                    // Combine strings into int.
-                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Legacy format.
+                    // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
                 else
                 {
@@ -1101,18 +1125,21 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                    if (numericUpDown4.Value > numericUpDown5.Value)
-                    {
-                        // Flip values.
-                        decimal item2 = numericUpDown4.Value;
-                        decimal item3 = numericUpDown5.Value;
+                    // if (numericUpDown4.Value > numericUpDown5.Value)
+                    // {
+                    //     // Flip values.
+                    //     decimal item2 = numericUpDown4.Value;
+                    //     decimal item3 = numericUpDown5.Value;
+                    // 
+                    //     numericUpDown4.Value = item3;
+                    //     numericUpDown5.Value = item2;
+                    // }
 
-                        numericUpDown4.Value = item3;
-                        numericUpDown5.Value = item2;
-                    }
+                    // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                    selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                    // Combine strings into int.
-                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Legacy format.
+                    // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
                 else
                 {
@@ -1143,18 +1170,21 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                    if (numericUpDown4.Value > numericUpDown5.Value)
-                    {
-                        // Flip values.
-                        decimal item2 = numericUpDown4.Value;
-                        decimal item3 = numericUpDown5.Value;
+                    // if (numericUpDown4.Value > numericUpDown5.Value)
+                    // {
+                    //     // Flip values.
+                    //     decimal item2 = numericUpDown4.Value;
+                    //     decimal item3 = numericUpDown5.Value;
+                    // 
+                    //     numericUpDown4.Value = item3;
+                    //     numericUpDown5.Value = item2;
+                    // }
 
-                        numericUpDown4.Value = item3;
-                        numericUpDown5.Value = item2;
-                    }
+                    // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                    selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                    // Combine strings into int.
-                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Legacy format.
+                    // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
                 else
                 {
@@ -1185,18 +1215,21 @@ namespace CoreKeepersWorkshop
                 if (numericUpDown5.Value != 0)
                 {
                     // Do some checks and corrections for values over 8. // Fix v1.3.5.1.
-                    if (numericUpDown4.Value > numericUpDown5.Value)
-                    {
-                        // Flip values.
-                        decimal item2 = numericUpDown4.Value;
-                        decimal item3 = numericUpDown5.Value;
+                    // if (numericUpDown4.Value > numericUpDown5.Value)
+                    // {
+                    //     // Flip values.
+                    //     decimal item2 = numericUpDown4.Value;
+                    //     decimal item3 = numericUpDown5.Value;
+                    // 
+                    //     numericUpDown4.Value = item3;
+                    //     numericUpDown5.Value = item2;
+                    // }
 
-                        numericUpDown4.Value = item3;
-                        numericUpDown5.Value = item2;
-                    }
+                    // Combine strings into int. // Fix v1.3.5.6. // Fix v1.3.5.7 - Added the math to this overlooked function.
+                    selectedItemVariation = VariationHelper.GetFoodVariation((int)numericUpDown4.Value, (int)numericUpDown5.Value);
 
-                    // Combine strings into int.
-                    selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                    // Legacy format.
+                    // selectedItemVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                 }
                 else
                 {
