@@ -260,8 +260,9 @@ namespace CoreKeepersWorkshop
             if (MemLib.OpenProcess("CoreKeeper") && playerToolAddress != null)
             {
                 // Get the addresses.
-                string positionXAddress = BigInteger.Subtract(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                string positionYAddress = playerToolAddress;
+                // Updated offsets 04Oct23.
+                string positionXAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
+                string positionYAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
 
                 float playerX = MemLib.ReadFloat(positionXAddress);
                 float playerY = MemLib.ReadFloat(positionYAddress);
