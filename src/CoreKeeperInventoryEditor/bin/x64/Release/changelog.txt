@@ -1,3 +1,7 @@
+Changes Since v1.3.5.7
+===========================================================
+- Updated all the player mods to the new game version.
+
 Changes Since v1.3.5.6
 ===========================================================
 - Fixed the quick item editors variation system conflicts.
