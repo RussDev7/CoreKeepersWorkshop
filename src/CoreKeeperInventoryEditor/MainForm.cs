@@ -13359,266 +13359,131 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // Do initial varible reset.
-            renderMapPlayerStateAddress = "";
-            renderMapPlayerStateOriginalValue = "";
-            renderMapPlayerStateNoClipAddress = "";
-            renderMapGodmodeAddress = "";
-
-            // Define players initial position.
-            var initialres = AoBScanResultsPlayerTools.Last();
-            float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X"));
-            float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X"));
-            Vector2 initialPosition = new Vector2(xlocres, ylocres);
-
-            // Define entree values.
-            Vector2 localPosition = initialPosition;
-            int maxRadius = (int)numericUpDown14.Value; // Max radius.
-            int minRadius = (int)numericUpDown16.Value; // Min radius.
-            int stepSize = (int)numericUpDown17.Value; // Range.
-            double radialMoveScale = (double)numericUpDown18.Value; // radialMoveScale.
-            int stepsCompleted = 0;
-            int count = 0;
-
-            // Get each XY value within x radius of player.
-            int xoffset = (int)localPosition.X;
-            int yoffset = (int)localPosition.Y;
-
-            // Define starting vars.
-            int x = xoffset;
-            int y;
-            int r;
-            int rPrevious = minRadius;
-
-            // Calculate time and primpt user.
-            int calculateCount = 0;
-
-            #region Calculate Render Time
-
-            // Calculate the total time required.
-            if ((int)numericUpDown16.Value > 0)
+            // Do a try statement.
+            try
             {
-                calculateCount++;
-            }
-            for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
-            {
-                x = xoffset;
-                for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
+                // Do initial varible reset.
+                renderMapPlayerStateAddress = "";
+                renderMapPlayerStateOriginalValue = "";
+                renderMapPlayerStateNoClipAddress = "";
+                renderMapGodmodeAddress = "";
+
+                // Define players initial position.
+                var initialres = AoBScanResultsPlayerTools.Last();
+                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X"));
+                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X"));
+                Vector2 initialPosition = new Vector2(xlocres, ylocres);
+
+                // Define entree values.
+                Vector2 localPosition = initialPosition;
+                int maxRadius = (int)numericUpDown14.Value; // Max radius.
+                int minRadius = (int)numericUpDown16.Value; // Min radius.
+                int stepSize = (int)numericUpDown17.Value; // Range.
+                double radialMoveScale = (double)numericUpDown18.Value; // radialMoveScale.
+                int stepsCompleted = 0;
+                int count = 0;
+
+                // Get each XY value within x radius of player.
+                int xoffset = (int)localPosition.X;
+                int yoffset = (int)localPosition.Y;
+
+                // Define starting vars.
+                int x = xoffset;
+                int y;
+                int r;
+                int rPrevious = minRadius;
+
+                // Calculate time and primpt user.
+                int calculateCount = 0;
+
+                #region Calculate Render Time
+
+                // Calculate the total time required.
+                if ((int)numericUpDown16.Value > 0)
                 {
                     calculateCount++;
                 }
-                double delta = (double)((double)stepSize / (double)r);
-                double theta;
-                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
+                for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
                 {
-                    x = (int)(Math.Sin(theta) * r) + xoffset;
-                    calculateCount++;
+                    x = xoffset;
+                    for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
+                    {
+                        calculateCount++;
+                    }
+                    double delta = (double)((double)stepSize / (double)r);
+                    double theta;
+                    for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
+                    {
+                        x = (int)(Math.Sin(theta) * r) + xoffset;
+                        calculateCount++;
+                    }
+                    rPrevious = r;
                 }
-                rPrevious = r;
-            }
-            string time = (((calculateCount * (int)numericUpDown15.Value) / 60000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) + " hours." : (((calculateCount * (int)numericUpDown15.Value) / 1000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes." : ((calculateCount * (int)numericUpDown15.Value) / 1000) + " seconds";
-            time = (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) >= 24) ? (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) / 24) + " days." : time;
-            if (MessageBox.Show("This operaration will take ~" + time + "\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-            {
-                // User cancled, exit void.
-                return;
-            }
-            #endregion
-
-            // Reset the progress bar.
-            textProgressBar1.Visible = true;
-            textProgressBar1.Maximum = calculateCount; // Set the progress bar total to the total required points to complete.
-            textProgressBar1.Step = 1;
-            textProgressBar1.Value = 0;
-            textProgressBar1.CustomText = "0.00% | Current Radius: 0";
-
-            // Change button to indicate loading.
-            button22.Text = "Loading...";
-            button22.Enabled = false;
-            button22.Visible = false;
-            button28.Visible = true;
-            button31.Enabled = true;
-            cancleRenderingOperation = false;
-
-            // Enable custom render.
-            foreach (long res in AoBScanResultsDevMapReveal)
-            {
-                // Get the offset.
-                MemLib.WriteMemory(res.ToString("X").ToString(), "int", "1");
-            }
-
-            // Set the custom render.
-            foreach (long res in AoBScanResultsRevealMapRange)
-            {
-                // Set the new value within memory.
-                string rangeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
-                MemLib.WriteMemory(rangeAddress, "float", numericUpDown17.Value.ToString());
-            }
-
-            // Reset variable.
-            rPrevious = minRadius;
-
-            // Get the anti collision addresses.
-            renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
-            renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
-            renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
-
-            // Get the godmode address.
-            renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2684", NumberStyles.Integer)).ToString("X");
-
-            // Declare the current start time.
-            DateTime startTime = DateTime.Now;
-
-            // Enable noclip, godmode, and start the timed events.
-            renderMapOperationsTimer.Interval = 1; // Custom intervals.
-            renderMapOperationsTimer.Elapsed += new ElapsedEventHandler(RenderMapOperationsTimedEvent);
-            renderMapOperationsTimer.Start();
-
-            #region Do Rendering
-
-            // Math for creating a filled / hollow circle.
-            #region Initial Y Offset
-            if ((int)numericUpDown16.Value > 0)
-            {
-                y = minRadius + yoffset;
-
-                // Define current position.
-                Vector2 newPosition = new Vector2(x, y);
-
-                // Iterate through each found address and update the players position.
-                foreach (long res in AoBScanResultsPlayerLocation)
+                string time = (((calculateCount * (int)numericUpDown15.Value) / 60000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) + " hours." : (((calculateCount * (int)numericUpDown15.Value) / 1000) >= 60) ? ((calculateCount * (int)numericUpDown15.Value) / 60000) + " minutes." : ((calculateCount * (int)numericUpDown15.Value) / 1000) + " seconds";
+                time = (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) >= 24) ? (((calculateCount * (int)numericUpDown15.Value) / 60000 / 60) / 24) + " days." : time;
+                if (MessageBox.Show("This operaration will take ~" + time + "\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {
-                    // Get address from loop.
-                    string playerX = res.ToString("X").ToString();
-                    string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-
-                    // Send player to X.
-                    MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
-
-                    // Send player to Y.
-                    MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
-                }
-
-                // Add to steps completed.
-                stepsCompleted++;
-
-                // Progress the progress bar.
-                textProgressBar1.PerformStep();
-                textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + (int)numericUpDown16.Value;
-
-                // Add a long cooldown.
-                await Task.Delay(10000);
-
-                // Pause the rendering operation.
-                while (pauseRenderingOperation)
-                {
-                    try
-                    {
-                        // Keep the thread busy.
-                        await Task.Delay(10);
-                    }
-                    catch (TaskCanceledException)
-                    {
-                        pauseRenderingOperation = false;
-                    }
-                }
-
-                // Cancle the rendering operation.
-                if (cancleRenderingOperation)
-                {
-                    // Reenable controls.
-                    cancleRenderingOperation = false;
-                    button22.Enabled = true;
-                    button22.Visible = true;
-                    button22.Text = "Auto Map Renderer";
-                    button28.Visible = false; // Hide cancle button.
-                    button31.Enabled = false;
-                    groupBox8.Enabled = true;
-
-                    // End look.
-                    goto exitLoop;
-                }
-            }
-            #endregion
-
-            for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
-            {
-                x = xoffset;
-
-                #region Moving Between Circles
-                for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
-                {
-                    // Force enable noclip to prevent unclipping.
-                    MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
-
-                    // Define current position.
-                    Vector2 newPosition = new Vector2(x, y + yoffset);
-
-                    // Iterate through each found address and update the players position.
-                    foreach (long res in AoBScanResultsPlayerLocation)
-                    {
-                        // Get address from loop.
-                        string playerX = res.ToString("X").ToString();
-                        string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-
-                        // Send player to X.
-                        MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
-
-                        // Send player to Y.
-                        MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
-                    }
-
-                    // Add to steps completed.
-                    stepsCompleted++;
-
-                    // Progress the progress bar.
-                    textProgressBar1.PerformStep();
-                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + r;
-
-                    // Add a cooldown.
-                    await Task.Delay((int)numericUpDown15.Value);
-
-                    // Pause the rendering operation.
-                    while (pauseRenderingOperation)
-                    {
-                        try
-                        {
-                            // Keep the thread busy.
-                            await Task.Delay(10);
-                        }
-                        catch (TaskCanceledException)
-                        {
-                            pauseRenderingOperation = false;
-                        }
-                    }
-
-                    // Cancle the rendering operation.
-                    if (cancleRenderingOperation)
-                    {
-                        // Reenable controls.
-                        cancleRenderingOperation = false;
-                        button22.Enabled = true;
-                        button22.Visible = true;
-                        button22.Text = "Auto Map Renderer";
-                        button28.Visible = false; // Hide cancle button.
-                        groupBox8.Enabled = true;
-
-                        // End look.
-                        goto exitLoop;
-                    }
+                    // User cancled, exit void.
+                    return;
                 }
                 #endregion
 
-                #region Move Around Circle
-                double delta = (double)((double)stepSize / (double)r);
-                double theta;
-                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
-                {
-                    // Force enable noclip to prevent unclipping.
-                    MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+                // Reset the progress bar.
+                textProgressBar1.Visible = true;
+                textProgressBar1.Maximum = calculateCount; // Set the progress bar total to the total required points to complete.
+                textProgressBar1.Step = 1;
+                textProgressBar1.Value = 0;
+                textProgressBar1.CustomText = "0.00% | Current Radius: 0";
 
-                    x = (int)(Math.Sin(theta) * r) + xoffset;
-                    y = (int)(Math.Cos(theta) * r) + yoffset;
+                // Change button to indicate loading.
+                button22.Text = "Loading...";
+                button22.Enabled = false;
+                button22.Visible = false;
+                button28.Visible = true;
+                button31.Enabled = true;
+                cancleRenderingOperation = false;
+
+                // Enable custom render.
+                foreach (long res in AoBScanResultsDevMapReveal)
+                {
+                    // Get the offset.
+                    MemLib.WriteMemory(res.ToString("X").ToString(), "int", "1");
+                }
+
+                // Set the custom render.
+                foreach (long res in AoBScanResultsRevealMapRange)
+                {
+                    // Set the new value within memory.
+                    string rangeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                    MemLib.WriteMemory(rangeAddress, "float", numericUpDown17.Value.ToString());
+                }
+
+                // Reset variable.
+                rPrevious = minRadius;
+
+                // Get the anti collision addresses.
+                renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
+                renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
+                renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
+
+                // Get the godmode address.
+                renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2684", NumberStyles.Integer)).ToString("X");
+
+                // Declare the current start time.
+                DateTime startTime = DateTime.Now;
+
+                // Enable noclip, godmode, and start the timed events.
+                renderMapOperationsTimer.Interval = 1; // Custom intervals.
+                renderMapOperationsTimer.Elapsed += new ElapsedEventHandler(RenderMapOperationsTimedEvent);
+                renderMapOperationsTimer.Start();
+
+                #region Do Rendering
+
+                // Math for creating a filled / hollow circle.
+                #region Initial Y Offset
+                if ((int)numericUpDown16.Value > 0)
+                {
+                    y = minRadius + yoffset;
 
                     // Define current position.
                     Vector2 newPosition = new Vector2(x, y);
@@ -13642,10 +13507,10 @@ namespace CoreKeeperInventoryEditor
 
                     // Progress the progress bar.
                     textProgressBar1.PerformStep();
-                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + r;
+                    textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + (int)numericUpDown16.Value;
 
-                    // Add a cooldown.
-                    await Task.Delay((int)numericUpDown15.Value);
+                    // Add a long cooldown.
+                    await Task.Delay(10000);
 
                     // Pause the rendering operation.
                     while (pauseRenderingOperation)
@@ -13670,6 +13535,7 @@ namespace CoreKeeperInventoryEditor
                         button22.Visible = true;
                         button22.Text = "Auto Map Renderer";
                         button28.Visible = false; // Hide cancle button.
+                        button31.Enabled = false;
                         groupBox8.Enabled = true;
 
                         // End look.
@@ -13678,123 +13544,250 @@ namespace CoreKeeperInventoryEditor
                 }
                 #endregion
 
-                rPrevious = r;
-
-                #region After Completed Ring Operations
-
-                // Save the maps progress before starting next ring.
-                // Skip first circle check: r != (int)numericUpDown16.Value
-                if (checkBox1.Checked && r != 0)
+                for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
                 {
-                    // Add a cooldown.
-                    await Task.Delay(100);
+                    x = xoffset;
 
-                    // Press the "M" key to open the map.
-                    if (Process.GetProcessesByName("CoreKeeper").FirstOrDefault() != null)
+                    #region Moving Between Circles
+                    for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
                     {
-                        SetForegroundWindow(FindWindow(null, "Core Keeper"));
-                        keybd_event((byte)0x4D, 0, 0x0001 | 0, 0);
-                        keybd_event((byte)0x4D, 0, 0x0001 | 2, 0);
+                        // Force enable noclip to prevent unclipping.
+                        MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+
+                        // Define current position.
+                        Vector2 newPosition = new Vector2(x, y + yoffset);
+
+                        // Iterate through each found address and update the players position.
+                        foreach (long res in AoBScanResultsPlayerLocation)
+                        {
+                            // Get address from loop.
+                            string playerX = res.ToString("X").ToString();
+                            string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                            // Send player to X.
+                            MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
+
+                            // Send player to Y.
+                            MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
+                        }
+
+                        // Add to steps completed.
+                        stepsCompleted++;
+
+                        // Progress the progress bar.
+                        textProgressBar1.PerformStep();
+                        textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + r;
+
+                        // Add a cooldown.
+                        await Task.Delay((int)numericUpDown15.Value);
+
+                        // Pause the rendering operation.
+                        while (pauseRenderingOperation)
+                        {
+                            try
+                            {
+                                // Keep the thread busy.
+                                await Task.Delay(10);
+                            }
+                            catch (TaskCanceledException)
+                            {
+                                pauseRenderingOperation = false;
+                            }
+                        }
+
+                        // Cancle the rendering operation.
+                        if (cancleRenderingOperation)
+                        {
+                            // Reenable controls.
+                            cancleRenderingOperation = false;
+                            button22.Enabled = true;
+                            button22.Visible = true;
+                            button22.Text = "Auto Map Renderer";
+                            button28.Visible = false; // Hide cancle button.
+                            groupBox8.Enabled = true;
+
+                            // End look.
+                            goto exitLoop;
+                        }
+                    }
+                    #endregion
+
+                    #region Move Around Circle
+                    double delta = (double)((double)stepSize / (double)r);
+                    double theta;
+                    for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
+                    {
+                        // Force enable noclip to prevent unclipping.
+                        MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateNoClipAddress).ToString());
+
+                        x = (int)(Math.Sin(theta) * r) + xoffset;
+                        y = (int)(Math.Cos(theta) * r) + yoffset;
+
+                        // Define current position.
+                        Vector2 newPosition = new Vector2(x, y);
+
+                        // Iterate through each found address and update the players position.
+                        foreach (long res in AoBScanResultsPlayerLocation)
+                        {
+                            // Get address from loop.
+                            string playerX = res.ToString("X").ToString();
+                            string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                            // Send player to X.
+                            MemLib.WriteMemory(playerX, "float", newPosition.X.ToString());
+
+                            // Send player to Y.
+                            MemLib.WriteMemory(playerY, "float", newPosition.Y.ToString());
+                        }
+
+                        // Add to steps completed.
+                        stepsCompleted++;
+
+                        // Progress the progress bar.
+                        textProgressBar1.PerformStep();
+                        textProgressBar1.CustomText = decimal.Parse((stepsCompleted / (decimal)((decimal)calculateCount / 100)).ToString("0.00")).ToString() + "% | Current Radius: " + r;
+
+                        // Add a cooldown.
+                        await Task.Delay((int)numericUpDown15.Value);
+
+                        // Pause the rendering operation.
+                        while (pauseRenderingOperation)
+                        {
+                            try
+                            {
+                                // Keep the thread busy.
+                                await Task.Delay(10);
+                            }
+                            catch (TaskCanceledException)
+                            {
+                                pauseRenderingOperation = false;
+                            }
+                        }
+
+                        // Cancle the rendering operation.
+                        if (cancleRenderingOperation)
+                        {
+                            // Reenable controls.
+                            cancleRenderingOperation = false;
+                            button22.Enabled = true;
+                            button22.Visible = true;
+                            button22.Text = "Auto Map Renderer";
+                            button28.Visible = false; // Hide cancle button.
+                            groupBox8.Enabled = true;
+
+                            // End look.
+                            goto exitLoop;
+                        }
+                    }
+                    #endregion
+
+                    rPrevious = r;
+
+                    #region After Completed Ring Operations
+
+                    // Save the maps progress before starting next ring.
+                    // Skip first circle check: r != (int)numericUpDown16.Value
+                    if (checkBox1.Checked && r != 0)
+                    {
+                        // Add a cooldown.
+                        await Task.Delay(100);
+
+                        // Press the "M" key to open the map.
+                        if (Process.GetProcessesByName("CoreKeeper").FirstOrDefault() != null)
+                        {
+                            SetForegroundWindow(FindWindow(null, "Core Keeper"));
+                            keybd_event((byte)0x4D, 0, 0x0001 | 0, 0);
+                            keybd_event((byte)0x4D, 0, 0x0001 | 2, 0);
+                        }
+
+                        // Add a long cooldown.
+                        await Task.Delay(10000);
+
+                        // Press the "M" key to close the map.
+                        if (Process.GetProcessesByName("CoreKeeper").FirstOrDefault() != null)
+                        {
+                            SetForegroundWindow(FindWindow(null, "Core Keeper"));
+                            keybd_event((byte)0x4D, 0, 0x0001 | 0, 0);
+                            keybd_event((byte)0x4D, 0, 0x0001 | 2, 0);
+                        }
+
+                        // Add a cooldown.
+                        await Task.Delay(100);
                     }
 
-                    // Add a long cooldown.
-                    await Task.Delay(10000);
-
-                    // Press the "M" key to close the map.
-                    if (Process.GetProcessesByName("CoreKeeper").FirstOrDefault() != null)
+                    // Ensure the game process still exists.
+                    if (!MemLib.OpenProcess("CoreKeeper"))
                     {
-                        SetForegroundWindow(FindWindow(null, "Core Keeper"));
-                        keybd_event((byte)0x4D, 0, 0x0001 | 0, 0);
-                        keybd_event((byte)0x4D, 0, 0x0001 | 2, 0);
+                        // Declare the finish time and get difference of two dates.
+                        DateTime finishTimeCrashed = DateTime.Now;
+                        TimeSpan timeDifferenceCrashed = finishTimeCrashed - startTime;
+
+                        // Show error message.
+                        MessageBox.Show("The Core Keeper process was no longer found!\rRecord your progress!\r\rTask ran for " + timeDifferenceCrashed.Days + " day(s), " + timeDifferenceCrashed.Hours + " hour(s), " + timeDifferenceCrashed.Minutes + " minute(s), " + timeDifferenceCrashed.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                        // Reenable controls.
+                        groupBox8.Enabled = true;
+                        cancleRenderingOperation = false;
+                        button22.Enabled = true;
+                        button22.Visible = true;
+                        button22.Text = "Auto Map Renderer";
+                        button28.Visible = false; // Hide cancle button.
+                        groupBox8.Enabled = true;
+
+                        // End look.
+                        goto exitLoop;
                     }
 
-                    // Add a cooldown.
-                    await Task.Delay(100);
+                    // Check if memory logging is enabled.
+                    if (memoryLoggerActive)
+                    {
+                        MemoryLogger(); // Do logging.
+                        await Task.Delay(1000); // Add a cooldown.
+                    }
+                    #endregion
                 }
+            #endregion
 
-                // Ensure the game process still exists.
-                if (!MemLib.OpenProcess("CoreKeeper"))
+            // Leave the loop and put the player to spawn.
+            exitLoop:;
+
+                // Reenable controls.
+                groupBox8.Enabled = true;
+                cancleRenderingOperation = false;
+                button22.Enabled = true;
+                button22.Visible = true;
+                button22.Text = "Auto Map Renderer";
+                button28.Visible = false; // Hide cancle button.
+                button31.Enabled = false;
+                textProgressBar1.Visible = false;
+                textProgressBar1.Maximum = 100;
+                textProgressBar1.CustomText = "";
+
+                // Send the player back to the starting position.
+                foreach (long res in AoBScanResultsPlayerLocation)
                 {
-                    // Declare the finish time and get difference of two dates.
-                    DateTime finishTimeCrashed = DateTime.Now;
-                    TimeSpan timeDifferenceCrashed = finishTimeCrashed - startTime;
+                    // Get address from loop.
+                    string playerX = res.ToString("X").ToString();
+                    string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
-                    // Show error message.
-                    MessageBox.Show("The Core Keeper process was no longer found!\rRecord your progress!\r\rTask ran for " + timeDifferenceCrashed.Days + " day(s), " + timeDifferenceCrashed.Hours + " hour(s), " + timeDifferenceCrashed.Minutes + " minute(s), " + timeDifferenceCrashed.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    // Send player to X.
+                    MemLib.WriteMemory(playerX, "float", initialPosition.X.ToString());
 
-                    // Reenable controls.
-                    groupBox8.Enabled = true;
-                    cancleRenderingOperation = false;
-                    button22.Enabled = true;
-                    button22.Visible = true;
-                    button22.Text = "Auto Map Renderer";
-                    button28.Visible = false; // Hide cancle button.
-                    groupBox8.Enabled = true;
-
-                    // End look.
-                    goto exitLoop;
+                    // Send player to Y.
+                    MemLib.WriteMemory(playerY, "float", initialPosition.Y.ToString());
                 }
 
-                // Check if memory logging is enabled.
-                if (memoryLoggerActive)
-                {
-                    MemoryLogger(); // Do logging.
-                    await Task.Delay(1000); // Add a cooldown.
-                }
-                #endregion
-            }
-        #endregion
+                // Stop timed events, disable noclip, disable godmode.
+                renderMapOperationsTimer.Stop();
+                MemLib.WriteMemory(renderMapPlayerStateAddress, "int", renderMapPlayerStateOriginalValue);
 
-        // Leave the loop and put the player to spawn.
-        exitLoop:;
+                // Reset variables.
+                rPrevious = minRadius;
 
-            // Reenable controls.
-            groupBox8.Enabled = true;
-            cancleRenderingOperation = false;
-            button22.Enabled = true;
-            button22.Visible = true;
-            button22.Text = "Auto Map Renderer";
-            button28.Visible = false; // Hide cancle button.
-            button31.Enabled = false;
-            textProgressBar1.Visible = false;
-            textProgressBar1.Maximum = 100;
-            textProgressBar1.CustomText = "";
+                #region Calculate Total Tiles Rendered
 
-            // Send the player back to the starting position.
-            foreach (long res in AoBScanResultsPlayerLocation)
-            {
-                // Get address from loop.
-                string playerX = res.ToString("X").ToString();
-                string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-
-                // Send player to X.
-                MemLib.WriteMemory(playerX, "float", initialPosition.X.ToString());
-
-                // Send player to Y.
-                MemLib.WriteMemory(playerY, "float", initialPosition.Y.ToString());
-            }
-
-            // Stop timed events, disable noclip, disable godmode.
-            renderMapOperationsTimer.Stop();
-            MemLib.WriteMemory(renderMapPlayerStateAddress, "int", renderMapPlayerStateOriginalValue);
-
-            // Reset variables.
-            rPrevious = minRadius;
-
-            #region Calculate Total Tiles Rendered
-
-            // Calculate the total tiles and display result.
-            if ((int)numericUpDown16.Value > 0)
-            {
-                count++;
-                if (count >= stepsCompleted)
-                {
-                    goto FinishCounting;
-                }
-            }
-            for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
-            {
-                for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
+                // Calculate the total tiles and display result.
+                if ((int)numericUpDown16.Value > 0)
                 {
                     count++;
                     if (count >= stepsCompleted)
@@ -13802,37 +13795,52 @@ namespace CoreKeeperInventoryEditor
                         goto FinishCounting;
                     }
                 }
-                double delta = (double)((double)stepSize / (double)r);
-                double theta;
-                for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
+                for (r = minRadius; r <= maxRadius; r += stepSize) //Loop through each circle radius within ranges
                 {
-                    count++;
-                    if (count >= stepsCompleted)
+                    for (y = rPrevious; y < r; y += (int)((double)stepSize * radialMoveScale)) //Move upwards between successive circles
                     {
-                        goto FinishCounting;
+                        count++;
+                        if (count >= stepsCompleted)
+                        {
+                            goto FinishCounting;
+                        }
                     }
+                    double delta = (double)((double)stepSize / (double)r);
+                    double theta;
+                    for (theta = 0; theta < 2 * Math.PI; theta += (delta * radialMoveScale)) //Move around current radius circle
+                    {
+                        count++;
+                        if (count >= stepsCompleted)
+                        {
+                            goto FinishCounting;
+                        }
+                    }
+                    rPrevious = r;
                 }
-                rPrevious = r;
+            #endregion
+
+            // Leave counting loop.
+            FinishCounting:;
+
+                // Declare the finish time and get difference of two dates.
+                DateTime finishTime = DateTime.Now;
+                TimeSpan timeDifference = finishTime - startTime;
+
+                // Display results based on if the game is running or not.
+                if (MemLib.OpenProcess("CoreKeeper"))
+                {
+                    // Game is still running.
+                    MessageBox.Show("Task ran for " + timeDifference.Days + " day(s), " + timeDifference.Hours + " hour(s), " + timeDifference.Minutes + " minute(s), " + timeDifference.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    // No game found.
+                    // MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
-        #endregion
-
-        // Leave counting loop.
-        FinishCounting:;
-
-            // Declare the finish time and get difference of two dates.
-            DateTime finishTime = DateTime.Now;
-            TimeSpan timeDifference = finishTime - startTime;
-
-            // Display results based on if the game is running or not.
-            if (MemLib.OpenProcess("CoreKeeper"))
+            catch (Exception p)
             {
-                // Game is still running.
-                MessageBox.Show("Task ran for " + timeDifference.Days + " day(s), " + timeDifference.Hours + " hour(s), " + timeDifference.Minutes + " minute(s), " + timeDifference.Seconds + " seconds.\r\r~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                // No game found.
-                // MessageBox.Show("~" + (stepSize * stepSize) * count + " tiles have been rendered.", "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("An error occurred and was caught!\n\n" + p.ToString(), "Render Map", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion // End render map.
