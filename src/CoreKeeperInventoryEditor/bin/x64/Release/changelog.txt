@@ -3,6 +3,8 @@ Changes Since v1.3.5.7
 - Updated all the player mods to the new game version.
 - Updated map rendering mods to the new game version.
 
++ Added new assets from the shimmering frontier event.
+
 Changes Since v1.3.5.6
 ===========================================================
 - Fixed the quick item editors variation system conflicts.
