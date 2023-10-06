@@ -1,3 +1,7 @@
+Changes Since v1.3.5.8
+===========================================================
+- Corrected wrong ids and misplaced assets.
+
 Changes Since v1.3.5.7
 ===========================================================
 - Updated all the player mods to the new game version.
