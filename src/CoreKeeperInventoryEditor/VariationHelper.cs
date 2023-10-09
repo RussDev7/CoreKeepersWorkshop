@@ -59,8 +59,8 @@
 
         private static bool FirstIngredientIsPrimary(int ingredient1, int ingredient2)
         {
-            float random = RandomCreateFromIndex((uint)(ingredient1 * 2 + ingredient2 + 87993));
-            float random2 = RandomCreateFromIndex((uint)(ingredient2 * 2 + ingredient1 + 87993));
+            float random = RandomCreateFromIndex((uint)(ingredient1 * 2 + ingredient2 + 87931));
+            float random2 = RandomCreateFromIndex((uint)(ingredient2 * 2 + ingredient1 + 87931));
             return random > random2;
         }
 
