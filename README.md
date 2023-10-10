@@ -104,5 +104,5 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 - [Siticone.UI](https://www.nuget.org/packages/Siticone.Desktop.UI/)
 - [TextProgressBar](https://github.com/ukushu/TextProgressBar)
 - [UI-Backgrounds](https://discord.com/users/229227672121769984/)
-- [CK Asset Wiki](https://corekeeper.wikizet.com/en/Core_Keeper_Wiki)
+- [CK Asset Wiki](https://corekeeper.atma.gg/en/Core_Keeper_Wiki)
 - [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Donation&currency_code=USD&bn=PP%2dDonationsBF)
