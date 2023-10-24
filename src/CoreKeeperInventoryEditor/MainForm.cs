@@ -141,7 +141,7 @@ namespace CoreKeeperInventoryEditor
                 // Set the about tabs content.
                 // About.
                 richTextBox2.Text = String.Concat(new string[] {
-                @"// CoreKeepersWorkshop v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion + " - Written kindly by: D.RUSS#2430" + Environment.NewLine,
+                @"// CoreKeepersWorkshop v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion + " - Written kindly by: dannyruss" + Environment.NewLine,
                 @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
                 @"This tool was created with future content and modded content in mind. It currently supports manual item additions by naming images using the following format: ItemName,ItemID,ItemVariation.png - You can add these assets to the ""\assets\inventory\"" directory. For future requests or any issues, please contact me under my discord handle above, thanks!" + Environment.NewLine,
                 @"-------------------------------------------------------------------------------------------------------------------" + Environment.NewLine,
@@ -326,6 +326,9 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(label8, "Change item slot2s variant based on the left/right arrow keys.");
                 toolTip.SetToolTip(label30, "Grabs the application and sends it to the center of the screen.");
                 toolTip.SetToolTip(label31, "Stores the games private bytes with timestamps for each completed rotation.");
+                toolTip.SetToolTip(label36, "Use the slider bellow for more mods!");
+
+                toolTip.SetToolTip(siticoneTrackBar1, "Used to scroll to other player mods.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -11157,6 +11160,21 @@ namespace CoreKeeperInventoryEditor
         #endregion // End Inventory Region
 
         #region Player Tab
+
+        #region Move Players Tab
+
+        // Move the player pannel horizontally.
+        private void SiticoneTrackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            siticonePanel1.AutoScrollMargin = new Size(500, 0); // Define amount of space to scroll over too.
+            siticonePanel1.AutoScrollPosition = new Point((siticonePanel1.AutoScrollMargin.Width / 100) * siticoneTrackBar1.Value, 0);
+            siticonePanel1.AutoScroll = false; // Prevent the scrollbars.
+
+            // Force refresh controls.
+            siticonePanel1.Refresh();
+            siticoneTrackBar1.Refresh();
+        }
+        #endregion
 
         #region Change Player Name
 

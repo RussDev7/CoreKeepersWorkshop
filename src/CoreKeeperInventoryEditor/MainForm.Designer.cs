@@ -120,35 +120,37 @@ namespace CoreKeeperInventoryEditor
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button35 = new System.Windows.Forms.Button();
-            this.label33 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith11 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label32 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith10 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label29 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith9 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label28 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith6 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
+            this.siticonePanel1 = new Siticone.UI.WinForms.SiticonePanel();
+            this.siticoneWinToggleSwith2 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label10 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.button35 = new System.Windows.Forms.Button();
             this.siticoneWinToggleSwith7 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.siticoneWinToggleSwith1 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.siticoneWinToggleSwith8 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label14 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith5 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith4 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label12 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith3 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label11 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith2 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.label27 = new System.Windows.Forms.Label();
+            this.siticoneWinToggleSwith11 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.siticoneWinToggleSwith8 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.siticoneWinToggleSwith3 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.siticoneWinToggleSwith6 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.siticoneWinToggleSwith9 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.siticoneWinToggleSwith5 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.siticoneWinToggleSwith10 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.siticoneWinToggleSwith4 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.label13 = new System.Windows.Forms.Label();
+            this.siticoneTrackBar1 = new Siticone.UI.WinForms.SiticoneTrackBar();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.button10 = new System.Windows.Forms.Button();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button6 = new System.Windows.Forms.Button();
@@ -243,6 +245,7 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label36 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).BeginInit();
@@ -306,6 +309,7 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
             this.tabPage10.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.siticonePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1427,35 +1431,12 @@ namespace CoreKeeperInventoryEditor
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox7.Controls.Add(this.button35);
-            this.groupBox7.Controls.Add(this.label33);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith11);
-            this.groupBox7.Controls.Add(this.label32);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith10);
-            this.groupBox7.Controls.Add(this.label29);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith9);
-            this.groupBox7.Controls.Add(this.label28);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith6);
-            this.groupBox7.Controls.Add(this.label20);
-            this.groupBox7.Controls.Add(this.label27);
-            this.groupBox7.Controls.Add(this.label10);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith7);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith1);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith8);
-            this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith5);
-            this.groupBox7.Controls.Add(this.numericUpDown3);
-            this.groupBox7.Controls.Add(this.label13);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith4);
-            this.groupBox7.Controls.Add(this.label12);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith3);
-            this.groupBox7.Controls.Add(this.label11);
-            this.groupBox7.Controls.Add(this.siticoneWinToggleSwith2);
+            this.groupBox7.Controls.Add(this.siticonePanel1);
+            this.groupBox7.Controls.Add(this.siticoneTrackBar1);
             this.groupBox7.Controls.Add(this.progressBar5);
             this.groupBox7.Controls.Add(this.button10);
             this.groupBox7.Controls.Add(this.richTextBox6);
             this.groupBox7.Controls.Add(this.label6);
-            this.groupBox7.Controls.Add(this.label34);
             this.groupBox7.ForeColor = System.Drawing.Color.Lime;
             this.groupBox7.Location = new System.Drawing.Point(384, 5);
             this.groupBox7.Name = "groupBox7";
@@ -1464,144 +1445,90 @@ namespace CoreKeeperInventoryEditor
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Player Tools";
             // 
-            // button35
+            // siticonePanel1
             // 
-            this.button35.ForeColor = System.Drawing.Color.Black;
-            this.button35.Location = new System.Drawing.Point(201, 187);
-            this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(127, 23);
-            this.button35.TabIndex = 18;
-            this.button35.Text = "Open Chunk Visualizer";
-            this.button35.UseVisualStyleBackColor = true;
-            this.button35.Click += new System.EventHandler(this.Button35_Click);
+            this.siticonePanel1.AutoScroll = true;
+            this.siticonePanel1.Controls.Add(this.label36);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith2);
+            this.siticonePanel1.Controls.Add(this.label10);
+            this.siticonePanel1.Controls.Add(this.label33);
+            this.siticonePanel1.Controls.Add(this.button35);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith7);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith1);
+            this.siticonePanel1.Controls.Add(this.label11);
+            this.siticonePanel1.Controls.Add(this.label27);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith11);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith8);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith3);
+            this.siticonePanel1.Controls.Add(this.label20);
+            this.siticonePanel1.Controls.Add(this.label29);
+            this.siticonePanel1.Controls.Add(this.label34);
+            this.siticonePanel1.Controls.Add(this.label14);
+            this.siticonePanel1.Controls.Add(this.label32);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith6);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith9);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith5);
+            this.siticonePanel1.Controls.Add(this.label12);
+            this.siticonePanel1.Controls.Add(this.label28);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith10);
+            this.siticonePanel1.Controls.Add(this.numericUpDown3);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith4);
+            this.siticonePanel1.Controls.Add(this.label13);
+            this.siticonePanel1.Location = new System.Drawing.Point(6, 46);
+            this.siticonePanel1.Name = "siticonePanel1";
+            this.siticonePanel1.ShadowDecoration.Parent = this.siticonePanel1;
+            this.siticonePanel1.Size = new System.Drawing.Size(512, 140);
+            this.siticonePanel1.TabIndex = 38;
             // 
-            // label33
+            // siticoneWinToggleSwith2
             // 
-            this.label33.AutoSize = true;
-            this.label33.ForeColor = System.Drawing.Color.Snow;
-            this.label33.Location = new System.Drawing.Point(59, 191);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(63, 13);
-            this.label33.TabIndex = 27;
-            this.label33.Text = "- Passive AI";
-            // 
-            // siticoneWinToggleSwith11
-            // 
-            this.siticoneWinToggleSwith11.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith11.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith11.Location = new System.Drawing.Point(8, 187);
-            this.siticoneWinToggleSwith11.Name = "siticoneWinToggleSwith11";
-            this.siticoneWinToggleSwith11.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith11.TabIndex = 19;
-            this.siticoneWinToggleSwith11.Text = "siticoneWinToggleSwith11";
-            this.siticoneWinToggleSwith11.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith11.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith11.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith11_CheckedChanged);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.Snow;
-            this.label32.Location = new System.Drawing.Point(208, 135);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(73, 13);
-            this.label32.TabIndex = 25;
-            this.label32.Text = "- Free Crafting";
-            // 
-            // siticoneWinToggleSwith10
-            // 
-            this.siticoneWinToggleSwith10.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith10.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith10.Location = new System.Drawing.Point(157, 131);
-            this.siticoneWinToggleSwith10.Name = "siticoneWinToggleSwith10";
-            this.siticoneWinToggleSwith10.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith10.TabIndex = 15;
-            this.siticoneWinToggleSwith10.Text = "siticoneWinToggleSwith10";
-            this.siticoneWinToggleSwith10.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith10.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith10.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith10_CheckedChanged);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.ForeColor = System.Drawing.Color.Snow;
-            this.label29.Location = new System.Drawing.Point(59, 163);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(73, 13);
-            this.label29.TabIndex = 23;
-            this.label29.Text = "- Force Recall";
-            // 
-            // siticoneWinToggleSwith9
-            // 
-            this.siticoneWinToggleSwith9.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith9.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith9.Location = new System.Drawing.Point(8, 159);
-            this.siticoneWinToggleSwith9.Name = "siticoneWinToggleSwith9";
-            this.siticoneWinToggleSwith9.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith9.TabIndex = 16;
-            this.siticoneWinToggleSwith9.Text = "siticoneWinToggleSwith9";
-            this.siticoneWinToggleSwith9.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith9.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith9.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith9_CheckedChanged);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.ForeColor = System.Drawing.Color.Snow;
-            this.label28.Location = new System.Drawing.Point(59, 107);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(72, 13);
-            this.label28.TabIndex = 21;
-            this.label28.Text = "- Anti Collision";
-            // 
-            // siticoneWinToggleSwith6
-            // 
-            this.siticoneWinToggleSwith6.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith6.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith6.Location = new System.Drawing.Point(8, 131);
-            this.siticoneWinToggleSwith6.Name = "siticoneWinToggleSwith6";
-            this.siticoneWinToggleSwith6.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith6.TabIndex = 14;
-            this.siticoneWinToggleSwith6.Text = "siticoneWinToggleSwith6";
-            this.siticoneWinToggleSwith6.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith6.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith6.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith6_CheckedChanged);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.Snow;
-            this.label20.Location = new System.Drawing.Point(59, 135);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(48, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "- Suicide";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.Color.Snow;
-            this.label27.Location = new System.Drawing.Point(208, 108);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(98, 13);
-            this.label27.TabIndex = 19;
-            this.label27.Text = "- Infinite Resources";
+            this.siticoneWinToggleSwith2.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith2.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith2.Location = new System.Drawing.Point(3, 3);
+            this.siticoneWinToggleSwith2.Name = "siticoneWinToggleSwith2";
+            this.siticoneWinToggleSwith2.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith2.TabIndex = 7;
+            this.siticoneWinToggleSwith2.Text = "siticoneWinToggleSwith2";
+            this.siticoneWinToggleSwith2.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith2.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith2.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith2_CheckedChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Snow;
-            this.label10.Location = new System.Drawing.Point(208, 162);
+            this.label10.Location = new System.Drawing.Point(404, 6);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "- Display Position";
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.ForeColor = System.Drawing.Color.Snow;
+            this.label33.Location = new System.Drawing.Point(203, 119);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(63, 13);
+            this.label33.TabIndex = 27;
+            this.label33.Text = "- Passive AI";
+            // 
+            // button35
+            // 
+            this.button35.ForeColor = System.Drawing.Color.Black;
+            this.button35.Location = new System.Drawing.Point(382, 31);
+            this.button35.Name = "button35";
+            this.button35.Size = new System.Drawing.Size(127, 23);
+            this.button35.TabIndex = 19;
+            this.button35.Text = "Open Chunk Visualizer";
+            this.button35.UseVisualStyleBackColor = true;
+            this.button35.Click += new System.EventHandler(this.Button35_Click);
+            // 
             // siticoneWinToggleSwith7
             // 
             this.siticoneWinToggleSwith7.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
             this.siticoneWinToggleSwith7.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.Location = new System.Drawing.Point(157, 103);
+            this.siticoneWinToggleSwith7.Location = new System.Drawing.Point(152, 59);
             this.siticoneWinToggleSwith7.Name = "siticoneWinToggleSwith7";
             this.siticoneWinToggleSwith7.Size = new System.Drawing.Size(45, 22);
             this.siticoneWinToggleSwith7.TabIndex = 13;
@@ -1614,20 +1541,53 @@ namespace CoreKeeperInventoryEditor
             // 
             this.siticoneWinToggleSwith1.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
             this.siticoneWinToggleSwith1.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith1.Location = new System.Drawing.Point(157, 159);
+            this.siticoneWinToggleSwith1.Location = new System.Drawing.Point(353, 3);
             this.siticoneWinToggleSwith1.Name = "siticoneWinToggleSwith1";
             this.siticoneWinToggleSwith1.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith1.TabIndex = 17;
+            this.siticoneWinToggleSwith1.TabIndex = 18;
             this.siticoneWinToggleSwith1.Text = "siticoneWinToggleSwith1";
             this.siticoneWinToggleSwith1.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith1.UncheckInnerColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith1.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith1_CheckedChanged);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Snow;
+            this.label11.Location = new System.Drawing.Point(54, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "- Godmode";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.Snow;
+            this.label27.Location = new System.Drawing.Point(203, 64);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(98, 13);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "- Infinite Resources";
+            // 
+            // siticoneWinToggleSwith11
+            // 
+            this.siticoneWinToggleSwith11.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith11.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith11.Location = new System.Drawing.Point(152, 115);
+            this.siticoneWinToggleSwith11.Name = "siticoneWinToggleSwith11";
+            this.siticoneWinToggleSwith11.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith11.TabIndex = 17;
+            this.siticoneWinToggleSwith11.Text = "siticoneWinToggleSwith11";
+            this.siticoneWinToggleSwith11.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith11.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith11.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith11_CheckedChanged);
+            // 
             // siticoneWinToggleSwith8
             // 
             this.siticoneWinToggleSwith8.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
             this.siticoneWinToggleSwith8.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith8.Location = new System.Drawing.Point(8, 103);
+            this.siticoneWinToggleSwith8.Location = new System.Drawing.Point(3, 59);
             this.siticoneWinToggleSwith8.Name = "siticoneWinToggleSwith8";
             this.siticoneWinToggleSwith8.Size = new System.Drawing.Size(45, 22);
             this.siticoneWinToggleSwith8.TabIndex = 12;
@@ -1636,21 +1596,101 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith8.UncheckInnerColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith8.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith8_CheckedChanged);
             // 
+            // siticoneWinToggleSwith3
+            // 
+            this.siticoneWinToggleSwith3.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith3.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith3.Location = new System.Drawing.Point(152, 31);
+            this.siticoneWinToggleSwith3.Name = "siticoneWinToggleSwith3";
+            this.siticoneWinToggleSwith3.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith3.TabIndex = 10;
+            this.siticoneWinToggleSwith3.Text = "siticoneWinToggleSwith3";
+            this.siticoneWinToggleSwith3.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith3.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith3.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith3_CheckedChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.Snow;
+            this.label20.Location = new System.Drawing.Point(54, 91);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(48, 13);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "- Suicide";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.ForeColor = System.Drawing.Color.Snow;
+            this.label29.Location = new System.Drawing.Point(54, 119);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(73, 13);
+            this.label29.TabIndex = 23;
+            this.label29.Text = "- Force Recall";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.Color.Snow;
+            this.label34.Location = new System.Drawing.Point(346, 18);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(34, 42);
+            this.label34.TabIndex = 29;
+            this.label34.Text = "⮡";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.Snow;
-            this.label14.Location = new System.Drawing.Point(59, 79);
+            this.label14.Location = new System.Drawing.Point(54, 35);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(71, 13);
             this.label14.TabIndex = 0;
             this.label14.Text = "- Infinite Food";
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.Snow;
+            this.label32.Location = new System.Drawing.Point(203, 91);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(73, 13);
+            this.label32.TabIndex = 25;
+            this.label32.Text = "- Free Crafting";
+            // 
+            // siticoneWinToggleSwith6
+            // 
+            this.siticoneWinToggleSwith6.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith6.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith6.Location = new System.Drawing.Point(3, 87);
+            this.siticoneWinToggleSwith6.Name = "siticoneWinToggleSwith6";
+            this.siticoneWinToggleSwith6.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith6.TabIndex = 14;
+            this.siticoneWinToggleSwith6.Text = "siticoneWinToggleSwith6";
+            this.siticoneWinToggleSwith6.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith6.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith6.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith6_CheckedChanged);
+            // 
+            // siticoneWinToggleSwith9
+            // 
+            this.siticoneWinToggleSwith9.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith9.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith9.Location = new System.Drawing.Point(3, 115);
+            this.siticoneWinToggleSwith9.Name = "siticoneWinToggleSwith9";
+            this.siticoneWinToggleSwith9.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith9.TabIndex = 16;
+            this.siticoneWinToggleSwith9.Text = "siticoneWinToggleSwith9";
+            this.siticoneWinToggleSwith9.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith9.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith9.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith9_CheckedChanged);
+            // 
             // siticoneWinToggleSwith5
             // 
             this.siticoneWinToggleSwith5.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
             this.siticoneWinToggleSwith5.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith5.Location = new System.Drawing.Point(8, 75);
+            this.siticoneWinToggleSwith5.Location = new System.Drawing.Point(3, 31);
             this.siticoneWinToggleSwith5.Name = "siticoneWinToggleSwith5";
             this.siticoneWinToggleSwith5.Size = new System.Drawing.Size(45, 22);
             this.siticoneWinToggleSwith5.TabIndex = 9;
@@ -1659,9 +1699,42 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith5.UncheckInnerColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith5.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith5_CheckedChanged);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Snow;
+            this.label12.Location = new System.Drawing.Point(203, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(47, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "- Speed:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.Color.Snow;
+            this.label28.Location = new System.Drawing.Point(54, 63);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(72, 13);
+            this.label28.TabIndex = 21;
+            this.label28.Text = "- Anti Collision";
+            // 
+            // siticoneWinToggleSwith10
+            // 
+            this.siticoneWinToggleSwith10.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith10.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith10.Location = new System.Drawing.Point(152, 87);
+            this.siticoneWinToggleSwith10.Name = "siticoneWinToggleSwith10";
+            this.siticoneWinToggleSwith10.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith10.TabIndex = 15;
+            this.siticoneWinToggleSwith10.Text = "siticoneWinToggleSwith10";
+            this.siticoneWinToggleSwith10.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith10.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith10.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith10_CheckedChanged);
+            // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(258, 76);
+            this.numericUpDown3.Location = new System.Drawing.Point(253, 32);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -1676,21 +1749,11 @@ namespace CoreKeeperInventoryEditor
             0,
             0});
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Snow;
-            this.label13.Location = new System.Drawing.Point(208, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "- Noclip (Use Spacebar)";
-            // 
             // siticoneWinToggleSwith4
             // 
             this.siticoneWinToggleSwith4.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
             this.siticoneWinToggleSwith4.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith4.Location = new System.Drawing.Point(157, 47);
+            this.siticoneWinToggleSwith4.Location = new System.Drawing.Point(152, 3);
             this.siticoneWinToggleSwith4.Name = "siticoneWinToggleSwith4";
             this.siticoneWinToggleSwith4.Size = new System.Drawing.Size(45, 22);
             this.siticoneWinToggleSwith4.TabIndex = 8;
@@ -1699,51 +1762,27 @@ namespace CoreKeeperInventoryEditor
             this.siticoneWinToggleSwith4.UncheckInnerColor = System.Drawing.Color.Snow;
             this.siticoneWinToggleSwith4.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith4_CheckedChanged);
             // 
-            // label12
+            // label13
             // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Snow;
-            this.label12.Location = new System.Drawing.Point(208, 79);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "- Speed:";
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.Snow;
+            this.label13.Location = new System.Drawing.Point(203, 7);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(120, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "- Noclip (Use Spacebar)";
             // 
-            // siticoneWinToggleSwith3
+            // siticoneTrackBar1
             // 
-            this.siticoneWinToggleSwith3.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith3.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith3.Location = new System.Drawing.Point(157, 75);
-            this.siticoneWinToggleSwith3.Name = "siticoneWinToggleSwith3";
-            this.siticoneWinToggleSwith3.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith3.TabIndex = 10;
-            this.siticoneWinToggleSwith3.Text = "siticoneWinToggleSwith3";
-            this.siticoneWinToggleSwith3.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith3.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith3.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith3_CheckedChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Snow;
-            this.label11.Location = new System.Drawing.Point(59, 50);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "- Godmode";
-            // 
-            // siticoneWinToggleSwith2
-            // 
-            this.siticoneWinToggleSwith2.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith2.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith2.Location = new System.Drawing.Point(8, 47);
-            this.siticoneWinToggleSwith2.Name = "siticoneWinToggleSwith2";
-            this.siticoneWinToggleSwith2.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith2.TabIndex = 7;
-            this.siticoneWinToggleSwith2.Text = "siticoneWinToggleSwith2";
-            this.siticoneWinToggleSwith2.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith2.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith2.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith2_CheckedChanged);
+            this.siticoneTrackBar1.FillColor = System.Drawing.Color.Lime;
+            this.siticoneTrackBar1.HoveredState.Parent = this.siticoneTrackBar1;
+            this.siticoneTrackBar1.Location = new System.Drawing.Point(10, 189);
+            this.siticoneTrackBar1.Name = "siticoneTrackBar1";
+            this.siticoneTrackBar1.Size = new System.Drawing.Size(320, 23);
+            this.siticoneTrackBar1.TabIndex = 0;
+            this.siticoneTrackBar1.ThumbColor = System.Drawing.Color.Lime;
+            this.siticoneTrackBar1.Value = 0;
+            this.siticoneTrackBar1.ValueChanged += new System.EventHandler(this.SiticoneTrackBar1_ValueChanged);
             // 
             // progressBar5
             // 
@@ -1784,17 +1823,6 @@ namespace CoreKeeperInventoryEditor
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 2;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.Snow;
-            this.label34.Location = new System.Drawing.Point(165, 174);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(34, 42);
-            this.label34.TabIndex = 29;
-            this.label34.Text = "⮡";
             // 
             // groupBox3
             // 
@@ -3054,6 +3082,17 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.ForeColor = System.Drawing.Color.Snow;
+            this.label36.Location = new System.Drawing.Point(278, 119);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(45, 13);
+            this.label36.TabIndex = 30;
+            this.label36.Text = "More →";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3137,6 +3176,8 @@ namespace CoreKeeperInventoryEditor
             this.tabPage10.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.siticonePanel1.ResumeLayout(false);
+            this.siticonePanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -3392,6 +3433,9 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button36;
+        private Siticone.UI.WinForms.SiticoneTrackBar siticoneTrackBar1;
+        private Siticone.UI.WinForms.SiticonePanel siticonePanel1;
+        private System.Windows.Forms.Label label36;
     }
 }
 
