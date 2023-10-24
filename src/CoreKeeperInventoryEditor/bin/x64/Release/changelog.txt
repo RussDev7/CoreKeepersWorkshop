@@ -2,6 +2,10 @@ Changes Since v1.3.5.8
 ===========================================================
 - Corrected wrong ids and misplaced assets.
 - Updated food variation math.
+- Fixed a misleading auto render map error message prompt.
+- Updated the remove all ground items mod.
+- Corrected the progressbar for remove ground items.
+- Fixed Teleport player error incorrectly renaming button.
 
 + Added various missing assets.
 
