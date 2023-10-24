@@ -13347,7 +13347,7 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsDevMapReveal == null)
             {
-                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the Map Rendering addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -13858,9 +13858,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Reset progress bar.
-            progressBar5.Step = 10;
-            progressBar5.Value = 0;
-            progressBar5.PerformStep(); // Progress 10%.
+            progressBar4.Step = 10;
+            progressBar4.Value = 0;
+            progressBar4.Visible = true;
+            progressBar4.PerformStep(); // Progress 10%.
 
             // Name button to indicate loading.
             button8.Text = "Removing Items..";
@@ -13869,7 +13870,8 @@ namespace CoreKeeperInventoryEditor
             button8.Enabled = false;
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+            // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
+            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??", true, true);
 
             // Adjust the max value of the progress bar.
             progressBar5.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
@@ -13884,7 +13886,8 @@ namespace CoreKeeperInventoryEditor
                 button8.Enabled = true;
 
                 // Ensure progressbar is at 100.
-                progressBar5.Value = 100;
+                progressBar4.Value = 100;
+                progressBar4.Visible = false;
 
                 // Update consoile with the status.
                 richTextBox5.AppendText("[RemoveGroundItems] You must throw at least one torch on the ground!!" + Environment.NewLine);
@@ -13896,7 +13899,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Perform step.
-            progressBar5.PerformStep();
+            progressBar4.PerformStep();
 
             // Remove ground items.
             RemoveGroundItems();
@@ -13913,60 +13916,89 @@ namespace CoreKeeperInventoryEditor
         public void RemoveGroundItems()
         {
             // Reset progress bar.
-            progressBar5.Step = 10;
-            progressBar5.Value = 0;
-            progressBar5.PerformStep(); // Progress 10%.
+            progressBar4.Maximum = 100;
+            progressBar4.Step = 100 / AoBScanResultsGroundItems.Count();
+            progressBar4.Value = 0;
 
             // Iterate through each found address.
             foreach (long res in AoBScanResultsGroundItems)
             {
-                // Get base addresses.
-                string ItemType = res.ToString("X").ToString();
-                string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                string ItemFooter = BigInteger.Add(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
-
                 // Climb down the address for each item.
                 bool endAddressFound = false;
+                string previousBit = "";
+
+                string currentBit = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                int countNine = 1;
+                int countEntrees = 0;
+
                 while (!endAddressFound)
                 {
-                    // Find the next footer value.
-                    ItemFooter = BigInteger.Subtract(BigInteger.Parse(ItemFooter, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-
                     // Check if this is the last value.
-                    if (MemLib.ReadUInt(ItemFooter).ToString() == "1")
+                    if (MemLib.ReadUInt(currentBit).ToString() == "1" && previousBit == "1")
                     {
-                        // The final value to write too.
-                        // Log the items removed.
-                        if (MemLib.ReadUInt(ItemType).ToString() != "0")
-                        {
-                            richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + Environment.NewLine);
-                            richTextBox5.ScrollToCaret();
-                        }
-
-                        // Use the previous values to wrtite.
-                        MemLib.WriteMemory(ItemType, "int", "0");
-                        MemLib.WriteMemory(ItemAmount, "int", "0");
-                        MemLib.WriteMemory(ItemVariant, "int", "0");
+                        countNine = 0;
                     }
                     else
                     {
-                        // End the loop.
-                        endAddressFound = true;
+                        // If no more double 1s exist end loop.
+                        if (countNine == 100)
+                        {
+                            countEntrees -= 100; // Backup the count.
+                            endAddressFound = true;
+                        }
                     }
 
-                    // Get the next footer values.
-                    ItemType = BigInteger.Subtract(BigInteger.Parse(ItemType, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                    ItemAmount = BigInteger.Subtract(BigInteger.Parse(ItemAmount, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                    ItemVariant = BigInteger.Subtract(BigInteger.Parse(ItemVariant, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                    // Count.
+                    countNine++;
+                    countEntrees++;
+
+                    // Define previous bit.
+                    previousBit = MemLib.ReadUInt(currentBit).ToString();
+
+                    // Subtract current bit.
+                    currentBit = BigInteger.Subtract(BigInteger.Parse(currentBit, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                }
+                //MessageBox.Show(countEntrees.ToString());
+                //continue;
+
+                // Get base addresses.
+                // 1, 1, ID, AMOUNT, VARIATION, 0, SKILLSET
+                currentBit = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                // string ItemHeader1 = res.ToString("X").ToString();
+                // string ItemHeader2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                // string ItemType = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                // string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
+                // string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                // string UnknownVariable = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
+                // string ItemSkillset = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                // Climb down the address for each item.
+                for (int x = 0; x < countEntrees; x++)
+                {
+                    // The final value to write too.
+                    // Log the items removed.
+                    // if (MemLib.ReadUInt(ItemType).ToString() != "0")
+                    // {
+                    //     richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine);
+                    //     richTextBox5.ScrollToCaret();
+                    // }
+
+                    // Use the previous values to wrtite.
+                    MemLib.WriteMemory(currentBit, "int", "0");
+
+                    // Find the next footer value.
+                    currentBit = BigInteger.Subtract(BigInteger.Parse(currentBit, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                 }
 
                 // Progress the progress bar.
-                progressBar5.PerformStep();
+                progressBar4.PerformStep();
             }
 
             // Ensure progressbar is at 100.
-            progressBar5.Value = 100;
+            progressBar4.Value = 100;
+            progressBar4.Visible = false;
         }
         #endregion // End world tools.
 
@@ -14009,7 +14041,7 @@ namespace CoreKeeperInventoryEditor
 
             // Process completed, run finishing tasks.
             // Rename button back to defualt.
-            button9.Text = "Teleport Player To XY";
+            button9.Text = "Teleport XY";
             button9.Enabled = true;
         }
 
@@ -14052,7 +14084,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Process completed, run finishing tasks.
                 // Rename button back to defualt.
-                button9.Text = "Teleport Player To XY";
+                button9.Text = "Teleport XY";
                 button9.Enabled = true;
             }
         }
@@ -14096,7 +14128,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Process completed, run finishing tasks.
                 // Rename button back to defualt.
-                button9.Text = "Teleport Player To XY";
+                button9.Text = "Teleport XY";
                 button9.Enabled = true;
 
             }
