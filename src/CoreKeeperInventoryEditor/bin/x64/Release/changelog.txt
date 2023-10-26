@@ -7,6 +7,7 @@ Changes Since v1.3.5.8
 - Corrected the progressbar for remove ground items.
 - Fixed Teleport player error incorrectly renaming button.
 - Fixed all tab indexes for multiple forms.
+- Hardened the teleport player addresses.
 
 + Added various missing assets.
 + Added a scrollbar to the player mods.
