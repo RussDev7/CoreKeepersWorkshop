@@ -299,6 +299,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith9, "Recalls the player to spawn immediately.");
                 toolTip.SetToolTip(siticoneWinToggleSwith10, "Enables the ability to craft without consuming resources.");
                 toolTip.SetToolTip(siticoneWinToggleSwith11, "Toggles enemies aggression torwards the player.");
+                toolTip.SetToolTip(siticoneWinToggleSwith12, "Enabling will allow the player to place on invalid tiles.");
+                toolTip.SetToolTip(siticoneWinToggleSwith13, "Enabling will allow the player to adjust the placement range.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -11161,6 +11163,22 @@ namespace CoreKeeperInventoryEditor
 
         #region Player Tab
 
+        #region Player Mod Offsets
+
+        // Bellow contains all the offsets for the player mods.
+        // These values are all all added to the players base address. // Base + Offset.
+        readonly string possitionXOffset = "56";                // Player possition X.
+        readonly string possitionYOffset = "64";                // Player possition Y.
+        readonly string playerStateBaseOffset = "244";          // For player effects like recal and anti collision.
+        readonly string playerStateAntiCollisionOffset = "308"; // Anti collision effect.
+        readonly string playerStateRecallOffset = "372";        // Recall effect.
+        readonly string noclipOffset = "1496";                  // Noclip.
+        readonly string speedOffset = "1844";                   // Player speed. // 336 default.
+        readonly string godmodeOffset = "2692";                 // Godmode.
+
+        // readonly string Offset = "";
+        #endregion
+
         #region Move Players Tab
 
         // Move the player pannel horizontally.
@@ -11510,350 +11528,264 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End get player addresses region.
 
-        #region Player Position
+        #region Free Crafting
 
-        // Enable player xy tool.
-        readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
-        private void SiticoneWinToggleSwith1_CheckedChanged(object sender, EventArgs e)
+        // Toggle godmode.
+        public IEnumerable<long> AoBScanResultsFreeCraftingTools = null;
+        private async void SiticoneWinToggleSwith10_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
-                siticoneWinToggleSwith1.Checked = false;
-                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
-
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Ensure pointers are found.
-            if (AoBScanResultsPlayerTools == null)
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
-                siticoneWinToggleSwith1.Checked = false;
-                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
-
-                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith1.Checked)
-            {
-                // Start the timed events.
-                playersPositionTimer.Interval = 100; // Custom intervals.
-                playersPositionTimer.Elapsed += new ElapsedEventHandler(PlayersPositionTimedEvent);
-                playersPositionTimer.Start();
-
-                // Update consoile with the status.
-                richTextBox5.AppendText("[PlayerPosition] Player position has been enabled." + Environment.NewLine);
-                richTextBox5.ScrollToCaret();
-            }
-            else
-            {
-                // Disable player position.
-                // Stop the timers.
-                playersPositionTimer.Stop();
-
-                // Change appllication text back to defualt.
-                this.Text = "CoreKeeper's Workshop";
-
-                // Update consoile with the status.
-                richTextBox5.AppendText("[PlayerPosition] Player position has been disabled." + Environment.NewLine);
-                richTextBox5.ScrollToCaret();
-            }
-        }
-
-        // Players position timer.
-        private void PlayersPositionTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            // Get the addresses.
-            // Old 04Oct23: BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-            string positionX = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
-            string positionY = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
-
-            // Convert values to number.
-            string playerPositionX = MemLib.ReadFloat(positionX).ToString();
-            string playerPositionY = MemLib.ReadFloat(positionY).ToString(); // OLD: -1 Correct the offset. 
-
-            // Change the applications tittle based on minimization and tab pages. 
-            if (isMinimized || tabControl1.SelectedTab == tabPage5) // Tab five is smaller.
-            {
-                // Change text based on minimized window.
-                this.Text = "Pos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
-            }
-            else
-            {
-                // Change text based on maximized window.
-                this.Text = "CoreKeeper's Workshop | PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
-            }
-        }
-        #endregion // End player positon.
-
-        #region Player Position Chunk
-
-        #region Chunk Math Functions
-
-        // Get the nearest XY position of a chunk based on position.
-        public Vector2 GetChunk(Vector2 Position)
-        {
-            return new Vector2(IRoundTo((int)((Vector2)Position).X, 64), IRoundTo((int)((Vector2)Position).Y, 64));
-        }
-
-        // Algorithm for compairing two intagers.
-        public static int IRoundTo(int inval, int nearest)
-        {
-            inval /= nearest;
-            return (int)((float)Math.Round((double)inval) * (float)nearest);
-        }
-        #endregion // End player math.
-
-        // Get chunk information.
-        private void Button35_Click(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
-                siticoneWinToggleSwith1.Checked = false;
-                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith10.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
+                siticoneWinToggleSwith10.Checked = false;
+                siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith1.Checked)
+            if (siticoneWinToggleSwith10.Checked)
             {
-                // Ensure pointers are found.
-                if (AoBScanResultsPlayerTools == null)
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label32.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // Check if we need to rescan the addresses or not.
+                // Depreciated Address 04Oct23: 00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F E9 DD 25 3E 79 2B 7B 3F C6 AF 56 3E 00 00 80 3F
+                if (AoBScanResultsFreeCraftingTools != null)
                 {
-                    MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.HexNumber)).ToString("X");
+                    int freeCrafting = MemLib.ReadInt(freeCraftingAddress);
+
+                    // Check if we need to rescan crafting or not.
+                    if (freeCrafting != 0 && freeCrafting != 1)
+                    {
+                        // Rescan food address.
+                        AoBScanResultsFreeCraftingTools = await MemLib.AoBScan("00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F", true, true);
+                    }
+                }
+                else
+                {
+                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                    AoBScanResultsFreeCraftingTools = await MemLib.AoBScan("00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F", true, true);
+                }
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsFreeCraftingTools.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label32.Text = "- Free Crafting";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsFreeCraftingTools = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith10.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
+                    siticoneWinToggleSwith10.Checked = false;
+                    siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerAddress = AoBScanResultsPlayerTools.Last().ToString("X");
-
-                // Spawn item picker window.
-                try
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsFreeCraftingTools)
                 {
-                    ChunkViewer frm4 = new ChunkViewer(this);
-                    DialogResult dr = frm4.ShowDialog(this);
-
-                    // Get returned item from chunk viewer.
-                    frm4.Close();
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Free Crafting Addresses Loaded: " + AoBScanResultsFreeCraftingTools.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + res.ToString("X").ToString();
+                    }
                 }
-                catch
-                { }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label32.Text = "- Free Crafting";
+
+                // Toggle on free item crafting.
+                foreach (long res in AoBScanResultsFreeCraftingTools)
+                {
+                    // Get the free crafting addresses.
+                    // OLD: -10
+                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.HexNumber)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(freeCraftingAddress, "int", "1"); // Overwrite new value.
+                }
             }
             else
             {
-                // Display position is not enabled.
-                MessageBox.Show("Display position is not enabled!\nEnable this feature first!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Slider is being toggled off.
+                // Reset label name.
+                label32.Text = "- Free Crafting";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Toggle off free item crafting.
+                foreach (long res in AoBScanResultsFreeCraftingTools)
+                {
+                    // Get the free crafting addresses.
+                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.HexNumber)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(freeCraftingAddress, "int", "0"); // Overwrite new value.
+                }
             }
         }
-        #endregion // End player position chunk.
+        #endregion // End free crafting.
 
-        #region Godmode
+        #region Passive AI
 
-        // Toggle godmode.
-        readonly System.Timers.Timer playersGodmodeTimer = new System.Timers.Timer();
-        string godmodeAddress = "0";
-        private void SiticoneWinToggleSwith2_CheckedChanged(object sender, EventArgs e)
+        // Passive AI.
+        public IEnumerable<long> AoBScanResultsPassiveAITools = null;
+        private async void SiticoneWinToggleSwith11_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                siticoneWinToggleSwith2.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
-                siticoneWinToggleSwith2.Checked = false;
-                siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                siticoneWinToggleSwith11.CheckedChanged -= SiticoneWinToggleSwith11_CheckedChanged;
+                siticoneWinToggleSwith11.Checked = false;
+                siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Ensure pointers are found.
-            if (AoBScanResultsPlayerTools == null)
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith2.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
-                siticoneWinToggleSwith2.Checked = false;
-                siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
-
-                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2684", NumberStyles.Integer)).ToString("X");
-
             // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith2.Checked)
+            if (siticoneWinToggleSwith11.Checked)
             {
                 // Slider is being toggled on.
-                // Start the timed events.
-                playersGodmodeTimer.Interval = 1; // Custom intervals.
-                playersGodmodeTimer.Elapsed += new ElapsedEventHandler(PlayersGodmodeTimedEvent);
-                playersGodmodeTimer.Start();
+                // Name button to indicate loading.
+                label33.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // Check if we need to rescan the addresses or not.
+                if (AoBScanResultsPassiveAITools != null)
+                {
+                    string passiveAIAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPassiveAITools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("572", NumberStyles.Integer)).ToString("X");
+                    int passiveAI = MemLib.ReadInt(passiveAIAddress);
+
+                    // Check if we need to rescan food or not.
+                    if (passiveAI != 5 && passiveAI != 8)
+                    {
+                        // Rescan food address.
+                        // Depreciated Address 23Mar23: 05 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 33 00 00 00 34 00 00 00 35 00 00 00 36 00 00 00 37 00 00 00 38 00 00 00 39 00 00 00 3A 00 00 00
+                        // Depreciated Address 04Oct23: 6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 33 00 00 00 34 00 00 00 35 00 00 00 36 00 00 00 37 00 00 00 38 00 00 00 39 00 00 00 3A 00 00 00
+                        AoBScanResultsPassiveAITools = await MemLib.AoBScan("6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00", true, true);
+                    }
+                }
+                else
+                {
+                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                    AoBScanResultsPassiveAITools = await MemLib.AoBScan("6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00", true, true);
+                }
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsPassiveAITools.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label33.Text = "- Passive AI";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsPassiveAITools = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith11.CheckedChanged -= SiticoneWinToggleSwith11_CheckedChanged;
+                    siticoneWinToggleSwith11.Checked = false;
+                    siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch the passive AI addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsPassiveAITools)
+                {
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Passive AI Addresses Loaded: " + AoBScanResultsPassiveAITools.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label33.Text = "- Passive AI";
+
+                // Toggle on passive AI.
+                foreach (long res in AoBScanResultsPassiveAITools)
+                {
+                    // Get the passive AI addresses.
+                    // OLD: 124
+                    string passiveAIAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("572", NumberStyles.Integer)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(passiveAIAddress, "int", "8"); // Overwrite new value.
+                }
             }
             else
             {
                 // Slider is being toggled off.
-                // Stop the timers.
-                playersGodmodeTimer.Stop();
+                // Reset label name.
+                label33.Text = "- Passive AI";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Toggle off passive AI.
+                foreach (long res in AoBScanResultsPassiveAITools)
+                {
+                    // Get the passive AI addresses.
+                    string passiveAIAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("572", NumberStyles.Integer)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(passiveAIAddress, "int", "5"); // Overwrite new value.
+                }
             }
         }
-
-        // Players position timer.
-        private void PlayersGodmodeTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            // Write value.
-            MemLib.WriteMemory(godmodeAddress, "int", "100000"); // Overwrite new value.
-        }
-        #endregion // End godmode.
-
-        #region Player Speed
-
-        // Change player speed.
-        string originalSpeed = "336"; // Original max speed.
-        private void SiticoneWinToggleSwith3_CheckedChanged(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith3.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
-                siticoneWinToggleSwith3.Checked = false;
-                siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
-
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Ensure pointers are found.
-            if (AoBScanResultsPlayerTools == null)
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith3.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
-                siticoneWinToggleSwith3.Checked = false;
-                siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
-
-                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get the addresses.
-            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("1836", NumberStyles.Integer)).ToString("X");
-
-            // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith3.Checked)
-            {
-                // Disable numericupdown.
-                numericUpDown3.Enabled = false;
-
-                // Slider is being toggled on.
-                // Read current value.
-                originalSpeed = MemLib.ReadFloat(playerSpeedAddress).ToString();
-
-                // Write new value.
-                MemLib.WriteMemory(playerSpeedAddress, "float", (numericUpDown3.Value + ".0").ToString()); // Overwrite new value.
-            }
-            else
-            {
-                // Slider is being toggled off.
-                // Disable numericupdown.
-                numericUpDown3.Enabled = true;
-
-                // Write value back to original.
-                // Write value.
-                MemLib.WriteMemory(playerSpeedAddress, "float", originalSpeed); // Overwrite new value.
-            }
-        }
-        #endregion // End player speed.
-
-        #region Noclip
-
-        // Toggle noclip.
-        readonly System.Timers.Timer playersNoclipTimer = new System.Timers.Timer();
-        string noclipAddress = "0";
-        string noclipOriginalValue = "1";
-        private void SiticoneWinToggleSwith4_CheckedChanged(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith4.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
-                siticoneWinToggleSwith4.Checked = false;
-                siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
-
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Ensure pointers are found.
-            if (AoBScanResultsPlayerTools == null)
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith4.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
-                siticoneWinToggleSwith4.Checked = false;
-                siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
-
-                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get the addresses.
-            // Old alternitive address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
-            // POINTER MAP: 03 ?? (02) - Use the second one.
-            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("1488", NumberStyles.Integer)).ToString("X");
-
-            // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith4.Checked)
-            {
-                // Slider is being toggled on.
-                // Get original value.
-                noclipOriginalValue = MemLib.ReadUInt(noclipAddress).ToString();
-
-                // Start the timed events.
-                playersNoclipTimer.Interval = 100;
-                playersNoclipTimer.Elapsed += new ElapsedEventHandler(PlayersNoclipTimedEvent);
-                playersNoclipTimer.Start();
-            }
-            else
-            {
-                // Slider is being toggled off.
-                // Stop the timers.
-                playersNoclipTimer.Stop();
-
-                // Write value.
-                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
-            }
-        }
-
-        // Players position timer.
-        private void PlayersNoclipTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            // Check if noclip is activated or not.
-            // Using the second noclip address.
-            if (!IsKeyPressed(0x20))
-            {
-                // Write value.
-                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
-            }
-            else
-            {
-                // Write value.
-                MemLib.WriteMemory(noclipAddress, "int", "0"); // Overwrite new value.
-            }
-        }
-        #endregion // End noclip.
+        #endregion // End passive AI.
 
         #region No Hunger
 
@@ -11990,139 +11922,6 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End no hunger.
-
-        #region Buff Editor
-
-        // Change the players buff.
-        private async void Button12_Click(object sender, EventArgs e)
-        {
-            // Check if the combobox has a value and is not null.
-            if (comboBox1.Text == "")
-            {
-                MessageBox.Show("The buff type cannot be null!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Change button to indicate loading.
-            button12.Text = "Working";
-            button12.Enabled = false;
-
-            // Find the memory addresses.
-            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerBuffs = await MemLib.AoBScan("01 00 00 00 00 00 70 42 04 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00", true, true);
-
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsPlayerBuffs.Count() < 1)
-            {
-                // Rename button back to defualt.
-                button12.Text = "Apply";
-
-                // Re-enable button.;
-                button12.Enabled = true;
-
-                // Reset aob scan results
-                AoBScanResultsPlayerBuffs = null;
-
-                // Display error message.
-                MessageBox.Show("You must first consume a glow tulip!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get json file from resources.
-            string buffOffset = "00";
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.BuffIDs.json"))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                // Convert stream into string.
-                var jsonFileContent = reader.ReadToEnd();
-                dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
-
-                // Load each object from json to a string array.
-                foreach (var file in result)
-                {
-                    // Remove spaces from food names.
-                    string buffName = (string)file.name;
-
-                    // Add the values to the combobox if it's not empty.
-                    if (buffName == comboBox1.Text)
-                    {
-                        // Update the buffoffset.
-                        buffOffset = (string)file.offset;
-
-                        // End the loop.
-                        break;
-                    }
-                }
-            }
-
-            // Change the buff values.
-            foreach (long res in AoBScanResultsPlayerBuffs)
-            {
-                // Get byte offsets.
-                string buffID = res.ToString("X").ToString();
-                string buffPower = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                string buffTime = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
-
-                MemLib.WriteMemory(buffID, "byte", "0x" + buffOffset); // Write buff id.
-                MemLib.WriteMemory(buffPower, "int", numericUpDown6.Value.ToString()); // Write buff power.
-                MemLib.WriteMemory(buffTime, "float", numericUpDown7.Value.ToString()); // Write buff time.
-            }
-
-            // Process completed, run finishing tasks.
-            // Rename button back to defualt.
-            button12.Text = "Apply";
-            button12.Enabled = true;
-        }
-        #endregion // End buff editor.
-
-        #region Suicide
-
-        // Kill the player via suicide.
-        private void SiticoneWinToggleSwith6_CheckedChanged(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
-                siticoneWinToggleSwith6.Checked = false;
-                siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
-
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Ensure pointers are found.
-            if (AoBScanResultsPlayerTools == null)
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
-                siticoneWinToggleSwith6.Checked = false;
-                siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
-
-                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2684", NumberStyles.Integer)).ToString("X");
-
-            // Write value.
-            MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
-
-            // Toggle slider.
-            siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
-            siticoneWinToggleSwith6.Checked = false;
-            siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
-        }
-        #endregion
 
         #region Infinite Resources
 
@@ -12263,6 +12062,750 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End infinite resources.
 
+        #region Buff Editor
+
+        // Change the players buff.
+        private async void Button12_Click(object sender, EventArgs e)
+        {
+            // Check if the combobox has a value and is not null.
+            if (comboBox1.Text == "")
+            {
+                MessageBox.Show("The buff type cannot be null!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change button to indicate loading.
+            button12.Text = "Working";
+            button12.Enabled = false;
+
+            // Find the memory addresses.
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsPlayerBuffs = await MemLib.AoBScan("01 00 00 00 00 00 70 42 04 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00", true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerBuffs.Count() < 1)
+            {
+                // Rename button back to defualt.
+                button12.Text = "Apply";
+
+                // Re-enable button.;
+                button12.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsPlayerBuffs = null;
+
+                // Display error message.
+                MessageBox.Show("You must first consume a glow tulip!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get json file from resources.
+            string buffOffset = "00";
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.BuffIDs.json"))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                // Convert stream into string.
+                var jsonFileContent = reader.ReadToEnd();
+                dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
+
+                // Load each object from json to a string array.
+                foreach (var file in result)
+                {
+                    // Remove spaces from food names.
+                    string buffName = (string)file.name;
+
+                    // Add the values to the combobox if it's not empty.
+                    if (buffName == comboBox1.Text)
+                    {
+                        // Update the buffoffset.
+                        buffOffset = (string)file.offset;
+
+                        // End the loop.
+                        break;
+                    }
+                }
+            }
+
+            // Change the buff values.
+            foreach (long res in AoBScanResultsPlayerBuffs)
+            {
+                // Get byte offsets.
+                string buffID = res.ToString("X").ToString();
+                string buffPower = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                string buffTime = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+
+                MemLib.WriteMemory(buffID, "byte", "0x" + buffOffset); // Write buff id.
+                MemLib.WriteMemory(buffPower, "int", numericUpDown6.Value.ToString()); // Write buff power.
+                MemLib.WriteMemory(buffTime, "float", numericUpDown7.Value.ToString()); // Write buff time.
+            }
+
+            // Process completed, run finishing tasks.
+            // Rename button back to defualt.
+            button12.Text = "Apply";
+            button12.Enabled = true;
+        }
+        #endregion // End buff editor.
+
+        #region Place Anywhere
+
+        // Place anywhere.
+        public IEnumerable<long> AoBScanResultsPlaceAnywhereTools = null;
+        private async void SiticoneWinToggleSwith12_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith12.CheckedChanged -= SiticoneWinToggleSwith12_CheckedChanged;
+                siticoneWinToggleSwith12.Checked = false;
+                siticoneWinToggleSwith12.CheckedChanged += SiticoneWinToggleSwith12_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith12.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label37.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // Check if we need to rescan the addresses or not.
+                if (AoBScanResultsPlaceAnywhereTools != null)
+                {
+                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlaceAnywhereTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
+                    int placeAnywhere = MemLib.ReadInt(placeAnywhereAddress);
+
+                    // Check if we need to rescan place anywhere or not.
+                    if (placeAnywhere != 0 && placeAnywhere != 1)
+                    {
+                        // Rescan place anywhere address.
+                        AoBScanResultsPlaceAnywhereTools = await MemLib.AoBScan("04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 07 00 00 00 21 00 00 00 00 00 04 40 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+                    }
+                }
+                else
+                {
+                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                    AoBScanResultsPlaceAnywhereTools = await MemLib.AoBScan("04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 07 00 00 00 21 00 00 00 00 00 04 40 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+                }
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsPlaceAnywhereTools.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label37.Text = "- Place Anywhere";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsPlaceAnywhereTools = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith12.CheckedChanged -= SiticoneWinToggleSwith12_CheckedChanged;
+                    siticoneWinToggleSwith12.Checked = false;
+                    siticoneWinToggleSwith12.CheckedChanged += SiticoneWinToggleSwith12_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch the place anywhere addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsPlaceAnywhereTools)
+                {
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Place Anywhere Addresses Loaded: " + AoBScanResultsPlaceAnywhereTools.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label37.Text = "- Place Anywhere";
+
+                // Toggle on place anywhere.
+                foreach (long res in AoBScanResultsPlaceAnywhereTools)
+                {
+                    // Get the place anywhere addresses.
+                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(placeAnywhereAddress, "int", "1"); // Overwrite new value.
+                }
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Reset label name.
+                label37.Text = "- Place Anywhere";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Toggle off place anywhere.
+                foreach (long res in AoBScanResultsPlaceAnywhereTools)
+                {
+                    // Get the place anywhere addresses.
+                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(placeAnywhereAddress, "int", "0"); // Overwrite new value.
+                }
+            }
+        }
+        #endregion // End place anywhere.
+
+        #region Placement Range
+
+        // Place anywhere.
+        public IEnumerable<long> AoBScanResultsPlacementRangeTools = null;
+        private async void SiticoneWinToggleSwith13_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith13.CheckedChanged -= SiticoneWinToggleSwith13_CheckedChanged;
+                siticoneWinToggleSwith13.Checked = false;
+                siticoneWinToggleSwith13.CheckedChanged += SiticoneWinToggleSwith13_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith13.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label38.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // Disable numericupdown.
+                numericUpDown21.Enabled = false;
+
+                // Check if we need to rescan the addresses or not.
+                if (AoBScanResultsPlacementRangeTools != null)
+                {
+                    string placementRangeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlacementRangeTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                    float placementRange = MemLib.ReadFloat(placementRangeAddress);
+
+                    // Check if we need to rescan placement range or not.
+                    // Defualt 1.5.
+                    if (placementRange > (float)numericUpDown21.Maximum && placementRange < (float)numericUpDown1.Minimum)
+                    {
+                        // Rescan placement range addresses.
+                        AoBScanResultsPlacementRangeTools = await MemLib.AoBScan("00 00 80 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 01 04 02 05 04 03 01 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 49 BB ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 55 48 8B EC 48 83 EC 50 48 89 75 E8 48 89 7D F0", true, true);
+                    }
+                }
+                else
+                {
+                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                    AoBScanResultsPlacementRangeTools = await MemLib.AoBScan("00 00 80 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 01 04 02 05 04 03 01 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 49 BB ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 55 48 8B EC 48 83 EC 50 48 89 75 E8 48 89 7D F0", true, true);
+                }
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsPlacementRangeTools.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label38.Text = "- Range:";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Enable numericupdown.
+                    numericUpDown21.Enabled = true;
+
+                    // Reset aob scan results
+                    AoBScanResultsPlacementRangeTools = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith13.CheckedChanged -= SiticoneWinToggleSwith13_CheckedChanged;
+                    siticoneWinToggleSwith13.Checked = false;
+                    siticoneWinToggleSwith13.CheckedChanged += SiticoneWinToggleSwith13_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch the placement range addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsPlacementRangeTools)
+                {
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Placement Range Addresses Loaded: " + AoBScanResultsPlacementRangeTools.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                    }
+                }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label38.Text = "- Range:";
+
+                // Toggle on passive AI.
+                foreach (long res in AoBScanResultsPlacementRangeTools)
+                {
+                    // Get the passive AI addresses.
+                    // OLD: 124
+                    string passiveAIAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(passiveAIAddress, "float", numericUpDown21.Value.ToString()); // Overwrite new value.
+                }
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Reset label name.
+                label38.Text = "- Range:";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Enable numericupdown.
+                numericUpDown21.Enabled = true;
+
+                // Toggle off passive AI.
+                foreach (long res in AoBScanResultsPlacementRangeTools)
+                {
+                    // Get the passive AI addresses.
+                    string passiveAIAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+
+                    // Write value.
+                    MemLib.WriteMemory(passiveAIAddress, "float", "1.5"); // Overwrite new value.
+                }
+            }
+        }
+        #endregion // End place anywhere.
+
+        // Mods bellow use the "Player Mod Offsets".
+
+        #region Player Position
+
+        // Enable player xy tool.
+        readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
+        private void SiticoneWinToggleSwith1_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith1.Checked)
+            {
+                // Start the timed events.
+                playersPositionTimer.Interval = 100; // Custom intervals.
+                playersPositionTimer.Elapsed += new ElapsedEventHandler(PlayersPositionTimedEvent);
+                playersPositionTimer.Start();
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] Player position has been enabled." + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
+            }
+            else
+            {
+                // Disable player position.
+                // Stop the timers.
+                playersPositionTimer.Stop();
+
+                // Change appllication text back to defualt.
+                this.Text = "CoreKeeper's Workshop";
+
+                // Update consoile with the status.
+                richTextBox5.AppendText("[PlayerPosition] Player position has been disabled." + Environment.NewLine);
+                richTextBox5.ScrollToCaret();
+            }
+        }
+
+        // Players position timer.
+        private void PlayersPositionTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Get the addresses.
+            // Old 04Oct23: BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+            string positionX = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(possitionXOffset, NumberStyles.Integer)).ToString("X");
+            string positionY = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(possitionYOffset, NumberStyles.Integer)).ToString("X");
+
+            // Convert values to number.
+            string playerPositionX = MemLib.ReadFloat(positionX).ToString();
+            string playerPositionY = MemLib.ReadFloat(positionY).ToString(); // OLD: -1 Correct the offset. 
+
+            // Change the applications tittle based on minimization and tab pages. 
+            if (isMinimized || tabControl1.SelectedTab == tabPage5) // Tab five is smaller.
+            {
+                // Change text based on minimized window.
+                this.Text = "Pos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
+            }
+            else
+            {
+                // Change text based on maximized window.
+                this.Text = "CoreKeeper's Workshop | PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
+            }
+        }
+        #endregion // End player positon.
+        #region Player Position Chunk
+
+        #region Chunk Math Functions
+
+        // Get the nearest XY position of a chunk based on position.
+        public Vector2 GetChunk(Vector2 Position)
+        {
+            return new Vector2(IRoundTo((int)((Vector2)Position).X, 64), IRoundTo((int)((Vector2)Position).Y, 64));
+        }
+
+        // Algorithm for compairing two intagers.
+        public static int IRoundTo(int inval, int nearest)
+        {
+            inval /= nearest;
+            return (int)((float)Math.Round((double)inval) * (float)nearest);
+        }
+        #endregion // End player math.
+
+        // Get chunk information.
+        private void Button35_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith1.Checked)
+            {
+                // Ensure pointers are found.
+                if (AoBScanResultsPlayerTools == null)
+                {
+                    MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Save some form settings.
+                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerAddress = AoBScanResultsPlayerTools.Last().ToString("X");
+
+                // Spawn item picker window.
+                try
+                {
+                    ChunkViewer frm4 = new ChunkViewer(this);
+                    DialogResult dr = frm4.ShowDialog(this);
+
+                    // Get returned item from chunk viewer.
+                    frm4.Close();
+                }
+                catch
+                { }
+            }
+            else
+            {
+                // Display position is not enabled.
+                MessageBox.Show("Display position is not enabled!\nEnable this feature first!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion // End player position chunk.
+
+        #region Godmode
+
+        // Toggle godmode.
+        readonly System.Timers.Timer playersGodmodeTimer = new System.Timers.Timer();
+        string godmodeAddress = "0";
+        private void SiticoneWinToggleSwith2_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith2.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                siticoneWinToggleSwith2.Checked = false;
+                siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith2.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                siticoneWinToggleSwith2.Checked = false;
+                siticoneWinToggleSwith2.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith2.Checked)
+            {
+                // Slider is being toggled on.
+                // Start the timed events.
+                playersGodmodeTimer.Interval = 1; // Custom intervals.
+                playersGodmodeTimer.Elapsed += new ElapsedEventHandler(PlayersGodmodeTimedEvent);
+                playersGodmodeTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Stop the timers.
+                playersGodmodeTimer.Stop();
+            }
+        }
+
+        // Players position timer.
+        private void PlayersGodmodeTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Write value.
+            MemLib.WriteMemory(godmodeAddress, "int", "100000"); // Overwrite new value.
+        }
+        #endregion // End godmode.
+
+        #region Player Speed
+
+        // Change player speed.
+        string originalSpeed = "336"; // Original max speed.
+        private void SiticoneWinToggleSwith3_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith3.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
+                siticoneWinToggleSwith3.Checked = false;
+                siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith3.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
+                siticoneWinToggleSwith3.Checked = false;
+                siticoneWinToggleSwith3.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(speedOffset, NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith3.Checked)
+            {
+                // Disable numericupdown.
+                numericUpDown3.Enabled = false;
+
+                // Slider is being toggled on.
+                // Read current value.
+                originalSpeed = MemLib.ReadFloat(playerSpeedAddress).ToString();
+
+                // Write new value.
+                MemLib.WriteMemory(playerSpeedAddress, "float", (numericUpDown3.Value + ".0").ToString()); // Overwrite new value.
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Disable numericupdown.
+                numericUpDown3.Enabled = true;
+
+                // Write value back to original.
+                // Write value.
+                MemLib.WriteMemory(playerSpeedAddress, "float", originalSpeed); // Overwrite new value.
+            }
+        }
+        #endregion // End player speed.
+
+        #region Noclip
+
+        // Toggle noclip.
+        readonly System.Timers.Timer playersNoclipTimer = new System.Timers.Timer();
+        string noclipAddress = "0";
+        string noclipOriginalValue = "1";
+        private void SiticoneWinToggleSwith4_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith4.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                siticoneWinToggleSwith4.Checked = false;
+                siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith4.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                siticoneWinToggleSwith4.Checked = false;
+                siticoneWinToggleSwith4.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            // Old alternitive address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
+            // POINTER MAP: 03 ?? (02) - Use the second one.
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclipOffset, NumberStyles.Integer)).ToString("X");
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith4.Checked)
+            {
+                // Slider is being toggled on.
+                // Get original value.
+                noclipOriginalValue = MemLib.ReadUInt(noclipAddress).ToString();
+
+                // Start the timed events.
+                playersNoclipTimer.Interval = 100;
+                playersNoclipTimer.Elapsed += new ElapsedEventHandler(PlayersNoclipTimedEvent);
+                playersNoclipTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Stop the timers.
+                playersNoclipTimer.Stop();
+
+                // Write value.
+                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
+            }
+        }
+
+        // Players position timer.
+        private void PlayersNoclipTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Check if noclip is activated or not.
+            // Using the second noclip address.
+            if (!IsKeyPressed(0x20))
+            {
+                // Write value.
+                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
+            }
+            else
+            {
+                // Write value.
+                MemLib.WriteMemory(noclipAddress, "int", "0"); // Overwrite new value.
+            }
+        }
+        #endregion // End noclip.
+
+        #region Suicide
+
+        // Kill the player via suicide.
+        private void SiticoneWinToggleSwith6_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+                siticoneWinToggleSwith6.Checked = false;
+                siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+                siticoneWinToggleSwith6.Checked = false;
+                siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the addresses.
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+
+            // Write value.
+            MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
+
+            // Toggle slider.
+            siticoneWinToggleSwith6.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+            siticoneWinToggleSwith6.Checked = false;
+            siticoneWinToggleSwith6.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+        }
+        #endregion
+
         #region Force Recall
 
         // Kill the player via suicide.
@@ -12293,8 +12836,8 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Fetch some addresses.
-            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
-            string playerStateSpawnAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("372", NumberStyles.Integer)).ToString("X");
+            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateBaseOffset, NumberStyles.Integer)).ToString("X");
+            string playerStateSpawnAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateRecallOffset, NumberStyles.Integer)).ToString("X");
 
             // Write value.
             MemLib.WriteMemory(playerStateAddress, "int", MemLib.ReadInt(playerStateSpawnAddress).ToString());
@@ -12341,8 +12884,8 @@ namespace CoreKeeperInventoryEditor
 
             // Get the addresses.
             // Get the noclip addresses.
-            playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
-            playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
+            playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateBaseOffset, NumberStyles.Integer)).ToString("X");
+            playerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateAntiCollisionOffset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (siticoneWinToggleSwith8.Checked)
@@ -12405,264 +12948,6 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End anti collision.
-
-        #region Free Crafting
-
-        // Toggle godmode.
-        public IEnumerable<long> AoBScanResultsFreeCraftingTools = null;
-        private async void SiticoneWinToggleSwith10_CheckedChanged(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith10.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
-                siticoneWinToggleSwith10.Checked = false;
-                siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
-
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith10.Checked)
-            {
-                // Slider is being toggled on.
-                // Name button to indicate loading.
-                label32.Text = "- Loading..";
-
-                // Offset the progress bar to show it's working.
-                progressBar5.Visible = true;
-                progressBar5.Maximum = 100;
-                progressBar5.Value = 10;
-
-                // Check if we need to rescan the addresses or not.
-                // Depreciated Address 04Oct23: 00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F E9 DD 25 3E 79 2B 7B 3F C6 AF 56 3E 00 00 80 3F
-                if (AoBScanResultsFreeCraftingTools != null)
-                {
-                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("10", NumberStyles.HexNumber)).ToString("X");
-                    int freeCrafting = MemLib.ReadInt(freeCraftingAddress);
-
-                    // Check if we need to rescan food or not.
-                    if (freeCrafting != 0 && freeCrafting != 1)
-                    {
-                        // Rescan food address.
-                        AoBScanResultsFreeCraftingTools = await MemLib.AoBScan("00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F", true, true);
-                    }
-                }
-                else
-                {
-                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                    AoBScanResultsFreeCraftingTools = await MemLib.AoBScan("00 00 80 3F D4 04 63 3E D4 04 63 3E 00 00 80 3F", true, true);
-                }
-
-                // If the count is zero, the scan had an error.
-                if (AoBScanResultsFreeCraftingTools.Count() == 0)
-                {
-                    // Name label to indicate loading.
-                    label32.Text = "- Free Crafting";
-
-                    // Reset progress bar.
-                    progressBar5.Value = 0;
-                    progressBar5.Visible = false;
-
-                    // Reset aob scan results
-                    AoBScanResultsFreeCraftingTools = null;
-
-                    // Toggle slider.
-                    siticoneWinToggleSwith10.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
-                    siticoneWinToggleSwith10.Checked = false;
-                    siticoneWinToggleSwith10.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
-
-                    // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Update richtextbox with found addresses.
-                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
-                foreach (long res in AoBScanResultsFreeCraftingTools)
-                {
-                    if (richTextBox6.Text == "Addresses Loaded: 0")
-                    {
-                        richTextBox6.Text = "Free Crafting Addresses Loaded: " + AoBScanResultsFreeCraftingTools.Count() + " [" + res.ToString("X").ToString();
-                    }
-                    else
-                    {
-                        richTextBox6.Text += ", " + res.ToString("X").ToString();
-                    }
-                }
-                richTextBox6.Text += "]";
-
-                // Complete progress bar.
-                progressBar5.Value = 100;
-                progressBar5.Visible = false;
-
-                // Rename label to defualt text.
-                label32.Text = "- Free Crafting";
-
-                // Toggle on free item crafting.
-                foreach (long res in AoBScanResultsFreeCraftingTools)
-                {
-                    // Get the free crafting addresses.
-                    // OLD: -10
-                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.HexNumber)).ToString("X");
-
-                    // Write value.
-                    MemLib.WriteMemory(freeCraftingAddress, "int", "1"); // Overwrite new value.
-                }
-            }
-            else
-            {
-                // Slider is being toggled off.
-                // Reset label name.
-                label32.Text = "- Free Crafting";
-
-                // Complete progress bar.
-                progressBar5.Value = 100;
-                progressBar5.Visible = false;
-
-                // Toggle off free item crafting.
-                foreach (long res in AoBScanResultsFreeCraftingTools)
-                {
-                    // Get the free crafting addresses.
-                    string freeCraftingAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsFreeCraftingTools.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.HexNumber)).ToString("X");
-
-                    // Write value.
-                    MemLib.WriteMemory(freeCraftingAddress, "int", "0"); // Overwrite new value.
-                }
-            }
-        }
-        #endregion // End free crafting.
-
-        #region Passive AI
-
-        // Passive AI.
-        public IEnumerable<long> AoBScanResultsPassiveAITools = null;
-        private async void SiticoneWinToggleSwith11_CheckedChanged(object sender, EventArgs e)
-        {
-            // Open the process and check if it was successful before the AoB scan.
-            if (!MemLib.OpenProcess("CoreKeeper"))
-            {
-                // Toggle slider.
-                siticoneWinToggleSwith11.CheckedChanged -= SiticoneWinToggleSwith11_CheckedChanged;
-                siticoneWinToggleSwith11.Checked = false;
-                siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
-
-                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Check if the slider was not yet checked.
-            if (siticoneWinToggleSwith11.Checked)
-            {
-                // Slider is being toggled on.
-                // Name button to indicate loading.
-                label33.Text = "- Loading..";
-
-                // Offset the progress bar to show it's working.
-                progressBar5.Visible = true;
-                progressBar5.Maximum = 100;
-                progressBar5.Value = 10;
-
-                // Check if we need to rescan the addresses or not.
-                if (AoBScanResultsPassiveAITools != null)
-                {
-                    string passiveAIAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPassiveAITools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("124", NumberStyles.Integer)).ToString("X");
-                    int passiveAI = MemLib.ReadInt(passiveAIAddress);
-
-                    // Check if we need to rescan food or not.
-                    if (passiveAI != 5 && passiveAI != 8)
-                    {
-                        // Rescan food address.
-                        // Depreciated Address 23Mar23: 05 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 33 00 00 00 34 00 00 00 35 00 00 00 36 00 00 00 37 00 00 00 38 00 00 00 39 00 00 00 3A 00 00 00
-                        // Depreciated Address 04Oct23: 6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 33 00 00 00 34 00 00 00 35 00 00 00 36 00 00 00 37 00 00 00 38 00 00 00 39 00 00 00 3A 00 00 00
-                        AoBScanResultsPassiveAITools = await MemLib.AoBScan("6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00", true, true);
-                    }
-                }
-                else
-                {
-                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                    AoBScanResultsPassiveAITools = await MemLib.AoBScan("6F 50 45 62 84 D3 69 3D 8F C8 4E 5B 20 AA C8 38 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 00 00 00 43 00 00 00 44 00 00 00", true, true);
-                }
-
-                // If the count is zero, the scan had an error.
-                if (AoBScanResultsPassiveAITools.Count() == 0)
-                {
-                    // Name label to indicate loading.
-                    label33.Text = "- Passive AI";
-
-                    // Reset progress bar.
-                    progressBar5.Value = 0;
-                    progressBar5.Visible = false;
-
-                    // Reset aob scan results
-                    AoBScanResultsPassiveAITools = null;
-
-                    // Toggle slider.
-                    siticoneWinToggleSwith11.CheckedChanged -= SiticoneWinToggleSwith11_CheckedChanged;
-                    siticoneWinToggleSwith11.Checked = false;
-                    siticoneWinToggleSwith11.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
-
-                    // Display error message.
-                    MessageBox.Show("There was an issue trying to fetch the passive AI addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Update richtextbox with found addresses.
-                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
-                foreach (long res in AoBScanResultsPassiveAITools)
-                {
-                    if (richTextBox6.Text == "Addresses Loaded: 0")
-                    {
-                        richTextBox6.Text = "Passive AI Addresses Loaded: " + AoBScanResultsPassiveAITools.Count() + " [" + res.ToString("X").ToString();
-                    }
-                    else
-                    {
-                        richTextBox6.Text += ", " + res.ToString("X").ToString();
-                    }
-                }
-                richTextBox6.Text += "]";
-
-                // Complete progress bar.
-                progressBar5.Value = 100;
-                progressBar5.Visible = false;
-
-                // Rename label to defualt text.
-                label33.Text = "- Passive AI";
-
-                // Toggle on passive AI.
-                foreach (long res in AoBScanResultsPassiveAITools)
-                {
-                    // Get the passive AI addresses.
-                    string passiveAIAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("572", NumberStyles.Integer)).ToString("X");
-
-                    // Write value.
-                    MemLib.WriteMemory(passiveAIAddress, "int", "8"); // Overwrite new value.
-                }
-            }
-            else
-            {
-                // Slider is being toggled off.
-                // Reset label name.
-                label33.Text = "- Passive AI";
-
-                // Complete progress bar.
-                progressBar5.Value = 100;
-                progressBar5.Visible = false;
-
-                // Toggle off passive AI.
-                foreach (long res in AoBScanResultsPassiveAITools)
-                {
-                    // Get the passive AI addresses.
-                    string passiveAIAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("572", NumberStyles.Integer)).ToString("X");
-
-                    // Write value.
-                    MemLib.WriteMemory(passiveAIAddress, "int", "5"); // Overwrite new value.
-                }
-            }
-        }
-        #endregion // End passive AI.
 
         #endregion // End player tab.
 
@@ -12736,7 +13021,7 @@ namespace CoreKeeperInventoryEditor
             progressBar4.Value = 10;
 
             // Select an address based on brute force mode.
-            string AoBPlayerLocationArray = "C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 ?? ?? 00 00";
+            string AoBPlayerLocationArray = "C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00";
             if (checkBox3.Checked)
             {
                 // Brute force mode is enabled, switch array.
@@ -12747,6 +13032,7 @@ namespace CoreKeeperInventoryEditor
             // Depreciated Address 08Feb23: C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?0 ?? 00 00
             // Depreciated Address 11Mar23: C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00
             // Depreciated Address 23Jun23: C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00
+            // Depreciated Address 26Oct23: C? CC CC 3D 00 00 00 00 ?? 99 D9 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 ?? ?? 00 00
             AoBScanResultsPlayerLocationScanner = await MemLib.AoBScan(AoBPlayerLocationArray, true, true);
 
             // If the count is zero, the scan had an error.
@@ -13388,8 +13674,8 @@ namespace CoreKeeperInventoryEditor
 
                 // Define players initial position.
                 var initialres = AoBScanResultsPlayerTools.Last();
-                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X"));
-                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X"));
+                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(possitionXOffset, NumberStyles.Integer)).ToString("X"));
+                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(possitionYOffset, NumberStyles.Integer)).ToString("X"));
                 Vector2 initialPosition = new Vector2(xlocres, ylocres);
 
                 // Define entree values.
@@ -13480,12 +13766,12 @@ namespace CoreKeeperInventoryEditor
                 rPrevious = minRadius;
 
                 // Get the anti collision addresses.
-                renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("244", NumberStyles.Integer)).ToString("X");
+                renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateBaseOffset, NumberStyles.Integer)).ToString("X");
                 renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
-                renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("308", NumberStyles.Integer)).ToString("X");
+                renderMapPlayerStateNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateAntiCollisionOffset, NumberStyles.Integer)).ToString("X");
 
                 // Get the godmode address.
-                renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("2684", NumberStyles.Integer)).ToString("X");
+                renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
 
                 // Declare the current start time.
                 DateTime startTime = DateTime.Now;
