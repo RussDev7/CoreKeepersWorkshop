@@ -8,9 +8,12 @@ Changes Since v1.3.5.8
 - Fixed Teleport player error incorrectly renaming button.
 - Fixed all tab indexes for multiple forms.
 - Hardened the teleport player addresses.
+- Orginized the player mod address offsets.
 
 + Added various missing assets.
 + Added a scrollbar to the player mods.
++ Added a place tile anywhere mod to player mods.
++ Added a placement range mod to player mods.
 
 Changes Since v1.3.5.7
 ===========================================================
