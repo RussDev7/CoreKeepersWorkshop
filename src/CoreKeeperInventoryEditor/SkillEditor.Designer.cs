@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
@@ -80,7 +81,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -132,7 +132,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown1.TabIndex = 0;
+            this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
             0,
@@ -150,7 +150,7 @@
             0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown2.TabIndex = 1;
+            this.numericUpDown2.TabIndex = 2;
             this.numericUpDown2.Value = new decimal(new int[] {
             500,
             0,
@@ -162,7 +162,7 @@
             this.button1.Location = new System.Drawing.Point(62, 388);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 38);
-            this.button1.TabIndex = 9;
+            this.button1.TabIndex = 20;
             this.button1.Text = "Change Skills";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
@@ -172,7 +172,7 @@
             this.progressBar1.Location = new System.Drawing.Point(12, 432);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(197, 23);
-            this.progressBar1.TabIndex = 10;
+            this.progressBar1.TabIndex = 0;
             // 
             // label1
             // 
@@ -181,7 +181,7 @@
             this.label1.Location = new System.Drawing.Point(9, 339);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(160, 13);
-            this.label1.TabIndex = 12;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Total Discovered Skills > 1 EXP:";
             // 
             // label2
@@ -192,7 +192,7 @@
             this.label2.Location = new System.Drawing.Point(0, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 13);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 0;
             this.label2.Text = "ID:";
             // 
             // label3
@@ -203,7 +203,7 @@
             this.label3.Location = new System.Drawing.Point(0, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 14;
+            this.label3.TabIndex = 0;
             this.label3.Text = "EXP:";
             // 
             // panel1
@@ -230,6 +230,16 @@
             this.pictureBox1.Size = new System.Drawing.Size(50, 50);
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(0, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(23, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "?";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // panel2
             // 
@@ -263,7 +273,7 @@
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown3.TabIndex = 1;
+            this.numericUpDown3.TabIndex = 3;
             this.numericUpDown3.ValueChanged += new System.EventHandler(this.NumericUpDown3_ValueChanged);
             // 
             // numericUpDown4
@@ -276,7 +286,7 @@
             0});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown4.TabIndex = 0;
+            this.numericUpDown4.TabIndex = 4;
             this.numericUpDown4.Value = new decimal(new int[] {
             500,
             0,
@@ -315,7 +325,7 @@
             0});
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown5.TabIndex = 1;
+            this.numericUpDown5.TabIndex = 5;
             this.numericUpDown5.Value = new decimal(new int[] {
             2,
             0,
@@ -333,7 +343,7 @@
             0});
             this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown6.TabIndex = 0;
+            this.numericUpDown6.TabIndex = 6;
             this.numericUpDown6.Value = new decimal(new int[] {
             500,
             0,
@@ -374,7 +384,7 @@
             0});
             this.numericUpDown7.Name = "numericUpDown7";
             this.numericUpDown7.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown7.TabIndex = 1;
+            this.numericUpDown7.TabIndex = 7;
             this.numericUpDown7.Value = new decimal(new int[] {
             3,
             0,
@@ -390,7 +400,7 @@
             this.label8.Location = new System.Drawing.Point(0, 82);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
-            this.label8.TabIndex = 14;
+            this.label8.TabIndex = 0;
             this.label8.Text = "EXP:";
             // 
             // label9
@@ -401,7 +411,7 @@
             this.label9.Location = new System.Drawing.Point(0, 56);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(21, 13);
-            this.label9.TabIndex = 13;
+            this.label9.TabIndex = 0;
             this.label9.Text = "ID:";
             // 
             // numericUpDown8
@@ -414,7 +424,7 @@
             0});
             this.numericUpDown8.Name = "numericUpDown8";
             this.numericUpDown8.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown8.TabIndex = 0;
+            this.numericUpDown8.TabIndex = 8;
             this.numericUpDown8.Value = new decimal(new int[] {
             500,
             0,
@@ -453,7 +463,7 @@
             0});
             this.numericUpDown9.Name = "numericUpDown9";
             this.numericUpDown9.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown9.TabIndex = 1;
+            this.numericUpDown9.TabIndex = 9;
             this.numericUpDown9.Value = new decimal(new int[] {
             4,
             0,
@@ -471,7 +481,7 @@
             0});
             this.numericUpDown10.Name = "numericUpDown10";
             this.numericUpDown10.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown10.TabIndex = 0;
+            this.numericUpDown10.TabIndex = 10;
             this.numericUpDown10.Value = new decimal(new int[] {
             500,
             0,
@@ -510,7 +520,7 @@
             0});
             this.numericUpDown11.Name = "numericUpDown11";
             this.numericUpDown11.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown11.TabIndex = 1;
+            this.numericUpDown11.TabIndex = 11;
             this.numericUpDown11.Value = new decimal(new int[] {
             5,
             0,
@@ -528,7 +538,7 @@
             0});
             this.numericUpDown12.Name = "numericUpDown12";
             this.numericUpDown12.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown12.TabIndex = 0;
+            this.numericUpDown12.TabIndex = 12;
             this.numericUpDown12.Value = new decimal(new int[] {
             500,
             0,
@@ -569,7 +579,7 @@
             0});
             this.numericUpDown13.Name = "numericUpDown13";
             this.numericUpDown13.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown13.TabIndex = 1;
+            this.numericUpDown13.TabIndex = 13;
             this.numericUpDown13.Value = new decimal(new int[] {
             6,
             0,
@@ -585,7 +595,7 @@
             this.label14.Location = new System.Drawing.Point(0, 82);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 13);
-            this.label14.TabIndex = 14;
+            this.label14.TabIndex = 0;
             this.label14.Text = "EXP:";
             // 
             // label15
@@ -596,7 +606,7 @@
             this.label15.Location = new System.Drawing.Point(0, 56);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(21, 13);
-            this.label15.TabIndex = 13;
+            this.label15.TabIndex = 0;
             this.label15.Text = "ID:";
             // 
             // numericUpDown14
@@ -609,7 +619,7 @@
             0});
             this.numericUpDown14.Name = "numericUpDown14";
             this.numericUpDown14.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown14.TabIndex = 0;
+            this.numericUpDown14.TabIndex = 14;
             this.numericUpDown14.Value = new decimal(new int[] {
             500,
             0,
@@ -648,7 +658,7 @@
             0});
             this.numericUpDown15.Name = "numericUpDown15";
             this.numericUpDown15.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown15.TabIndex = 1;
+            this.numericUpDown15.TabIndex = 15;
             this.numericUpDown15.Value = new decimal(new int[] {
             7,
             0,
@@ -666,7 +676,7 @@
             0});
             this.numericUpDown16.Name = "numericUpDown16";
             this.numericUpDown16.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown16.TabIndex = 0;
+            this.numericUpDown16.TabIndex = 16;
             this.numericUpDown16.Value = new decimal(new int[] {
             500,
             0,
@@ -705,7 +715,7 @@
             0});
             this.numericUpDown17.Name = "numericUpDown17";
             this.numericUpDown17.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown17.TabIndex = 1;
+            this.numericUpDown17.TabIndex = 17;
             this.numericUpDown17.Value = new decimal(new int[] {
             8,
             0,
@@ -723,7 +733,7 @@
             0});
             this.numericUpDown18.Name = "numericUpDown18";
             this.numericUpDown18.Size = new System.Drawing.Size(51, 20);
-            this.numericUpDown18.TabIndex = 0;
+            this.numericUpDown18.TabIndex = 18;
             this.numericUpDown18.Value = new decimal(new int[] {
             500,
             0,
@@ -740,7 +750,7 @@
             0});
             this.numericUpDown19.Name = "numericUpDown19";
             this.numericUpDown19.Size = new System.Drawing.Size(32, 20);
-            this.numericUpDown19.TabIndex = 16;
+            this.numericUpDown19.TabIndex = 19;
             this.numericUpDown19.Value = new decimal(new int[] {
             9,
             0,
@@ -764,7 +774,7 @@
             -2147483648});
             this.numericUpDown20.Name = "numericUpDown20";
             this.numericUpDown20.Size = new System.Drawing.Size(32, 20);
-            this.numericUpDown20.TabIndex = 19;
+            this.numericUpDown20.TabIndex = 24;
             this.numericUpDown20.ValueChanged += new System.EventHandler(this.NumericUpDown20_ValueChanged);
             // 
             // numericUpDown21
@@ -783,7 +793,7 @@
             -2147483648});
             this.numericUpDown21.Name = "numericUpDown21";
             this.numericUpDown21.Size = new System.Drawing.Size(32, 20);
-            this.numericUpDown21.TabIndex = 20;
+            this.numericUpDown21.TabIndex = 25;
             this.numericUpDown21.Value = new decimal(new int[] {
             2,
             0,
@@ -796,7 +806,7 @@
             this.button2.Location = new System.Drawing.Point(165, 388);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(44, 38);
-            this.button2.TabIndex = 21;
+            this.button2.TabIndex = 22;
             this.button2.Text = "Max";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
@@ -806,7 +816,7 @@
             this.button3.Location = new System.Drawing.Point(12, 388);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(44, 38);
-            this.button3.TabIndex = 22;
+            this.button3.TabIndex = 21;
             this.button3.Text = "Reset";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
@@ -822,16 +832,6 @@
             this.checkBox1.Text = "Enable Debug Mode:";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(23, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "?";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // SkillEditor
             // 
