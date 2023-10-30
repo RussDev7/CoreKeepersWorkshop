@@ -62,6 +62,26 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
+            toolTip.SetToolTip(numericUpDown1, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown3, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown5, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown7, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown9, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown11, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown13, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown15, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(numericUpDown17, "Set the current skilltype to desired a ID.");
+            
+            toolTip.SetToolTip(numericUpDown2, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown4, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown6, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown8, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown10, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown12, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown14, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown16, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(numericUpDown18, "Set the EXP amount for the desired skill.");
+            
             toolTip.SetToolTip(numericUpDown19, "Define how many skils the player has discovered over 1 EXP.");
             toolTip.SetToolTip(numericUpDown20, "DEBUG: Define the header1 offset.");
             toolTip.SetToolTip(numericUpDown21, "DEBUG: Define the header2 offset.");
@@ -69,6 +89,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(button1, "Change your players skills to custom values!");
             toolTip.SetToolTip(button2, "Change your players skills to max values!");
             toolTip.SetToolTip(button3, "Resets all player skills to 0.");
+            toolTip.SetToolTip(button4, "Show a list of all skill names, IDs, and max values.");
 
             toolTip.SetToolTip(checkBox1, "This is used to help find the correct addresses.");
             #endregion
@@ -586,6 +607,22 @@ namespace CoreKeepersWorkshop
                 numericUpDown20.Enabled = false;
                 numericUpDown21.Enabled = false;
             }
+        }
+
+        // Show skill help button.
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("SKILL-NAME\tID  MAX-LEVEL\r\n" +
+                            "==========================\r\n" +
+                            "Mining\t\t| 0 | 100035\r\n" +
+                            "Running\t\t| 1 | 498767\r\n" +
+                            "Melee Combat\t| 2 | 25004\r\n" +
+                            "Crafting\t\t| 4 | 29995\r\n" +
+                            "Vitality\t\t| 3 | 4999038\r\n" +
+                            "Gardening\t| 6 | 6602\r\n" +
+                            "Range Combat\t| 5 | 20001\r\n" +
+                            "Fishing\t\t| 7 | 2501\r\n" +
+                            "Cooking\t\t| 8 | 5000", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #region Change Images
