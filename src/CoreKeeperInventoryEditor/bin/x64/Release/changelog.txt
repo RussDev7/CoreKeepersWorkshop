@@ -4,16 +4,18 @@ Changes Since v1.3.5.8
 - Updated food variation math.
 - Fixed a misleading auto render map error message prompt.
 - Updated the remove all ground items mod.
-- Corrected the progressbar for remove ground items.
+- Corrected the progress bar for remove ground items.
 - Fixed Teleport player error incorrectly renaming button.
 - Fixed all tab indexes for multiple forms.
 - Hardened the teleport player addresses.
-- Orginized the player mod address offsets.
+- Organized the player mod address offsets.
+- Corrected misspellings on various tooltips.
 
 + Added various missing assets.
 + Added a scrollbar to the player mods.
 + Added a place tile anywhere mod to player mods.
 + Added a placement range mod to player mods.
++ Added a beta skill editor to the player mods.
 
 Changes Since v1.3.5.7
 ===========================================================
