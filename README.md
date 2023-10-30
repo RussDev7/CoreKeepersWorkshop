@@ -20,6 +20,7 @@
  - [x] Future proof resiliency.
  - [x] Basic multiplayer support.
  - [x] Automatic map renderer.
+ - [x] Player skill editor.
  
 ## How It Works / How Do I Use It?
 Due to how Core Keeper is as a unity game, the devolopers have protected their source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection techniques to scramble regions of memory to prevent address pointers. So using some clevor AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
