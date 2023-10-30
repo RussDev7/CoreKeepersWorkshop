@@ -47,6 +47,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsFishingData;
         public IEnumerable<long> AoBScanResultsDevMapReveal;
         public IEnumerable<long> AoBScanResultsRevealMapRange;
+        public static IEnumerable<long> AoBScanResultsSkills; // Form4.
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
         public string ExportPlayerName = "";
@@ -67,7 +68,7 @@ namespace CoreKeeperInventoryEditor
         public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
 
         // Define error title.
-        public readonly string errorTitle = "ERROR: " + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName + " v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion;
+        public static readonly string errorTitle = "ERROR: " + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName + " v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion;
 
         // Set the mouse event class.
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -277,6 +278,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button31, "Pause or resume the auto map rendering operation.");
                 toolTip.SetToolTip(button35, "Open a chunk viewer to display real-time chunk position tracking.");
                 toolTip.SetToolTip(button36, "Launch a visualization guide on how to set your teleport addresses.");
+                toolTip.SetToolTip(button40, "Launch the player skill editor.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
                 toolTip.SetToolTip(comboBox2, "Set this applications process priority.");
@@ -328,7 +330,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(label8, "Change item slot2s variant based on the left/right arrow keys.");
                 toolTip.SetToolTip(label30, "Grabs the application and sends it to the center of the screen.");
                 toolTip.SetToolTip(label31, "Stores the games private bytes with timestamps for each completed rotation.");
-                toolTip.SetToolTip(label36, "Use the slider bellow for more mods!");
+                toolTip.SetToolTip(label36, "Use the slider below for more mods!");
 
                 toolTip.SetToolTip(siticoneTrackBar1, "Used to scroll to other player mods.");
 
@@ -11165,7 +11167,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Player Mod Offsets
 
-        // Bellow contains all the offsets for the player mods.
+        // below contains all the offsets for the player mods.
         // These values are all all added to the players base address. // Base + Offset.
         readonly string possitionXOffset = "56";                // Player possition X.
         readonly string possitionYOffset = "64";                // Player possition Y.
@@ -12418,7 +12420,48 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End place anywhere.
 
-        // Mods bellow use the "Player Mod Offsets".
+        #region Skill Editor
+
+        // Launch skill editor.
+        private void Button40_Click(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith1.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                siticoneWinToggleSwith1.Checked = false;
+                siticoneWinToggleSwith1.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsPlayerTools == null)
+            {
+                MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Save some form settings.
+            CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorAddress = AoBScanResultsPlayerTools.Last().ToString("X");
+
+            // Spawn item picker window.
+            try
+            {
+                SkillEditor frm5 = new SkillEditor();
+                DialogResult dr = frm5.ShowDialog();
+
+                // Get returned item from chunk viewer.
+                frm5.Close();
+            }
+            catch
+            { }
+        }
+        #endregion
+
+        // Mods below use the "Player Mod Offsets".
 
         #region Player Position
 

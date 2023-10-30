@@ -514,5 +514,41 @@ namespace CoreKeepersWorkshop.Properties {
                 this["TeleportAddressGuideLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point SkillEditorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["SkillEditorLocation"]));
+            }
+            set {
+                this["SkillEditorLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("00000000000")]
+        public string SkillEditorAddress {
+            get {
+                return ((string)(this["SkillEditorAddress"]));
+            }
+            set {
+                this["SkillEditorAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public decimal ActiveSkillAmount {
+            get {
+                return ((decimal)(this["ActiveSkillAmount"]));
+            }
+            set {
+                this["ActiveSkillAmount"] = value;
+            }
+        }
     }
 }

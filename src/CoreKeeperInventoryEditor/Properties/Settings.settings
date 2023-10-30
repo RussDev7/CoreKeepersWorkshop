@@ -125,5 +125,14 @@
     <Setting Name="TeleportAddressGuideLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">50, 50</Value>
     </Setting>
+    <Setting Name="SkillEditorLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="SkillEditorAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00000000000</Value>
+    </Setting>
+    <Setting Name="ActiveSkillAmount" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
