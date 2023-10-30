@@ -135,8 +135,6 @@ namespace CoreKeepersWorkshop
 
             // Disable controls.
             numericUpDown19.Enabled = false;
-            numericUpDown20.Enabled = false;
-            numericUpDown21.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
@@ -165,8 +163,6 @@ namespace CoreKeepersWorkshop
 
                     // Enable controls.
                     numericUpDown19.Enabled = true;
-                    numericUpDown20.Enabled = true;
-                    numericUpDown21.Enabled = true;
                     button1.Enabled = true;
                     button2.Enabled = true;
                     button3.Enabled = true;
@@ -267,8 +263,6 @@ namespace CoreKeepersWorkshop
 
             // Enable controls.
             numericUpDown19.Enabled = true;
-            numericUpDown20.Enabled = true;
-            numericUpDown21.Enabled = true;
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = true;
@@ -286,8 +280,6 @@ namespace CoreKeepersWorkshop
 
             // Disable controls.
             numericUpDown19.Enabled = false;
-            numericUpDown20.Enabled = false;
-            numericUpDown21.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
@@ -316,8 +308,6 @@ namespace CoreKeepersWorkshop
 
                     // Enable controls.
                     numericUpDown19.Enabled = true;
-                    numericUpDown20.Enabled = true;
-                    numericUpDown21.Enabled = true;
                     button1.Enabled = true;
                     button2.Enabled = true;
                     button3.Enabled = true;
@@ -418,8 +408,6 @@ namespace CoreKeepersWorkshop
 
             // Enable controls.
             numericUpDown19.Enabled = true;
-            numericUpDown20.Enabled = true;
-            numericUpDown21.Enabled = true;
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = true;
@@ -437,8 +425,6 @@ namespace CoreKeepersWorkshop
 
             // Disable controls.
             numericUpDown19.Enabled = false;
-            numericUpDown20.Enabled = false;
-            numericUpDown21.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
@@ -467,8 +453,6 @@ namespace CoreKeepersWorkshop
 
                     // Enable controls.
                     numericUpDown19.Enabled = true;
-                    numericUpDown20.Enabled = true;
-                    numericUpDown21.Enabled = true;
                     button1.Enabled = true;
                     button2.Enabled = true;
                     button3.Enabled = true;
@@ -569,8 +553,6 @@ namespace CoreKeepersWorkshop
 
             // Enable controls.
             numericUpDown19.Enabled = true;
-            numericUpDown20.Enabled = true;
-            numericUpDown21.Enabled = true;
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = true;
