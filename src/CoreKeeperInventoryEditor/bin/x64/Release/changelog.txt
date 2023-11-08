@@ -1,3 +1,8 @@
+Changes Since v1.3.5.9
+===========================================================
+- Corrected the tab indexes for the skill editor tab.
+- Updated the food cookbook entrees.
+
 Changes Since v1.3.5.8
 ===========================================================
 - Corrected wrong ids and misplaced assets.
