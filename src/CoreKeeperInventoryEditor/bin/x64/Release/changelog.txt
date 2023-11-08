@@ -1,8 +1,3 @@
-Changes Since v1.3.5.9
-===========================================================
-- Corrected the tab indexes for the skill editor tab.
-- Updated the food cookbook entrees.
-
 Changes Since v1.3.5.8
 ===========================================================
 - Corrected wrong ids and misplaced assets.
@@ -15,6 +10,8 @@ Changes Since v1.3.5.8
 - Hardened the teleport player addresses.
 - Organized the player mod address offsets.
 - Corrected misspellings on various tooltips.
+- Corrected the tab indexes for the skill editor tab.
+- Updated the food cookbook entrees.
 
 + Added various missing assets.
 + Added a scrollbar to the player mods.
