@@ -12,6 +12,7 @@ Changes Since v1.3.5.8
 - Corrected misspellings on various tooltips.
 - Corrected the tab indexes for the skill editor tab.
 - Updated the food cookbook entrees.
+- Fixed the player tool addresses for new update.
 
 + Added various missing assets.
 + Added a scrollbar to the player mods.
