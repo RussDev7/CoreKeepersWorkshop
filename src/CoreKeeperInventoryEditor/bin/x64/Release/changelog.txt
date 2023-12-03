@@ -1,3 +1,7 @@
+Changes Since v1.3.5.9
+===========================================================
+- Fixed the world properties editor.
+
 Changes Since v1.3.5.8
 ===========================================================
 - Corrected wrong ids and misplaced assets.
