@@ -43,7 +43,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsPlayerTools;
         public IEnumerable<long> AoBScanResultsPlayerLocation;
         public IEnumerable<long> AoBScanResultsPlayerBuffs;
-        public IEnumerable<long> AoBScanResultsTeleportData;
+        public IEnumerable<long> AoBScanResultsWorldData;
         public IEnumerable<long> AoBScanResultsFishingData;
         public IEnumerable<long> AoBScanResultsDevMapReveal;
         public IEnumerable<long> AoBScanResultsRevealMapRange;
@@ -14534,7 +14534,33 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
+        #region Copy Cell Text
+
+        // Copy the value to the clipboard.
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Define cell text.
+            var cellText = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            // Ensure text is not blank.
+            if (cellText != "")
+            {
+                // Set the clipboard.
+                Clipboard.SetText(cellText);
+            }
+        }
+        #endregion // End copy cell text.
+
         // Function to load world information.
+        int nameOffset = 0;
+        int guidOffset = 0;
+        int seedOffset = 0;
+        int crystalsOffset = 0;
+        int yearOffset = 0;
+        int monthOffset = 0;
+        int dayOffset = 0;
+        int iconindexOffset = 0;
+        int modeOffset = 0;
         public async Task LoadWorldInformation(string worldName = "")
         {
             // Ensure properties are filled.
@@ -14578,10 +14604,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsTeleportData = await MemLib.AoBScan(string.Join(string.Empty, builder.ToString().Select((x, i) => i > 0 && i % 2 == 0 ? string.Format(" {0}", x) : x.ToString())), true, true);
+            AoBScanResultsWorldData = await MemLib.AoBScan(string.Join(string.Empty, builder.ToString().Select((x, i) => i > 0 && i % 2 == 0 ? string.Format(" {0}", x) : x.ToString())), true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsTeleportData.Count() < 1)
+            if (AoBScanResultsWorldData.Count() < 1)
             {
                 // Reset progress bar.
                 progressBar7.Value = 0;
@@ -14594,7 +14620,7 @@ namespace CoreKeeperInventoryEditor
                 groupBox12.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsTeleportData = null;
+                AoBScanResultsWorldData = null;
 
                 // Display error message.
                 // MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -14607,12 +14633,12 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Update the progressbar step.
-            progressBar7.Step = 100 / AoBScanResultsTeleportData.Count();
+            progressBar7.Step = 100 / AoBScanResultsWorldData.Count();
 
             // Iterate through each found address.
             string getJsonData = "";
             bool foundData = false;
-            foreach (long res in AoBScanResultsTeleportData)
+            foreach (long res in AoBScanResultsWorldData)
             {
                 // Reset found json data.
                 getJsonData = "";
@@ -14664,6 +14690,17 @@ namespace CoreKeeperInventoryEditor
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
 
+                        // Define offsets of data.
+                        nameOffset = getJsonData.IndexOf("\"name\"") + "\"name\"".Length + 2;
+                        guidOffset = getJsonData.IndexOf("\"guid\"") + "\"guid\"".Length + 2;
+                        seedOffset = getJsonData.IndexOf("\"seed\"") + "\"seed\"".Length + 1;
+                        crystalsOffset = getJsonData.IndexOf("\"activatedCrystals\"") + "\"activatedCrystals\"".Length + 2;
+                        yearOffset = getJsonData.IndexOf("\"year\"") + "\"year\"".Length + 1;
+                        monthOffset = getJsonData.IndexOf("\"month\"") + "\"month\"".Length + 1;
+                        dayOffset = getJsonData.IndexOf("\"day\"") + "\"day\"".Length + 1;
+                        iconindexOffset = getJsonData.IndexOf("\"iconIndex\"") + "\"iconIndex\"".Length + 1;
+                        modeOffset = getJsonData.IndexOf("\"mode\"") + "\"mode\"".Length + 1;
+
                         #region Adjust Controls
 
                         // Toggle controls based on world difficutly.
@@ -14679,6 +14716,11 @@ namespace CoreKeeperInventoryEditor
                         numericUpDown11.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0;
                         numericUpDown12.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0;
                         numericUpDown13.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0;
+
+                        // Deactivate controls based on activated crystals.
+                        numericUpDown11.Enabled = (numericUpDown11.Value > 0);
+                        numericUpDown12.Enabled = (numericUpDown12.Value > 0);
+                        numericUpDown13.Enabled = (numericUpDown13.Value > 0);
                         #endregion
 
                         // Update data found bool.
@@ -14723,23 +14765,6 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End get world information.
 
-        #region Copy Cell Text
-
-        // Copy the value to the clipboard.
-        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Define cell text.
-            var cellText = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-            // Ensure text is not blank.
-            if (cellText != "")
-            {
-                // Set the clipboard.
-                Clipboard.SetText(cellText);
-            }
-        }
-        #endregion // End copy cell text.
-
         #region Change Difficutly
 
         // Change world difficulty.
@@ -14760,7 +14785,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsTeleportData == null)
+            if (AoBScanResultsWorldData == null)
             {
                 MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -14771,8 +14796,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Change world difficutly.
-        public IEnumerable<long> AoBScanResultsWorldMode;
-        public async void ChangeWorldDifficulty(int difficutly = -1)
+        public void ChangeWorldDifficulty(int difficutly = -1)
         {
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
@@ -14789,7 +14813,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure pointers are found.
-            if (AoBScanResultsTeleportData == null)
+            if (AoBScanResultsWorldData == null)
             {
                 MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -14805,60 +14829,25 @@ namespace CoreKeeperInventoryEditor
             button17.Text = "Loading...";
             button17.Enabled = false;
 
-            // Get the seed value.
-            int rowIndex = -1;
-            DataGridViewRow row = dataGridView1.Rows
-                .Cast<DataGridViewRow>()
-                .Where(r => r.Cells[0].Value.ToString().Equals("Seed:"))
-                .First();
-            rowIndex = row.Index;
-
-            // Define uint.
-            uint a = uint.Parse(dataGridView1.Rows[rowIndex].Cells[1].Value.ToString());
-
             // Convert uInt to hex 4 bytes.
             // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
-            string result = string.Join(" ", BitConverter.GetBytes(a).Select(b => b.ToString("X2"))) + " 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
-
-            // Scan for the addresses.
-            AoBScanResultsWorldMode = await MemLib.AoBScan(result, true, true);
-
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsWorldMode.Count() < 1)
-            {
-                // Reset progress bar.
-                progressBar4.Value = 0;
-                progressBar4.Visible = false;
-
-                // Rename button back to defualt.
-                button17.Text = "Change Difficutly";
-
-                // Re-enable button.
-                button17.Enabled = true;
-
-                // Reset aob scan results
-                AoBScanResultsWorldMode = null;
-
-                // Display error message.
-                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // string result = string.Join(" ", BitConverter.GetBytes(a).Select(b => b.ToString("X2"))) + " 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
 
             // Update the progress bar.
-            progressBar4.Step = 100 / AoBScanResultsWorldMode.Count();
+            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsWorldMode)
+            foreach (long res in AoBScanResultsWorldData)
             {
                 // Get address from loop.
-                string mode = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
+                string mode = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(modeOffset.ToString(), NumberStyles.Integer)).ToString("X");
 
                 // Get the new mode.
                 string modeType = (radioButton4.Checked) ? "0" : (radioButton5.Checked) ? "1" : "0";
                 modeType = (difficutly != -1) ? difficutly.ToString() : modeType; // Check if mode override was selected.
 
-                // Set the new mode value.
-                MemLib.WriteMemory(mode, "int", modeType);
+                // Set the new mode value. // Convert ASCII text to hex.
+                MemLib.WriteMemory(mode, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes(modeType)));
 
                 // Perform progress step.
                 progressBar4.PerformStep();
@@ -14880,13 +14869,16 @@ namespace CoreKeeperInventoryEditor
             // Rename button back to defualt.
             button17.Text = "Change Difficutly";
             button17.Enabled = true;
+
+            // Refresh address.
+            // await LoadWorldInformation();
         }
         #endregion // End change world difficutly.
 
         #region Change Creation Date.
 
         // Change world date.
-        private async void Button15_Click(object sender, EventArgs e)
+        private void Button15_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
@@ -14899,6 +14891,13 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14935,11 +14934,8 @@ namespace CoreKeeperInventoryEditor
             // Get current date string.
             string searchString = year + " " + month + " " + day;
 
-            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsTeleportData = await MemLib.AoBScan(searchString, true, true);
-
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsTeleportData.Count() < 1)
+            if (AoBScanResultsWorldData.Count() < 1)
             {
                 // Reset progress bar.
                 progressBar4.Value = 0;
@@ -14955,24 +14951,36 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown10.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsTeleportData = null;
+                AoBScanResultsWorldData = null;
                 return;
             }
 
             // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsTeleportData.Count();
+            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsTeleportData)
+            foreach (long res in AoBScanResultsWorldData)
             {
-                // Get the cirrent base address.
-                string yearAddress = res.ToString("X");
-                string MonthAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                string DayAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                // Get the cirrent base address. ConvertAsciiToHex
+                string yearAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(yearOffset.ToString(), NumberStyles.Integer)).ToString("X");
+                string MonthAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(monthOffset.ToString(), NumberStyles.Integer)).ToString("X");
+                string DayAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dayOffset.ToString(), NumberStyles.Integer)).ToString("X");
 
-                MemLib.WriteMemory(yearAddress, "int", numericUpDown8.Value.ToString()); // Write year address.
-                MemLib.WriteMemory(MonthAddress, "int", (numericUpDown9.Value - 1).ToString()); // Write month address.
-                MemLib.WriteMemory(DayAddress, "int", numericUpDown10.Value.ToString()); // Write day address.
+                for (int a = 0; a < numericUpDown8.Value.ToString().Length; a++)
+                {
+                    MemLib.WriteMemory(yearAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown8.Value.ToString()[a]).ToString()))); // Write year address.
+                    yearAddress = BigInteger.Add(BigInteger.Parse(yearAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                }
+                for (int a = 0; a < (numericUpDown9.Value - 1).ToString().Length; a++)
+                {
+                    MemLib.WriteMemory(MonthAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes(((numericUpDown9.Value - 1).ToString()[a]).ToString()))); // Write month address.
+                    MonthAddress = BigInteger.Add(BigInteger.Parse(MonthAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                }
+                for (int a = 0; a < numericUpDown10.Value.ToString().Length; a++)
+                {
+                    MemLib.WriteMemory(DayAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown10.Value.ToString()[a]).ToString()))); // Write day address.
+                    DayAddress = BigInteger.Add(BigInteger.Parse(DayAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                }
 
                 // Perform progress step.
                 progressBar4.PerformStep();
@@ -14993,13 +15001,16 @@ namespace CoreKeeperInventoryEditor
             numericUpDown8.Enabled = true;
             numericUpDown9.Enabled = true;
             numericUpDown10.Enabled = true;
+
+            // Refresh address.
+            // await LoadWorldInformation();
         }
         #endregion // End world creation date.
 
         #region Activated Crystals
 
         // Activated crystals.
-        private async void Button18_Click(object sender, EventArgs e)
+        private void Button18_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
@@ -15012,6 +15023,13 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -15065,44 +15083,32 @@ namespace CoreKeeperInventoryEditor
             // Get current date string.
             string searchString = year + " " + month + " " + day;
 
-            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsTeleportData = await MemLib.AoBScan(searchString, true, true);
-
-            // If the count is zero, the scan had an error.
-            if (AoBScanResultsTeleportData.Count() < 1)
-            {
-                // Reset progress bar.
-                progressBar4.Value = 0;
-                progressBar4.Visible = false;
-
-                // Rename button back to defualt.
-                button18.Text = "Activated Crystals";
-
-                // Re-enable button.
-                button18.Enabled = true;
-                numericUpDown11.Enabled = true;
-                numericUpDown12.Enabled = true;
-                numericUpDown13.Enabled = true;
-
-                // Reset aob scan results
-                AoBScanResultsTeleportData = null;
-                return;
-            }
-
             // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsTeleportData.Count();
+            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsTeleportData)
+            foreach (long res in AoBScanResultsWorldData)
             {
                 // Get the cirrent base address.
-                string CrystalOneAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
-                string CrystalTwoAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
-                string CrystalThreeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
+                string CrystalOneAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(crystalsOffset.ToString(), NumberStyles.Integer)).ToString("X");
+                string CrystalTwoAddress = BigInteger.Add(BigInteger.Parse(CrystalOneAddress, NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
+                string CrystalThreeAddress = BigInteger.Add(BigInteger.Parse(CrystalTwoAddress, NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
 
-                MemLib.WriteMemory(CrystalOneAddress, "int", numericUpDown11.Value.ToString()); // Write crystal one address.
-                MemLib.WriteMemory(CrystalTwoAddress, "int", numericUpDown12.Value.ToString()); // Write crystal two address.
-                MemLib.WriteMemory(CrystalThreeAddress, "int", numericUpDown13.Value.ToString()); // Write crystal three address.
+                for (int a = 0; a < numericUpDown11.Value.ToString().Length; a++)
+                {
+                    MemLib.WriteMemory(CrystalOneAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown11.Value.ToString()[a]).ToString()))); // Write crystal one address.
+                    CrystalOneAddress = BigInteger.Add(BigInteger.Parse(CrystalOneAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                }
+                for (int a = 0; a < numericUpDown12.Value.ToString().Length; a++)
+                {
+                    MemLib.WriteMemory(CrystalTwoAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown12.Value.ToString()[a]).ToString()))); // Write crystal two address.
+                    CrystalTwoAddress = BigInteger.Add(BigInteger.Parse(CrystalTwoAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                }
+                for (int a = 0; a < numericUpDown13.Value.ToString().Length; a++)
+                {
+                    MemLib.WriteMemory(CrystalThreeAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown13.Value.ToString()[a]).ToString()))); // Write crystal three address.
+                    CrystalThreeAddress = BigInteger.Add(BigInteger.Parse(CrystalThreeAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
+                }
 
                 // Perform progress step.
                 progressBar4.PerformStep();
@@ -15121,6 +15127,9 @@ namespace CoreKeeperInventoryEditor
             numericUpDown11.Enabled = true;
             numericUpDown12.Enabled = true;
             numericUpDown13.Enabled = true;
+
+            // Refresh address.
+            // await LoadWorldInformation();
         }
         #endregion // End activated crystals.
 
