@@ -14668,6 +14668,9 @@ namespace CoreKeeperInventoryEditor
                     string name = Regex.Match(sb.ToString(), "\\\"name\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
                     if ((getJsonData.IndexOf('}') != getJsonData.LastIndexOf('}')) && name != "")
                     {
+                        // Update data found bool.
+                        foundData = true;
+                        
                         // Extract the data from the string.
                         string guid = Regex.Match(getJsonData, "\\\"guid\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
                         string seed = Regex.Match(getJsonData, "\\\"seed\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
@@ -14722,9 +14725,6 @@ namespace CoreKeeperInventoryEditor
                         numericUpDown12.Enabled = (numericUpDown12.Value > 0);
                         numericUpDown13.Enabled = (numericUpDown13.Value > 0);
                         #endregion
-
-                        // Update data found bool.
-                        foundData = true;
 
                         // Completed, end loop.
                         break;
