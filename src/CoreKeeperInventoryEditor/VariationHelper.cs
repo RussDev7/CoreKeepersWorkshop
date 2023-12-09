@@ -41,12 +41,12 @@
         {
             if (IngredientShouldBePrimary(ingredient1) && !IngredientShouldBePrimary(ingredient2))
             {
-                return ingredient1;
+                return ingredient2;
             }
 
             if (!IngredientShouldBePrimary(ingredient1) && IngredientShouldBePrimary(ingredient2))
             {
-                return ingredient2;
+                return ingredient1;
             }
 
             if (FirstIngredientIsPrimary(ingredient1, ingredient2))
