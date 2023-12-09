@@ -1,6 +1,7 @@
 Changes Since v1.3.5.9
 ===========================================================
 - Fixed the world properties editor.
+- Corrected the food variation math.
 
 Changes Since v1.3.5.8
 ===========================================================
