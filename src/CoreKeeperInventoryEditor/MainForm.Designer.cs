@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox50 = new System.Windows.Forms.PictureBox();
@@ -202,6 +202,14 @@ namespace CoreKeeperInventoryEditor
             this.button22 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.button39 = new System.Windows.Forms.Button();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
+            this.button38 = new System.Windows.Forms.Button();
+            this.button37 = new System.Windows.Forms.Button();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
@@ -217,8 +225,6 @@ namespace CoreKeeperInventoryEditor
             this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button16 = new System.Windows.Forms.Button();
@@ -252,6 +258,7 @@ namespace CoreKeeperInventoryEditor
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button41 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).BeginInit();
@@ -333,6 +340,8 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
             this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
@@ -2394,7 +2403,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.numericUpDown17.Location = new System.Drawing.Point(175, 49);
             this.numericUpDown17.Maximum = new decimal(new int[] {
-            30,
+            12,
             0,
             0,
             0});
@@ -2502,6 +2511,15 @@ namespace CoreKeeperInventoryEditor
             // groupBox12
             // 
             this.groupBox12.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox12.Controls.Add(this.button41);
+            this.groupBox12.Controls.Add(this.button39);
+            this.groupBox12.Controls.Add(this.label40);
+            this.groupBox12.Controls.Add(this.label39);
+            this.groupBox12.Controls.Add(this.comboBox3);
+            this.groupBox12.Controls.Add(this.numericUpDown23);
+            this.groupBox12.Controls.Add(this.numericUpDown22);
+            this.groupBox12.Controls.Add(this.button38);
+            this.groupBox12.Controls.Add(this.button37);
             this.groupBox12.Controls.Add(this.progressBar7);
             this.groupBox12.Controls.Add(this.numericUpDown13);
             this.groupBox12.Controls.Add(this.numericUpDown12);
@@ -2517,20 +2535,119 @@ namespace CoreKeeperInventoryEditor
             this.groupBox12.Controls.Add(this.numericUpDown8);
             this.groupBox12.Controls.Add(this.label15);
             this.groupBox12.Controls.Add(this.button15);
-            this.groupBox12.Controls.Add(this.radioButton5);
-            this.groupBox12.Controls.Add(this.radioButton4);
             this.groupBox12.Controls.Add(this.label16);
             this.groupBox12.Controls.Add(this.textBox3);
             this.groupBox12.Controls.Add(this.button16);
             this.groupBox12.Controls.Add(this.button17);
             this.groupBox12.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox12.Location = new System.Drawing.Point(382, 282);
+            this.groupBox12.Location = new System.Drawing.Point(382, 224);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(342, 136);
+            this.groupBox12.Size = new System.Drawing.Size(342, 194);
             this.groupBox12.TabIndex = 42;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "World Information";
             this.groupBox12.UseCompatibleTextRendering = true;
+            // 
+            // button39
+            // 
+            this.button39.ForeColor = System.Drawing.Color.Black;
+            this.button39.Location = new System.Drawing.Point(275, 48);
+            this.button39.Name = "button39";
+            this.button39.Size = new System.Drawing.Size(62, 52);
+            this.button39.TabIndex = 35;
+            this.button39.Text = "Change Console ForeColor";
+            this.button39.UseVisualStyleBackColor = true;
+            this.button39.Click += new System.EventHandler(this.Button39_Click);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.ForeColor = System.Drawing.Color.Snow;
+            this.label40.Location = new System.Drawing.Point(157, 111);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(57, 13);
+            this.label40.TabIndex = 28;
+            this.label40.Text = "Glow Tulip";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.ForeColor = System.Drawing.Color.Snow;
+            this.label39.Location = new System.Drawing.Point(147, 110);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(10, 13);
+            this.label39.TabIndex = 54;
+            this.label39.Text = "-";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(51)))), ((int)(((byte)(56)))));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Standard",
+            "Hard",
+            "Creative",
+            "Hard Creative",
+            "Casual",
+            "Hard Casual",
+            "Creative Casual",
+            "Hard Creative Casual"});
+            this.comboBox3.Location = new System.Drawing.Point(108, 49);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(163, 21);
+            this.comboBox3.TabIndex = 21;
+            this.comboBox3.Text = "Standard";
+            this.comboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox3_DrawItem);
+            this.comboBox3.DropDownClosed += new System.EventHandler(this.ComboBox3_DropDownClosed);
+            // 
+            // numericUpDown23
+            // 
+            this.numericUpDown23.Location = new System.Drawing.Point(108, 108);
+            this.numericUpDown23.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
+            this.numericUpDown23.Name = "numericUpDown23";
+            this.numericUpDown23.Size = new System.Drawing.Size(35, 20);
+            this.numericUpDown23.TabIndex = 25;
+            this.numericUpDown23.ValueChanged += new System.EventHandler(this.NumericUpDown23_ValueChanged);
+            // 
+            // numericUpDown22
+            // 
+            this.numericUpDown22.Location = new System.Drawing.Point(108, 79);
+            this.numericUpDown22.Maximum = new decimal(new int[] {
+            1215752191,
+            23,
+            0,
+            0});
+            this.numericUpDown22.Name = "numericUpDown22";
+            this.numericUpDown22.Size = new System.Drawing.Size(163, 20);
+            this.numericUpDown22.TabIndex = 23;
+            // 
+            // button38
+            // 
+            this.button38.ForeColor = System.Drawing.Color.Black;
+            this.button38.Location = new System.Drawing.Point(5, 106);
+            this.button38.Name = "button38";
+            this.button38.Size = new System.Drawing.Size(99, 23);
+            this.button38.TabIndex = 26;
+            this.button38.Text = "Change Icon";
+            this.button38.UseVisualStyleBackColor = true;
+            this.button38.Click += new System.EventHandler(this.Button38_Click);
+            // 
+            // button37
+            // 
+            this.button37.ForeColor = System.Drawing.Color.Black;
+            this.button37.Location = new System.Drawing.Point(5, 77);
+            this.button37.Name = "button37";
+            this.button37.Size = new System.Drawing.Size(99, 23);
+            this.button37.TabIndex = 24;
+            this.button37.Text = "Change Seed";
+            this.button37.UseVisualStyleBackColor = true;
+            this.button37.Click += new System.EventHandler(this.Button37_Click);
             // 
             // progressBar7
             // 
@@ -2538,12 +2655,12 @@ namespace CoreKeeperInventoryEditor
             this.progressBar7.Name = "progressBar7";
             this.progressBar7.Size = new System.Drawing.Size(161, 21);
             this.progressBar7.Step = 1;
-            this.progressBar7.TabIndex = 27;
+            this.progressBar7.TabIndex = 19;
             this.progressBar7.Visible = false;
             // 
             // numericUpDown13
             // 
-            this.numericUpDown13.Location = new System.Drawing.Point(292, 108);
+            this.numericUpDown13.Location = new System.Drawing.Point(292, 166);
             this.numericUpDown13.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2551,7 +2668,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown13.Name = "numericUpDown13";
             this.numericUpDown13.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown13.TabIndex = 31;
+            this.numericUpDown13.TabIndex = 33;
             this.numericUpDown13.Value = new decimal(new int[] {
             2502,
             0,
@@ -2560,7 +2677,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // numericUpDown12
             // 
-            this.numericUpDown12.Location = new System.Drawing.Point(210, 108);
+            this.numericUpDown12.Location = new System.Drawing.Point(210, 166);
             this.numericUpDown12.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2568,7 +2685,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown12.Name = "numericUpDown12";
             this.numericUpDown12.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown12.TabIndex = 30;
+            this.numericUpDown12.TabIndex = 32;
             this.numericUpDown12.Value = new decimal(new int[] {
             2501,
             0,
@@ -2579,7 +2696,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label25.AutoSize = true;
             this.label25.ForeColor = System.Drawing.Color.Snow;
-            this.label25.Location = new System.Drawing.Point(255, 111);
+            this.label25.Location = new System.Drawing.Point(255, 169);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(38, 13);
             this.label25.TabIndex = 47;
@@ -2589,7 +2706,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label24.AutoSize = true;
             this.label24.ForeColor = System.Drawing.Color.Snow;
-            this.label24.Location = new System.Drawing.Point(181, 111);
+            this.label24.Location = new System.Drawing.Point(181, 169);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(31, 13);
             this.label24.TabIndex = 45;
@@ -2599,7 +2716,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.Color.Snow;
-            this.label23.Location = new System.Drawing.Point(105, 111);
+            this.label23.Location = new System.Drawing.Point(105, 169);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(30, 13);
             this.label23.TabIndex = 43;
@@ -2607,7 +2724,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // numericUpDown11
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(136, 108);
+            this.numericUpDown11.Location = new System.Drawing.Point(136, 166);
             this.numericUpDown11.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2615,7 +2732,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown11.Name = "numericUpDown11";
             this.numericUpDown11.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown11.TabIndex = 29;
+            this.numericUpDown11.TabIndex = 31;
             this.numericUpDown11.Value = new decimal(new int[] {
             2500,
             0,
@@ -2625,17 +2742,17 @@ namespace CoreKeeperInventoryEditor
             // button18
             // 
             this.button18.ForeColor = System.Drawing.Color.Black;
-            this.button18.Location = new System.Drawing.Point(5, 106);
+            this.button18.Location = new System.Drawing.Point(5, 164);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(99, 23);
-            this.button18.TabIndex = 28;
-            this.button18.Text = "Activated Crystals";
+            this.button18.TabIndex = 34;
+            this.button18.Text = "Change Crystals";
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.Button18_Click);
             // 
             // numericUpDown10
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(302, 79);
+            this.numericUpDown10.Location = new System.Drawing.Point(302, 137);
             this.numericUpDown10.Maximum = new decimal(new int[] {
             31,
             0,
@@ -2643,7 +2760,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown10.Name = "numericUpDown10";
             this.numericUpDown10.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown10.TabIndex = 27;
+            this.numericUpDown10.TabIndex = 29;
             this.numericUpDown10.Value = new decimal(new int[] {
             23,
             0,
@@ -2654,7 +2771,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.Snow;
-            this.label22.Location = new System.Drawing.Point(272, 82);
+            this.label22.Location = new System.Drawing.Point(272, 140);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(29, 13);
             this.label22.TabIndex = 39;
@@ -2662,7 +2779,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // numericUpDown9
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(236, 79);
+            this.numericUpDown9.Location = new System.Drawing.Point(236, 137);
             this.numericUpDown9.Maximum = new decimal(new int[] {
             12,
             0,
@@ -2675,7 +2792,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown9.Name = "numericUpDown9";
             this.numericUpDown9.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown9.TabIndex = 26;
+            this.numericUpDown9.TabIndex = 28;
             this.numericUpDown9.Value = new decimal(new int[] {
             12,
             0,
@@ -2686,7 +2803,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label21.AutoSize = true;
             this.label21.ForeColor = System.Drawing.Color.Snow;
-            this.label21.Location = new System.Drawing.Point(195, 82);
+            this.label21.Location = new System.Drawing.Point(195, 140);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(40, 13);
             this.label21.TabIndex = 37;
@@ -2694,7 +2811,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // numericUpDown8
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(136, 79);
+            this.numericUpDown8.Location = new System.Drawing.Point(136, 137);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -2702,7 +2819,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.numericUpDown8.Name = "numericUpDown8";
             this.numericUpDown8.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown8.TabIndex = 25;
+            this.numericUpDown8.TabIndex = 27;
             this.numericUpDown8.Value = new decimal(new int[] {
             2022,
             0,
@@ -2713,7 +2830,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.Snow;
-            this.label15.Location = new System.Drawing.Point(105, 82);
+            this.label15.Location = new System.Drawing.Point(105, 140);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(32, 13);
             this.label15.TabIndex = 35;
@@ -2722,39 +2839,13 @@ namespace CoreKeeperInventoryEditor
             // button15
             // 
             this.button15.ForeColor = System.Drawing.Color.Black;
-            this.button15.Location = new System.Drawing.Point(5, 77);
+            this.button15.Location = new System.Drawing.Point(5, 135);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(99, 23);
-            this.button15.TabIndex = 24;
+            this.button15.TabIndex = 30;
             this.button15.Text = "Change Date";
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.Button15_Click);
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.radioButton5.Location = new System.Drawing.Point(176, 51);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(52, 17);
-            this.radioButton5.TabIndex = 23;
-            this.radioButton5.Text = "Hard";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton4.ForeColor = System.Drawing.Color.Snow;
-            this.radioButton4.Location = new System.Drawing.Point(108, 51);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(64, 17);
-            this.radioButton4.TabIndex = 22;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Normal";
-            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
@@ -2780,8 +2871,8 @@ namespace CoreKeeperInventoryEditor
             this.button16.Location = new System.Drawing.Point(5, 19);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(99, 23);
-            this.button16.TabIndex = 19;
-            this.button16.Text = "Get World Info";
+            this.button16.TabIndex = 20;
+            this.button16.Text = "Get Information";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.Button16_Click);
             // 
@@ -2791,7 +2882,7 @@ namespace CoreKeeperInventoryEditor
             this.button17.Location = new System.Drawing.Point(5, 48);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(99, 23);
-            this.button17.TabIndex = 21;
+            this.button17.TabIndex = 22;
             this.button17.Text = "Change Difficulty";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.Button17_Click);
@@ -2803,7 +2894,7 @@ namespace CoreKeeperInventoryEditor
             this.groupBox10.ForeColor = System.Drawing.Color.Lime;
             this.groupBox10.Location = new System.Drawing.Point(382, 5);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(342, 271);
+            this.groupBox10.Size = new System.Drawing.Size(342, 213);
             this.groupBox10.TabIndex = 41;
             this.groupBox10.TabStop = false;
             this.groupBox10.UseCompatibleTextRendering = true;
@@ -2814,21 +2905,21 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -2838,16 +2929,16 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellErrors = false;
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(340, 261);
+            this.dataGridView1.Size = new System.Drawing.Size(340, 204);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             // 
@@ -3180,6 +3271,18 @@ namespace CoreKeeperInventoryEditor
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Change Skin";
             // 
+            // button41
+            // 
+            this.button41.BackColor = System.Drawing.Color.Snow;
+            this.button41.Enabled = false;
+            this.button41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button41.ForeColor = System.Drawing.Color.Snow;
+            this.button41.Location = new System.Drawing.Point(276, 101);
+            this.button41.Name = "button41";
+            this.button41.Size = new System.Drawing.Size(60, 5);
+            this.button41.TabIndex = 55;
+            this.button41.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3188,6 +3291,7 @@ namespace CoreKeeperInventoryEditor
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(740, 455);
             this.Controls.Add(this.tabControl1);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -3286,6 +3390,8 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
@@ -3431,8 +3537,6 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button button15;
@@ -3530,6 +3634,15 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label37;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith12;
         private System.Windows.Forms.Button button40;
+        private System.Windows.Forms.Button button38;
+        private System.Windows.Forms.Button button37;
+        private System.Windows.Forms.NumericUpDown numericUpDown23;
+        private System.Windows.Forms.NumericUpDown numericUpDown22;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Button button39;
+        private System.Windows.Forms.Button button41;
     }
 }
 

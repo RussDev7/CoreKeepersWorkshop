@@ -47,6 +47,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsFishingData;
         public IEnumerable<long> AoBScanResultsDevMapReveal;
         public IEnumerable<long> AoBScanResultsRevealMapRange;
+        public IEnumerable<long> AoBScanResultsWorldName;
         public static IEnumerable<long> AoBScanResultsSkills; // Form4.
         public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
@@ -171,6 +172,14 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown19.Value = CoreKeepersWorkshop.Properties.Settings.Default.FishingCast; // Fishing bot casting delay.
                 numericUpDown20.Value = CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding; // Fishing bot padding delay.
 
+                // Console color.
+                dataGridView1.RowsDefaultCellStyle.ForeColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
+                dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
+
+                // Console color indicator.
+                button41.ForeColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
+                button41.BackColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
+
                 // Dev tools.
                 numericUpDown2.Value = (decimal)CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay; // Dev tool operation delay.
                 numericUpDown18.Value = CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
@@ -263,9 +272,9 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button10, "Get the required addresses for using player tools.");
                 toolTip.SetToolTip(button11, "Get the required addresses for using world tools.");
                 toolTip.SetToolTip(button12, "Replaces the glow tulip buff with a desired buff.");
+                toolTip.SetToolTip(button15, "Change the date created of the current world.");
                 toolTip.SetToolTip(button16, "Fills the datagridview with the world header information.");
                 toolTip.SetToolTip(button17, "Change the difficutly of the current world.");
-                toolTip.SetToolTip(button15, "Change the date created of the current world.");
                 toolTip.SetToolTip(button18, "Change the activated crystals of the current world.");
                 toolTip.SetToolTip(button19, "Automatically fishes for you. First throw reel into water.");
                 toolTip.SetToolTip(button20, "Switch to the previous found inventory.");
@@ -278,6 +287,9 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button31, "Pause or resume the auto map rendering operation.");
                 toolTip.SetToolTip(button35, "Open a chunk viewer to display real-time chunk position tracking.");
                 toolTip.SetToolTip(button36, "Launch a visualization guide on how to set your teleport addresses.");
+                toolTip.SetToolTip(button37, "Change the seed of the current world.");
+                toolTip.SetToolTip(button38, "Change the icon of the current world.");
+                toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor.Name.ToString());
                 toolTip.SetToolTip(button40, "Launch the player skill editor.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
@@ -307,8 +319,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
                 toolTip.SetToolTip(radioButton3, "Add items to a custom inventory slot.");
-                toolTip.SetToolTip(radioButton4, "Normal world difficutly.");
-                toolTip.SetToolTip(radioButton5, "Hard world difficutly.");
+                toolTip.SetToolTip(comboBox3, "Change the world difficutly (mode).");
 
                 toolTip.SetToolTip(numericUpDown1, "Change what item slot to send items too.");
                 toolTip.SetToolTip(numericUpDown2, "Change the interval of dev-tools that use delays. (defualt: 80)");
@@ -14551,16 +14562,168 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End copy cell text.
 
+        #region Color Dropdown Choices
+
+        private void ComboBox3_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // Draw the background.
+            e.DrawBackground();
+
+            // Unselect combobox text.
+            this.BeginInvoke(new Action(() => { comboBox3.Select(0, 0); }));
+
+            // Get the item text.
+            string text = ((ComboBox)sender).Items[e.Index].ToString();
+
+            // Determine the forecolor based on whether or not the item is selected.
+            Brush brush;
+            if (e.Index == 0) // Standard.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#000000")); // White.
+            }
+            else if (e.Index == 1) // Hard.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#F93A3B")); // Red.
+            }
+            else if (e.Index == 2) // Creative.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#01ADF9")); // Blue.
+            }
+            else if (e.Index == 3) // Hard, Creative.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#F93A3B")); // Error color.
+            }
+            else if (e.Index == 4) // Casual.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#21DE5F")); // Green.
+            }
+            else if (e.Index == 5) // Hard, Casual.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#F93A3B")); // Error color.
+            }
+            else if (e.Index == 6) // Creative, Casual.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#01ADF9")); // Blue.
+            }
+            else if (e.Index == 7) // Hard, Creative, Casual.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#F93A3B")); // Error color.
+            }
+            else // Other.
+            {
+                brush = new SolidBrush(ColorTranslator.FromHtml("#F93A3B")); // Error color.
+            }
+
+            // Draw the text.
+            e.Graphics.DrawString(text, ((Control)sender).Font, brush, e.Bounds.X, e.Bounds.Y);
+        }
+        #endregion
+
+        #region Deselect Combobox
+
+        // Unselect the combobox text after the dropdown closes.
+        private void ComboBox3_DropDownClosed(object sender, EventArgs e)
+        {
+            // Unselect combobox text.
+            this.BeginInvoke(new Action(() => { comboBox3.Select(0, 0); }));
+        }
+        #endregion
+
+        #region Change World Icon Label
+
+        // Change the icon text based on the selection.
+        private void NumericUpDown23_ValueChanged(object sender, EventArgs e)
+        {
+            // Set the labels text based on numeric updowns value.
+            if (numericUpDown23.Value == 0)
+                label40.Text = "Glow Tulup";
+            else if (numericUpDown23.Value == 1)
+                label40.Text = "Gold Ore";
+            else if (numericUpDown23.Value == 2)
+                label40.Text = "Recall Idol";
+            else if (numericUpDown23.Value == 3)
+                label40.Text = "Bomb";
+            else if (numericUpDown23.Value == 4)
+                label40.Text = "Lantern";
+            else if (numericUpDown23.Value == 5)
+                label40.Text = "Mushroom";
+            else if (numericUpDown23.Value == 6)
+                label40.Text = "Gemstone";
+            else if (numericUpDown23.Value == 7)
+                label40.Text = "Ammonite";
+            else if (numericUpDown23.Value == 8)
+                label40.Text = "Cavelink Skull";
+            else if (numericUpDown23.Value == 9)
+                label40.Text = "Ocarina";
+            else if (numericUpDown23.Value == 10)
+                label40.Text = "Golden Feather";
+            else if (numericUpDown23.Value == 11)
+                label40.Text = "Cavelink Doll";
+            else if (numericUpDown23.Value == 12)
+                label40.Text = "Old Journal";
+            else if (numericUpDown23.Value == 13)
+                label40.Text = "Pudding";
+            else if (numericUpDown23.Value == 14)
+                label40.Text = "Steak";
+            else if (numericUpDown23.Value == 15)
+                label40.Text = "Large Shiny Glimstone";
+            else if (numericUpDown23.Value == 16)
+                label40.Text = "Desert Chest";
+            else if (numericUpDown23.Value == 17)
+                label40.Text = "Campfire";
+            else if (numericUpDown23.Value == 18)
+                label40.Text = "Ancient Coin";
+            else if (numericUpDown23.Value == 19)
+                label40.Text = "Bed";
+            else if (numericUpDown23.Value == 20)
+                label40.Text = "Moon Pincher";
+            else if (numericUpDown23.Value == 21)
+                label40.Text = "Critter Larva";
+            else if (numericUpDown23.Value == 22)
+                label40.Text = "Mysterious Idol";
+            else if (numericUpDown23.Value == 23)
+                label40.Text = "Explorer Backpack";
+            else if (numericUpDown23.Value == 24)
+                label40.Text = "Tombstone";
+            else if (numericUpDown23.Value == 25)
+                label40.Text = "Old Spore Mask";
+            else if (numericUpDown23.Value == 26)
+                label40.Text = "Earth Worm";
+            else if (numericUpDown23.Value == 27)
+                label40.Text = "Dusk Fairy";
+            else if (numericUpDown23.Value == 28)
+                label40.Text = "King Slime Crown";
+            else if (numericUpDown23.Value == 29)
+                label40.Text = "Iron Helm";
+            else if (numericUpDown23.Value == 30)
+                label40.Text = "Radical Rabbit Ears";
+            else if (numericUpDown23.Value == 31)
+                label40.Text = "Sushi";
+            else if (numericUpDown23.Value == 32)
+                label40.Text = "Core Figurune";
+            else if (numericUpDown23.Value == 33)
+                label40.Text = "Rune Parchment";
+            else if (numericUpDown23.Value == 34)
+                label40.Text = "Caveling Medal";
+            else if (numericUpDown23.Value == 35)
+                label40.Text = "Green Painting";
+            else if (numericUpDown23.Value == 36)
+                label40.Text = "Bubble Pearl";
+            else if (numericUpDown23.Value == 37)
+                label40.Text = "Oracle Card Entity";
+            else if (numericUpDown23.Value == 38)
+                label40.Text = "Ocean Heart Necklace";
+            else if (numericUpDown23.Value == 39)
+                label40.Text = "Nobile Ring";
+            else if (numericUpDown23.Value > 39)
+                label40.Text = "Nobile Ring";
+        }
+        #endregion
+
         // Function to load world information.
-        int nameOffset = 0;
-        int guidOffset = 0;
-        int seedOffset = 0;
-        int crystalsOffset = 0;
-        int yearOffset = 0;
-        int monthOffset = 0;
-        int dayOffset = 0;
-        int iconindexOffset = 0;
-        int modeOffset = 0;
+        public IEnumerable<long> AoBScanResultsWorldSeedIconMode;
+        public IEnumerable<long> AoBScanResultsWorldCreationDate;
+        public IEnumerable<long> AoBScanResultsWorldActivatedCrystals;
         public async Task LoadWorldInformation(string worldName = "")
         {
             // Ensure properties are filled.
@@ -14614,13 +14777,16 @@ namespace CoreKeeperInventoryEditor
                 progressBar7.Visible = false;
 
                 // Rename button back to defualt.
-                button16.Text = "Get World Information";
+                button16.Text = "Get Information";
 
                 // Re-enable button.
                 groupBox12.Enabled = true;
 
                 // Reset aob scan results
                 AoBScanResultsWorldData = null;
+                AoBScanResultsWorldSeedIconMode = null;
+                AoBScanResultsWorldCreationDate = null;
+                AoBScanResultsWorldActivatedCrystals = null;
 
                 // Display error message.
                 // MessageBox.Show("Unable to find the world information!!\rTry playing within the world for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -14688,37 +14854,57 @@ namespace CoreKeeperInventoryEditor
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Seed:", seed)));
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Crystals:", (activatedCrystals != "") ? activatedCrystals : "0,0,0")));
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Year:", year)));
-                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month) + 1))));
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Month:", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(month)))));
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Day:", day)));
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("iconIndex:", iconIndex)));
-                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", (mode == "0") ? "Normal" : "Hard")));
+
+                        // Get the mode text.
+                        string modeString = "Standard";
+                        if (mode == "0") modeString =      "Standard";
+                        else if (mode == "1") modeString = "Hard";
+                        else if (mode == "2") modeString = "Creative";
+                        else if (mode == "3") modeString = "Hard Creative";
+                        else if (mode == "4") modeString = "Casual";
+                        else if (mode == "5") modeString = "Hard Casual";
+                        else if (mode == "6") modeString = "Creative Casual";
+                        else if (mode == "7") modeString = "Hard Creative Casual";
+                        else modeString =                  "Unknown";
+
+                        // Add the information to the datagridview.
+                        dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", modeString)));
 
                         // Define offsets of data.
-                        nameOffset = getJsonData.IndexOf("\"name\"") + "\"name\"".Length + 2;
-                        guidOffset = getJsonData.IndexOf("\"guid\"") + "\"guid\"".Length + 2;
-                        seedOffset = getJsonData.IndexOf("\"seed\"") + "\"seed\"".Length + 1;
-                        crystalsOffset = getJsonData.IndexOf("\"activatedCrystals\"") + "\"activatedCrystals\"".Length + 2;
-                        yearOffset = getJsonData.IndexOf("\"year\"") + "\"year\"".Length + 1;
-                        monthOffset = getJsonData.IndexOf("\"month\"") + "\"month\"".Length + 1;
-                        dayOffset = getJsonData.IndexOf("\"day\"") + "\"day\"".Length + 1;
-                        iconindexOffset = getJsonData.IndexOf("\"iconIndex\"") + "\"iconIndex\"".Length + 1;
-                        modeOffset = getJsonData.IndexOf("\"mode\"") + "\"mode\"".Length + 1;
+                        // nameOffset = getJsonData.IndexOf("\"name\"") + "\"name\"".Length + 2;
+                        // guidOffset = getJsonData.IndexOf("\"guid\"") + "\"guid\"".Length + 2;
+                        // seedOffset = getJsonData.IndexOf("\"seed\"") + "\"seed\"".Length + 1;
+                        // crystalsOffset = getJsonData.IndexOf("\"activatedCrystals\"") + "\"activatedCrystals\"".Length + 2;
+                        // yearOffset = getJsonData.IndexOf("\"year\"") + "\"year\"".Length + 1;
+                        // monthOffset = getJsonData.IndexOf("\"month\"") + "\"month\"".Length + 1;
+                        // dayOffset = getJsonData.IndexOf("\"day\"") + "\"day\"".Length + 1;
+                        // iconindexOffset = getJsonData.IndexOf("\"iconIndex\"") + "\"iconIndex\"".Length + 1;
+                        // modeOffset = getJsonData.IndexOf("\"mode\"") + "\"mode\"".Length + 1;
 
                         #region Adjust Controls
 
                         // Toggle controls based on world difficutly.
-                        radioButton4.Checked = (mode == "0");
-                        radioButton5.Checked = (mode == "1");
+                        comboBox3.SelectedIndex = int.Parse(mode);
+
+                        // Set seed.
+                        numericUpDown22.Value = int.Parse(seed);
+
+                        // Set icon.
+                        numericUpDown23.Value = int.Parse(iconIndex);
 
                         // Set world creation.
                         numericUpDown8.Value = int.Parse(year);
-                        numericUpDown9.Value = int.Parse(month) + 1;
+                        numericUpDown9.Value = int.Parse(month);
                         numericUpDown10.Value = int.Parse(day);
 
                         // Set activated crystals.
-                        numericUpDown11.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0;
-                        numericUpDown12.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0;
-                        numericUpDown13.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0;
+                        // If not null, and desired eliment exists, and if ,1,2,3 text not null, use ,1,2,3, else 0.
+                        numericUpDown11.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',').ElementAtOrDefault(0) != null) ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0 : 0;
+                        numericUpDown12.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',').ElementAtOrDefault(1) != null) ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0 : 0;
+                        numericUpDown13.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',').ElementAtOrDefault(2) != null) ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0 : 0;
 
                         // Deactivate controls based on activated crystals.
                         numericUpDown11.Enabled = (numericUpDown11.Value > 0);
@@ -14735,8 +14921,9 @@ namespace CoreKeeperInventoryEditor
                         getJsonData = "";
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    MessageBox.Show(e.ToString());
                     // Ignore the exception as it's probably just a bad address.
                     continue;
                 }
@@ -14760,7 +14947,7 @@ namespace CoreKeeperInventoryEditor
             progressBar7.Visible = false;
 
             // Rename button back to defualt.
-            button16.Text = "Get World Information";
+            button16.Text = "Get Information";
             groupBox12.Enabled = true;
         }
         #endregion // End get world information.
@@ -14787,7 +14974,7 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsWorldData == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14796,7 +14983,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Change world difficutly.
-        public void ChangeWorldDifficulty(int difficutly = -1)
+        public async void ChangeWorldDifficulty(int difficutly = -1)
         {
             // Ensure the datagridview is populated.
             if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
@@ -14815,67 +15002,492 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsWorldData == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Offset the progress bar to show it's working.
-            progressBar4.Visible = true;
-            progressBar4.Maximum = 100;
-            progressBar4.Step = 50;
-            progressBar4.Value = 10;
+            progressBar7.Visible = true;
+            progressBar7.Maximum = 100;
+            progressBar7.Step = 50;
+            progressBar7.Value = 10;
 
             // Change button to indicate loading.
             button17.Text = "Loading...";
-            button17.Enabled = false;
+            if (AoBScanResultsWorldSeedIconMode == null) // Only hide the groupbox if address is not null.
+                groupBox12.Enabled = false;
 
-            // Convert uInt to hex 4 bytes.
-            // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
-            // string result = string.Join(" ", BitConverter.GetBytes(a).Select(b => b.ToString("X2"))) + " 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
-
-            // Update the progress bar.
-            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
-
-            // Iterate through each found address.
-            foreach (long res in AoBScanResultsWorldData)
-            {
-                // Get address from loop.
-                string mode = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(modeOffset.ToString(), NumberStyles.Integer)).ToString("X");
-
-                // Get the new mode.
-                string modeType = (radioButton4.Checked) ? "0" : (radioButton5.Checked) ? "1" : "0";
-                modeType = (difficutly != -1) ? difficutly.ToString() : modeType; // Check if mode override was selected.
-
-                // Set the new mode value. // Convert ASCII text to hex.
-                MemLib.WriteMemory(mode, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes(modeType)));
-
-                // Perform progress step.
-                progressBar4.PerformStep();
-            }
-
-            // Update datagridview.
-            int rowIndex2 = -1;
-            DataGridViewRow row2 = dataGridView1.Rows
+            // Get the seed, icon, and mode values from datagrid.
+            int seedRowIndex = -1;
+            DataGridViewRow seedRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Seed:"))
+                .First();
+            seedRowIndex = seedRow.Index;
+            int iconRowIndex = -1;
+            DataGridViewRow iconRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("iconIndex:"))
+                .First();
+            iconRowIndex = iconRow.Index;
+            int modeRowIndex = -1;
+            DataGridViewRow modeRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Mode:"))
                 .First();
-            rowIndex2 = row2.Index;
-            dataGridView1.Rows[rowIndex2].Cells[1].Value = (difficutly != -1) ? ((difficutly == 0) ? "Normal" : (difficutly == 1) ? "Hard" : "Normal") : (radioButton4.Checked) ? "Normal" : (radioButton5.Checked) ? "Hard" : "Normal";
+            modeRowIndex = modeRow.Index;
+
+            // Define uint from world variables.
+            uint worldSeed = uint.Parse(dataGridView1.Rows[seedRowIndex].Cells[1].Value.ToString());
+            uint worldIcon = uint.Parse(dataGridView1.Rows[iconRowIndex].Cells[1].Value.ToString());
+            uint worldMode = (uint)comboBox3.FindString(dataGridView1.Rows[modeRowIndex].Cells[1].Value.ToString());
+
+            // Convert uInt to hex 4 bytes.
+            // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
+            string result = string.Join(" ", BitConverter.GetBytes(worldSeed).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldIcon).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldMode).Select(b => b.ToString("X2")));
+
+            // Scan for the addresses. // Only re-scan address if address is null.
+            if (AoBScanResultsWorldSeedIconMode == null)
+                AoBScanResultsWorldSeedIconMode = await MemLib.AoBScan(result, true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsWorldSeedIconMode.Count() < 1) // No results found.
+            {
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button17.Text = "Change Difficutly";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsWorldSeedIconMode = null;
+
+                // Display error message.
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (AoBScanResultsWorldSeedIconMode.Count() > 1 && MessageBox.Show(AoBScanResultsWorldSeedIconMode.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
+            {
+                // User wishes not to continue.
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button17.Text = "Change Difficutly";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                // AoBScanResultsWorldSeedIconMode = null;
+                return;
+            }
+
+            // Update the progress bar. // Use 90 as we already progressed to 10.
+            progressBar7.Step = 90 / AoBScanResultsWorldSeedIconMode.Count();
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsWorldSeedIconMode)
+            {
+                // Get address from loop.
+                // Seed, icon, mode.
+                string modeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                // Get the new mode.
+                string modeType = comboBox3.SelectedIndex.ToString();
+                modeType = (difficutly == -1) ? modeType : difficutly.ToString(); // Check if mode override was selected.
+
+                // Set the new mode value. // Convert ASCII text to hex.
+
+                MemLib.WriteMemory(modeAddress, "int", modeType);
+
+                // Perform progress step.
+                progressBar7.PerformStep();
+            }
+
+            // Update datagridview.
+            // Get the mode text.
+            string modeString = "Standard";
+            if (comboBox3.SelectedIndex.ToString() == "0") modeString = "Standard";
+            else if (comboBox3.SelectedIndex.ToString() == "1") modeString = "Hard";
+            else if (comboBox3.SelectedIndex.ToString() == "2") modeString = "Creative";
+            else if (comboBox3.SelectedIndex.ToString() == "3") modeString = "Hard Creative";
+            else if (comboBox3.SelectedIndex.ToString() == "4") modeString = "Casual";
+            else if (comboBox3.SelectedIndex.ToString() == "5") modeString = "Hard Casual";
+            else if (comboBox3.SelectedIndex.ToString() == "6") modeString = "Creative Casual";
+            else if (comboBox3.SelectedIndex.ToString() == "7") modeString = "Hard Creative Casual";
+            else modeString = "Unknown";
+
+            // Change the datagridviews mode data.
+            dataGridView1.Rows[modeRowIndex].Cells[1].Value = (difficutly == -1) ? modeString : modeString + " - " + difficutly.ToString(); // Mod string will auto detect the correct string.
 
             // Update the progress bar.
-            progressBar4.Value = 100;
-            progressBar4.Visible = false;
+            progressBar7.Value = 100;
+            progressBar7.Visible = false;
 
             // Rename button back to defualt.
             button17.Text = "Change Difficutly";
-            button17.Enabled = true;
+            groupBox12.Enabled = true;
 
             // Refresh address.
             // await LoadWorldInformation();
         }
         #endregion // End change world difficutly.
 
-        #region Change Creation Date.
+        #region Change Seed
+
+        // Change world icon.
+        private void Button37_Click(object sender, EventArgs e)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change difficutky.
+            ChangeWorldSeed();
+        }
+
+        // Change world seed.
+        public async void ChangeWorldSeed(int seed = -1)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Offset the progress bar to show it's working.
+            progressBar7.Visible = true;
+            progressBar7.Maximum = 100;
+            progressBar7.Step = 50;
+            progressBar7.Value = 10;
+
+            // Change button to indicate loading.
+            button37.Text = "Loading...";
+            if (AoBScanResultsWorldSeedIconMode == null) // Only hide the groupbox if address is not null.
+                groupBox12.Enabled = false;
+
+            // Get the seed, icon, and mode values from datagrid.
+            int seedRowIndex = -1;
+            DataGridViewRow seedRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Seed:"))
+                .First();
+            seedRowIndex = seedRow.Index;
+            int iconRowIndex = -1;
+            DataGridViewRow iconRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("iconIndex:"))
+                .First();
+            iconRowIndex = iconRow.Index;
+            int modeRowIndex = -1;
+            DataGridViewRow modeRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Mode:"))
+                .First();
+            modeRowIndex = modeRow.Index;
+
+            // Define uint from world variables.
+            uint worldSeed = uint.Parse(dataGridView1.Rows[seedRowIndex].Cells[1].Value.ToString());
+            uint worldIcon = uint.Parse(dataGridView1.Rows[iconRowIndex].Cells[1].Value.ToString());
+            uint worldMode = (uint)comboBox3.FindString(dataGridView1.Rows[modeRowIndex].Cells[1].Value.ToString());
+
+            // Convert uInt to hex 4 bytes.
+            // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
+            string result = string.Join(" ", BitConverter.GetBytes(worldSeed).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldIcon).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldMode).Select(b => b.ToString("X2")));
+
+            // Scan for the addresses. // Only re-scan address if address is null.
+            if (AoBScanResultsWorldSeedIconMode == null)
+                AoBScanResultsWorldSeedIconMode = await MemLib.AoBScan(result, true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsWorldSeedIconMode.Count() < 1) // No results found.
+            {
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button37.Text = "Change Seed";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsWorldSeedIconMode = null;
+
+                // Display error message.
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (AoBScanResultsWorldSeedIconMode.Count() > 1 && MessageBox.Show(AoBScanResultsWorldSeedIconMode.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
+            {
+                // User wishes not to continue.
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button37.Text = "Change Seed";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                // AoBScanResultsWorldSeedIconMode = null;
+                return;
+            }
+
+            // Update the progress bar. // Use 90 as we already progressed to 10.
+            progressBar7.Step = 90 / AoBScanResultsWorldSeedIconMode.Count();
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsWorldSeedIconMode)
+            {
+                // Get address from loop.
+                // Seed, icon, mode.
+                string seedAddress = res.ToString("X").ToString();
+
+                // Get the new seed.
+                string seedValue = numericUpDown22.Value.ToString();
+                seedValue = (seed == -1) ? seedValue : seed.ToString(); // Check if seed override was selected.
+
+                // Set the new mode value. // Convert ASCII text to hex.
+
+                MemLib.WriteMemory(seedAddress, "int", seedValue);
+
+                // Perform progress step.
+                progressBar7.PerformStep();
+            }
+
+            // Update datagridview.
+            dataGridView1.Rows[seedRowIndex].Cells[1].Value = (seed == -1) ? numericUpDown22.Value.ToString() : seed.ToString();
+
+            // Update the progress bar.
+            progressBar7.Value = 100;
+            progressBar7.Visible = false;
+
+            // Rename button back to defualt.
+            button37.Text = "Change Seed";
+            groupBox12.Enabled = true;
+
+            // Refresh address.
+            // await LoadWorldInformation();
+        }
+        #endregion // End change world seed.
+
+        #region Change Icon
+
+        // Change world icon.
+        private void Button38_Click(object sender, EventArgs e)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change difficutky.
+            ChangeWorldIcon();
+        }
+
+        // Change world icon.
+        public async void ChangeWorldIcon(int icon = -1)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Offset the progress bar to show it's working.
+            progressBar7.Visible = true;
+            progressBar7.Maximum = 100;
+            progressBar7.Step = 50;
+            progressBar7.Value = 10;
+
+            // Change button to indicate loading.
+            button38.Text = "Loading...";
+            if (AoBScanResultsWorldSeedIconMode == null) // Only hide the groupbox if address is not null.
+                groupBox12.Enabled = false;
+
+            // Get the seed, icon, and mode values from datagrid.
+            int seedRowIndex = -1;
+            DataGridViewRow seedRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Seed:"))
+                .First();
+            seedRowIndex = seedRow.Index;
+            int iconRowIndex = -1;
+            DataGridViewRow iconRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("iconIndex:"))
+                .First();
+            iconRowIndex = iconRow.Index;
+            int modeRowIndex = -1;
+            DataGridViewRow modeRow = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value.ToString().Equals("Mode:"))
+                .First();
+            modeRowIndex = modeRow.Index;
+
+            // Define uint from world variables.
+            uint worldSeed = uint.Parse(dataGridView1.Rows[seedRowIndex].Cells[1].Value.ToString());
+            uint worldIcon = uint.Parse(dataGridView1.Rows[iconRowIndex].Cells[1].Value.ToString());
+            uint worldMode = (uint)comboBox3.FindString(dataGridView1.Rows[modeRowIndex].Cells[1].Value.ToString());
+
+            // Convert uInt to hex 4 bytes.
+            // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
+            string result = string.Join(" ", BitConverter.GetBytes(worldSeed).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldIcon).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldMode).Select(b => b.ToString("X2")));
+
+            // Scan for the addresses. // Only re-scan address if address is null.
+            if (AoBScanResultsWorldSeedIconMode == null)
+                AoBScanResultsWorldSeedIconMode = await MemLib.AoBScan(result, true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsWorldSeedIconMode.Count() < 1) // No results found.
+            {
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button38.Text = "Change Icon";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsWorldSeedIconMode = null;
+
+                // Display error message.
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (AoBScanResultsWorldSeedIconMode.Count() > 1 && MessageBox.Show(AoBScanResultsWorldSeedIconMode.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
+            {
+                // User wishes not to continue.
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button38.Text = "Change Icon";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                // AoBScanResultsWorldSeedIconMode = null;
+                return;
+            }
+
+            // Update the progress bar. // Use 90 as we already progressed to 10.
+            progressBar7.Step = 90 / AoBScanResultsWorldSeedIconMode.Count();
+
+            // Iterate through each found address.
+            foreach (long res in AoBScanResultsWorldSeedIconMode)
+            {
+                // Get address from loop.
+                // Seed, icon, mode.
+                string iconAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+
+                // Get the new icon.
+                string iconValue = numericUpDown23.Value.ToString();
+                iconValue = (icon == -1) ? iconValue : icon.ToString(); // Check if seed override was selected.
+
+                // Set the new mode value. // Convert ASCII text to hex.
+
+                MemLib.WriteMemory(iconAddress, "int", iconValue);
+
+                // Perform progress step.
+                progressBar7.PerformStep();
+            }
+
+            // Update datagridview.
+            dataGridView1.Rows[iconRowIndex].Cells[1].Value = (icon == -1) ? numericUpDown23.Value.ToString() : icon.ToString();
+
+            // Update the progress bar.
+            progressBar7.Value = 100;
+            progressBar7.Visible = false;
+
+            // Rename button back to defualt.
+            button38.Text = "Change Icon";
+            groupBox12.Enabled = true;
+
+            // Refresh address.
+            // await LoadWorldInformation();
+        }
+        #endregion // End change world icon.
+
+        #region Change Creation Date
 
         // Change world date.
         private void Button15_Click(object sender, EventArgs e)
@@ -14897,119 +15509,171 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsWorldData == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change difficutky.
+            ChangeWorldCreationDate();
+        }
+
+        // Change world date.
+        public async void ChangeWorldCreationDate(int year = -1, int month = -1, int day = -1)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Offset the progress bar to show it's working.
-            progressBar4.Visible = true;
-            progressBar4.Maximum = 100;
-            progressBar4.Step = 50;
-            progressBar4.Value = 10;
+            progressBar7.Visible = true;
+            progressBar7.Maximum = 100;
+            progressBar7.Step = 50;
+            progressBar7.Value = 10;
 
             // Change button to indicate loading.
             button15.Text = "Loading...";
-            button15.Enabled = false;
-            numericUpDown8.Enabled = false;
-            numericUpDown9.Enabled = false;
-            numericUpDown10.Enabled = false;
+            if (AoBScanResultsWorldCreationDate == null) // Only hide the groupbox if address is not null.
+                groupBox12.Enabled = false;
 
-            // Get year, month, day from datagridview.
+            // Get the seed, icon, and mode values from datagrid.
+            int yearRowIndex = -1;
             DataGridViewRow yearRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Year:"))
                 .First();
-            string year = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[yearRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
+            yearRowIndex = yearRow.Index;
+            int monthRowIndex = -1;
             DataGridViewRow monthRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Month:"))
                 .First();
-            string month = string.Join(" ", BitConverter.GetBytes(uint.Parse((DateTime.ParseExact(dataGridView1.Rows[monthRow.Index].Cells[1].Value.ToString(), "MMMM", CultureInfo.CurrentCulture).Month - 1).ToString())).Select(b => b.ToString("X2")));
+            monthRowIndex = monthRow.Index;
+            int dayRowIndex = -1;
             DataGridViewRow dayRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Day:"))
                 .First();
-            string day = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[dayRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
+            dayRowIndex = dayRow.Index;
 
-            // Get current date string.
-            string searchString = year + " " + month + " " + day;
+            // Define uint from world variables.
+            uint worldYear = uint.Parse(dataGridView1.Rows[yearRowIndex].Cells[1].Value.ToString());
+            uint worldMonth = (uint)DateTime.ParseExact(dataGridView1.Rows[monthRowIndex].Cells[1].Value.ToString(), "MMMM", CultureInfo.CurrentCulture).Month;
+            uint worldDay = uint.Parse(dataGridView1.Rows[dayRowIndex].Cells[1].Value.ToString());
+
+            // Convert uInt to hex 4 bytes.
+            // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
+            string result = string.Join(" ", BitConverter.GetBytes(worldYear).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldMonth).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldDay).Select(b => b.ToString("X2")));
+
+            // Scan for the addresses. // Only re-scan address if address is null.
+            if (AoBScanResultsWorldCreationDate == null)
+                AoBScanResultsWorldCreationDate = await MemLib.AoBScan(result, true, true);
 
             // If the count is zero, the scan had an error.
-            if (AoBScanResultsWorldData.Count() < 1)
+            if (AoBScanResultsWorldCreationDate.Count() < 1) // No results found.
             {
                 // Reset progress bar.
-                progressBar4.Value = 0;
-                progressBar4.Visible = false;
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
 
                 // Rename button back to defualt.
-                button15.Text = "Change World Date";
+                button15.Text = "Change Date";
 
                 // Re-enable button.
-                button15.Enabled = true;
-                numericUpDown8.Enabled = true;
-                numericUpDown9.Enabled = true;
-                numericUpDown10.Enabled = true;
+                groupBox12.Enabled = true;
 
                 // Reset aob scan results
-                AoBScanResultsWorldData = null;
+                AoBScanResultsWorldCreationDate = null;
+
+                // Display error message.
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (AoBScanResultsWorldCreationDate.Count() > 1 && MessageBox.Show(AoBScanResultsWorldCreationDate.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
+            {
+                // User wishes not to continue.
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button15.Text = "Change Date";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                // AoBScanResultsWorldCreationDate = null;
                 return;
             }
 
-            // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+            // Update the progress bar. // Use 90 as we already progressed to 10.
+            progressBar7.Step = 90 / AoBScanResultsWorldCreationDate.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsWorldData)
+            foreach (long res in AoBScanResultsWorldCreationDate)
             {
-                // Get the cirrent base address. ConvertAsciiToHex
-                string yearAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(yearOffset.ToString(), NumberStyles.Integer)).ToString("X");
-                string MonthAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(monthOffset.ToString(), NumberStyles.Integer)).ToString("X");
-                string DayAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dayOffset.ToString(), NumberStyles.Integer)).ToString("X");
+                // Get address from loop.
+                // Year, month, day.
+                string yearAddress = res.ToString("X");
+                string monthAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                string dayAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
-                for (int a = 0; a < numericUpDown8.Value.ToString().Length; a++)
-                {
-                    MemLib.WriteMemory(yearAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown8.Value.ToString()[a]).ToString()))); // Write year address.
-                    yearAddress = BigInteger.Add(BigInteger.Parse(yearAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                }
-                for (int a = 0; a < (numericUpDown9.Value - 1).ToString().Length; a++)
-                {
-                    MemLib.WriteMemory(MonthAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes(((numericUpDown9.Value - 1).ToString()[a]).ToString()))); // Write month address.
-                    MonthAddress = BigInteger.Add(BigInteger.Parse(MonthAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                }
-                for (int a = 0; a < numericUpDown10.Value.ToString().Length; a++)
-                {
-                    MemLib.WriteMemory(DayAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown10.Value.ToString()[a]).ToString()))); // Write day address.
-                    DayAddress = BigInteger.Add(BigInteger.Parse(DayAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                }
+                // Get the new times.
+                string yearValue = numericUpDown8.Value.ToString();
+                yearValue = (year == -1) ? yearValue : year.ToString(); // Check if seed override was selected.
+                string monthValue = numericUpDown9.Value.ToString();
+                monthValue = (month == -1) ? monthValue : month.ToString(); // Check if seed override was selected.
+                string dayValue = numericUpDown10.Value.ToString();
+                dayValue = (day == -1) ? dayValue : day.ToString(); // Check if seed override was selected.
+
+                // Set the new mode value. // Convert ASCII text to hex.
+
+                MemLib.WriteMemory(yearAddress, "int", yearValue); // Write year address.
+                MemLib.WriteMemory(monthAddress, "int", monthValue); // Write month address.
+                MemLib.WriteMemory(dayAddress, "int", dayValue); // Write day address.
 
                 // Perform progress step.
-                progressBar4.PerformStep();
+                progressBar7.PerformStep();
             }
 
             // Update datagridview.
-            dataGridView1.Rows[yearRow.Index].Cells[1].Value = numericUpDown8.Value.ToString();
-            dataGridView1.Rows[monthRow.Index].Cells[1].Value = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(numericUpDown9.Value.ToString()));
-            dataGridView1.Rows[dayRow.Index].Cells[1].Value = numericUpDown10.Value.ToString();
+            dataGridView1.Rows[yearRow.Index].Cells[1].Value = (year == -1) ? numericUpDown8.Value.ToString() : year.ToString();
+            dataGridView1.Rows[monthRow.Index].Cells[1].Value = (month == -1) ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(numericUpDown9.Value.ToString())) : CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
+            dataGridView1.Rows[dayRow.Index].Cells[1].Value = (day == -1) ? numericUpDown10.Value.ToString() : day.ToString();
 
-            // Process completed, run finishing tasks.
-            progressBar4.Value = 100;
-            progressBar4.Visible = false;
+            // Update the progress bar.
+            progressBar7.Value = 100;
+            progressBar7.Visible = false;
 
             // Rename button back to defualt.
-            button15.Text = "Change World Date";
-            button15.Enabled = true;
-            numericUpDown8.Enabled = true;
-            numericUpDown9.Enabled = true;
-            numericUpDown10.Enabled = true;
+            button15.Text = "Change Date";
+            groupBox12.Enabled = true;
 
             // Refresh address.
             // await LoadWorldInformation();
         }
         #endregion // End world creation date.
 
-        #region Activated Crystals
+        #region Change Activated Crystals
 
-        // Activated crystals.
+        // Change activated crystals.
         private void Button18_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
@@ -15029,109 +15693,225 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsWorldData == null)
             {
-                MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Change difficutky.
+            ChangeWorldActivatedCrystals();
+        }
+
+        // Change world date.
+        public async void ChangeWorldActivatedCrystals(int crystal1 = -1, int crystal2 = -1, int crystal3 = -1)
+        {
+            // Ensure the datagridview is populated.
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("You first need to get the world information!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure pointers are found.
+            if (AoBScanResultsWorldData == null)
+            {
+                MessageBox.Show("You need to first scan for the World Information addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Offset the progress bar to show it's working.
-            progressBar4.Visible = true;
-            progressBar4.Maximum = 100;
-            progressBar4.Step = 50;
-            progressBar4.Value = 10;
+            progressBar7.Visible = true;
+            progressBar7.Maximum = 100;
+            progressBar7.Step = 50;
+            progressBar7.Value = 10;
 
             // Change button to indicate loading.
             button18.Text = "Loading...";
-            button18.Enabled = false;
-            numericUpDown11.Enabled = false;
-            numericUpDown12.Enabled = false;
-            numericUpDown13.Enabled = false;
+            if (AoBScanResultsWorldActivatedCrystals == null) // Only hide the groupbox if address is not null.
+                groupBox12.Enabled = false;
 
-            // Get year, month, day from datagridview.
-            DataGridViewRow yearRow = dataGridView1.Rows
-                .Cast<DataGridViewRow>()
-                .Where(r => r.Cells[0].Value.ToString().Equals("Year:"))
-                .First();
-            string year = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[yearRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
-            DataGridViewRow monthRow = dataGridView1.Rows
-                .Cast<DataGridViewRow>()
-                .Where(r => r.Cells[0].Value.ToString().Equals("Month:"))
-                .First();
-            string month = string.Join(" ", BitConverter.GetBytes(uint.Parse((DateTime.ParseExact(dataGridView1.Rows[monthRow.Index].Cells[1].Value.ToString(), "MMMM", CultureInfo.CurrentCulture).Month - 1).ToString())).Select(b => b.ToString("X2")));
-            DataGridViewRow dayRow = dataGridView1.Rows
-                .Cast<DataGridViewRow>()
-                .Where(r => r.Cells[0].Value.ToString().Equals("Day:"))
-                .First();
-            string day = string.Join(" ", BitConverter.GetBytes(uint.Parse(dataGridView1.Rows[dayRow.Index].Cells[1].Value.ToString())).Select(b => b.ToString("X2")));
-
-            // Get year, month, day from datagridview.
+            // Get the crystal values from datagrid.
+            int crystalRowIndex = -1;
             DataGridViewRow crystalOneRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Crystals:"))
                 .First();
-            string crystalOne = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',')[0] != "") ? dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',')[0] : "0")).Select(b => b.ToString("X2")));
+            string crystalOne = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',').ElementAtOrDefault(0) != null) ? (dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',')[0] != "") ? dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value.ToString().Split(',')[0] : "0" : "0")).Select(b => b.ToString("X2")));
             DataGridViewRow crystalTwoRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Crystals:"))
                 .First();
-            string crystalTwo = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',')[1] != "") ? dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',')[1] : "0")).Select(b => b.ToString("X2")));
+            string crystalTwo = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',').ElementAtOrDefault(1) != null) ? (dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',')[1] != "") ? dataGridView1.Rows[crystalTwoRow.Index].Cells[1].Value.ToString().Split(',')[1] : "0" : "0")).Select(b => b.ToString("X2")));
             DataGridViewRow crystalThreeRow = dataGridView1.Rows
                 .Cast<DataGridViewRow>()
                 .Where(r => r.Cells[0].Value.ToString().Equals("Crystals:"))
                 .First();
-            string crystalThree = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',')[2] != "") ? dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',')[2] : "0")).Select(b => b.ToString("X2")));
+            string crystalThree = string.Join(" ", BitConverter.GetBytes(uint.Parse((dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',').ElementAtOrDefault(2) != null) ? (dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',')[2] != "") ? dataGridView1.Rows[crystalThreeRow.Index].Cells[1].Value.ToString().Split(',')[2] : "0" : "0")).Select(b => b.ToString("X2")));
 
-            // Get current date string.
-            string searchString = year + " " + month + " " + day;
+            // Save the row index.
+            crystalRowIndex = crystalOneRow.Index;
 
-            // Update the progressbar step.
-            progressBar4.Step = 100 / AoBScanResultsWorldData.Count();
+            // If byte returned a zero change it to a wildcard.
+            crystalOne = (crystalOne == "00 00 00 00") ? "?? ?? ?? ??" : crystalOne;
+            crystalTwo = (crystalTwo == "00 00 00 00") ? "?? ?? ?? ??" : crystalTwo;
+            crystalThree = (crystalThree == "00 00 00 00") ? "?? ?? ?? ??" : crystalThree;
+
+            // Convert uInt to hex 4 bytes.
+            // Credits to Matthew Watson on stackoverflow: https://stackoverflow.com/a/58708490/8667430
+            string result = crystalOne + " " + crystalTwo + " " + crystalThree + " ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
+
+            // Scan for the addresses. // Only re-scan address if address is null.
+            if (AoBScanResultsWorldActivatedCrystals == null)
+                AoBScanResultsWorldActivatedCrystals = await MemLib.AoBScan(result, true, true);
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsWorldActivatedCrystals.Count() < 1) // No results found.
+            {
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button18.Text = "Change Crystals";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                AoBScanResultsWorldActivatedCrystals = null;
+
+                // Display error message.
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (AoBScanResultsWorldActivatedCrystals.Count() > 1 && MessageBox.Show(AoBScanResultsWorldActivatedCrystals.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
+            {
+                // User wishes not to continue.
+                // Reset progress bar.
+                progressBar7.Value = 0;
+                progressBar7.Visible = false;
+
+                // Rename button back to defualt.
+                button18.Text = "Change Crystals";
+
+                // Re-enable button.
+                groupBox12.Enabled = true;
+
+                // Reset aob scan results
+                // AoBScanResultsWorldActivatedCrystals = null;
+                return;
+            }
+
+            // Update the progress bar. // Use 90 as we already progressed to 10.
+            progressBar7.Step = 90 / AoBScanResultsWorldActivatedCrystals.Count();
 
             // Iterate through each found address.
-            foreach (long res in AoBScanResultsWorldData)
+            foreach (long res in AoBScanResultsWorldActivatedCrystals)
             {
-                // Get the cirrent base address.
-                string CrystalOneAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(crystalsOffset.ToString(), NumberStyles.Integer)).ToString("X");
-                string CrystalTwoAddress = BigInteger.Add(BigInteger.Parse(CrystalOneAddress, NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
-                string CrystalThreeAddress = BigInteger.Add(BigInteger.Parse(CrystalTwoAddress, NumberStyles.HexNumber), BigInteger.Parse("5", NumberStyles.Integer)).ToString("X");
+                // Get address from loop.
+                // Crystal1, crystal2, crystal3, ?, ?, 0, 0.
+                string crystalOneAddress = res.ToString("X");
+                string crystalTwoAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                string crystalThreeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
-                for (int a = 0; a < numericUpDown11.Value.ToString().Length; a++)
-                {
-                    MemLib.WriteMemory(CrystalOneAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown11.Value.ToString()[a]).ToString()))); // Write crystal one address.
-                    CrystalOneAddress = BigInteger.Add(BigInteger.Parse(CrystalOneAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                }
-                for (int a = 0; a < numericUpDown12.Value.ToString().Length; a++)
-                {
-                    MemLib.WriteMemory(CrystalTwoAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown12.Value.ToString()[a]).ToString()))); // Write crystal two address.
-                    CrystalTwoAddress = BigInteger.Add(BigInteger.Parse(CrystalTwoAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                }
-                for (int a = 0; a < numericUpDown13.Value.ToString().Length; a++)
-                {
-                    MemLib.WriteMemory(CrystalThreeAddress, "byte", BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes((numericUpDown13.Value.ToString()[a]).ToString()))); // Write crystal three address.
-                    CrystalThreeAddress = BigInteger.Add(BigInteger.Parse(CrystalThreeAddress, NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                }
+                // Get the new crystals.
+                string crystalOneValue = numericUpDown11.Value.ToString();
+                crystalOneValue = (crystal1 == -1) ? crystalOneValue : crystal1.ToString(); // Check if seed override was selected.
+                string crystalTwoValue = numericUpDown12.Value.ToString();
+                crystalTwoValue = (crystal2 == -1) ? crystalTwoValue : crystal2.ToString(); // Check if seed override was selected.
+                string crystalThreeValue = numericUpDown13.Value.ToString();
+                crystalThreeValue = (crystal3 == -1) ? crystalThreeValue : crystal3.ToString(); // Check if seed override was selected.
+
+                // Set the new mode value. // Convert ASCII text to hex.
+
+                MemLib.WriteMemory(crystalOneAddress, "int", crystalOneValue); // Write year address.
+                MemLib.WriteMemory(crystalTwoAddress, "int", crystalTwoValue); // Write month address.
+                MemLib.WriteMemory(crystalThreeAddress, "int", crystalThreeValue); // Write day address.
 
                 // Perform progress step.
-                progressBar4.PerformStep();
+                progressBar7.PerformStep();
             }
 
             // Update datagridview.
-            dataGridView1.Rows[crystalOneRow.Index].Cells[1].Value = numericUpDown11.Value.ToString() + "," + numericUpDown12.Value.ToString() + "," + numericUpDown13.Value.ToString();
+            string crystalPartOne = (crystal1 == -1) ? numericUpDown11.Value.ToString() : crystal1.ToString();
+            string crystalPartTwo = (crystal1 == -1) ? numericUpDown12.Value.ToString() : crystal2.ToString();
+            string crystalPartThree = (crystal1 == -1) ? numericUpDown13.Value.ToString() : crystal3.ToString();
 
-            // Process completed, run finishing tasks.
-            progressBar4.Value = 100;
-            progressBar4.Visible = false;
+            // Build the active crystal string for the datagridview.
+            string crystalBuilder = "";
+            if (crystalPartOne != "0") crystalBuilder += crystalPartOne;
+            else crystalBuilder = "0,0,0";
+            if (crystalPartTwo != "0") crystalBuilder += "," + crystalPartTwo;
+            if (crystalPartThree != "0") crystalBuilder += "," + crystalPartThree;
+
+            // Update the activate crystals text within the datagridview.
+            dataGridView1.Rows[crystalRowIndex].Cells[1].Value = crystalBuilder;
+
+            // Update the progress bar.
+            progressBar7.Value = 100;
+            progressBar7.Visible = false;
 
             // Rename button back to defualt.
-            button18.Text = "Activated Crystals";
-            button18.Enabled = true;
-            numericUpDown11.Enabled = true;
-            numericUpDown12.Enabled = true;
-            numericUpDown13.Enabled = true;
+            button18.Text = "Change Crystals";
+            groupBox12.Enabled = true;
 
             // Refresh address.
             // await LoadWorldInformation();
         }
-        #endregion // End activated crystals.
+        #endregion // End world activated crystals.
+
+        #region Change Console ForeColor
+
+        // Change console fore color.
+        private void Button39_Click(object sender, EventArgs e)
+        {
+            // Update button text.
+            button39.Text = "Pick New Color";
+            
+            ColorDialog clrDialog = new ColorDialog();
+
+            // Show the color dialog and check that user clicked ok.
+            if (clrDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Save the color that the user chose.
+                Color consoleColor = clrDialog.Color;
+
+                // Update the color for future rows.
+                dataGridView1.RowsDefaultCellStyle.ForeColor = consoleColor;
+                dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = consoleColor;
+
+                // Update the color of the color indicator button.
+                button41.ForeColor = consoleColor;
+                button41.BackColor = consoleColor;
+
+                // Update the color of existing rows.
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.DefaultCellStyle.ForeColor = consoleColor;
+                }
+
+                // Save the color for future loads.
+                CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor = consoleColor;
+
+                // Update the tooltip.
+                ToolTip toolTip = new ToolTip()
+                {
+                    AutoPopDelay = 5000,
+                    InitialDelay = 750
+                };
+                toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor.Name.ToString());
+            }
+
+            // Update button text.
+            button39.Text = "Change Console ForeColor";
+        }
+        #endregion // End change console fore color.
 
         #region Auto Fishing Bot
 
@@ -16144,6 +16924,17 @@ namespace CoreKeeperInventoryEditor
                 numericUpDown19.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
                 numericUpDown20.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
 
+                // World properties console.
+                dataGridView1.RowsDefaultCellStyle.ForeColor = Color.Snow;
+                dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Snow;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.DefaultCellStyle.ForeColor = Color.Snow;
+                }
+                CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor = Color.Snow;
+                button41.ForeColor = Color.Snow;
+                button41.BackColor = Color.Snow;
+
                 // Dev tools.
                 numericUpDown2.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
                 numericUpDown18.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
@@ -16202,6 +16993,7 @@ namespace CoreKeeperInventoryEditor
                 CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex = comboBox2.SelectedIndex;
             }
         }
+
         #endregion // End set process priority.
 
         #endregion // End admin tools.
