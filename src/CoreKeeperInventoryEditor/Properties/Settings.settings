@@ -134,5 +134,8 @@
     <Setting Name="ActiveSkillAmount" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">9</Value>
     </Setting>
+    <Setting Name="ConsoleForeColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Snow</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

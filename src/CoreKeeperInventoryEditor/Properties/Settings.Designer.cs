@@ -550,5 +550,17 @@ namespace CoreKeepersWorkshop.Properties {
                 this["ActiveSkillAmount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Snow")]
+        public global::System.Drawing.Color ConsoleForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ConsoleForeColor"]));
+            }
+            set {
+                this["ConsoleForeColor"] = value;
+            }
+        }
     }
 }
