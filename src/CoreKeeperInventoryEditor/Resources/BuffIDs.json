@@ -1095,8 +1095,143 @@
       "offset":"DA"
    },
    {
-      "name":"MAX_VALUES",
+      "name":"Chance On Melee Hit To Stun",
       "id":"219",
       "offset":"DB"
-   }
+   },
+   {
+      "name":"Increased Applied Stun Duration",
+      "id":"220",
+      "offset":"DC"
+   },
+   {
+      "name":"Damage Increase Against Stunned",
+      "id":"221",
+      "offset":"DD"
+   },
+   {
+      "name":"Chance To Deal Triple Damage",
+      "id":"222",
+      "offset":"DE"
+   },
+   {
+      "name":"Increased Damage Based On Target Remaining Health",
+      "id":"223",
+      "offset":"DF"
+   },
+   {
+      "name":"Chance To Consume Burning",
+      "id":"224",
+      "offset":"E0"
+   },
+   {
+      "name":"Piercing Projectiles",
+      "id":"225",
+      "offset":"E1"
+   },
+   {
+      "name":"God Mode",
+      "id":"226",
+      "offset":"E2"
+   },
+   {
+      "name":"Reduced Impact Of Slowed By Slime",
+      "id":"227",
+      "offset":"E3"
+   },
+   {
+      "name":"Pet Melee Damage Increase",
+      "id":"228",
+      "offset":"E4"
+   },
+   {
+      "name":"Pet Melee Attack Speed Increase",
+      "id":"229",
+      "offset":"E5"
+   },
+   {
+      "name":"Pet Range Damage Increase",
+      "id":"230",
+      "offset":"E6"
+   },
+   {
+      "name":"Pet Range Attack Speed Increase",
+      "id":"231",
+      "offset":"E7"
+   },
+   {
+      "name":"Pet Crit Damage Increase",
+      "id":"232",
+      "offset":"E8"
+   },
+   {
+      "name":"Pet Crit Chance Increase",
+      "id":"233",
+      "offset":"E9"
+   },
+   {
+      "name":"Pet Buffs Increase",
+      "id":"234",
+      "offset":"EA"
+   },
+   {
+      "name":"Apply Pet Damage Increase",
+      "id":"235",
+      "offset":"EB"
+   },
+   {
+      "name":"Apply Pet Crit Damage Increase",
+      "id":"236",
+      "offset":"EC"
+   },
+   {
+      "name":"Apply Pet Crit Chance Increase",
+      "id":"237",
+      "offset":"ED"
+   },
+   {
+      "name":"Apply Pet Attack Speed Increase",
+      "id":"238",
+      "offset":"EE"
+   },
+   {
+      "name":"Apply Pet Buffs Increase",
+      "id":"239",
+      "offset":"EF"
+   },
+   {
+      "name":"Gain Increased Max Health From Pet",
+      "id":"240",
+      "offset":"F0"
+   },
+   {
+      "name":"Increased Max Health From Pet",
+      "id":"241",
+      "offset":"F1"
+   },
+   {
+      "name":"Atlantian Worm Heart Buff",
+      "id":"242",
+      "offset":"F2"
+   },
+   {
+      "name":"Immune To Radioactive Damage",
+      "id":"243",
+      "offset":"F3"
+   },
+   {
+      "name":"Increased Damage Taken Percentage",
+      "id":"244",
+      "offset":"F4"
+   },
+   {
+      "name":"Reduced Damage Taken Percentage",
+      "id":"245",
+      "offset":"F5"
+   },
+   {
+      "name":"M A X_ V A L U E S",
+      "id":"246",
+      "offset":"F6"
+   },
 ]
