@@ -3,6 +3,7 @@ Changes Since v1.3.5.9
 - Fixed the world properties editor.
 - Corrected the food variation math.
 - Reduced the max set reveal range from 30 to 12.
+- Updated the projects special thanks users.
 
 + Added full world property editing support.
 + Added seed, icon, modes to the world properties editor.
