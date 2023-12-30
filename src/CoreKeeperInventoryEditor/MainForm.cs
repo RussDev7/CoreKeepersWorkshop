@@ -160,7 +160,7 @@ namespace CoreKeeperInventoryEditor
                 @"3) Roupiks       - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
 
                 @"Honorable Mentions:" + Environment.NewLine,
-                @"BourbonCrow, puxxy5layer, Flux, ZeroGravitas, kremnev8, Iskrownik, Ice, Yumiko Abe, TheBgNaz, Arne, Bosh, Smuke.",
+                @"BourbonCrow, puxxy5layer, Flux, ZeroGravitas, kremnev8, Norois, Ice, Yumiko Abe, TheBgNaz, Arne, Bosh, Smuke.",
                 });
                 #endregion
 
