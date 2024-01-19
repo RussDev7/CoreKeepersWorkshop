@@ -4,6 +4,7 @@ Changes Since v1.3.5.9
 - Corrected the food variation math.
 - Reduced the max set reveal range from 30 to 12.
 - Updated the projects special thanks users.
+- Updated the automatic fishing utility addresses.
 
 + Added various missing assets and corrected ids.
 + Added full world property editing support.
