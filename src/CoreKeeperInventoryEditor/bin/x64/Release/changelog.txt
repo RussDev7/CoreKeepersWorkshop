@@ -7,11 +7,13 @@ Changes Since v1.3.5.9
 - Updated the automatic fishing utility addresses.
 - Updated godmode, player speed, place anywhere addresses.
 - Updated teleport player addresses.
+- Updated the map reveal addresses.
 
 + Added various missing assets and corrected ids.
 + Added full world property editing support.
 + Added seed, icon, modes to the world properties editor.
 + Added 27 newly added buffs to the buff editor.
++ Added a keep inventory mod.
 
 Changes Since v1.3.5.8
 ===========================================================
