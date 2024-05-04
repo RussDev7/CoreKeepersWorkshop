@@ -1,3 +1,9 @@
+Changes Since v1.3.6.0
+===========================================================
+- Fixed the clear ground items world tools mod.
+
++ Added clear console buttons for debug and world tools.
+
 Changes Since v1.3.5.9
 ===========================================================
 - Fixed the world properties editor.
