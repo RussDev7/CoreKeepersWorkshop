@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox50 = new System.Windows.Forms.PictureBox();
@@ -101,8 +101,10 @@ namespace CoreKeeperInventoryEditor
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button42 = new System.Windows.Forms.Button();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.button43 = new System.Windows.Forms.Button();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label35 = new System.Windows.Forms.Label();
@@ -1174,6 +1176,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button42);
             this.tabPage4.Controls.Add(this.richTextBox3);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
@@ -1182,6 +1185,24 @@ namespace CoreKeeperInventoryEditor
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Debug";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button42
+            // 
+            this.button42.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button42.FlatAppearance.BorderSize = 0;
+            this.button42.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button42.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button42.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button42.ForeColor = System.Drawing.Color.Black;
+            this.button42.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button42.Location = new System.Drawing.Point(297, 5);
+            this.button42.Name = "button42";
+            this.button42.Size = new System.Drawing.Size(35, 19);
+            this.button42.TabIndex = 13;
+            this.button42.Text = "Clear";
+            this.button42.UseVisualStyleBackColor = true;
+            this.button42.Click += new System.EventHandler(this.Button42_Click);
             // 
             // richTextBox3
             // 
@@ -1200,6 +1221,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.button43);
             this.tabPage9.Controls.Add(this.richTextBox5);
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
@@ -1207,6 +1229,24 @@ namespace CoreKeeperInventoryEditor
             this.tabPage9.TabIndex = 3;
             this.tabPage9.Text = "World-Tools";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // button43
+            // 
+            this.button43.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button43.FlatAppearance.BorderSize = 0;
+            this.button43.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button43.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button43.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button43.ForeColor = System.Drawing.Color.Black;
+            this.button43.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button43.Location = new System.Drawing.Point(297, 5);
+            this.button43.Name = "button43";
+            this.button43.Size = new System.Drawing.Size(35, 19);
+            this.button43.TabIndex = 12;
+            this.button43.Text = "Clear";
+            this.button43.UseVisualStyleBackColor = true;
+            this.button43.Click += new System.EventHandler(this.Button43_Click);
             // 
             // richTextBox5
             // 
@@ -2944,21 +2984,21 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -2968,9 +3008,9 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellErrors = false;
@@ -3672,6 +3712,8 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button button41;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith14;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Button button43;
+        private System.Windows.Forms.Button button42;
     }
 }
 

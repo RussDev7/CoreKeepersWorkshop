@@ -291,6 +291,9 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button38, "Change the icon of the current world.");
                 toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor.Name.ToString());
                 toolTip.SetToolTip(button40, "Launch the player skill editor.");
+                // toolTip.SetToolTip(button41, "This is the console color visualizer.");
+                toolTip.SetToolTip(button42, "Clear the debug console.");
+                toolTip.SetToolTip(button43, "Clear the world tools console.");
 
                 toolTip.SetToolTip(comboBox1, "Open a list of all ingame buffs and debuffs.");
                 toolTip.SetToolTip(comboBox2, "Set this applications process priority.");
@@ -14452,7 +14455,8 @@ namespace CoreKeeperInventoryEditor
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
-            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??", true, true);
+            // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
+            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
 
             // Adjust the max value of the progress bar.
             progressBar5.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
@@ -14471,11 +14475,11 @@ namespace CoreKeeperInventoryEditor
                 progressBar4.Visible = false;
 
                 // Update consoile with the status.
-                richTextBox5.AppendText("[RemoveGroundItems] You must throw at least one torch on the ground!!" + Environment.NewLine);
+                richTextBox5.AppendText("[RemoveGroundItems] Throw a torch on the ground, and walk away from it!!" + Environment.NewLine);
                 richTextBox5.ScrollToCaret();
 
                 // Display error message.
-                MessageBox.Show("You must throw at least one torch on the ground!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must throw a torch on the ground, and walk away from it!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14504,73 +14508,50 @@ namespace CoreKeeperInventoryEditor
             // Iterate through each found address.
             foreach (long res in AoBScanResultsGroundItems)
             {
+                // Start at the last byte of the memory address.
+                string currentByte = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
+                bool foundPattern = true;
+
                 // Climb down the address for each item.
-                bool endAddressFound = false;
-                string previousBit = "";
-
-                string currentBit = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
-
-                int countNine = 1;
-                int countEntrees = 0;
-
-                while (!endAddressFound)
+                while (foundPattern)
                 {
-                    // Check if this is the last value.
-                    if (MemLib.ReadUInt(currentBit).ToString() == "1" && previousBit == "1")
+                    // Subtract current byte by 8 and 7 to get the double one values.
+                    int byteValueOne = MemLib.ReadInt(BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X"));
+                    int byteValueTwo = MemLib.ReadInt(BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X"));
+
+                    // Check if the current 8th and 9th bits are "1 1".
+                    if (byteValueOne == 1 && byteValueTwo == 1)
                     {
-                        countNine = 0;
+                        // Gather record debug data pointers.
+                        string ItemHeader1 = BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                        // string ItemHeader2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                        string ItemType = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                        string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
+                        string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                        // string UnknownVariable = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
+                        string ItemSkillset = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                        // Log the items removed.
+                        richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine);
+                        richTextBox5.ScrollToCaret();
+
+                        // If "1 1" is found, set the previous 9 bits to 0.
+                        string byteSets = currentByte;
+                        for (int x = 1; x < 10; x++)
+                        {
+                            // Write current value to zero. Subtract to next stepback byte.
+                            MemLib.WriteMemory(byteSets, "int", "0");
+                            byteSets = BigInteger.Subtract(BigInteger.Parse(byteSets, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                        }
+
+                        // Move the index 9 bytes back.
+                        currentByte = BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
                     }
                     else
                     {
-                        // If no more double 1s exist end loop.
-                        if (countNine == 100)
-                        {
-                            countEntrees -= 100; // Backup the count.
-                            endAddressFound = true;
-                        }
+                        // If "1 1" is not found, break the loop.
+                        foundPattern = false;
                     }
-
-                    // Count.
-                    countNine++;
-                    countEntrees++;
-
-                    // Define previous bit.
-                    previousBit = MemLib.ReadUInt(currentBit).ToString();
-
-                    // Subtract current bit.
-                    currentBit = BigInteger.Subtract(BigInteger.Parse(currentBit, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                }
-                //MessageBox.Show(countEntrees.ToString());
-                //continue;
-
-                // Get base addresses.
-                // 1, 1, ID, AMOUNT, VARIATION, 0, SKILLSET
-                currentBit = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
-
-                // string ItemHeader1 = res.ToString("X").ToString();
-                // string ItemHeader2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                // string ItemType = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                // string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
-                // string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
-                // string UnknownVariable = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
-                // string ItemSkillset = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
-
-                // Climb down the address for each item.
-                for (int x = 0; x < countEntrees; x++)
-                {
-                    // The final value to write too.
-                    // Log the items removed.
-                    // if (MemLib.ReadUInt(ItemType).ToString() != "0")
-                    // {
-                    //     richTextBox5.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine);
-                    //     richTextBox5.ScrollToCaret();
-                    // }
-
-                    // Use the previous values to wrtite.
-                    MemLib.WriteMemory(currentBit, "int", "0");
-
-                    // Find the next footer value.
-                    currentBit = BigInteger.Subtract(BigInteger.Parse(currentBit, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                 }
 
                 // Progress the progress bar.
@@ -16610,7 +16591,7 @@ namespace CoreKeeperInventoryEditor
                             richTextBox4.ScrollToCaret();
 
                             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                            AoBScanResultsGroundItems = await MemLib.AoBScan("6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+                            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
 
                             // If the count is zero, the scan had an error.
                             if (AoBScanResultsGroundItems.Count() == 0)
@@ -16741,6 +16722,29 @@ namespace CoreKeeperInventoryEditor
         #endregion // End toggle chat commands
 
         #region Admin Tools
+
+        #region Clear Logs
+
+        // Clear the debug log.
+        private void Button42_Click(object sender, EventArgs e)
+        {
+            // Set the debug logs content.
+            richTextBox3.Text = String.Concat(new string[] {
+                @"If any unknown items are found, their ID's will appear here!" + Environment.NewLine,
+                @"------------------------------------------------------------------------------------------------------------"
+            });
+        }
+
+        // Clear the world tools log.
+        private void Button43_Click(object sender, EventArgs e)
+        {
+            // Set the debug logs content.
+            richTextBox5.Text = String.Concat(new string[] {
+                @"Information regarding the world tools will appear here." + Environment.NewLine,
+                @"------------------------------------------------------------------------------------------------------------"
+            });
+        }
+        #endregion // End clear logs.
 
         #region Item ID List Builder
 
