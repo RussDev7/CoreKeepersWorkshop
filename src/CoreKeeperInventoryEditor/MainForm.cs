@@ -319,6 +319,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith12, "Enabling will allow the player to place on invalid tiles.");
                 toolTip.SetToolTip(siticoneWinToggleSwith13, "Enabling will allow the player to adjust the placement range.");
                 toolTip.SetToolTip(siticoneWinToggleSwith14, "Prevents losing inventory items upon death.");
+                toolTip.SetToolTip(siticoneWinToggleSwith15, "Enabling will continuously remove all items from the inventory. Items will be logged.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -1130,7 +1131,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + " | Skillset: " + (MemLib.ReadInt(slot1Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + " | Skillset: " + (MemLib.ReadInt(slot1Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 1 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot1Amount) + " | Variation: " + (MemLib.ReadInt(slot1Variation)) + " | Skillset: " + (MemLib.ReadInt(slot1Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1254,7 +1255,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + " | Skillset: " + (MemLib.ReadInt(slot2Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + " | Skillset: " + (MemLib.ReadInt(slot2Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 2 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot2Amount) + " | Variation: " + (MemLib.ReadInt(slot2Variation)) + " | Skillset: " + (MemLib.ReadInt(slot2Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1378,7 +1379,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + " | Skillset: " + (MemLib.ReadInt(slot3Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + " | Skillset: " + (MemLib.ReadInt(slot3Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 3 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot3Amount) + " | Variation: " + (MemLib.ReadInt(slot3Variation)) + " | Skillset: " + (MemLib.ReadInt(slot3Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1502,7 +1503,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + " | Skillset: " + (MemLib.ReadInt(slot4Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + " | Skillset: " + (MemLib.ReadInt(slot4Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 4 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot4Amount) + " | Variation: " + (MemLib.ReadInt(slot4Variation)) + " | Skillset: " + (MemLib.ReadInt(slot4Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1626,7 +1627,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + " | Skillset: " + (MemLib.ReadInt(slot5Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + " | Skillset: " + (MemLib.ReadInt(slot5Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 5 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot5Amount) + " | Variation: " + (MemLib.ReadInt(slot5Variation)) + " | Skillset: " + (MemLib.ReadInt(slot5Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1750,7 +1751,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + " | Skillset: " + (MemLib.ReadInt(slot6Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + " | Skillset: " + (MemLib.ReadInt(slot6Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 6 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot6Amount) + " | Variation: " + (MemLib.ReadInt(slot6Variation)) + " | Skillset: " + (MemLib.ReadInt(slot6Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1874,7 +1875,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + " | Skillset: " + (MemLib.ReadInt(slot7Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + " | Skillset: " + (MemLib.ReadInt(slot7Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 7 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot7Amount) + " | Variation: " + (MemLib.ReadInt(slot7Variation)) + " | Skillset: " + (MemLib.ReadInt(slot7Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -1998,7 +1999,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + " | Skillset: " + (MemLib.ReadInt(slot8Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + " | Skillset: " + (MemLib.ReadInt(slot8Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 8 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot8Amount) + " | Variation: " + (MemLib.ReadInt(slot8Variation)) + " | Skillset: " + (MemLib.ReadInt(slot8Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2122,7 +2123,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + " | Skillset: " + (MemLib.ReadInt(slot9Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + " | Skillset: " + (MemLib.ReadInt(slot9Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 9 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot9Amount) + " | Variation: " + (MemLib.ReadInt(slot9Variation)) + " | Skillset: " + (MemLib.ReadInt(slot9Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2246,7 +2247,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + " | Skillset: " + (MemLib.ReadInt(slot10Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + " | Skillset: " + (MemLib.ReadInt(slot10Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 10 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot10Amount) + " | Variation: " + (MemLib.ReadInt(slot10Variation)) + " | Skillset: " + (MemLib.ReadInt(slot10Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2370,7 +2371,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + " | Skillset: " + (MemLib.ReadInt(slot11Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + " | Skillset: " + (MemLib.ReadInt(slot11Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 11 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot11Amount) + " | Variation: " + (MemLib.ReadInt(slot11Variation)) + " | Skillset: " + (MemLib.ReadInt(slot11Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2494,7 +2495,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + " | Skillset: " + (MemLib.ReadInt(slot12Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + " | Skillset: " + (MemLib.ReadInt(slot12Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 12 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot12Amount) + " | Variation: " + (MemLib.ReadInt(slot12Variation)) + " | Skillset: " + (MemLib.ReadInt(slot12Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2618,7 +2619,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + " | Skillset: " + (MemLib.ReadInt(slot13Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + " | Skillset: " + (MemLib.ReadInt(slot13Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 13 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot13Amount) + " | Variation: " + (MemLib.ReadInt(slot13Variation)) + " | Skillset: " + (MemLib.ReadInt(slot13Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2742,7 +2743,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + " | Skillset: " + (MemLib.ReadInt(slot14Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + " | Skillset: " + (MemLib.ReadInt(slot14Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 14 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot14Amount) + " | Variation: " + (MemLib.ReadInt(slot14Variation)) + " | Skillset: " + (MemLib.ReadInt(slot14Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2866,7 +2867,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + " | Skillset: " + (MemLib.ReadInt(slot15Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + " | Skillset: " + (MemLib.ReadInt(slot15Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 15 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot15Amount) + " | Variation: " + (MemLib.ReadInt(slot15Variation)) + " | Skillset: " + (MemLib.ReadInt(slot15Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -2990,7 +2991,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + " | Skillset: " + (MemLib.ReadInt(slot16Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + " | Skillset: " + (MemLib.ReadInt(slot16Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 16 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot16Amount) + " | Variation: " + (MemLib.ReadInt(slot16Variation)) + " | Skillset: " + (MemLib.ReadInt(slot16Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3114,7 +3115,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + " | Skillset: " + (MemLib.ReadInt(slot17Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + " | Skillset: " + (MemLib.ReadInt(slot17Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 17 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot17Amount) + " | Variation: " + (MemLib.ReadInt(slot17Variation)) + " | Skillset: " + (MemLib.ReadInt(slot17Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3238,7 +3239,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + " | Skillset: " + (MemLib.ReadInt(slot18Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + " | Skillset: " + (MemLib.ReadInt(slot18Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 18 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot18Amount) + " | Variation: " + (MemLib.ReadInt(slot18Variation)) + " | Skillset: " + (MemLib.ReadInt(slot18Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3362,7 +3363,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + " | Skillset: " + (MemLib.ReadInt(slot19Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + " | Skillset: " + (MemLib.ReadInt(slot19Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 19 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot19Amount) + " | Variation: " + (MemLib.ReadInt(slot19Variation)) + " | Skillset: " + (MemLib.ReadInt(slot19Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3486,7 +3487,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + " | Skillset: " + (MemLib.ReadInt(slot20Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + " | Skillset: " + (MemLib.ReadInt(slot20Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 20 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot20Amount) + " | Variation: " + (MemLib.ReadInt(slot20Variation)) + " | Skillset: " + (MemLib.ReadInt(slot20Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3610,7 +3611,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + " | Skillset: " + (MemLib.ReadInt(slot21Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + " | Skillset: " + (MemLib.ReadInt(slot21Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 21 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot21Amount) + " | Variation: " + (MemLib.ReadInt(slot21Variation)) + " | Skillset: " + (MemLib.ReadInt(slot21Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3734,7 +3735,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + " | Skillset: " + (MemLib.ReadInt(slot22Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + " | Skillset: " + (MemLib.ReadInt(slot22Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 22 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot22Amount) + " | Variation: " + (MemLib.ReadInt(slot22Variation)) + " | Skillset: " + (MemLib.ReadInt(slot22Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3858,7 +3859,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + " | Skillset: " + (MemLib.ReadInt(slot23Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + " | Skillset: " + (MemLib.ReadInt(slot23Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 23 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot23Amount) + " | Variation: " + (MemLib.ReadInt(slot23Variation)) + " | Skillset: " + (MemLib.ReadInt(slot23Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -3982,7 +3983,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + " | Skillset: " + (MemLib.ReadInt(slot24Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + " | Skillset: " + (MemLib.ReadInt(slot24Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 24 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot24Amount) + " | Variation: " + (MemLib.ReadInt(slot24Variation)) + " | Skillset: " + (MemLib.ReadInt(slot24Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4106,7 +4107,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + " | Skillset: " + (MemLib.ReadInt(slot25Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + " | Skillset: " + (MemLib.ReadInt(slot25Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 25 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot25Amount) + " | Variation: " + (MemLib.ReadInt(slot25Variation)) + " | Skillset: " + (MemLib.ReadInt(slot25Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4230,7 +4231,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + " | Skillset: " + (MemLib.ReadInt(slot26Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + " | Skillset: " + (MemLib.ReadInt(slot26Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 26 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot26Amount) + " | Variation: " + (MemLib.ReadInt(slot26Variation)) + " | Skillset: " + (MemLib.ReadInt(slot26Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4354,7 +4355,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + " | Skillset: " + (MemLib.ReadInt(slot27Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + " | Skillset: " + (MemLib.ReadInt(slot27Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 27 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot27Amount) + " | Variation: " + (MemLib.ReadInt(slot27Variation)) + " | Skillset: " + (MemLib.ReadInt(slot27Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4478,7 +4479,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + " | Skillset: " + (MemLib.ReadInt(slot28Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + " | Skillset: " + (MemLib.ReadInt(slot28Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 28 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot28Amount) + " | Variation: " + (MemLib.ReadInt(slot28Variation)) + " | Skillset: " + (MemLib.ReadInt(slot28Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4602,7 +4603,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + " | Skillset: " + (MemLib.ReadInt(slot29Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + " | Skillset: " + (MemLib.ReadInt(slot29Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 29 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot29Amount) + " | Variation: " + (MemLib.ReadInt(slot29Variation)) + " | Skillset: " + (MemLib.ReadInt(slot29Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4726,7 +4727,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + " | Skillset: " + (MemLib.ReadInt(slot30Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + " | Skillset: " + (MemLib.ReadInt(slot30Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 30 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot30Amount) + " | Variation: " + (MemLib.ReadInt(slot30Variation)) + " | Skillset: " + (MemLib.ReadInt(slot30Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4853,7 +4854,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)) + " | Skillset: " + (MemLib.ReadInt(slot31Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)) + " | Skillset: " + (MemLib.ReadInt(slot31Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 31 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot31Amount) + " | Variation: " + (MemLib.ReadInt(slot31Variation)) + " | Skillset: " + (MemLib.ReadInt(slot31Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -4980,7 +4981,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)) + " | Skillset: " + (MemLib.ReadInt(slot32Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)) + " | Skillset: " + (MemLib.ReadInt(slot32Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 32 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot32Amount) + " | Variation: " + (MemLib.ReadInt(slot32Variation)) + " | Skillset: " + (MemLib.ReadInt(slot32Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5107,7 +5108,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)) + " | Skillset: " + (MemLib.ReadInt(slot33Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)) + " | Skillset: " + (MemLib.ReadInt(slot33Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 33 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot33Amount) + " | Variation: " + (MemLib.ReadInt(slot33Variation)) + " | Skillset: " + (MemLib.ReadInt(slot33Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5234,7 +5235,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)) + " | Skillset: " + (MemLib.ReadInt(slot34Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)) + " | Skillset: " + (MemLib.ReadInt(slot34Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 34 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot34Amount) + " | Variation: " + (MemLib.ReadInt(slot34Variation)) + " | Skillset: " + (MemLib.ReadInt(slot34Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5361,7 +5362,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)) + " | Skillset: " + (MemLib.ReadInt(slot35Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)) + " | Skillset: " + (MemLib.ReadInt(slot35Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 35 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot35Amount) + " | Variation: " + (MemLib.ReadInt(slot35Variation)) + " | Skillset: " + (MemLib.ReadInt(slot35Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5488,7 +5489,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)) + " | Skillset: " + (MemLib.ReadInt(slot36Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)) + " | Skillset: " + (MemLib.ReadInt(slot36Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 36 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot36Amount) + " | Variation: " + (MemLib.ReadInt(slot36Variation)) + " | Skillset: " + (MemLib.ReadInt(slot36Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5615,7 +5616,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)) + " | Skillset: " + (MemLib.ReadInt(slot37Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)) + " | Skillset: " + (MemLib.ReadInt(slot37Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 37 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot37Amount) + " | Variation: " + (MemLib.ReadInt(slot37Variation)) + " | Skillset: " + (MemLib.ReadInt(slot37Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5742,7 +5743,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)) + " | Skillset: " + (MemLib.ReadInt(slot38Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)) + " | Skillset: " + (MemLib.ReadInt(slot38Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 38 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot38Amount) + " | Variation: " + (MemLib.ReadInt(slot38Variation)) + " | Skillset: " + (MemLib.ReadInt(slot38Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5869,7 +5870,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)) + " | Skillset: " + (MemLib.ReadInt(slot39Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)) + " | Skillset: " + (MemLib.ReadInt(slot39Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 39 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot39Amount) + " | Variation: " + (MemLib.ReadInt(slot39Variation)) + " | Skillset: " + (MemLib.ReadInt(slot39Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -5996,7 +5997,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)) + " | Skillset: " + (MemLib.ReadInt(slot40Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)) + " | Skillset: " + (MemLib.ReadInt(slot40Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 40 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot40Amount) + " | Variation: " + (MemLib.ReadInt(slot40Variation)) + " | Skillset: " + (MemLib.ReadInt(slot40Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6123,7 +6124,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)) + " | Skillset: " + (MemLib.ReadInt(slot41Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)) + " | Skillset: " + (MemLib.ReadInt(slot41Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 41 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot41Amount) + " | Variation: " + (MemLib.ReadInt(slot41Variation)) + " | Skillset: " + (MemLib.ReadInt(slot41Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6250,7 +6251,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)) + " | Skillset: " + (MemLib.ReadInt(slot42Skillset)))) == false) // Check if entree exists already.
                                         {                                                                                                                                                                                                                                                                  // {
-                                            richTextBox3.AppendText("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)) + " | Skillset: " + (MemLib.ReadInt(slot42Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 42 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot42Amount) + " | Variation: " + (MemLib.ReadInt(slot42Variation)) + " | Skillset: " + (MemLib.ReadInt(slot42Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6377,7 +6378,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)) + " | Skillset: " + (MemLib.ReadInt(slot43Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)) + " | Skillset: " + (MemLib.ReadInt(slot43Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 43 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot43Amount) + " | Variation: " + (MemLib.ReadInt(slot43Variation)) + " | Skillset: " + (MemLib.ReadInt(slot43Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6504,7 +6505,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)) + " | Skillset: " + (MemLib.ReadInt(slot44Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)) + " | Skillset: " + (MemLib.ReadInt(slot44Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 44 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot44Amount) + " | Variation: " + (MemLib.ReadInt(slot44Variation)) + " | Skillset: " + (MemLib.ReadInt(slot44Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6631,7 +6632,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)) + " | Skillset: " + (MemLib.ReadInt(slot45Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)) + " | Skillset: " + (MemLib.ReadInt(slot45Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 45 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot45Amount) + " | Variation: " + (MemLib.ReadInt(slot45Variation)) + " | Skillset: " + (MemLib.ReadInt(slot45Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6758,7 +6759,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)) + " | Skillset: " + (MemLib.ReadInt(slot46Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)) + " | Skillset: " + (MemLib.ReadInt(slot46Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 46 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot46Amount) + " | Variation: " + (MemLib.ReadInt(slot46Variation)) + " | Skillset: " + (MemLib.ReadInt(slot46Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -6885,7 +6886,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)) + " | Skillset: " + (MemLib.ReadInt(slot47Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)) + " | Skillset: " + (MemLib.ReadInt(slot47Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 47 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot47Amount) + " | Variation: " + (MemLib.ReadInt(slot47Variation)) + " | Skillset: " + (MemLib.ReadInt(slot47Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -7012,7 +7013,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)) + " | Skillset: " + (MemLib.ReadInt(slot48Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)) + " | Skillset: " + (MemLib.ReadInt(slot48Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 48 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot48Amount) + " | Variation: " + (MemLib.ReadInt(slot48Variation)) + " | Skillset: " + (MemLib.ReadInt(slot48Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -7139,7 +7140,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)) + " | Skillset: " + (MemLib.ReadInt(slot49Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)) + " | Skillset: " + (MemLib.ReadInt(slot49Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 49 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot49Amount) + " | Variation: " + (MemLib.ReadInt(slot49Variation)) + " | Skillset: " + (MemLib.ReadInt(slot49Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -7266,7 +7267,7 @@ namespace CoreKeeperInventoryEditor
                                         // Do debug information.
                                         if (Array.Exists(richTextBox3.Lines, element => element == ("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)) + " | Skillset: " + (MemLib.ReadInt(slot50Skillset)))) == false) // Check if entree exists already.
                                         {
-                                            richTextBox3.AppendText("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)) + " | Skillset: " + (MemLib.ReadInt(slot50Skillset)) + Environment.NewLine); // Record the midding values.
+                                            richTextBox3.AppendText("ItemSlot: 50 | ItemID: " + type + " | Amount: " + MemLib.ReadInt(slot50Amount) + " | Variation: " + (MemLib.ReadInt(slot50Variation)) + " | Skillset: " + (MemLib.ReadInt(slot50Skillset)) + Environment.NewLine); // Record the missing values.
                                         }
                                     }
 
@@ -12693,6 +12694,121 @@ namespace CoreKeeperInventoryEditor
             }
             catch
             { }
+        }
+        #endregion
+
+        #region Trash Inventory
+
+        // Toggle force keep the inventory empty.
+        readonly System.Timers.Timer playersKeepInventoryEmptyTimer = new System.Timers.Timer();
+        private void SiticoneWinToggleSwith15_CheckedChanged(object sender, EventArgs e)
+        {
+            if (siticoneWinToggleSwith15.Checked && MessageBox.Show("This mod will delete ALL inventory items and ALL picked up ground items. Are you sure?", "Trash Inventory", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith15.CheckedChanged -= SiticoneWinToggleSwith15_CheckedChanged;
+                siticoneWinToggleSwith15.Checked = false;
+                siticoneWinToggleSwith15.CheckedChanged += SiticoneWinToggleSwith15_CheckedChanged;
+
+                // User declined, return.
+                return;
+            }
+
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith15.CheckedChanged -= SiticoneWinToggleSwith15_CheckedChanged;
+                siticoneWinToggleSwith15.Checked = false;
+                siticoneWinToggleSwith15.CheckedChanged += SiticoneWinToggleSwith15_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure the inventory was loaded.
+            if (AoBScanResultsInventory == null)
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith15.CheckedChanged -= SiticoneWinToggleSwith15_CheckedChanged;
+                siticoneWinToggleSwith15.Checked = false;
+                siticoneWinToggleSwith15.CheckedChanged += SiticoneWinToggleSwith15_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith15.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label42.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 0;
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label42.Text = "- Trash Inventory";
+
+                // Append mod header to world tools.
+                richTextBox5.AppendText("Keep Inventory Empty Mod Initiated:" + Environment.NewLine);
+
+                // Start the timed events.
+                playersKeepInventoryEmptyTimer.Interval = 100; // Custom intervals.
+                playersKeepInventoryEmptyTimer.Elapsed += new ElapsedEventHandler(PlayersKeepInventoryEmptyTimedEvent);
+                playersKeepInventoryEmptyTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Reset label name.
+                label42.Text = "- Trash Inventory";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Stop the timers.
+                playersKeepInventoryEmptyTimer.Stop();
+
+                // Append mod header to world tools.
+                richTextBox5.AppendText("Keep Inventory Empty Mod Terminated." + Environment.NewLine);
+            }
+        }
+
+        // Keep inventory empty timer.
+        private void PlayersKeepInventoryEmptyTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Loop through each slot.
+            for (int a = 1; a < 50 + 1; a++)
+            {
+                // Ensure the item is still the same as saved. 
+                int slotNumber = a;
+
+                // Get the updated slot's item type.
+                int[] currentItemInfo = GetSlotInfo(slotNumber);
+                int currentItemType = currentItemInfo[0];
+                int currentItemAmount = currentItemInfo[1];
+                int currentItemVariation = currentItemInfo[2];
+                int currentItemSkillset = currentItemInfo[3];
+
+                // Check if item is not empty.
+                if (currentItemType != 0 || currentItemAmount != 0 || currentItemVariation != 0 || currentItemSkillset != 0)
+                {
+                    // Add item to debug info.
+                    richTextBox5.AppendText("ItemSlot: " + slotNumber + " | ItemID: " + currentItemType + " | Amount: " + currentItemAmount + " | Variation: " + currentItemVariation + " | Skillset: " + currentItemSkillset + Environment.NewLine);
+                }
+            }
+
+            // Reload Inventory.
+            AddItemToInv(type: 0, amount: 1, variation: 0, CycleAll: true);
         }
         #endregion
 

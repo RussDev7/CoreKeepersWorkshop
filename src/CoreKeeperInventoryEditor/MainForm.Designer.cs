@@ -123,6 +123,8 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.siticonePanel1 = new Siticone.UI.WinForms.SiticonePanel();
+            this.siticoneWinToggleSwith15 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.label42 = new System.Windows.Forms.Label();
             this.siticoneWinToggleSwith14 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label41 = new System.Windows.Forms.Label();
             this.button40 = new System.Windows.Forms.Button();
@@ -1506,6 +1508,8 @@ namespace CoreKeeperInventoryEditor
             // siticonePanel1
             // 
             this.siticonePanel1.AutoScroll = true;
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith15);
+            this.siticonePanel1.Controls.Add(this.label42);
             this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith14);
             this.siticonePanel1.Controls.Add(this.label41);
             this.siticonePanel1.Controls.Add(this.button40);
@@ -1543,8 +1547,31 @@ namespace CoreKeeperInventoryEditor
             this.siticonePanel1.Location = new System.Drawing.Point(6, 46);
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.ShadowDecoration.Parent = this.siticonePanel1;
-            this.siticonePanel1.Size = new System.Drawing.Size(677, 140);
+            this.siticonePanel1.Size = new System.Drawing.Size(704, 140);
             this.siticonePanel1.TabIndex = 38;
+            // 
+            // siticoneWinToggleSwith15
+            // 
+            this.siticoneWinToggleSwith15.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith15.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith15.Location = new System.Drawing.Point(534, 31);
+            this.siticoneWinToggleSwith15.Name = "siticoneWinToggleSwith15";
+            this.siticoneWinToggleSwith15.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith15.TabIndex = 38;
+            this.siticoneWinToggleSwith15.Text = "siticoneWinToggleSwith15";
+            this.siticoneWinToggleSwith15.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith15.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith15.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith15_CheckedChanged);
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.Color.Snow;
+            this.label42.Location = new System.Drawing.Point(585, 34);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(87, 13);
+            this.label42.TabIndex = 39;
+            this.label42.Text = "- Trash Inventory";
             // 
             // siticoneWinToggleSwith14
             // 
@@ -3714,6 +3741,8 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Button button43;
         private System.Windows.Forms.Button button42;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith15;
+        private System.Windows.Forms.Label label42;
     }
 }
 
