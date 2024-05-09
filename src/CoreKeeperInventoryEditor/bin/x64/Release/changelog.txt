@@ -4,6 +4,7 @@ Changes Since v1.3.6.0
 - Restored the use of the world tools console.
 
 + Added clear console buttons for debug and world tools.
++ Added an empty inventory mod to the player tools.
 
 Changes Since v1.3.5.9
 ===========================================================
