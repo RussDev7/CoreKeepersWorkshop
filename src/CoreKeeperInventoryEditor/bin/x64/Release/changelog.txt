@@ -6,6 +6,7 @@ Changes Since v1.3.6.0
 
 + Added clear console buttons for debug and world tools.
 + Added an empty inventory mod to the player tools.
++ Added a visual for where to place torches after failure.
 
 Changes Since v1.3.5.9
 ===========================================================
