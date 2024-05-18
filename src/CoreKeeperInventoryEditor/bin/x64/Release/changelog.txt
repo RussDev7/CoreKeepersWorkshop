@@ -2,6 +2,7 @@ Changes Since v1.3.6.0
 ===========================================================
 - Fixed the clear ground items world tools mod.
 - Restored the use of the world tools console.
+- Fixed typo within the wiki.
 
 + Added clear console buttons for debug and world tools.
 + Added an empty inventory mod to the player tools.
