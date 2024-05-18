@@ -183,6 +183,16 @@ namespace CoreKeepersWorkshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TorchPlaceholder {
+            get {
+                object obj = ResourceManager.GetObject("TorchPlaceholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap UIBackground {
             get {
                 object obj = ResourceManager.GetObject("UIBackground", resourceCulture);
