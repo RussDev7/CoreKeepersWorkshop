@@ -1,4 +1,5 @@
 ﻿using CoreKeepersWorkshop;
+using CoreKeepersWorkshop.Properties;
 using Memory;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -54,6 +55,7 @@ namespace CoreKeeperInventoryEditor
         public string ExportPlayerName = "";
         public bool isMinimized = false;
         public int useAddress = 1;
+        public bool placeholdersActive = false;
 
         // Define texture data.
         public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
@@ -63,10 +65,10 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<string> ChatSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Define skin counters.
-        public int inventorySkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount;
-        public int playerSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount;
-        public int worldSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount;
-        public int chatSkinCounter = CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount;
+        public int inventorySkinCounter = Settings.Default.InventoryBackgroundCount;
+        public int playerSkinCounter = Settings.Default.PlayerBackgroundCount;
+        public int worldSkinCounter = Settings.Default.WorldBackgroundCount;
+        public int chatSkinCounter = Settings.Default.ChatBackgroundCount;
 
         // Define error title.
         public static readonly string errorTitle = "ERROR: " + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName + " v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion;
@@ -135,7 +137,7 @@ namespace CoreKeeperInventoryEditor
                 #region Set Custom Cusror
 
                 // Set the applications cursor.
-                Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
+                Cursor = new Cursor(Resources.UICursor.GetHicon());
                 #endregion
 
                 #region Set Controls
@@ -167,81 +169,81 @@ namespace CoreKeeperInventoryEditor
                 #region Set Dev-Tool / Main Control Contents
 
                 // Main controls.
-                numericUpDown14.Value = CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax; // Map rendering max radius.
-                numericUpDown16.Value = CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart; // Map rendering start radius.
-                numericUpDown19.Value = CoreKeepersWorkshop.Properties.Settings.Default.FishingCast; // Fishing bot casting delay.
-                numericUpDown20.Value = CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding; // Fishing bot padding delay.
+                numericUpDown14.Value = Settings.Default.MapRenderingMax; // Map rendering max radius.
+                numericUpDown16.Value = Settings.Default.MapRenderingStart; // Map rendering start radius.
+                numericUpDown19.Value = Settings.Default.FishingCast; // Fishing bot casting delay.
+                numericUpDown20.Value = Settings.Default.FishingPadding; // Fishing bot padding delay.
 
                 // Console color.
-                dataGridView1.RowsDefaultCellStyle.ForeColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
-                dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
+                dataGridView1.RowsDefaultCellStyle.ForeColor = Settings.Default.ConsoleForeColor;
+                dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Settings.Default.ConsoleForeColor;
 
                 // Console color indicator.
-                button41.ForeColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
-                button41.BackColor = CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor;
+                button41.ForeColor = Settings.Default.ConsoleForeColor;
+                button41.BackColor = Settings.Default.ConsoleForeColor;
 
                 // Dev tools.
-                numericUpDown2.Value = (decimal)CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay; // Dev tool operation delay.
-                numericUpDown18.Value = CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
-                checkBox2.Checked = CoreKeepersWorkshop.Properties.Settings.Default.TopMost; // Set as top most.
-                comboBox2.SelectedIndex = CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex; // Set the process priority.
+                numericUpDown2.Value = (decimal)Settings.Default.DevToolDelay; // Dev tool operation delay.
+                numericUpDown18.Value = Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
+                checkBox2.Checked = Settings.Default.TopMost; // Set as top most.
+                comboBox2.SelectedIndex = Settings.Default.ProcessPriorityIndex; // Set the process priority.
                 #endregion
 
                 #region Set Form Locations
 
                 // Set the forms active location based on previous save.
-                MainForm.ActiveForm.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+                MainForm.ActiveForm.Location = Settings.Default.MainFormLocation;
                 #endregion
 
                 #region Set Background
 
                 // Get background from saved settings.
-                if (CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground != "") // Ensure background is not null.
+                if (Settings.Default.InventoryBackground != "") // Ensure background is not null.
                 {
                     // Catch image missing / renamed errors.
                     try
                     {
-                        tabControl1.TabPages[0].BackgroundImage = ImageFast.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground);
+                        tabControl1.TabPages[0].BackgroundImage = ImageFast.FromFile(Settings.Default.InventoryBackground);
                     }
                     catch (Exception)
                     {
-                        CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground = "";
+                        Settings.Default.InventoryBackground = "";
                     }
                 }
-                if (CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground != "") // Ensure background is not null.
+                if (Settings.Default.PlayerBackground != "") // Ensure background is not null.
                 {
                     // Catch image missing / renamed errors.
                     try
                     {
-                        tabControl1.TabPages[1].BackgroundImage = ImageFast.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground);
+                        tabControl1.TabPages[1].BackgroundImage = ImageFast.FromFile(Settings.Default.PlayerBackground);
                     }
                     catch (Exception)
                     {
-                        CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground = "";
+                        Settings.Default.PlayerBackground = "";
                     }
                 }
-                if (CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground != "") // Ensure background is not null.
+                if (Settings.Default.WorldBackground != "") // Ensure background is not null.
                 {
                     // Catch image missing / renamed errors.
                     try
                     {
-                        tabControl1.TabPages[2].BackgroundImage = ImageFast.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground);
+                        tabControl1.TabPages[2].BackgroundImage = ImageFast.FromFile(Settings.Default.WorldBackground);
                     }
                     catch (Exception)
                     {
-                        CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = "";
+                        Settings.Default.WorldBackground = "";
                     }
                 }
-                if (CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground != "") // Ensure background is not null.
+                if (Settings.Default.ChatBackground != "") // Ensure background is not null.
                 {
                     // Catch image missing / renamed errors.
                     try
                     {
-                        tabControl1.TabPages[3].BackgroundImage = ImageFast.FromFile(CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground);
+                        tabControl1.TabPages[3].BackgroundImage = ImageFast.FromFile(Settings.Default.ChatBackground);
                     }
                     catch (Exception)
                     {
-                        CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = "";
+                        Settings.Default.ChatBackground = "";
                     }
                 }
                 #endregion
@@ -289,7 +291,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(button36, "Launch a visualization guide on how to set your teleport addresses.");
                 toolTip.SetToolTip(button37, "Change the seed of the current world.");
                 toolTip.SetToolTip(button38, "Change the icon of the current world.");
-                toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor.Name.ToString());
+                toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + Settings.Default.ConsoleForeColor.Name.ToString());
                 toolTip.SetToolTip(button40, "Launch the player skill editor.");
                 // toolTip.SetToolTip(button41, "This is the console color visualizer.");
                 toolTip.SetToolTip(button42, "Clear the debug console.");
@@ -376,7 +378,7 @@ namespace CoreKeeperInventoryEditor
                 this.TopMost = false;
 
                 // Save the property.
-                CoreKeepersWorkshop.Properties.Settings.Default.TopMost = false;
+                Settings.Default.TopMost = false;
             }
             else
             {
@@ -384,7 +386,7 @@ namespace CoreKeeperInventoryEditor
                 this.TopMost = true;
 
                 // Save the property.
-                CoreKeepersWorkshop.Properties.Settings.Default.TopMost = true;
+                Settings.Default.TopMost = true;
             }
         }
 
@@ -433,29 +435,29 @@ namespace CoreKeeperInventoryEditor
                 Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
                 if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40) && !isMinimized) // isMinimized fix 1.3.1.
                 {
-                    CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
+                    Settings.Default.MainFormLocation = this.Location;
                 }
 
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = 50;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemID = 110;
-                CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "TabPage1";
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = 0;
+                Settings.Default.ItemAmount = 50;
+                Settings.Default.ItemID = 110;
+                Settings.Default.CurrentItemTab = "TabPage1";
+                Settings.Default.ItemVariation = 0;
 
                 // Save UI form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount = inventorySkinCounter;
-                CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount = playerSkinCounter;
-                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount = worldSkinCounter;
-                CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount = chatSkinCounter;
+                Settings.Default.InventoryBackgroundCount = inventorySkinCounter;
+                Settings.Default.PlayerBackgroundCount = playerSkinCounter;
+                Settings.Default.WorldBackgroundCount = worldSkinCounter;
+                Settings.Default.ChatBackgroundCount = chatSkinCounter;
 
                 // Save some form controls.
-                CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay = (int)numericUpDown2.Value; // Dev tool operation delay.
-                CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale = numericUpDown18.Value; // Auto render maps radialMoveScale.
-                CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax = numericUpDown14.Value; // Map rendering max radius.
-                CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart = numericUpDown16.Value; // Map rendering start radius.
-                CoreKeepersWorkshop.Properties.Settings.Default.FishingCast = numericUpDown19.Value; // Fishing bot casting delay.
-                CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding = numericUpDown20.Value; // Fishing bot padding delay.
-                CoreKeepersWorkshop.Properties.Settings.Default.Save();
+                Settings.Default.DevToolDelay = (int)numericUpDown2.Value; // Dev tool operation delay.
+                Settings.Default.RadialMoveScale = numericUpDown18.Value; // Auto render maps radialMoveScale.
+                Settings.Default.MapRenderingMax = numericUpDown14.Value; // Map rendering max radius.
+                Settings.Default.MapRenderingStart = numericUpDown16.Value; // Map rendering start radius.
+                Settings.Default.FishingCast = numericUpDown19.Value; // Fishing bot casting delay.
+                Settings.Default.FishingPadding = numericUpDown20.Value; // Fishing bot padding delay.
+                Settings.Default.Save();
             }
             catch (Exception)
             { } // Do nothing.
@@ -470,7 +472,7 @@ namespace CoreKeeperInventoryEditor
             // Save the previous form location before minimizing it.
             if (WindowState == FormWindowState.Normal && this.Location != new Point(0, activeScreenDimensions.Height - 40) && !isMinimized) // isMinimized fix 1.3.1.
             {
-                CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation = this.Location;
+                Settings.Default.MainFormLocation = this.Location;
             }
 
             // Get window states.
@@ -518,7 +520,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Adjust some final form settings.
                 this.Opacity = 100;
-                this.Location = CoreKeepersWorkshop.Properties.Settings.Default.MainFormLocation;
+                this.Location = Settings.Default.MainFormLocation;
 
                 // Adjust minimized bool.
                 isMinimized = false;
@@ -572,7 +574,7 @@ namespace CoreKeeperInventoryEditor
                         tabControl1.TabPages[0].BackgroundImage = ImageFast.FromFile(InventorySkins.ToArray()[inventorySkinCounter].ToString());
 
                         // Save the property in the settings.
-                        CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground = InventorySkins.ToArray()[inventorySkinCounter].ToString();
+                        Settings.Default.InventoryBackground = InventorySkins.ToArray()[inventorySkinCounter].ToString();
 
                         // Add to the counter.
                         inventorySkinCounter++;
@@ -597,7 +599,7 @@ namespace CoreKeeperInventoryEditor
                         tabControl1.TabPages[1].BackgroundImage = ImageFast.FromFile(PlayerSkins.ToArray()[playerSkinCounter].ToString());
 
                         // Save the property in the settings.
-                        CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground = PlayerSkins.ToArray()[playerSkinCounter].ToString();
+                        Settings.Default.PlayerBackground = PlayerSkins.ToArray()[playerSkinCounter].ToString();
 
                         // Add to the counter.
                         playerSkinCounter++;
@@ -622,7 +624,7 @@ namespace CoreKeeperInventoryEditor
                         tabControl1.TabPages[2].BackgroundImage = ImageFast.FromFile(WorldSkins.ToArray()[worldSkinCounter].ToString());
 
                         // Save the property in the settings.
-                        CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = WorldSkins.ToArray()[worldSkinCounter].ToString();
+                        Settings.Default.WorldBackground = WorldSkins.ToArray()[worldSkinCounter].ToString();
 
                         // Add to the counter.
                         worldSkinCounter++;
@@ -647,7 +649,7 @@ namespace CoreKeeperInventoryEditor
                         tabControl1.TabPages[3].BackgroundImage = ImageFast.FromFile(ChatSkins.ToArray()[chatSkinCounter].ToString());
 
                         // Save the property in the settings.
-                        CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = ChatSkins.ToArray()[chatSkinCounter].ToString();
+                        Settings.Default.ChatBackground = ChatSkins.ToArray()[chatSkinCounter].ToString();
 
                         // Add to the counter.
                         chatSkinCounter++;
@@ -849,11 +851,14 @@ namespace CoreKeeperInventoryEditor
                 // Re-enable button.
                 button1.Enabled = true;
 
-                // Reset aob scan results
+                // Reset aob scan results.
                 AoBScanResultsInventory = null;
 
+                // Toggle placeholder torches on.
+                TogglePlaceholderTorches(true);
+
                 // Display error message.
-                MessageBox.Show("You need to have torches in the first and last Inventory slots!!\n\nPlease ignore added inventory rows.\n\nNOTE: This tool is host only!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You need to have torches in the first and last Inventory slots!!\n\nPlease ignore added inventory rows.\n\nNOTE: This tool is host only! **\n\n\n(** Works on multiplayer but be careful!)", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -862,7 +867,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Get display address.
                 string displayAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("1", NumberStyles.Integer)).ToString("X");
-                
+
                 if (richTextBox1.Text == "Addresses Loaded: 0")
                 {
                     richTextBox1.Text = "Addresses Loaded: " + AoBScanResultsInventory.Count().ToString() + ", Selected: " + useAddress + ", [" + displayAddress.ToString();
@@ -903,6 +908,9 @@ namespace CoreKeeperInventoryEditor
                 button20.Enabled = false; // Previous.
                 button21.Enabled = false; // Next.
             }
+
+            // Toggle placeholder torches off.
+            TogglePlaceholderTorches(false);
 
             // Reset item id richtextbox.
             richTextBox3.Text = "If any unknown items are found, their ID's will appear here!" + Environment.NewLine + "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
@@ -1125,7 +1133,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox1.Image = Resources.UnknownItem;
                                         pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1249,7 +1257,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox2.Image = Resources.UnknownItem;
                                         pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1373,7 +1381,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox3.Image = Resources.UnknownItem;
                                         pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1497,7 +1505,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox4.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox4.Image = Resources.UnknownItem;
                                         pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1621,7 +1629,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox5.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox5.Image = Resources.UnknownItem;
                                         pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1745,7 +1753,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox6.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox6.Image = Resources.UnknownItem;
                                         pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1869,7 +1877,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox7.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox7.Image = Resources.UnknownItem;
                                         pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -1993,7 +2001,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox8.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox8.Image = Resources.UnknownItem;
                                         pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2117,7 +2125,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox9.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox9.Image = Resources.UnknownItem;
                                         pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2241,7 +2249,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox10.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox10.Image = Resources.UnknownItem;
                                         pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2365,7 +2373,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox11.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox11.Image = Resources.UnknownItem;
                                         pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2489,7 +2497,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox12.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox12.Image = Resources.UnknownItem;
                                         pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2613,7 +2621,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox13.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox13.Image = Resources.UnknownItem;
                                         pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2737,7 +2745,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox14.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox14.Image = Resources.UnknownItem;
                                         pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2861,7 +2869,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox15.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox15.Image = Resources.UnknownItem;
                                         pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -2985,7 +2993,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox16.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox16.Image = Resources.UnknownItem;
                                         pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3109,7 +3117,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox17.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox17.Image = Resources.UnknownItem;
                                         pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3233,7 +3241,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox18.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox18.Image = Resources.UnknownItem;
                                         pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3357,7 +3365,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox19.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox19.Image = Resources.UnknownItem;
                                         pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3481,7 +3489,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox20.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox20.Image = Resources.UnknownItem;
                                         pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3605,7 +3613,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox21.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox21.Image = Resources.UnknownItem;
                                         pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3729,7 +3737,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox22.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox22.Image = Resources.UnknownItem;
                                         pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3853,7 +3861,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox23.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox23.Image = Resources.UnknownItem;
                                         pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -3977,7 +3985,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox24.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox24.Image = Resources.UnknownItem;
                                         pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4101,7 +4109,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox25.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox25.Image = Resources.UnknownItem;
                                         pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4225,7 +4233,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox26.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox26.Image = Resources.UnknownItem;
                                         pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4349,7 +4357,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox27.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox27.Image = Resources.UnknownItem;
                                         pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4473,7 +4481,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox28.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox28.Image = Resources.UnknownItem;
                                         pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4597,7 +4605,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox29.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox29.Image = Resources.UnknownItem;
                                         pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4721,7 +4729,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox30.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox30.Image = Resources.UnknownItem;
                                         pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4848,7 +4856,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox31.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox31.Image = Resources.UnknownItem;
                                         pictureBox31.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -4975,7 +4983,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox32.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox32.Image = Resources.UnknownItem;
                                         pictureBox32.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5102,7 +5110,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox33.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox33.Image = Resources.UnknownItem;
                                         pictureBox33.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5229,7 +5237,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox34.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox34.Image = Resources.UnknownItem;
                                         pictureBox34.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5356,7 +5364,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox35.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox35.Image = Resources.UnknownItem;
                                         pictureBox35.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5483,7 +5491,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox36.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox36.Image = Resources.UnknownItem;
                                         pictureBox36.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5610,7 +5618,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox37.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox37.Image = Resources.UnknownItem;
                                         pictureBox37.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5737,7 +5745,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox38.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox38.Image = Resources.UnknownItem;
                                         pictureBox38.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5864,7 +5872,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox39.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox39.Image = Resources.UnknownItem;
                                         pictureBox39.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -5991,7 +5999,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox40.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox40.Image = Resources.UnknownItem;
                                         pictureBox40.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6118,7 +6126,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox41.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox41.Image = Resources.UnknownItem;
                                         pictureBox41.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6245,7 +6253,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox42.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox42.Image = Resources.UnknownItem;
                                         pictureBox42.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6372,7 +6380,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox43.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox43.Image = Resources.UnknownItem;
                                         pictureBox43.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6499,7 +6507,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox44.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox44.Image = Resources.UnknownItem;
                                         pictureBox44.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6626,7 +6634,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox45.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox45.Image = Resources.UnknownItem;
                                         pictureBox45.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6753,7 +6761,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox46.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox46.Image = Resources.UnknownItem;
                                         pictureBox46.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -6880,7 +6888,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox47.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox47.Image = Resources.UnknownItem;
                                         pictureBox47.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -7007,7 +7015,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox48.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox48.Image = Resources.UnknownItem;
                                         pictureBox48.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -7134,7 +7142,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox49.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox49.Image = Resources.UnknownItem;
                                         pictureBox49.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -7261,7 +7269,7 @@ namespace CoreKeeperInventoryEditor
                                     else
                                     {
                                         // No image found.
-                                        pictureBox50.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                        pictureBox50.Image = Resources.UnknownItem;
                                         pictureBox50.SizeMode = PictureBoxSizeMode.Zoom;
 
                                         // Do debug information.
@@ -7453,7 +7461,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox1.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox1.Image = Resources.UnknownItem;
                                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7516,7 +7524,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox2.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox2.Image = Resources.UnknownItem;
                                 pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7579,7 +7587,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox3.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox3.Image = Resources.UnknownItem;
                                 pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7642,7 +7650,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox4.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox4.Image = Resources.UnknownItem;
                                 pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7705,7 +7713,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox5.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox5.Image = Resources.UnknownItem;
                                 pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7768,7 +7776,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox6.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox6.Image = Resources.UnknownItem;
                                 pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7831,7 +7839,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox7.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox7.Image = Resources.UnknownItem;
                                 pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7894,7 +7902,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox8.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox8.Image = Resources.UnknownItem;
                                 pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -7957,7 +7965,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox9.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox9.Image = Resources.UnknownItem;
                                 pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8020,7 +8028,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox10.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox10.Image = Resources.UnknownItem;
                                 pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8083,7 +8091,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox11.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox11.Image = Resources.UnknownItem;
                                 pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8146,7 +8154,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox12.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox12.Image = Resources.UnknownItem;
                                 pictureBox12.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8209,7 +8217,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox13.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox13.Image = Resources.UnknownItem;
                                 pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8272,7 +8280,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox14.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox14.Image = Resources.UnknownItem;
                                 pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8335,7 +8343,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox15.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox15.Image = Resources.UnknownItem;
                                 pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8398,7 +8406,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox16.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox16.Image = Resources.UnknownItem;
                                 pictureBox16.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8461,7 +8469,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox17.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox17.Image = Resources.UnknownItem;
                                 pictureBox17.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8524,7 +8532,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox18.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox18.Image = Resources.UnknownItem;
                                 pictureBox18.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8587,7 +8595,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox19.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox19.Image = Resources.UnknownItem;
                                 pictureBox19.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8650,7 +8658,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox20.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox20.Image = Resources.UnknownItem;
                                 pictureBox20.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8713,7 +8721,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox21.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox21.Image = Resources.UnknownItem;
                                 pictureBox21.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8776,7 +8784,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox22.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox22.Image = Resources.UnknownItem;
                                 pictureBox22.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8839,7 +8847,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox23.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox23.Image = Resources.UnknownItem;
                                 pictureBox23.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8902,7 +8910,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox24.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox24.Image = Resources.UnknownItem;
                                 pictureBox24.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -8965,7 +8973,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox25.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox25.Image = Resources.UnknownItem;
                                 pictureBox25.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9028,7 +9036,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox26.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox26.Image = Resources.UnknownItem;
                                 pictureBox26.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9091,7 +9099,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox27.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox27.Image = Resources.UnknownItem;
                                 pictureBox27.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9154,7 +9162,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox28.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox28.Image = Resources.UnknownItem;
                                 pictureBox28.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9217,7 +9225,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox29.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox29.Image = Resources.UnknownItem;
                                 pictureBox29.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9280,7 +9288,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox30.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox30.Image = Resources.UnknownItem;
                                 pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9343,7 +9351,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox31.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox31.Image = Resources.UnknownItem;
                                 pictureBox31.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9406,7 +9414,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox32.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox32.Image = Resources.UnknownItem;
                                 pictureBox32.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9469,7 +9477,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox33.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox33.Image = Resources.UnknownItem;
                                 pictureBox33.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9532,7 +9540,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox34.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox34.Image = Resources.UnknownItem;
                                 pictureBox34.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9595,7 +9603,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox35.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox35.Image = Resources.UnknownItem;
                                 pictureBox35.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9658,7 +9666,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox36.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox36.Image = Resources.UnknownItem;
                                 pictureBox36.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9721,7 +9729,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox37.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox37.Image = Resources.UnknownItem;
                                 pictureBox37.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9784,7 +9792,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox38.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox38.Image = Resources.UnknownItem;
                                 pictureBox38.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9847,7 +9855,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox39.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox39.Image = Resources.UnknownItem;
                                 pictureBox39.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9910,7 +9918,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox40.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox40.Image = Resources.UnknownItem;
                                 pictureBox40.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -9973,7 +9981,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox41.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox41.Image = Resources.UnknownItem;
                                 pictureBox41.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10036,7 +10044,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox42.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox42.Image = Resources.UnknownItem;
                                 pictureBox42.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10099,7 +10107,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox43.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox43.Image = Resources.UnknownItem;
                                 pictureBox43.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10162,7 +10170,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox44.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox44.Image = Resources.UnknownItem;
                                 pictureBox44.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10225,7 +10233,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox45.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox45.Image = Resources.UnknownItem;
                                 pictureBox45.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10288,7 +10296,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox46.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox46.Image = Resources.UnknownItem;
                                 pictureBox46.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10351,7 +10359,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox47.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox47.Image = Resources.UnknownItem;
                                 pictureBox47.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10414,7 +10422,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox48.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox48.Image = Resources.UnknownItem;
                                 pictureBox48.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10477,7 +10485,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox49.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox49.Image = Resources.UnknownItem;
                                 pictureBox49.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10540,7 +10548,7 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // No image found.
-                                pictureBox50.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
+                                pictureBox50.Image = Resources.UnknownItem;
                                 pictureBox50.SizeMode = PictureBoxSizeMode.Zoom;
                             }
 
@@ -10609,6 +10617,32 @@ namespace CoreKeeperInventoryEditor
 
             // Load addresses.
             AddItemToInv(loadInventory: true);
+        }
+
+        // Toggle on and off the placeholder torches.
+        public void TogglePlaceholderTorches(bool Enabled)
+        {
+            // Check to enable or disable the placeholder torches.
+            if (Enabled)
+            {
+                // Enable placeholder torches.
+
+                pictureBox1.Image = MakeGrayscale3(new Bitmap(Resources.TorchPlaceholder));
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                pictureBox30.Image = MakeGrayscale3(new Bitmap(Resources.TorchPlaceholder));
+                pictureBox30.SizeMode = PictureBoxSizeMode.Zoom;
+
+                pictureBox1.Invalidate(); // Reload picturebox.
+                pictureBox30.Invalidate(); // Reload picturebox.
+            }
+            else
+            {
+                // Disable placeholder torches.
+
+                pictureBox1.Image = null;
+                pictureBox30.Image = null;
+            }
         }
 
         // Next address button.
@@ -10754,10 +10788,10 @@ namespace CoreKeeperInventoryEditor
                     int[] itemInfo = GetSlotInfo(slotNumber);
 
                     // Save some form settings.
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoID = itemInfo[0];
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negitive numbers throwing an exception. // Fix v1.3.4.4.
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = itemInfo[3];
+                    Settings.Default.InfoID = itemInfo[0];
+                    Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negitive numbers throwing an exception. // Fix v1.3.4.4.
+                    Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
+                    Settings.Default.InfoSkillset = itemInfo[3];
 
                     // Spawn item picker window.
                     ItemEditor frm3 = new ItemEditor();
@@ -12681,7 +12715,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Save some form settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorAddress = AoBScanResultsPlayerTools.Last().ToString("X");
+            Settings.Default.SkillEditorAddress = AoBScanResultsPlayerTools.Last().ToString("X");
 
             // Spawn item picker window.
             try
@@ -12940,7 +12974,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerAddress = AoBScanResultsPlayerTools.Last().ToString("X");
+                Settings.Default.ChunkViewerAddress = AoBScanResultsPlayerTools.Last().ToString("X");
 
                 // Spawn item picker window.
                 try
@@ -16215,7 +16249,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Save the color for future loads.
-                CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor = consoleColor;
+                Settings.Default.ConsoleForeColor = consoleColor;
 
                 // Update the tooltip.
                 ToolTip toolTip = new ToolTip()
@@ -16223,7 +16257,7 @@ namespace CoreKeeperInventoryEditor
                     AutoPopDelay = 5000,
                     InitialDelay = 750
                 };
-                toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor.Name.ToString());
+                toolTip.SetToolTip(button39, "Change the world property editors console color.\nCurrent Color: " + Settings.Default.ConsoleForeColor.Name.ToString());
             }
 
             // Update button text.
@@ -17245,27 +17279,27 @@ namespace CoreKeeperInventoryEditor
             if (MessageBox.Show("Are you sure you wish to reset all form controls?", "Reset All Controls", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 // Backgrounds.
-                CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackground = "";
-                CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount = 0;
-                CoreKeepersWorkshop.Properties.Settings.Default.ChatBackground = "";
-                CoreKeepersWorkshop.Properties.Settings.Default.ChatBackgroundCount = 0;
-                CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackground = "";
-                CoreKeepersWorkshop.Properties.Settings.Default.PlayerBackgroundCount = 0;
-                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackground = "";
-                CoreKeepersWorkshop.Properties.Settings.Default.WorldBackgroundCount = 0;
-                if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount])) // Check if folder is empty. Fix: v1.3.4
+                Settings.Default.InventoryBackground = "";
+                Settings.Default.InventoryBackgroundCount = 0;
+                Settings.Default.ChatBackground = "";
+                Settings.Default.ChatBackgroundCount = 0;
+                Settings.Default.PlayerBackground = "";
+                Settings.Default.PlayerBackgroundCount = 0;
+                Settings.Default.WorldBackground = "";
+                Settings.Default.WorldBackgroundCount = 0;
+                if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[Settings.Default.InventoryBackgroundCount])) // Check if folder is empty. Fix: v1.3.4
                     tabControl1.TabPages[0].BackgroundImage = null;
                 else
-                    tabControl1.TabPages[0].BackgroundImage = ImageFast.FromFile(InventorySkins.ToArray()[CoreKeepersWorkshop.Properties.Settings.Default.InventoryBackgroundCount].ToString());
+                    tabControl1.TabPages[0].BackgroundImage = ImageFast.FromFile(InventorySkins.ToArray()[Settings.Default.InventoryBackgroundCount].ToString());
                 tabControl1.TabPages[1].BackgroundImage = null;
                 tabControl1.TabPages[2].BackgroundImage = null;
                 tabControl1.TabPages[3].BackgroundImage = null;
 
                 // Main controls.
-                numericUpDown14.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
-                numericUpDown16.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
-                numericUpDown19.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
-                numericUpDown20.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
+                numericUpDown14.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
+                numericUpDown16.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
+                numericUpDown19.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
+                numericUpDown20.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
 
                 // World properties console.
                 dataGridView1.RowsDefaultCellStyle.ForeColor = Color.Snow;
@@ -17274,15 +17308,15 @@ namespace CoreKeeperInventoryEditor
                 {
                     row.DefaultCellStyle.ForeColor = Color.Snow;
                 }
-                CoreKeepersWorkshop.Properties.Settings.Default.ConsoleForeColor = Color.Snow;
+                Settings.Default.ConsoleForeColor = Color.Snow;
                 button41.ForeColor = Color.Snow;
                 button41.BackColor = Color.Snow;
 
                 // Dev tools.
-                numericUpDown2.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
-                numericUpDown18.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
-                checkBox2.Checked = bool.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
-                comboBox2.SelectedIndex = int.Parse(CoreKeepersWorkshop.Properties.Settings.Default.GetType().GetProperty(GetNameOf(() => CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set the priority.
+                numericUpDown2.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
+                numericUpDown18.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
+                checkBox2.Checked = bool.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
+                comboBox2.SelectedIndex = int.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.ProcessPriorityIndex)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set the priority.
 
                 // Display completed message.
                 MessageBox.Show("All controls have been reset!", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -17315,10 +17349,10 @@ namespace CoreKeeperInventoryEditor
             if (Enum.TryParse<ProcessPriorityClass>(comboBox2.SelectedItem.ToString().Replace(" ", ""), out priority))
             {
                 // Double check if the player wishes to enable this.
-                if (CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex != 0 && priority == ProcessPriorityClass.RealTime && MessageBox.Show("Are you sure you wish to enable real time priority?\n\nThis setting may cause your PC to freeze while memory scanning or performing some operations.", "Enable Real Time Priority:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                if (Settings.Default.ProcessPriorityIndex != 0 && priority == ProcessPriorityClass.RealTime && MessageBox.Show("Are you sure you wish to enable real time priority?\n\nThis setting may cause your PC to freeze while memory scanning or performing some operations.", "Enable Real Time Priority:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {
                     // User cancled, revert changes.
-                    comboBox2.SelectedIndex = CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex;
+                    comboBox2.SelectedIndex = Settings.Default.ProcessPriorityIndex;
 
                     // Close function.
                     return;
@@ -17333,7 +17367,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Save the new index value.
-                CoreKeepersWorkshop.Properties.Settings.Default.ProcessPriorityIndex = comboBox2.SelectedIndex;
+                Settings.Default.ProcessPriorityIndex = comboBox2.SelectedIndex;
             }
         }
 

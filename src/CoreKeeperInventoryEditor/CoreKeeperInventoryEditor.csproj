@@ -221,6 +221,7 @@
     <None Include="images\UICursor.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\TorchPlaceholder.png" />
     <None Include="images\skills\Skill1.png" />
     <None Include="images\skills\Skill2.png" />
     <None Include="images\skills\Skill3.png" />
