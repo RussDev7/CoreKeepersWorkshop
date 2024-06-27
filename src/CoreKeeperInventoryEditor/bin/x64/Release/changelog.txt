@@ -4,10 +4,12 @@ Changes Since v1.3.6.0
 - Restored the use of the world tools console.
 - Fixed typo within the wiki.
 - Updated player mods and map reveal range addresses.
+- Fixed the no hunger rescan address.
 
 + Added clear console buttons for debug and world tools.
 + Added an empty inventory mod to the player tools.
 + Added a visual for where to place torches after failure.
++ Added a max minecart speed tool to player mods.
 
 Changes Since v1.3.5.9
 ===========================================================
