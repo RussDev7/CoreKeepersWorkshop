@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox50 = new System.Windows.Forms.PictureBox();
@@ -123,6 +123,10 @@ namespace CoreKeeperInventoryEditor
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.siticonePanel1 = new Siticone.UI.WinForms.SiticonePanel();
+            this.label45 = new System.Windows.Forms.Label();
+            this.siticoneMetroTrackBar1 = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
+            this.siticoneWinToggleSwith16 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.label43 = new System.Windows.Forms.Label();
             this.siticoneWinToggleSwith15 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label42 = new System.Windows.Forms.Label();
             this.siticoneWinToggleSwith14 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
@@ -159,6 +163,7 @@ namespace CoreKeeperInventoryEditor
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.siticoneWinToggleSwith4 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.label13 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
             this.siticoneTrackBar1 = new Siticone.UI.WinForms.SiticoneTrackBar();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.button10 = new System.Windows.Forms.Button();
@@ -1508,6 +1513,10 @@ namespace CoreKeeperInventoryEditor
             // siticonePanel1
             // 
             this.siticonePanel1.AutoScroll = true;
+            this.siticonePanel1.Controls.Add(this.label45);
+            this.siticonePanel1.Controls.Add(this.siticoneMetroTrackBar1);
+            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith16);
+            this.siticonePanel1.Controls.Add(this.label43);
             this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith15);
             this.siticonePanel1.Controls.Add(this.label42);
             this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith14);
@@ -1544,11 +1553,65 @@ namespace CoreKeeperInventoryEditor
             this.siticonePanel1.Controls.Add(this.numericUpDown3);
             this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith4);
             this.siticonePanel1.Controls.Add(this.label13);
+            this.siticonePanel1.Controls.Add(this.label44);
             this.siticonePanel1.Location = new System.Drawing.Point(6, 46);
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.ShadowDecoration.Parent = this.siticonePanel1;
             this.siticonePanel1.Size = new System.Drawing.Size(704, 140);
             this.siticonePanel1.TabIndex = 38;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.ForeColor = System.Drawing.Color.Snow;
+            this.label45.Location = new System.Drawing.Point(585, 62);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(88, 13);
+            this.label45.TabIndex = 47;
+            this.label45.Text = "- MaxSpeed: 800";
+            this.label45.Visible = false;
+            // 
+            // siticoneMetroTrackBar1
+            // 
+            this.siticoneMetroTrackBar1.Enabled = false;
+            this.siticoneMetroTrackBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.siticoneMetroTrackBar1.HoveredState.Parent = this.siticoneMetroTrackBar1;
+            this.siticoneMetroTrackBar1.LargeChange = 500;
+            this.siticoneMetroTrackBar1.Location = new System.Drawing.Point(567, 87);
+            this.siticoneMetroTrackBar1.Maximum = 9999;
+            this.siticoneMetroTrackBar1.MouseWheelBarPartitions = 100;
+            this.siticoneMetroTrackBar1.Name = "siticoneMetroTrackBar1";
+            this.siticoneMetroTrackBar1.Size = new System.Drawing.Size(103, 23);
+            this.siticoneMetroTrackBar1.SmallChange = 100;
+            this.siticoneMetroTrackBar1.TabIndex = 46;
+            this.siticoneMetroTrackBar1.ThumbColor = System.Drawing.Color.Lime;
+            this.siticoneMetroTrackBar1.Value = 800;
+            this.siticoneMetroTrackBar1.ValueChanged += new System.EventHandler(this.SiticoneMetroTrackBar1_ValueChanged);
+            this.siticoneMetroTrackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SiticoneMetroTrackBar1_MouseDown);
+            this.siticoneMetroTrackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SiticoneMetroTrackBar1_MouseUp);
+            // 
+            // siticoneWinToggleSwith16
+            // 
+            this.siticoneWinToggleSwith16.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.siticoneWinToggleSwith16.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith16.Location = new System.Drawing.Point(534, 59);
+            this.siticoneWinToggleSwith16.Name = "siticoneWinToggleSwith16";
+            this.siticoneWinToggleSwith16.Size = new System.Drawing.Size(45, 22);
+            this.siticoneWinToggleSwith16.TabIndex = 40;
+            this.siticoneWinToggleSwith16.Text = "siticoneWinToggleSwith16";
+            this.siticoneWinToggleSwith16.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith16.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.siticoneWinToggleSwith16.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith16_CheckedChanged);
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.Color.Snow;
+            this.label43.Location = new System.Drawing.Point(585, 62);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(88, 13);
+            this.label43.TabIndex = 41;
+            this.label43.Text = "- Minecart Speed";
             // 
             // siticoneWinToggleSwith15
             // 
@@ -1972,6 +2035,17 @@ namespace CoreKeeperInventoryEditor
             this.label13.Size = new System.Drawing.Size(120, 13);
             this.label13.TabIndex = 0;
             this.label13.Text = "- Noclip (Use Spacebar)";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.Color.Snow;
+            this.label44.Location = new System.Drawing.Point(527, 74);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(34, 42);
+            this.label44.TabIndex = 42;
+            this.label44.Text = "⮡";
             // 
             // siticoneTrackBar1
             // 
@@ -3011,21 +3085,21 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -3035,9 +3109,9 @@ namespace CoreKeeperInventoryEditor
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellErrors = false;
@@ -3743,6 +3817,11 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button button42;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith15;
         private System.Windows.Forms.Label label42;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith16;
+        private System.Windows.Forms.Label label43;
+        private Siticone.UI.WinForms.SiticoneMetroTrackBar siticoneMetroTrackBar1;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
     }
 }
 

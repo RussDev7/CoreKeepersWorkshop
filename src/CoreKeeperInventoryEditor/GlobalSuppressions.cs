@@ -120,3 +120,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.keepInventoryInformation")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersKeepInventoryTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.playersKeepInventoryEmptyTimer")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.minecartMaxSpeedTimer")]

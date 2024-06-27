@@ -322,6 +322,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(siticoneWinToggleSwith13, "Enabling will allow the player to adjust the placement range.");
                 toolTip.SetToolTip(siticoneWinToggleSwith14, "Prevents losing inventory items upon death.");
                 toolTip.SetToolTip(siticoneWinToggleSwith15, "Enabling will continuously remove all items from the inventory. Items will be logged.");
+                toolTip.SetToolTip(siticoneWinToggleSwith16, "Set a custom max speed for minecarts.");
 
                 toolTip.SetToolTip(radioButton1, "Overwrite item slot one.");
                 toolTip.SetToolTip(radioButton2, "Add item to an empty inventory slot.");
@@ -351,6 +352,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(label36, "Use the slider below for more mods!");
 
                 toolTip.SetToolTip(siticoneTrackBar1, "Used to scroll to other player mods.");
+                toolTip.SetToolTip(siticoneMetroTrackBar1, "Used to set a custom max speed for minecarts.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -11881,7 +11883,7 @@ namespace CoreKeeperInventoryEditor
                     if (currentFood < 1 || currentFood > 100)
                     {
                         // Rescan food address.
-                        AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 4? 44 44 3F ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 08 00 00 00", true, true);
+                        AoBScanResultsNoHunger1Tools = await MemLib.AoBScan("01 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 02 00 40 3F", true, true);
                     }
                 }
                 else
@@ -12847,6 +12849,153 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion
 
+        #region Minecart Max Speed
+
+        // Toggle minecart max speed.
+        readonly System.Timers.Timer minecartMaxSpeedTimer = new System.Timers.Timer();
+        public IEnumerable<long> AoBScanResultsMaxMinecartSpeed = null;
+        private async void SiticoneWinToggleSwith16_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                siticoneWinToggleSwith16.CheckedChanged -= SiticoneWinToggleSwith16_CheckedChanged;
+                siticoneWinToggleSwith16.Checked = false;
+                siticoneWinToggleSwith16.CheckedChanged += SiticoneWinToggleSwith16_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the slider was not yet checked.
+            if (siticoneWinToggleSwith16.Checked)
+            {
+                // Slider is being toggled on.
+                // Name button to indicate loading.
+                label43.Text = "- Loading..";
+
+                // Offset the progress bar to show it's working.
+                progressBar5.Visible = true;
+                progressBar5.Maximum = 100;
+                progressBar5.Value = 10;
+
+                // Check if we need to rescan the addresses or not.
+                if (AoBScanResultsMaxMinecartSpeed != null)
+                {
+                    string maxMinecartSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                    float maxSpeed = MemLib.ReadFloat(maxMinecartSpeedAddress);
+
+                    // Check if we need to rescan food or not.
+                    if (maxSpeed < 0 || maxSpeed > 9999)
+                    {
+                        // Rescan food address.
+                        AoBScanResultsMaxMinecartSpeed = await MemLib.AoBScan("?? FF FF FF ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00", true, true);
+                    }
+                }
+                else
+                {
+                    // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                    AoBScanResultsMaxMinecartSpeed = await MemLib.AoBScan("?? FF FF FF ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00", true, true);
+                }
+
+                // If the count is zero, the scan had an error.
+                if (AoBScanResultsMaxMinecartSpeed.Count() == 0)
+                {
+                    // Name label to indicate loading.
+                    label43.Text = "- Minecart Speed";
+
+                    // Reset progress bar.
+                    progressBar5.Value = 0;
+                    progressBar5.Visible = false;
+
+                    // Reset aob scan results
+                    AoBScanResultsMaxMinecartSpeed = null;
+
+                    // Toggle slider.
+                    siticoneWinToggleSwith16.CheckedChanged -= SiticoneWinToggleSwith16_CheckedChanged;
+                    siticoneWinToggleSwith16.Checked = false;
+                    siticoneWinToggleSwith16.CheckedChanged += SiticoneWinToggleSwith16_CheckedChanged;
+
+                    // Display error message.
+                    MessageBox.Show("There was an issue trying to fetch the minecart addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Update richtextbox with found addresses.
+                richTextBox6.Text = "Addresses Loaded: 0"; // Reset textbox.
+                foreach (long res in AoBScanResultsMaxMinecartSpeed)
+                {
+                    if (richTextBox6.Text == "Addresses Loaded: 0")
+                    {
+                        richTextBox6.Text = "Minecart Addresses Loaded: " + AoBScanResultsMaxMinecartSpeed.Count() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        richTextBox6.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                richTextBox6.Text += "]";
+
+                // Complete progress bar.
+                progressBar5.Value = 100;
+                progressBar5.Visible = false;
+
+                // Rename label to defualt text.
+                label43.Text = "- Minecart Speed";
+
+                // Enable the slider.
+                siticoneMetroTrackBar1.Enabled = true;
+
+                // Start the timed events.
+                minecartMaxSpeedTimer.Interval = 1; // Custom intervals.
+                minecartMaxSpeedTimer.Elapsed += new ElapsedEventHandler(MinecartMaxSpeedTimedEvent);
+                minecartMaxSpeedTimer.Start();
+            }
+            else
+            {
+                // Slider is being toggled off.
+                // Stop the timers.
+                minecartMaxSpeedTimer.Stop();
+
+                // Reset the sliders value.
+                // label45.Text = "- MaxSpeed: 800";
+                // siticoneMetroTrackBar1.Value = 800;
+
+                // Enable the slider.
+                siticoneMetroTrackBar1.Enabled = false;
+            }
+        }
+
+        // Minecart max speed timer.
+        private void MinecartMaxSpeedTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Write value.
+            string maxMinecartSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+            MemLib.WriteMemory(maxMinecartSpeedAddress, "float", siticoneMetroTrackBar1.Value.ToString()); // Overwrite new value.
+        }
+
+        // Show the slider value text.
+        private void SiticoneMetroTrackBar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            label43.Visible = false;
+            label45.Visible = true;
+        }
+
+        // Hide the slider value text.
+        private void SiticoneMetroTrackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            label43.Visible = true;
+            label45.Visible = false;
+        }
+
+        // Change the labels text to the new sliders value.
+        private void SiticoneMetroTrackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            label45.Text = "- MaxSpeed: " + siticoneMetroTrackBar1.Value.ToString();
+        }
+        #endregion
+
         // Mods below use the "Player Mod Offsets".
 
         #region Player Position
@@ -13730,7 +13879,7 @@ namespace CoreKeeperInventoryEditor
         // Depreciated Address 05Oct23: 00 00 40 41 00 00 10 42
         //
         // This bool is for seperating the vanilla & modded reveal ranges.
-        public static bool mapRevealIsVanilla = false; 
+        public static bool mapRevealIsVanilla = false;
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -15206,7 +15355,7 @@ namespace CoreKeeperInventoryEditor
                     {
                         // Update data found bool.
                         foundData = true;
-                        
+
                         // Extract the data from the string.
                         string guid = Regex.Match(getJsonData, "\\\"guid\":\"(?<Data>\\w+)\\\"").Groups[1].Value.ToString();
                         string seed = Regex.Match(getJsonData, "\\\"seed\":(?<Data>\\w+)\\,").Groups[1].Value.ToString();
@@ -15230,7 +15379,7 @@ namespace CoreKeeperInventoryEditor
 
                         // Get the mode text.
                         string modeString = "Standard";
-                        if (mode == "0") modeString =      "Standard";
+                        if (mode == "0") modeString = "Standard";
                         else if (mode == "1") modeString = "Hard";
                         else if (mode == "2") modeString = "Creative";
                         else if (mode == "3") modeString = "Hard Creative";
@@ -15238,7 +15387,7 @@ namespace CoreKeeperInventoryEditor
                         else if (mode == "5") modeString = "Hard Casual";
                         else if (mode == "6") modeString = "Creative Casual";
                         else if (mode == "7") modeString = "Hard Creative Casual";
-                        else modeString =                  "Unknown";
+                        else modeString = "Unknown";
 
                         // Add the information to the datagridview.
                         dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add("Mode:", modeString)));
@@ -16243,7 +16392,7 @@ namespace CoreKeeperInventoryEditor
         {
             // Update button text.
             button39.Text = "Pick New Color";
-            
+
             ColorDialog clrDialog = new ColorDialog();
 
             // Show the color dialog and check that user clicked ok.
@@ -17287,7 +17436,7 @@ namespace CoreKeeperInventoryEditor
             File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\MemoryLogger.txt", DateTime.Now + " -> " + Math.Round(new PerformanceCounter("Process", "Private Bytes", "CoreKeeper", true).NextValue() / 1024 / 1024 / 1000, 2).ToString() + " GBs" + Environment.NewLine);
         }
         #endregion
-            
+
         #region Reset All Controls
 
         // Reset all controls.
