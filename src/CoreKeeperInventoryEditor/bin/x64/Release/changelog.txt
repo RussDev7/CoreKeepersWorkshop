@@ -5,6 +5,7 @@ Changes Since v1.3.6.0
 - Fixed typo within the wiki.
 - Updated player mods and map reveal range addresses.
 - Fixed the no hunger rescan address.
+- Fixed address and significantly sped up minecart search.
 
 + Added clear console buttons for debug and world tools.
 + Added an empty inventory mod to the player tools.
