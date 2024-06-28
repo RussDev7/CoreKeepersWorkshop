@@ -12883,20 +12883,21 @@ namespace CoreKeeperInventoryEditor
                 // Check if we need to rescan the addresses or not.
                 if (AoBScanResultsMaxMinecartSpeed != null)
                 {
-                    string maxMinecartSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                    string maxMinecartSpeedAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                     float maxSpeed = MemLib.ReadFloat(maxMinecartSpeedAddress);
 
                     // Check if we need to rescan food or not.
                     if (maxSpeed < 0 || maxSpeed > 9999)
                     {
                         // Rescan food address.
-                        AoBScanResultsMaxMinecartSpeed = await MemLib.AoBScan("?? FF FF FF ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00", true, true);
+                        AoBScanResultsMaxMinecartSpeed = await MemLib.AoBScan("CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
                     }
                 }
                 else
                 {
                     // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                    AoBScanResultsMaxMinecartSpeed = await MemLib.AoBScan("?? FF FF FF ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00", true, true);
+                    // Depreciated Address 28Jun24: ?? FF FF FF ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00
+                    AoBScanResultsMaxMinecartSpeed = await MemLib.AoBScan("CD CC 4C 3E ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
                 }
 
                 // If the count is zero, the scan had an error.
@@ -12971,19 +12972,19 @@ namespace CoreKeeperInventoryEditor
         private void MinecartMaxSpeedTimedEvent(Object source, ElapsedEventArgs e)
         {
             // Write value.
-            string maxMinecartSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+            string maxMinecartSpeedAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
             MemLib.WriteMemory(maxMinecartSpeedAddress, "float", siticoneMetroTrackBar1.Value.ToString()); // Overwrite new value.
         }
 
         // Show the slider value text.
-        private void SiticoneMetroTrackBar1_MouseDown(object sender, MouseEventArgs e)
+        private void SiticoneMetroTrackBar1_MouseHover(object sender, EventArgs e)
         {
             label43.Visible = false;
             label45.Visible = true;
         }
 
         // Hide the slider value text.
-        private void SiticoneMetroTrackBar1_MouseUp(object sender, MouseEventArgs e)
+        private void SiticoneMetroTrackBar1_MouseLeave(object sender, EventArgs e)
         {
             label43.Visible = true;
             label45.Visible = false;
