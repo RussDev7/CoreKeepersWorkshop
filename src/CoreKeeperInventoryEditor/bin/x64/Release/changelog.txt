@@ -1,6 +1,9 @@
 Changes Since v1.3.6.1
 ===========================================================
 - Fixed the teleport player address. Game moved X by -0.05.
+- Updated the auto fishing addresses.
+- Updated the dev rendering addresses.
+- Updated the place anywhere addresses.
 
 Changes Since v1.3.6.0
 ===========================================================
