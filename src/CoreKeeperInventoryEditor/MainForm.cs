@@ -16445,7 +16445,7 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer autoFishingTimer = new System.Timers.Timer();
         string baseFishingAddress = "0";
         string fishTypeAddress = "0";
-        string fishFightAddress = "0";
+        // string fishFightAddress = "0";
         bool autoFishingChecked = false;
         private async void Button19_Click(object sender, EventArgs e)
         {
