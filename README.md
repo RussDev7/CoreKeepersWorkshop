@@ -8,19 +8,37 @@
 **CoreKeepersWorkshop** - The simple GUI inventory editor for Core Keeper. This app further lets you edit basic player features as well as world header information.
 
 ## Features
- - [x] Inventory editor. 
- - [x] Name changer. 
- - [x] World difficulty changer. 
- - [x] Automatic fishing bot. 
- - [x] Export / import players. 
- - [x] Minimization support. 
- - [x] Unknown ID debugger. 
+ - [x] Inventory editor.
+ - [x] Name changer.
+ - [x] World properties editor.
+ - [x] Automatic fishing bot.
+ - [x] Export / import players.
+ - [x] Minimization support.
+ - [x] Unknown ID debugger.
  - [x] Modded support.
- - [x] No game file replacement. 
+ - [x] No game file replacement.
  - [x] Future proof resiliency.
  - [x] Basic multiplayer support.
  - [x] Automatic map renderer.
  - [x] Player skill editor.
+ - [x] Buff editor.
+ - [x] Player mods.
+   - [x] Godmode
+   - [x] Player Speed
+   - [x] No Hunger
+   - [x] Infinite Mana
+   - [x] Noclip
+   - [x] Passive AI
+   - [x] Place Anywhere
+   - [x] Placement Range
+   - [x] Free Crafting
+   - [x] Keep Inventory
+   - [x] Teleport To XY
+  - [x] Advanced chunk viewer.
+  - [x] Clear ground items.
+  - [x] Ingame chat command support.
+  - [x] Ingame command overlay.
+
  
 ## How It Works / How Do I Use It?
 Due to how Core Keeper is as a unity game, the devolopers have protected their source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection techniques to scramble regions of memory to prevent address pointers. So using some clever AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
