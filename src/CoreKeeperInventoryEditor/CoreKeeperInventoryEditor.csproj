@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OverlayHelper.cs" />
     <Compile Include="SkillEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +232,9 @@
     <None Include="images\skills\Skill7.png" />
     <None Include="images\skills\Skill8.png" />
     <None Include="images\skills\Skill9.png" />
+    <None Include="images\skills\Skill10.png" />
+    <None Include="images\skills\Skill11.png" />
+    <None Include="images\MissingTexture.png" />
     <Content Include="images\TeleportAddressGuide.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

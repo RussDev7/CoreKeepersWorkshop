@@ -50,7 +50,7 @@
       "offset":"09"
    },
    {
-      "name":"Melee Damage Increase",
+      "name":"Physical Melee Damage Increase",
       "id":"010",
       "offset":"0A"
    },
@@ -110,7 +110,7 @@
       "offset":"15"
    },
    {
-      "name":"Range Damage Increase",
+      "name":"Physical Range Damage Increase",
       "id":"022",
       "offset":"16"
    },
@@ -1230,8 +1230,313 @@
       "offset":"F5"
    },
    {
-      "name":"M A X_ V A L U E S",
+      "name":"Protective Armor",
       "id":"246",
       "offset":"F6"
+   },
+   {
+      "name":"Vulnerable",
+      "id":"247",
+      "offset":"F7"
+   },
+   {
+      "name":"Aura Apply Void Damage Percentage Over Time",
+      "id":"248",
+      "offset":"F8"
+   },
+   {
+      "name":"Aura Void Damage Percentage Over Time",
+      "id":"249",
+      "offset":"F9"
+   },
+   {
+      "name":"Aura Apply Immune To Void Damage Over Time",
+      "id":"250",
+      "offset":"FA"
+   },
+   {
+      "name":"Immune To Void Damage Over Time",
+      "id":"251",
+      "offset":"FB"
+   },
+   {
+      "name":"Durability Increase After Mining Ore",
+      "id":"252",
+      "offset":"FC"
+   },
+   {
+      "name":"Hunger Addition On Harvest",
+      "id":"253",
+      "offset":"FD"
+   },
+   {
+      "name":"Chance To Preserve Bait",
+      "id":"254",
+      "offset":"FE"
+   },
+   {
+      "name":"Increased Mana Regen Effectiveness",
+      "id":"255",
+      "offset":"FF"
+   },
+   {
+      "name":"Increased Max Mana",
+      "id":"256",
+      "offset":"100"
+   },
+   {
+      "name":"Increased Minion Lifespan Percentage",
+      "id":"257",
+      "offset":"101"
+   },
+   {
+      "name":"Increased Chance To Spawn Minion On Hit",
+      "id":"258",
+      "offset":"102"
+   },
+   {
+      "name":"Increased Max Minions",
+      "id":"259",
+      "offset":"103"
+   },
+   {
+      "name":"Increased Minion Damage Percentage",
+      "id":"260",
+      "offset":"104"
+   },
+   {
+      "name":"Increased Magic Damage Percentage",
+      "id":"261",
+      "offset":"105"
+   },
+   {
+      "name":"Mana Barrier",
+      "id":"262",
+      "offset":"106"
+   },
+   {
+      "name":"Magic Barrier",
+      "id":"263",
+      "offset":"107"
+   },
+   {
+      "name":"Gain Mana Percentage On Crit",
+      "id":"264",
+      "offset":"108"
+   },
+   {
+      "name":"Gain Mana On Heal",
+      "id":"265",
+      "offset":"109"
+   },
+   {
+      "name":"Well Fed Mana Regeneration Percentage",
+      "id":"266",
+      "offset":"10A"
+   },
+   {
+      "name":"Gain Mana Percentage On Damage Taken",
+      "id":"267",
+      "offset":"10B"
+   },
+   {
+      "name":"Gain Magic Damage Percentage Boost After Crit",
+      "id":"268",
+      "offset":"10C"
+   },
+   {
+      "name":"Reduced Mana Regen Delay Percentage",
+      "id":"269",
+      "offset":"10D"
+   },
+   {
+      "name":"Reduced Magic Barrier Regen Delay Percentage",
+      "id":"270",
+      "offset":"10E"
+   },
+   {
+      "name":"Percentage Of Magic Barrier As Magic Damage",
+      "id":"271",
+      "offset":"10F"
+   },
+   {
+      "name":"Magic Barrier As Mana Regen",
+      "id":"272",
+      "offset":"110"
+   },
+   {
+      "name":"Gain Remaining Mana As Magic Damage Percentage",
+      "id":"273",
+      "offset":"111"
+   },
+   {
+      "name":"Magic Damage Percentage Boost After Crit",
+      "id":"274",
+      "offset":"112"
+   },
+   {
+      "name":"Gain Range Attack Speed Per Minion",
+      "id":"275",
+      "offset":"113"
+   },
+   {
+      "name":"Range Attack Speed Per Minion",
+      "id":"276",
+      "offset":"114"
+   },
+   {
+      "name":"Increased Minion Attack Speed",
+      "id":"277",
+      "offset":"115"
+   },
+   {
+      "name":"Increased Minion Count As Magic Damage Percentage",
+      "id":"278",
+      "offset":"116"
+   },
+   {
+      "name":"Increased Magic Damage To Minion Damage",
+      "id":"279",
+      "offset":"117"
+   },
+   {
+      "name":"Increased Minion Count As Magic Barrier",
+      "id":"280",
+      "offset":"118"
+   },
+   {
+      "name":"Minion Count As Magic Barrier",
+      "id":"281",
+      "offset":"119"
+   },
+   {
+      "name":"Increased Heal On Minion Damage",
+      "id":"282",
+      "offset":"11A"
+   },
+   {
+      "name":"Minion Count As Magic Damage Percentage",
+      "id":"283",
+      "offset":"11B"
+   },
+   {
+      "name":"Liquid Metal Buff",
+      "id":"284",
+      "offset":"11C"
+   },
+   {
+      "name":"Heal On Minion Despawn",
+      "id":"285",
+      "offset":"11D"
+   },
+   {
+      "name":"Increased Mana Regen",
+      "id":"286",
+      "offset":"11E"
+   },
+   {
+      "name":"Increased Minion Crit Chance",
+      "id":"287",
+      "offset":"11F"
+   },
+   {
+      "name":"Increase Damage As Long As Not Being Hit",
+      "id":"288",
+      "offset":"120"
+   },
+   {
+      "name":"Melee Damage Increase",
+      "id":"289",
+      "offset":"121"
+   },
+   {
+      "name":"Range Damage Increase",
+      "id":"290",
+      "offset":"122"
+   },
+   {
+      "name":"Magic Damage Increase From Potion",
+      "id":"291",
+      "offset":"123"
+   },
+   {
+      "name":"Minion Damage Increase From Potion",
+      "id":"292",
+      "offset":"124"
+   },
+   {
+      "name":"Gain Melee Damage As Long As Not Taken Damage",
+      "id":"293",
+      "offset":"125"
+   },
+   {
+      "name":"Melee Damage As Long As Not Taken Damage",
+      "id":"294",
+      "offset":"126"
+   },
+   {
+      "name":"Increased Minion Count As Armor",
+      "id":"295",
+      "offset":"127"
+   },
+   {
+      "name":"Minion Count As Armor",
+      "id":"296",
+      "offset":"128"
+   },
+   {
+      "name":"Pet Chance To Gain Mana On Attack",
+      "id":"297",
+      "offset":"129"
+   },
+   {
+      "name":"Spawn Explosion On Damage Taken",
+      "id":"298",
+      "offset":"12A"
+   },
+   {
+      "name":"Chance To Add Random Condition On Hit",
+      "id":"299",
+      "offset":"12B"
+   },
+   {
+      "name":"Mitochondrion Buff",
+      "id":"300",
+      "offset":"12C"
+   },
+   {
+      "name":"Fruit Basket Buff",
+      "id":"301",
+      "offset":"12D"
+   },
+   {
+      "name":"Slowed By Ground Slime",
+      "id":"302",
+      "offset":"12E"
+   },
+   {
+      "name":"Lightning Gun Chain Lightning",
+      "id":"303",
+      "offset":"12F"
+   },
+   {
+      "name":"Increased Max Health Percentage",
+      "id":"304",
+      "offset":"130"
+   },
+   {
+      "name":"Superman",
+      "id":"305",
+      "offset":"131"
+   },
+   {
+      "name":"Bilibili Doge Chance",
+      "id":"306",
+      "offset":"132"
+   },
+   {
+      "name":"M A X_ V A L U E S",
+      "id":"307",
+      "offset":"133"
    },
 ]

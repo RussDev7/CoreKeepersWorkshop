@@ -1,12 +1,13 @@
-﻿using CoreKeeperInventoryEditor;
+﻿using System.Collections.Generic;
+using CoreKeeperInventoryEditor;
+using System.Globalization;
+using System.Windows.Forms;
+using System.Diagnostics;
+using System.Numerics;
+using System.Drawing;
+using System.Linq;
 using Memory;
 using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Numerics;
-using System.Windows.Forms;
 
 namespace CoreKeepersWorkshop
 {
@@ -21,12 +22,8 @@ namespace CoreKeepersWorkshop
 
         // Define some varibles.
         public Mem MemLib = new Mem();
+        public int useAddress = 1;
 
-        // Define total enabled skills.
-        public int totalEnabledSkills = (int)CoreKeepersWorkshop.Properties.Settings.Default.ActiveSkillAmount;
-
-        // Define string from host form.
-        public string playerToolAddress = CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorAddress;
         #endregion // End variables.
 
         #region Form Load And Closing Events
@@ -49,7 +46,7 @@ namespace CoreKeepersWorkshop
             #region Set Form Controls
 
             // Set controls based on saved settings.
-            numericUpDown19.Value = totalEnabledSkills;
+            UseEXPValues_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorUseEXP;
             #endregion
 
             #region Tooltips
@@ -62,48 +59,53 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(numericUpDown1, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown3, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown5, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown7, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown9, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown11, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown13, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown15, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(numericUpDown17, "Set the current skilltype to desired a ID.");
-            
-            toolTip.SetToolTip(numericUpDown2, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown4, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown6, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown8, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown10, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown12, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown14, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown16, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(numericUpDown18, "Set the EXP amount for the desired skill.");
-            
-            toolTip.SetToolTip(numericUpDown19, "Define how many skils the player has discovered over 1 EXP.");
-            toolTip.SetToolTip(numericUpDown20, "DEBUG: Define the header1 offset.");
-            toolTip.SetToolTip(numericUpDown21, "DEBUG: Define the header2 offset.");
+            toolTip.SetToolTip(SkillID0_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID1_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID2_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID3_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID4_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID5_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID6_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID7_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID8_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID9_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID10_NumericUpDown, "Set the current skilltype to desired a ID.");
 
-            toolTip.SetToolTip(button1, "Change your players skills to custom values!");
-            toolTip.SetToolTip(button2, "Change your players skills to max values!");
-            toolTip.SetToolTip(button3, "Resets all player skills to 0.");
-            toolTip.SetToolTip(button4, "Show a list of all skill names, IDs, and max values.");
+            toolTip.SetToolTip(SkillILvL0_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL1_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL2_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL3_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL4_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL5_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL6_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL7_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL8_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL9_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL10_NumericUpDown, "Set the EXP amount for the desired skill.");
 
-            toolTip.SetToolTip(checkBox1, "This is used to help find the correct addresses.");
+            // toolTip.SetToolTip(numericUpDown19, "Define how many skills the player has discovered over 1 EXP.");
+            // toolTip.SetToolTip(numericUpDown20, "DEBUG: Define the header1 offset.");
+            // toolTip.SetToolTip(numericUpDown21, "DEBUG: Define the header2 offset.");
+
+            toolTip.SetToolTip(ChangeSkills_Button, "Change your players skills to custom values!");
+            toolTip.SetToolTip(MaxAllSkills_Button, "Change your players skills to max values!");
+            toolTip.SetToolTip(ResetAllSkills_Button, "Resets all player skills to 0.");
+            toolTip.SetToolTip(MaxLevelsHelp_Button, "Show a list of all skill names, IDs, and max values.");
+            toolTip.SetToolTip(GetPlayerSkillAddresses_Button, "Scan for the skill addresses.");
+            toolTip.SetToolTip(UseSkillAddress_Button, "Select the current loadout for scanning.");
+            toolTip.SetToolTip(PreviousSkillAddress_Button, "Switch skill loadout to the previous address.");
+            toolTip.SetToolTip(NextSkillAddress_Button, "Switch skill loadout to the next address.");
+
+            // toolTip.SetToolTip(checkBox1, "This is used to help find the correct addresses.");
+            toolTip.SetToolTip(UseEXPValues_CheckBox, "Switch the display format to use EXP vs Levels.");
             #endregion
         }
+
+        #region Form Closing
 
         // Do form closing events.
         private void SkillEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            #region Set Form Controls
-
-            // Set controls based on saved settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.ActiveSkillAmount = numericUpDown19.Value;
-            #endregion
-
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
@@ -122,579 +124,206 @@ namespace CoreKeepersWorkshop
         }
         #endregion
 
+        #endregion
+
         #region Form Controls
 
-        // Adjust how many skills are present.
-        private void NumericUpDown19_ValueChanged(object sender, EventArgs e)
-        {
-            // Reset player address to null each change.
-            MainForm.AoBScanResultsSkills = null;
+        #region Display Levels or EXP
 
-            totalEnabledSkills = (int)numericUpDown19.Value;
-
-            // Endable or disable controls depending on amount.
-            panel1.Visible = (totalEnabledSkills >= 1);
-            panel2.Visible = (totalEnabledSkills >= 2);
-            panel3.Visible = (totalEnabledSkills >= 3);
-            panel4.Visible = (totalEnabledSkills >= 4);
-            panel5.Visible = (totalEnabledSkills >= 5);
-            panel6.Visible = (totalEnabledSkills >= 6);
-            panel7.Visible = (totalEnabledSkills >= 7);
-            panel8.Visible = (totalEnabledSkills >= 8);
-            panel9.Visible = (totalEnabledSkills >= 9);
-        }
-
-        // Change skils.
-        private async void Button1_Click(object sender, EventArgs e)
-        {
-            // Ensure that at least one perk is selected.
-            if (totalEnabledSkills == 0)
-            {
-                MessageBox.Show("You need to select at least one skill!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Disable controls.
-            numericUpDown19.Enabled = false;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-
-            // Scan for address is needed.
-            if (MemLib.OpenProcess("CoreKeeper") && MainForm.AoBScanResultsSkills == null)
-            {
-                // Adjust progressbar.
-                progressBar1.Value = 10;
-
-                // Define the headers.
-                uint header1Addpress = (uint)((int)Math.Abs(int.Parse(MemLib.ReadInt(BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X")).ToString())) + (int)numericUpDown20.Value);
-                uint footer2Addpress = (uint)((int)header1Addpress + (int)numericUpDown21.Value); // Header 2 is typically minus two.
-
-                // DEBUG: Convert to visual.
-                // string AoBString = header1Addpress + " 0 0 0 0 ? 0 " + String.Concat(Enumerable.Repeat("ID VALUE ", (int)numericUpDown19.Value)) + ((int)numericUpDown19.Value == 9 ? "?? ?? ?? ?? ?? ?? ?? ?? " : "") + "? " + footer2Addpress + " 0 0";
-
-                // Define the AoB and scan it into an array list. // Fix: If all 9 skills then add an extra ? ?.
-                string AoB = string.Join(" ", BitConverter.GetBytes(header1Addpress).Select(b => b.ToString("X2"))) + " 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 " + "01 00 00 00 ?? ?? ?? ?? " + String.Concat(Enumerable.Repeat("?? ?? ?? ?? ?? ?? ?? ?? ", (int)numericUpDown19.Value - 1)) + ((int)numericUpDown19.Value == 9 ? "?? ?? ?? ?? ?? ?? ?? ?? " : "") + "?? ?? ?? ?? " + string.Join(" ", BitConverter.GetBytes(footer2Addpress).Select(b => b.ToString("X2"))) + " 00 00 00 00 00 00 00 00";
-
-                MainForm.AoBScanResultsSkills = await MemLib.AoBScan(AoB, true, true);
-
-                if (MainForm.AoBScanResultsSkills.Count() == 0)
-                {
-                    MessageBox.Show("Could not find any skill addresses!\nTry restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    // Enable controls.
-                    numericUpDown19.Enabled = true;
-                    button1.Enabled = true;
-                    button2.Enabled = true;
-                    button3.Enabled = true;
-
-                    progressBar1.Value = 0;
-                    return;
-                }
-
-                // Adjust progressbar.
-                progressBar1.Step = 90 / MainForm.AoBScanResultsSkills.Count();
-            }
-            else
-            {
-                // Adjust progressbar.
-                progressBar1.Step = 90 / MainForm.AoBScanResultsSkills.Count();
-                progressBar1.Value = 10;
-            }
-
-            // Update richtextbox with found addresses.
-            foreach (long res in MainForm.AoBScanResultsSkills)
-            {
-                string headerBase = res.ToString("X");
-                string skill1ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
-                string skill1Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                string skill2ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
-                string skill2Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X");
-                string skill3ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X");
-                string skill3Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X");
-                string skill4ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("52", NumberStyles.Integer)).ToString("X");
-                string skill4Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
-                string skill5ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X");
-                string skill5Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
-                string skill6ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
-                string skill6Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
-                string skill7ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("76", NumberStyles.Integer)).ToString("X");
-                string skill7Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X");
-                string skill8ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X");
-                string skill8Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X");
-                string skill9ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("92", NumberStyles.Integer)).ToString("X");
-                string skill9Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X");
-
-                #region Set Values
-
-                // Set values.
-                if (totalEnabledSkills >= 1)
-                {
-                    MemLib.WriteMemory(skill1ID, "int", ((int)numericUpDown1.Value).ToString());
-                    MemLib.WriteMemory(skill1Value, "int", ((int)numericUpDown2.Value).ToString());
-                }
-                if (totalEnabledSkills >= 2)
-                {
-                    MemLib.WriteMemory(skill2ID, "int", ((int)numericUpDown3.Value).ToString());
-                    MemLib.WriteMemory(skill2Value, "int", ((int)numericUpDown4.Value).ToString());
-                }
-                if (totalEnabledSkills >= 3)
-                {
-                    MemLib.WriteMemory(skill3ID, "int", ((int)numericUpDown5.Value).ToString());
-                    MemLib.WriteMemory(skill3Value, "int", ((int)numericUpDown6.Value).ToString());
-                }
-                if (totalEnabledSkills >= 4)
-                {
-                    MemLib.WriteMemory(skill4ID, "int", ((int)numericUpDown7.Value).ToString());
-                    MemLib.WriteMemory(skill4Value, "int", ((int)numericUpDown8.Value).ToString());
-                }
-                if (totalEnabledSkills >= 5)
-                {
-                    MemLib.WriteMemory(skill5ID, "int", ((int)numericUpDown9.Value).ToString());
-                    MemLib.WriteMemory(skill5Value, "int", ((int)numericUpDown10.Value).ToString());
-                }
-                if (totalEnabledSkills >= 6)
-                {
-                    MemLib.WriteMemory(skill6ID, "int", ((int)numericUpDown11.Value).ToString());
-                    MemLib.WriteMemory(skill6Value, "int", ((int)numericUpDown12.Value).ToString());
-                }
-                if (totalEnabledSkills >= 7)
-                {
-                    MemLib.WriteMemory(skill7ID, "int", ((int)numericUpDown13.Value).ToString());
-                    MemLib.WriteMemory(skill7Value, "int", ((int)numericUpDown14.Value).ToString());
-                }
-                if (totalEnabledSkills >= 8)
-                {
-                    MemLib.WriteMemory(skill8ID, "int", ((int)numericUpDown15.Value).ToString());
-                    MemLib.WriteMemory(skill8Value, "int", ((int)numericUpDown16.Value).ToString());
-                }
-                if (totalEnabledSkills >= 9)
-                {
-                    MemLib.WriteMemory(skill9ID, "int", ((int)numericUpDown17.Value).ToString());
-                    MemLib.WriteMemory(skill9Value, "int", ((int)numericUpDown18.Value).ToString());
-                }
-                #endregion
-
-                // Step progress bar.
-                progressBar1.PerformStep();
-            }
-
-            // Complete progress bar.
-            progressBar1.Value = 100;
-
-            // Enable controls.
-            numericUpDown19.Enabled = true;
-            button1.Enabled = true;
-            button2.Enabled = true;
-            button3.Enabled = true;
-        }
-
-        // Max skills. 
-        private async void Button2_Click(object sender, EventArgs e)
-        {
-            // Ensure that at least one perk is selected.
-            if (totalEnabledSkills == 0)
-            {
-                MessageBox.Show("You need to select at least one skill!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Disable controls.
-            numericUpDown19.Enabled = false;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-
-            // Scan for address is needed.
-            if (MemLib.OpenProcess("CoreKeeper") && MainForm.AoBScanResultsSkills == null)
-            {
-                // Adjust progressbar.
-                progressBar1.Value = 10;
-
-                // Define the headers.
-                uint header1Addpress = (uint)((int)Math.Abs(int.Parse(MemLib.ReadInt(BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X")).ToString())) + (int)numericUpDown20.Value);
-                uint footer2Addpress = (uint)((int)header1Addpress + (int)numericUpDown21.Value); // Header 2 is typically minus two.
-
-                // DEBUG: Convert to visual.
-                // string AoBString = header1Addpress + " 0 0 0 0 ? 0 " + String.Concat(Enumerable.Repeat("ID VALUE ", (int)numericUpDown19.Value)) + ((int)numericUpDown19.Value == 9 ? "?? ?? ?? ?? ?? ?? ?? ?? " : "") + "? " + footer2Addpress + " 0 0";
-
-                // Define the AoB and scan it into an array list. // Fix: If all 9 skills then add an extra ? ?.
-                string AoB = string.Join(" ", BitConverter.GetBytes(header1Addpress).Select(b => b.ToString("X2"))) + " 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 " + "01 00 00 00 ?? ?? ?? ?? " + String.Concat(Enumerable.Repeat("?? ?? ?? ?? ?? ?? ?? ?? ", (int)numericUpDown19.Value - 1)) + ((int)numericUpDown19.Value == 9 ? "?? ?? ?? ?? ?? ?? ?? ?? " : "") + "?? ?? ?? ?? " + string.Join(" ", BitConverter.GetBytes(footer2Addpress).Select(b => b.ToString("X2"))) + " 00 00 00 00 00 00 00 00";
-
-                MainForm.AoBScanResultsSkills = await MemLib.AoBScan(AoB, true, true);
-
-                if (MainForm.AoBScanResultsSkills.Count() == 0)
-                {
-                    MessageBox.Show("Could not find any skill addresses!\nTry restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    // Enable controls.
-                    numericUpDown19.Enabled = true;
-                    button1.Enabled = true;
-                    button2.Enabled = true;
-                    button3.Enabled = true;
-
-                    progressBar1.Value = 0;
-                    return;
-                }
-
-                // Adjust progressbar.
-                progressBar1.Step = 90 / MainForm.AoBScanResultsSkills.Count();
-            }
-            else
-            {
-                // Adjust progressbar.
-                progressBar1.Step = 90 / MainForm.AoBScanResultsSkills.Count();
-                progressBar1.Value = 10;
-            }
-
-            // Update richtextbox with found addresses.
-            foreach (long res in MainForm.AoBScanResultsSkills)
-            {
-                string headerBase = res.ToString("X");
-                string skill1ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
-                string skill1Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                string skill2ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
-                string skill2Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X");
-                string skill3ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X");
-                string skill3Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X");
-                string skill4ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("52", NumberStyles.Integer)).ToString("X");
-                string skill4Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
-                string skill5ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X");
-                string skill5Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
-                string skill6ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
-                string skill6Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
-                string skill7ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("76", NumberStyles.Integer)).ToString("X");
-                string skill7Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X");
-                string skill8ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X");
-                string skill8Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X");
-                string skill9ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("92", NumberStyles.Integer)).ToString("X");
-                string skill9Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X");
-
-                #region Set Values
-
-                // Set values.
-                if (totalEnabledSkills >= 1)
-                {
-                    MemLib.WriteMemory(skill1ID, "int", ((int)numericUpDown1.Value).ToString());
-                    MemLib.WriteMemory(skill1Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 2)
-                {
-                    MemLib.WriteMemory(skill2ID, "int", ((int)numericUpDown3.Value).ToString());
-                    MemLib.WriteMemory(skill2Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 3)
-                {
-                    MemLib.WriteMemory(skill3ID, "int", ((int)numericUpDown5.Value).ToString());
-                    MemLib.WriteMemory(skill3Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 4)
-                {
-                    MemLib.WriteMemory(skill4ID, "int", ((int)numericUpDown7.Value).ToString());
-                    MemLib.WriteMemory(skill4Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 5)
-                {
-                    MemLib.WriteMemory(skill5ID, "int", ((int)numericUpDown9.Value).ToString());
-                    MemLib.WriteMemory(skill5Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 6)
-                {
-                    MemLib.WriteMemory(skill6ID, "int", ((int)numericUpDown11.Value).ToString());
-                    MemLib.WriteMemory(skill6Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 7)
-                {
-                    MemLib.WriteMemory(skill7ID, "int", ((int)numericUpDown13.Value).ToString());
-                    MemLib.WriteMemory(skill7Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 8)
-                {
-                    MemLib.WriteMemory(skill8ID, "int", ((int)numericUpDown15.Value).ToString());
-                    MemLib.WriteMemory(skill8Value, "int", "9999999");
-                }
-                if (totalEnabledSkills >= 9)
-                {
-                    MemLib.WriteMemory(skill9ID, "int", ((int)numericUpDown17.Value).ToString());
-                    MemLib.WriteMemory(skill9Value, "int", "9999999");
-                }
-                #endregion
-
-                // Step progress bar.
-                progressBar1.PerformStep();
-            }
-
-            // Complete progress bar.
-            progressBar1.Value = 100;
-
-            // Enable controls.
-            numericUpDown19.Enabled = true;
-            button1.Enabled = true;
-            button2.Enabled = true;
-            button3.Enabled = true;
-        }
-
-        // Reset skills.
-        private async void Button3_Click(object sender, EventArgs e)
-        {
-            // Ensure that at least one perk is selected.
-            if (totalEnabledSkills == 0)
-            {
-                MessageBox.Show("You need to select at least one skill!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Disable controls.
-            numericUpDown19.Enabled = false;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-
-            // Scan for address is needed.
-            if (MemLib.OpenProcess("CoreKeeper") && MainForm.AoBScanResultsSkills == null)
-            {
-                // Adjust progressbar.
-                progressBar1.Value = 10;
-
-                // Define the headers.
-                uint header1Addpress = (uint)((int)Math.Abs(int.Parse(MemLib.ReadInt(BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("168", NumberStyles.Integer)).ToString("X")).ToString())) + (int)numericUpDown20.Value);
-                uint footer2Addpress = (uint)((int)header1Addpress + (int)numericUpDown21.Value); // Header 2 is typically minus two.
-
-                // DEBUG: Convert to visual.
-                // string AoBString = header1Addpress + " 0 0 0 0 ? 0 " + String.Concat(Enumerable.Repeat("ID VALUE ", (int)numericUpDown19.Value)) + ((int)numericUpDown19.Value == 9 ? "?? ?? ?? ?? ?? ?? ?? ?? " : "") + "? " + footer2Addpress + " 0 0";
-
-                // Define the AoB and scan it into an array list. // Fix: If all 9 skills then add an extra ? ?.
-                string AoB = string.Join(" ", BitConverter.GetBytes(header1Addpress).Select(b => b.ToString("X2"))) + " 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 " + "01 00 00 00 ?? ?? ?? ?? " + String.Concat(Enumerable.Repeat("?? ?? ?? ?? ?? ?? ?? ?? ", (int)numericUpDown19.Value - 1)) + ((int)numericUpDown19.Value == 9 ? "?? ?? ?? ?? ?? ?? ?? ?? " : "") + "?? ?? ?? ?? " + string.Join(" ", BitConverter.GetBytes(footer2Addpress).Select(b => b.ToString("X2"))) + " 00 00 00 00 00 00 00 00";
-
-                MainForm.AoBScanResultsSkills = await MemLib.AoBScan(AoB, true, true);
-
-                if (MainForm.AoBScanResultsSkills.Count() == 0)
-                {
-                    MessageBox.Show("Could not find any skill addresses!\nTry restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    // Enable controls.
-                    numericUpDown19.Enabled = true;
-                    button1.Enabled = true;
-                    button2.Enabled = true;
-                    button3.Enabled = true;
-
-                    progressBar1.Value = 0;
-                    return;
-                }
-
-                // Adjust progressbar.
-                progressBar1.Step = 90 / MainForm.AoBScanResultsSkills.Count();
-            }
-            else
-            {
-                // Adjust progressbar.
-                progressBar1.Step = 90 / MainForm.AoBScanResultsSkills.Count();
-                progressBar1.Value = 10;
-            }
-
-            // Update richtextbox with found addresses.
-            foreach (long res in MainForm.AoBScanResultsSkills)
-            {
-                string headerBase = res.ToString("X");
-                string skill1ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
-                string skill1Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
-                string skill2ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
-                string skill2Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("40", NumberStyles.Integer)).ToString("X");
-                string skill3ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("44", NumberStyles.Integer)).ToString("X");
-                string skill3Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("48", NumberStyles.Integer)).ToString("X");
-                string skill4ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("52", NumberStyles.Integer)).ToString("X");
-                string skill4Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
-                string skill5ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("60", NumberStyles.Integer)).ToString("X");
-                string skill5Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
-                string skill6ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
-                string skill6Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("72", NumberStyles.Integer)).ToString("X");
-                string skill7ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("76", NumberStyles.Integer)).ToString("X");
-                string skill7Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("80", NumberStyles.Integer)).ToString("X");
-                string skill8ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("84", NumberStyles.Integer)).ToString("X");
-                string skill8Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("88", NumberStyles.Integer)).ToString("X");
-                string skill9ID = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("92", NumberStyles.Integer)).ToString("X");
-                string skill9Value = BigInteger.Add(BigInteger.Parse(headerBase, NumberStyles.HexNumber), BigInteger.Parse("96", NumberStyles.Integer)).ToString("X");
-
-                #region Set Values
-
-                // Set values.
-                if (totalEnabledSkills >= 1)
-                {
-                    MemLib.WriteMemory(skill1ID, "int", ((int)numericUpDown1.Value).ToString());
-                    MemLib.WriteMemory(skill1Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 2)
-                {
-                    MemLib.WriteMemory(skill2ID, "int", ((int)numericUpDown3.Value).ToString());
-                    MemLib.WriteMemory(skill2Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 3)
-                {
-                    MemLib.WriteMemory(skill3ID, "int", ((int)numericUpDown5.Value).ToString());
-                    MemLib.WriteMemory(skill3Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 4)
-                {
-                    MemLib.WriteMemory(skill4ID, "int", ((int)numericUpDown7.Value).ToString());
-                    MemLib.WriteMemory(skill4Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 5)
-                {
-                    MemLib.WriteMemory(skill5ID, "int", ((int)numericUpDown9.Value).ToString());
-                    MemLib.WriteMemory(skill5Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 6)
-                {
-                    MemLib.WriteMemory(skill6ID, "int", ((int)numericUpDown11.Value).ToString());
-                    MemLib.WriteMemory(skill6Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 7)
-                {
-                    MemLib.WriteMemory(skill7ID, "int", ((int)numericUpDown13.Value).ToString());
-                    MemLib.WriteMemory(skill7Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 8)
-                {
-                    MemLib.WriteMemory(skill8ID, "int", ((int)numericUpDown15.Value).ToString());
-                    MemLib.WriteMemory(skill8Value, "int", "0");
-                }
-                if (totalEnabledSkills >= 9)
-                {
-                    MemLib.WriteMemory(skill9ID, "int", ((int)numericUpDown17.Value).ToString());
-                    MemLib.WriteMemory(skill9Value, "int", "0");
-                }
-                #endregion
-
-                // Step progress bar.
-                progressBar1.PerformStep();
-            }
-
-            // Complete progress bar.
-            progressBar1.Value = 100;
-
-            // Enable controls.
-            numericUpDown19.Enabled = true;
-            button1.Enabled = true;
-            button2.Enabled = true;
-            button3.Enabled = true;
-        }
-
-        // Reset player address to null each change.
-        private void NumericUpDown20_ValueChanged(object sender, EventArgs e)
-        {
-            MainForm.AoBScanResultsSkills = null;
-        }
-
-        // Reset player address to null each change.
-        private void NumericUpDown21_ValueChanged(object sender, EventArgs e)
-        {
-            MainForm.AoBScanResultsSkills = null;
-        }
-
-        // Enable or disable debug mode.
+        // Change the format the skill values are displayed in. EXP or Levels.
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            // Check if checkbox was checked.
-            if (checkBox1.Checked)
+            // Get the current state.
+            if (UseEXPValues_CheckBox.Checked)
             {
-                // Make numericupdowns readonly.
-                numericUpDown20.Enabled = true;
-                numericUpDown21.Enabled = true;
+                // Use exp.
+
+                // Chanegt the numerics max value.
+                SkillILvL0_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID0_NumericUpDown.Value);
+                SkillILvL1_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID1_NumericUpDown.Value);
+                SkillILvL2_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID2_NumericUpDown.Value);
+                SkillILvL3_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID3_NumericUpDown.Value);
+                SkillILvL4_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID4_NumericUpDown.Value);
+                SkillILvL5_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID5_NumericUpDown.Value);
+                SkillILvL6_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID6_NumericUpDown.Value);
+                SkillILvL7_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID7_NumericUpDown.Value);
+                SkillILvL8_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID8_NumericUpDown.Value);
+                SkillILvL9_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID9_NumericUpDown.Value);
+                SkillILvL10_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID10_NumericUpDown.Value);
+
+                // Since increasing, translate the numerics to a heigher value.
+                SkillILvL0_NumericUpDown.Value = GetConvertedValues((int)SkillID0_NumericUpDown.Value, (int)SkillILvL0_NumericUpDown.Value, true, true);
+                SkillILvL1_NumericUpDown.Value = GetConvertedValues((int)SkillID1_NumericUpDown.Value, (int)SkillILvL1_NumericUpDown.Value, true, true);
+                SkillILvL2_NumericUpDown.Value = GetConvertedValues((int)SkillID2_NumericUpDown.Value, (int)SkillILvL2_NumericUpDown.Value, true, true);
+                SkillILvL3_NumericUpDown.Value = GetConvertedValues((int)SkillID3_NumericUpDown.Value, (int)SkillILvL3_NumericUpDown.Value, true, true);
+                SkillILvL4_NumericUpDown.Value = GetConvertedValues((int)SkillID4_NumericUpDown.Value, (int)SkillILvL4_NumericUpDown.Value, true, true);
+                SkillILvL5_NumericUpDown.Value = GetConvertedValues((int)SkillID5_NumericUpDown.Value, (int)SkillILvL5_NumericUpDown.Value, true, true);
+                SkillILvL6_NumericUpDown.Value = GetConvertedValues((int)SkillID6_NumericUpDown.Value, (int)SkillILvL6_NumericUpDown.Value, true, true);
+                SkillILvL7_NumericUpDown.Value = GetConvertedValues((int)SkillID7_NumericUpDown.Value, (int)SkillILvL7_NumericUpDown.Value, true, true);
+                SkillILvL8_NumericUpDown.Value = GetConvertedValues((int)SkillID8_NumericUpDown.Value, (int)SkillILvL8_NumericUpDown.Value, true, true);
+                SkillILvL9_NumericUpDown.Value = GetConvertedValues((int)SkillID9_NumericUpDown.Value, (int)SkillILvL9_NumericUpDown.Value, true, true);
+                SkillILvL10_NumericUpDown.Value = GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, true, true);
+
+                // Change the labels.
+                LvLRow1_Label.Text = "EXP";
+                LvLRow2_Label.Text = "EXP";
+                LvLRow3_Label.Text = "EXP";
+                LvLRow4_Label.Text = "EXP";
             }
             else
             {
-                // Make numericupdowns editable.
-                numericUpDown20.Enabled = false;
-                numericUpDown21.Enabled = false;
+                // Use levels.
+
+                // Since decreasing, translate the numerics to a lower value.
+                SkillILvL0_NumericUpDown.Value = GetConvertedValues((int)SkillID0_NumericUpDown.Value, (int)SkillILvL0_NumericUpDown.Value, true, false);
+                SkillILvL1_NumericUpDown.Value = GetConvertedValues((int)SkillID1_NumericUpDown.Value, (int)SkillILvL1_NumericUpDown.Value, true, false);
+                SkillILvL2_NumericUpDown.Value = GetConvertedValues((int)SkillID2_NumericUpDown.Value, (int)SkillILvL2_NumericUpDown.Value, true, false);
+                SkillILvL3_NumericUpDown.Value = GetConvertedValues((int)SkillID3_NumericUpDown.Value, (int)SkillILvL3_NumericUpDown.Value, true, false);
+                SkillILvL4_NumericUpDown.Value = GetConvertedValues((int)SkillID4_NumericUpDown.Value, (int)SkillILvL4_NumericUpDown.Value, true, false);
+                SkillILvL5_NumericUpDown.Value = GetConvertedValues((int)SkillID5_NumericUpDown.Value, (int)SkillILvL5_NumericUpDown.Value, true, false);
+                SkillILvL6_NumericUpDown.Value = GetConvertedValues((int)SkillID6_NumericUpDown.Value, (int)SkillILvL6_NumericUpDown.Value, true, false);
+                SkillILvL7_NumericUpDown.Value = GetConvertedValues((int)SkillID7_NumericUpDown.Value, (int)SkillILvL7_NumericUpDown.Value, true, false);
+                SkillILvL8_NumericUpDown.Value = GetConvertedValues((int)SkillID8_NumericUpDown.Value, (int)SkillILvL8_NumericUpDown.Value, true, false);
+                SkillILvL9_NumericUpDown.Value = GetConvertedValues((int)SkillID9_NumericUpDown.Value, (int)SkillILvL9_NumericUpDown.Value, true, false);
+                SkillILvL10_NumericUpDown.Value = GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, true, false);
+
+                // Chanegt the numerics max value.
+                SkillILvL0_NumericUpDown.Maximum = 100;
+                SkillILvL1_NumericUpDown.Maximum = 100;
+                SkillILvL2_NumericUpDown.Maximum = 100;
+                SkillILvL3_NumericUpDown.Maximum = 100;
+                SkillILvL4_NumericUpDown.Maximum = 100;
+                SkillILvL5_NumericUpDown.Maximum = 100;
+                SkillILvL6_NumericUpDown.Maximum = 100;
+                SkillILvL7_NumericUpDown.Maximum = 100;
+                SkillILvL8_NumericUpDown.Maximum = 100;
+                SkillILvL9_NumericUpDown.Maximum = 100;
+                SkillILvL10_NumericUpDown.Maximum = 100;
+
+                // Change the labels.
+                LvLRow1_Label.Text = "LVL";
+                LvLRow2_Label.Text = "LVL";
+                LvLRow3_Label.Text = "LVL";
+                LvLRow4_Label.Text = "LVL";
             }
         }
-
-        // Show skill help button.
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("SKILL-NAME\tID  MAX-LEVEL\r\n" +
-                            "==========================\r\n" +
-                            "Mining\t\t| 0 | 100035\r\n" +
-                            "Running\t\t| 1 | 498767\r\n" +
-                            "Melee Combat\t| 2 | 25004\r\n" +
-                            "Crafting\t\t| 4 | 29995\r\n" +
-                            "Vitality\t\t| 3 | 4999038\r\n" +
-                            "Gardening\t| 6 | 6602\r\n" +
-                            "Range Combat\t| 5 | 20001\r\n" +
-                            "Fishing\t\t| 7 | 2501\r\n" +
-                            "Cooking\t\t| 8 | 5000", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        #endregion
 
         #region Change Images
 
         // Picturebox 1.
         // Warn users about changing this value.
-        bool warnUsers = true;
+        // bool warnUsers = true;
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (warnUsers && MessageBox.Show("Are you sure you want to change the value of the first skill?\nChanging this will break any further descoveries of this players skills!\n\nContinue?", "Change the ID of first skill?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-            {
-                // Defualt the up down.
-                warnUsers = false; // Disable temporarly to disable further notifications.
-                numericUpDown1.Value = 1;
-                warnUsers = true; // Re-enable.
-            }
-            else
-            {
-                // User accepted their fate.
-                warnUsers = false;
-            }
+            // if (warnUsers && MessageBox.Show("Are you sure you want to change the value of the first skill?\nChanging this will break any further descoveries of this players skills!\n\nContinue?", "Change the ID of first skill?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            // {
+            //     // Defualt the up down.
+            //     warnUsers = false; // Disable temporarly to disable further notifications.
+            //     numericUpDown1.Value = 1;
+            //     warnUsers = true; // Re-enable.
+            // }
+            // else
+            // {
+            //     // User accepted their fate.
+            //     warnUsers = false;
+            // }
 
             // Adjust the image.
-            pictureBox1.BackgroundImage = GetBitmap((int)numericUpDown1.Value);
+            Skill0_PictureBox.BackgroundImage = GetBitmap((int)SkillID0_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 2.
         private void NumericUpDown3_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox2.BackgroundImage = GetBitmap((int)numericUpDown3.Value);
+            Skill1_PictureBox.BackgroundImage = GetBitmap((int)SkillID1_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 3.
         private void NumericUpDown5_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox3.BackgroundImage = GetBitmap((int)numericUpDown5.Value);
+            Skill2_PictureBox.BackgroundImage = GetBitmap((int)SkillID2_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 4.
         private void NumericUpDown7_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox4.BackgroundImage = GetBitmap((int)numericUpDown7.Value);
+            Skill3_PictureBox.BackgroundImage = GetBitmap((int)SkillID3_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 5.
         private void NumericUpDown9_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox5.BackgroundImage = GetBitmap((int)numericUpDown9.Value);
+            Skill4_PictureBox.BackgroundImage = GetBitmap((int)SkillID4_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 6.
         private void NumericUpDown11_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox6.BackgroundImage = GetBitmap((int)numericUpDown11.Value);
+            Skill5_PictureBox.BackgroundImage = GetBitmap((int)SkillID5_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 7.
         private void NumericUpDown13_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox7.BackgroundImage = GetBitmap((int)numericUpDown13.Value);
+            Skill6_PictureBox.BackgroundImage = GetBitmap((int)SkillID6_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 8.
         private void NumericUpDown15_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox8.BackgroundImage = GetBitmap((int)numericUpDown15.Value);
+            Skill7_PictureBox.BackgroundImage = GetBitmap((int)SkillID7_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Picturebox 9.
         private void NumericUpDown17_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox9.BackgroundImage = GetBitmap((int)numericUpDown17.Value);
+            Skill8_PictureBox.BackgroundImage = GetBitmap((int)SkillID8_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
+        }
+
+        // Picturebox 10.
+        private void NumericUpDown22_ValueChanged(object sender, EventArgs e)
+        {
+            Skill9_PictureBox.BackgroundImage = GetBitmap((int)SkillID9_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
+        }
+
+        // Picturebox 11.
+        private void NumericUpDown24_ValueChanged(object sender, EventArgs e)
+        {
+            Skill10_PictureBox.BackgroundImage = GetBitmap((int)SkillID10_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
         }
 
         // Get image per numericupdown value.
@@ -718,11 +347,1432 @@ namespace CoreKeepersWorkshop
                 return Properties.Resources.Skill8;
             if (value == 8)
                 return Properties.Resources.Skill9;
+            if (value == 9)
+                return Properties.Resources.Skill10;
+            if (value == 10)
+                return Properties.Resources.Skill11;
 
             return Properties.Resources.UnknownItem;
         }
         #endregion // End change images.
 
         #endregion // End form controls.
+
+        #region Event Handeler Helpers
+
+
+        // Event handler for skill selection change
+        private void SkillSelection_ValueChanged()
+        {
+            // Check if 
+            if (UseEXPValues_CheckBox.Checked)
+            {
+                // Chanegt the numerics max value.
+                SkillILvL0_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID0_NumericUpDown.Value);
+                SkillILvL1_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID1_NumericUpDown.Value);
+                SkillILvL2_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID2_NumericUpDown.Value);
+                SkillILvL3_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID3_NumericUpDown.Value);
+                SkillILvL4_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID4_NumericUpDown.Value);
+                SkillILvL5_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID5_NumericUpDown.Value);
+                SkillILvL6_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID6_NumericUpDown.Value);
+                SkillILvL7_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID7_NumericUpDown.Value);
+                SkillILvL8_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID8_NumericUpDown.Value);
+                SkillILvL9_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID9_NumericUpDown.Value);
+                SkillILvL10_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID10_NumericUpDown.Value);
+            }
+            else
+            {
+                // Chanegt the numerics max value.
+                SkillILvL0_NumericUpDown.Maximum = 100;
+                SkillILvL1_NumericUpDown.Maximum = 100;
+                SkillILvL2_NumericUpDown.Maximum = 100;
+                SkillILvL3_NumericUpDown.Maximum = 100;
+                SkillILvL4_NumericUpDown.Maximum = 100;
+                SkillILvL5_NumericUpDown.Maximum = 100;
+                SkillILvL6_NumericUpDown.Maximum = 100;
+                SkillILvL7_NumericUpDown.Maximum = 100;
+                SkillILvL8_NumericUpDown.Maximum = 100;
+                SkillILvL9_NumericUpDown.Maximum = 100;
+                SkillILvL10_NumericUpDown.Maximum = 100;
+            }
+        }
+        #endregion
+
+        #region Help Buttons
+
+        // Show skill help button.
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("SKILL-NAME\tID\tMAX-LEVEL\r\n" +
+                            "=========================\r\n" +
+                            "Mining\t\t| 0 |\t59978\r\n" +
+                            "Running\t\t| 1 |\t498767\r\n" +
+                            "Melee Combat\t| 2 |\t20001\r\n" +
+                            "Vitality\t\t| 3 |\t4999038\r\n" +
+                            "Crafting\t\t| 4 |\t29995\r\n" +
+                            "Range Combat\t| 5 |\t20001\r\n" +
+                            "Gardening\t| 6 |\t6602\r\n" +
+                            "Fishing\t\t| 7 |\t1494\r\n" +
+                            "Cooking\t\t| 8 |\t5000\r\n" +
+                            "Magic\t\t| 9 |\t20001\r\n" +
+                            "Summoning\t| 10 |\t59663", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        #endregion
+
+        #region Get Addresses
+
+        #region Scan For Initial Address
+
+        // Get valid skill addresses.
+        private async void Button5_Click(object sender, EventArgs e)
+        {
+            #region Toggle Controls
+
+            // Reset player address to null each change.
+            MainForm.AoBScanResultsSkills = null;
+
+            // Unhide progressbar.
+            PlayerSkill_ProgressBar.Visible = true;
+
+            // Disable controls.
+            GetPlayerSkillAddresses_Button.Enabled = false;
+
+            ChangeSkills_Button.Enabled = false;
+            MaxAllSkills_Button.Enabled = false;
+            ResetAllSkills_Button.Enabled = false;
+            UseSkillAddress_Button.Enabled = false;
+            PreviousSkillAddress_Button.Enabled = false;
+            NextSkillAddress_Button.Enabled = false;
+
+            Skill0_Panel.Enabled = false;
+            Skill1_Panel.Enabled = false;
+            Skill2_Panel.Enabled = false;
+            Skill3_Panel.Enabled = false;
+            Skill4_Panel.Enabled = false;
+            Skill5_Panel.Enabled = false;
+            Skill6_Panel.Enabled = false;
+            Skill7_Panel.Enabled = false;
+            Skill8_Panel.Enabled = false;
+            Skill9_Panel.Enabled = false;
+            Skill10_Panel.Enabled = false;
+
+            UseEXPValues_CheckBox.Enabled = false;
+
+            #endregion
+
+            // Scan for address is needed.
+            if (MemLib.OpenProcess("CoreKeeper") && MainForm.AoBScanResultsSkills == null)
+            {
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Value = 10;
+                PlayerSkill_ProgressBar.Visible = true;
+
+                // Helper for progressbar.
+                int scanAmounts = 2;
+
+                #region Scan Run #1
+
+                // Define the AoB and scan it into an array list.
+                string AoB = "02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? 05 00 00 00 ?? ?? ?? ?? 06 00 00 00 ?? ?? ?? ?? 07 00 00 00 ?? ?? ?? ?? 08 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
+
+                // Define new array for holding the scan results.
+                List<long> AoBScanResultsTemp = (await MemLib.AoBScan(AoB, true, true)).ToList();
+
+                if (AoBScanResultsTemp.Count() == 0)
+                {
+                    MessageBox.Show("Could not find any skill addresses!\nTry restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Enable controls.
+                    GetPlayerSkillAddresses_Button.Enabled = true;
+                    UseEXPValues_CheckBox.Enabled = true;
+
+                    PlayerSkill_ProgressBar.Value = 0;
+                    return;
+                }
+
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Value = 20;
+                PlayerSkill_ProgressBar.Step = (70 / scanAmounts) / AoBScanResultsTemp.Count();
+
+                // Ensure we load the list var.
+                // C# 8.0+: MainForm.AoBScanResultsSkills ??= new List<long>();
+                if (MainForm.AoBScanResultsSkills == null)
+                    MainForm.AoBScanResultsSkills = new List<long>();
+
+                // Iterate through all addresses and check for a valid byte. Filter out non-valid addresses.
+                foreach (long res in new List<long>(AoBScanResultsTemp))
+                {
+                    // Perform step.
+                    PlayerSkill_ProgressBar.PerformStep();
+
+                    // Backup 6 bits and look for either 10 or 11.
+                    string skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                    // Check for correct values
+                    if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                    {
+                        skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+
+                        if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                        {
+                            // Value not found, remove this from the list.
+                            AoBScanResultsTemp.Remove(res);
+
+                            // No value found. Skip.
+                            continue;
+                        }
+                    }
+
+                    // Debug
+                    // MessageBox.Show(Convert.ToInt64(skillAddress, 16).ToString());
+
+                    // Add the valid address to the list (convert hex string to long properly)
+                    MainForm.AoBScanResultsSkills.Add(Convert.ToInt64(skillAddress, 16));
+                }
+                #endregion
+
+                #region Scan Run #2
+
+                // Define the AoB and scan it into an array list.
+                AoB = "02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? 05 00 00 00 ?? ?? ?? ?? 06 00 00 00 ?? ?? ?? ?? 07 00 00 00 ?? ?? ?? ?? 08 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
+
+                // Define new array for holding the scan results.
+                AoBScanResultsTemp.Clear();
+                AoBScanResultsTemp = (await MemLib.AoBScan(AoB, true, true)).ToList();
+
+                if (AoBScanResultsTemp.Count() == 0)
+                {
+                    MessageBox.Show("Could not find any skill addresses!\nTry restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Enable controls.
+                    GetPlayerSkillAddresses_Button.Enabled = true;
+                    UseEXPValues_CheckBox.Enabled = true;
+
+                    PlayerSkill_ProgressBar.Value = 0;
+                    return;
+                }
+
+                // Adjust progressbar.
+                // progressBar2.Value = 20;
+                PlayerSkill_ProgressBar.Step = (70 / scanAmounts) / AoBScanResultsTemp.Count();
+
+                // Ensure we load the list var.
+                // MainForm.AoBScanResultsSkills ??= new List<long>();
+
+                // Iterate through all addresses and check for a valid byte. Filter out non-valid addresses.
+                foreach (long res in new List<long>(AoBScanResultsTemp))
+                {
+                    // Perform step.
+                    PlayerSkill_ProgressBar.PerformStep();
+
+                    // Backup 6 bits and look for either 10 or 11.
+                    string skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+
+                    // Check for correct values
+                    if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                    {
+                        skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+
+                        if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                        {
+                            // Value not found, remove this from the list.
+                            AoBScanResultsTemp.Remove(res);
+
+                            // No value found. Skip.
+                            continue;
+                        }
+                    }
+
+                    // Debug
+                    // MessageBox.Show(Convert.ToInt64(skillAddress, 16).ToString());
+
+                    // Add the valid address to the list (convert hex string to long properly)
+                    MainForm.AoBScanResultsSkills.Add(Convert.ToInt64(skillAddress, 16));
+                }
+                #endregion
+
+                // Check if any results where found.
+                if (AoBScanResultsTemp.Count() == 0)
+                {
+                    MessageBox.Show("Of the found skill addresses, none where valid!\nTry restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Enable controls.
+                    GetPlayerSkillAddresses_Button.Enabled = true;
+
+                    PlayerSkill_ProgressBar.Value = 0;
+                    return;
+                }
+
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Value = 100;
+
+                // Update richtextbox with found addresses.
+                foreach (long res in MainForm.AoBScanResultsSkills)
+                {
+                    if (PlayerSkill_RichTextBox.Text == "Addresses Loaded: 0")
+                    {
+                        PlayerSkill_RichTextBox.Text = "Player Skills Loaded: " + MainForm.AoBScanResultsSkills.Count().ToString() + " [" + res.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        PlayerSkill_RichTextBox.Text += ", " + res.ToString("X").ToString();
+                    }
+                }
+                PlayerSkill_RichTextBox.Text += "]";
+
+                // Hide progressbar.
+                PlayerSkill_ProgressBar.Visible = false;
+
+                // Enable controls.
+                GetPlayerSkillAddresses_Button.Enabled = true;
+                UseSkillAddress_Button.Enabled = true;
+
+                Skill0_Panel.Enabled = true;
+                Skill1_Panel.Enabled = true;
+                Skill2_Panel.Enabled = true;
+                Skill3_Panel.Enabled = true;
+                Skill4_Panel.Enabled = true;
+                Skill5_Panel.Enabled = true;
+                Skill6_Panel.Enabled = true;
+                Skill7_Panel.Enabled = true;
+                Skill8_Panel.Enabled = true;
+                Skill9_Panel.Enabled = true;
+                Skill10_Panel.Enabled = true;
+
+                UseEXPValues_CheckBox.Enabled = true;
+
+                // Check if results are greater then one.
+                if (MainForm.AoBScanResultsSkills.Count() > 1)
+                {
+                    // Enable controls.
+                    PreviousSkillAddress_Button.Enabled = true;
+                    NextSkillAddress_Button.Enabled = true;
+                }
+                else
+                {
+                    // Disable controls.
+                    PreviousSkillAddress_Button.Enabled = false;
+                    NextSkillAddress_Button.Enabled = false;
+                }
+
+                // Load skills.
+                UpdateSkills();
+            }
+            else
+            {
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Step = 0;
+                PlayerSkill_ProgressBar.Value = 0;
+            }
+        }
+        #endregion
+
+        #region Forward & Backward Buttons
+
+        // Previous address button.
+        private void Button20_Click(object sender, EventArgs e)
+        {
+            // Reset progress bar.
+            PlayerSkill_ProgressBar.Value = 0;
+
+            // Subtract from the use address if its not one.
+            useAddress = (useAddress == 1) ? 1 : useAddress - 1;
+
+            // Update the rich textbox.
+            PlayerSkill_RichTextBox.Text = "Addresses Loaded: 0";
+            foreach (long res in MainForm.AoBScanResultsSkills)
+            {
+                if (PlayerSkill_RichTextBox.Text == "Addresses Loaded: 0")
+                {
+                    PlayerSkill_RichTextBox.Text = "Addresses Loaded: " + MainForm.AoBScanResultsSkills.Count().ToString() + ", Selected: " + useAddress + ", [" + res.ToString("X").ToString();
+                }
+                else
+                {
+                    PlayerSkill_RichTextBox.Text += ", " + res.ToString("X").ToString();
+                }
+            }
+            PlayerSkill_RichTextBox.Text += "]";
+
+            // Load skills.
+            UpdateSkills();
+        }
+
+        // Next address button.
+        private void Button21_Click(object sender, EventArgs e)
+        {
+            // Reset progress bar.
+            PlayerSkill_ProgressBar.Value = 0;
+
+            // Add to the use address if its not the max.
+            useAddress = (MainForm.AoBScanResultsSkills != null && useAddress == MainForm.AoBScanResultsSkills.Count()) ? MainForm.AoBScanResultsSkills.Count() : useAddress + 1;
+
+            // Update the rich textbox.
+            PlayerSkill_RichTextBox.Text = "Addresses Loaded: 0";
+            foreach (long res in MainForm.AoBScanResultsSkills)
+            {
+                if (PlayerSkill_RichTextBox.Text == "Addresses Loaded: 0")
+                {
+                    PlayerSkill_RichTextBox.Text = "Addresses Loaded: " + MainForm.AoBScanResultsSkills.Count().ToString() + ", Selected: " + useAddress + ", [" + res.ToString("X").ToString();
+                }
+                else
+                {
+                    PlayerSkill_RichTextBox.Text += ", " + res.ToString("X").ToString();
+                }
+            }
+            PlayerSkill_RichTextBox.Text += "]";
+
+            // Load skills.
+            UpdateSkills();
+        }
+        #endregion
+
+        #region Scan Address For Current Skill Layout
+
+        // Get all addresses for the selected skill layout.
+        private async void Button6_Click(object sender, EventArgs e)
+        {
+            // Reset player address to null each change.
+            MainForm.AoBScanResultsSkillLoadout = null;
+
+            // Unhide progressbar.
+            PlayerSkill_ProgressBar.Visible = true;
+
+            // Disable controls.
+            UseSkillAddress_Button.Enabled = false;
+
+            ChangeSkills_Button.Enabled = false;
+            MaxAllSkills_Button.Enabled = false;
+            ResetAllSkills_Button.Enabled = false;
+            GetPlayerSkillAddresses_Button.Enabled = false;
+            PreviousSkillAddress_Button.Enabled = false;
+            NextSkillAddress_Button.Enabled = false;
+
+            Skill0_Panel.Enabled = false;
+            Skill1_Panel.Enabled = false;
+            Skill2_Panel.Enabled = false;
+            Skill3_Panel.Enabled = false;
+            Skill4_Panel.Enabled = false;
+            Skill5_Panel.Enabled = false;
+            Skill6_Panel.Enabled = false;
+            Skill7_Panel.Enabled = false;
+            Skill8_Panel.Enabled = false;
+            Skill9_Panel.Enabled = false;
+            Skill10_Panel.Enabled = false;
+
+            UseEXPValues_CheckBox.Enabled = false;
+
+            // Scan for address is needed.
+            if (MemLib.OpenProcess("CoreKeeper") && MainForm.AoBScanResultsSkillLoadout == null)
+            {
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Value = 30;
+                PlayerSkill_ProgressBar.Visible = true;
+
+                #region Extract The Skill ID & Value From Stored Address
+
+                // Select the inventory to use.
+                var res = MainForm.AoBScanResultsSkills.ElementAt(useAddress - 1);
+
+                string headerBase = res.ToString("X");
+                // int addressOffset = res.Item2;
+
+                // Parse header base once.
+                BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
+
+                int skillCount = 11; // Technically 12.
+                int[] skillIDs = new int[skillCount];
+                int[] skillValues = new int[skillCount];
+
+                // string test = "";
+
+                // Iterate through all the skills.
+                for (int i = 0; i < skillCount; i++)
+                {
+                    int idOffset = 8 + (i * 8);     // ID is at base offset + (index * 8)
+                    int valueOffset = idOffset + 4; // Value is always 4 bytes after ID
+
+                    skillIDs[i] = MemLib.ReadInt(BigInteger.Add(baseAddress, idOffset).ToString("X"));
+                    skillValues[i] = MemLib.ReadInt(BigInteger.Add(baseAddress, valueOffset).ToString("X"));
+
+                    // test += " " + string.Join(" ", BitConverter.GetBytes(skillIDs[i]).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(skillValues[i]).Select(b => b.ToString("X2")));
+                }
+
+                // Debug.
+                // Clipboard.SetText(test);
+                #endregion
+
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Value = 60;
+
+                #region Rebuild Array Based On Ascending Skill IDs
+
+                // Build array.
+                // Array to hold skill values in correct order.
+                int[] orderedValues = new int[skillCount];
+
+                // Populate orderedValues using skillIDs as the index.
+                for (int i = 0; i < skillCount; i++)
+                {
+                    int skillID = skillIDs[i];
+                    if (skillID >= 0 && skillID < skillCount) // Ensure it's within range.
+                    {
+                        orderedValues[skillID] = skillValues[i];
+                    }
+                }
+
+                // Convert to 4-byte hex representation.
+                string AoB = string.Join(" ", orderedValues.Select(v =>
+                    string.Join(" ", BitConverter.GetBytes(v).Select(b => b.ToString("X2")))
+                ));
+
+                // Debug.
+                // Clipboard.SetText(AoB);
+                #endregion
+
+                // Define new array for holding the scan results.
+                MainForm.AoBScanResultsSkillLoadout = (await MemLib.AoBScan(AoB, true, true)).ToList();
+
+                // Check if any results where found.
+                if (MainForm.AoBScanResultsSkillLoadout.Count() == 0)
+                {
+                    MessageBox.Show("Of the loaded skill addresses, no skill loadouts where found!\nTry a different skill address or tru restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Enable controls.
+                    GetPlayerSkillAddresses_Button.Enabled = true;
+
+                    PlayerSkill_ProgressBar.Value = 0;
+                    return;
+                }
+
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Value = 100;
+
+                // Update richtextbox with found addresses.
+                PlayerSkill_RichTextBox.Text = "Addresses Loaded: 0";
+                foreach (long res2 in MainForm.AoBScanResultsSkillLoadout)
+                {
+                    if (PlayerSkill_RichTextBox.Text == "Addresses Loaded: 0")
+                    {
+                        PlayerSkill_RichTextBox.Text = "Skill Loadouts Loaded: " + MainForm.AoBScanResultsSkillLoadout.Count().ToString() + " [" + res2.ToString("X").ToString();
+                    }
+                    else
+                    {
+                        PlayerSkill_RichTextBox.Text += ", " + res2.ToString("X").ToString();
+                    }
+                }
+                PlayerSkill_RichTextBox.Text += "]";
+
+                #region Toggle Controls
+
+                // Hide progressbar.
+                PlayerSkill_ProgressBar.Visible = false;
+
+                // Enable controls.
+                // Check if results are greater then one.
+                if (MainForm.AoBScanResultsSkills.Count() > 1)
+                {
+                    // Enable controls.
+                    PreviousSkillAddress_Button.Enabled = true;
+                    NextSkillAddress_Button.Enabled = true;
+                }
+                else
+                {
+                    // Disable controls.
+                    PreviousSkillAddress_Button.Enabled = false;
+                    NextSkillAddress_Button.Enabled = false;
+                }
+
+                // Enable controls.
+                GetPlayerSkillAddresses_Button.Enabled = true;
+                UseSkillAddress_Button.Enabled = true;
+
+                Skill0_Panel.Enabled = true;
+                Skill1_Panel.Enabled = true;
+                Skill2_Panel.Enabled = true;
+                Skill3_Panel.Enabled = true;
+                Skill4_Panel.Enabled = true;
+                Skill5_Panel.Enabled = true;
+                Skill6_Panel.Enabled = true;
+                Skill7_Panel.Enabled = true;
+                Skill8_Panel.Enabled = true;
+                Skill9_Panel.Enabled = true;
+                Skill10_Panel.Enabled = true;
+
+                // Enable controls.
+                ChangeSkills_Button.Enabled = true;
+                MaxAllSkills_Button.Enabled = true;
+                ResetAllSkills_Button.Enabled = true;
+
+                UseEXPValues_CheckBox.Enabled = true;
+
+                #endregion
+
+                #region Congrats
+
+                // Display message to the user to head back to the main menu.
+                MessageBox.Show("Congratulations. Your skills where loaded successfully!\n\n" +
+                    "Please save and exit to the main menu before editing any skills!\n\n" +
+                    "(Not exiting to the main menu will cause skills not to stick and will revert back to their original values!)\n\n" +
+                    "Once completed, load back into a world and save.", 
+                    "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                #endregion
+            }
+            else
+            {
+                // Adjust progressbar.
+                PlayerSkill_ProgressBar.Step = 0;
+                PlayerSkill_ProgressBar.Value = 0;
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region Helpers
+
+        // Helper for getting the raw skill exp reguardless of format.
+        public int GetNumericMaximum(int skillId)
+        {
+            // Check if use exp values is enabled.
+            if (!UseEXPValues_CheckBox.Checked)
+            {
+                return 100;
+            }
+
+            // Skill max levels dictionary
+            Dictionary<int, int> skillMaxLevels = new Dictionary<int, int>
+            {
+                { 0, 59978 },   // Mining
+                { 1, 498767 },   // Running
+                { 2, 20001 },    // Melee Combat
+                { 3, 4999038 },  // Vitality
+                { 4, 29995 },    // Crafting
+                { 5, 20001 },    // Range Combat
+                { 6, 6602 },     // Gardening
+                { 7, 1494 },     // Fishing
+                { 8, 5000 },     // Cooking
+                { 9, 20001 },    // Magic
+                { 10, 59663 }    // Summoning
+            };
+
+            // Ensure the skill exists in the dictionary
+            int maxLevel;
+            if (skillMaxLevels.TryGetValue(skillId, out maxLevel))
+            {
+                return maxLevel;
+            }
+            else
+            {
+                return 100; // Default max if skill ID is invalid. Should not happen.
+            }
+        }
+
+        // Helper for getting the raw skill exp regardless of format.
+        // TODO: Change the rounding functions to represent the actual in-game values.
+        public int GetConvertedValues(int skillId, int currentLevel, bool forceConvert = false, bool upConvert = false)
+        {
+            // Skill max levels dictionary
+            Dictionary<int, int> skillMaxLevels = new Dictionary<int, int>
+            {
+                { 0, 59978 },   // Mining
+                { 1, 498767 },   // Running
+                { 2, 20001 },    // Melee Combat
+                { 3, 4999038 },  // Vitality
+                { 4, 29995 },    // Crafting
+                { 5, 20001 },    // Range Combat
+                { 6, 6602 },     // Gardening
+                { 7, 1494 },     // Fishing
+                { 8, 5000 },     // Cooking
+                { 9, 20001 },    // Magic
+                { 10, 59663 }    // Summoning
+            };
+
+            // Ensure the skill exists in the dictionary.
+            int maxLevel;
+            if (!skillMaxLevels.TryGetValue(skillId, out maxLevel))
+                throw new ArgumentException("Invalid skill ID");
+
+            // Convert value.
+            if (!UseEXPValues_CheckBox.Checked || forceConvert)
+            {
+                // Ensure we dont convert values if the option is off.
+                if (forceConvert)
+                {
+                    if (upConvert)
+                    {
+                        // Converts 50% -> 50018 EXP
+                        // Convert from 0-100 scale to the skill's max level
+                        return (int)Math.Round((currentLevel / 100.0) * maxLevel);
+                    }
+                    else
+                    {
+                        // Converts 50018 Mining EXP -> 50
+                        // Convert from skill max level to a 0-100 scale
+                        return (int)Math.Round((currentLevel / (double)maxLevel) * 100);
+                    }
+                }
+
+                // Force convert all values to EXP reguardless of input.
+                if (upConvert)
+                {
+                    // Converts 50% -> 50018 EXP
+                    // Convert from 0-100 scale to the skill's max level
+                    return (int)Math.Round((currentLevel / 100.0) * maxLevel);
+                }
+                else // Normal operations.
+                {
+                    // Converts 50018 Mining EXP -> 50
+                    // Convert from skill max level to a 0-100 scale
+                    return (int)Math.Round((currentLevel / (double)maxLevel) * 100);
+                }
+            }
+            else
+            {
+                // Use raw exp value.
+                return currentLevel;
+            }
+        }
+
+        // Function for updating the GUI with the skill data.
+        public bool warnUser = false;
+        public int warnUserCount = 0;
+        public void UpdateSkills()
+        {
+            // Ensure the scan results are populated. (errors should never happen)
+            if (MainForm.AoBScanResultsSkills == null)
+            {
+                // Display error.
+                MessageBox.Show("You need to first scan for the Skills addresses!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Since we're changing addresses, make sure we require a rescan!
+            if (MainForm.AoBScanResultsSkillLoadout != null)
+            {
+                MainForm.AoBScanResultsSkillLoadout = null;
+
+                // Disable some controls.
+                ChangeSkills_Button.Enabled = false;
+                MaxAllSkills_Button.Enabled = false;
+                ResetAllSkills_Button.Enabled = false;
+
+                // checkBox1.Enabled = false;
+            }
+
+            // Disable controls.
+            GetPlayerSkillAddresses_Button.Enabled = false;
+            UseSkillAddress_Button.Enabled = false;
+            PreviousSkillAddress_Button.Enabled = false;
+            NextSkillAddress_Button.Enabled = false;
+
+            // Select the inventory to use.
+            var res = MainForm.AoBScanResultsSkills.ElementAt(useAddress - 1);
+
+            string headerBase = res.ToString("X");
+            // int addressOffset = res.Item2;
+
+            // Parse header base once.
+            BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
+
+            int skillCount = 11; // Technically 12.
+            int[] skillIDs = new int[skillCount];
+            int[] skillValues = new int[skillCount];
+
+            // Iterate through all the skills.
+            for (int i = 0; i < skillCount; i++)
+            {
+                int idOffset = 8 + (i * 8);     // ID is at base offset + (index * 8)
+                int valueOffset = idOffset + 4; // Value is always 4 bytes after ID
+
+                skillIDs[i] = MemLib.ReadInt(BigInteger.Add(baseAddress, idOffset).ToString("X"));
+                skillValues[i] = MemLib.ReadInt(BigInteger.Add(baseAddress, valueOffset).ToString("X"));
+
+                // Debug
+                // MessageBox.Show("RAW: ID: " + skillIDs[i].ToString() + ", VAL: " + skillValues[i] + " | MOD: " + GetConvertedValues(skillIDs[i], skillValues[i]).ToString());
+            }
+
+            // Filter out invalid addresses.
+            // This may cause a higher performance impact.
+            #region Filter Invalid Addresses
+
+            // Iterate through all the addresses.
+            foreach (long res2 in MainForm.AoBScanResultsSkills)
+            {
+                string headerBaseTest = res2.ToString("X");
+                // int addressOffset = res.Item2;
+
+                // Parse header base once.
+                BigInteger baseAddressTest = BigInteger.Parse(headerBaseTest, NumberStyles.HexNumber);
+
+                int[] skillIDsTest = new int[skillCount];
+
+                // Iterate through all the skills.
+                for (int i = 0; i < skillCount; i++)
+                {
+                    int idOffsetTest = 8 + (i * 8);         // ID is at base offset + (index * 8)
+
+                    skillIDsTest[i] = MemLib.ReadInt(BigInteger.Add(baseAddressTest, idOffsetTest).ToString("X"));
+                }
+
+                HashSet<int> seenIDs = new HashSet<int>();
+                bool hasDuplicates = false;
+                bool hasOutOfRange = false;
+
+                for (int i = 0; i < skillCount; i++)
+                {
+                    int skillID = skillIDsTest[i];
+
+                    // Check for duplicates
+                    if (!seenIDs.Add(skillID))
+                    {
+                        hasDuplicates = true;
+                    }
+
+                    // Check if out of range
+                    if (skillID < 0 || skillID >= skillCount)
+                    {
+                        hasOutOfRange = true;
+                    }
+                }
+
+                // Check for errors.
+                if (hasDuplicates || hasOutOfRange)
+                {
+                    // Change the warn user bool.
+                    warnUserCount++;
+                    warnUser = true;
+
+                    // Check if this is the only address.
+                    if (MainForm.AoBScanResultsSkills.Count() > 1)
+                    {
+                        // Other addresses exist, remove this one & switch to the next one.
+
+                        // Remove address.
+                        MainForm.AoBScanResultsSkills.Remove(res2);
+
+                        // Reset the use address.
+                        useAddress = 1;
+
+                        // Update the richtextbox.
+                        // Update richtextbox with found addresses.
+                        PlayerSkill_RichTextBox.Text = "Addresses Loaded: 0";
+                        foreach (long res3 in MainForm.AoBScanResultsSkills)
+                        {
+                            if (PlayerSkill_RichTextBox.Text == "Addresses Loaded: 0")
+                            {
+                                PlayerSkill_RichTextBox.Text = "Skill Loadouts Loaded: " + MainForm.AoBScanResultsSkills.Count().ToString() + ", Selected: " + useAddress + ", [" + res3.ToString("X").ToString();
+                            }
+                            else
+                            {
+                                PlayerSkill_RichTextBox.Text += ", " + res3.ToString("X").ToString();
+                            }
+                        }
+                        PlayerSkill_RichTextBox.Text += "]";
+
+                        // Warn user.
+                        // MessageBox.Show("Found skill values out of range or duplicated. This typically means it was a bad address.\n\n" +
+                        //    "- These addresses where automatically removed!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Reload the next address.
+                        UpdateSkills();
+
+                        return;
+                    }
+                    else
+                    {
+                        // This was the only address! Not good.
+
+                        // Warn user.
+                        // MessageBox.Show("Found skill values out of range or duplicated. This typically means it was a bad address.\n\n" +
+                        //    "- These addresses where automatically removed!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        MessageBox.Show("Something went wrong. No valid addresses remaining!\n\n" +
+                            "Please try reloading the game.", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        #region Toggle Controls
+
+                        // Reset player address to null each change.
+                        MainForm.AoBScanResultsSkills = null;
+                        MainForm.AoBScanResultsSkillLoadout = null;
+
+                        // Unhide progressbar.
+                        PlayerSkill_ProgressBar.Value = 0;
+                        PlayerSkill_ProgressBar.Visible = true;
+
+                        // Disable controls.
+                        GetPlayerSkillAddresses_Button.Enabled = false;
+
+                        ChangeSkills_Button.Enabled = false;
+                        MaxAllSkills_Button.Enabled = false;
+                        ResetAllSkills_Button.Enabled = false;
+                        UseSkillAddress_Button.Enabled = false;
+                        PreviousSkillAddress_Button.Enabled = false;
+                        NextSkillAddress_Button.Enabled = false;
+
+                        Skill0_Panel.Enabled = false;
+                        Skill1_Panel.Enabled = false;
+                        Skill2_Panel.Enabled = false;
+                        Skill3_Panel.Enabled = false;
+                        Skill4_Panel.Enabled = false;
+                        Skill5_Panel.Enabled = false;
+                        Skill6_Panel.Enabled = false;
+                        Skill7_Panel.Enabled = false;
+                        Skill8_Panel.Enabled = false;
+                        Skill9_Panel.Enabled = false;
+                        Skill10_Panel.Enabled = false;
+
+                        UseEXPValues_CheckBox.Enabled = false;
+
+                        #endregion
+
+                        return;
+                    }
+                }
+            }
+
+            // Warn user about any removed addresses.
+            if (warnUser)
+            {
+                // Warn user.
+                MessageBox.Show("Found [" + warnUserCount + "] skill values out of range or duplicated.\n" +
+                    "(This typically means it was a bad address).\n\n" +
+                    "- These addresses where automatically removed!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Reset vars.
+                warnUserCount = 0;
+                warnUser = false;
+            }
+            #endregion
+
+            // Catch any bad addresses.
+            try
+            {
+                // Set the form control data.
+                #region Controls
+
+                SkillID0_NumericUpDown.Value = (decimal)skillIDs[0];
+                SkillILvL0_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID0_NumericUpDown.Value, skillValues[0]);
+
+                SkillID1_NumericUpDown.Value = (decimal)skillIDs[1];
+                SkillILvL1_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID1_NumericUpDown.Value, skillValues[1]);
+
+                SkillID2_NumericUpDown.Value = (decimal)skillIDs[2];
+                SkillILvL2_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID2_NumericUpDown.Value, skillValues[2]);
+
+                SkillID3_NumericUpDown.Value = (decimal)skillIDs[3];
+                SkillILvL3_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID3_NumericUpDown.Value, skillValues[3]);
+
+                SkillID4_NumericUpDown.Value = (decimal)skillIDs[4];
+                SkillILvL4_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID4_NumericUpDown.Value, skillValues[4]);
+
+                SkillID5_NumericUpDown.Value = (decimal)skillIDs[5];
+                SkillILvL5_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID5_NumericUpDown.Value, skillValues[5]);
+
+                SkillID6_NumericUpDown.Value = (decimal)skillIDs[6];
+                SkillILvL6_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID6_NumericUpDown.Value, skillValues[6]);
+
+                SkillID7_NumericUpDown.Value = (decimal)skillIDs[7];
+                SkillILvL7_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID7_NumericUpDown.Value, skillValues[7]);
+
+                SkillID8_NumericUpDown.Value = (decimal)skillIDs[8];
+                SkillILvL8_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID8_NumericUpDown.Value, skillValues[8]);
+
+                SkillID9_NumericUpDown.Value = (decimal)skillIDs[9];
+                SkillILvL9_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID9_NumericUpDown.Value, skillValues[9]);
+
+                SkillID10_NumericUpDown.Value = (decimal)skillIDs[10];
+                SkillILvL10_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID10_NumericUpDown.Value, skillValues[10]);
+
+                #endregion
+            }
+            catch (Exception)
+            {
+                #region Remove Bad Addresses
+
+                // Remove bad address.
+                //
+                // Check if this is the only address.
+                if (MainForm.AoBScanResultsSkills.Count() > 1)
+                {
+                    // Other addresses exist, remove this one & switch to the next one.
+
+                    // Remove address.
+                    MainForm.AoBScanResultsSkills.Remove(res);
+
+                    // Reset the use address.
+                    useAddress = 1;
+
+                    // Update the richtextbox.
+                    // Update richtextbox with found addresses.
+                    PlayerSkill_RichTextBox.Text = "Addresses Loaded: 0";
+                    foreach (long res2 in MainForm.AoBScanResultsSkills)
+                    {
+                        if (PlayerSkill_RichTextBox.Text == "Addresses Loaded: 0")
+                        {
+                            PlayerSkill_RichTextBox.Text = "Skill Loadouts Loaded: " + MainForm.AoBScanResultsSkills.Count().ToString() + ", Selected: " + useAddress + ", [" + res2.ToString("X").ToString();
+                        }
+                        else
+                        {
+                            PlayerSkill_RichTextBox.Text += ", " + res2.ToString("X").ToString();
+                        }
+                    }
+                    PlayerSkill_RichTextBox.Text += "]";
+
+                    // Warn user.
+                    MessageBox.Show("A skill value was out of range. This typically means it was a bad address.\n\n" +
+                        "- The address was automatically removed!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // Reload the next address.
+                    UpdateSkills();
+
+                    return;
+                }
+                else
+                {
+                    // This was the only address! Not good.
+
+                    // Warn user.
+                    MessageBox.Show("A skill value was out of range. This typically means it was a bad address.\n\n" +
+                        "- The address was automatically removed!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    MessageBox.Show("Something went wrong. No valid addresses remaining!\n\n" +
+                        "Please try reloading the game.", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    #region Toggle Controls
+
+                    // Reset player address to null each change.
+                    MainForm.AoBScanResultsSkills = null;
+                    MainForm.AoBScanResultsSkillLoadout = null;
+
+                    // Unhide progressbar.
+                    PlayerSkill_ProgressBar.Value = 0;
+                    PlayerSkill_ProgressBar.Visible = true;
+
+                    // Disable controls.
+                    GetPlayerSkillAddresses_Button.Enabled = false;
+
+                    ChangeSkills_Button.Enabled = false;
+                    MaxAllSkills_Button.Enabled = false;
+                    ResetAllSkills_Button.Enabled = false;
+                    UseSkillAddress_Button.Enabled = false;
+                    PreviousSkillAddress_Button.Enabled = false;
+                    NextSkillAddress_Button.Enabled = false;
+
+                    Skill0_Panel.Enabled = false;
+                    Skill1_Panel.Enabled = false;
+                    Skill2_Panel.Enabled = false;
+                    Skill3_Panel.Enabled = false;
+                    Skill4_Panel.Enabled = false;
+                    Skill5_Panel.Enabled = false;
+                    Skill6_Panel.Enabled = false;
+                    Skill7_Panel.Enabled = false;
+                    Skill8_Panel.Enabled = false;
+                    Skill9_Panel.Enabled = false;
+                    Skill10_Panel.Enabled = false;
+
+                    UseEXPValues_CheckBox.Enabled = false;
+
+                    #endregion
+
+                    return;
+                }
+                #endregion
+            }
+
+            // Enable controls.
+            GetPlayerSkillAddresses_Button.Enabled = true;
+            UseSkillAddress_Button.Enabled = true;
+
+            // Enable controls.
+            // Check if results are greater then one.
+            if (MainForm.AoBScanResultsSkills.Count() > 1)
+            {
+                // Enable controls.
+                PreviousSkillAddress_Button.Enabled = true;
+                NextSkillAddress_Button.Enabled = true;
+            }
+            else
+            {
+                // Disable controls.
+                PreviousSkillAddress_Button.Enabled = false;
+                NextSkillAddress_Button.Enabled = false;
+            }
+        }
+        #endregion
+
+        #region Reset Stats
+
+        // Reset skills.
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            // Ensure the scan results are populated.
+            if (MainForm.AoBScanResultsSkills == null)
+            {
+                // Display error.
+                MessageBox.Show("You need to first scan for the Skills addresses!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Disable controls.
+                ChangeSkills_Button.Enabled = false;
+                MaxAllSkills_Button.Enabled = false;
+                ResetAllSkills_Button.Enabled = false;
+                GetPlayerSkillAddresses_Button.Enabled = true;
+                PreviousSkillAddress_Button.Enabled = false;
+                NextSkillAddress_Button.Enabled = false;
+
+                Skill0_Panel.Enabled = false;
+                Skill1_Panel.Enabled = false;
+                Skill2_Panel.Enabled = false;
+                Skill3_Panel.Enabled = false;
+                Skill4_Panel.Enabled = false;
+                Skill5_Panel.Enabled = false;
+                Skill6_Panel.Enabled = false;
+                Skill7_Panel.Enabled = false;
+                Skill8_Panel.Enabled = false;
+                Skill9_Panel.Enabled = false;
+                Skill10_Panel.Enabled = false;
+
+                ChangeSkills_ProgressBar.Value = 0;
+                return;
+            }
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 10;
+
+            // Select the inventory to use.
+            var res = MainForm.AoBScanResultsSkills.ElementAt(useAddress - 1);
+
+            string headerBase = res.ToString("X");
+            // int addressOffset = res.Item2;
+
+            // Parse header base once.
+            BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
+
+            int skillCount = 11; // Technically 12.
+            string[] skillIDs = new string[skillCount];
+            string[] skillValues = new string[skillCount];
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 20;
+            ChangeSkills_ProgressBar.Step = 80 / skillCount;
+
+            // Iterate through all the skills.
+            for (int i = 0; i < skillCount; i++)
+            {
+                int idOffset = 8 + (i * 8);     // ID is at base offset + (index * 8)
+                int valueOffset = idOffset + 4; // Value is always 4 bytes after ID
+
+                skillIDs[i] = BigInteger.Add(baseAddress, idOffset).ToString("X");
+                skillValues[i] = BigInteger.Add(baseAddress, valueOffset).ToString("X");
+
+                // Adjust progressbar.
+                ChangeSkills_ProgressBar.PerformStep();
+            }
+
+            // Write values to the game.
+            #region Logic
+
+            MemLib.WriteMemory(skillIDs[0], "int", ((int)SkillID0_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[0], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[1], "int", ((int)SkillID1_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[1], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[2], "int", ((int)SkillID2_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[2], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[3], "int", ((int)SkillID3_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[3], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[4], "int", ((int)SkillID4_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[4], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[5], "int", ((int)SkillID5_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[5], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[6], "int", ((int)SkillID6_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[6], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[7], "int", ((int)SkillID7_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[7], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[8], "int", ((int)SkillID8_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[8], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[9], "int", ((int)SkillID9_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[9], "int", "0");
+
+            MemLib.WriteMemory(skillIDs[10], "int", ((int)SkillID10_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[10], "int", "0");
+
+            #endregion
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 100;
+
+            // Change numeric values.
+            SkillILvL0_NumericUpDown.Value = 0;
+            SkillILvL1_NumericUpDown.Value = 0;
+            SkillILvL2_NumericUpDown.Value = 0;
+            SkillILvL3_NumericUpDown.Value = 0;
+            SkillILvL4_NumericUpDown.Value = 0;
+            SkillILvL5_NumericUpDown.Value = 0;
+            SkillILvL6_NumericUpDown.Value = 0;
+            SkillILvL7_NumericUpDown.Value = 0;
+            SkillILvL8_NumericUpDown.Value = 0;
+            SkillILvL9_NumericUpDown.Value = 0;
+            SkillILvL10_NumericUpDown.Value = 0;
+        }
+        #endregion
+
+        #region Manual Stats
+
+        // Manual set skils.
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            // Ensure the scan results are populated.
+            if (MainForm.AoBScanResultsSkills == null)
+            {
+                // Display error.
+                MessageBox.Show("You need to first scan for the Skills addresses!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Disable controls.
+                ChangeSkills_Button.Enabled = false;
+                MaxAllSkills_Button.Enabled = false;
+                ResetAllSkills_Button.Enabled = false;
+                GetPlayerSkillAddresses_Button.Enabled = true;
+                PreviousSkillAddress_Button.Enabled = false;
+                NextSkillAddress_Button.Enabled = false;
+
+                Skill0_Panel.Enabled = false;
+                Skill1_Panel.Enabled = false;
+                Skill2_Panel.Enabled = false;
+                Skill3_Panel.Enabled = false;
+                Skill4_Panel.Enabled = false;
+                Skill5_Panel.Enabled = false;
+                Skill6_Panel.Enabled = false;
+                Skill7_Panel.Enabled = false;
+                Skill8_Panel.Enabled = false;
+                Skill9_Panel.Enabled = false;
+                Skill10_Panel.Enabled = false;
+
+                ChangeSkills_ProgressBar.Value = 0;
+                return;
+            }
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 10;
+
+            // Select the inventory to use.
+            var res = MainForm.AoBScanResultsSkills.ElementAt(useAddress - 1);
+
+            string headerBase = res.ToString("X");
+            // int addressOffset = res.Item2;
+
+            // Parse header base once.
+            BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
+
+            int skillCount = 11; // Technically 12.
+            string[] skillIDs = new string[skillCount];
+            string[] skillValues = new string[skillCount];
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 20;
+            ChangeSkills_ProgressBar.Step = 80 / skillCount;
+
+            // Iterate through all the skills.
+            for (int i = 0; i < skillCount; i++)
+            {
+                int idOffset = 8 + (i * 8);     // ID is at base offset + (index * 8)
+                int valueOffset = idOffset + 4; // Value is always 4 bytes after ID
+
+                skillIDs[i] = BigInteger.Add(baseAddress, idOffset).ToString("X");
+                skillValues[i] = BigInteger.Add(baseAddress, valueOffset).ToString("X");
+
+                // Adjust progressbar.
+                ChangeSkills_ProgressBar.PerformStep();
+            }
+
+            // Write values to the game.
+            #region Logic
+
+            // Debug
+            // MessageBox.Show(GetConvertedValues((int)numericUpDown1.Value, (int)numericUpDown2.Value, upConvert: true).ToString().ToString());
+
+            MemLib.WriteMemory(skillIDs[0], "int", ((int)SkillID0_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[0], "int", GetConvertedValues((int)SkillID0_NumericUpDown.Value, (int)SkillILvL0_NumericUpDown.Value, upConvert: true).ToString()); // Get numerical value reguardless of format!
+
+            MemLib.WriteMemory(skillIDs[1], "int", ((int)SkillID1_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[1], "int", GetConvertedValues((int)SkillID1_NumericUpDown.Value, (int)SkillILvL1_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[2], "int", ((int)SkillID2_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[2], "int", GetConvertedValues((int)SkillID2_NumericUpDown.Value, (int)SkillILvL2_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[3], "int", ((int)SkillID3_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[3], "int", GetConvertedValues((int)SkillID3_NumericUpDown.Value, (int)SkillILvL3_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[4], "int", ((int)SkillID4_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[4], "int", GetConvertedValues((int)SkillID4_NumericUpDown.Value, (int)SkillILvL4_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[5], "int", ((int)SkillID5_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[5], "int", GetConvertedValues((int)SkillID5_NumericUpDown.Value, (int)SkillILvL5_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[6], "int", ((int)SkillID6_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[6], "int", GetConvertedValues((int)SkillID6_NumericUpDown.Value, (int)SkillILvL6_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[7], "int", ((int)SkillID7_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[7], "int", GetConvertedValues((int)SkillID7_NumericUpDown.Value, (int)SkillILvL7_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[8], "int", ((int)SkillID8_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[8], "int", GetConvertedValues((int)SkillID8_NumericUpDown.Value, (int)SkillILvL8_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[9], "int", ((int)SkillID9_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[9], "int", GetConvertedValues((int)SkillID9_NumericUpDown.Value, (int)SkillILvL9_NumericUpDown.Value, upConvert: true).ToString());
+
+            MemLib.WriteMemory(skillIDs[10], "int", ((int)SkillID10_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[10], "int", GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, upConvert: true).ToString());
+
+            #endregion
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 100;
+        }
+        #endregion
+
+        #region Max Stats
+
+        // Max skills. 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            // Ensure the scan results are populated.
+            if (MainForm.AoBScanResultsSkills == null)
+            {
+                // Display error.
+                MessageBox.Show("You need to first scan for the Skills addresses!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Disable controls.
+                ChangeSkills_Button.Enabled = false;
+                MaxAllSkills_Button.Enabled = false;
+                ResetAllSkills_Button.Enabled = false;
+                GetPlayerSkillAddresses_Button.Enabled = true;
+                PreviousSkillAddress_Button.Enabled = false;
+                NextSkillAddress_Button.Enabled = false;
+
+                Skill0_Panel.Enabled = false;
+                Skill1_Panel.Enabled = false;
+                Skill2_Panel.Enabled = false;
+                Skill3_Panel.Enabled = false;
+                Skill4_Panel.Enabled = false;
+                Skill5_Panel.Enabled = false;
+                Skill6_Panel.Enabled = false;
+                Skill7_Panel.Enabled = false;
+                Skill8_Panel.Enabled = false;
+                Skill9_Panel.Enabled = false;
+                Skill10_Panel.Enabled = false;
+
+                ChangeSkills_ProgressBar.Value = 0;
+                return;
+            }
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 10;
+
+            // Select the inventory to use.
+            var res = MainForm.AoBScanResultsSkills.ElementAt(useAddress - 1);
+
+            string headerBase = res.ToString("X");
+            // int addressOffset = res.Item2;
+
+            // Parse header base once.
+            BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
+
+            int skillCount = 11; // Technically 12.
+            string[] skillIDs = new string[skillCount];
+            string[] skillValues = new string[skillCount];
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 20;
+            ChangeSkills_ProgressBar.Step = 80 / skillCount;
+
+            // Iterate through all the skills.
+            for (int i = 0; i < skillCount; i++)
+            {
+                int idOffset = 8 + (i * 8);     // ID is at base offset + (index * 8)
+                int valueOffset = idOffset + 4; // Value is always 4 bytes after ID
+
+                skillIDs[i] = BigInteger.Add(baseAddress, idOffset).ToString("X");
+                skillValues[i] = BigInteger.Add(baseAddress, valueOffset).ToString("X");
+
+                // Adjust progressbar.
+                ChangeSkills_ProgressBar.PerformStep();
+            }
+
+            // Write values to the game.
+            #region Set Max Levels
+
+            // Dictionary mapping skill IDs to max values.
+            Dictionary<int, int> skillMaxValues = new Dictionary<int, int>
+            {
+                { 0, 59978 },   // Mining
+                { 1, 498767 },   // Running
+                { 2, 20001 },    // Melee Combat
+                { 3, 4999038 },  // Vitality
+                { 4, 29995 },    // Crafting
+                { 5, 20001 },    // Range Combat
+                { 6, 6602 },     // Gardening
+                { 7, 1494 },     // Fishing
+                { 8, 5000 },     // Cooking
+                { 9, 20001 },    // Magic
+                { 10, 59663 }    // Summoning
+            };
+
+            // Iterate through all skills and assign max values.
+            for (int i = 0; i < skillCount; i++)
+            {
+                // Read the skill ID from memory.
+                int skillID = MemLib.ReadInt(skillIDs[i]);
+
+                // If the skill ID is valid, write its max value.
+                if (skillMaxValues.ContainsKey(skillID))
+                {
+                    MemLib.WriteMemory(skillValues[i], "int", skillMaxValues[skillID].ToString());
+                }
+            }
+
+            #endregion
+
+            #region Set Custom IDs
+
+            MemLib.WriteMemory(skillIDs[0], "int", ((int)SkillID0_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[1], "int", ((int)SkillID1_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[2], "int", ((int)SkillID2_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[3], "int", ((int)SkillID3_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[4], "int", ((int)SkillID4_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[5], "int", ((int)SkillID5_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[6], "int", ((int)SkillID6_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[7], "int", ((int)SkillID7_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[8], "int", ((int)SkillID8_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[9], "int", ((int)SkillID9_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[10], "int", ((int)SkillID10_NumericUpDown.Value).ToString());
+
+            #endregion
+
+            // Adjust progressbar.
+            ChangeSkills_ProgressBar.Value = 100;
+
+            // Change numeric values.
+            SkillILvL0_NumericUpDown.Value = SkillILvL0_NumericUpDown.Maximum;
+            SkillILvL1_NumericUpDown.Value = SkillILvL1_NumericUpDown.Maximum;
+            SkillILvL2_NumericUpDown.Value = SkillILvL2_NumericUpDown.Maximum;
+            SkillILvL3_NumericUpDown.Value = SkillILvL3_NumericUpDown.Maximum;
+            SkillILvL4_NumericUpDown.Value = SkillILvL4_NumericUpDown.Maximum;
+            SkillILvL5_NumericUpDown.Value = SkillILvL5_NumericUpDown.Maximum;
+            SkillILvL6_NumericUpDown.Value = SkillILvL6_NumericUpDown.Maximum;
+            SkillILvL7_NumericUpDown.Value = SkillILvL7_NumericUpDown.Maximum;
+            SkillILvL8_NumericUpDown.Value = SkillILvL8_NumericUpDown.Maximum;
+            SkillILvL9_NumericUpDown.Value = SkillILvL9_NumericUpDown.Maximum;
+            SkillILvL10_NumericUpDown.Value = SkillILvL10_NumericUpDown.Maximum;
+        }
+        #endregion
     }
 }

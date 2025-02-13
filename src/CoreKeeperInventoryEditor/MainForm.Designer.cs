@@ -30,2742 +30,2737 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBox50 = new System.Windows.Forms.PictureBox();
-            this.pictureBox49 = new System.Windows.Forms.PictureBox();
-            this.pictureBox48 = new System.Windows.Forms.PictureBox();
-            this.pictureBox47 = new System.Windows.Forms.PictureBox();
-            this.pictureBox46 = new System.Windows.Forms.PictureBox();
-            this.pictureBox45 = new System.Windows.Forms.PictureBox();
-            this.pictureBox44 = new System.Windows.Forms.PictureBox();
-            this.pictureBox43 = new System.Windows.Forms.PictureBox();
-            this.pictureBox42 = new System.Windows.Forms.PictureBox();
-            this.pictureBox41 = new System.Windows.Forms.PictureBox();
-            this.pictureBox40 = new System.Windows.Forms.PictureBox();
-            this.pictureBox39 = new System.Windows.Forms.PictureBox();
-            this.pictureBox38 = new System.Windows.Forms.PictureBox();
-            this.pictureBox37 = new System.Windows.Forms.PictureBox();
-            this.pictureBox36 = new System.Windows.Forms.PictureBox();
-            this.pictureBox35 = new System.Windows.Forms.PictureBox();
-            this.pictureBox34 = new System.Windows.Forms.PictureBox();
-            this.pictureBox33 = new System.Windows.Forms.PictureBox();
-            this.pictureBox32 = new System.Windows.Forms.PictureBox();
-            this.pictureBox31 = new System.Windows.Forms.PictureBox();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox30 = new System.Windows.Forms.PictureBox();
-            this.pictureBox29 = new System.Windows.Forms.PictureBox();
-            this.pictureBox28 = new System.Windows.Forms.PictureBox();
-            this.pictureBox27 = new System.Windows.Forms.PictureBox();
-            this.pictureBox26 = new System.Windows.Forms.PictureBox();
-            this.pictureBox25 = new System.Windows.Forms.PictureBox();
-            this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.pictureBox23 = new System.Windows.Forms.PictureBox();
-            this.pictureBox22 = new System.Windows.Forms.PictureBox();
-            this.pictureBox21 = new System.Windows.Forms.PictureBox();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button42 = new System.Windows.Forms.Button();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.button43 = new System.Windows.Forms.Button();
-            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.label35 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
-            this.button34 = new System.Windows.Forms.Button();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.siticonePanel1 = new Siticone.UI.WinForms.SiticonePanel();
-            this.label45 = new System.Windows.Forms.Label();
-            this.siticoneMetroTrackBar1 = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
-            this.siticoneWinToggleSwith16 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label43 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith15 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label42 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith14 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label41 = new System.Windows.Forms.Label();
-            this.button40 = new System.Windows.Forms.Button();
-            this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
-            this.label38 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith13 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label37 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith12 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label36 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith2 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.button35 = new System.Windows.Forms.Button();
-            this.siticoneWinToggleSwith7 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.siticoneWinToggleSwith1 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith11 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.siticoneWinToggleSwith8 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.siticoneWinToggleSwith3 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith6 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.siticoneWinToggleSwith9 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.siticoneWinToggleSwith5 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.siticoneWinToggleSwith10 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.siticoneWinToggleSwith4 = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.siticoneTrackBar1 = new Siticone.UI.WinForms.SiticoneTrackBar();
-            this.progressBar5 = new System.Windows.Forms.ProgressBar();
-            this.button10 = new System.Windows.Forms.Button();
-            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.button12 = new System.Windows.Forms.Button();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown20 = new System.Windows.Forms.NumericUpDown();
-            this.button33 = new System.Windows.Forms.Button();
-            this.numericUpDown19 = new System.Windows.Forms.NumericUpDown();
-            this.button32 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button19 = new System.Windows.Forms.Button();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.textProgressBar1 = new CoreKeepersWorkshop.TextProgressBar();
-            this.button31 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button29 = new System.Windows.Forms.Button();
-            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.button24 = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button27 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
-            this.numericUpDown17 = new System.Windows.Forms.NumericUpDown();
-            this.button23 = new System.Windows.Forms.Button();
-            this.progressBar6 = new System.Windows.Forms.ProgressBar();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.button30 = new System.Windows.Forms.Button();
-            this.richTextBox9 = new System.Windows.Forms.RichTextBox();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button28 = new System.Windows.Forms.Button();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.button41 = new System.Windows.Forms.Button();
-            this.button39 = new System.Windows.Forms.Button();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
-            this.button38 = new System.Windows.Forms.Button();
-            this.button37 = new System.Windows.Forms.Button();
-            this.progressBar7 = new System.Windows.Forms.ProgressBar();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.button18 = new System.Windows.Forms.Button();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.label22 = new System.Windows.Forms.Label();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.label21 = new System.Windows.Forms.Label();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.button15 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.button36 = new System.Windows.Forms.Button();
-            this.label26 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.button11 = new System.Windows.Forms.Button();
-            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.button9 = new System.Windows.Forms.Button();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox46)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox45)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox43)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox41)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
-            this.tabPage10.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.siticonePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            this.tabPage8.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            this.tabPage5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.Main_TabControl = new System.Windows.Forms.TabControl();
+            this.Inventory_TabPage = new System.Windows.Forms.TabPage();
+            this.Slot50_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot49_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot48_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot47_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot46_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot45_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot44_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot43_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot42_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot41_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot40_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot39_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot38_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot37_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot36_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot35_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot34_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot33_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot32_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot31_PictureBox = new System.Windows.Forms.PictureBox();
+            this.NextInvAddress_Button = new System.Windows.Forms.Button();
+            this.PreviousInvAddress_Button = new System.Windows.Forms.Button();
+            this.Inventory_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.RemoveAll_Button = new System.Windows.Forms.Button();
+            this.ReloadInventory_Button = new System.Windows.Forms.Button();
+            this.Slot30_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot29_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot28_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot27_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot26_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot25_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot24_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot23_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot22_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot21_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot20_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot19_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot18_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot17_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot16_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot15_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot14_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot13_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot12_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot11_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot10_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot9_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot8_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot7_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot6_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot5_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot4_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot3_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot2_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot1_PictureBox = new System.Windows.Forms.PictureBox();
+            this.GetInventoryAddresses_Button = new System.Windows.Forms.Button();
+            this.Inventory_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.Player_TabPage = new System.Windows.Forms.TabPage();
+            this.Power_Label = new System.Windows.Forms.Label();
+            this.TimeS_Label = new System.Windows.Forms.Label();
+            this.BuffType_Label = new System.Windows.Forms.Label();
+            this.PlayerTab_GroupBox = new System.Windows.Forms.GroupBox();
+            this.PlayerTab_TabControl = new System.Windows.Forms.TabControl();
+            this.About_TabPage = new System.Windows.Forms.TabPage();
+            this.About_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.Debug_TabPage = new System.Windows.Forms.TabPage();
+            this.ClearDebugLog_Button = new System.Windows.Forms.Button();
+            this.Debug_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.WorldTools_TabPage = new System.Windows.Forms.TabPage();
+            this.ClearWorldToolsLog_Button = new System.Windows.Forms.Button();
+            this.WorldTools_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.DevTools_TabPage = new System.Windows.Forms.TabPage();
+            this.AppPriority_Label = new System.Windows.Forms.Label();
+            this.AppPriority_ComboBox = new System.Windows.Forms.ComboBox();
+            this.AlwaysOnTop_CheckBox = new System.Windows.Forms.CheckBox();
+            this.DevTools4_Label = new System.Windows.Forms.Label();
+            this.DevTools5_Label = new System.Windows.Forms.Label();
+            this.DevTools1_Label = new System.Windows.Forms.Label();
+            this.DevTools3_Label = new System.Windows.Forms.Label();
+            this.DevTools_Label = new System.Windows.Forms.Label();
+            this.DevTools2_Label = new System.Windows.Forms.Label();
+            this.DevToolsDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.RadialMoveScale_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ResetControls_Button = new System.Windows.Forms.Button();
+            this.SpecialThanks_TabPage = new System.Windows.Forms.TabPage();
+            this.SpecialThanks_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.PlayerTools_GroupBox = new System.Windows.Forms.GroupBox();
+            this.PlayerTools_Panel = new Siticone.UI.WinForms.SiticonePanel();
+            this.ForceNoclip_Checkbox = new Siticone.UI.WinForms.SiticoneCheckBox();
+            this.MaxMinecartSpeed_Label = new System.Windows.Forms.Label();
+            this.MaxMinecartSpeed_MetroTrackBar = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
+            this.MaxMinecartSpeed_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.MinecartSpeed_Label = new System.Windows.Forms.Label();
+            this.TrashInventory_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.TrashInventory_Label = new System.Windows.Forms.Label();
+            this.KeepInventory_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.KeepInventory_Label = new System.Windows.Forms.Label();
+            this.OpenSkillEditor_Button = new System.Windows.Forms.Button();
+            this.Range_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Range_Label = new System.Windows.Forms.Label();
+            this.Range_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.PlaceAnywhere_Label = new System.Windows.Forms.Label();
+            this.PlaceAnywhere_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.MoreMobs_Label = new System.Windows.Forms.Label();
+            this.Godmode_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.DisplayPosition_Label = new System.Windows.Forms.Label();
+            this.PassiveAI_Label = new System.Windows.Forms.Label();
+            this.OpenChunkVisualizer_Button = new System.Windows.Forms.Button();
+            this.InfiniteResources_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.DisplayLocation_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Godmode_Label = new System.Windows.Forms.Label();
+            this.InfiniteResources_Label = new System.Windows.Forms.Label();
+            this.PassiveAI_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.InfiniteMana_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Speed_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Suicide_Label = new System.Windows.Forms.Label();
+            this.ForceRecall_Label = new System.Windows.Forms.Label();
+            this.OpenChunkVisualizer_Label = new System.Windows.Forms.Label();
+            this.InfiniteFood_Label = new System.Windows.Forms.Label();
+            this.FreeCrafting_Label = new System.Windows.Forms.Label();
+            this.Suicide_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.ForceRecall_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.InfiniteHealth_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Speed_Label = new System.Windows.Forms.Label();
+            this.InfiniteMana_Label = new System.Windows.Forms.Label();
+            this.FreeCrafting_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.SpeedAmount_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Noclip_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Noclip_Label = new System.Windows.Forms.Label();
+            this.MaxMinecartSpeedArrow_Label = new System.Windows.Forms.Label();
+            this.Mods_TrackBar = new Siticone.UI.WinForms.SiticoneTrackBar();
+            this.PlayerTools_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.GetAddresses_Button = new System.Windows.Forms.Button();
+            this.PlayerTools_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.ImportExport_GroupBox = new System.Windows.Forms.GroupBox();
+            this.ImportExport_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.ExportPlayer_Button = new System.Windows.Forms.Button();
+            this.ImportPlayer_Button = new System.Windows.Forms.Button();
+            this.ChangePlayersName_GroupBox = new System.Windows.Forms.GroupBox();
+            this.CurrentName_Label = new System.Windows.Forms.Label();
+            this.NewName_Label = new System.Windows.Forms.Label();
+            this.ChanngeName_Button = new System.Windows.Forms.Button();
+            this.NewName_TextBox = new System.Windows.Forms.TextBox();
+            this.CurrentName_TextBox = new System.Windows.Forms.TextBox();
+            this.BuffEditor_GroupBox = new System.Windows.Forms.GroupBox();
+            this.TimeS_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ApplyBuff_Button = new System.Windows.Forms.Button();
+            this.Power_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.BuffType_ComboBox = new System.Windows.Forms.ComboBox();
+            this.World_TabPage = new System.Windows.Forms.TabPage();
+            this.WorldUtilities_GroupBox = new System.Windows.Forms.GroupBox();
+            this.FishingPadding_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.FishingPadding_Button = new System.Windows.Forms.Button();
+            this.CastDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CastDelay_Button = new System.Windows.Forms.Button();
+            this.TrashGroundItems_Button = new System.Windows.Forms.Button();
+            this.TrashGroundItems_Label = new System.Windows.Forms.Label();
+            this.AutomaticFishing_Button = new System.Windows.Forms.Button();
+            this.MapRendering_GroupBox = new System.Windows.Forms.GroupBox();
+            this.MapRendering_TextProgressBar = new CoreKeepersWorkshop.TextProgressBar();
+            this.PauseOperation_Button = new System.Windows.Forms.Button();
+            this.SaveEachRing_CheckBox = new System.Windows.Forms.CheckBox();
+            this.StartRadius_Button = new System.Windows.Forms.Button();
+            this.StartRadius_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.NextRingDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.NextRingDelay_Button = new System.Windows.Forms.Button();
+            this.RestoreDefualtRange_Button = new System.Windows.Forms.Button();
+            this.SetRevealRange_Button = new System.Windows.Forms.Button();
+            this.RenderRange_Button = new System.Windows.Forms.Button();
+            this.RenderRange_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.MaxRadius_Button = new System.Windows.Forms.Button();
+            this.MapRendering_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.MaxRadius_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.GetMapRenderingAddresses_Button = new System.Windows.Forms.Button();
+            this.MapRenderingAddresses_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.AutoMapRenderer_Button = new System.Windows.Forms.Button();
+            this.CancelOperation_Button = new System.Windows.Forms.Button();
+            this.WorldInformation_GroupBox = new System.Windows.Forms.GroupBox();
+            this.ColorSample_Button = new System.Windows.Forms.Button();
+            this.ChangeConsoleForeColor_Button = new System.Windows.Forms.Button();
+            this.CurrentIcon_Label = new System.Windows.Forms.Label();
+            this.WorldIconTack_Label = new System.Windows.Forms.Label();
+            this.WorldDifficulty_ComboBox = new System.Windows.Forms.ComboBox();
+            this.Icon_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Seed_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ChangeIcon_Button = new System.Windows.Forms.Button();
+            this.ChangeSeed_Button = new System.Windows.Forms.Button();
+            this.WorldInformation_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.CrystalThree_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CrystalTwo_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CrystalThree_Label = new System.Windows.Forms.Label();
+            this.CrystalTwo_Label = new System.Windows.Forms.Label();
+            this.CrystalOne_Label = new System.Windows.Forms.Label();
+            this.CrystalOne_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ChangeCrystals_Button = new System.Windows.Forms.Button();
+            this.Day_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Day_Label = new System.Windows.Forms.Label();
+            this.Month_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Month_Label = new System.Windows.Forms.Label();
+            this.Year_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Year_Label = new System.Windows.Forms.Label();
+            this.ChangeDate_Button = new System.Windows.Forms.Button();
+            this.WorldInformation_Label = new System.Windows.Forms.Label();
+            this.WorldInformation_TextBox = new System.Windows.Forms.TextBox();
+            this.GetWorldInformation_Button = new System.Windows.Forms.Button();
+            this.ChangeDifficulty_Button = new System.Windows.Forms.Button();
+            this.WorldInformationData_GroupBox = new System.Windows.Forms.GroupBox();
+            this.WorldInformation_DataGridView = new System.Windows.Forms.DataGridView();
+            this.TeleportPlayer_GroupBox = new System.Windows.Forms.GroupBox();
+            this.TeleportPlayerHelp_Button = new System.Windows.Forms.Button();
+            this.BruteForce_Label = new System.Windows.Forms.Label();
+            this.BruteForce_CheckBox = new System.Windows.Forms.CheckBox();
+            this.Y_Button = new System.Windows.Forms.Button();
+            this.X_Button = new System.Windows.Forms.Button();
+            this.TeleportY_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TeleportPlayer_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.GetTeleportAddresses_Button = new System.Windows.Forms.Button();
+            this.TeleportPlayerAddresses_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.TeleportX_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TeleportXY_Button = new System.Windows.Forms.Button();
+            this.Chat_TabPage = new System.Windows.Forms.TabPage();
+            this.ChatCommandsOptions_GroupBox = new System.Windows.Forms.GroupBox();
+            this.EnableChatCommands_Button = new System.Windows.Forms.Button();
+            this.CustomAmount_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Custom_RadioButton = new System.Windows.Forms.RadioButton();
+            this.AddToEmptySlots_RadioButton = new System.Windows.Forms.RadioButton();
+            this.OverwriteSlotOne_RadioButton = new System.Windows.Forms.RadioButton();
+            this.ChatCommandsLog_GroupBox = new System.Windows.Forms.GroupBox();
+            this.UseOverlay_CheckBox = new System.Windows.Forms.CheckBox();
+            this.ChatCommands_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.ChatCommands_GroupBox = new System.Windows.Forms.GroupBox();
+            this.ChatCommands_Label = new System.Windows.Forms.Label();
+            this.ChatCommands_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.ChangeSkin_TabPage = new System.Windows.Forms.TabPage();
+            this.Header_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Information_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Main_TabControl.SuspendLayout();
+            this.Inventory_TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot50_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot49_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot48_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot47_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot46_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot45_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot44_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot43_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot42_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot41_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot40_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot39_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot38_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot37_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot36_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot35_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot34_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot33_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot32_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot31_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot30_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot29_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot28_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot27_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot26_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot25_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot24_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot23_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot22_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot21_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot20_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot19_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot18_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot17_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot16_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot15_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot14_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot13_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot12_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot11_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot10_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot9_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot8_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot7_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot6_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot5_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot4_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1_PictureBox)).BeginInit();
+            this.Player_TabPage.SuspendLayout();
+            this.PlayerTab_GroupBox.SuspendLayout();
+            this.PlayerTab_TabControl.SuspendLayout();
+            this.About_TabPage.SuspendLayout();
+            this.Debug_TabPage.SuspendLayout();
+            this.WorldTools_TabPage.SuspendLayout();
+            this.DevTools_TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DevToolsDelay_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RadialMoveScale_NumericUpDown)).BeginInit();
+            this.SpecialThanks_TabPage.SuspendLayout();
+            this.PlayerTools_GroupBox.SuspendLayout();
+            this.PlayerTools_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Range_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedAmount_NumericUpDown)).BeginInit();
+            this.ImportExport_GroupBox.SuspendLayout();
+            this.ChangePlayersName_GroupBox.SuspendLayout();
+            this.BuffEditor_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeS_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Power_NumericUpDown)).BeginInit();
+            this.World_TabPage.SuspendLayout();
+            this.WorldUtilities_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FishingPadding_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CastDelay_NumericUpDown)).BeginInit();
+            this.MapRendering_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StartRadius_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextRingDelay_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RenderRange_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxRadius_NumericUpDown)).BeginInit();
+            this.WorldInformation_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Seed_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CrystalThree_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CrystalTwo_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CrystalOne_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Day_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Month_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Year_NumericUpDown)).BeginInit();
+            this.WorldInformationData_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WorldInformation_DataGridView)).BeginInit();
+            this.TeleportPlayer_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TeleportY_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TeleportX_NumericUpDown)).BeginInit();
+            this.Chat_TabPage.SuspendLayout();
+            this.ChatCommandsOptions_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomAmount_NumericUpDown)).BeginInit();
+            this.ChatCommandsLog_GroupBox.SuspendLayout();
+            this.ChatCommands_GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(740, 455);
-            this.tabControl1.TabIndex = 5;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.tabPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage1.BackgroundImage")));
-            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage1.Controls.Add(this.pictureBox50);
-            this.tabPage1.Controls.Add(this.pictureBox49);
-            this.tabPage1.Controls.Add(this.pictureBox48);
-            this.tabPage1.Controls.Add(this.pictureBox47);
-            this.tabPage1.Controls.Add(this.pictureBox46);
-            this.tabPage1.Controls.Add(this.pictureBox45);
-            this.tabPage1.Controls.Add(this.pictureBox44);
-            this.tabPage1.Controls.Add(this.pictureBox43);
-            this.tabPage1.Controls.Add(this.pictureBox42);
-            this.tabPage1.Controls.Add(this.pictureBox41);
-            this.tabPage1.Controls.Add(this.pictureBox40);
-            this.tabPage1.Controls.Add(this.pictureBox39);
-            this.tabPage1.Controls.Add(this.pictureBox38);
-            this.tabPage1.Controls.Add(this.pictureBox37);
-            this.tabPage1.Controls.Add(this.pictureBox36);
-            this.tabPage1.Controls.Add(this.pictureBox35);
-            this.tabPage1.Controls.Add(this.pictureBox34);
-            this.tabPage1.Controls.Add(this.pictureBox33);
-            this.tabPage1.Controls.Add(this.pictureBox32);
-            this.tabPage1.Controls.Add(this.pictureBox31);
-            this.tabPage1.Controls.Add(this.button21);
-            this.tabPage1.Controls.Add(this.button20);
-            this.tabPage1.Controls.Add(this.progressBar2);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.pictureBox30);
-            this.tabPage1.Controls.Add(this.pictureBox29);
-            this.tabPage1.Controls.Add(this.pictureBox28);
-            this.tabPage1.Controls.Add(this.pictureBox27);
-            this.tabPage1.Controls.Add(this.pictureBox26);
-            this.tabPage1.Controls.Add(this.pictureBox25);
-            this.tabPage1.Controls.Add(this.pictureBox24);
-            this.tabPage1.Controls.Add(this.pictureBox23);
-            this.tabPage1.Controls.Add(this.pictureBox22);
-            this.tabPage1.Controls.Add(this.pictureBox21);
-            this.tabPage1.Controls.Add(this.pictureBox20);
-            this.tabPage1.Controls.Add(this.pictureBox19);
-            this.tabPage1.Controls.Add(this.pictureBox18);
-            this.tabPage1.Controls.Add(this.pictureBox17);
-            this.tabPage1.Controls.Add(this.pictureBox16);
-            this.tabPage1.Controls.Add(this.pictureBox15);
-            this.tabPage1.Controls.Add(this.pictureBox14);
-            this.tabPage1.Controls.Add(this.pictureBox13);
-            this.tabPage1.Controls.Add(this.pictureBox12);
-            this.tabPage1.Controls.Add(this.pictureBox11);
-            this.tabPage1.Controls.Add(this.pictureBox10);
-            this.tabPage1.Controls.Add(this.pictureBox9);
-            this.tabPage1.Controls.Add(this.pictureBox8);
-            this.tabPage1.Controls.Add(this.pictureBox7);
-            this.tabPage1.Controls.Add(this.pictureBox6);
-            this.tabPage1.Controls.Add(this.pictureBox5);
-            this.tabPage1.Controls.Add(this.pictureBox4);
-            this.tabPage1.Controls.Add(this.pictureBox3);
-            this.tabPage1.Controls.Add(this.pictureBox2);
-            this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.richTextBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(732, 426);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Inventory";
-            // 
-            // pictureBox50
-            // 
-            this.pictureBox50.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox50.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox50.Location = new System.Drawing.Point(651, 345);
-            this.pictureBox50.Name = "pictureBox50";
-            this.pictureBox50.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox50.TabIndex = 54;
-            this.pictureBox50.TabStop = false;
-            this.pictureBox50.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox49
-            // 
-            this.pictureBox49.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox49.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox49.Location = new System.Drawing.Point(582, 345);
-            this.pictureBox49.Name = "pictureBox49";
-            this.pictureBox49.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox49.TabIndex = 53;
-            this.pictureBox49.TabStop = false;
-            this.pictureBox49.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox48
-            // 
-            this.pictureBox48.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox48.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox48.Location = new System.Drawing.Point(513, 345);
-            this.pictureBox48.Name = "pictureBox48";
-            this.pictureBox48.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox48.TabIndex = 52;
-            this.pictureBox48.TabStop = false;
-            this.pictureBox48.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox47
-            // 
-            this.pictureBox47.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox47.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox47.Location = new System.Drawing.Point(444, 345);
-            this.pictureBox47.Name = "pictureBox47";
-            this.pictureBox47.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox47.TabIndex = 51;
-            this.pictureBox47.TabStop = false;
-            this.pictureBox47.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox46
-            // 
-            this.pictureBox46.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox46.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox46.Location = new System.Drawing.Point(374, 345);
-            this.pictureBox46.Name = "pictureBox46";
-            this.pictureBox46.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox46.TabIndex = 50;
-            this.pictureBox46.TabStop = false;
-            this.pictureBox46.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox45
-            // 
-            this.pictureBox45.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox45.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox45.Location = new System.Drawing.Point(305, 345);
-            this.pictureBox45.Name = "pictureBox45";
-            this.pictureBox45.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox45.TabIndex = 49;
-            this.pictureBox45.TabStop = false;
-            this.pictureBox45.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox44
-            // 
-            this.pictureBox44.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox44.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox44.Location = new System.Drawing.Point(236, 345);
-            this.pictureBox44.Name = "pictureBox44";
-            this.pictureBox44.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox44.TabIndex = 48;
-            this.pictureBox44.TabStop = false;
-            this.pictureBox44.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox43
-            // 
-            this.pictureBox43.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox43.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox43.Location = new System.Drawing.Point(167, 345);
-            this.pictureBox43.Name = "pictureBox43";
-            this.pictureBox43.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox43.TabIndex = 47;
-            this.pictureBox43.TabStop = false;
-            this.pictureBox43.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox42
-            // 
-            this.pictureBox42.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox42.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox42.Location = new System.Drawing.Point(98, 345);
-            this.pictureBox42.Name = "pictureBox42";
-            this.pictureBox42.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox42.TabIndex = 46;
-            this.pictureBox42.TabStop = false;
-            this.pictureBox42.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox41
-            // 
-            this.pictureBox41.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox41.Location = new System.Drawing.Point(29, 345);
-            this.pictureBox41.Name = "pictureBox41";
-            this.pictureBox41.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox41.TabIndex = 45;
-            this.pictureBox41.TabStop = false;
-            this.pictureBox41.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox40
-            // 
-            this.pictureBox40.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox40.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox40.Location = new System.Drawing.Point(651, 278);
-            this.pictureBox40.Name = "pictureBox40";
-            this.pictureBox40.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox40.TabIndex = 44;
-            this.pictureBox40.TabStop = false;
-            this.pictureBox40.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox39
-            // 
-            this.pictureBox39.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox39.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox39.Location = new System.Drawing.Point(582, 278);
-            this.pictureBox39.Name = "pictureBox39";
-            this.pictureBox39.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox39.TabIndex = 43;
-            this.pictureBox39.TabStop = false;
-            this.pictureBox39.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox38
-            // 
-            this.pictureBox38.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox38.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox38.Location = new System.Drawing.Point(513, 278);
-            this.pictureBox38.Name = "pictureBox38";
-            this.pictureBox38.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox38.TabIndex = 42;
-            this.pictureBox38.TabStop = false;
-            this.pictureBox38.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox37
-            // 
-            this.pictureBox37.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox37.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox37.Location = new System.Drawing.Point(444, 278);
-            this.pictureBox37.Name = "pictureBox37";
-            this.pictureBox37.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox37.TabIndex = 41;
-            this.pictureBox37.TabStop = false;
-            this.pictureBox37.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox36
-            // 
-            this.pictureBox36.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox36.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox36.Location = new System.Drawing.Point(374, 278);
-            this.pictureBox36.Name = "pictureBox36";
-            this.pictureBox36.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox36.TabIndex = 40;
-            this.pictureBox36.TabStop = false;
-            this.pictureBox36.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox35
-            // 
-            this.pictureBox35.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox35.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox35.Location = new System.Drawing.Point(305, 278);
-            this.pictureBox35.Name = "pictureBox35";
-            this.pictureBox35.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox35.TabIndex = 39;
-            this.pictureBox35.TabStop = false;
-            this.pictureBox35.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox34
-            // 
-            this.pictureBox34.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox34.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox34.Location = new System.Drawing.Point(236, 278);
-            this.pictureBox34.Name = "pictureBox34";
-            this.pictureBox34.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox34.TabIndex = 38;
-            this.pictureBox34.TabStop = false;
-            this.pictureBox34.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox33
-            // 
-            this.pictureBox33.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox33.Location = new System.Drawing.Point(167, 278);
-            this.pictureBox33.Name = "pictureBox33";
-            this.pictureBox33.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox33.TabIndex = 37;
-            this.pictureBox33.TabStop = false;
-            this.pictureBox33.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox32
-            // 
-            this.pictureBox32.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox32.Location = new System.Drawing.Point(98, 278);
-            this.pictureBox32.Name = "pictureBox32";
-            this.pictureBox32.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox32.TabIndex = 36;
-            this.pictureBox32.TabStop = false;
-            this.pictureBox32.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox31
-            // 
-            this.pictureBox31.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox31.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox31.Location = new System.Drawing.Point(29, 278);
-            this.pictureBox31.Name = "pictureBox31";
-            this.pictureBox31.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox31.TabIndex = 35;
-            this.pictureBox31.TabStop = false;
-            this.pictureBox31.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // button21
-            // 
-            this.button21.Enabled = false;
-            this.button21.Location = new System.Drawing.Point(466, 7);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(59, 23);
-            this.button21.TabIndex = 4;
-            this.button21.Text = "Next";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.Button21_Click);
-            // 
-            // button20
-            // 
-            this.button20.Enabled = false;
-            this.button20.Location = new System.Drawing.Point(160, 7);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(59, 23);
-            this.button20.TabIndex = 2;
-            this.button20.Text = "Previous";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.Button20_Click);
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.Location = new System.Drawing.Point(218, 8);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(250, 21);
-            this.progressBar2.Step = 1;
-            this.progressBar2.TabIndex = 32;
-            this.progressBar2.Visible = false;
-            // 
-            // button3
-            // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(531, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Remove All";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(628, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Reload Inventory";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // pictureBox30
-            // 
-            this.pictureBox30.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox30.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox30.Location = new System.Drawing.Point(651, 211);
-            this.pictureBox30.Name = "pictureBox30";
-            this.pictureBox30.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox30.TabIndex = 31;
-            this.pictureBox30.TabStop = false;
-            this.pictureBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox29
-            // 
-            this.pictureBox29.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox29.Location = new System.Drawing.Point(582, 211);
-            this.pictureBox29.Name = "pictureBox29";
-            this.pictureBox29.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox29.TabIndex = 30;
-            this.pictureBox29.TabStop = false;
-            this.pictureBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox28
-            // 
-            this.pictureBox28.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox28.Location = new System.Drawing.Point(513, 211);
-            this.pictureBox28.Name = "pictureBox28";
-            this.pictureBox28.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox28.TabIndex = 29;
-            this.pictureBox28.TabStop = false;
-            this.pictureBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox27
-            // 
-            this.pictureBox27.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox27.Location = new System.Drawing.Point(444, 211);
-            this.pictureBox27.Name = "pictureBox27";
-            this.pictureBox27.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox27.TabIndex = 28;
-            this.pictureBox27.TabStop = false;
-            this.pictureBox27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox26
-            // 
-            this.pictureBox26.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox26.Location = new System.Drawing.Point(374, 211);
-            this.pictureBox26.Name = "pictureBox26";
-            this.pictureBox26.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox26.TabIndex = 27;
-            this.pictureBox26.TabStop = false;
-            this.pictureBox26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox25
-            // 
-            this.pictureBox25.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox25.Location = new System.Drawing.Point(305, 211);
-            this.pictureBox25.Name = "pictureBox25";
-            this.pictureBox25.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox25.TabIndex = 26;
-            this.pictureBox25.TabStop = false;
-            this.pictureBox25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox24
-            // 
-            this.pictureBox24.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox24.Location = new System.Drawing.Point(236, 211);
-            this.pictureBox24.Name = "pictureBox24";
-            this.pictureBox24.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox24.TabIndex = 25;
-            this.pictureBox24.TabStop = false;
-            this.pictureBox24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox23
-            // 
-            this.pictureBox23.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox23.Location = new System.Drawing.Point(167, 211);
-            this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox23.TabIndex = 24;
-            this.pictureBox23.TabStop = false;
-            this.pictureBox23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox22
-            // 
-            this.pictureBox22.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox22.Location = new System.Drawing.Point(98, 211);
-            this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox22.TabIndex = 23;
-            this.pictureBox22.TabStop = false;
-            this.pictureBox22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox21
-            // 
-            this.pictureBox21.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox21.Location = new System.Drawing.Point(29, 211);
-            this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox21.TabIndex = 22;
-            this.pictureBox21.TabStop = false;
-            this.pictureBox21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox20.Location = new System.Drawing.Point(651, 144);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox20.TabIndex = 21;
-            this.pictureBox20.TabStop = false;
-            this.pictureBox20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox19
-            // 
-            this.pictureBox19.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox19.Location = new System.Drawing.Point(582, 144);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox19.TabIndex = 20;
-            this.pictureBox19.TabStop = false;
-            this.pictureBox19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox18
-            // 
-            this.pictureBox18.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox18.Location = new System.Drawing.Point(513, 144);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox18.TabIndex = 19;
-            this.pictureBox18.TabStop = false;
-            this.pictureBox18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox17.Location = new System.Drawing.Point(444, 144);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox17.TabIndex = 18;
-            this.pictureBox17.TabStop = false;
-            this.pictureBox17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(374, 144);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox16.TabIndex = 17;
-            this.pictureBox16.TabStop = false;
-            this.pictureBox16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox15.Location = new System.Drawing.Point(305, 144);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox15.TabIndex = 16;
-            this.pictureBox15.TabStop = false;
-            this.pictureBox15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(236, 144);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox14.TabIndex = 15;
-            this.pictureBox14.TabStop = false;
-            this.pictureBox14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(167, 144);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox13.TabIndex = 14;
-            this.pictureBox13.TabStop = false;
-            this.pictureBox13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox12.Location = new System.Drawing.Point(98, 144);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox12.TabIndex = 13;
-            this.pictureBox12.TabStop = false;
-            this.pictureBox12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(29, 144);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox11.TabIndex = 12;
-            this.pictureBox11.TabStop = false;
-            this.pictureBox11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox10.Location = new System.Drawing.Point(651, 64);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox10.TabIndex = 11;
-            this.pictureBox10.TabStop = false;
-            this.pictureBox10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(582, 64);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox9.TabIndex = 10;
-            this.pictureBox9.TabStop = false;
-            this.pictureBox9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(513, 64);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox8.TabIndex = 9;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(444, 64);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox7.TabIndex = 8;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(374, 64);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox6.TabIndex = 7;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(305, 64);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox5.TabIndex = 6;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(236, 64);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(167, 64);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(98, 64);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(29, 64);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Get Inventory Addresses";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.richTextBox1.Location = new System.Drawing.Point(218, 8);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(250, 21);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "Addresses Loaded: 0";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.groupBox7);
-            this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.groupBox9);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(732, 426);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Player";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.ForeColor = System.Drawing.Color.Lime;
-            this.label18.Location = new System.Drawing.Point(597, 232);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Power";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.ForeColor = System.Drawing.Color.Lime;
-            this.label17.Location = new System.Drawing.Point(664, 232);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Time (s)";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.ForeColor = System.Drawing.Color.Lime;
-            this.label19.Location = new System.Drawing.Point(489, 232);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(53, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Buff Type";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.tabControl2);
-            this.groupBox2.Location = new System.Drawing.Point(10, 111);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(366, 173);
-            this.groupBox2.TabIndex = 37;
-            this.groupBox2.TabStop = false;
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Controls.Add(this.tabPage9);
-            this.tabControl2.Controls.Add(this.tabPage7);
-            this.tabControl2.Controls.Add(this.tabPage10);
-            this.tabControl2.Location = new System.Drawing.Point(2, 8);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(362, 162);
-            this.tabControl2.TabIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.richTextBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(354, 133);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "About";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.BackColor = System.Drawing.Color.Black;
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox2.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox2.Size = new System.Drawing.Size(348, 127);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.button42);
-            this.tabPage4.Controls.Add(this.richTextBox3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(354, 133);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "Debug";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // button42
-            // 
-            this.button42.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button42.FlatAppearance.BorderSize = 0;
-            this.button42.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button42.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button42.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button42.ForeColor = System.Drawing.Color.Black;
-            this.button42.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button42.Location = new System.Drawing.Point(297, 5);
-            this.button42.Name = "button42";
-            this.button42.Size = new System.Drawing.Size(35, 19);
-            this.button42.TabIndex = 13;
-            this.button42.Text = "Clear";
-            this.button42.UseVisualStyleBackColor = true;
-            this.button42.Click += new System.EventHandler(this.Button42_Click);
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.BackColor = System.Drawing.Color.Black;
-            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox3.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox3.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.ReadOnly = true;
-            this.richTextBox3.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox3.Size = new System.Drawing.Size(348, 127);
-            this.richTextBox3.TabIndex = 0;
-            this.richTextBox3.Text = "If any unknown items are found, their ID\'s will appear here!\n--------------------" +
+            // Main_TabControl
+            // 
+            this.Main_TabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.Main_TabControl.Controls.Add(this.Inventory_TabPage);
+            this.Main_TabControl.Controls.Add(this.Player_TabPage);
+            this.Main_TabControl.Controls.Add(this.World_TabPage);
+            this.Main_TabControl.Controls.Add(this.Chat_TabPage);
+            this.Main_TabControl.Controls.Add(this.ChangeSkin_TabPage);
+            this.Main_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Main_TabControl.Location = new System.Drawing.Point(0, 0);
+            this.Main_TabControl.Name = "Main_TabControl";
+            this.Main_TabControl.SelectedIndex = 0;
+            this.Main_TabControl.Size = new System.Drawing.Size(740, 455);
+            this.Main_TabControl.TabIndex = 5;
+            this.Main_TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
+            // 
+            // Inventory_TabPage
+            // 
+            this.Inventory_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.Inventory_TabPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Inventory_TabPage.BackgroundImage")));
+            this.Inventory_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Inventory_TabPage.Controls.Add(this.Slot50_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot49_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot48_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot47_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot46_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot45_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot44_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot43_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot42_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot41_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot40_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot39_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot38_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot37_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot36_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot35_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot34_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot33_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot32_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot31_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.NextInvAddress_Button);
+            this.Inventory_TabPage.Controls.Add(this.PreviousInvAddress_Button);
+            this.Inventory_TabPage.Controls.Add(this.Inventory_ProgressBar);
+            this.Inventory_TabPage.Controls.Add(this.RemoveAll_Button);
+            this.Inventory_TabPage.Controls.Add(this.ReloadInventory_Button);
+            this.Inventory_TabPage.Controls.Add(this.Slot30_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot29_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot28_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot27_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot26_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot25_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot24_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot23_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot22_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot21_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot20_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot19_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot18_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot17_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot16_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot15_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot14_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot13_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot12_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot11_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot10_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot9_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot8_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot7_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot6_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot5_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot4_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot3_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot2_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.Slot1_PictureBox);
+            this.Inventory_TabPage.Controls.Add(this.GetInventoryAddresses_Button);
+            this.Inventory_TabPage.Controls.Add(this.Inventory_RichTextBox);
+            this.Inventory_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Inventory_TabPage.Name = "Inventory_TabPage";
+            this.Inventory_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Inventory_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.Inventory_TabPage.TabIndex = 0;
+            this.Inventory_TabPage.Text = "Inventory";
+            // 
+            // Slot50_PictureBox
+            // 
+            this.Slot50_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot50_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot50_PictureBox.Location = new System.Drawing.Point(651, 345);
+            this.Slot50_PictureBox.Name = "Slot50_PictureBox";
+            this.Slot50_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot50_PictureBox.TabIndex = 54;
+            this.Slot50_PictureBox.TabStop = false;
+            this.Slot50_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot49_PictureBox
+            // 
+            this.Slot49_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot49_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot49_PictureBox.Location = new System.Drawing.Point(582, 345);
+            this.Slot49_PictureBox.Name = "Slot49_PictureBox";
+            this.Slot49_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot49_PictureBox.TabIndex = 53;
+            this.Slot49_PictureBox.TabStop = false;
+            this.Slot49_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot48_PictureBox
+            // 
+            this.Slot48_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot48_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot48_PictureBox.Location = new System.Drawing.Point(513, 345);
+            this.Slot48_PictureBox.Name = "Slot48_PictureBox";
+            this.Slot48_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot48_PictureBox.TabIndex = 52;
+            this.Slot48_PictureBox.TabStop = false;
+            this.Slot48_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot47_PictureBox
+            // 
+            this.Slot47_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot47_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot47_PictureBox.Location = new System.Drawing.Point(444, 345);
+            this.Slot47_PictureBox.Name = "Slot47_PictureBox";
+            this.Slot47_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot47_PictureBox.TabIndex = 51;
+            this.Slot47_PictureBox.TabStop = false;
+            this.Slot47_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot46_PictureBox
+            // 
+            this.Slot46_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot46_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot46_PictureBox.Location = new System.Drawing.Point(374, 345);
+            this.Slot46_PictureBox.Name = "Slot46_PictureBox";
+            this.Slot46_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot46_PictureBox.TabIndex = 50;
+            this.Slot46_PictureBox.TabStop = false;
+            this.Slot46_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot45_PictureBox
+            // 
+            this.Slot45_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot45_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot45_PictureBox.Location = new System.Drawing.Point(305, 345);
+            this.Slot45_PictureBox.Name = "Slot45_PictureBox";
+            this.Slot45_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot45_PictureBox.TabIndex = 49;
+            this.Slot45_PictureBox.TabStop = false;
+            this.Slot45_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot44_PictureBox
+            // 
+            this.Slot44_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot44_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot44_PictureBox.Location = new System.Drawing.Point(236, 345);
+            this.Slot44_PictureBox.Name = "Slot44_PictureBox";
+            this.Slot44_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot44_PictureBox.TabIndex = 48;
+            this.Slot44_PictureBox.TabStop = false;
+            this.Slot44_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot43_PictureBox
+            // 
+            this.Slot43_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot43_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot43_PictureBox.Location = new System.Drawing.Point(167, 345);
+            this.Slot43_PictureBox.Name = "Slot43_PictureBox";
+            this.Slot43_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot43_PictureBox.TabIndex = 47;
+            this.Slot43_PictureBox.TabStop = false;
+            this.Slot43_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot42_PictureBox
+            // 
+            this.Slot42_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot42_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot42_PictureBox.Location = new System.Drawing.Point(98, 345);
+            this.Slot42_PictureBox.Name = "Slot42_PictureBox";
+            this.Slot42_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot42_PictureBox.TabIndex = 46;
+            this.Slot42_PictureBox.TabStop = false;
+            this.Slot42_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot41_PictureBox
+            // 
+            this.Slot41_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot41_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot41_PictureBox.Location = new System.Drawing.Point(29, 345);
+            this.Slot41_PictureBox.Name = "Slot41_PictureBox";
+            this.Slot41_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot41_PictureBox.TabIndex = 45;
+            this.Slot41_PictureBox.TabStop = false;
+            this.Slot41_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot40_PictureBox
+            // 
+            this.Slot40_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot40_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot40_PictureBox.Location = new System.Drawing.Point(651, 278);
+            this.Slot40_PictureBox.Name = "Slot40_PictureBox";
+            this.Slot40_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot40_PictureBox.TabIndex = 44;
+            this.Slot40_PictureBox.TabStop = false;
+            this.Slot40_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot39_PictureBox
+            // 
+            this.Slot39_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot39_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot39_PictureBox.Location = new System.Drawing.Point(582, 278);
+            this.Slot39_PictureBox.Name = "Slot39_PictureBox";
+            this.Slot39_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot39_PictureBox.TabIndex = 43;
+            this.Slot39_PictureBox.TabStop = false;
+            this.Slot39_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot38_PictureBox
+            // 
+            this.Slot38_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot38_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot38_PictureBox.Location = new System.Drawing.Point(513, 278);
+            this.Slot38_PictureBox.Name = "Slot38_PictureBox";
+            this.Slot38_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot38_PictureBox.TabIndex = 42;
+            this.Slot38_PictureBox.TabStop = false;
+            this.Slot38_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot37_PictureBox
+            // 
+            this.Slot37_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot37_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot37_PictureBox.Location = new System.Drawing.Point(444, 278);
+            this.Slot37_PictureBox.Name = "Slot37_PictureBox";
+            this.Slot37_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot37_PictureBox.TabIndex = 41;
+            this.Slot37_PictureBox.TabStop = false;
+            this.Slot37_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot36_PictureBox
+            // 
+            this.Slot36_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot36_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot36_PictureBox.Location = new System.Drawing.Point(374, 278);
+            this.Slot36_PictureBox.Name = "Slot36_PictureBox";
+            this.Slot36_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot36_PictureBox.TabIndex = 40;
+            this.Slot36_PictureBox.TabStop = false;
+            this.Slot36_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot35_PictureBox
+            // 
+            this.Slot35_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot35_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot35_PictureBox.Location = new System.Drawing.Point(305, 278);
+            this.Slot35_PictureBox.Name = "Slot35_PictureBox";
+            this.Slot35_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot35_PictureBox.TabIndex = 39;
+            this.Slot35_PictureBox.TabStop = false;
+            this.Slot35_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot34_PictureBox
+            // 
+            this.Slot34_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot34_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot34_PictureBox.Location = new System.Drawing.Point(236, 278);
+            this.Slot34_PictureBox.Name = "Slot34_PictureBox";
+            this.Slot34_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot34_PictureBox.TabIndex = 38;
+            this.Slot34_PictureBox.TabStop = false;
+            this.Slot34_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot33_PictureBox
+            // 
+            this.Slot33_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot33_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot33_PictureBox.Location = new System.Drawing.Point(167, 278);
+            this.Slot33_PictureBox.Name = "Slot33_PictureBox";
+            this.Slot33_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot33_PictureBox.TabIndex = 37;
+            this.Slot33_PictureBox.TabStop = false;
+            this.Slot33_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot32_PictureBox
+            // 
+            this.Slot32_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot32_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot32_PictureBox.Location = new System.Drawing.Point(98, 278);
+            this.Slot32_PictureBox.Name = "Slot32_PictureBox";
+            this.Slot32_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot32_PictureBox.TabIndex = 36;
+            this.Slot32_PictureBox.TabStop = false;
+            this.Slot32_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot31_PictureBox
+            // 
+            this.Slot31_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot31_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot31_PictureBox.Location = new System.Drawing.Point(29, 278);
+            this.Slot31_PictureBox.Name = "Slot31_PictureBox";
+            this.Slot31_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot31_PictureBox.TabIndex = 35;
+            this.Slot31_PictureBox.TabStop = false;
+            this.Slot31_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // NextInvAddress_Button
+            // 
+            this.NextInvAddress_Button.Enabled = false;
+            this.NextInvAddress_Button.Location = new System.Drawing.Point(466, 7);
+            this.NextInvAddress_Button.Name = "NextInvAddress_Button";
+            this.NextInvAddress_Button.Size = new System.Drawing.Size(59, 23);
+            this.NextInvAddress_Button.TabIndex = 4;
+            this.NextInvAddress_Button.Text = "Next";
+            this.NextInvAddress_Button.UseVisualStyleBackColor = true;
+            this.NextInvAddress_Button.Click += new System.EventHandler(this.Button21_Click);
+            // 
+            // PreviousInvAddress_Button
+            // 
+            this.PreviousInvAddress_Button.Enabled = false;
+            this.PreviousInvAddress_Button.Location = new System.Drawing.Point(160, 7);
+            this.PreviousInvAddress_Button.Name = "PreviousInvAddress_Button";
+            this.PreviousInvAddress_Button.Size = new System.Drawing.Size(59, 23);
+            this.PreviousInvAddress_Button.TabIndex = 2;
+            this.PreviousInvAddress_Button.Text = "Previous";
+            this.PreviousInvAddress_Button.UseVisualStyleBackColor = true;
+            this.PreviousInvAddress_Button.Click += new System.EventHandler(this.Button20_Click);
+            // 
+            // Inventory_ProgressBar
+            // 
+            this.Inventory_ProgressBar.Location = new System.Drawing.Point(218, 8);
+            this.Inventory_ProgressBar.Name = "Inventory_ProgressBar";
+            this.Inventory_ProgressBar.Size = new System.Drawing.Size(250, 21);
+            this.Inventory_ProgressBar.Step = 1;
+            this.Inventory_ProgressBar.TabIndex = 32;
+            this.Inventory_ProgressBar.Visible = false;
+            // 
+            // RemoveAll_Button
+            // 
+            this.RemoveAll_Button.Enabled = false;
+            this.RemoveAll_Button.Location = new System.Drawing.Point(531, 7);
+            this.RemoveAll_Button.Name = "RemoveAll_Button";
+            this.RemoveAll_Button.Size = new System.Drawing.Size(98, 23);
+            this.RemoveAll_Button.TabIndex = 5;
+            this.RemoveAll_Button.Text = "Remove All";
+            this.RemoveAll_Button.UseVisualStyleBackColor = true;
+            this.RemoveAll_Button.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // ReloadInventory_Button
+            // 
+            this.ReloadInventory_Button.Enabled = false;
+            this.ReloadInventory_Button.Location = new System.Drawing.Point(628, 7);
+            this.ReloadInventory_Button.Name = "ReloadInventory_Button";
+            this.ReloadInventory_Button.Size = new System.Drawing.Size(98, 23);
+            this.ReloadInventory_Button.TabIndex = 6;
+            this.ReloadInventory_Button.Text = "Reload Inventory";
+            this.ReloadInventory_Button.UseVisualStyleBackColor = true;
+            this.ReloadInventory_Button.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // Slot30_PictureBox
+            // 
+            this.Slot30_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot30_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot30_PictureBox.Location = new System.Drawing.Point(651, 211);
+            this.Slot30_PictureBox.Name = "Slot30_PictureBox";
+            this.Slot30_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot30_PictureBox.TabIndex = 31;
+            this.Slot30_PictureBox.TabStop = false;
+            this.Slot30_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot29_PictureBox
+            // 
+            this.Slot29_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot29_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot29_PictureBox.Location = new System.Drawing.Point(582, 211);
+            this.Slot29_PictureBox.Name = "Slot29_PictureBox";
+            this.Slot29_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot29_PictureBox.TabIndex = 30;
+            this.Slot29_PictureBox.TabStop = false;
+            this.Slot29_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot28_PictureBox
+            // 
+            this.Slot28_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot28_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot28_PictureBox.Location = new System.Drawing.Point(513, 211);
+            this.Slot28_PictureBox.Name = "Slot28_PictureBox";
+            this.Slot28_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot28_PictureBox.TabIndex = 29;
+            this.Slot28_PictureBox.TabStop = false;
+            this.Slot28_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot27_PictureBox
+            // 
+            this.Slot27_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot27_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot27_PictureBox.Location = new System.Drawing.Point(444, 211);
+            this.Slot27_PictureBox.Name = "Slot27_PictureBox";
+            this.Slot27_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot27_PictureBox.TabIndex = 28;
+            this.Slot27_PictureBox.TabStop = false;
+            this.Slot27_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot26_PictureBox
+            // 
+            this.Slot26_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot26_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot26_PictureBox.Location = new System.Drawing.Point(374, 211);
+            this.Slot26_PictureBox.Name = "Slot26_PictureBox";
+            this.Slot26_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot26_PictureBox.TabIndex = 27;
+            this.Slot26_PictureBox.TabStop = false;
+            this.Slot26_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot25_PictureBox
+            // 
+            this.Slot25_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot25_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot25_PictureBox.Location = new System.Drawing.Point(305, 211);
+            this.Slot25_PictureBox.Name = "Slot25_PictureBox";
+            this.Slot25_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot25_PictureBox.TabIndex = 26;
+            this.Slot25_PictureBox.TabStop = false;
+            this.Slot25_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot24_PictureBox
+            // 
+            this.Slot24_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot24_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot24_PictureBox.Location = new System.Drawing.Point(236, 211);
+            this.Slot24_PictureBox.Name = "Slot24_PictureBox";
+            this.Slot24_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot24_PictureBox.TabIndex = 25;
+            this.Slot24_PictureBox.TabStop = false;
+            this.Slot24_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot23_PictureBox
+            // 
+            this.Slot23_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot23_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot23_PictureBox.Location = new System.Drawing.Point(167, 211);
+            this.Slot23_PictureBox.Name = "Slot23_PictureBox";
+            this.Slot23_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot23_PictureBox.TabIndex = 24;
+            this.Slot23_PictureBox.TabStop = false;
+            this.Slot23_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot22_PictureBox
+            // 
+            this.Slot22_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot22_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot22_PictureBox.Location = new System.Drawing.Point(98, 211);
+            this.Slot22_PictureBox.Name = "Slot22_PictureBox";
+            this.Slot22_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot22_PictureBox.TabIndex = 23;
+            this.Slot22_PictureBox.TabStop = false;
+            this.Slot22_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot21_PictureBox
+            // 
+            this.Slot21_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot21_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot21_PictureBox.Location = new System.Drawing.Point(29, 211);
+            this.Slot21_PictureBox.Name = "Slot21_PictureBox";
+            this.Slot21_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot21_PictureBox.TabIndex = 22;
+            this.Slot21_PictureBox.TabStop = false;
+            this.Slot21_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot20_PictureBox
+            // 
+            this.Slot20_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot20_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot20_PictureBox.Location = new System.Drawing.Point(651, 144);
+            this.Slot20_PictureBox.Name = "Slot20_PictureBox";
+            this.Slot20_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot20_PictureBox.TabIndex = 21;
+            this.Slot20_PictureBox.TabStop = false;
+            this.Slot20_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot19_PictureBox
+            // 
+            this.Slot19_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot19_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot19_PictureBox.Location = new System.Drawing.Point(582, 144);
+            this.Slot19_PictureBox.Name = "Slot19_PictureBox";
+            this.Slot19_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot19_PictureBox.TabIndex = 20;
+            this.Slot19_PictureBox.TabStop = false;
+            this.Slot19_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot18_PictureBox
+            // 
+            this.Slot18_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot18_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot18_PictureBox.Location = new System.Drawing.Point(513, 144);
+            this.Slot18_PictureBox.Name = "Slot18_PictureBox";
+            this.Slot18_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot18_PictureBox.TabIndex = 19;
+            this.Slot18_PictureBox.TabStop = false;
+            this.Slot18_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot17_PictureBox
+            // 
+            this.Slot17_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot17_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot17_PictureBox.Location = new System.Drawing.Point(444, 144);
+            this.Slot17_PictureBox.Name = "Slot17_PictureBox";
+            this.Slot17_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot17_PictureBox.TabIndex = 18;
+            this.Slot17_PictureBox.TabStop = false;
+            this.Slot17_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot16_PictureBox
+            // 
+            this.Slot16_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot16_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot16_PictureBox.Location = new System.Drawing.Point(374, 144);
+            this.Slot16_PictureBox.Name = "Slot16_PictureBox";
+            this.Slot16_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot16_PictureBox.TabIndex = 17;
+            this.Slot16_PictureBox.TabStop = false;
+            this.Slot16_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot15_PictureBox
+            // 
+            this.Slot15_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot15_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot15_PictureBox.Location = new System.Drawing.Point(305, 144);
+            this.Slot15_PictureBox.Name = "Slot15_PictureBox";
+            this.Slot15_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot15_PictureBox.TabIndex = 16;
+            this.Slot15_PictureBox.TabStop = false;
+            this.Slot15_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot14_PictureBox
+            // 
+            this.Slot14_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot14_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot14_PictureBox.Location = new System.Drawing.Point(236, 144);
+            this.Slot14_PictureBox.Name = "Slot14_PictureBox";
+            this.Slot14_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot14_PictureBox.TabIndex = 15;
+            this.Slot14_PictureBox.TabStop = false;
+            this.Slot14_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot13_PictureBox
+            // 
+            this.Slot13_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot13_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot13_PictureBox.Location = new System.Drawing.Point(167, 144);
+            this.Slot13_PictureBox.Name = "Slot13_PictureBox";
+            this.Slot13_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot13_PictureBox.TabIndex = 14;
+            this.Slot13_PictureBox.TabStop = false;
+            this.Slot13_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot12_PictureBox
+            // 
+            this.Slot12_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot12_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot12_PictureBox.Location = new System.Drawing.Point(98, 144);
+            this.Slot12_PictureBox.Name = "Slot12_PictureBox";
+            this.Slot12_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot12_PictureBox.TabIndex = 13;
+            this.Slot12_PictureBox.TabStop = false;
+            this.Slot12_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot11_PictureBox
+            // 
+            this.Slot11_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot11_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot11_PictureBox.Location = new System.Drawing.Point(29, 144);
+            this.Slot11_PictureBox.Name = "Slot11_PictureBox";
+            this.Slot11_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot11_PictureBox.TabIndex = 12;
+            this.Slot11_PictureBox.TabStop = false;
+            this.Slot11_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot10_PictureBox
+            // 
+            this.Slot10_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot10_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot10_PictureBox.Location = new System.Drawing.Point(651, 64);
+            this.Slot10_PictureBox.Name = "Slot10_PictureBox";
+            this.Slot10_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot10_PictureBox.TabIndex = 11;
+            this.Slot10_PictureBox.TabStop = false;
+            this.Slot10_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot9_PictureBox
+            // 
+            this.Slot9_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot9_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot9_PictureBox.Location = new System.Drawing.Point(582, 64);
+            this.Slot9_PictureBox.Name = "Slot9_PictureBox";
+            this.Slot9_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot9_PictureBox.TabIndex = 10;
+            this.Slot9_PictureBox.TabStop = false;
+            this.Slot9_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot8_PictureBox
+            // 
+            this.Slot8_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot8_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot8_PictureBox.Location = new System.Drawing.Point(513, 64);
+            this.Slot8_PictureBox.Name = "Slot8_PictureBox";
+            this.Slot8_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot8_PictureBox.TabIndex = 9;
+            this.Slot8_PictureBox.TabStop = false;
+            this.Slot8_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot7_PictureBox
+            // 
+            this.Slot7_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot7_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot7_PictureBox.Location = new System.Drawing.Point(444, 64);
+            this.Slot7_PictureBox.Name = "Slot7_PictureBox";
+            this.Slot7_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot7_PictureBox.TabIndex = 8;
+            this.Slot7_PictureBox.TabStop = false;
+            this.Slot7_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot6_PictureBox
+            // 
+            this.Slot6_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot6_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot6_PictureBox.Location = new System.Drawing.Point(374, 64);
+            this.Slot6_PictureBox.Name = "Slot6_PictureBox";
+            this.Slot6_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot6_PictureBox.TabIndex = 7;
+            this.Slot6_PictureBox.TabStop = false;
+            this.Slot6_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot5_PictureBox
+            // 
+            this.Slot5_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot5_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot5_PictureBox.Location = new System.Drawing.Point(305, 64);
+            this.Slot5_PictureBox.Name = "Slot5_PictureBox";
+            this.Slot5_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot5_PictureBox.TabIndex = 6;
+            this.Slot5_PictureBox.TabStop = false;
+            this.Slot5_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot4_PictureBox
+            // 
+            this.Slot4_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot4_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot4_PictureBox.Location = new System.Drawing.Point(236, 64);
+            this.Slot4_PictureBox.Name = "Slot4_PictureBox";
+            this.Slot4_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot4_PictureBox.TabIndex = 5;
+            this.Slot4_PictureBox.TabStop = false;
+            this.Slot4_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot3_PictureBox
+            // 
+            this.Slot3_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot3_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot3_PictureBox.Location = new System.Drawing.Point(167, 64);
+            this.Slot3_PictureBox.Name = "Slot3_PictureBox";
+            this.Slot3_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot3_PictureBox.TabIndex = 4;
+            this.Slot3_PictureBox.TabStop = false;
+            this.Slot3_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot2_PictureBox
+            // 
+            this.Slot2_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot2_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot2_PictureBox.Location = new System.Drawing.Point(98, 64);
+            this.Slot2_PictureBox.Name = "Slot2_PictureBox";
+            this.Slot2_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot2_PictureBox.TabIndex = 3;
+            this.Slot2_PictureBox.TabStop = false;
+            this.Slot2_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // Slot1_PictureBox
+            // 
+            this.Slot1_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Slot1_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot1_PictureBox.Location = new System.Drawing.Point(29, 64);
+            this.Slot1_PictureBox.Name = "Slot1_PictureBox";
+            this.Slot1_PictureBox.Size = new System.Drawing.Size(55, 55);
+            this.Slot1_PictureBox.TabIndex = 2;
+            this.Slot1_PictureBox.TabStop = false;
+            this.Slot1_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            // 
+            // GetInventoryAddresses_Button
+            // 
+            this.GetInventoryAddresses_Button.Location = new System.Drawing.Point(6, 7);
+            this.GetInventoryAddresses_Button.Name = "GetInventoryAddresses_Button";
+            this.GetInventoryAddresses_Button.Size = new System.Drawing.Size(148, 23);
+            this.GetInventoryAddresses_Button.TabIndex = 1;
+            this.GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
+            this.GetInventoryAddresses_Button.UseVisualStyleBackColor = true;
+            this.GetInventoryAddresses_Button.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // Inventory_RichTextBox
+            // 
+            this.Inventory_RichTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Inventory_RichTextBox.Location = new System.Drawing.Point(218, 8);
+            this.Inventory_RichTextBox.Name = "Inventory_RichTextBox";
+            this.Inventory_RichTextBox.ReadOnly = true;
+            this.Inventory_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.Inventory_RichTextBox.Size = new System.Drawing.Size(250, 21);
+            this.Inventory_RichTextBox.TabIndex = 3;
+            this.Inventory_RichTextBox.Text = "Addresses Loaded: 0";
+            // 
+            // Player_TabPage
+            // 
+            this.Player_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.Player_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Player_TabPage.Controls.Add(this.Power_Label);
+            this.Player_TabPage.Controls.Add(this.TimeS_Label);
+            this.Player_TabPage.Controls.Add(this.BuffType_Label);
+            this.Player_TabPage.Controls.Add(this.PlayerTab_GroupBox);
+            this.Player_TabPage.Controls.Add(this.PlayerTools_GroupBox);
+            this.Player_TabPage.Controls.Add(this.ImportExport_GroupBox);
+            this.Player_TabPage.Controls.Add(this.ChangePlayersName_GroupBox);
+            this.Player_TabPage.Controls.Add(this.BuffEditor_GroupBox);
+            this.Player_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Player_TabPage.Name = "Player_TabPage";
+            this.Player_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Player_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.Player_TabPage.TabIndex = 1;
+            this.Player_TabPage.Text = "Player";
+            // 
+            // Power_Label
+            // 
+            this.Power_Label.AutoSize = true;
+            this.Power_Label.BackColor = System.Drawing.Color.Transparent;
+            this.Power_Label.ForeColor = System.Drawing.Color.Lime;
+            this.Power_Label.Location = new System.Drawing.Point(597, 232);
+            this.Power_Label.Name = "Power_Label";
+            this.Power_Label.Size = new System.Drawing.Size(37, 13);
+            this.Power_Label.TabIndex = 0;
+            this.Power_Label.Text = "Power";
+            // 
+            // TimeS_Label
+            // 
+            this.TimeS_Label.AutoSize = true;
+            this.TimeS_Label.BackColor = System.Drawing.Color.Transparent;
+            this.TimeS_Label.ForeColor = System.Drawing.Color.Lime;
+            this.TimeS_Label.Location = new System.Drawing.Point(664, 232);
+            this.TimeS_Label.Name = "TimeS_Label";
+            this.TimeS_Label.Size = new System.Drawing.Size(44, 13);
+            this.TimeS_Label.TabIndex = 0;
+            this.TimeS_Label.Text = "Time (s)";
+            // 
+            // BuffType_Label
+            // 
+            this.BuffType_Label.AutoSize = true;
+            this.BuffType_Label.BackColor = System.Drawing.Color.Transparent;
+            this.BuffType_Label.ForeColor = System.Drawing.Color.Lime;
+            this.BuffType_Label.Location = new System.Drawing.Point(489, 232);
+            this.BuffType_Label.Name = "BuffType_Label";
+            this.BuffType_Label.Size = new System.Drawing.Size(53, 13);
+            this.BuffType_Label.TabIndex = 0;
+            this.BuffType_Label.Text = "Buff Type";
+            // 
+            // PlayerTab_GroupBox
+            // 
+            this.PlayerTab_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.PlayerTab_GroupBox.Controls.Add(this.PlayerTab_TabControl);
+            this.PlayerTab_GroupBox.Location = new System.Drawing.Point(10, 111);
+            this.PlayerTab_GroupBox.Name = "PlayerTab_GroupBox";
+            this.PlayerTab_GroupBox.Size = new System.Drawing.Size(366, 173);
+            this.PlayerTab_GroupBox.TabIndex = 37;
+            this.PlayerTab_GroupBox.TabStop = false;
+            // 
+            // PlayerTab_TabControl
+            // 
+            this.PlayerTab_TabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.PlayerTab_TabControl.Controls.Add(this.About_TabPage);
+            this.PlayerTab_TabControl.Controls.Add(this.Debug_TabPage);
+            this.PlayerTab_TabControl.Controls.Add(this.WorldTools_TabPage);
+            this.PlayerTab_TabControl.Controls.Add(this.DevTools_TabPage);
+            this.PlayerTab_TabControl.Controls.Add(this.SpecialThanks_TabPage);
+            this.PlayerTab_TabControl.Location = new System.Drawing.Point(2, 8);
+            this.PlayerTab_TabControl.Name = "PlayerTab_TabControl";
+            this.PlayerTab_TabControl.SelectedIndex = 0;
+            this.PlayerTab_TabControl.Size = new System.Drawing.Size(362, 162);
+            this.PlayerTab_TabControl.TabIndex = 0;
+            // 
+            // About_TabPage
+            // 
+            this.About_TabPage.Controls.Add(this.About_RichTextBox);
+            this.About_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.About_TabPage.Name = "About_TabPage";
+            this.About_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.About_TabPage.Size = new System.Drawing.Size(354, 133);
+            this.About_TabPage.TabIndex = 0;
+            this.About_TabPage.Text = "About";
+            this.About_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // About_RichTextBox
+            // 
+            this.About_RichTextBox.BackColor = System.Drawing.Color.Black;
+            this.About_RichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.About_RichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.About_RichTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.About_RichTextBox.Location = new System.Drawing.Point(3, 3);
+            this.About_RichTextBox.Name = "About_RichTextBox";
+            this.About_RichTextBox.ReadOnly = true;
+            this.About_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.About_RichTextBox.Size = new System.Drawing.Size(348, 127);
+            this.About_RichTextBox.TabIndex = 0;
+            this.About_RichTextBox.Text = "";
+            this.About_RichTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichTextBox2_LinkClicked);
+            // 
+            // Debug_TabPage
+            // 
+            this.Debug_TabPage.Controls.Add(this.ClearDebugLog_Button);
+            this.Debug_TabPage.Controls.Add(this.Debug_RichTextBox);
+            this.Debug_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Debug_TabPage.Name = "Debug_TabPage";
+            this.Debug_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Debug_TabPage.Size = new System.Drawing.Size(354, 133);
+            this.Debug_TabPage.TabIndex = 1;
+            this.Debug_TabPage.Text = "Debug";
+            this.Debug_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // ClearDebugLog_Button
+            // 
+            this.ClearDebugLog_Button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ClearDebugLog_Button.FlatAppearance.BorderSize = 0;
+            this.ClearDebugLog_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ClearDebugLog_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ClearDebugLog_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearDebugLog_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearDebugLog_Button.ForeColor = System.Drawing.Color.Black;
+            this.ClearDebugLog_Button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ClearDebugLog_Button.Location = new System.Drawing.Point(297, 5);
+            this.ClearDebugLog_Button.Name = "ClearDebugLog_Button";
+            this.ClearDebugLog_Button.Size = new System.Drawing.Size(35, 19);
+            this.ClearDebugLog_Button.TabIndex = 13;
+            this.ClearDebugLog_Button.Text = "Clear";
+            this.ClearDebugLog_Button.UseVisualStyleBackColor = true;
+            this.ClearDebugLog_Button.Click += new System.EventHandler(this.Button42_Click);
+            // 
+            // Debug_RichTextBox
+            // 
+            this.Debug_RichTextBox.BackColor = System.Drawing.Color.Black;
+            this.Debug_RichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Debug_RichTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.Debug_RichTextBox.Location = new System.Drawing.Point(3, 3);
+            this.Debug_RichTextBox.Name = "Debug_RichTextBox";
+            this.Debug_RichTextBox.ReadOnly = true;
+            this.Debug_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.Debug_RichTextBox.Size = new System.Drawing.Size(348, 127);
+            this.Debug_RichTextBox.TabIndex = 0;
+            this.Debug_RichTextBox.Text = "If any unknown items are found, their ID\'s will appear here!\n--------------------" +
     "--------------------------------------------------------------------------------" +
     "--------";
             // 
-            // tabPage9
+            // WorldTools_TabPage
             // 
-            this.tabPage9.Controls.Add(this.button43);
-            this.tabPage9.Controls.Add(this.richTextBox5);
-            this.tabPage9.Location = new System.Drawing.Point(4, 25);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(354, 133);
-            this.tabPage9.TabIndex = 3;
-            this.tabPage9.Text = "World-Tools";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this.WorldTools_TabPage.Controls.Add(this.ClearWorldToolsLog_Button);
+            this.WorldTools_TabPage.Controls.Add(this.WorldTools_RichTextBox);
+            this.WorldTools_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.WorldTools_TabPage.Name = "WorldTools_TabPage";
+            this.WorldTools_TabPage.Size = new System.Drawing.Size(354, 133);
+            this.WorldTools_TabPage.TabIndex = 3;
+            this.WorldTools_TabPage.Text = "World-Tools";
+            this.WorldTools_TabPage.UseVisualStyleBackColor = true;
             // 
-            // button43
+            // ClearWorldToolsLog_Button
             // 
-            this.button43.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button43.FlatAppearance.BorderSize = 0;
-            this.button43.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button43.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button43.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button43.ForeColor = System.Drawing.Color.Black;
-            this.button43.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button43.Location = new System.Drawing.Point(297, 5);
-            this.button43.Name = "button43";
-            this.button43.Size = new System.Drawing.Size(35, 19);
-            this.button43.TabIndex = 12;
-            this.button43.Text = "Clear";
-            this.button43.UseVisualStyleBackColor = true;
-            this.button43.Click += new System.EventHandler(this.Button43_Click);
+            this.ClearWorldToolsLog_Button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ClearWorldToolsLog_Button.FlatAppearance.BorderSize = 0;
+            this.ClearWorldToolsLog_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ClearWorldToolsLog_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ClearWorldToolsLog_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearWorldToolsLog_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearWorldToolsLog_Button.ForeColor = System.Drawing.Color.Black;
+            this.ClearWorldToolsLog_Button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ClearWorldToolsLog_Button.Location = new System.Drawing.Point(297, 5);
+            this.ClearWorldToolsLog_Button.Name = "ClearWorldToolsLog_Button";
+            this.ClearWorldToolsLog_Button.Size = new System.Drawing.Size(35, 19);
+            this.ClearWorldToolsLog_Button.TabIndex = 12;
+            this.ClearWorldToolsLog_Button.Text = "Clear";
+            this.ClearWorldToolsLog_Button.UseVisualStyleBackColor = true;
+            this.ClearWorldToolsLog_Button.Click += new System.EventHandler(this.Button43_Click);
             // 
-            // richTextBox5
+            // WorldTools_RichTextBox
             // 
-            this.richTextBox5.BackColor = System.Drawing.Color.Black;
-            this.richTextBox5.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox5.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.ReadOnly = true;
-            this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox5.Size = new System.Drawing.Size(348, 127);
-            this.richTextBox5.TabIndex = 0;
-            this.richTextBox5.Text = "Information regarding the world tools will appear here.\n-------------------------" +
+            this.WorldTools_RichTextBox.BackColor = System.Drawing.Color.Black;
+            this.WorldTools_RichTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.WorldTools_RichTextBox.Location = new System.Drawing.Point(3, 3);
+            this.WorldTools_RichTextBox.Name = "WorldTools_RichTextBox";
+            this.WorldTools_RichTextBox.ReadOnly = true;
+            this.WorldTools_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.WorldTools_RichTextBox.Size = new System.Drawing.Size(348, 127);
+            this.WorldTools_RichTextBox.TabIndex = 0;
+            this.WorldTools_RichTextBox.Text = "Information regarding the world tools will appear here.\n-------------------------" +
     "--------------------------------------------------------------------------------" +
     "---\n";
             // 
-            // tabPage7
+            // DevTools_TabPage
             // 
-            this.tabPage7.BackColor = System.Drawing.Color.Black;
-            this.tabPage7.Controls.Add(this.label35);
-            this.tabPage7.Controls.Add(this.comboBox2);
-            this.tabPage7.Controls.Add(this.checkBox2);
-            this.tabPage7.Controls.Add(this.label31);
-            this.tabPage7.Controls.Add(this.label30);
-            this.tabPage7.Controls.Add(this.label8);
-            this.tabPage7.Controls.Add(this.label7);
-            this.tabPage7.Controls.Add(this.label5);
-            this.tabPage7.Controls.Add(this.label4);
-            this.tabPage7.Controls.Add(this.numericUpDown2);
-            this.tabPage7.Controls.Add(this.numericUpDown18);
-            this.tabPage7.Controls.Add(this.button34);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(354, 133);
-            this.tabPage7.TabIndex = 2;
-            this.tabPage7.Text = "Dev-Tools";
+            this.DevTools_TabPage.BackColor = System.Drawing.Color.Black;
+            this.DevTools_TabPage.Controls.Add(this.AppPriority_Label);
+            this.DevTools_TabPage.Controls.Add(this.AppPriority_ComboBox);
+            this.DevTools_TabPage.Controls.Add(this.AlwaysOnTop_CheckBox);
+            this.DevTools_TabPage.Controls.Add(this.DevTools4_Label);
+            this.DevTools_TabPage.Controls.Add(this.DevTools5_Label);
+            this.DevTools_TabPage.Controls.Add(this.DevTools1_Label);
+            this.DevTools_TabPage.Controls.Add(this.DevTools3_Label);
+            this.DevTools_TabPage.Controls.Add(this.DevTools_Label);
+            this.DevTools_TabPage.Controls.Add(this.DevTools2_Label);
+            this.DevTools_TabPage.Controls.Add(this.DevToolsDelay_NumericUpDown);
+            this.DevTools_TabPage.Controls.Add(this.RadialMoveScale_NumericUpDown);
+            this.DevTools_TabPage.Controls.Add(this.ResetControls_Button);
+            this.DevTools_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.DevTools_TabPage.Name = "DevTools_TabPage";
+            this.DevTools_TabPage.Size = new System.Drawing.Size(354, 133);
+            this.DevTools_TabPage.TabIndex = 2;
+            this.DevTools_TabPage.Text = "Dev-Tools";
             // 
-            // label35
+            // AppPriority_Label
             // 
-            this.label35.AutoSize = true;
-            this.label35.ForeColor = System.Drawing.Color.Yellow;
-            this.label35.Location = new System.Drawing.Point(281, 34);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(63, 13);
-            this.label35.TabIndex = 29;
-            this.label35.Text = "App Priority:";
+            this.AppPriority_Label.AutoSize = true;
+            this.AppPriority_Label.ForeColor = System.Drawing.Color.Yellow;
+            this.AppPriority_Label.Location = new System.Drawing.Point(281, 34);
+            this.AppPriority_Label.Name = "AppPriority_Label";
+            this.AppPriority_Label.Size = new System.Drawing.Size(63, 13);
+            this.AppPriority_Label.TabIndex = 29;
+            this.AppPriority_Label.Text = "App Priority:";
             // 
-            // comboBox2
+            // AppPriority_ComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.AppPriority_ComboBox.FormattingEnabled = true;
+            this.AppPriority_ComboBox.Items.AddRange(new object[] {
             "Real Time",
             "High",
             "Above Normal",
             "Normal",
             "Below Normal",
             "Idle"});
-            this.comboBox2.Location = new System.Drawing.Point(270, 50);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(84, 21);
-            this.comboBox2.TabIndex = 24;
-            this.comboBox2.Text = "Normal";
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox2_SelectedIndexChanged);
-            this.comboBox2.Enter += new System.EventHandler(this.ComboBox2_Enter);
+            this.AppPriority_ComboBox.Location = new System.Drawing.Point(270, 50);
+            this.AppPriority_ComboBox.Name = "AppPriority_ComboBox";
+            this.AppPriority_ComboBox.Size = new System.Drawing.Size(84, 21);
+            this.AppPriority_ComboBox.TabIndex = 24;
+            this.AppPriority_ComboBox.Text = "Normal";
+            this.AppPriority_ComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox2_SelectedIndexChanged);
+            this.AppPriority_ComboBox.Enter += new System.EventHandler(this.ComboBox2_Enter);
             // 
-            // checkBox2
+            // AlwaysOnTop_CheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.ForeColor = System.Drawing.Color.Yellow;
-            this.checkBox2.Location = new System.Drawing.Point(207, 113);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(92, 17);
-            this.checkBox2.TabIndex = 26;
-            this.checkBox2.Text = "Always on top";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.AlwaysOnTop_CheckBox.AutoSize = true;
+            this.AlwaysOnTop_CheckBox.Checked = true;
+            this.AlwaysOnTop_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AlwaysOnTop_CheckBox.ForeColor = System.Drawing.Color.Yellow;
+            this.AlwaysOnTop_CheckBox.Location = new System.Drawing.Point(207, 113);
+            this.AlwaysOnTop_CheckBox.Name = "AlwaysOnTop_CheckBox";
+            this.AlwaysOnTop_CheckBox.Size = new System.Drawing.Size(92, 17);
+            this.AlwaysOnTop_CheckBox.TabIndex = 26;
+            this.AlwaysOnTop_CheckBox.Text = "Always on top";
+            this.AlwaysOnTop_CheckBox.UseVisualStyleBackColor = true;
+            this.AlwaysOnTop_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
-            // label31
+            // DevTools4_Label
             // 
-            this.label31.AutoSize = true;
-            this.label31.ForeColor = System.Drawing.Color.Red;
-            this.label31.Location = new System.Drawing.Point(1, 88);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(218, 13);
-            this.label31.TabIndex = 10;
-            this.label31.Text = "[Click Me] Auto map renderer memory logger.";
-            this.label31.Click += new System.EventHandler(this.Label31_Click);
+            this.DevTools4_Label.AutoSize = true;
+            this.DevTools4_Label.ForeColor = System.Drawing.Color.Red;
+            this.DevTools4_Label.Location = new System.Drawing.Point(1, 88);
+            this.DevTools4_Label.Name = "DevTools4_Label";
+            this.DevTools4_Label.Size = new System.Drawing.Size(218, 13);
+            this.DevTools4_Label.TabIndex = 10;
+            this.DevTools4_Label.Text = "[Click Me] Auto map renderer memory logger.";
+            this.DevTools4_Label.Click += new System.EventHandler(this.Label31_Click);
             // 
-            // label30
+            // DevTools5_Label
             // 
-            this.label30.AutoSize = true;
-            this.label30.ForeColor = System.Drawing.Color.Red;
-            this.label30.Location = new System.Drawing.Point(1, 108);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(160, 13);
-            this.label30.TabIndex = 9;
-            this.label30.Text = "[Click Me] Center game process.";
-            this.label30.Click += new System.EventHandler(this.Label30_Click);
+            this.DevTools5_Label.AutoSize = true;
+            this.DevTools5_Label.ForeColor = System.Drawing.Color.Red;
+            this.DevTools5_Label.Location = new System.Drawing.Point(1, 108);
+            this.DevTools5_Label.Name = "DevTools5_Label";
+            this.DevTools5_Label.Size = new System.Drawing.Size(160, 13);
+            this.DevTools5_Label.TabIndex = 9;
+            this.DevTools5_Label.Text = "[Click Me] Center game process.";
+            this.DevTools5_Label.Click += new System.EventHandler(this.Label30_Click);
             // 
-            // label8
+            // DevTools1_Label
             // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(1, 29);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(277, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
-            this.label8.Click += new System.EventHandler(this.Label8_Click);
+            this.DevTools1_Label.AutoSize = true;
+            this.DevTools1_Label.ForeColor = System.Drawing.Color.Red;
+            this.DevTools1_Label.Location = new System.Drawing.Point(1, 29);
+            this.DevTools1_Label.Name = "DevTools1_Label";
+            this.DevTools1_Label.Size = new System.Drawing.Size(277, 13);
+            this.DevTools1_Label.TabIndex = 7;
+            this.DevTools1_Label.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
+            this.DevTools1_Label.Click += new System.EventHandler(this.Label8_Click);
             // 
-            // label7
+            // DevTools3_Label
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(1, 68);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(245, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "[Click Me] Create an ID list from all installed assets.";
-            this.label7.Click += new System.EventHandler(this.Label7_Click);
+            this.DevTools3_Label.AutoSize = true;
+            this.DevTools3_Label.ForeColor = System.Drawing.Color.Red;
+            this.DevTools3_Label.Location = new System.Drawing.Point(1, 68);
+            this.DevTools3_Label.Name = "DevTools3_Label";
+            this.DevTools3_Label.Size = new System.Drawing.Size(245, 13);
+            this.DevTools3_Label.TabIndex = 6;
+            this.DevTools3_Label.Text = "[Click Me] Create an ID list from all installed assets.";
+            this.DevTools3_Label.Click += new System.EventHandler(this.Label7_Click);
             // 
-            // label5
+            // DevTools_Label
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Lime;
-            this.label5.Location = new System.Drawing.Point(-2, 2);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(358, 26);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "This section contains useful debugging tools for maintainers and devs.\r\n---------" +
+            this.DevTools_Label.AutoSize = true;
+            this.DevTools_Label.ForeColor = System.Drawing.Color.Lime;
+            this.DevTools_Label.Location = new System.Drawing.Point(-2, 2);
+            this.DevTools_Label.Name = "DevTools_Label";
+            this.DevTools_Label.Size = new System.Drawing.Size(358, 26);
+            this.DevTools_Label.TabIndex = 2;
+            this.DevTools_Label.Text = "This section contains useful debugging tools for maintainers and devs.\r\n---------" +
     "--------------------------------------------------------------------------------" +
     "----------------------------";
             // 
-            // label4
+            // DevTools2_Label
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(1, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(250, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "[Click Me] Randomize slot2\'s variety based on a list.\r\n";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
+            this.DevTools2_Label.AutoSize = true;
+            this.DevTools2_Label.ForeColor = System.Drawing.Color.Red;
+            this.DevTools2_Label.Location = new System.Drawing.Point(1, 48);
+            this.DevTools2_Label.Name = "DevTools2_Label";
+            this.DevTools2_Label.Size = new System.Drawing.Size(250, 13);
+            this.DevTools2_Label.TabIndex = 1;
+            this.DevTools2_Label.Text = "[Click Me] Randomize slot2\'s variety based on a list.\r\n";
+            this.DevTools2_Label.Click += new System.EventHandler(this.Label4_Click);
             // 
-            // numericUpDown2
+            // DevToolsDelay_NumericUpDown
             // 
-            this.numericUpDown2.BackColor = System.Drawing.SystemColors.Window;
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.DevToolsDelay_NumericUpDown.BackColor = System.Drawing.SystemColors.Window;
+            this.DevToolsDelay_NumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown2.InterceptArrowKeys = false;
-            this.numericUpDown2.Location = new System.Drawing.Point(331, 113);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.DevToolsDelay_NumericUpDown.InterceptArrowKeys = false;
+            this.DevToolsDelay_NumericUpDown.Location = new System.Drawing.Point(331, 113);
+            this.DevToolsDelay_NumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.DevToolsDelay_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown2.TabIndex = 28;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.DevToolsDelay_NumericUpDown.Name = "DevToolsDelay_NumericUpDown";
+            this.DevToolsDelay_NumericUpDown.Size = new System.Drawing.Size(38, 20);
+            this.DevToolsDelay_NumericUpDown.TabIndex = 28;
+            this.DevToolsDelay_NumericUpDown.Value = new decimal(new int[] {
             80,
             0,
             0,
             0});
             // 
-            // numericUpDown18
+            // RadialMoveScale_NumericUpDown
             // 
-            this.numericUpDown18.BackColor = System.Drawing.SystemColors.Window;
-            this.numericUpDown18.DecimalPlaces = 2;
-            this.numericUpDown18.Increment = new decimal(new int[] {
+            this.RadialMoveScale_NumericUpDown.BackColor = System.Drawing.SystemColors.Window;
+            this.RadialMoveScale_NumericUpDown.DecimalPlaces = 2;
+            this.RadialMoveScale_NumericUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown18.InterceptArrowKeys = false;
-            this.numericUpDown18.Location = new System.Drawing.Point(302, 113);
-            this.numericUpDown18.Maximum = new decimal(new int[] {
+            this.RadialMoveScale_NumericUpDown.InterceptArrowKeys = false;
+            this.RadialMoveScale_NumericUpDown.Location = new System.Drawing.Point(302, 113);
+            this.RadialMoveScale_NumericUpDown.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown18.Minimum = new decimal(new int[] {
+            this.RadialMoveScale_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numericUpDown18.Name = "numericUpDown18";
-            this.numericUpDown18.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown18.TabIndex = 27;
-            this.numericUpDown18.ThousandsSeparator = true;
-            this.numericUpDown18.Value = new decimal(new int[] {
+            this.RadialMoveScale_NumericUpDown.Name = "RadialMoveScale_NumericUpDown";
+            this.RadialMoveScale_NumericUpDown.Size = new System.Drawing.Size(45, 20);
+            this.RadialMoveScale_NumericUpDown.TabIndex = 27;
+            this.RadialMoveScale_NumericUpDown.ThousandsSeparator = true;
+            this.RadialMoveScale_NumericUpDown.Value = new decimal(new int[] {
             1,
             0,
             0,
             65536});
             // 
-            // button34
+            // ResetControls_Button
             // 
-            this.button34.Location = new System.Drawing.Point(302, 73);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(53, 38);
-            this.button34.TabIndex = 25;
-            this.button34.Text = "Reset\r\nControls";
-            this.button34.UseVisualStyleBackColor = true;
-            this.button34.Click += new System.EventHandler(this.Button34_Click);
+            this.ResetControls_Button.Location = new System.Drawing.Point(302, 73);
+            this.ResetControls_Button.Name = "ResetControls_Button";
+            this.ResetControls_Button.Size = new System.Drawing.Size(53, 38);
+            this.ResetControls_Button.TabIndex = 25;
+            this.ResetControls_Button.Text = "Reset\r\nControls";
+            this.ResetControls_Button.UseVisualStyleBackColor = true;
+            this.ResetControls_Button.Click += new System.EventHandler(this.Button34_Click);
             // 
-            // tabPage10
+            // SpecialThanks_TabPage
             // 
-            this.tabPage10.Controls.Add(this.richTextBox8);
-            this.tabPage10.Location = new System.Drawing.Point(4, 25);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(354, 133);
-            this.tabPage10.TabIndex = 4;
-            this.tabPage10.Text = "Special Thanks";
-            this.tabPage10.UseVisualStyleBackColor = true;
+            this.SpecialThanks_TabPage.Controls.Add(this.SpecialThanks_RichTextBox);
+            this.SpecialThanks_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.SpecialThanks_TabPage.Name = "SpecialThanks_TabPage";
+            this.SpecialThanks_TabPage.Size = new System.Drawing.Size(354, 133);
+            this.SpecialThanks_TabPage.TabIndex = 4;
+            this.SpecialThanks_TabPage.Text = "Special Thanks";
+            this.SpecialThanks_TabPage.UseVisualStyleBackColor = true;
             // 
-            // richTextBox8
+            // SpecialThanks_RichTextBox
             // 
-            this.richTextBox8.BackColor = System.Drawing.Color.Black;
-            this.richTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox8.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox8.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox8.Name = "richTextBox8";
-            this.richTextBox8.ReadOnly = true;
-            this.richTextBox8.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox8.Size = new System.Drawing.Size(354, 133);
-            this.richTextBox8.TabIndex = 1;
-            this.richTextBox8.Text = "";
+            this.SpecialThanks_RichTextBox.BackColor = System.Drawing.Color.Black;
+            this.SpecialThanks_RichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SpecialThanks_RichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SpecialThanks_RichTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.SpecialThanks_RichTextBox.Location = new System.Drawing.Point(0, 0);
+            this.SpecialThanks_RichTextBox.Name = "SpecialThanks_RichTextBox";
+            this.SpecialThanks_RichTextBox.ReadOnly = true;
+            this.SpecialThanks_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.SpecialThanks_RichTextBox.Size = new System.Drawing.Size(354, 133);
+            this.SpecialThanks_RichTextBox.TabIndex = 1;
+            this.SpecialThanks_RichTextBox.Text = "";
             // 
-            // groupBox7
+            // PlayerTools_GroupBox
             // 
-            this.groupBox7.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox7.Controls.Add(this.siticonePanel1);
-            this.groupBox7.Controls.Add(this.siticoneTrackBar1);
-            this.groupBox7.Controls.Add(this.progressBar5);
-            this.groupBox7.Controls.Add(this.button10);
-            this.groupBox7.Controls.Add(this.richTextBox6);
-            this.groupBox7.Controls.Add(this.label6);
-            this.groupBox7.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox7.Location = new System.Drawing.Point(384, 5);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(342, 221);
-            this.groupBox7.TabIndex = 18;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Player Tools";
+            this.PlayerTools_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.PlayerTools_GroupBox.Controls.Add(this.PlayerTools_Panel);
+            this.PlayerTools_GroupBox.Controls.Add(this.Mods_TrackBar);
+            this.PlayerTools_GroupBox.Controls.Add(this.PlayerTools_ProgressBar);
+            this.PlayerTools_GroupBox.Controls.Add(this.GetAddresses_Button);
+            this.PlayerTools_GroupBox.Controls.Add(this.PlayerTools_RichTextBox);
+            this.PlayerTools_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.PlayerTools_GroupBox.Location = new System.Drawing.Point(384, 5);
+            this.PlayerTools_GroupBox.Name = "PlayerTools_GroupBox";
+            this.PlayerTools_GroupBox.Size = new System.Drawing.Size(342, 221);
+            this.PlayerTools_GroupBox.TabIndex = 18;
+            this.PlayerTools_GroupBox.TabStop = false;
+            this.PlayerTools_GroupBox.Text = "Player Tools";
             // 
-            // siticonePanel1
+            // PlayerTools_Panel
             // 
-            this.siticonePanel1.AutoScroll = true;
-            this.siticonePanel1.Controls.Add(this.label45);
-            this.siticonePanel1.Controls.Add(this.siticoneMetroTrackBar1);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith16);
-            this.siticonePanel1.Controls.Add(this.label43);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith15);
-            this.siticonePanel1.Controls.Add(this.label42);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith14);
-            this.siticonePanel1.Controls.Add(this.label41);
-            this.siticonePanel1.Controls.Add(this.button40);
-            this.siticonePanel1.Controls.Add(this.numericUpDown21);
-            this.siticonePanel1.Controls.Add(this.label38);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith13);
-            this.siticonePanel1.Controls.Add(this.label37);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith12);
-            this.siticonePanel1.Controls.Add(this.label36);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith2);
-            this.siticonePanel1.Controls.Add(this.label10);
-            this.siticonePanel1.Controls.Add(this.label33);
-            this.siticonePanel1.Controls.Add(this.button35);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith7);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith1);
-            this.siticonePanel1.Controls.Add(this.label11);
-            this.siticonePanel1.Controls.Add(this.label27);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith11);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith8);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith3);
-            this.siticonePanel1.Controls.Add(this.label20);
-            this.siticonePanel1.Controls.Add(this.label29);
-            this.siticonePanel1.Controls.Add(this.label34);
-            this.siticonePanel1.Controls.Add(this.label14);
-            this.siticonePanel1.Controls.Add(this.label32);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith6);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith9);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith5);
-            this.siticonePanel1.Controls.Add(this.label12);
-            this.siticonePanel1.Controls.Add(this.label28);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith10);
-            this.siticonePanel1.Controls.Add(this.numericUpDown3);
-            this.siticonePanel1.Controls.Add(this.siticoneWinToggleSwith4);
-            this.siticonePanel1.Controls.Add(this.label13);
-            this.siticonePanel1.Controls.Add(this.label44);
-            this.siticonePanel1.Location = new System.Drawing.Point(6, 46);
-            this.siticonePanel1.Name = "siticonePanel1";
-            this.siticonePanel1.ShadowDecoration.Parent = this.siticonePanel1;
-            this.siticonePanel1.Size = new System.Drawing.Size(704, 140);
-            this.siticonePanel1.TabIndex = 38;
+            this.PlayerTools_Panel.AutoScroll = true;
+            this.PlayerTools_Panel.Controls.Add(this.ForceNoclip_Checkbox);
+            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_Label);
+            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_MetroTrackBar);
+            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.MinecartSpeed_Label);
+            this.PlayerTools_Panel.Controls.Add(this.TrashInventory_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.TrashInventory_Label);
+            this.PlayerTools_Panel.Controls.Add(this.KeepInventory_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.KeepInventory_Label);
+            this.PlayerTools_Panel.Controls.Add(this.OpenSkillEditor_Button);
+            this.PlayerTools_Panel.Controls.Add(this.Range_NumericUpDown);
+            this.PlayerTools_Panel.Controls.Add(this.Range_Label);
+            this.PlayerTools_Panel.Controls.Add(this.Range_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.PlaceAnywhere_Label);
+            this.PlayerTools_Panel.Controls.Add(this.PlaceAnywhere_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.MoreMobs_Label);
+            this.PlayerTools_Panel.Controls.Add(this.Godmode_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.DisplayPosition_Label);
+            this.PlayerTools_Panel.Controls.Add(this.PassiveAI_Label);
+            this.PlayerTools_Panel.Controls.Add(this.OpenChunkVisualizer_Button);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteResources_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.DisplayLocation_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Godmode_Label);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteResources_Label);
+            this.PlayerTools_Panel.Controls.Add(this.PassiveAI_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteMana_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Speed_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Suicide_Label);
+            this.PlayerTools_Panel.Controls.Add(this.ForceRecall_Label);
+            this.PlayerTools_Panel.Controls.Add(this.OpenChunkVisualizer_Label);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteFood_Label);
+            this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_Label);
+            this.PlayerTools_Panel.Controls.Add(this.Suicide_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.ForceRecall_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteHealth_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Speed_Label);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteMana_Label);
+            this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.SpeedAmount_NumericUpDown);
+            this.PlayerTools_Panel.Controls.Add(this.Noclip_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Noclip_Label);
+            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeedArrow_Label);
+            this.PlayerTools_Panel.Location = new System.Drawing.Point(6, 46);
+            this.PlayerTools_Panel.Name = "PlayerTools_Panel";
+            this.PlayerTools_Panel.ShadowDecoration.Parent = this.PlayerTools_Panel;
+            this.PlayerTools_Panel.Size = new System.Drawing.Size(704, 140);
+            this.PlayerTools_Panel.TabIndex = 38;
             // 
-            // label45
+            // ForceNoclip_Checkbox
             // 
-            this.label45.AutoSize = true;
-            this.label45.ForeColor = System.Drawing.Color.Snow;
-            this.label45.Location = new System.Drawing.Point(585, 62);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(88, 13);
-            this.label45.TabIndex = 47;
-            this.label45.Text = "- MaxSpeed: 800";
-            this.label45.Visible = false;
+            this.ForceNoclip_Checkbox.AutoSize = true;
+            this.ForceNoclip_Checkbox.CheckedState.BorderColor = System.Drawing.Color.Snow;
+            this.ForceNoclip_Checkbox.CheckedState.BorderRadius = 2;
+            this.ForceNoclip_Checkbox.CheckedState.BorderThickness = 0;
+            this.ForceNoclip_Checkbox.CheckedState.FillColor = System.Drawing.Color.Snow;
+            this.ForceNoclip_Checkbox.CheckMarkColor = System.Drawing.Color.Lime;
+            this.ForceNoclip_Checkbox.Location = new System.Drawing.Point(308, 7);
+            this.ForceNoclip_Checkbox.Name = "ForceNoclip_Checkbox";
+            this.ForceNoclip_Checkbox.Size = new System.Drawing.Size(15, 14);
+            this.ForceNoclip_Checkbox.TabIndex = 48;
+            this.ForceNoclip_Checkbox.UncheckedState.BorderColor = System.Drawing.Color.Snow;
+            this.ForceNoclip_Checkbox.UncheckedState.BorderRadius = 2;
+            this.ForceNoclip_Checkbox.UncheckedState.BorderThickness = 0;
+            this.ForceNoclip_Checkbox.UncheckedState.FillColor = System.Drawing.Color.Snow;
+            this.ForceNoclip_Checkbox.UseVisualStyleBackColor = true;
             // 
-            // siticoneMetroTrackBar1
+            // MaxMinecartSpeed_Label
             // 
-            this.siticoneMetroTrackBar1.Enabled = false;
-            this.siticoneMetroTrackBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.siticoneMetroTrackBar1.HoveredState.Parent = this.siticoneMetroTrackBar1;
-            this.siticoneMetroTrackBar1.LargeChange = 500;
-            this.siticoneMetroTrackBar1.Location = new System.Drawing.Point(567, 87);
-            this.siticoneMetroTrackBar1.Maximum = 9000;
-            this.siticoneMetroTrackBar1.MouseWheelBarPartitions = 100;
-            this.siticoneMetroTrackBar1.Name = "siticoneMetroTrackBar1";
-            this.siticoneMetroTrackBar1.Size = new System.Drawing.Size(103, 23);
-            this.siticoneMetroTrackBar1.SmallChange = 50;
-            this.siticoneMetroTrackBar1.TabIndex = 46;
-            this.siticoneMetroTrackBar1.ThumbColor = System.Drawing.Color.Lime;
-            this.siticoneMetroTrackBar1.Value = 800;
-            this.siticoneMetroTrackBar1.ValueChanged += new System.EventHandler(this.SiticoneMetroTrackBar1_ValueChanged);
-            this.siticoneMetroTrackBar1.MouseLeave += new System.EventHandler(this.SiticoneMetroTrackBar1_MouseLeave);
-            this.siticoneMetroTrackBar1.MouseHover += new System.EventHandler(this.SiticoneMetroTrackBar1_MouseHover);
+            this.MaxMinecartSpeed_Label.AutoSize = true;
+            this.MaxMinecartSpeed_Label.ForeColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_Label.Location = new System.Drawing.Point(585, 62);
+            this.MaxMinecartSpeed_Label.Name = "MaxMinecartSpeed_Label";
+            this.MaxMinecartSpeed_Label.Size = new System.Drawing.Size(88, 13);
+            this.MaxMinecartSpeed_Label.TabIndex = 47;
+            this.MaxMinecartSpeed_Label.Text = "- MaxSpeed: 800";
+            this.MaxMinecartSpeed_Label.Visible = false;
             // 
-            // siticoneWinToggleSwith16
+            // MaxMinecartSpeed_MetroTrackBar
             // 
-            this.siticoneWinToggleSwith16.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith16.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith16.Location = new System.Drawing.Point(534, 59);
-            this.siticoneWinToggleSwith16.Name = "siticoneWinToggleSwith16";
-            this.siticoneWinToggleSwith16.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith16.TabIndex = 40;
-            this.siticoneWinToggleSwith16.Text = "siticoneWinToggleSwith16";
-            this.siticoneWinToggleSwith16.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith16.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith16.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith16_CheckedChanged);
+            this.MaxMinecartSpeed_MetroTrackBar.Enabled = false;
+            this.MaxMinecartSpeed_MetroTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.MaxMinecartSpeed_MetroTrackBar.HoveredState.Parent = this.MaxMinecartSpeed_MetroTrackBar;
+            this.MaxMinecartSpeed_MetroTrackBar.LargeChange = 500;
+            this.MaxMinecartSpeed_MetroTrackBar.Location = new System.Drawing.Point(567, 87);
+            this.MaxMinecartSpeed_MetroTrackBar.Maximum = 9000;
+            this.MaxMinecartSpeed_MetroTrackBar.MouseWheelBarPartitions = 100;
+            this.MaxMinecartSpeed_MetroTrackBar.Name = "MaxMinecartSpeed_MetroTrackBar";
+            this.MaxMinecartSpeed_MetroTrackBar.Size = new System.Drawing.Size(103, 23);
+            this.MaxMinecartSpeed_MetroTrackBar.SmallChange = 50;
+            this.MaxMinecartSpeed_MetroTrackBar.TabIndex = 46;
+            this.MaxMinecartSpeed_MetroTrackBar.ThumbColor = System.Drawing.Color.Lime;
+            this.MaxMinecartSpeed_MetroTrackBar.Value = 800;
+            this.MaxMinecartSpeed_MetroTrackBar.ValueChanged += new System.EventHandler(this.SiticoneMetroTrackBar1_ValueChanged);
+            this.MaxMinecartSpeed_MetroTrackBar.MouseLeave += new System.EventHandler(this.SiticoneMetroTrackBar1_MouseLeave);
+            this.MaxMinecartSpeed_MetroTrackBar.MouseHover += new System.EventHandler(this.SiticoneMetroTrackBar1_MouseHover);
             // 
-            // label43
+            // MaxMinecartSpeed_ToggleSwith
             // 
-            this.label43.AutoSize = true;
-            this.label43.ForeColor = System.Drawing.Color.Snow;
-            this.label43.Location = new System.Drawing.Point(585, 62);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(88, 13);
-            this.label43.TabIndex = 41;
-            this.label43.Text = "- Minecart Speed";
+            this.MaxMinecartSpeed_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.MaxMinecartSpeed_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_ToggleSwith.Location = new System.Drawing.Point(534, 59);
+            this.MaxMinecartSpeed_ToggleSwith.Name = "MaxMinecartSpeed_ToggleSwith";
+            this.MaxMinecartSpeed_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.MaxMinecartSpeed_ToggleSwith.TabIndex = 40;
+            this.MaxMinecartSpeed_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith16_CheckedChanged);
             // 
-            // siticoneWinToggleSwith15
+            // MinecartSpeed_Label
             // 
-            this.siticoneWinToggleSwith15.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith15.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith15.Location = new System.Drawing.Point(534, 31);
-            this.siticoneWinToggleSwith15.Name = "siticoneWinToggleSwith15";
-            this.siticoneWinToggleSwith15.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith15.TabIndex = 38;
-            this.siticoneWinToggleSwith15.Text = "siticoneWinToggleSwith15";
-            this.siticoneWinToggleSwith15.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith15.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith15.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith15_CheckedChanged);
+            this.MinecartSpeed_Label.AutoSize = true;
+            this.MinecartSpeed_Label.ForeColor = System.Drawing.Color.Snow;
+            this.MinecartSpeed_Label.Location = new System.Drawing.Point(585, 62);
+            this.MinecartSpeed_Label.Name = "MinecartSpeed_Label";
+            this.MinecartSpeed_Label.Size = new System.Drawing.Size(88, 13);
+            this.MinecartSpeed_Label.TabIndex = 41;
+            this.MinecartSpeed_Label.Text = "- Minecart Speed";
             // 
-            // label42
+            // TrashInventory_ToggleSwith
             // 
-            this.label42.AutoSize = true;
-            this.label42.ForeColor = System.Drawing.Color.Snow;
-            this.label42.Location = new System.Drawing.Point(585, 34);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(87, 13);
-            this.label42.TabIndex = 39;
-            this.label42.Text = "- Trash Inventory";
+            this.TrashInventory_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.TrashInventory_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.TrashInventory_ToggleSwith.Location = new System.Drawing.Point(534, 31);
+            this.TrashInventory_ToggleSwith.Name = "TrashInventory_ToggleSwith";
+            this.TrashInventory_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.TrashInventory_ToggleSwith.TabIndex = 38;
+            this.TrashInventory_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.TrashInventory_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.TrashInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith15_CheckedChanged);
             // 
-            // siticoneWinToggleSwith14
+            // TrashInventory_Label
             // 
-            this.siticoneWinToggleSwith14.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith14.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith14.Location = new System.Drawing.Point(534, 3);
-            this.siticoneWinToggleSwith14.Name = "siticoneWinToggleSwith14";
-            this.siticoneWinToggleSwith14.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith14.TabIndex = 36;
-            this.siticoneWinToggleSwith14.Text = "siticoneWinToggleSwith14";
-            this.siticoneWinToggleSwith14.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith14.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith14.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith14_CheckedChanged);
+            this.TrashInventory_Label.AutoSize = true;
+            this.TrashInventory_Label.ForeColor = System.Drawing.Color.Snow;
+            this.TrashInventory_Label.Location = new System.Drawing.Point(585, 34);
+            this.TrashInventory_Label.Name = "TrashInventory_Label";
+            this.TrashInventory_Label.Size = new System.Drawing.Size(87, 13);
+            this.TrashInventory_Label.TabIndex = 39;
+            this.TrashInventory_Label.Text = "- Trash Inventory";
             // 
-            // label41
+            // KeepInventory_ToggleSwith
             // 
-            this.label41.AutoSize = true;
-            this.label41.ForeColor = System.Drawing.Color.Snow;
-            this.label41.Location = new System.Drawing.Point(585, 6);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(85, 13);
-            this.label41.TabIndex = 37;
-            this.label41.Text = "- Keep Inventory";
+            this.KeepInventory_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.KeepInventory_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.KeepInventory_ToggleSwith.Location = new System.Drawing.Point(534, 3);
+            this.KeepInventory_ToggleSwith.Name = "KeepInventory_ToggleSwith";
+            this.KeepInventory_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.KeepInventory_ToggleSwith.TabIndex = 36;
+            this.KeepInventory_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.KeepInventory_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.KeepInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith14_CheckedChanged);
             // 
-            // button40
+            // KeepInventory_Label
             // 
-            this.button40.ForeColor = System.Drawing.Color.Black;
-            this.button40.Location = new System.Drawing.Point(353, 114);
-            this.button40.Name = "button40";
-            this.button40.Size = new System.Drawing.Size(156, 23);
-            this.button40.TabIndex = 35;
-            this.button40.Text = "Open Skill Editor (Beta)";
-            this.button40.UseVisualStyleBackColor = true;
-            this.button40.Click += new System.EventHandler(this.Button40_Click);
+            this.KeepInventory_Label.AutoSize = true;
+            this.KeepInventory_Label.ForeColor = System.Drawing.Color.Snow;
+            this.KeepInventory_Label.Location = new System.Drawing.Point(585, 6);
+            this.KeepInventory_Label.Name = "KeepInventory_Label";
+            this.KeepInventory_Label.Size = new System.Drawing.Size(85, 13);
+            this.KeepInventory_Label.TabIndex = 37;
+            this.KeepInventory_Label.Text = "- Keep Inventory";
             // 
-            // numericUpDown21
+            // OpenSkillEditor_Button
             // 
-            this.numericUpDown21.Location = new System.Drawing.Point(455, 89);
-            this.numericUpDown21.Maximum = new decimal(new int[] {
+            this.OpenSkillEditor_Button.ForeColor = System.Drawing.Color.Black;
+            this.OpenSkillEditor_Button.Location = new System.Drawing.Point(353, 114);
+            this.OpenSkillEditor_Button.Name = "OpenSkillEditor_Button";
+            this.OpenSkillEditor_Button.Size = new System.Drawing.Size(156, 23);
+            this.OpenSkillEditor_Button.TabIndex = 35;
+            this.OpenSkillEditor_Button.Text = "Open Skill Editor 2.0 (Beta)";
+            this.OpenSkillEditor_Button.UseVisualStyleBackColor = true;
+            this.OpenSkillEditor_Button.Click += new System.EventHandler(this.Button40_Click);
+            // 
+            // Range_NumericUpDown
+            // 
+            this.Range_NumericUpDown.Location = new System.Drawing.Point(455, 89);
+            this.Range_NumericUpDown.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
-            this.numericUpDown21.Name = "numericUpDown21";
-            this.numericUpDown21.Size = new System.Drawing.Size(54, 20);
-            this.numericUpDown21.TabIndex = 22;
-            this.numericUpDown21.Value = new decimal(new int[] {
+            this.Range_NumericUpDown.Name = "Range_NumericUpDown";
+            this.Range_NumericUpDown.Size = new System.Drawing.Size(54, 20);
+            this.Range_NumericUpDown.TabIndex = 22;
+            this.Range_NumericUpDown.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
             // 
-            // label38
+            // Range_Label
             // 
-            this.label38.AutoSize = true;
-            this.label38.ForeColor = System.Drawing.Color.Snow;
-            this.label38.Location = new System.Drawing.Point(404, 91);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(48, 13);
-            this.label38.TabIndex = 34;
-            this.label38.Text = "- Range:";
+            this.Range_Label.AutoSize = true;
+            this.Range_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Range_Label.Location = new System.Drawing.Point(404, 91);
+            this.Range_Label.Name = "Range_Label";
+            this.Range_Label.Size = new System.Drawing.Size(48, 13);
+            this.Range_Label.TabIndex = 34;
+            this.Range_Label.Text = "- Range:";
             // 
-            // siticoneWinToggleSwith13
+            // Range_ToggleSwith
             // 
-            this.siticoneWinToggleSwith13.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith13.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith13.Location = new System.Drawing.Point(353, 87);
-            this.siticoneWinToggleSwith13.Name = "siticoneWinToggleSwith13";
-            this.siticoneWinToggleSwith13.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith13.TabIndex = 21;
-            this.siticoneWinToggleSwith13.Text = "siticoneWinToggleSwith13";
-            this.siticoneWinToggleSwith13.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith13.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith13.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith13_CheckedChanged);
+            this.Range_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Range_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Range_ToggleSwith.Location = new System.Drawing.Point(353, 87);
+            this.Range_ToggleSwith.Name = "Range_ToggleSwith";
+            this.Range_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.Range_ToggleSwith.TabIndex = 21;
+            this.Range_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Range_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Range_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith13_CheckedChanged);
             // 
-            // label37
+            // PlaceAnywhere_Label
             // 
-            this.label37.AutoSize = true;
-            this.label37.ForeColor = System.Drawing.Color.Snow;
-            this.label37.Location = new System.Drawing.Point(404, 63);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(90, 13);
-            this.label37.TabIndex = 32;
-            this.label37.Text = "- Place Anywhere";
+            this.PlaceAnywhere_Label.AutoSize = true;
+            this.PlaceAnywhere_Label.ForeColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_Label.Location = new System.Drawing.Point(404, 63);
+            this.PlaceAnywhere_Label.Name = "PlaceAnywhere_Label";
+            this.PlaceAnywhere_Label.Size = new System.Drawing.Size(90, 13);
+            this.PlaceAnywhere_Label.TabIndex = 32;
+            this.PlaceAnywhere_Label.Text = "- Place Anywhere";
             // 
-            // siticoneWinToggleSwith12
+            // PlaceAnywhere_ToggleSwith
             // 
-            this.siticoneWinToggleSwith12.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith12.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith12.Location = new System.Drawing.Point(353, 59);
-            this.siticoneWinToggleSwith12.Name = "siticoneWinToggleSwith12";
-            this.siticoneWinToggleSwith12.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith12.TabIndex = 20;
-            this.siticoneWinToggleSwith12.Text = "siticoneWinToggleSwith12";
-            this.siticoneWinToggleSwith12.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith12.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith12.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith12_CheckedChanged);
+            this.PlaceAnywhere_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.PlaceAnywhere_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_ToggleSwith.Location = new System.Drawing.Point(353, 59);
+            this.PlaceAnywhere_ToggleSwith.Name = "PlaceAnywhere_ToggleSwith";
+            this.PlaceAnywhere_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.PlaceAnywhere_ToggleSwith.TabIndex = 20;
+            this.PlaceAnywhere_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith12_CheckedChanged);
             // 
-            // label36
+            // MoreMobs_Label
             // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.Color.Snow;
-            this.label36.Location = new System.Drawing.Point(278, 119);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(45, 13);
-            this.label36.TabIndex = 30;
-            this.label36.Text = "More →";
+            this.MoreMobs_Label.AutoSize = true;
+            this.MoreMobs_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MoreMobs_Label.ForeColor = System.Drawing.Color.Snow;
+            this.MoreMobs_Label.Location = new System.Drawing.Point(278, 119);
+            this.MoreMobs_Label.Name = "MoreMobs_Label";
+            this.MoreMobs_Label.Size = new System.Drawing.Size(45, 13);
+            this.MoreMobs_Label.TabIndex = 30;
+            this.MoreMobs_Label.Text = "More →";
             // 
-            // siticoneWinToggleSwith2
+            // Godmode_ToggleSwith
             // 
-            this.siticoneWinToggleSwith2.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith2.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith2.Location = new System.Drawing.Point(3, 3);
-            this.siticoneWinToggleSwith2.Name = "siticoneWinToggleSwith2";
-            this.siticoneWinToggleSwith2.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith2.TabIndex = 7;
-            this.siticoneWinToggleSwith2.Text = "siticoneWinToggleSwith2";
-            this.siticoneWinToggleSwith2.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith2.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith2.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith2_CheckedChanged);
+            this.Godmode_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Godmode_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Godmode_ToggleSwith.Location = new System.Drawing.Point(3, 3);
+            this.Godmode_ToggleSwith.Name = "Godmode_ToggleSwith";
+            this.Godmode_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.Godmode_ToggleSwith.TabIndex = 7;
+            this.Godmode_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Godmode_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Godmode_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith2_CheckedChanged);
             // 
-            // label10
+            // DisplayPosition_Label
             // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Snow;
-            this.label10.Location = new System.Drawing.Point(404, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(87, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "- Display Position";
+            this.DisplayPosition_Label.AutoSize = true;
+            this.DisplayPosition_Label.ForeColor = System.Drawing.Color.Snow;
+            this.DisplayPosition_Label.Location = new System.Drawing.Point(404, 6);
+            this.DisplayPosition_Label.Name = "DisplayPosition_Label";
+            this.DisplayPosition_Label.Size = new System.Drawing.Size(87, 13);
+            this.DisplayPosition_Label.TabIndex = 0;
+            this.DisplayPosition_Label.Text = "- Display Position";
             // 
-            // label33
+            // PassiveAI_Label
             // 
-            this.label33.AutoSize = true;
-            this.label33.ForeColor = System.Drawing.Color.Snow;
-            this.label33.Location = new System.Drawing.Point(203, 119);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(63, 13);
-            this.label33.TabIndex = 27;
-            this.label33.Text = "- Passive AI";
+            this.PassiveAI_Label.AutoSize = true;
+            this.PassiveAI_Label.ForeColor = System.Drawing.Color.Snow;
+            this.PassiveAI_Label.Location = new System.Drawing.Point(203, 119);
+            this.PassiveAI_Label.Name = "PassiveAI_Label";
+            this.PassiveAI_Label.Size = new System.Drawing.Size(63, 13);
+            this.PassiveAI_Label.TabIndex = 27;
+            this.PassiveAI_Label.Text = "- Passive AI";
             // 
-            // button35
+            // OpenChunkVisualizer_Button
             // 
-            this.button35.ForeColor = System.Drawing.Color.Black;
-            this.button35.Location = new System.Drawing.Point(382, 31);
-            this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(127, 23);
-            this.button35.TabIndex = 19;
-            this.button35.Text = "Open Chunk Visualizer";
-            this.button35.UseVisualStyleBackColor = true;
-            this.button35.Click += new System.EventHandler(this.Button35_Click);
+            this.OpenChunkVisualizer_Button.ForeColor = System.Drawing.Color.Black;
+            this.OpenChunkVisualizer_Button.Location = new System.Drawing.Point(382, 31);
+            this.OpenChunkVisualizer_Button.Name = "OpenChunkVisualizer_Button";
+            this.OpenChunkVisualizer_Button.Size = new System.Drawing.Size(127, 23);
+            this.OpenChunkVisualizer_Button.TabIndex = 19;
+            this.OpenChunkVisualizer_Button.Text = "Open Chunk Visualizer";
+            this.OpenChunkVisualizer_Button.UseVisualStyleBackColor = true;
+            this.OpenChunkVisualizer_Button.Click += new System.EventHandler(this.Button35_Click);
             // 
-            // siticoneWinToggleSwith7
+            // InfiniteResources_ToggleSwith
             // 
-            this.siticoneWinToggleSwith7.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith7.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.Location = new System.Drawing.Point(152, 59);
-            this.siticoneWinToggleSwith7.Name = "siticoneWinToggleSwith7";
-            this.siticoneWinToggleSwith7.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith7.TabIndex = 13;
-            this.siticoneWinToggleSwith7.Text = "siticoneWinToggleSwith7";
-            this.siticoneWinToggleSwith7.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith7.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith7_CheckedChanged);
+            this.InfiniteResources_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteResources_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_ToggleSwith.Location = new System.Drawing.Point(152, 59);
+            this.InfiniteResources_ToggleSwith.Name = "InfiniteResources_ToggleSwith";
+            this.InfiniteResources_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteResources_ToggleSwith.TabIndex = 13;
+            this.InfiniteResources_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith7_CheckedChanged);
             // 
-            // siticoneWinToggleSwith1
+            // DisplayLocation_ToggleSwith
             // 
-            this.siticoneWinToggleSwith1.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith1.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith1.Location = new System.Drawing.Point(353, 3);
-            this.siticoneWinToggleSwith1.Name = "siticoneWinToggleSwith1";
-            this.siticoneWinToggleSwith1.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith1.TabIndex = 18;
-            this.siticoneWinToggleSwith1.Text = "siticoneWinToggleSwith1";
-            this.siticoneWinToggleSwith1.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith1.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith1.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith1_CheckedChanged);
+            this.DisplayLocation_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.DisplayLocation_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.DisplayLocation_ToggleSwith.Location = new System.Drawing.Point(353, 3);
+            this.DisplayLocation_ToggleSwith.Name = "DisplayLocation_ToggleSwith";
+            this.DisplayLocation_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.DisplayLocation_ToggleSwith.TabIndex = 18;
+            this.DisplayLocation_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.DisplayLocation_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.DisplayLocation_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith1_CheckedChanged);
             // 
-            // label11
+            // Godmode_Label
             // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Snow;
-            this.label11.Location = new System.Drawing.Point(54, 6);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "- Godmode";
+            this.Godmode_Label.AutoSize = true;
+            this.Godmode_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Godmode_Label.Location = new System.Drawing.Point(54, 6);
+            this.Godmode_Label.Name = "Godmode_Label";
+            this.Godmode_Label.Size = new System.Drawing.Size(59, 13);
+            this.Godmode_Label.TabIndex = 0;
+            this.Godmode_Label.Text = "- Godmode";
             // 
-            // label27
+            // InfiniteResources_Label
             // 
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.Color.Snow;
-            this.label27.Location = new System.Drawing.Point(203, 64);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(98, 13);
-            this.label27.TabIndex = 19;
-            this.label27.Text = "- Infinite Resources";
+            this.InfiniteResources_Label.AutoSize = true;
+            this.InfiniteResources_Label.ForeColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_Label.Location = new System.Drawing.Point(203, 64);
+            this.InfiniteResources_Label.Name = "InfiniteResources_Label";
+            this.InfiniteResources_Label.Size = new System.Drawing.Size(98, 13);
+            this.InfiniteResources_Label.TabIndex = 19;
+            this.InfiniteResources_Label.Text = "- Infinite Resources";
             // 
-            // siticoneWinToggleSwith11
+            // PassiveAI_ToggleSwith
             // 
-            this.siticoneWinToggleSwith11.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith11.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith11.Location = new System.Drawing.Point(152, 115);
-            this.siticoneWinToggleSwith11.Name = "siticoneWinToggleSwith11";
-            this.siticoneWinToggleSwith11.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith11.TabIndex = 17;
-            this.siticoneWinToggleSwith11.Text = "siticoneWinToggleSwith11";
-            this.siticoneWinToggleSwith11.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith11.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith11.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith11_CheckedChanged);
+            this.PassiveAI_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.PassiveAI_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.PassiveAI_ToggleSwith.Location = new System.Drawing.Point(152, 115);
+            this.PassiveAI_ToggleSwith.Name = "PassiveAI_ToggleSwith";
+            this.PassiveAI_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.PassiveAI_ToggleSwith.TabIndex = 17;
+            this.PassiveAI_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.PassiveAI_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.PassiveAI_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith11_CheckedChanged);
             // 
-            // siticoneWinToggleSwith8
+            // InfiniteMana_ToggleSwith
             // 
-            this.siticoneWinToggleSwith8.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith8.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith8.Location = new System.Drawing.Point(3, 59);
-            this.siticoneWinToggleSwith8.Name = "siticoneWinToggleSwith8";
-            this.siticoneWinToggleSwith8.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith8.TabIndex = 12;
-            this.siticoneWinToggleSwith8.Text = "siticoneWinToggleSwith8";
-            this.siticoneWinToggleSwith8.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith8.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith8.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith8_CheckedChanged);
+            this.InfiniteMana_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteMana_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_ToggleSwith.Location = new System.Drawing.Point(3, 59);
+            this.InfiniteMana_ToggleSwith.Name = "InfiniteMana_ToggleSwith";
+            this.InfiniteMana_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteMana_ToggleSwith.TabIndex = 12;
+            this.InfiniteMana_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith8_CheckedChanged);
             // 
-            // siticoneWinToggleSwith3
+            // Speed_ToggleSwith
             // 
-            this.siticoneWinToggleSwith3.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith3.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith3.Location = new System.Drawing.Point(152, 31);
-            this.siticoneWinToggleSwith3.Name = "siticoneWinToggleSwith3";
-            this.siticoneWinToggleSwith3.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith3.TabIndex = 10;
-            this.siticoneWinToggleSwith3.Text = "siticoneWinToggleSwith3";
-            this.siticoneWinToggleSwith3.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith3.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith3.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith3_CheckedChanged);
+            this.Speed_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Speed_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Speed_ToggleSwith.Location = new System.Drawing.Point(152, 31);
+            this.Speed_ToggleSwith.Name = "Speed_ToggleSwith";
+            this.Speed_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.Speed_ToggleSwith.TabIndex = 10;
+            this.Speed_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Speed_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Speed_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith3_CheckedChanged);
             // 
-            // label20
+            // Suicide_Label
             // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.Snow;
-            this.label20.Location = new System.Drawing.Point(54, 91);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(48, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "- Suicide";
+            this.Suicide_Label.AutoSize = true;
+            this.Suicide_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Suicide_Label.Location = new System.Drawing.Point(54, 91);
+            this.Suicide_Label.Name = "Suicide_Label";
+            this.Suicide_Label.Size = new System.Drawing.Size(48, 13);
+            this.Suicide_Label.TabIndex = 0;
+            this.Suicide_Label.Text = "- Suicide";
             // 
-            // label29
+            // ForceRecall_Label
             // 
-            this.label29.AutoSize = true;
-            this.label29.ForeColor = System.Drawing.Color.Snow;
-            this.label29.Location = new System.Drawing.Point(54, 119);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(73, 13);
-            this.label29.TabIndex = 23;
-            this.label29.Text = "- Force Recall";
+            this.ForceRecall_Label.AutoSize = true;
+            this.ForceRecall_Label.ForeColor = System.Drawing.Color.Snow;
+            this.ForceRecall_Label.Location = new System.Drawing.Point(54, 119);
+            this.ForceRecall_Label.Name = "ForceRecall_Label";
+            this.ForceRecall_Label.Size = new System.Drawing.Size(73, 13);
+            this.ForceRecall_Label.TabIndex = 23;
+            this.ForceRecall_Label.Text = "- Force Recall";
             // 
-            // label34
+            // OpenChunkVisualizer_Label
             // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.Snow;
-            this.label34.Location = new System.Drawing.Point(346, 18);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(34, 42);
-            this.label34.TabIndex = 29;
-            this.label34.Text = "⮡";
+            this.OpenChunkVisualizer_Label.AutoSize = true;
+            this.OpenChunkVisualizer_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpenChunkVisualizer_Label.ForeColor = System.Drawing.Color.Snow;
+            this.OpenChunkVisualizer_Label.Location = new System.Drawing.Point(346, 18);
+            this.OpenChunkVisualizer_Label.Name = "OpenChunkVisualizer_Label";
+            this.OpenChunkVisualizer_Label.Size = new System.Drawing.Size(34, 42);
+            this.OpenChunkVisualizer_Label.TabIndex = 29;
+            this.OpenChunkVisualizer_Label.Text = "⮡";
             // 
-            // label14
+            // InfiniteFood_Label
             // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Snow;
-            this.label14.Location = new System.Drawing.Point(54, 35);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(71, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "- Infinite Food";
+            this.InfiniteFood_Label.AutoSize = true;
+            this.InfiniteFood_Label.ForeColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_Label.Location = new System.Drawing.Point(54, 35);
+            this.InfiniteFood_Label.Name = "InfiniteFood_Label";
+            this.InfiniteFood_Label.Size = new System.Drawing.Size(71, 13);
+            this.InfiniteFood_Label.TabIndex = 0;
+            this.InfiniteFood_Label.Text = "- Infinite Food";
             // 
-            // label32
+            // FreeCrafting_Label
             // 
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.Snow;
-            this.label32.Location = new System.Drawing.Point(203, 91);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(73, 13);
-            this.label32.TabIndex = 25;
-            this.label32.Text = "- Free Crafting";
+            this.FreeCrafting_Label.AutoSize = true;
+            this.FreeCrafting_Label.ForeColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_Label.Location = new System.Drawing.Point(203, 91);
+            this.FreeCrafting_Label.Name = "FreeCrafting_Label";
+            this.FreeCrafting_Label.Size = new System.Drawing.Size(73, 13);
+            this.FreeCrafting_Label.TabIndex = 25;
+            this.FreeCrafting_Label.Text = "- Free Crafting";
             // 
-            // siticoneWinToggleSwith6
+            // Suicide_ToggleSwith
             // 
-            this.siticoneWinToggleSwith6.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith6.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith6.Location = new System.Drawing.Point(3, 87);
-            this.siticoneWinToggleSwith6.Name = "siticoneWinToggleSwith6";
-            this.siticoneWinToggleSwith6.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith6.TabIndex = 14;
-            this.siticoneWinToggleSwith6.Text = "siticoneWinToggleSwith6";
-            this.siticoneWinToggleSwith6.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith6.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith6.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith6_CheckedChanged);
+            this.Suicide_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Suicide_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Suicide_ToggleSwith.Location = new System.Drawing.Point(3, 87);
+            this.Suicide_ToggleSwith.Name = "Suicide_ToggleSwith";
+            this.Suicide_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.Suicide_ToggleSwith.TabIndex = 14;
+            this.Suicide_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Suicide_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Suicide_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith6_CheckedChanged);
             // 
-            // siticoneWinToggleSwith9
+            // ForceRecall_ToggleSwith
             // 
-            this.siticoneWinToggleSwith9.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith9.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith9.Location = new System.Drawing.Point(3, 115);
-            this.siticoneWinToggleSwith9.Name = "siticoneWinToggleSwith9";
-            this.siticoneWinToggleSwith9.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith9.TabIndex = 16;
-            this.siticoneWinToggleSwith9.Text = "siticoneWinToggleSwith9";
-            this.siticoneWinToggleSwith9.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith9.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith9.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith9_CheckedChanged);
+            this.ForceRecall_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.ForceRecall_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.ForceRecall_ToggleSwith.Location = new System.Drawing.Point(3, 115);
+            this.ForceRecall_ToggleSwith.Name = "ForceRecall_ToggleSwith";
+            this.ForceRecall_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.ForceRecall_ToggleSwith.TabIndex = 16;
+            this.ForceRecall_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.ForceRecall_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.ForceRecall_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith9_CheckedChanged);
             // 
-            // siticoneWinToggleSwith5
+            // InfiniteHealth_ToggleSwith
             // 
-            this.siticoneWinToggleSwith5.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith5.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith5.Location = new System.Drawing.Point(3, 31);
-            this.siticoneWinToggleSwith5.Name = "siticoneWinToggleSwith5";
-            this.siticoneWinToggleSwith5.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith5.TabIndex = 9;
-            this.siticoneWinToggleSwith5.Text = "siticoneWinToggleSwith5";
-            this.siticoneWinToggleSwith5.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith5.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith5.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith5_CheckedChanged);
+            this.InfiniteHealth_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteHealth_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteHealth_ToggleSwith.Location = new System.Drawing.Point(3, 31);
+            this.InfiniteHealth_ToggleSwith.Name = "InfiniteHealth_ToggleSwith";
+            this.InfiniteHealth_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteHealth_ToggleSwith.TabIndex = 9;
+            this.InfiniteHealth_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteHealth_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteHealth_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith5_CheckedChanged);
             // 
-            // label12
+            // Speed_Label
             // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Snow;
-            this.label12.Location = new System.Drawing.Point(203, 35);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "- Speed:";
+            this.Speed_Label.AutoSize = true;
+            this.Speed_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Speed_Label.Location = new System.Drawing.Point(203, 35);
+            this.Speed_Label.Name = "Speed_Label";
+            this.Speed_Label.Size = new System.Drawing.Size(47, 13);
+            this.Speed_Label.TabIndex = 0;
+            this.Speed_Label.Text = "- Speed:";
             // 
-            // label28
+            // InfiniteMana_Label
             // 
-            this.label28.AutoSize = true;
-            this.label28.ForeColor = System.Drawing.Color.Snow;
-            this.label28.Location = new System.Drawing.Point(54, 63);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(72, 13);
-            this.label28.TabIndex = 21;
-            this.label28.Text = "- Anti Collision";
+            this.InfiniteMana_Label.AutoSize = true;
+            this.InfiniteMana_Label.ForeColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_Label.Location = new System.Drawing.Point(54, 63);
+            this.InfiniteMana_Label.Name = "InfiniteMana_Label";
+            this.InfiniteMana_Label.Size = new System.Drawing.Size(74, 13);
+            this.InfiniteMana_Label.TabIndex = 21;
+            this.InfiniteMana_Label.Text = "- Infinite Mana";
             // 
-            // siticoneWinToggleSwith10
+            // FreeCrafting_ToggleSwith
             // 
-            this.siticoneWinToggleSwith10.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith10.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith10.Location = new System.Drawing.Point(152, 87);
-            this.siticoneWinToggleSwith10.Name = "siticoneWinToggleSwith10";
-            this.siticoneWinToggleSwith10.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith10.TabIndex = 15;
-            this.siticoneWinToggleSwith10.Text = "siticoneWinToggleSwith10";
-            this.siticoneWinToggleSwith10.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith10.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith10.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith10_CheckedChanged);
+            this.FreeCrafting_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.FreeCrafting_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_ToggleSwith.Location = new System.Drawing.Point(152, 87);
+            this.FreeCrafting_ToggleSwith.Name = "FreeCrafting_ToggleSwith";
+            this.FreeCrafting_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.FreeCrafting_ToggleSwith.TabIndex = 15;
+            this.FreeCrafting_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith10_CheckedChanged);
             // 
-            // numericUpDown3
+            // SpeedAmount_NumericUpDown
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(253, 32);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.SpeedAmount_NumericUpDown.Location = new System.Drawing.Point(253, 32);
+            this.SpeedAmount_NumericUpDown.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(70, 20);
-            this.numericUpDown3.TabIndex = 11;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.SpeedAmount_NumericUpDown.Name = "SpeedAmount_NumericUpDown";
+            this.SpeedAmount_NumericUpDown.Size = new System.Drawing.Size(70, 20);
+            this.SpeedAmount_NumericUpDown.TabIndex = 11;
+            this.SpeedAmount_NumericUpDown.Value = new decimal(new int[] {
             950,
             0,
             0,
             0});
             // 
-            // siticoneWinToggleSwith4
+            // Noclip_ToggleSwith
             // 
-            this.siticoneWinToggleSwith4.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.siticoneWinToggleSwith4.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith4.Location = new System.Drawing.Point(152, 3);
-            this.siticoneWinToggleSwith4.Name = "siticoneWinToggleSwith4";
-            this.siticoneWinToggleSwith4.Size = new System.Drawing.Size(45, 22);
-            this.siticoneWinToggleSwith4.TabIndex = 8;
-            this.siticoneWinToggleSwith4.Text = "siticoneWinToggleSwith4";
-            this.siticoneWinToggleSwith4.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith4.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.siticoneWinToggleSwith4.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith4_CheckedChanged);
+            this.Noclip_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Noclip_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Noclip_ToggleSwith.Location = new System.Drawing.Point(152, 3);
+            this.Noclip_ToggleSwith.Name = "Noclip_ToggleSwith";
+            this.Noclip_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.Noclip_ToggleSwith.TabIndex = 8;
+            this.Noclip_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Noclip_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Noclip_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith4_CheckedChanged);
             // 
-            // label13
+            // Noclip_Label
             // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Snow;
-            this.label13.Location = new System.Drawing.Point(203, 7);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "- Noclip (Use Spacebar)";
+            this.Noclip_Label.AutoSize = true;
+            this.Noclip_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Noclip_Label.Location = new System.Drawing.Point(203, 7);
+            this.Noclip_Label.Name = "Noclip_Label";
+            this.Noclip_Label.Size = new System.Drawing.Size(102, 13);
+            this.Noclip_Label.TabIndex = 0;
+            this.Noclip_Label.Text = "- Noclip (Space OR)";
             // 
-            // label44
+            // MaxMinecartSpeedArrow_Label
             // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.ForeColor = System.Drawing.Color.Snow;
-            this.label44.Location = new System.Drawing.Point(527, 74);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(34, 42);
-            this.label44.TabIndex = 42;
-            this.label44.Text = "⮡";
+            this.MaxMinecartSpeedArrow_Label.AutoSize = true;
+            this.MaxMinecartSpeedArrow_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaxMinecartSpeedArrow_Label.ForeColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeedArrow_Label.Location = new System.Drawing.Point(527, 74);
+            this.MaxMinecartSpeedArrow_Label.Name = "MaxMinecartSpeedArrow_Label";
+            this.MaxMinecartSpeedArrow_Label.Size = new System.Drawing.Size(34, 42);
+            this.MaxMinecartSpeedArrow_Label.TabIndex = 42;
+            this.MaxMinecartSpeedArrow_Label.Text = "⮡";
             // 
-            // siticoneTrackBar1
+            // Mods_TrackBar
             // 
-            this.siticoneTrackBar1.FillColor = System.Drawing.Color.Lime;
-            this.siticoneTrackBar1.HoveredState.Parent = this.siticoneTrackBar1;
-            this.siticoneTrackBar1.Location = new System.Drawing.Point(10, 189);
-            this.siticoneTrackBar1.Name = "siticoneTrackBar1";
-            this.siticoneTrackBar1.Size = new System.Drawing.Size(320, 23);
-            this.siticoneTrackBar1.TabIndex = 0;
-            this.siticoneTrackBar1.ThumbColor = System.Drawing.Color.Lime;
-            this.siticoneTrackBar1.Value = 0;
-            this.siticoneTrackBar1.ValueChanged += new System.EventHandler(this.SiticoneTrackBar1_ValueChanged);
+            this.Mods_TrackBar.FillColor = System.Drawing.Color.Lime;
+            this.Mods_TrackBar.HoveredState.Parent = this.Mods_TrackBar;
+            this.Mods_TrackBar.Location = new System.Drawing.Point(10, 189);
+            this.Mods_TrackBar.Name = "Mods_TrackBar";
+            this.Mods_TrackBar.Size = new System.Drawing.Size(320, 23);
+            this.Mods_TrackBar.TabIndex = 0;
+            this.Mods_TrackBar.ThumbColor = System.Drawing.Color.Lime;
+            this.Mods_TrackBar.Value = 0;
+            this.Mods_TrackBar.ValueChanged += new System.EventHandler(this.SiticoneTrackBar1_ValueChanged);
             // 
-            // progressBar5
+            // PlayerTools_ProgressBar
             // 
-            this.progressBar5.Location = new System.Drawing.Point(106, 18);
-            this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(230, 21);
-            this.progressBar5.Step = 1;
-            this.progressBar5.TabIndex = 0;
-            this.progressBar5.Visible = false;
+            this.PlayerTools_ProgressBar.Location = new System.Drawing.Point(106, 18);
+            this.PlayerTools_ProgressBar.Name = "PlayerTools_ProgressBar";
+            this.PlayerTools_ProgressBar.Size = new System.Drawing.Size(230, 21);
+            this.PlayerTools_ProgressBar.Step = 1;
+            this.PlayerTools_ProgressBar.TabIndex = 0;
+            this.PlayerTools_ProgressBar.Visible = false;
             // 
-            // button10
+            // GetAddresses_Button
             // 
-            this.button10.ForeColor = System.Drawing.Color.Black;
-            this.button10.Location = new System.Drawing.Point(8, 17);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(92, 23);
-            this.button10.TabIndex = 6;
-            this.button10.Text = "Get Addresses";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.Button10_Click);
+            this.GetAddresses_Button.ForeColor = System.Drawing.Color.Black;
+            this.GetAddresses_Button.Location = new System.Drawing.Point(8, 17);
+            this.GetAddresses_Button.Name = "GetAddresses_Button";
+            this.GetAddresses_Button.Size = new System.Drawing.Size(92, 23);
+            this.GetAddresses_Button.TabIndex = 6;
+            this.GetAddresses_Button.Text = "Get Addresses";
+            this.GetAddresses_Button.UseVisualStyleBackColor = true;
+            this.GetAddresses_Button.Click += new System.EventHandler(this.Button10_Click);
             // 
-            // richTextBox6
+            // PlayerTools_RichTextBox
             // 
-            this.richTextBox6.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.richTextBox6.Location = new System.Drawing.Point(106, 18);
-            this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.ReadOnly = true;
-            this.richTextBox6.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox6.Size = new System.Drawing.Size(230, 21);
-            this.richTextBox6.TabIndex = 12;
-            this.richTextBox6.Text = "Addresses Loaded: 0";
+            this.PlayerTools_RichTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.PlayerTools_RichTextBox.Location = new System.Drawing.Point(106, 18);
+            this.PlayerTools_RichTextBox.Name = "PlayerTools_RichTextBox";
+            this.PlayerTools_RichTextBox.ReadOnly = true;
+            this.PlayerTools_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.PlayerTools_RichTextBox.Size = new System.Drawing.Size(230, 21);
+            this.PlayerTools_RichTextBox.TabIndex = 12;
+            this.PlayerTools_RichTextBox.Text = "Addresses Loaded: 0";
             // 
-            // label6
+            // ImportExport_GroupBox
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Snow;
-            this.label6.Location = new System.Drawing.Point(2, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 13);
-            this.label6.TabIndex = 2;
+            this.ImportExport_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ImportExport_GroupBox.Controls.Add(this.ImportExport_ProgressBar);
+            this.ImportExport_GroupBox.Controls.Add(this.ExportPlayer_Button);
+            this.ImportExport_GroupBox.Controls.Add(this.ImportPlayer_Button);
+            this.ImportExport_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.ImportExport_GroupBox.Location = new System.Drawing.Point(254, 5);
+            this.ImportExport_GroupBox.Name = "ImportExport_GroupBox";
+            this.ImportExport_GroupBox.Size = new System.Drawing.Size(122, 105);
+            this.ImportExport_GroupBox.TabIndex = 7;
+            this.ImportExport_GroupBox.TabStop = false;
+            this.ImportExport_GroupBox.Text = "Import / Export";
             // 
-            // groupBox3
+            // ImportExport_ProgressBar
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.Controls.Add(this.progressBar1);
-            this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox3.Location = new System.Drawing.Point(254, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(122, 105);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Import / Export";
+            this.ImportExport_ProgressBar.Location = new System.Drawing.Point(10, 71);
+            this.ImportExport_ProgressBar.Name = "ImportExport_ProgressBar";
+            this.ImportExport_ProgressBar.Size = new System.Drawing.Size(103, 23);
+            this.ImportExport_ProgressBar.TabIndex = 11;
             // 
-            // progressBar1
+            // ExportPlayer_Button
             // 
-            this.progressBar1.Location = new System.Drawing.Point(10, 71);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(103, 23);
-            this.progressBar1.TabIndex = 11;
+            this.ExportPlayer_Button.ForeColor = System.Drawing.Color.Black;
+            this.ExportPlayer_Button.Location = new System.Drawing.Point(10, 43);
+            this.ExportPlayer_Button.Name = "ExportPlayer_Button";
+            this.ExportPlayer_Button.Size = new System.Drawing.Size(103, 23);
+            this.ExportPlayer_Button.TabIndex = 5;
+            this.ExportPlayer_Button.Text = "Export Player";
+            this.ExportPlayer_Button.UseVisualStyleBackColor = true;
+            this.ExportPlayer_Button.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // button6
+            // ImportPlayer_Button
             // 
-            this.button6.ForeColor = System.Drawing.Color.Black;
-            this.button6.Location = new System.Drawing.Point(10, 43);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(103, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Export Player";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.ImportPlayer_Button.ForeColor = System.Drawing.Color.Black;
+            this.ImportPlayer_Button.Location = new System.Drawing.Point(10, 17);
+            this.ImportPlayer_Button.Name = "ImportPlayer_Button";
+            this.ImportPlayer_Button.Size = new System.Drawing.Size(103, 23);
+            this.ImportPlayer_Button.TabIndex = 4;
+            this.ImportPlayer_Button.Text = "Import Player";
+            this.ImportPlayer_Button.UseVisualStyleBackColor = true;
+            this.ImportPlayer_Button.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // button5
+            // ChangePlayersName_GroupBox
             // 
-            this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(10, 17);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(103, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Import Player";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.ChangePlayersName_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ChangePlayersName_GroupBox.Controls.Add(this.CurrentName_Label);
+            this.ChangePlayersName_GroupBox.Controls.Add(this.NewName_Label);
+            this.ChangePlayersName_GroupBox.Controls.Add(this.ChanngeName_Button);
+            this.ChangePlayersName_GroupBox.Controls.Add(this.NewName_TextBox);
+            this.ChangePlayersName_GroupBox.Controls.Add(this.CurrentName_TextBox);
+            this.ChangePlayersName_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.ChangePlayersName_GroupBox.Location = new System.Drawing.Point(10, 5);
+            this.ChangePlayersName_GroupBox.Name = "ChangePlayersName_GroupBox";
+            this.ChangePlayersName_GroupBox.Size = new System.Drawing.Size(238, 105);
+            this.ChangePlayersName_GroupBox.TabIndex = 5;
+            this.ChangePlayersName_GroupBox.TabStop = false;
+            this.ChangePlayersName_GroupBox.Text = "Change Player\'s Name";
             // 
-            // groupBox1
+            // CurrentName_Label
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox1.Location = new System.Drawing.Point(10, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(238, 105);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Change Player\'s Name";
+            this.CurrentName_Label.AutoSize = true;
+            this.CurrentName_Label.ForeColor = System.Drawing.Color.Snow;
+            this.CurrentName_Label.Location = new System.Drawing.Point(8, 22);
+            this.CurrentName_Label.Name = "CurrentName_Label";
+            this.CurrentName_Label.Size = new System.Drawing.Size(75, 13);
+            this.CurrentName_Label.TabIndex = 2;
+            this.CurrentName_Label.Text = "Current Name:";
             // 
-            // label1
+            // NewName_Label
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Snow;
-            this.label1.Location = new System.Drawing.Point(8, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Current Name:";
+            this.NewName_Label.AutoSize = true;
+            this.NewName_Label.ForeColor = System.Drawing.Color.Snow;
+            this.NewName_Label.Location = new System.Drawing.Point(8, 48);
+            this.NewName_Label.Name = "NewName_Label";
+            this.NewName_Label.Size = new System.Drawing.Size(63, 13);
+            this.NewName_Label.TabIndex = 4;
+            this.NewName_Label.Text = "New Name:";
             // 
-            // label2
+            // ChanngeName_Button
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Snow;
-            this.label2.Location = new System.Drawing.Point(8, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "New Name:";
+            this.ChanngeName_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChanngeName_Button.Location = new System.Drawing.Point(11, 71);
+            this.ChanngeName_Button.Name = "ChanngeName_Button";
+            this.ChanngeName_Button.Size = new System.Drawing.Size(218, 23);
+            this.ChanngeName_Button.TabIndex = 3;
+            this.ChanngeName_Button.Text = "Change Name";
+            this.ChanngeName_Button.UseVisualStyleBackColor = true;
+            this.ChanngeName_Button.Click += new System.EventHandler(this.Button4_Click);
             // 
-            // button4
+            // NewName_TextBox
             // 
-            this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(11, 71);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(218, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Change Name";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.NewName_TextBox.Location = new System.Drawing.Point(89, 45);
+            this.NewName_TextBox.MaxLength = 29;
+            this.NewName_TextBox.Name = "NewName_TextBox";
+            this.NewName_TextBox.Size = new System.Drawing.Size(140, 20);
+            this.NewName_TextBox.TabIndex = 2;
             // 
-            // textBox2
+            // CurrentName_TextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(89, 45);
-            this.textBox2.MaxLength = 29;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 20);
-            this.textBox2.TabIndex = 2;
+            this.CurrentName_TextBox.Location = new System.Drawing.Point(89, 19);
+            this.CurrentName_TextBox.MaxLength = 29;
+            this.CurrentName_TextBox.Name = "CurrentName_TextBox";
+            this.CurrentName_TextBox.Size = new System.Drawing.Size(140, 20);
+            this.CurrentName_TextBox.TabIndex = 1;
             // 
-            // textBox1
+            // BuffEditor_GroupBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(89, 19);
-            this.textBox1.MaxLength = 29;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 20);
-            this.textBox1.TabIndex = 1;
+            this.BuffEditor_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.BuffEditor_GroupBox.Controls.Add(this.TimeS_NumericUpDown);
+            this.BuffEditor_GroupBox.Controls.Add(this.ApplyBuff_Button);
+            this.BuffEditor_GroupBox.Controls.Add(this.Power_NumericUpDown);
+            this.BuffEditor_GroupBox.Controls.Add(this.BuffType_ComboBox);
+            this.BuffEditor_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.BuffEditor_GroupBox.Location = new System.Drawing.Point(384, 232);
+            this.BuffEditor_GroupBox.Name = "BuffEditor_GroupBox";
+            this.BuffEditor_GroupBox.Size = new System.Drawing.Size(343, 52);
+            this.BuffEditor_GroupBox.TabIndex = 24;
+            this.BuffEditor_GroupBox.TabStop = false;
+            this.BuffEditor_GroupBox.Text = "Buff Editor";
             // 
-            // groupBox9
+            // TimeS_NumericUpDown
             // 
-            this.groupBox9.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox9.Controls.Add(this.numericUpDown7);
-            this.groupBox9.Controls.Add(this.button12);
-            this.groupBox9.Controls.Add(this.numericUpDown6);
-            this.groupBox9.Controls.Add(this.comboBox1);
-            this.groupBox9.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox9.Location = new System.Drawing.Point(384, 232);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(343, 52);
-            this.groupBox9.TabIndex = 24;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Buff Editor";
-            // 
-            // numericUpDown7
-            // 
-            this.numericUpDown7.Location = new System.Drawing.Point(271, 21);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
+            this.TimeS_NumericUpDown.Location = new System.Drawing.Point(271, 21);
+            this.TimeS_NumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(65, 20);
-            this.numericUpDown7.TabIndex = 26;
-            this.numericUpDown7.Value = new decimal(new int[] {
+            this.TimeS_NumericUpDown.Name = "TimeS_NumericUpDown";
+            this.TimeS_NumericUpDown.Size = new System.Drawing.Size(65, 20);
+            this.TimeS_NumericUpDown.TabIndex = 26;
+            this.TimeS_NumericUpDown.Value = new decimal(new int[] {
             20,
             0,
             0,
             0});
             // 
-            // button12
+            // ApplyBuff_Button
             // 
-            this.button12.ForeColor = System.Drawing.Color.Black;
-            this.button12.Location = new System.Drawing.Point(6, 19);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(59, 23);
-            this.button12.TabIndex = 23;
-            this.button12.Text = "Apply";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.Button12_Click);
+            this.ApplyBuff_Button.ForeColor = System.Drawing.Color.Black;
+            this.ApplyBuff_Button.Location = new System.Drawing.Point(6, 19);
+            this.ApplyBuff_Button.Name = "ApplyBuff_Button";
+            this.ApplyBuff_Button.Size = new System.Drawing.Size(59, 23);
+            this.ApplyBuff_Button.TabIndex = 23;
+            this.ApplyBuff_Button.Text = "Apply";
+            this.ApplyBuff_Button.UseVisualStyleBackColor = true;
+            this.ApplyBuff_Button.Click += new System.EventHandler(this.Button12_Click);
             // 
-            // numericUpDown6
+            // Power_NumericUpDown
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(201, 21);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
+            this.Power_NumericUpDown.Location = new System.Drawing.Point(201, 21);
+            this.Power_NumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.numericUpDown6.Minimum = new decimal(new int[] {
+            this.Power_NumericUpDown.Minimum = new decimal(new int[] {
             2147483647,
             0,
             0,
             -2147483648});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(65, 20);
-            this.numericUpDown6.TabIndex = 25;
-            this.numericUpDown6.Value = new decimal(new int[] {
+            this.Power_NumericUpDown.Name = "Power_NumericUpDown";
+            this.Power_NumericUpDown.Size = new System.Drawing.Size(65, 20);
+            this.Power_NumericUpDown.TabIndex = 25;
+            this.Power_NumericUpDown.Value = new decimal(new int[] {
             19,
             0,
             0,
             0});
             // 
-            // comboBox1
+            // BuffType_ComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(69, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(127, 21);
-            this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 24;
-            this.comboBox1.Text = "None";
-            this.comboBox1.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
+            this.BuffType_ComboBox.FormattingEnabled = true;
+            this.BuffType_ComboBox.Location = new System.Drawing.Point(69, 20);
+            this.BuffType_ComboBox.Name = "BuffType_ComboBox";
+            this.BuffType_ComboBox.Size = new System.Drawing.Size(127, 21);
+            this.BuffType_ComboBox.Sorted = true;
+            this.BuffType_ComboBox.TabIndex = 24;
+            this.BuffType_ComboBox.Text = "None";
+            this.BuffType_ComboBox.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
             // 
-            // tabPage8
+            // World_TabPage
             // 
-            this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.tabPage8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage8.Controls.Add(this.groupBox13);
-            this.tabPage8.Controls.Add(this.groupBox8);
-            this.tabPage8.Controls.Add(this.groupBox12);
-            this.tabPage8.Controls.Add(this.groupBox10);
-            this.tabPage8.Controls.Add(this.groupBox11);
-            this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(732, 426);
-            this.tabPage8.TabIndex = 4;
-            this.tabPage8.Text = "World";
+            this.World_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.World_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.World_TabPage.Controls.Add(this.WorldUtilities_GroupBox);
+            this.World_TabPage.Controls.Add(this.MapRendering_GroupBox);
+            this.World_TabPage.Controls.Add(this.WorldInformation_GroupBox);
+            this.World_TabPage.Controls.Add(this.WorldInformationData_GroupBox);
+            this.World_TabPage.Controls.Add(this.TeleportPlayer_GroupBox);
+            this.World_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.World_TabPage.Name = "World_TabPage";
+            this.World_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.World_TabPage.TabIndex = 4;
+            this.World_TabPage.Text = "World";
             // 
-            // groupBox13
+            // WorldUtilities_GroupBox
             // 
-            this.groupBox13.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox13.Controls.Add(this.numericUpDown20);
-            this.groupBox13.Controls.Add(this.button33);
-            this.groupBox13.Controls.Add(this.numericUpDown19);
-            this.groupBox13.Controls.Add(this.button32);
-            this.groupBox13.Controls.Add(this.button8);
-            this.groupBox13.Controls.Add(this.label9);
-            this.groupBox13.Controls.Add(this.button19);
-            this.groupBox13.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox13.Location = new System.Drawing.Point(11, 245);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(366, 173);
-            this.groupBox13.TabIndex = 49;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "World Utilities";
+            this.WorldUtilities_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.WorldUtilities_GroupBox.Controls.Add(this.FishingPadding_NumericUpDown);
+            this.WorldUtilities_GroupBox.Controls.Add(this.FishingPadding_Button);
+            this.WorldUtilities_GroupBox.Controls.Add(this.CastDelay_NumericUpDown);
+            this.WorldUtilities_GroupBox.Controls.Add(this.CastDelay_Button);
+            this.WorldUtilities_GroupBox.Controls.Add(this.TrashGroundItems_Button);
+            this.WorldUtilities_GroupBox.Controls.Add(this.TrashGroundItems_Label);
+            this.WorldUtilities_GroupBox.Controls.Add(this.AutomaticFishing_Button);
+            this.WorldUtilities_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.WorldUtilities_GroupBox.Location = new System.Drawing.Point(11, 245);
+            this.WorldUtilities_GroupBox.Name = "WorldUtilities_GroupBox";
+            this.WorldUtilities_GroupBox.Size = new System.Drawing.Size(366, 173);
+            this.WorldUtilities_GroupBox.TabIndex = 49;
+            this.WorldUtilities_GroupBox.TabStop = false;
+            this.WorldUtilities_GroupBox.Text = "World Utilities";
             // 
-            // numericUpDown20
+            // FishingPadding_NumericUpDown
             // 
-            this.numericUpDown20.Location = new System.Drawing.Point(310, 49);
-            this.numericUpDown20.Maximum = new decimal(new int[] {
+            this.FishingPadding_NumericUpDown.Location = new System.Drawing.Point(310, 49);
+            this.FishingPadding_NumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown20.Minimum = new decimal(new int[] {
+            this.FishingPadding_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown20.Name = "numericUpDown20";
-            this.numericUpDown20.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown20.TabIndex = 52;
-            this.numericUpDown20.Value = new decimal(new int[] {
+            this.FishingPadding_NumericUpDown.Name = "FishingPadding_NumericUpDown";
+            this.FishingPadding_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.FishingPadding_NumericUpDown.TabIndex = 52;
+            this.FishingPadding_NumericUpDown.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
             // 
-            // button33
+            // FishingPadding_Button
             // 
-            this.button33.Enabled = false;
-            this.button33.ForeColor = System.Drawing.Color.Black;
-            this.button33.Location = new System.Drawing.Point(247, 48);
-            this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(64, 22);
-            this.button33.TabIndex = 51;
-            this.button33.Text = "Padding:";
-            this.button33.UseVisualStyleBackColor = true;
+            this.FishingPadding_Button.Enabled = false;
+            this.FishingPadding_Button.ForeColor = System.Drawing.Color.Black;
+            this.FishingPadding_Button.Location = new System.Drawing.Point(247, 48);
+            this.FishingPadding_Button.Name = "FishingPadding_Button";
+            this.FishingPadding_Button.Size = new System.Drawing.Size(64, 22);
+            this.FishingPadding_Button.TabIndex = 51;
+            this.FishingPadding_Button.Text = "Padding:";
+            this.FishingPadding_Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown19
+            // CastDelay_NumericUpDown
             // 
-            this.numericUpDown19.Location = new System.Drawing.Point(191, 49);
-            this.numericUpDown19.Maximum = new decimal(new int[] {
+            this.CastDelay_NumericUpDown.Location = new System.Drawing.Point(191, 49);
+            this.CastDelay_NumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown19.Minimum = new decimal(new int[] {
+            this.CastDelay_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown19.Name = "numericUpDown19";
-            this.numericUpDown19.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown19.TabIndex = 32;
-            this.numericUpDown19.Value = new decimal(new int[] {
+            this.CastDelay_NumericUpDown.Name = "CastDelay_NumericUpDown";
+            this.CastDelay_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.CastDelay_NumericUpDown.TabIndex = 32;
+            this.CastDelay_NumericUpDown.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
             // 
-            // button32
+            // CastDelay_Button
             // 
-            this.button32.Enabled = false;
-            this.button32.ForeColor = System.Drawing.Color.Black;
-            this.button32.Location = new System.Drawing.Point(121, 48);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(71, 22);
-            this.button32.TabIndex = 31;
-            this.button32.Text = "Cast Delay:";
-            this.button32.UseVisualStyleBackColor = true;
+            this.CastDelay_Button.Enabled = false;
+            this.CastDelay_Button.ForeColor = System.Drawing.Color.Black;
+            this.CastDelay_Button.Location = new System.Drawing.Point(121, 48);
+            this.CastDelay_Button.Name = "CastDelay_Button";
+            this.CastDelay_Button.Size = new System.Drawing.Size(71, 22);
+            this.CastDelay_Button.TabIndex = 31;
+            this.CastDelay_Button.Text = "Cast Delay:";
+            this.CastDelay_Button.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // TrashGroundItems_Button
             // 
-            this.button8.ForeColor = System.Drawing.Color.Black;
-            this.button8.Location = new System.Drawing.Point(5, 19);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(110, 23);
-            this.button8.TabIndex = 32;
-            this.button8.Text = "Trash Ground Items";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            this.TrashGroundItems_Button.ForeColor = System.Drawing.Color.Black;
+            this.TrashGroundItems_Button.Location = new System.Drawing.Point(5, 19);
+            this.TrashGroundItems_Button.Name = "TrashGroundItems_Button";
+            this.TrashGroundItems_Button.Size = new System.Drawing.Size(110, 23);
+            this.TrashGroundItems_Button.TabIndex = 32;
+            this.TrashGroundItems_Button.Text = "Trash Ground Items";
+            this.TrashGroundItems_Button.UseVisualStyleBackColor = true;
+            this.TrashGroundItems_Button.Click += new System.EventHandler(this.Button8_Click);
             // 
-            // label9
+            // TrashGroundItems_Label
             // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.Snow;
-            this.label9.Location = new System.Drawing.Point(118, 24);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(230, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "- Deletes all active items floating on the ground.";
+            this.TrashGroundItems_Label.AutoSize = true;
+            this.TrashGroundItems_Label.ForeColor = System.Drawing.Color.Snow;
+            this.TrashGroundItems_Label.Location = new System.Drawing.Point(118, 24);
+            this.TrashGroundItems_Label.Name = "TrashGroundItems_Label";
+            this.TrashGroundItems_Label.Size = new System.Drawing.Size(230, 13);
+            this.TrashGroundItems_Label.TabIndex = 0;
+            this.TrashGroundItems_Label.Text = "- Deletes all active items floating on the ground.";
             // 
-            // button19
+            // AutomaticFishing_Button
             // 
-            this.button19.ForeColor = System.Drawing.Color.Black;
-            this.button19.Location = new System.Drawing.Point(5, 48);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(110, 23);
-            this.button19.TabIndex = 33;
-            this.button19.Text = "Automatic Fishing";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.Button19_Click);
+            this.AutomaticFishing_Button.ForeColor = System.Drawing.Color.Black;
+            this.AutomaticFishing_Button.Location = new System.Drawing.Point(5, 48);
+            this.AutomaticFishing_Button.Name = "AutomaticFishing_Button";
+            this.AutomaticFishing_Button.Size = new System.Drawing.Size(110, 23);
+            this.AutomaticFishing_Button.TabIndex = 33;
+            this.AutomaticFishing_Button.Text = "Automatic Fishing";
+            this.AutomaticFishing_Button.UseVisualStyleBackColor = true;
+            this.AutomaticFishing_Button.Click += new System.EventHandler(this.Button19_Click);
             // 
-            // groupBox8
+            // MapRendering_GroupBox
             // 
-            this.groupBox8.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox8.Controls.Add(this.textProgressBar1);
-            this.groupBox8.Controls.Add(this.button31);
-            this.groupBox8.Controls.Add(this.checkBox1);
-            this.groupBox8.Controls.Add(this.button29);
-            this.groupBox8.Controls.Add(this.numericUpDown16);
-            this.groupBox8.Controls.Add(this.numericUpDown15);
-            this.groupBox8.Controls.Add(this.button24);
-            this.groupBox8.Controls.Add(this.button25);
-            this.groupBox8.Controls.Add(this.button27);
-            this.groupBox8.Controls.Add(this.button26);
-            this.groupBox8.Controls.Add(this.numericUpDown17);
-            this.groupBox8.Controls.Add(this.button23);
-            this.groupBox8.Controls.Add(this.progressBar6);
-            this.groupBox8.Controls.Add(this.numericUpDown14);
-            this.groupBox8.Controls.Add(this.button30);
-            this.groupBox8.Controls.Add(this.richTextBox9);
-            this.groupBox8.Controls.Add(this.button22);
-            this.groupBox8.Controls.Add(this.button28);
-            this.groupBox8.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox8.Location = new System.Drawing.Point(10, 109);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(366, 130);
-            this.groupBox8.TabIndex = 43;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Map Rendering";
+            this.MapRendering_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.MapRendering_GroupBox.Controls.Add(this.MapRendering_TextProgressBar);
+            this.MapRendering_GroupBox.Controls.Add(this.PauseOperation_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.SaveEachRing_CheckBox);
+            this.MapRendering_GroupBox.Controls.Add(this.StartRadius_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.StartRadius_NumericUpDown);
+            this.MapRendering_GroupBox.Controls.Add(this.NextRingDelay_NumericUpDown);
+            this.MapRendering_GroupBox.Controls.Add(this.NextRingDelay_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.RestoreDefualtRange_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.SetRevealRange_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.RenderRange_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.RenderRange_NumericUpDown);
+            this.MapRendering_GroupBox.Controls.Add(this.MaxRadius_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.MapRendering_ProgressBar);
+            this.MapRendering_GroupBox.Controls.Add(this.MaxRadius_NumericUpDown);
+            this.MapRendering_GroupBox.Controls.Add(this.GetMapRenderingAddresses_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.MapRenderingAddresses_RichTextBox);
+            this.MapRendering_GroupBox.Controls.Add(this.AutoMapRenderer_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.CancelOperation_Button);
+            this.MapRendering_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.MapRendering_GroupBox.Location = new System.Drawing.Point(10, 109);
+            this.MapRendering_GroupBox.Name = "MapRendering_GroupBox";
+            this.MapRendering_GroupBox.Size = new System.Drawing.Size(366, 130);
+            this.MapRendering_GroupBox.TabIndex = 43;
+            this.MapRendering_GroupBox.TabStop = false;
+            this.MapRendering_GroupBox.Text = "Map Rendering";
             // 
-            // textProgressBar1
+            // MapRendering_TextProgressBar
             // 
-            this.textProgressBar1.CustomText = "0.00% | Current Radius: 0";
-            this.textProgressBar1.Location = new System.Drawing.Point(104, 20);
-            this.textProgressBar1.Name = "textProgressBar1";
-            this.textProgressBar1.ProgressColor = System.Drawing.Color.Lime;
-            this.textProgressBar1.Size = new System.Drawing.Size(256, 21);
-            this.textProgressBar1.TabIndex = 30;
-            this.textProgressBar1.TextColor = System.Drawing.Color.Black;
-            this.textProgressBar1.TextFont = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textProgressBar1.Visible = false;
-            this.textProgressBar1.VisualMode = CoreKeepersWorkshop.ProgressBarDisplayMode.CustomText;
+            this.MapRendering_TextProgressBar.CustomText = "0.00% | Current Radius: 0";
+            this.MapRendering_TextProgressBar.Location = new System.Drawing.Point(104, 20);
+            this.MapRendering_TextProgressBar.Name = "MapRendering_TextProgressBar";
+            this.MapRendering_TextProgressBar.ProgressColor = System.Drawing.Color.Lime;
+            this.MapRendering_TextProgressBar.Size = new System.Drawing.Size(256, 21);
+            this.MapRendering_TextProgressBar.TabIndex = 30;
+            this.MapRendering_TextProgressBar.TextColor = System.Drawing.Color.Black;
+            this.MapRendering_TextProgressBar.TextFont = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapRendering_TextProgressBar.Visible = false;
+            this.MapRendering_TextProgressBar.VisualMode = CoreKeepersWorkshop.ProgressBarDisplayMode.CustomText;
             // 
-            // button31
+            // PauseOperation_Button
             // 
-            this.button31.Enabled = false;
-            this.button31.ForeColor = System.Drawing.Color.Black;
-            this.button31.Location = new System.Drawing.Point(6, 99);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(110, 22);
-            this.button31.TabIndex = 15;
-            this.button31.Text = "Pause Operation";
-            this.button31.UseVisualStyleBackColor = true;
-            this.button31.Click += new System.EventHandler(this.Button31_Click);
+            this.PauseOperation_Button.Enabled = false;
+            this.PauseOperation_Button.ForeColor = System.Drawing.Color.Black;
+            this.PauseOperation_Button.Location = new System.Drawing.Point(6, 99);
+            this.PauseOperation_Button.Name = "PauseOperation_Button";
+            this.PauseOperation_Button.Size = new System.Drawing.Size(110, 22);
+            this.PauseOperation_Button.TabIndex = 15;
+            this.PauseOperation_Button.Text = "Pause Operation";
+            this.PauseOperation_Button.UseVisualStyleBackColor = true;
+            this.PauseOperation_Button.Click += new System.EventHandler(this.Button31_Click);
             // 
-            // checkBox1
+            // SaveEachRing_CheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.ForeColor = System.Drawing.Color.Snow;
-            this.checkBox1.Location = new System.Drawing.Point(259, 103);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 17);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "Save Each Ring";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.SaveEachRing_CheckBox.AutoSize = true;
+            this.SaveEachRing_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.SaveEachRing_CheckBox.Location = new System.Drawing.Point(259, 103);
+            this.SaveEachRing_CheckBox.Name = "SaveEachRing_CheckBox";
+            this.SaveEachRing_CheckBox.Size = new System.Drawing.Size(104, 17);
+            this.SaveEachRing_CheckBox.TabIndex = 18;
+            this.SaveEachRing_CheckBox.Text = "Save Each Ring";
+            this.SaveEachRing_CheckBox.UseVisualStyleBackColor = true;
             // 
-            // button29
+            // StartRadius_Button
             // 
-            this.button29.Enabled = false;
-            this.button29.ForeColor = System.Drawing.Color.Black;
-            this.button29.Location = new System.Drawing.Point(122, 99);
-            this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(82, 22);
-            this.button29.TabIndex = 16;
-            this.button29.Text = "Start Radius:";
-            this.button29.UseVisualStyleBackColor = true;
+            this.StartRadius_Button.Enabled = false;
+            this.StartRadius_Button.ForeColor = System.Drawing.Color.Black;
+            this.StartRadius_Button.Location = new System.Drawing.Point(122, 99);
+            this.StartRadius_Button.Name = "StartRadius_Button";
+            this.StartRadius_Button.Size = new System.Drawing.Size(82, 22);
+            this.StartRadius_Button.TabIndex = 16;
+            this.StartRadius_Button.Text = "Start Radius:";
+            this.StartRadius_Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown16
+            // StartRadius_NumericUpDown
             // 
-            this.numericUpDown16.Location = new System.Drawing.Point(203, 100);
-            this.numericUpDown16.Maximum = new decimal(new int[] {
+            this.StartRadius_NumericUpDown.Location = new System.Drawing.Point(203, 100);
+            this.StartRadius_NumericUpDown.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
-            this.numericUpDown16.Name = "numericUpDown16";
-            this.numericUpDown16.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown16.TabIndex = 17;
-            this.numericUpDown16.ValueChanged += new System.EventHandler(this.NumericUpDown16_ValueChanged);
+            this.StartRadius_NumericUpDown.Name = "StartRadius_NumericUpDown";
+            this.StartRadius_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.StartRadius_NumericUpDown.TabIndex = 17;
+            this.StartRadius_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown16_ValueChanged);
             // 
-            // numericUpDown15
+            // NextRingDelay_NumericUpDown
             // 
-            this.numericUpDown15.Location = new System.Drawing.Point(310, 78);
-            this.numericUpDown15.Maximum = new decimal(new int[] {
+            this.NextRingDelay_NumericUpDown.Location = new System.Drawing.Point(310, 78);
+            this.NextRingDelay_NumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown15.Minimum = new decimal(new int[] {
+            this.NextRingDelay_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown15.TabIndex = 14;
-            this.numericUpDown15.Value = new decimal(new int[] {
+            this.NextRingDelay_NumericUpDown.Name = "NextRingDelay_NumericUpDown";
+            this.NextRingDelay_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.NextRingDelay_NumericUpDown.TabIndex = 14;
+            this.NextRingDelay_NumericUpDown.Value = new decimal(new int[] {
             150,
             0,
             0,
             0});
             // 
-            // button24
+            // NextRingDelay_Button
             // 
-            this.button24.Enabled = false;
-            this.button24.ForeColor = System.Drawing.Color.Black;
-            this.button24.Location = new System.Drawing.Point(259, 77);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(54, 22);
-            this.button24.TabIndex = 13;
-            this.button24.Text = "Delay:";
-            this.button24.UseVisualStyleBackColor = true;
+            this.NextRingDelay_Button.Enabled = false;
+            this.NextRingDelay_Button.ForeColor = System.Drawing.Color.Black;
+            this.NextRingDelay_Button.Location = new System.Drawing.Point(259, 77);
+            this.NextRingDelay_Button.Name = "NextRingDelay_Button";
+            this.NextRingDelay_Button.Size = new System.Drawing.Size(54, 22);
+            this.NextRingDelay_Button.TabIndex = 13;
+            this.NextRingDelay_Button.Text = "Delay:";
+            this.NextRingDelay_Button.UseVisualStyleBackColor = true;
             // 
-            // button25
+            // RestoreDefualtRange_Button
             // 
-            this.button25.ForeColor = System.Drawing.Color.Black;
-            this.button25.Location = new System.Drawing.Point(231, 48);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(129, 23);
-            this.button25.TabIndex = 9;
-            this.button25.Text = "Restore Default Range";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.Button25_Click);
+            this.RestoreDefualtRange_Button.ForeColor = System.Drawing.Color.Black;
+            this.RestoreDefualtRange_Button.Location = new System.Drawing.Point(231, 48);
+            this.RestoreDefualtRange_Button.Name = "RestoreDefualtRange_Button";
+            this.RestoreDefualtRange_Button.Size = new System.Drawing.Size(129, 23);
+            this.RestoreDefualtRange_Button.TabIndex = 9;
+            this.RestoreDefualtRange_Button.Text = "Restore Default Range";
+            this.RestoreDefualtRange_Button.UseVisualStyleBackColor = true;
+            this.RestoreDefualtRange_Button.Click += new System.EventHandler(this.Button25_Click);
             // 
-            // button27
+            // SetRevealRange_Button
             // 
-            this.button27.ForeColor = System.Drawing.Color.Black;
-            this.button27.Location = new System.Drawing.Point(6, 48);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(110, 23);
-            this.button27.TabIndex = 6;
-            this.button27.Text = "Set Reveal Range";
-            this.button27.UseVisualStyleBackColor = true;
-            this.button27.Click += new System.EventHandler(this.Button27_Click);
+            this.SetRevealRange_Button.ForeColor = System.Drawing.Color.Black;
+            this.SetRevealRange_Button.Location = new System.Drawing.Point(6, 48);
+            this.SetRevealRange_Button.Name = "SetRevealRange_Button";
+            this.SetRevealRange_Button.Size = new System.Drawing.Size(110, 23);
+            this.SetRevealRange_Button.TabIndex = 6;
+            this.SetRevealRange_Button.Text = "Set Reveal Range";
+            this.SetRevealRange_Button.UseVisualStyleBackColor = true;
+            this.SetRevealRange_Button.Click += new System.EventHandler(this.Button27_Click);
             // 
-            // button26
+            // RenderRange_Button
             // 
-            this.button26.Enabled = false;
-            this.button26.ForeColor = System.Drawing.Color.Black;
-            this.button26.Location = new System.Drawing.Point(122, 48);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(54, 22);
-            this.button26.TabIndex = 7;
-            this.button26.Text = "Range:";
-            this.button26.UseVisualStyleBackColor = true;
+            this.RenderRange_Button.Enabled = false;
+            this.RenderRange_Button.ForeColor = System.Drawing.Color.Black;
+            this.RenderRange_Button.Location = new System.Drawing.Point(122, 48);
+            this.RenderRange_Button.Name = "RenderRange_Button";
+            this.RenderRange_Button.Size = new System.Drawing.Size(54, 22);
+            this.RenderRange_Button.TabIndex = 7;
+            this.RenderRange_Button.Text = "Range:";
+            this.RenderRange_Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown17
+            // RenderRange_NumericUpDown
             // 
-            this.numericUpDown17.Location = new System.Drawing.Point(175, 49);
-            this.numericUpDown17.Maximum = new decimal(new int[] {
+            this.RenderRange_NumericUpDown.Location = new System.Drawing.Point(175, 49);
+            this.RenderRange_NumericUpDown.Maximum = new decimal(new int[] {
             12,
             0,
             0,
             0});
-            this.numericUpDown17.Minimum = new decimal(new int[] {
+            this.RenderRange_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown17.Name = "numericUpDown17";
-            this.numericUpDown17.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown17.TabIndex = 8;
-            this.numericUpDown17.Value = new decimal(new int[] {
+            this.RenderRange_NumericUpDown.Name = "RenderRange_NumericUpDown";
+            this.RenderRange_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.RenderRange_NumericUpDown.TabIndex = 8;
+            this.RenderRange_NumericUpDown.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
             // 
-            // button23
+            // MaxRadius_Button
             // 
-            this.button23.Enabled = false;
-            this.button23.ForeColor = System.Drawing.Color.Black;
-            this.button23.Location = new System.Drawing.Point(122, 77);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(82, 22);
-            this.button23.TabIndex = 11;
-            this.button23.Text = "Max Radius:";
-            this.button23.UseVisualStyleBackColor = true;
+            this.MaxRadius_Button.Enabled = false;
+            this.MaxRadius_Button.ForeColor = System.Drawing.Color.Black;
+            this.MaxRadius_Button.Location = new System.Drawing.Point(122, 77);
+            this.MaxRadius_Button.Name = "MaxRadius_Button";
+            this.MaxRadius_Button.Size = new System.Drawing.Size(82, 22);
+            this.MaxRadius_Button.TabIndex = 11;
+            this.MaxRadius_Button.Text = "Max Radius:";
+            this.MaxRadius_Button.UseVisualStyleBackColor = true;
             // 
-            // progressBar6
+            // MapRendering_ProgressBar
             // 
-            this.progressBar6.Location = new System.Drawing.Point(104, 20);
-            this.progressBar6.Name = "progressBar6";
-            this.progressBar6.Size = new System.Drawing.Size(256, 21);
-            this.progressBar6.Step = 1;
-            this.progressBar6.TabIndex = 29;
-            this.progressBar6.Visible = false;
+            this.MapRendering_ProgressBar.Location = new System.Drawing.Point(104, 20);
+            this.MapRendering_ProgressBar.Name = "MapRendering_ProgressBar";
+            this.MapRendering_ProgressBar.Size = new System.Drawing.Size(256, 21);
+            this.MapRendering_ProgressBar.Step = 1;
+            this.MapRendering_ProgressBar.TabIndex = 29;
+            this.MapRendering_ProgressBar.Visible = false;
             // 
-            // numericUpDown14
+            // MaxRadius_NumericUpDown
             // 
-            this.numericUpDown14.Location = new System.Drawing.Point(203, 78);
-            this.numericUpDown14.Maximum = new decimal(new int[] {
+            this.MaxRadius_NumericUpDown.Location = new System.Drawing.Point(203, 78);
+            this.MaxRadius_NumericUpDown.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
-            this.numericUpDown14.Minimum = new decimal(new int[] {
+            this.MaxRadius_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown14.TabIndex = 12;
-            this.numericUpDown14.Value = new decimal(new int[] {
+            this.MaxRadius_NumericUpDown.Name = "MaxRadius_NumericUpDown";
+            this.MaxRadius_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.MaxRadius_NumericUpDown.TabIndex = 12;
+            this.MaxRadius_NumericUpDown.Value = new decimal(new int[] {
             150,
             0,
             0,
             0});
             // 
-            // button30
+            // GetMapRenderingAddresses_Button
             // 
-            this.button30.ForeColor = System.Drawing.Color.Black;
-            this.button30.Location = new System.Drawing.Point(6, 19);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(92, 23);
-            this.button30.TabIndex = 5;
-            this.button30.Text = "Get Addresses";
-            this.button30.UseVisualStyleBackColor = true;
-            this.button30.Click += new System.EventHandler(this.Button30_Click);
+            this.GetMapRenderingAddresses_Button.ForeColor = System.Drawing.Color.Black;
+            this.GetMapRenderingAddresses_Button.Location = new System.Drawing.Point(6, 19);
+            this.GetMapRenderingAddresses_Button.Name = "GetMapRenderingAddresses_Button";
+            this.GetMapRenderingAddresses_Button.Size = new System.Drawing.Size(92, 23);
+            this.GetMapRenderingAddresses_Button.TabIndex = 5;
+            this.GetMapRenderingAddresses_Button.Text = "Get Addresses";
+            this.GetMapRenderingAddresses_Button.UseVisualStyleBackColor = true;
+            this.GetMapRenderingAddresses_Button.Click += new System.EventHandler(this.Button30_Click);
             // 
-            // richTextBox9
+            // MapRenderingAddresses_RichTextBox
             // 
-            this.richTextBox9.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.richTextBox9.Location = new System.Drawing.Point(104, 20);
-            this.richTextBox9.Name = "richTextBox9";
-            this.richTextBox9.ReadOnly = true;
-            this.richTextBox9.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox9.Size = new System.Drawing.Size(256, 21);
-            this.richTextBox9.TabIndex = 26;
-            this.richTextBox9.Text = "Addresses Loaded: 0";
+            this.MapRenderingAddresses_RichTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.MapRenderingAddresses_RichTextBox.Location = new System.Drawing.Point(104, 20);
+            this.MapRenderingAddresses_RichTextBox.Name = "MapRenderingAddresses_RichTextBox";
+            this.MapRenderingAddresses_RichTextBox.ReadOnly = true;
+            this.MapRenderingAddresses_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.MapRenderingAddresses_RichTextBox.Size = new System.Drawing.Size(256, 21);
+            this.MapRenderingAddresses_RichTextBox.TabIndex = 26;
+            this.MapRenderingAddresses_RichTextBox.Text = "Addresses Loaded: 0";
             // 
-            // button22
+            // AutoMapRenderer_Button
             // 
-            this.button22.ForeColor = System.Drawing.Color.Black;
-            this.button22.Location = new System.Drawing.Point(6, 77);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(110, 22);
-            this.button22.TabIndex = 10;
-            this.button22.Text = "Auto Map Renderer";
-            this.button22.UseVisualStyleBackColor = true;
-            this.button22.Click += new System.EventHandler(this.Button22_Click);
+            this.AutoMapRenderer_Button.ForeColor = System.Drawing.Color.Black;
+            this.AutoMapRenderer_Button.Location = new System.Drawing.Point(6, 77);
+            this.AutoMapRenderer_Button.Name = "AutoMapRenderer_Button";
+            this.AutoMapRenderer_Button.Size = new System.Drawing.Size(110, 22);
+            this.AutoMapRenderer_Button.TabIndex = 10;
+            this.AutoMapRenderer_Button.Text = "Auto Map Renderer";
+            this.AutoMapRenderer_Button.UseVisualStyleBackColor = true;
+            this.AutoMapRenderer_Button.Click += new System.EventHandler(this.Button22_Click);
             // 
-            // button28
+            // CancelOperation_Button
             // 
-            this.button28.ForeColor = System.Drawing.Color.Black;
-            this.button28.Location = new System.Drawing.Point(6, 77);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(110, 22);
-            this.button28.TabIndex = 1;
-            this.button28.Text = "Cancel Operation";
-            this.button28.UseVisualStyleBackColor = true;
-            this.button28.Visible = false;
-            this.button28.Click += new System.EventHandler(this.Button28_Click);
+            this.CancelOperation_Button.ForeColor = System.Drawing.Color.Black;
+            this.CancelOperation_Button.Location = new System.Drawing.Point(6, 77);
+            this.CancelOperation_Button.Name = "CancelOperation_Button";
+            this.CancelOperation_Button.Size = new System.Drawing.Size(110, 22);
+            this.CancelOperation_Button.TabIndex = 1;
+            this.CancelOperation_Button.Text = "Cancel Operation";
+            this.CancelOperation_Button.UseVisualStyleBackColor = true;
+            this.CancelOperation_Button.Visible = false;
+            this.CancelOperation_Button.Click += new System.EventHandler(this.Button28_Click);
             // 
-            // groupBox12
+            // WorldInformation_GroupBox
             // 
-            this.groupBox12.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox12.Controls.Add(this.button41);
-            this.groupBox12.Controls.Add(this.button39);
-            this.groupBox12.Controls.Add(this.label40);
-            this.groupBox12.Controls.Add(this.label39);
-            this.groupBox12.Controls.Add(this.comboBox3);
-            this.groupBox12.Controls.Add(this.numericUpDown23);
-            this.groupBox12.Controls.Add(this.numericUpDown22);
-            this.groupBox12.Controls.Add(this.button38);
-            this.groupBox12.Controls.Add(this.button37);
-            this.groupBox12.Controls.Add(this.progressBar7);
-            this.groupBox12.Controls.Add(this.numericUpDown13);
-            this.groupBox12.Controls.Add(this.numericUpDown12);
-            this.groupBox12.Controls.Add(this.label25);
-            this.groupBox12.Controls.Add(this.label24);
-            this.groupBox12.Controls.Add(this.label23);
-            this.groupBox12.Controls.Add(this.numericUpDown11);
-            this.groupBox12.Controls.Add(this.button18);
-            this.groupBox12.Controls.Add(this.numericUpDown10);
-            this.groupBox12.Controls.Add(this.label22);
-            this.groupBox12.Controls.Add(this.numericUpDown9);
-            this.groupBox12.Controls.Add(this.label21);
-            this.groupBox12.Controls.Add(this.numericUpDown8);
-            this.groupBox12.Controls.Add(this.label15);
-            this.groupBox12.Controls.Add(this.button15);
-            this.groupBox12.Controls.Add(this.label16);
-            this.groupBox12.Controls.Add(this.textBox3);
-            this.groupBox12.Controls.Add(this.button16);
-            this.groupBox12.Controls.Add(this.button17);
-            this.groupBox12.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox12.Location = new System.Drawing.Point(382, 224);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(342, 194);
-            this.groupBox12.TabIndex = 42;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "World Information";
-            this.groupBox12.UseCompatibleTextRendering = true;
+            this.WorldInformation_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.WorldInformation_GroupBox.Controls.Add(this.ColorSample_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.ChangeConsoleForeColor_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.CurrentIcon_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.WorldIconTack_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.WorldDifficulty_ComboBox);
+            this.WorldInformation_GroupBox.Controls.Add(this.Icon_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.Seed_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.ChangeIcon_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.ChangeSeed_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.WorldInformation_ProgressBar);
+            this.WorldInformation_GroupBox.Controls.Add(this.CrystalThree_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.CrystalTwo_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.CrystalThree_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.CrystalTwo_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.CrystalOne_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.CrystalOne_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.ChangeCrystals_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.Day_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.Day_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.Month_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.Month_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.Year_NumericUpDown);
+            this.WorldInformation_GroupBox.Controls.Add(this.Year_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.ChangeDate_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.WorldInformation_Label);
+            this.WorldInformation_GroupBox.Controls.Add(this.WorldInformation_TextBox);
+            this.WorldInformation_GroupBox.Controls.Add(this.GetWorldInformation_Button);
+            this.WorldInformation_GroupBox.Controls.Add(this.ChangeDifficulty_Button);
+            this.WorldInformation_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.WorldInformation_GroupBox.Location = new System.Drawing.Point(382, 223);
+            this.WorldInformation_GroupBox.Name = "WorldInformation_GroupBox";
+            this.WorldInformation_GroupBox.Size = new System.Drawing.Size(342, 195);
+            this.WorldInformation_GroupBox.TabIndex = 42;
+            this.WorldInformation_GroupBox.TabStop = false;
+            this.WorldInformation_GroupBox.Text = "World Information";
+            this.WorldInformation_GroupBox.UseCompatibleTextRendering = true;
             // 
-            // button41
+            // ColorSample_Button
             // 
-            this.button41.BackColor = System.Drawing.Color.Snow;
-            this.button41.Enabled = false;
-            this.button41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button41.ForeColor = System.Drawing.Color.Snow;
-            this.button41.Location = new System.Drawing.Point(276, 101);
-            this.button41.Name = "button41";
-            this.button41.Size = new System.Drawing.Size(60, 5);
-            this.button41.TabIndex = 55;
-            this.button41.UseVisualStyleBackColor = false;
+            this.ColorSample_Button.BackColor = System.Drawing.Color.Snow;
+            this.ColorSample_Button.Enabled = false;
+            this.ColorSample_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColorSample_Button.ForeColor = System.Drawing.Color.Snow;
+            this.ColorSample_Button.Location = new System.Drawing.Point(276, 101);
+            this.ColorSample_Button.Name = "ColorSample_Button";
+            this.ColorSample_Button.Size = new System.Drawing.Size(60, 5);
+            this.ColorSample_Button.TabIndex = 55;
+            this.ColorSample_Button.UseVisualStyleBackColor = false;
             // 
-            // button39
+            // ChangeConsoleForeColor_Button
             // 
-            this.button39.ForeColor = System.Drawing.Color.Black;
-            this.button39.Location = new System.Drawing.Point(275, 48);
-            this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(62, 52);
-            this.button39.TabIndex = 35;
-            this.button39.Text = "Change Console ForeColor";
-            this.button39.UseVisualStyleBackColor = true;
-            this.button39.Click += new System.EventHandler(this.Button39_Click);
+            this.ChangeConsoleForeColor_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChangeConsoleForeColor_Button.Location = new System.Drawing.Point(275, 48);
+            this.ChangeConsoleForeColor_Button.Name = "ChangeConsoleForeColor_Button";
+            this.ChangeConsoleForeColor_Button.Size = new System.Drawing.Size(62, 52);
+            this.ChangeConsoleForeColor_Button.TabIndex = 35;
+            this.ChangeConsoleForeColor_Button.Text = "Change Console ForeColor";
+            this.ChangeConsoleForeColor_Button.UseVisualStyleBackColor = true;
+            this.ChangeConsoleForeColor_Button.Click += new System.EventHandler(this.Button39_Click);
             // 
-            // label40
+            // CurrentIcon_Label
             // 
-            this.label40.AutoSize = true;
-            this.label40.ForeColor = System.Drawing.Color.Snow;
-            this.label40.Location = new System.Drawing.Point(157, 111);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(57, 13);
-            this.label40.TabIndex = 28;
-            this.label40.Text = "Glow Tulip";
+            this.CurrentIcon_Label.AutoSize = true;
+            this.CurrentIcon_Label.ForeColor = System.Drawing.Color.Snow;
+            this.CurrentIcon_Label.Location = new System.Drawing.Point(157, 111);
+            this.CurrentIcon_Label.Name = "CurrentIcon_Label";
+            this.CurrentIcon_Label.Size = new System.Drawing.Size(57, 13);
+            this.CurrentIcon_Label.TabIndex = 28;
+            this.CurrentIcon_Label.Text = "Glow Tulip";
             // 
-            // label39
+            // WorldIconTack_Label
             // 
-            this.label39.AutoSize = true;
-            this.label39.ForeColor = System.Drawing.Color.Snow;
-            this.label39.Location = new System.Drawing.Point(147, 110);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(10, 13);
-            this.label39.TabIndex = 54;
-            this.label39.Text = "-";
+            this.WorldIconTack_Label.AutoSize = true;
+            this.WorldIconTack_Label.ForeColor = System.Drawing.Color.Snow;
+            this.WorldIconTack_Label.Location = new System.Drawing.Point(147, 110);
+            this.WorldIconTack_Label.Name = "WorldIconTack_Label";
+            this.WorldIconTack_Label.Size = new System.Drawing.Size(10, 13);
+            this.WorldIconTack_Label.TabIndex = 54;
+            this.WorldIconTack_Label.Text = "-";
             // 
-            // comboBox3
+            // WorldDifficulty_ComboBox
             // 
-            this.comboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(51)))), ((int)(((byte)(56)))));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.WorldDifficulty_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.WorldDifficulty_ComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorldDifficulty_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(51)))), ((int)(((byte)(56)))));
+            this.WorldDifficulty_ComboBox.FormattingEnabled = true;
+            this.WorldDifficulty_ComboBox.Items.AddRange(new object[] {
             "Standard",
             "Hard",
             "Creative",
@@ -2774,682 +2769,703 @@ namespace CoreKeeperInventoryEditor
             "Hard Casual",
             "Creative Casual",
             "Hard Creative Casual"});
-            this.comboBox3.Location = new System.Drawing.Point(108, 49);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(163, 21);
-            this.comboBox3.TabIndex = 21;
-            this.comboBox3.Text = "Standard";
-            this.comboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox3_DrawItem);
-            this.comboBox3.DropDownClosed += new System.EventHandler(this.ComboBox3_DropDownClosed);
+            this.WorldDifficulty_ComboBox.Location = new System.Drawing.Point(108, 49);
+            this.WorldDifficulty_ComboBox.Name = "WorldDifficulty_ComboBox";
+            this.WorldDifficulty_ComboBox.Size = new System.Drawing.Size(163, 21);
+            this.WorldDifficulty_ComboBox.TabIndex = 21;
+            this.WorldDifficulty_ComboBox.Text = "Standard";
+            this.WorldDifficulty_ComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox3_DrawItem);
+            this.WorldDifficulty_ComboBox.DropDownClosed += new System.EventHandler(this.ComboBox3_DropDownClosed);
             // 
-            // numericUpDown23
+            // Icon_NumericUpDown
             // 
-            this.numericUpDown23.Location = new System.Drawing.Point(108, 108);
-            this.numericUpDown23.Maximum = new decimal(new int[] {
+            this.Icon_NumericUpDown.Location = new System.Drawing.Point(108, 108);
+            this.Icon_NumericUpDown.Maximum = new decimal(new int[] {
             39,
             0,
             0,
             0});
-            this.numericUpDown23.Name = "numericUpDown23";
-            this.numericUpDown23.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown23.TabIndex = 25;
-            this.numericUpDown23.ValueChanged += new System.EventHandler(this.NumericUpDown23_ValueChanged);
+            this.Icon_NumericUpDown.Name = "Icon_NumericUpDown";
+            this.Icon_NumericUpDown.Size = new System.Drawing.Size(35, 20);
+            this.Icon_NumericUpDown.TabIndex = 25;
+            this.Icon_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown23_ValueChanged);
             // 
-            // numericUpDown22
+            // Seed_NumericUpDown
             // 
-            this.numericUpDown22.Location = new System.Drawing.Point(108, 79);
-            this.numericUpDown22.Maximum = new decimal(new int[] {
+            this.Seed_NumericUpDown.Location = new System.Drawing.Point(108, 79);
+            this.Seed_NumericUpDown.Maximum = new decimal(new int[] {
             1215752191,
             23,
             0,
             0});
-            this.numericUpDown22.Name = "numericUpDown22";
-            this.numericUpDown22.Size = new System.Drawing.Size(163, 20);
-            this.numericUpDown22.TabIndex = 23;
+            this.Seed_NumericUpDown.Name = "Seed_NumericUpDown";
+            this.Seed_NumericUpDown.Size = new System.Drawing.Size(163, 20);
+            this.Seed_NumericUpDown.TabIndex = 23;
             // 
-            // button38
+            // ChangeIcon_Button
             // 
-            this.button38.ForeColor = System.Drawing.Color.Black;
-            this.button38.Location = new System.Drawing.Point(5, 106);
-            this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(99, 23);
-            this.button38.TabIndex = 26;
-            this.button38.Text = "Change Icon";
-            this.button38.UseVisualStyleBackColor = true;
-            this.button38.Click += new System.EventHandler(this.Button38_Click);
+            this.ChangeIcon_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChangeIcon_Button.Location = new System.Drawing.Point(5, 106);
+            this.ChangeIcon_Button.Name = "ChangeIcon_Button";
+            this.ChangeIcon_Button.Size = new System.Drawing.Size(99, 23);
+            this.ChangeIcon_Button.TabIndex = 26;
+            this.ChangeIcon_Button.Text = "Change Icon";
+            this.ChangeIcon_Button.UseVisualStyleBackColor = true;
+            this.ChangeIcon_Button.Click += new System.EventHandler(this.Button38_Click);
             // 
-            // button37
+            // ChangeSeed_Button
             // 
-            this.button37.ForeColor = System.Drawing.Color.Black;
-            this.button37.Location = new System.Drawing.Point(5, 77);
-            this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(99, 23);
-            this.button37.TabIndex = 24;
-            this.button37.Text = "Change Seed";
-            this.button37.UseVisualStyleBackColor = true;
-            this.button37.Click += new System.EventHandler(this.Button37_Click);
+            this.ChangeSeed_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChangeSeed_Button.Location = new System.Drawing.Point(5, 77);
+            this.ChangeSeed_Button.Name = "ChangeSeed_Button";
+            this.ChangeSeed_Button.Size = new System.Drawing.Size(99, 23);
+            this.ChangeSeed_Button.TabIndex = 24;
+            this.ChangeSeed_Button.Text = "Change Seed";
+            this.ChangeSeed_Button.UseVisualStyleBackColor = true;
+            this.ChangeSeed_Button.Click += new System.EventHandler(this.Button37_Click);
             // 
-            // progressBar7
+            // WorldInformation_ProgressBar
             // 
-            this.progressBar7.Location = new System.Drawing.Point(176, 21);
-            this.progressBar7.Name = "progressBar7";
-            this.progressBar7.Size = new System.Drawing.Size(161, 21);
-            this.progressBar7.Step = 1;
-            this.progressBar7.TabIndex = 19;
-            this.progressBar7.Visible = false;
+            this.WorldInformation_ProgressBar.Location = new System.Drawing.Point(176, 21);
+            this.WorldInformation_ProgressBar.Name = "WorldInformation_ProgressBar";
+            this.WorldInformation_ProgressBar.Size = new System.Drawing.Size(161, 21);
+            this.WorldInformation_ProgressBar.Step = 1;
+            this.WorldInformation_ProgressBar.TabIndex = 19;
+            this.WorldInformation_ProgressBar.Visible = false;
             // 
-            // numericUpDown13
+            // CrystalThree_NumericUpDown
             // 
-            this.numericUpDown13.Location = new System.Drawing.Point(292, 166);
-            this.numericUpDown13.Maximum = new decimal(new int[] {
+            this.CrystalThree_NumericUpDown.Location = new System.Drawing.Point(292, 166);
+            this.CrystalThree_NumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown13.TabIndex = 33;
-            this.numericUpDown13.Value = new decimal(new int[] {
+            this.CrystalThree_NumericUpDown.Name = "CrystalThree_NumericUpDown";
+            this.CrystalThree_NumericUpDown.Size = new System.Drawing.Size(45, 20);
+            this.CrystalThree_NumericUpDown.TabIndex = 33;
+            this.CrystalThree_NumericUpDown.Value = new decimal(new int[] {
             2502,
             0,
             0,
             0});
             // 
-            // numericUpDown12
+            // CrystalTwo_NumericUpDown
             // 
-            this.numericUpDown12.Location = new System.Drawing.Point(210, 166);
-            this.numericUpDown12.Maximum = new decimal(new int[] {
+            this.CrystalTwo_NumericUpDown.Location = new System.Drawing.Point(210, 166);
+            this.CrystalTwo_NumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown12.TabIndex = 32;
-            this.numericUpDown12.Value = new decimal(new int[] {
+            this.CrystalTwo_NumericUpDown.Name = "CrystalTwo_NumericUpDown";
+            this.CrystalTwo_NumericUpDown.Size = new System.Drawing.Size(45, 20);
+            this.CrystalTwo_NumericUpDown.TabIndex = 32;
+            this.CrystalTwo_NumericUpDown.Value = new decimal(new int[] {
             2501,
             0,
             0,
             0});
             // 
-            // label25
+            // CrystalThree_Label
             // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.Color.Snow;
-            this.label25.Location = new System.Drawing.Point(255, 169);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(38, 13);
-            this.label25.TabIndex = 47;
-            this.label25.Text = "Three:";
+            this.CrystalThree_Label.AutoSize = true;
+            this.CrystalThree_Label.ForeColor = System.Drawing.Color.Snow;
+            this.CrystalThree_Label.Location = new System.Drawing.Point(255, 169);
+            this.CrystalThree_Label.Name = "CrystalThree_Label";
+            this.CrystalThree_Label.Size = new System.Drawing.Size(38, 13);
+            this.CrystalThree_Label.TabIndex = 47;
+            this.CrystalThree_Label.Text = "Three:";
             // 
-            // label24
+            // CrystalTwo_Label
             // 
-            this.label24.AutoSize = true;
-            this.label24.ForeColor = System.Drawing.Color.Snow;
-            this.label24.Location = new System.Drawing.Point(181, 169);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(31, 13);
-            this.label24.TabIndex = 45;
-            this.label24.Text = "Two:";
+            this.CrystalTwo_Label.AutoSize = true;
+            this.CrystalTwo_Label.ForeColor = System.Drawing.Color.Snow;
+            this.CrystalTwo_Label.Location = new System.Drawing.Point(181, 169);
+            this.CrystalTwo_Label.Name = "CrystalTwo_Label";
+            this.CrystalTwo_Label.Size = new System.Drawing.Size(31, 13);
+            this.CrystalTwo_Label.TabIndex = 45;
+            this.CrystalTwo_Label.Text = "Two:";
             // 
-            // label23
+            // CrystalOne_Label
             // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.Color.Snow;
-            this.label23.Location = new System.Drawing.Point(105, 169);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(30, 13);
-            this.label23.TabIndex = 43;
-            this.label23.Text = "One:";
+            this.CrystalOne_Label.AutoSize = true;
+            this.CrystalOne_Label.ForeColor = System.Drawing.Color.Snow;
+            this.CrystalOne_Label.Location = new System.Drawing.Point(105, 169);
+            this.CrystalOne_Label.Name = "CrystalOne_Label";
+            this.CrystalOne_Label.Size = new System.Drawing.Size(30, 13);
+            this.CrystalOne_Label.TabIndex = 43;
+            this.CrystalOne_Label.Text = "One:";
             // 
-            // numericUpDown11
+            // CrystalOne_NumericUpDown
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(136, 166);
-            this.numericUpDown11.Maximum = new decimal(new int[] {
+            this.CrystalOne_NumericUpDown.Location = new System.Drawing.Point(136, 166);
+            this.CrystalOne_NumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown11.TabIndex = 31;
-            this.numericUpDown11.Value = new decimal(new int[] {
+            this.CrystalOne_NumericUpDown.Name = "CrystalOne_NumericUpDown";
+            this.CrystalOne_NumericUpDown.Size = new System.Drawing.Size(45, 20);
+            this.CrystalOne_NumericUpDown.TabIndex = 31;
+            this.CrystalOne_NumericUpDown.Value = new decimal(new int[] {
             2500,
             0,
             0,
             0});
             // 
-            // button18
+            // ChangeCrystals_Button
             // 
-            this.button18.ForeColor = System.Drawing.Color.Black;
-            this.button18.Location = new System.Drawing.Point(5, 164);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(99, 23);
-            this.button18.TabIndex = 34;
-            this.button18.Text = "Change Crystals";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.Button18_Click);
+            this.ChangeCrystals_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChangeCrystals_Button.Location = new System.Drawing.Point(5, 164);
+            this.ChangeCrystals_Button.Name = "ChangeCrystals_Button";
+            this.ChangeCrystals_Button.Size = new System.Drawing.Size(99, 23);
+            this.ChangeCrystals_Button.TabIndex = 34;
+            this.ChangeCrystals_Button.Text = "Change Crystals";
+            this.ChangeCrystals_Button.UseVisualStyleBackColor = true;
+            this.ChangeCrystals_Button.Click += new System.EventHandler(this.Button18_Click);
             // 
-            // numericUpDown10
+            // Day_NumericUpDown
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(302, 137);
-            this.numericUpDown10.Maximum = new decimal(new int[] {
+            this.Day_NumericUpDown.Location = new System.Drawing.Point(302, 137);
+            this.Day_NumericUpDown.Maximum = new decimal(new int[] {
             31,
             0,
             0,
             0});
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown10.TabIndex = 29;
-            this.numericUpDown10.Value = new decimal(new int[] {
+            this.Day_NumericUpDown.Name = "Day_NumericUpDown";
+            this.Day_NumericUpDown.Size = new System.Drawing.Size(35, 20);
+            this.Day_NumericUpDown.TabIndex = 29;
+            this.Day_NumericUpDown.Value = new decimal(new int[] {
             23,
             0,
             0,
             0});
             // 
-            // label22
+            // Day_Label
             // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.Snow;
-            this.label22.Location = new System.Drawing.Point(272, 140);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(29, 13);
-            this.label22.TabIndex = 39;
-            this.label22.Text = "Day:";
+            this.Day_Label.AutoSize = true;
+            this.Day_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Day_Label.Location = new System.Drawing.Point(272, 140);
+            this.Day_Label.Name = "Day_Label";
+            this.Day_Label.Size = new System.Drawing.Size(29, 13);
+            this.Day_Label.TabIndex = 39;
+            this.Day_Label.Text = "Day:";
             // 
-            // numericUpDown9
+            // Month_NumericUpDown
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(236, 137);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
+            this.Month_NumericUpDown.Location = new System.Drawing.Point(236, 137);
+            this.Month_NumericUpDown.Maximum = new decimal(new int[] {
             12,
             0,
             0,
             0});
-            this.numericUpDown9.Minimum = new decimal(new int[] {
+            this.Month_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(35, 20);
-            this.numericUpDown9.TabIndex = 28;
-            this.numericUpDown9.Value = new decimal(new int[] {
+            this.Month_NumericUpDown.Name = "Month_NumericUpDown";
+            this.Month_NumericUpDown.Size = new System.Drawing.Size(35, 20);
+            this.Month_NumericUpDown.TabIndex = 28;
+            this.Month_NumericUpDown.Value = new decimal(new int[] {
             12,
             0,
             0,
             0});
             // 
-            // label21
+            // Month_Label
             // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.Snow;
-            this.label21.Location = new System.Drawing.Point(195, 140);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(40, 13);
-            this.label21.TabIndex = 37;
-            this.label21.Text = "Month:";
+            this.Month_Label.AutoSize = true;
+            this.Month_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Month_Label.Location = new System.Drawing.Point(195, 140);
+            this.Month_Label.Name = "Month_Label";
+            this.Month_Label.Size = new System.Drawing.Size(40, 13);
+            this.Month_Label.TabIndex = 37;
+            this.Month_Label.Text = "Month:";
             // 
-            // numericUpDown8
+            // Year_NumericUpDown
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(136, 137);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
+            this.Year_NumericUpDown.Location = new System.Drawing.Point(136, 137);
+            this.Year_NumericUpDown.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown8.TabIndex = 27;
-            this.numericUpDown8.Value = new decimal(new int[] {
+            this.Year_NumericUpDown.Name = "Year_NumericUpDown";
+            this.Year_NumericUpDown.Size = new System.Drawing.Size(57, 20);
+            this.Year_NumericUpDown.TabIndex = 27;
+            this.Year_NumericUpDown.Value = new decimal(new int[] {
             2022,
             0,
             0,
             0});
             // 
-            // label15
+            // Year_Label
             // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.Color.Snow;
-            this.label15.Location = new System.Drawing.Point(105, 140);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(32, 13);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "Year:";
+            this.Year_Label.AutoSize = true;
+            this.Year_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Year_Label.Location = new System.Drawing.Point(105, 140);
+            this.Year_Label.Name = "Year_Label";
+            this.Year_Label.Size = new System.Drawing.Size(32, 13);
+            this.Year_Label.TabIndex = 35;
+            this.Year_Label.Text = "Year:";
             // 
-            // button15
+            // ChangeDate_Button
             // 
-            this.button15.ForeColor = System.Drawing.Color.Black;
-            this.button15.Location = new System.Drawing.Point(5, 135);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(99, 23);
-            this.button15.TabIndex = 30;
-            this.button15.Text = "Change Date";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.Button15_Click);
+            this.ChangeDate_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChangeDate_Button.Location = new System.Drawing.Point(5, 135);
+            this.ChangeDate_Button.Name = "ChangeDate_Button";
+            this.ChangeDate_Button.Size = new System.Drawing.Size(99, 23);
+            this.ChangeDate_Button.TabIndex = 30;
+            this.ChangeDate_Button.Text = "Change Date";
+            this.ChangeDate_Button.UseVisualStyleBackColor = true;
+            this.ChangeDate_Button.Click += new System.EventHandler(this.Button15_Click);
             // 
-            // label16
+            // WorldInformation_Label
             // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.Snow;
-            this.label16.Location = new System.Drawing.Point(105, 24);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(69, 13);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "World Name:";
+            this.WorldInformation_Label.AutoSize = true;
+            this.WorldInformation_Label.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_Label.Location = new System.Drawing.Point(105, 24);
+            this.WorldInformation_Label.Name = "WorldInformation_Label";
+            this.WorldInformation_Label.Size = new System.Drawing.Size(69, 13);
+            this.WorldInformation_Label.TabIndex = 27;
+            this.WorldInformation_Label.Text = "World Name:";
             // 
-            // textBox3
+            // WorldInformation_TextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(176, 22);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(161, 20);
-            this.textBox3.TabIndex = 20;
-            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyDown);
+            this.WorldInformation_TextBox.Location = new System.Drawing.Point(176, 22);
+            this.WorldInformation_TextBox.Name = "WorldInformation_TextBox";
+            this.WorldInformation_TextBox.Size = new System.Drawing.Size(161, 20);
+            this.WorldInformation_TextBox.TabIndex = 20;
+            this.WorldInformation_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyDown);
             // 
-            // button16
+            // GetWorldInformation_Button
             // 
-            this.button16.ForeColor = System.Drawing.Color.Black;
-            this.button16.Location = new System.Drawing.Point(5, 19);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(99, 23);
-            this.button16.TabIndex = 20;
-            this.button16.Text = "Get Information";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.Button16_Click);
+            this.GetWorldInformation_Button.ForeColor = System.Drawing.Color.Black;
+            this.GetWorldInformation_Button.Location = new System.Drawing.Point(5, 19);
+            this.GetWorldInformation_Button.Name = "GetWorldInformation_Button";
+            this.GetWorldInformation_Button.Size = new System.Drawing.Size(99, 23);
+            this.GetWorldInformation_Button.TabIndex = 20;
+            this.GetWorldInformation_Button.Text = "Get Information";
+            this.GetWorldInformation_Button.UseVisualStyleBackColor = true;
+            this.GetWorldInformation_Button.Click += new System.EventHandler(this.Button16_Click);
             // 
-            // button17
+            // ChangeDifficulty_Button
             // 
-            this.button17.ForeColor = System.Drawing.Color.Black;
-            this.button17.Location = new System.Drawing.Point(5, 48);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(99, 23);
-            this.button17.TabIndex = 22;
-            this.button17.Text = "Change Difficulty";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.Button17_Click);
+            this.ChangeDifficulty_Button.ForeColor = System.Drawing.Color.Black;
+            this.ChangeDifficulty_Button.Location = new System.Drawing.Point(5, 48);
+            this.ChangeDifficulty_Button.Name = "ChangeDifficulty_Button";
+            this.ChangeDifficulty_Button.Size = new System.Drawing.Size(99, 23);
+            this.ChangeDifficulty_Button.TabIndex = 22;
+            this.ChangeDifficulty_Button.Text = "Change Difficulty";
+            this.ChangeDifficulty_Button.UseVisualStyleBackColor = true;
+            this.ChangeDifficulty_Button.Click += new System.EventHandler(this.Button17_Click);
             // 
-            // groupBox10
+            // WorldInformationData_GroupBox
             // 
-            this.groupBox10.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox10.Controls.Add(this.dataGridView1);
-            this.groupBox10.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox10.Location = new System.Drawing.Point(382, 5);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(342, 213);
-            this.groupBox10.TabIndex = 41;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.UseCompatibleTextRendering = true;
+            this.WorldInformationData_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.WorldInformationData_GroupBox.Controls.Add(this.WorldInformation_DataGridView);
+            this.WorldInformationData_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.WorldInformationData_GroupBox.Location = new System.Drawing.Point(382, 5);
+            this.WorldInformationData_GroupBox.Name = "WorldInformationData_GroupBox";
+            this.WorldInformationData_GroupBox.Size = new System.Drawing.Size(342, 212);
+            this.WorldInformationData_GroupBox.TabIndex = 41;
+            this.WorldInformationData_GroupBox.TabStop = false;
+            this.WorldInformationData_GroupBox.UseCompatibleTextRendering = true;
             // 
-            // dataGridView1
+            // WorldInformation_DataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(1, 7);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.ShowCellErrors = false;
-            this.dataGridView1.ShowCellToolTips = false;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(340, 204);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.WorldInformation_DataGridView.AllowUserToAddRows = false;
+            this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
+            this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
+            this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
+            this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Header_Column,
+            this.Information_Column});
+            this.WorldInformation_DataGridView.Location = new System.Drawing.Point(1, 7);
+            this.WorldInformation_DataGridView.Name = "WorldInformation_DataGridView";
+            this.WorldInformation_DataGridView.ReadOnly = true;
+            this.WorldInformation_DataGridView.RowHeadersVisible = false;
+            this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.WorldInformation_DataGridView.ShowCellErrors = false;
+            this.WorldInformation_DataGridView.ShowCellToolTips = false;
+            this.WorldInformation_DataGridView.ShowEditingIcon = false;
+            this.WorldInformation_DataGridView.ShowRowErrors = false;
+            this.WorldInformation_DataGridView.Size = new System.Drawing.Size(340, 202);
+            this.WorldInformation_DataGridView.TabIndex = 0;
+            this.WorldInformation_DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             // 
-            // Column1
+            // TeleportPlayer_GroupBox
             // 
-            this.Column1.FillWeight = 50.76143F;
-            this.Column1.HeaderText = "Header";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.TeleportPlayer_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportPlayerHelp_Button);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.BruteForce_Label);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.BruteForce_CheckBox);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.Y_Button);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.X_Button);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportY_NumericUpDown);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportPlayer_ProgressBar);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.GetTeleportAddresses_Button);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportPlayerAddresses_RichTextBox);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportX_NumericUpDown);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportXY_Button);
+            this.TeleportPlayer_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.TeleportPlayer_GroupBox.Location = new System.Drawing.Point(10, 5);
+            this.TeleportPlayer_GroupBox.Name = "TeleportPlayer_GroupBox";
+            this.TeleportPlayer_GroupBox.Size = new System.Drawing.Size(366, 98);
+            this.TeleportPlayer_GroupBox.TabIndex = 40;
+            this.TeleportPlayer_GroupBox.TabStop = false;
+            this.TeleportPlayer_GroupBox.Text = "Teleport Player";
             // 
-            // Column2
+            // TeleportPlayerHelp_Button
             // 
-            this.Column2.FillWeight = 149.2386F;
-            this.Column2.HeaderText = "Information";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.TeleportPlayerHelp_Button.ForeColor = System.Drawing.Color.Black;
+            this.TeleportPlayerHelp_Button.Location = new System.Drawing.Point(322, 19);
+            this.TeleportPlayerHelp_Button.Name = "TeleportPlayerHelp_Button";
+            this.TeleportPlayerHelp_Button.Size = new System.Drawing.Size(38, 23);
+            this.TeleportPlayerHelp_Button.TabIndex = 29;
+            this.TeleportPlayerHelp_Button.Text = "Help";
+            this.TeleportPlayerHelp_Button.UseVisualStyleBackColor = true;
+            this.TeleportPlayerHelp_Button.Click += new System.EventHandler(this.Button36_Click);
             // 
-            // groupBox11
+            // BruteForce_Label
             // 
-            this.groupBox11.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox11.Controls.Add(this.button36);
-            this.groupBox11.Controls.Add(this.label26);
-            this.groupBox11.Controls.Add(this.checkBox3);
-            this.groupBox11.Controls.Add(this.button14);
-            this.groupBox11.Controls.Add(this.button13);
-            this.groupBox11.Controls.Add(this.numericUpDown5);
-            this.groupBox11.Controls.Add(this.progressBar4);
-            this.groupBox11.Controls.Add(this.button11);
-            this.groupBox11.Controls.Add(this.richTextBox7);
-            this.groupBox11.Controls.Add(this.numericUpDown4);
-            this.groupBox11.Controls.Add(this.button9);
-            this.groupBox11.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox11.Location = new System.Drawing.Point(10, 5);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(366, 98);
-            this.groupBox11.TabIndex = 40;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Teleport Player";
+            this.BruteForce_Label.AutoSize = true;
+            this.BruteForce_Label.ForeColor = System.Drawing.Color.Snow;
+            this.BruteForce_Label.Location = new System.Drawing.Point(101, 77);
+            this.BruteForce_Label.Name = "BruteForce_Label";
+            this.BruteForce_Label.Size = new System.Drawing.Size(252, 13);
+            this.BruteForce_Label.TabIndex = 28;
+            this.BruteForce_Label.Text = "- Test all positions instead of filtered when scanning.";
             // 
-            // button36
+            // BruteForce_CheckBox
             // 
-            this.button36.ForeColor = System.Drawing.Color.Black;
-            this.button36.Location = new System.Drawing.Point(322, 19);
-            this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(38, 23);
-            this.button36.TabIndex = 29;
-            this.button36.Text = "Help";
-            this.button36.UseVisualStyleBackColor = true;
-            this.button36.Click += new System.EventHandler(this.Button36_Click);
+            this.BruteForce_CheckBox.AutoSize = true;
+            this.BruteForce_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.BruteForce_CheckBox.Location = new System.Drawing.Point(7, 76);
+            this.BruteForce_CheckBox.Name = "BruteForce_CheckBox";
+            this.BruteForce_CheckBox.Size = new System.Drawing.Size(81, 17);
+            this.BruteForce_CheckBox.TabIndex = 27;
+            this.BruteForce_CheckBox.Text = "Brute Force";
+            this.BruteForce_CheckBox.UseVisualStyleBackColor = true;
+            this.BruteForce_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
             // 
-            // label26
+            // Y_Button
             // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.Snow;
-            this.label26.Location = new System.Drawing.Point(101, 77);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(252, 13);
-            this.label26.TabIndex = 28;
-            this.label26.Text = "- Test all positions instead of filtered when scanning.";
+            this.Y_Button.Enabled = false;
+            this.Y_Button.ForeColor = System.Drawing.Color.Black;
+            this.Y_Button.Location = new System.Drawing.Point(236, 49);
+            this.Y_Button.Name = "Y_Button";
+            this.Y_Button.Size = new System.Drawing.Size(27, 22);
+            this.Y_Button.TabIndex = 0;
+            this.Y_Button.Text = "Y:";
+            this.Y_Button.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // X_Button
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.ForeColor = System.Drawing.Color.Snow;
-            this.checkBox3.Location = new System.Drawing.Point(7, 76);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(81, 17);
-            this.checkBox3.TabIndex = 27;
-            this.checkBox3.Text = "Brute Force";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            this.X_Button.Enabled = false;
+            this.X_Button.ForeColor = System.Drawing.Color.Black;
+            this.X_Button.Location = new System.Drawing.Point(104, 49);
+            this.X_Button.Name = "X_Button";
+            this.X_Button.Size = new System.Drawing.Size(27, 22);
+            this.X_Button.TabIndex = 0;
+            this.X_Button.Text = "X:";
+            this.X_Button.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // TeleportY_NumericUpDown
             // 
-            this.button14.Enabled = false;
-            this.button14.ForeColor = System.Drawing.Color.Black;
-            this.button14.Location = new System.Drawing.Point(236, 49);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(27, 22);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Y:";
-            this.button14.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Enabled = false;
-            this.button13.ForeColor = System.Drawing.Color.Black;
-            this.button13.Location = new System.Drawing.Point(104, 49);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(27, 22);
-            this.button13.TabIndex = 0;
-            this.button13.Text = "X:";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Location = new System.Drawing.Point(262, 50);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
+            this.TeleportY_NumericUpDown.Location = new System.Drawing.Point(262, 50);
+            this.TeleportY_NumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.numericUpDown5.Minimum = new decimal(new int[] {
+            this.TeleportY_NumericUpDown.Minimum = new decimal(new int[] {
             2147483647,
             0,
             0,
             -2147483648});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(98, 20);
-            this.numericUpDown5.TabIndex = 4;
-            this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
+            this.TeleportY_NumericUpDown.Name = "TeleportY_NumericUpDown";
+            this.TeleportY_NumericUpDown.Size = new System.Drawing.Size(98, 20);
+            this.TeleportY_NumericUpDown.TabIndex = 4;
+            this.TeleportY_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
             // 
-            // progressBar4
+            // TeleportPlayer_ProgressBar
             // 
-            this.progressBar4.Location = new System.Drawing.Point(104, 20);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(221, 21);
-            this.progressBar4.Step = 1;
-            this.progressBar4.TabIndex = 24;
-            this.progressBar4.Visible = false;
+            this.TeleportPlayer_ProgressBar.Location = new System.Drawing.Point(104, 20);
+            this.TeleportPlayer_ProgressBar.Name = "TeleportPlayer_ProgressBar";
+            this.TeleportPlayer_ProgressBar.Size = new System.Drawing.Size(221, 21);
+            this.TeleportPlayer_ProgressBar.Step = 1;
+            this.TeleportPlayer_ProgressBar.TabIndex = 24;
+            this.TeleportPlayer_ProgressBar.Visible = false;
             // 
-            // button11
+            // GetTeleportAddresses_Button
             // 
-            this.button11.ForeColor = System.Drawing.Color.Black;
-            this.button11.Location = new System.Drawing.Point(6, 19);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(92, 23);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "Get Addresses";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.Button11_Click);
+            this.GetTeleportAddresses_Button.ForeColor = System.Drawing.Color.Black;
+            this.GetTeleportAddresses_Button.Location = new System.Drawing.Point(6, 19);
+            this.GetTeleportAddresses_Button.Name = "GetTeleportAddresses_Button";
+            this.GetTeleportAddresses_Button.Size = new System.Drawing.Size(92, 23);
+            this.GetTeleportAddresses_Button.TabIndex = 1;
+            this.GetTeleportAddresses_Button.Text = "Get Addresses";
+            this.GetTeleportAddresses_Button.UseVisualStyleBackColor = true;
+            this.GetTeleportAddresses_Button.Click += new System.EventHandler(this.Button11_Click);
             // 
-            // richTextBox7
+            // TeleportPlayerAddresses_RichTextBox
             // 
-            this.richTextBox7.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.richTextBox7.Location = new System.Drawing.Point(104, 20);
-            this.richTextBox7.Name = "richTextBox7";
-            this.richTextBox7.ReadOnly = true;
-            this.richTextBox7.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox7.Size = new System.Drawing.Size(221, 21);
-            this.richTextBox7.TabIndex = 26;
-            this.richTextBox7.Text = "Addresses Loaded: 0";
+            this.TeleportPlayerAddresses_RichTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.TeleportPlayerAddresses_RichTextBox.Location = new System.Drawing.Point(104, 20);
+            this.TeleportPlayerAddresses_RichTextBox.Name = "TeleportPlayerAddresses_RichTextBox";
+            this.TeleportPlayerAddresses_RichTextBox.ReadOnly = true;
+            this.TeleportPlayerAddresses_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.TeleportPlayerAddresses_RichTextBox.Size = new System.Drawing.Size(221, 21);
+            this.TeleportPlayerAddresses_RichTextBox.TabIndex = 26;
+            this.TeleportPlayerAddresses_RichTextBox.Text = "Addresses Loaded: 0";
             // 
-            // numericUpDown4
+            // TeleportX_NumericUpDown
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(130, 50);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.TeleportX_NumericUpDown.Location = new System.Drawing.Point(130, 50);
+            this.TeleportX_NumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.numericUpDown4.Minimum = new decimal(new int[] {
+            this.TeleportX_NumericUpDown.Minimum = new decimal(new int[] {
             2147483647,
             0,
             0,
             -2147483648});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(98, 20);
-            this.numericUpDown4.TabIndex = 3;
-            this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
+            this.TeleportX_NumericUpDown.Name = "TeleportX_NumericUpDown";
+            this.TeleportX_NumericUpDown.Size = new System.Drawing.Size(98, 20);
+            this.TeleportX_NumericUpDown.TabIndex = 3;
+            this.TeleportX_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
-            // button9
+            // TeleportXY_Button
             // 
-            this.button9.ForeColor = System.Drawing.Color.Black;
-            this.button9.Location = new System.Drawing.Point(6, 48);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(92, 23);
-            this.button9.TabIndex = 2;
-            this.button9.Text = "Teleport XY";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.Button9_Click);
+            this.TeleportXY_Button.ForeColor = System.Drawing.Color.Black;
+            this.TeleportXY_Button.Location = new System.Drawing.Point(6, 48);
+            this.TeleportXY_Button.Name = "TeleportXY_Button";
+            this.TeleportXY_Button.Size = new System.Drawing.Size(92, 23);
+            this.TeleportXY_Button.TabIndex = 2;
+            this.TeleportXY_Button.Text = "Teleport XY";
+            this.TeleportXY_Button.UseVisualStyleBackColor = true;
+            this.TeleportXY_Button.Click += new System.EventHandler(this.Button9_Click);
             // 
-            // tabPage5
+            // Chat_TabPage
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.tabPage5.Controls.Add(this.groupBox6);
-            this.tabPage5.Controls.Add(this.groupBox5);
-            this.tabPage5.Controls.Add(this.groupBox4);
-            this.tabPage5.Controls.Add(this.progressBar3);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(732, 426);
-            this.tabPage5.TabIndex = 2;
-            this.tabPage5.Text = "Chat";
+            this.Chat_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.Chat_TabPage.Controls.Add(this.ChatCommandsOptions_GroupBox);
+            this.Chat_TabPage.Controls.Add(this.ChatCommandsLog_GroupBox);
+            this.Chat_TabPage.Controls.Add(this.ChatCommands_GroupBox);
+            this.Chat_TabPage.Controls.Add(this.ChatCommands_ProgressBar);
+            this.Chat_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Chat_TabPage.Name = "Chat_TabPage";
+            this.Chat_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.Chat_TabPage.TabIndex = 2;
+            this.Chat_TabPage.Text = "Chat";
             // 
-            // groupBox6
+            // ChatCommandsOptions_GroupBox
             // 
-            this.groupBox6.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox6.Controls.Add(this.button7);
-            this.groupBox6.Controls.Add(this.numericUpDown1);
-            this.groupBox6.Controls.Add(this.radioButton3);
-            this.groupBox6.Controls.Add(this.radioButton2);
-            this.groupBox6.Controls.Add(this.radioButton1);
-            this.groupBox6.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox6.Location = new System.Drawing.Point(241, 5);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(133, 111);
-            this.groupBox6.TabIndex = 18;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Options";
+            this.ChatCommandsOptions_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ChatCommandsOptions_GroupBox.Controls.Add(this.EnableChatCommands_Button);
+            this.ChatCommandsOptions_GroupBox.Controls.Add(this.CustomAmount_NumericUpDown);
+            this.ChatCommandsOptions_GroupBox.Controls.Add(this.Custom_RadioButton);
+            this.ChatCommandsOptions_GroupBox.Controls.Add(this.AddToEmptySlots_RadioButton);
+            this.ChatCommandsOptions_GroupBox.Controls.Add(this.OverwriteSlotOne_RadioButton);
+            this.ChatCommandsOptions_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.ChatCommandsOptions_GroupBox.Location = new System.Drawing.Point(241, 5);
+            this.ChatCommandsOptions_GroupBox.Name = "ChatCommandsOptions_GroupBox";
+            this.ChatCommandsOptions_GroupBox.Size = new System.Drawing.Size(133, 111);
+            this.ChatCommandsOptions_GroupBox.TabIndex = 18;
+            this.ChatCommandsOptions_GroupBox.TabStop = false;
+            this.ChatCommandsOptions_GroupBox.Text = "Options";
             // 
-            // button7
+            // EnableChatCommands_Button
             // 
-            this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(6, 81);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(121, 23);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Enable";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.EnableChatCommands_Button.ForeColor = System.Drawing.Color.Black;
+            this.EnableChatCommands_Button.Location = new System.Drawing.Point(6, 81);
+            this.EnableChatCommands_Button.Name = "EnableChatCommands_Button";
+            this.EnableChatCommands_Button.Size = new System.Drawing.Size(121, 23);
+            this.EnableChatCommands_Button.TabIndex = 5;
+            this.EnableChatCommands_Button.Text = "Enable";
+            this.EnableChatCommands_Button.UseVisualStyleBackColor = true;
+            this.EnableChatCommands_Button.Click += new System.EventHandler(this.Button7_Click);
             // 
-            // numericUpDown1
+            // CustomAmount_NumericUpDown
             // 
-            this.numericUpDown1.Enabled = false;
-            this.numericUpDown1.Location = new System.Drawing.Point(75, 56);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.CustomAmount_NumericUpDown.Enabled = false;
+            this.CustomAmount_NumericUpDown.Location = new System.Drawing.Point(75, 56);
+            this.CustomAmount_NumericUpDown.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.CustomAmount_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown1.TabIndex = 4;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.CustomAmount_NumericUpDown.Name = "CustomAmount_NumericUpDown";
+            this.CustomAmount_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.CustomAmount_NumericUpDown.TabIndex = 4;
+            this.CustomAmount_NumericUpDown.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // radioButton3
+            // Custom_RadioButton
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.ForeColor = System.Drawing.Color.Snow;
-            this.radioButton3.Location = new System.Drawing.Point(6, 58);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(63, 17);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.Text = "Custom:";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
+            this.Custom_RadioButton.AutoSize = true;
+            this.Custom_RadioButton.ForeColor = System.Drawing.Color.Snow;
+            this.Custom_RadioButton.Location = new System.Drawing.Point(6, 58);
+            this.Custom_RadioButton.Name = "Custom_RadioButton";
+            this.Custom_RadioButton.Size = new System.Drawing.Size(63, 17);
+            this.Custom_RadioButton.TabIndex = 3;
+            this.Custom_RadioButton.Text = "Custom:";
+            this.Custom_RadioButton.UseVisualStyleBackColor = true;
+            this.Custom_RadioButton.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
             // 
-            // radioButton2
+            // AddToEmptySlots_RadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.Color.Snow;
-            this.radioButton2.Location = new System.Drawing.Point(6, 37);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(118, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Text = "Add To Empty Slots";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.AddToEmptySlots_RadioButton.AutoSize = true;
+            this.AddToEmptySlots_RadioButton.ForeColor = System.Drawing.Color.Snow;
+            this.AddToEmptySlots_RadioButton.Location = new System.Drawing.Point(6, 37);
+            this.AddToEmptySlots_RadioButton.Name = "AddToEmptySlots_RadioButton";
+            this.AddToEmptySlots_RadioButton.Size = new System.Drawing.Size(118, 17);
+            this.AddToEmptySlots_RadioButton.TabIndex = 2;
+            this.AddToEmptySlots_RadioButton.Text = "Add To Empty Slots";
+            this.AddToEmptySlots_RadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // OverwriteSlotOne_RadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.ForeColor = System.Drawing.Color.Snow;
-            this.radioButton1.Location = new System.Drawing.Point(6, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(114, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Overwrite Slot One";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.OverwriteSlotOne_RadioButton.AutoSize = true;
+            this.OverwriteSlotOne_RadioButton.Checked = true;
+            this.OverwriteSlotOne_RadioButton.ForeColor = System.Drawing.Color.Snow;
+            this.OverwriteSlotOne_RadioButton.Location = new System.Drawing.Point(6, 15);
+            this.OverwriteSlotOne_RadioButton.Name = "OverwriteSlotOne_RadioButton";
+            this.OverwriteSlotOne_RadioButton.Size = new System.Drawing.Size(114, 17);
+            this.OverwriteSlotOne_RadioButton.TabIndex = 1;
+            this.OverwriteSlotOne_RadioButton.TabStop = true;
+            this.OverwriteSlotOne_RadioButton.Text = "Overwrite Slot One";
+            this.OverwriteSlotOne_RadioButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
+            // ChatCommandsLog_GroupBox
             // 
-            this.groupBox5.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox5.Controls.Add(this.richTextBox4);
-            this.groupBox5.Location = new System.Drawing.Point(10, 117);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(364, 138);
-            this.groupBox5.TabIndex = 17;
-            this.groupBox5.TabStop = false;
+            this.ChatCommandsLog_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ChatCommandsLog_GroupBox.Controls.Add(this.UseOverlay_CheckBox);
+            this.ChatCommandsLog_GroupBox.Controls.Add(this.ChatCommands_RichTextBox);
+            this.ChatCommandsLog_GroupBox.Location = new System.Drawing.Point(10, 117);
+            this.ChatCommandsLog_GroupBox.Name = "ChatCommandsLog_GroupBox";
+            this.ChatCommandsLog_GroupBox.Size = new System.Drawing.Size(364, 138);
+            this.ChatCommandsLog_GroupBox.TabIndex = 17;
+            this.ChatCommandsLog_GroupBox.TabStop = false;
             // 
-            // richTextBox4
+            // UseOverlay_CheckBox
             // 
-            this.richTextBox4.BackColor = System.Drawing.Color.Black;
-            this.richTextBox4.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox4.Location = new System.Drawing.Point(1, 7);
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.ReadOnly = true;
-            this.richTextBox4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox4.Size = new System.Drawing.Size(362, 129);
-            this.richTextBox4.TabIndex = 0;
-            this.richTextBox4.Text = "Any captured chat messages will appear here.\n------------------------------------" +
+            this.UseOverlay_CheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.UseOverlay_CheckBox.AutoSize = true;
+            this.UseOverlay_CheckBox.BackColor = System.Drawing.Color.Black;
+            this.UseOverlay_CheckBox.FlatAppearance.BorderSize = 0;
+            this.UseOverlay_CheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkMagenta;
+            this.UseOverlay_CheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkMagenta;
+            this.UseOverlay_CheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkMagenta;
+            this.UseOverlay_CheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UseOverlay_CheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UseOverlay_CheckBox.ForeColor = System.Drawing.Color.GreenYellow;
+            this.UseOverlay_CheckBox.Location = new System.Drawing.Point(274, 10);
+            this.UseOverlay_CheckBox.Name = "UseOverlay_CheckBox";
+            this.UseOverlay_CheckBox.Size = new System.Drawing.Size(69, 19);
+            this.UseOverlay_CheckBox.TabIndex = 1;
+            this.UseOverlay_CheckBox.Text = "Use Overlay";
+            this.UseOverlay_CheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UseOverlay_CheckBox.UseVisualStyleBackColor = false;
+            // 
+            // ChatCommands_RichTextBox
+            // 
+            this.ChatCommands_RichTextBox.BackColor = System.Drawing.Color.Black;
+            this.ChatCommands_RichTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.ChatCommands_RichTextBox.Location = new System.Drawing.Point(1, 7);
+            this.ChatCommands_RichTextBox.Name = "ChatCommands_RichTextBox";
+            this.ChatCommands_RichTextBox.ReadOnly = true;
+            this.ChatCommands_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.ChatCommands_RichTextBox.Size = new System.Drawing.Size(362, 129);
+            this.ChatCommands_RichTextBox.TabIndex = 0;
+            this.ChatCommands_RichTextBox.Text = "Any captured chat messages will appear here.\n------------------------------------" +
     "-----------------------------------------------------------------------------\n";
             // 
-            // groupBox4
+            // ChatCommands_GroupBox
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox4.Location = new System.Drawing.Point(10, 5);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(232, 111);
-            this.groupBox4.TabIndex = 16;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Chat Commands";
+            this.ChatCommands_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ChatCommands_GroupBox.Controls.Add(this.ChatCommands_Label);
+            this.ChatCommands_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.ChatCommands_GroupBox.Location = new System.Drawing.Point(10, 5);
+            this.ChatCommands_GroupBox.Name = "ChatCommands_GroupBox";
+            this.ChatCommands_GroupBox.Size = new System.Drawing.Size(232, 111);
+            this.ChatCommands_GroupBox.TabIndex = 16;
+            this.ChatCommands_GroupBox.TabStop = false;
+            this.ChatCommands_GroupBox.Text = "Chat Commands";
             // 
-            // label3
+            // ChatCommands_Label
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Snow;
-            this.label3.Location = new System.Drawing.Point(2, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(231, 91);
-            this.label3.TabIndex = 2;
-            this.label3.Text = resources.GetString("label3.Text");
+            this.ChatCommands_Label.AutoSize = true;
+            this.ChatCommands_Label.ForeColor = System.Drawing.Color.Snow;
+            this.ChatCommands_Label.Location = new System.Drawing.Point(2, 14);
+            this.ChatCommands_Label.Name = "ChatCommands_Label";
+            this.ChatCommands_Label.Size = new System.Drawing.Size(231, 91);
+            this.ChatCommands_Label.TabIndex = 2;
+            this.ChatCommands_Label.Text = resources.GetString("ChatCommands_Label.Text");
             // 
-            // progressBar3
+            // ChatCommands_ProgressBar
             // 
-            this.progressBar3.Location = new System.Drawing.Point(10, 259);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(364, 23);
-            this.progressBar3.TabIndex = 17;
+            this.ChatCommands_ProgressBar.Location = new System.Drawing.Point(10, 259);
+            this.ChatCommands_ProgressBar.Name = "ChatCommands_ProgressBar";
+            this.ChatCommands_ProgressBar.Size = new System.Drawing.Size(364, 23);
+            this.ChatCommands_ProgressBar.TabIndex = 17;
             // 
-            // tabPage6
+            // ChangeSkin_TabPage
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(732, 426);
-            this.tabPage6.TabIndex = 3;
-            this.tabPage6.Text = "Change Skin";
+            this.ChangeSkin_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.ChangeSkin_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.ChangeSkin_TabPage.Name = "ChangeSkin_TabPage";
+            this.ChangeSkin_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.ChangeSkin_TabPage.TabIndex = 3;
+            this.ChangeSkin_TabPage.Text = "Change Skin";
+            // 
+            // Header_Column
+            // 
+            this.Header_Column.FillWeight = 70F;
+            this.Header_Column.HeaderText = "Header";
+            this.Header_Column.Name = "Header_Column";
+            this.Header_Column.ReadOnly = true;
+            // 
+            // Information_Column
+            // 
+            this.Information_Column.FillWeight = 149.2386F;
+            this.Information_Column.HeaderText = "Information";
+            this.Information_Column.Name = "Information_Column";
+            this.Information_Column.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -3458,7 +3474,7 @@ namespace CoreKeeperInventoryEditor
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(740, 455);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.Main_TabControl);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3469,359 +3485,360 @@ namespace CoreKeeperInventoryEditor
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox50)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox46)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox45)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox43)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox41)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
-            this.tabPage10.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.siticonePanel1.ResumeLayout(false);
-            this.siticonePanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            this.tabPage8.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            this.groupBox10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            this.tabPage5.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.Main_TabControl.ResumeLayout(false);
+            this.Inventory_TabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Slot50_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot49_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot48_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot47_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot46_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot45_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot44_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot43_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot42_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot41_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot40_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot39_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot38_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot37_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot36_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot35_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot34_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot33_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot32_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot31_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot30_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot29_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot28_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot27_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot26_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot25_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot24_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot23_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot22_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot21_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot20_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot19_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot18_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot17_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot16_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot15_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot14_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot13_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot12_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot11_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot10_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot9_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot8_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot7_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot6_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot5_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot4_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1_PictureBox)).EndInit();
+            this.Player_TabPage.ResumeLayout(false);
+            this.Player_TabPage.PerformLayout();
+            this.PlayerTab_GroupBox.ResumeLayout(false);
+            this.PlayerTab_TabControl.ResumeLayout(false);
+            this.About_TabPage.ResumeLayout(false);
+            this.Debug_TabPage.ResumeLayout(false);
+            this.WorldTools_TabPage.ResumeLayout(false);
+            this.DevTools_TabPage.ResumeLayout(false);
+            this.DevTools_TabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DevToolsDelay_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RadialMoveScale_NumericUpDown)).EndInit();
+            this.SpecialThanks_TabPage.ResumeLayout(false);
+            this.PlayerTools_GroupBox.ResumeLayout(false);
+            this.PlayerTools_Panel.ResumeLayout(false);
+            this.PlayerTools_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Range_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedAmount_NumericUpDown)).EndInit();
+            this.ImportExport_GroupBox.ResumeLayout(false);
+            this.ChangePlayersName_GroupBox.ResumeLayout(false);
+            this.ChangePlayersName_GroupBox.PerformLayout();
+            this.BuffEditor_GroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TimeS_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Power_NumericUpDown)).EndInit();
+            this.World_TabPage.ResumeLayout(false);
+            this.WorldUtilities_GroupBox.ResumeLayout(false);
+            this.WorldUtilities_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FishingPadding_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CastDelay_NumericUpDown)).EndInit();
+            this.MapRendering_GroupBox.ResumeLayout(false);
+            this.MapRendering_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StartRadius_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextRingDelay_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RenderRange_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxRadius_NumericUpDown)).EndInit();
+            this.WorldInformation_GroupBox.ResumeLayout(false);
+            this.WorldInformation_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Seed_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CrystalThree_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CrystalTwo_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CrystalOne_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Day_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Month_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Year_NumericUpDown)).EndInit();
+            this.WorldInformationData_GroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.WorldInformation_DataGridView)).EndInit();
+            this.TeleportPlayer_GroupBox.ResumeLayout(false);
+            this.TeleportPlayer_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TeleportY_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TeleportX_NumericUpDown)).EndInit();
+            this.Chat_TabPage.ResumeLayout(false);
+            this.ChatCommandsOptions_GroupBox.ResumeLayout(false);
+            this.ChatCommandsOptions_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomAmount_NumericUpDown)).EndInit();
+            this.ChatCommandsLog_GroupBox.ResumeLayout(false);
+            this.ChatCommandsLog_GroupBox.PerformLayout();
+            this.ChatCommands_GroupBox.ResumeLayout(false);
+            this.ChatCommands_GroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox30;
-        private System.Windows.Forms.PictureBox pictureBox29;
-        private System.Windows.Forms.PictureBox pictureBox28;
-        private System.Windows.Forms.PictureBox pictureBox27;
-        private System.Windows.Forms.PictureBox pictureBox26;
-        private System.Windows.Forms.PictureBox pictureBox25;
-        private System.Windows.Forms.PictureBox pictureBox24;
-        private System.Windows.Forms.PictureBox pictureBox23;
-        private System.Windows.Forms.PictureBox pictureBox22;
-        private System.Windows.Forms.PictureBox pictureBox21;
-        private System.Windows.Forms.PictureBox pictureBox20;
-        private System.Windows.Forms.PictureBox pictureBox19;
-        private System.Windows.Forms.PictureBox pictureBox18;
-        private System.Windows.Forms.PictureBox pictureBox17;
-        private System.Windows.Forms.PictureBox pictureBox16;
-        private System.Windows.Forms.PictureBox pictureBox15;
-        private System.Windows.Forms.PictureBox pictureBox14;
-        private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ProgressBar progressBar3;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RichTextBox richTextBox4;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ProgressBar progressBar5;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.RichTextBox richTextBox6;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith2;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith1;
-        private System.Windows.Forms.Label label11;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith3;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith4;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Label label14;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith5;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith6;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.RichTextBox richTextBox5;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.ProgressBar progressBar4;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.RichTextBox richTextBox7;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.NumericUpDown numericUpDown12;
-        private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Label label27;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith7;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.RichTextBox richTextBox8;
-        private System.Windows.Forms.PictureBox pictureBox31;
-        private System.Windows.Forms.PictureBox pictureBox34;
-        private System.Windows.Forms.PictureBox pictureBox33;
-        private System.Windows.Forms.PictureBox pictureBox32;
-        private System.Windows.Forms.PictureBox pictureBox35;
-        private System.Windows.Forms.PictureBox pictureBox37;
-        private System.Windows.Forms.PictureBox pictureBox36;
-        private System.Windows.Forms.PictureBox pictureBox38;
-        private System.Windows.Forms.PictureBox pictureBox42;
-        private System.Windows.Forms.PictureBox pictureBox41;
-        private System.Windows.Forms.PictureBox pictureBox40;
-        private System.Windows.Forms.PictureBox pictureBox39;
-        private System.Windows.Forms.PictureBox pictureBox43;
-        private System.Windows.Forms.PictureBox pictureBox49;
-        private System.Windows.Forms.PictureBox pictureBox48;
-        private System.Windows.Forms.PictureBox pictureBox47;
-        private System.Windows.Forms.PictureBox pictureBox46;
-        private System.Windows.Forms.PictureBox pictureBox45;
-        private System.Windows.Forms.PictureBox pictureBox44;
-        private System.Windows.Forms.PictureBox pictureBox50;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.NumericUpDown numericUpDown14;
-        private System.Windows.Forms.Button button24;
-        private System.Windows.Forms.NumericUpDown numericUpDown15;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.ProgressBar progressBar6;
-        private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.RichTextBox richTextBox9;
-        private System.Windows.Forms.NumericUpDown numericUpDown17;
-        private System.Windows.Forms.Button button27;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button28;
-        private System.Windows.Forms.Label label29;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith9;
-        private System.Windows.Forms.Label label28;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith8;
-        private System.Windows.Forms.Button button29;
-        private System.Windows.Forms.NumericUpDown numericUpDown16;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.NumericUpDown numericUpDown18;
-        private CoreKeepersWorkshop.TextProgressBar textProgressBar1;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.ProgressBar progressBar7;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Label label32;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith10;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDown19;
-        private System.Windows.Forms.Button button32;
-        private System.Windows.Forms.NumericUpDown numericUpDown20;
-        private System.Windows.Forms.Button button33;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button button34;
-        private System.Windows.Forms.Label label33;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith11;
-        private System.Windows.Forms.Button button35;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button36;
-        private Siticone.UI.WinForms.SiticoneTrackBar siticoneTrackBar1;
-        private Siticone.UI.WinForms.SiticonePanel siticonePanel1;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.NumericUpDown numericUpDown21;
-        private System.Windows.Forms.Label label38;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith13;
-        private System.Windows.Forms.Label label37;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith12;
-        private System.Windows.Forms.Button button40;
-        private System.Windows.Forms.Button button38;
-        private System.Windows.Forms.Button button37;
-        private System.Windows.Forms.NumericUpDown numericUpDown23;
-        private System.Windows.Forms.NumericUpDown numericUpDown22;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Button button39;
-        private System.Windows.Forms.Button button41;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith14;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Button button43;
-        private System.Windows.Forms.Button button42;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith15;
-        private System.Windows.Forms.Label label42;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith siticoneWinToggleSwith16;
-        private System.Windows.Forms.Label label43;
-        private Siticone.UI.WinForms.SiticoneMetroTrackBar siticoneMetroTrackBar1;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Button GetInventoryAddresses_Button;
+        private System.Windows.Forms.RichTextBox Inventory_RichTextBox;
+        private System.Windows.Forms.TabControl Main_TabControl;
+        private System.Windows.Forms.TabPage Inventory_TabPage;
+        private System.Windows.Forms.TabPage Player_TabPage;
+        private System.Windows.Forms.PictureBox Slot1_PictureBox;
+        private System.Windows.Forms.PictureBox Slot30_PictureBox;
+        private System.Windows.Forms.PictureBox Slot29_PictureBox;
+        private System.Windows.Forms.PictureBox Slot28_PictureBox;
+        private System.Windows.Forms.PictureBox Slot27_PictureBox;
+        private System.Windows.Forms.PictureBox Slot26_PictureBox;
+        private System.Windows.Forms.PictureBox Slot25_PictureBox;
+        private System.Windows.Forms.PictureBox Slot24_PictureBox;
+        private System.Windows.Forms.PictureBox Slot23_PictureBox;
+        private System.Windows.Forms.PictureBox Slot22_PictureBox;
+        private System.Windows.Forms.PictureBox Slot21_PictureBox;
+        private System.Windows.Forms.PictureBox Slot20_PictureBox;
+        private System.Windows.Forms.PictureBox Slot19_PictureBox;
+        private System.Windows.Forms.PictureBox Slot18_PictureBox;
+        private System.Windows.Forms.PictureBox Slot17_PictureBox;
+        private System.Windows.Forms.PictureBox Slot16_PictureBox;
+        private System.Windows.Forms.PictureBox Slot15_PictureBox;
+        private System.Windows.Forms.PictureBox Slot14_PictureBox;
+        private System.Windows.Forms.PictureBox Slot13_PictureBox;
+        private System.Windows.Forms.PictureBox Slot12_PictureBox;
+        private System.Windows.Forms.PictureBox Slot11_PictureBox;
+        private System.Windows.Forms.PictureBox Slot10_PictureBox;
+        private System.Windows.Forms.PictureBox Slot9_PictureBox;
+        private System.Windows.Forms.PictureBox Slot8_PictureBox;
+        private System.Windows.Forms.PictureBox Slot7_PictureBox;
+        private System.Windows.Forms.PictureBox Slot6_PictureBox;
+        private System.Windows.Forms.PictureBox Slot5_PictureBox;
+        private System.Windows.Forms.PictureBox Slot4_PictureBox;
+        private System.Windows.Forms.PictureBox Slot3_PictureBox;
+        private System.Windows.Forms.PictureBox Slot2_PictureBox;
+        private System.Windows.Forms.Button ReloadInventory_Button;
+        private System.Windows.Forms.Button RemoveAll_Button;
+        private System.Windows.Forms.Label NewName_Label;
+        private System.Windows.Forms.TextBox NewName_TextBox;
+        private System.Windows.Forms.Label CurrentName_Label;
+        private System.Windows.Forms.TextBox CurrentName_TextBox;
+        private System.Windows.Forms.Button ChanngeName_Button;
+        private System.Windows.Forms.GroupBox ChangePlayersName_GroupBox;
+        private System.Windows.Forms.GroupBox ImportExport_GroupBox;
+        private System.Windows.Forms.ProgressBar ImportExport_ProgressBar;
+        private System.Windows.Forms.Button ExportPlayer_Button;
+        private System.Windows.Forms.Button ImportPlayer_Button;
+        private System.Windows.Forms.ProgressBar Inventory_ProgressBar;
+        private System.Windows.Forms.TabPage Chat_TabPage;
+        private System.Windows.Forms.GroupBox ChatCommands_GroupBox;
+        private System.Windows.Forms.Button EnableChatCommands_Button;
+        private System.Windows.Forms.Label ChatCommands_Label;
+        private System.Windows.Forms.ProgressBar ChatCommands_ProgressBar;
+        private System.Windows.Forms.GroupBox ChatCommandsLog_GroupBox;
+        private System.Windows.Forms.RichTextBox ChatCommands_RichTextBox;
+        private System.Windows.Forms.RadioButton AddToEmptySlots_RadioButton;
+        private System.Windows.Forms.RadioButton OverwriteSlotOne_RadioButton;
+        private System.Windows.Forms.GroupBox ChatCommandsOptions_GroupBox;
+        private System.Windows.Forms.NumericUpDown CustomAmount_NumericUpDown;
+        private System.Windows.Forms.RadioButton Custom_RadioButton;
+        private System.Windows.Forms.TabPage ChangeSkin_TabPage;
+        private System.Windows.Forms.GroupBox PlayerTools_GroupBox;
+        private System.Windows.Forms.Label DisplayPosition_Label;
+        private System.Windows.Forms.GroupBox PlayerTab_GroupBox;
+        private System.Windows.Forms.ProgressBar PlayerTools_ProgressBar;
+        private System.Windows.Forms.Button GetAddresses_Button;
+        private System.Windows.Forms.RichTextBox PlayerTools_RichTextBox;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Godmode_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith DisplayLocation_ToggleSwith;
+        private System.Windows.Forms.Label Godmode_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Speed_ToggleSwith;
+        private System.Windows.Forms.Label Speed_Label;
+        private System.Windows.Forms.Label Noclip_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Noclip_ToggleSwith;
+        private System.Windows.Forms.NumericUpDown SpeedAmount_NumericUpDown;
+        private System.Windows.Forms.Label InfiniteFood_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteHealth_ToggleSwith;
+        private System.Windows.Forms.Button ApplyBuff_Button;
+        private System.Windows.Forms.ComboBox BuffType_ComboBox;
+        private System.Windows.Forms.Label Power_Label;
+        private System.Windows.Forms.GroupBox BuffEditor_GroupBox;
+        private System.Windows.Forms.NumericUpDown Power_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown TimeS_NumericUpDown;
+        private System.Windows.Forms.Label TimeS_Label;
+        private System.Windows.Forms.Label BuffType_Label;
+        private System.Windows.Forms.Label Suicide_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Suicide_ToggleSwith;
+        private System.Windows.Forms.TabControl PlayerTab_TabControl;
+        private System.Windows.Forms.TabPage About_TabPage;
+        private System.Windows.Forms.RichTextBox About_RichTextBox;
+        private System.Windows.Forms.TabPage Debug_TabPage;
+        private System.Windows.Forms.RichTextBox Debug_RichTextBox;
+        private System.Windows.Forms.TabPage WorldTools_TabPage;
+        private System.Windows.Forms.RichTextBox WorldTools_RichTextBox;
+        private System.Windows.Forms.TabPage DevTools_TabPage;
+        private System.Windows.Forms.Label DevTools1_Label;
+        private System.Windows.Forms.Label DevTools3_Label;
+        private System.Windows.Forms.Label DevTools_Label;
+        private System.Windows.Forms.Label DevTools2_Label;
+        private System.Windows.Forms.NumericUpDown DevToolsDelay_NumericUpDown;
+        private System.Windows.Forms.TabPage World_TabPage;
+        private System.Windows.Forms.ProgressBar TeleportPlayer_ProgressBar;
+        private System.Windows.Forms.Button GetTeleportAddresses_Button;
+        private System.Windows.Forms.RichTextBox TeleportPlayerAddresses_RichTextBox;
+        private System.Windows.Forms.NumericUpDown TeleportY_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown TeleportX_NumericUpDown;
+        private System.Windows.Forms.Button TeleportXY_Button;
+        private System.Windows.Forms.Label TrashGroundItems_Label;
+        private System.Windows.Forms.Button TrashGroundItems_Button;
+        private System.Windows.Forms.GroupBox TeleportPlayer_GroupBox;
+        private System.Windows.Forms.Button X_Button;
+        private System.Windows.Forms.Button Y_Button;
+        private System.Windows.Forms.GroupBox WorldInformationData_GroupBox;
+        private System.Windows.Forms.DataGridView WorldInformation_DataGridView;
+        private System.Windows.Forms.GroupBox WorldInformation_GroupBox;
+        private System.Windows.Forms.Button ChangeDifficulty_Button;
+        private System.Windows.Forms.TextBox WorldInformation_TextBox;
+        private System.Windows.Forms.Button GetWorldInformation_Button;
+        private System.Windows.Forms.Label WorldInformation_Label;
+        private System.Windows.Forms.Button ChangeDate_Button;
+        private System.Windows.Forms.Label Year_Label;
+        private System.Windows.Forms.Label Month_Label;
+        private System.Windows.Forms.NumericUpDown Year_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown Month_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown Day_NumericUpDown;
+        private System.Windows.Forms.Label Day_Label;
+        private System.Windows.Forms.NumericUpDown CrystalOne_NumericUpDown;
+        private System.Windows.Forms.Button ChangeCrystals_Button;
+        private System.Windows.Forms.Label CrystalTwo_Label;
+        private System.Windows.Forms.Label CrystalOne_Label;
+        private System.Windows.Forms.Label CrystalThree_Label;
+        private System.Windows.Forms.NumericUpDown CrystalTwo_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown CrystalThree_NumericUpDown;
+        private System.Windows.Forms.Button AutomaticFishing_Button;
+        private System.Windows.Forms.Label InfiniteResources_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteResources_ToggleSwith;
+        private System.Windows.Forms.Button NextInvAddress_Button;
+        private System.Windows.Forms.Button PreviousInvAddress_Button;
+        private System.Windows.Forms.TabPage SpecialThanks_TabPage;
+        private System.Windows.Forms.RichTextBox SpecialThanks_RichTextBox;
+        private System.Windows.Forms.PictureBox Slot31_PictureBox;
+        private System.Windows.Forms.PictureBox Slot34_PictureBox;
+        private System.Windows.Forms.PictureBox Slot33_PictureBox;
+        private System.Windows.Forms.PictureBox Slot32_PictureBox;
+        private System.Windows.Forms.PictureBox Slot35_PictureBox;
+        private System.Windows.Forms.PictureBox Slot37_PictureBox;
+        private System.Windows.Forms.PictureBox Slot36_PictureBox;
+        private System.Windows.Forms.PictureBox Slot38_PictureBox;
+        private System.Windows.Forms.PictureBox Slot42_PictureBox;
+        private System.Windows.Forms.PictureBox Slot41_PictureBox;
+        private System.Windows.Forms.PictureBox Slot40_PictureBox;
+        private System.Windows.Forms.PictureBox Slot39_PictureBox;
+        private System.Windows.Forms.PictureBox Slot43_PictureBox;
+        private System.Windows.Forms.PictureBox Slot49_PictureBox;
+        private System.Windows.Forms.PictureBox Slot48_PictureBox;
+        private System.Windows.Forms.PictureBox Slot47_PictureBox;
+        private System.Windows.Forms.PictureBox Slot46_PictureBox;
+        private System.Windows.Forms.PictureBox Slot45_PictureBox;
+        private System.Windows.Forms.PictureBox Slot44_PictureBox;
+        private System.Windows.Forms.PictureBox Slot50_PictureBox;
+        private System.Windows.Forms.Button AutoMapRenderer_Button;
+        private System.Windows.Forms.Button MaxRadius_Button;
+        private System.Windows.Forms.NumericUpDown MaxRadius_NumericUpDown;
+        private System.Windows.Forms.Button NextRingDelay_Button;
+        private System.Windows.Forms.NumericUpDown NextRingDelay_NumericUpDown;
+        private System.Windows.Forms.GroupBox MapRendering_GroupBox;
+        private System.Windows.Forms.ProgressBar MapRendering_ProgressBar;
+        private System.Windows.Forms.Button GetMapRenderingAddresses_Button;
+        private System.Windows.Forms.RichTextBox MapRenderingAddresses_RichTextBox;
+        private System.Windows.Forms.NumericUpDown RenderRange_NumericUpDown;
+        private System.Windows.Forms.Button SetRevealRange_Button;
+        private System.Windows.Forms.Button RestoreDefualtRange_Button;
+        private System.Windows.Forms.Button RenderRange_Button;
+        private System.Windows.Forms.Button CancelOperation_Button;
+        private System.Windows.Forms.Label ForceRecall_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith ForceRecall_ToggleSwith;
+        private System.Windows.Forms.Label InfiniteMana_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteMana_ToggleSwith;
+        private System.Windows.Forms.Button StartRadius_Button;
+        private System.Windows.Forms.NumericUpDown StartRadius_NumericUpDown;
+        private System.Windows.Forms.CheckBox SaveEachRing_CheckBox;
+        private System.Windows.Forms.Button PauseOperation_Button;
+        private System.Windows.Forms.NumericUpDown RadialMoveScale_NumericUpDown;
+        private CoreKeepersWorkshop.TextProgressBar MapRendering_TextProgressBar;
+        private System.Windows.Forms.Label DevTools5_Label;
+        private System.Windows.Forms.GroupBox WorldUtilities_GroupBox;
+        private System.Windows.Forms.ProgressBar WorldInformation_ProgressBar;
+        private System.Windows.Forms.Label DevTools4_Label;
+        private System.Windows.Forms.CheckBox AlwaysOnTop_CheckBox;
+        private System.Windows.Forms.Label FreeCrafting_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith FreeCrafting_ToggleSwith;
+        private System.Windows.Forms.CheckBox BruteForce_CheckBox;
+        private System.Windows.Forms.NumericUpDown CastDelay_NumericUpDown;
+        private System.Windows.Forms.Button CastDelay_Button;
+        private System.Windows.Forms.NumericUpDown FishingPadding_NumericUpDown;
+        private System.Windows.Forms.Button FishingPadding_Button;
+        private System.Windows.Forms.Label BruteForce_Label;
+        private System.Windows.Forms.Button ResetControls_Button;
+        private System.Windows.Forms.Label PassiveAI_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith PassiveAI_ToggleSwith;
+        private System.Windows.Forms.Button OpenChunkVisualizer_Button;
+        private System.Windows.Forms.Label OpenChunkVisualizer_Label;
+        private System.Windows.Forms.Label AppPriority_Label;
+        private System.Windows.Forms.ComboBox AppPriority_ComboBox;
+        private System.Windows.Forms.Button TeleportPlayerHelp_Button;
+        private Siticone.UI.WinForms.SiticoneTrackBar Mods_TrackBar;
+        private Siticone.UI.WinForms.SiticonePanel PlayerTools_Panel;
+        private System.Windows.Forms.Label MoreMobs_Label;
+        private System.Windows.Forms.NumericUpDown Range_NumericUpDown;
+        private System.Windows.Forms.Label Range_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Range_ToggleSwith;
+        private System.Windows.Forms.Label PlaceAnywhere_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith PlaceAnywhere_ToggleSwith;
+        private System.Windows.Forms.Button OpenSkillEditor_Button;
+        private System.Windows.Forms.Button ChangeIcon_Button;
+        private System.Windows.Forms.Button ChangeSeed_Button;
+        private System.Windows.Forms.NumericUpDown Icon_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown Seed_NumericUpDown;
+        private System.Windows.Forms.ComboBox WorldDifficulty_ComboBox;
+        private System.Windows.Forms.Label CurrentIcon_Label;
+        private System.Windows.Forms.Label WorldIconTack_Label;
+        private System.Windows.Forms.Button ChangeConsoleForeColor_Button;
+        private System.Windows.Forms.Button ColorSample_Button;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith KeepInventory_ToggleSwith;
+        private System.Windows.Forms.Label KeepInventory_Label;
+        private System.Windows.Forms.Button ClearWorldToolsLog_Button;
+        private System.Windows.Forms.Button ClearDebugLog_Button;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith TrashInventory_ToggleSwith;
+        private System.Windows.Forms.Label TrashInventory_Label;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith MaxMinecartSpeed_ToggleSwith;
+        private System.Windows.Forms.Label MinecartSpeed_Label;
+        private Siticone.UI.WinForms.SiticoneMetroTrackBar MaxMinecartSpeed_MetroTrackBar;
+        private System.Windows.Forms.Label MaxMinecartSpeedArrow_Label;
+        private System.Windows.Forms.Label MaxMinecartSpeed_Label;
+        private Siticone.UI.WinForms.SiticoneCheckBox ForceNoclip_Checkbox;
+        private System.Windows.Forms.CheckBox UseOverlay_CheckBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Header_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Information_Column;
     }
 }
 

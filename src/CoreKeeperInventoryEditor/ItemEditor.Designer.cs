@@ -30,525 +30,525 @@ namespace CoreKeepersWorkshop
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemEditor));
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.button4 = new System.Windows.Forms.Button();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.button8 = new System.Windows.Forms.Button();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.button12 = new System.Windows.Forms.Button();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.button13 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+            this.ItemID_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.VariationNumerical_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Quantity_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Quantity_Button = new System.Windows.Forms.Button();
+            this.Variation1_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.VariationAnd_Button = new System.Windows.Forms.Button();
+            this.Variation2_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.RemoveItem_Button = new System.Windows.Forms.Button();
+            this.CookedFoodList_Button = new System.Windows.Forms.Button();
+            this.ItemID_Label = new System.Windows.Forms.Label();
+            this.Variation_Label = new System.Windows.Forms.Label();
+            this.Slot1_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot2_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Slot3_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Item1_Label = new System.Windows.Forms.Label();
+            this.Item2_Label = new System.Windows.Forms.Label();
+            this.Item3_Label = new System.Windows.Forms.Label();
+            this.ChangeRarity_Button = new System.Windows.Forms.Button();
+            this.Done_Button = new System.Windows.Forms.Button();
+            this.QuickQuantitySelector_GroupBox = new System.Windows.Forms.GroupBox();
+            this.CustomQuantity1_Button = new System.Windows.Forms.Button();
+            this.CustomQuantity3_Button = new System.Windows.Forms.Button();
+            this.CustomQuantity4_Button = new System.Windows.Forms.Button();
+            this.CustomQuantity5_Button = new System.Windows.Forms.Button();
+            this.CustomQuantity1_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CustomQuantity3_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CustomQuantity4_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CustomQuantity5_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CustomQuantity2_Button = new System.Windows.Forms.Button();
+            this.CustomQuantity2_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Skillset_Button = new System.Windows.Forms.Button();
+            this.Skillset_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SkillsetHelp_Button = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemID_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariationNumerical_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Variation1_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Variation2_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3_PictureBox)).BeginInit();
+            this.QuickQuantitySelector_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity1_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity3_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity4_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity5_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity2_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Skillset_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // numericUpDown1
+            // ItemID_NumericUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 29);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.ItemID_NumericUpDown.Location = new System.Drawing.Point(12, 29);
+            this.ItemID_NumericUpDown.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown1.TabIndex = 0;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.ItemID_NumericUpDown.Name = "ItemID_NumericUpDown";
+            this.ItemID_NumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.ItemID_NumericUpDown.TabIndex = 0;
+            this.ItemID_NumericUpDown.Value = new decimal(new int[] {
             110,
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
-            this.numericUpDown1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown1_KeyDown);
+            this.ItemID_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
+            this.ItemID_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown1_KeyDown);
             // 
-            // numericUpDown3
+            // VariationNumerical_NumericUpDown
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(91, 29);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.VariationNumerical_NumericUpDown.Location = new System.Drawing.Point(91, 29);
+            this.VariationNumerical_NumericUpDown.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(145, 20);
-            this.numericUpDown3.TabIndex = 2;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.NumericUpDown3_ValueChanged);
-            this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
+            this.VariationNumerical_NumericUpDown.Name = "VariationNumerical_NumericUpDown";
+            this.VariationNumerical_NumericUpDown.Size = new System.Drawing.Size(145, 20);
+            this.VariationNumerical_NumericUpDown.TabIndex = 2;
+            this.VariationNumerical_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown3_ValueChanged);
+            this.VariationNumerical_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
             // 
-            // numericUpDown2
+            // Quantity_NumericUpDown
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(72, 143);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.Quantity_NumericUpDown.Location = new System.Drawing.Point(72, 143);
+            this.Quantity_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.Quantity_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown2.TabIndex = 4;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.Quantity_NumericUpDown.Name = "Quantity_NumericUpDown";
+            this.Quantity_NumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.Quantity_NumericUpDown.TabIndex = 4;
+            this.Quantity_NumericUpDown.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            this.numericUpDown2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
+            this.Quantity_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
             // 
-            // button2
+            // Quantity_Button
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(12, 142);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(60, 22);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Quantity";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Quantity_Button.Enabled = false;
+            this.Quantity_Button.Location = new System.Drawing.Point(12, 142);
+            this.Quantity_Button.Name = "Quantity_Button";
+            this.Quantity_Button.Size = new System.Drawing.Size(60, 22);
+            this.Quantity_Button.TabIndex = 0;
+            this.Quantity_Button.Text = "Quantity";
+            this.Quantity_Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown4
+            // Variation1_NumericUpDown
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(91, 29);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.Variation1_NumericUpDown.Location = new System.Drawing.Point(91, 29);
+            this.Variation1_NumericUpDown.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown4.TabIndex = 3;
-            this.numericUpDown4.Visible = false;
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.NumericUpDown4_ValueChanged);
-            this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
+            this.Variation1_NumericUpDown.Name = "Variation1_NumericUpDown";
+            this.Variation1_NumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.Variation1_NumericUpDown.TabIndex = 3;
+            this.Variation1_NumericUpDown.Visible = false;
+            this.Variation1_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown4_ValueChanged);
+            this.Variation1_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
-            // button4
+            // VariationAnd_Button
             // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(153, 28);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(21, 22);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "&&";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
+            this.VariationAnd_Button.Enabled = false;
+            this.VariationAnd_Button.Location = new System.Drawing.Point(153, 28);
+            this.VariationAnd_Button.Name = "VariationAnd_Button";
+            this.VariationAnd_Button.Size = new System.Drawing.Size(21, 22);
+            this.VariationAnd_Button.TabIndex = 0;
+            this.VariationAnd_Button.Text = "&&";
+            this.VariationAnd_Button.UseVisualStyleBackColor = true;
+            this.VariationAnd_Button.Visible = false;
             // 
-            // numericUpDown5
+            // Variation2_NumericUpDown
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(176, 29);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
+            this.Variation2_NumericUpDown.Location = new System.Drawing.Point(176, 29);
+            this.Variation2_NumericUpDown.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown5.TabIndex = 4;
-            this.numericUpDown5.Visible = false;
-            this.numericUpDown5.ValueChanged += new System.EventHandler(this.NumericUpDown5_ValueChanged);
-            this.numericUpDown5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
+            this.Variation2_NumericUpDown.Name = "Variation2_NumericUpDown";
+            this.Variation2_NumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.Variation2_NumericUpDown.TabIndex = 4;
+            this.Variation2_NumericUpDown.Visible = false;
+            this.Variation2_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown5_ValueChanged);
+            this.Variation2_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
             // 
-            // button5
+            // RemoveItem_Button
             // 
-            this.button5.Location = new System.Drawing.Point(139, 170);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(104, 22);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Remove Item";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.RemoveItem_Button.Location = new System.Drawing.Point(139, 170);
+            this.RemoveItem_Button.Name = "RemoveItem_Button";
+            this.RemoveItem_Button.Size = new System.Drawing.Size(104, 22);
+            this.RemoveItem_Button.TabIndex = 7;
+            this.RemoveItem_Button.Text = "Remove Item";
+            this.RemoveItem_Button.UseVisualStyleBackColor = true;
+            this.RemoveItem_Button.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // button6
+            // CookedFoodList_Button
             // 
-            this.button6.Location = new System.Drawing.Point(12, 198);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(230, 22);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Cooked Food List";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.CookedFoodList_Button.Location = new System.Drawing.Point(12, 198);
+            this.CookedFoodList_Button.Name = "CookedFoodList_Button";
+            this.CookedFoodList_Button.Size = new System.Drawing.Size(230, 22);
+            this.CookedFoodList_Button.TabIndex = 6;
+            this.CookedFoodList_Button.Text = "Cooked Food List";
+            this.CookedFoodList_Button.UseVisualStyleBackColor = true;
+            this.CookedFoodList_Button.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // label1
+            // ItemID_Label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Snow;
-            this.label1.Location = new System.Drawing.Point(9, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Item ID";
+            this.ItemID_Label.AutoSize = true;
+            this.ItemID_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemID_Label.ForeColor = System.Drawing.Color.Snow;
+            this.ItemID_Label.Location = new System.Drawing.Point(9, 9);
+            this.ItemID_Label.Name = "ItemID_Label";
+            this.ItemID_Label.Size = new System.Drawing.Size(48, 17);
+            this.ItemID_Label.TabIndex = 8;
+            this.ItemID_Label.Text = "Item ID";
             // 
-            // label2
+            // Variation_Label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Snow;
-            this.label2.Location = new System.Drawing.Point(88, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Variation [Ingredients]";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
+            this.Variation_Label.AutoSize = true;
+            this.Variation_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Variation_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Variation_Label.Location = new System.Drawing.Point(88, 9);
+            this.Variation_Label.Name = "Variation_Label";
+            this.Variation_Label.Size = new System.Drawing.Size(130, 17);
+            this.Variation_Label.TabIndex = 9;
+            this.Variation_Label.Text = "Variation [Ingredients]";
+            this.Variation_Label.Click += new System.EventHandler(this.Label2_Click);
             // 
-            // pictureBox1
+            // Slot1_PictureBox
             // 
-            this.pictureBox1.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 55);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.Slot1_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot1_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot1_PictureBox.Location = new System.Drawing.Point(12, 55);
+            this.Slot1_PictureBox.Name = "Slot1_PictureBox";
+            this.Slot1_PictureBox.Size = new System.Drawing.Size(64, 64);
+            this.Slot1_PictureBox.TabIndex = 10;
+            this.Slot1_PictureBox.TabStop = false;
+            this.Slot1_PictureBox.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // pictureBox2
+            // Slot2_PictureBox
             // 
-            this.pictureBox2.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(91, 55);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox2.TabIndex = 11;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.PictureBox2_Click);
+            this.Slot2_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot2_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot2_PictureBox.Location = new System.Drawing.Point(91, 55);
+            this.Slot2_PictureBox.Name = "Slot2_PictureBox";
+            this.Slot2_PictureBox.Size = new System.Drawing.Size(64, 64);
+            this.Slot2_PictureBox.TabIndex = 11;
+            this.Slot2_PictureBox.TabStop = false;
+            this.Slot2_PictureBox.Click += new System.EventHandler(this.PictureBox2_Click);
             // 
-            // pictureBox3
+            // Slot3_PictureBox
             // 
-            this.pictureBox3.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(172, 55);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox3.TabIndex = 12;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.PictureBox3_Click);
+            this.Slot3_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot3_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot3_PictureBox.Location = new System.Drawing.Point(172, 55);
+            this.Slot3_PictureBox.Name = "Slot3_PictureBox";
+            this.Slot3_PictureBox.Size = new System.Drawing.Size(64, 64);
+            this.Slot3_PictureBox.TabIndex = 12;
+            this.Slot3_PictureBox.TabStop = false;
+            this.Slot3_PictureBox.Click += new System.EventHandler(this.PictureBox3_Click);
             // 
-            // label3
+            // Item1_Label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Snow;
-            this.label3.Location = new System.Drawing.Point(12, 122);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 15);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Item1";
+            this.Item1_Label.AutoSize = true;
+            this.Item1_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Item1_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Item1_Label.Location = new System.Drawing.Point(12, 122);
+            this.Item1_Label.Name = "Item1_Label";
+            this.Item1_Label.Size = new System.Drawing.Size(35, 15);
+            this.Item1_Label.TabIndex = 13;
+            this.Item1_Label.Text = "Item1";
             // 
-            // label4
+            // Item2_Label
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Snow;
-            this.label4.Location = new System.Drawing.Point(88, 122);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Item2";
+            this.Item2_Label.AutoSize = true;
+            this.Item2_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Item2_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Item2_Label.Location = new System.Drawing.Point(88, 122);
+            this.Item2_Label.Name = "Item2_Label";
+            this.Item2_Label.Size = new System.Drawing.Size(35, 15);
+            this.Item2_Label.TabIndex = 14;
+            this.Item2_Label.Text = "Item2";
             // 
-            // label5
+            // Item3_Label
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Snow;
-            this.label5.Location = new System.Drawing.Point(169, 122);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 15);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Item3";
+            this.Item3_Label.AutoSize = true;
+            this.Item3_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Item3_Label.ForeColor = System.Drawing.Color.Snow;
+            this.Item3_Label.Location = new System.Drawing.Point(169, 122);
+            this.Item3_Label.Name = "Item3_Label";
+            this.Item3_Label.Size = new System.Drawing.Size(35, 15);
+            this.Item3_Label.TabIndex = 15;
+            this.Item3_Label.Text = "Item3";
             // 
-            // button1
+            // ChangeRarity_Button
             // 
-            this.button1.Location = new System.Drawing.Point(139, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Change Rarity";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.ChangeRarity_Button.Location = new System.Drawing.Point(139, 142);
+            this.ChangeRarity_Button.Name = "ChangeRarity_Button";
+            this.ChangeRarity_Button.Size = new System.Drawing.Size(104, 22);
+            this.ChangeRarity_Button.TabIndex = 5;
+            this.ChangeRarity_Button.Text = "Change Rarity";
+            this.ChangeRarity_Button.UseVisualStyleBackColor = true;
+            this.ChangeRarity_Button.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // button3
+            // Done_Button
             // 
-            this.button3.Location = new System.Drawing.Point(12, 226);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(230, 22);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Done";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.Done_Button.Location = new System.Drawing.Point(12, 226);
+            this.Done_Button.Name = "Done_Button";
+            this.Done_Button.Size = new System.Drawing.Size(230, 22);
+            this.Done_Button.TabIndex = 8;
+            this.Done_Button.Text = "Done";
+            this.Done_Button.UseVisualStyleBackColor = true;
+            this.Done_Button.Click += new System.EventHandler(this.Button3_Click);
             // 
-            // groupBox1
+            // QuickQuantitySelector_GroupBox
             // 
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.button10);
-            this.groupBox1.Controls.Add(this.button11);
-            this.groupBox1.Controls.Add(this.numericUpDown6);
-            this.groupBox1.Controls.Add(this.numericUpDown8);
-            this.groupBox1.Controls.Add(this.numericUpDown9);
-            this.groupBox1.Controls.Add(this.numericUpDown10);
-            this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.numericUpDown7);
-            this.groupBox1.ForeColor = System.Drawing.Color.Snow;
-            this.groupBox1.Location = new System.Drawing.Point(12, 254);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(230, 51);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Quick Quantity Selector";
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity1_Button);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity3_Button);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity4_Button);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity5_Button);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity1_NumericUpDown);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity3_NumericUpDown);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity4_NumericUpDown);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity5_NumericUpDown);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity2_Button);
+            this.QuickQuantitySelector_GroupBox.Controls.Add(this.CustomQuantity2_NumericUpDown);
+            this.QuickQuantitySelector_GroupBox.ForeColor = System.Drawing.Color.Snow;
+            this.QuickQuantitySelector_GroupBox.Location = new System.Drawing.Point(12, 254);
+            this.QuickQuantitySelector_GroupBox.Name = "QuickQuantitySelector_GroupBox";
+            this.QuickQuantitySelector_GroupBox.Size = new System.Drawing.Size(230, 51);
+            this.QuickQuantitySelector_GroupBox.TabIndex = 16;
+            this.QuickQuantitySelector_GroupBox.TabStop = false;
+            this.QuickQuantitySelector_GroupBox.Text = "Quick Quantity Selector";
             // 
-            // button7
+            // CustomQuantity1_Button
             // 
-            this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(6, 19);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(39, 22);
-            this.button7.TabIndex = 17;
-            this.button7.Text = "1";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
-            this.button7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button7_MouseDown);
+            this.CustomQuantity1_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CustomQuantity1_Button.Location = new System.Drawing.Point(6, 19);
+            this.CustomQuantity1_Button.Name = "CustomQuantity1_Button";
+            this.CustomQuantity1_Button.Size = new System.Drawing.Size(39, 22);
+            this.CustomQuantity1_Button.TabIndex = 17;
+            this.CustomQuantity1_Button.Text = "1";
+            this.CustomQuantity1_Button.UseVisualStyleBackColor = true;
+            this.CustomQuantity1_Button.Click += new System.EventHandler(this.Button7_Click);
+            this.CustomQuantity1_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button7_MouseDown);
             // 
-            // button9
+            // CustomQuantity3_Button
             // 
-            this.button9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button9.Location = new System.Drawing.Point(95, 19);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(39, 22);
-            this.button9.TabIndex = 19;
-            this.button9.Text = "500";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.Button9_Click);
-            this.button9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button9_MouseDown);
+            this.CustomQuantity3_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CustomQuantity3_Button.Location = new System.Drawing.Point(95, 19);
+            this.CustomQuantity3_Button.Name = "CustomQuantity3_Button";
+            this.CustomQuantity3_Button.Size = new System.Drawing.Size(39, 22);
+            this.CustomQuantity3_Button.TabIndex = 19;
+            this.CustomQuantity3_Button.Text = "500";
+            this.CustomQuantity3_Button.UseVisualStyleBackColor = true;
+            this.CustomQuantity3_Button.Click += new System.EventHandler(this.Button9_Click);
+            this.CustomQuantity3_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button9_MouseDown);
             // 
-            // button10
+            // CustomQuantity4_Button
             // 
-            this.button10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button10.Location = new System.Drawing.Point(140, 19);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(39, 22);
-            this.button10.TabIndex = 20;
-            this.button10.Text = "5000";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.Button10_Click);
-            this.button10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button10_MouseDown);
+            this.CustomQuantity4_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CustomQuantity4_Button.Location = new System.Drawing.Point(140, 19);
+            this.CustomQuantity4_Button.Name = "CustomQuantity4_Button";
+            this.CustomQuantity4_Button.Size = new System.Drawing.Size(39, 22);
+            this.CustomQuantity4_Button.TabIndex = 20;
+            this.CustomQuantity4_Button.Text = "5000";
+            this.CustomQuantity4_Button.UseVisualStyleBackColor = true;
+            this.CustomQuantity4_Button.Click += new System.EventHandler(this.Button10_Click);
+            this.CustomQuantity4_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button10_MouseDown);
             // 
-            // button11
+            // CustomQuantity5_Button
             // 
-            this.button11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button11.Location = new System.Drawing.Point(185, 19);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(39, 22);
-            this.button11.TabIndex = 21;
-            this.button11.Text = "9999";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.Button11_Click);
-            this.button11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button11_MouseDown);
+            this.CustomQuantity5_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CustomQuantity5_Button.Location = new System.Drawing.Point(185, 19);
+            this.CustomQuantity5_Button.Name = "CustomQuantity5_Button";
+            this.CustomQuantity5_Button.Size = new System.Drawing.Size(39, 22);
+            this.CustomQuantity5_Button.TabIndex = 21;
+            this.CustomQuantity5_Button.Text = "9999";
+            this.CustomQuantity5_Button.UseVisualStyleBackColor = true;
+            this.CustomQuantity5_Button.Click += new System.EventHandler(this.Button11_Click);
+            this.CustomQuantity5_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button11_MouseDown);
             // 
-            // numericUpDown6
+            // CustomQuantity1_NumericUpDown
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(6, 20);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
+            this.CustomQuantity1_NumericUpDown.Location = new System.Drawing.Point(6, 20);
+            this.CustomQuantity1_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown6.Minimum = new decimal(new int[] {
+            this.CustomQuantity1_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown6.TabIndex = 22;
-            this.numericUpDown6.Value = new decimal(new int[] {
+            this.CustomQuantity1_NumericUpDown.Name = "CustomQuantity1_NumericUpDown";
+            this.CustomQuantity1_NumericUpDown.Size = new System.Drawing.Size(38, 20);
+            this.CustomQuantity1_NumericUpDown.TabIndex = 22;
+            this.CustomQuantity1_NumericUpDown.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown6.Visible = false;
-            this.numericUpDown6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown6_KeyDown);
+            this.CustomQuantity1_NumericUpDown.Visible = false;
+            this.CustomQuantity1_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown6_KeyDown);
             // 
-            // numericUpDown8
+            // CustomQuantity3_NumericUpDown
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(95, 20);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
+            this.CustomQuantity3_NumericUpDown.Location = new System.Drawing.Point(95, 20);
+            this.CustomQuantity3_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown8.Minimum = new decimal(new int[] {
+            this.CustomQuantity3_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown8.TabIndex = 23;
-            this.numericUpDown8.Value = new decimal(new int[] {
+            this.CustomQuantity3_NumericUpDown.Name = "CustomQuantity3_NumericUpDown";
+            this.CustomQuantity3_NumericUpDown.Size = new System.Drawing.Size(38, 20);
+            this.CustomQuantity3_NumericUpDown.TabIndex = 23;
+            this.CustomQuantity3_NumericUpDown.Value = new decimal(new int[] {
             500,
             0,
             0,
             0});
-            this.numericUpDown8.Visible = false;
-            this.numericUpDown8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown8_KeyDown);
+            this.CustomQuantity3_NumericUpDown.Visible = false;
+            this.CustomQuantity3_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown8_KeyDown);
             // 
-            // numericUpDown9
+            // CustomQuantity4_NumericUpDown
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(140, 20);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
+            this.CustomQuantity4_NumericUpDown.Location = new System.Drawing.Point(140, 20);
+            this.CustomQuantity4_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown9.Minimum = new decimal(new int[] {
+            this.CustomQuantity4_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown9.TabIndex = 23;
-            this.numericUpDown9.Value = new decimal(new int[] {
+            this.CustomQuantity4_NumericUpDown.Name = "CustomQuantity4_NumericUpDown";
+            this.CustomQuantity4_NumericUpDown.Size = new System.Drawing.Size(38, 20);
+            this.CustomQuantity4_NumericUpDown.TabIndex = 23;
+            this.CustomQuantity4_NumericUpDown.Value = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.numericUpDown9.Visible = false;
-            this.numericUpDown9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown9_KeyDown);
+            this.CustomQuantity4_NumericUpDown.Visible = false;
+            this.CustomQuantity4_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown9_KeyDown);
             // 
-            // numericUpDown10
+            // CustomQuantity5_NumericUpDown
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(185, 20);
-            this.numericUpDown10.Maximum = new decimal(new int[] {
+            this.CustomQuantity5_NumericUpDown.Location = new System.Drawing.Point(185, 20);
+            this.CustomQuantity5_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown10.Minimum = new decimal(new int[] {
+            this.CustomQuantity5_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown10.TabIndex = 23;
-            this.numericUpDown10.Value = new decimal(new int[] {
+            this.CustomQuantity5_NumericUpDown.Name = "CustomQuantity5_NumericUpDown";
+            this.CustomQuantity5_NumericUpDown.Size = new System.Drawing.Size(38, 20);
+            this.CustomQuantity5_NumericUpDown.TabIndex = 23;
+            this.CustomQuantity5_NumericUpDown.Value = new decimal(new int[] {
             9999,
             0,
             0,
             0});
-            this.numericUpDown10.Visible = false;
-            this.numericUpDown10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown10_KeyDown);
+            this.CustomQuantity5_NumericUpDown.Visible = false;
+            this.CustomQuantity5_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown10_KeyDown);
             // 
-            // button8
+            // CustomQuantity2_Button
             // 
-            this.button8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button8.Location = new System.Drawing.Point(50, 19);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(39, 22);
-            this.button8.TabIndex = 18;
-            this.button8.Text = "50";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
-            this.button8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button8_MouseDown);
+            this.CustomQuantity2_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CustomQuantity2_Button.Location = new System.Drawing.Point(50, 19);
+            this.CustomQuantity2_Button.Name = "CustomQuantity2_Button";
+            this.CustomQuantity2_Button.Size = new System.Drawing.Size(39, 22);
+            this.CustomQuantity2_Button.TabIndex = 18;
+            this.CustomQuantity2_Button.Text = "50";
+            this.CustomQuantity2_Button.UseVisualStyleBackColor = true;
+            this.CustomQuantity2_Button.Click += new System.EventHandler(this.Button8_Click);
+            this.CustomQuantity2_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button8_MouseDown);
             // 
-            // numericUpDown7
+            // CustomQuantity2_NumericUpDown
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(50, 20);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
+            this.CustomQuantity2_NumericUpDown.Location = new System.Drawing.Point(50, 20);
+            this.CustomQuantity2_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown7.Minimum = new decimal(new int[] {
+            this.CustomQuantity2_NumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown7.TabIndex = 23;
-            this.numericUpDown7.Value = new decimal(new int[] {
+            this.CustomQuantity2_NumericUpDown.Name = "CustomQuantity2_NumericUpDown";
+            this.CustomQuantity2_NumericUpDown.Size = new System.Drawing.Size(38, 20);
+            this.CustomQuantity2_NumericUpDown.TabIndex = 23;
+            this.CustomQuantity2_NumericUpDown.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            this.numericUpDown7.Visible = false;
-            this.numericUpDown7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown7_KeyDown);
+            this.CustomQuantity2_NumericUpDown.Visible = false;
+            this.CustomQuantity2_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown7_KeyDown);
             // 
-            // button12
+            // Skillset_Button
             // 
-            this.button12.Enabled = false;
-            this.button12.Location = new System.Drawing.Point(12, 170);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(60, 22);
-            this.button12.TabIndex = 17;
-            this.button12.Text = "Skillset";
-            this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.UseVisualStyleBackColor = true;
+            this.Skillset_Button.Enabled = false;
+            this.Skillset_Button.Location = new System.Drawing.Point(12, 170);
+            this.Skillset_Button.Name = "Skillset_Button";
+            this.Skillset_Button.Size = new System.Drawing.Size(60, 22);
+            this.Skillset_Button.TabIndex = 17;
+            this.Skillset_Button.Text = "Skillset";
+            this.Skillset_Button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Skillset_Button.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown11
+            // Skillset_NumericUpDown
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(72, 171);
-            this.numericUpDown11.Maximum = new decimal(new int[] {
+            this.Skillset_NumericUpDown.Location = new System.Drawing.Point(72, 171);
+            this.Skillset_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(60, 20);
-            this.numericUpDown11.TabIndex = 18;
-            this.numericUpDown11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown11_KeyDown);
+            this.Skillset_NumericUpDown.Name = "Skillset_NumericUpDown";
+            this.Skillset_NumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.Skillset_NumericUpDown.TabIndex = 18;
+            this.Skillset_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown11_KeyDown);
             // 
-            // button13
+            // SkillsetHelp_Button
             // 
-            this.button13.Location = new System.Drawing.Point(55, 170);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(17, 22);
-            this.button13.TabIndex = 19;
-            this.button13.Text = "?";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.Button13_Click);
+            this.SkillsetHelp_Button.Location = new System.Drawing.Point(55, 170);
+            this.SkillsetHelp_Button.Name = "SkillsetHelp_Button";
+            this.SkillsetHelp_Button.Size = new System.Drawing.Size(17, 22);
+            this.SkillsetHelp_Button.TabIndex = 19;
+            this.SkillsetHelp_Button.Text = "?";
+            this.SkillsetHelp_Button.UseVisualStyleBackColor = true;
+            this.SkillsetHelp_Button.Click += new System.EventHandler(this.Button13_Click);
             // 
             // ItemEditor
             // 
@@ -556,29 +556,29 @@ namespace CoreKeepersWorkshop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(254, 317);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.numericUpDown11);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.numericUpDown5);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.numericUpDown4);
-            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.SkillsetHelp_Button);
+            this.Controls.Add(this.Skillset_Button);
+            this.Controls.Add(this.Skillset_NumericUpDown);
+            this.Controls.Add(this.QuickQuantitySelector_GroupBox);
+            this.Controls.Add(this.Done_Button);
+            this.Controls.Add(this.ChangeRarity_Button);
+            this.Controls.Add(this.Item3_Label);
+            this.Controls.Add(this.Item2_Label);
+            this.Controls.Add(this.Item1_Label);
+            this.Controls.Add(this.Slot3_PictureBox);
+            this.Controls.Add(this.Slot2_PictureBox);
+            this.Controls.Add(this.Slot1_PictureBox);
+            this.Controls.Add(this.Variation_Label);
+            this.Controls.Add(this.ItemID_Label);
+            this.Controls.Add(this.CookedFoodList_Button);
+            this.Controls.Add(this.RemoveItem_Button);
+            this.Controls.Add(this.VariationAnd_Button);
+            this.Controls.Add(this.Variation2_NumericUpDown);
+            this.Controls.Add(this.Quantity_Button);
+            this.Controls.Add(this.Quantity_NumericUpDown);
+            this.Controls.Add(this.ItemID_NumericUpDown);
+            this.Controls.Add(this.Variation1_NumericUpDown);
+            this.Controls.Add(this.VariationNumerical_NumericUpDown);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -587,59 +587,59 @@ namespace CoreKeepersWorkshop
             this.Text = "Quick Item Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ItemEditor_FormClosing);
             this.Load += new System.EventHandler(this.ItemEditor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemID_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariationNumerical_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Variation1_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Variation2_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3_PictureBox)).EndInit();
+            this.QuickQuantitySelector_GroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity1_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity3_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity4_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity5_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity2_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Skillset_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.NumericUpDown ItemID_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown VariationNumerical_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown Quantity_NumericUpDown;
+        private System.Windows.Forms.Button Quantity_Button;
+        private System.Windows.Forms.NumericUpDown Variation1_NumericUpDown;
+        private System.Windows.Forms.Button VariationAnd_Button;
+        private System.Windows.Forms.NumericUpDown Variation2_NumericUpDown;
+        private System.Windows.Forms.Button RemoveItem_Button;
+        private System.Windows.Forms.Button CookedFoodList_Button;
+        private System.Windows.Forms.Label ItemID_Label;
+        private System.Windows.Forms.Label Variation_Label;
+        private System.Windows.Forms.PictureBox Slot1_PictureBox;
+        private System.Windows.Forms.PictureBox Slot2_PictureBox;
+        private System.Windows.Forms.PictureBox Slot3_PictureBox;
+        private System.Windows.Forms.Label Item1_Label;
+        private System.Windows.Forms.Label Item2_Label;
+        private System.Windows.Forms.Label Item3_Label;
+        private System.Windows.Forms.Button ChangeRarity_Button;
+        private System.Windows.Forms.Button Done_Button;
+        private System.Windows.Forms.GroupBox QuickQuantitySelector_GroupBox;
+        private System.Windows.Forms.Button CustomQuantity5_Button;
+        private System.Windows.Forms.Button CustomQuantity4_Button;
+        private System.Windows.Forms.Button CustomQuantity3_Button;
+        private System.Windows.Forms.Button CustomQuantity2_Button;
+        private System.Windows.Forms.Button CustomQuantity1_Button;
+        private System.Windows.Forms.NumericUpDown CustomQuantity1_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown CustomQuantity2_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown CustomQuantity3_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown CustomQuantity4_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown CustomQuantity5_NumericUpDown;
+        private System.Windows.Forms.Button Skillset_Button;
+        private System.Windows.Forms.NumericUpDown Skillset_NumericUpDown;
+        private System.Windows.Forms.Button SkillsetHelp_Button;
     }
 }

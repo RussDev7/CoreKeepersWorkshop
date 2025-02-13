@@ -30,659 +30,712 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryEditor));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.listView4 = new System.Windows.Forms.ListView();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.listView5 = new System.Windows.Forms.ListView();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.listView6 = new System.Windows.Forms.ListView();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.listView7 = new System.Windows.Forms.ListView();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.listView8 = new System.Windows.Forms.ListView();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.listView9 = new System.Windows.Forms.ListView();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.listView10 = new System.Windows.Forms.ListView();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.listView11 = new System.Windows.Forms.ListView();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.listView12 = new System.Windows.Forms.ListView();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.listView13 = new System.Windows.Forms.ListView();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.listView14 = new System.Windows.Forms.ListView();
-            this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.listView15 = new System.Windows.Forms.ListView();
-            this.tabPage16 = new System.Windows.Forms.TabPage();
-            this.listView16 = new System.Windows.Forms.ListView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.button8 = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.tabPage8.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.tabPage10.SuspendLayout();
-            this.tabPage11.SuspendLayout();
-            this.tabPage12.SuspendLayout();
-            this.tabPage13.SuspendLayout();
-            this.tabPage14.SuspendLayout();
-            this.tabPage15.SuspendLayout();
-            this.tabPage16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            this.Main_TabControl = new System.Windows.Forms.TabControl();
+            this.Tab1_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab1_ListView = new System.Windows.Forms.ListView();
+            this.Tab2_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab2_ListView = new System.Windows.Forms.ListView();
+            this.Tab3_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab3_ListView = new System.Windows.Forms.ListView();
+            this.Tab4_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab4_ListView = new System.Windows.Forms.ListView();
+            this.Tab5_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab5_ListView = new System.Windows.Forms.ListView();
+            this.Tab6_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab6_ListView = new System.Windows.Forms.ListView();
+            this.Tab7_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab7_ListView = new System.Windows.Forms.ListView();
+            this.Tab8_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab8_ListView = new System.Windows.Forms.ListView();
+            this.Tab9_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab9_ListView = new System.Windows.Forms.ListView();
+            this.Tab10_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab10_ListView = new System.Windows.Forms.ListView();
+            this.Tab11_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab11_ListView = new System.Windows.Forms.ListView();
+            this.Tab12_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab12_ListView = new System.Windows.Forms.ListView();
+            this.Tab13_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab13_ListView = new System.Windows.Forms.ListView();
+            this.Tab14_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab14_ListView = new System.Windows.Forms.ListView();
+            this.Tab15_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab15_ListView = new System.Windows.Forms.ListView();
+            this.Tab16_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab16_ListView = new System.Windows.Forms.ListView();
+            this.Tab17_TabPage = new System.Windows.Forms.TabPage();
+            this.Tab17_ListView = new System.Windows.Forms.ListView();
+            this.Search = new System.Windows.Forms.TabPage();
+            this.listViewSearch = new System.Windows.Forms.ListView();
+            this.RemoveItem_Button = new System.Windows.Forms.Button();
+            this.CustomAmount_Button = new System.Windows.Forms.Button();
+            this.CustomAmount_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CustomID_Button = new System.Windows.Forms.Button();
+            this.CustomID_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Search_Button = new System.Windows.Forms.Button();
+            this.Search_TextBox = new System.Windows.Forms.TextBox();
+            this.ItemVariant_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ItemVariant_Button = new System.Windows.Forms.Button();
+            this.OpenCookedFoodList_Button = new System.Windows.Forms.Button();
+            this.SkillType_Button = new System.Windows.Forms.Button();
+            this.SkillType_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SkillTypeInfo_Button = new System.Windows.Forms.Button();
+            this.Main_TabControl.SuspendLayout();
+            this.Tab1_TabPage.SuspendLayout();
+            this.Tab2_TabPage.SuspendLayout();
+            this.Tab3_TabPage.SuspendLayout();
+            this.Tab4_TabPage.SuspendLayout();
+            this.Tab5_TabPage.SuspendLayout();
+            this.Tab6_TabPage.SuspendLayout();
+            this.Tab7_TabPage.SuspendLayout();
+            this.Tab8_TabPage.SuspendLayout();
+            this.Tab9_TabPage.SuspendLayout();
+            this.Tab10_TabPage.SuspendLayout();
+            this.Tab11_TabPage.SuspendLayout();
+            this.Tab12_TabPage.SuspendLayout();
+            this.Tab13_TabPage.SuspendLayout();
+            this.Tab14_TabPage.SuspendLayout();
+            this.Tab15_TabPage.SuspendLayout();
+            this.Tab16_TabPage.SuspendLayout();
+            this.Tab17_TabPage.SuspendLayout();
+            this.Search.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomAmount_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomID_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemVariant_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillType_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Controls.Add(this.tabPage12);
-            this.tabControl1.Controls.Add(this.tabPage13);
-            this.tabControl1.Controls.Add(this.tabPage14);
-            this.tabControl1.Controls.Add(this.tabPage15);
-            this.tabControl1.Controls.Add(this.tabPage16);
-            this.tabControl1.Location = new System.Drawing.Point(0, 44);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1064, 637);
-            this.tabControl1.TabIndex = 10;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.Snow;
-            this.tabPage1.Controls.Add(this.listView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Tools";
-            // 
-            // listView1
-            // 
-            this.listView1.BackColor = System.Drawing.Color.Snow;
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1050, 602);
-            this.listView1.TabIndex = 11;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
-            this.listView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDown);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.listView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Placeable Items";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // listView2
-            // 
-            this.listView2.BackColor = System.Drawing.Color.Snow;
-            this.listView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 3);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1050, 602);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.ListView2_SelectedIndexChanged);
-            this.listView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView2MouseDown);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.listView3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Nature";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // listView3
-            // 
-            this.listView3.BackColor = System.Drawing.Color.Snow;
-            this.listView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(0, 0);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(1056, 608);
-            this.listView3.TabIndex = 1;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.SelectedIndexChanged += new System.EventHandler(this.ListView3_SelectedIndexChanged);
-            this.listView3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView3_MouseDown);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.listView4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Materials";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // listView4
-            // 
-            this.listView4.BackColor = System.Drawing.Color.Snow;
-            this.listView4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView4.HideSelection = false;
-            this.listView4.Location = new System.Drawing.Point(0, 0);
-            this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(1056, 608);
-            this.listView4.TabIndex = 1;
-            this.listView4.UseCompatibleStateImageBehavior = false;
-            this.listView4.SelectedIndexChanged += new System.EventHandler(this.ListView4_SelectedIndexChanged);
-            this.listView4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView4_MouseDown);
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.listView5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Special";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // listView5
-            // 
-            this.listView5.BackColor = System.Drawing.Color.Snow;
-            this.listView5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView5.HideSelection = false;
-            this.listView5.Location = new System.Drawing.Point(0, 0);
-            this.listView5.Name = "listView5";
-            this.listView5.Size = new System.Drawing.Size(1056, 608);
-            this.listView5.TabIndex = 1;
-            this.listView5.UseCompatibleStateImageBehavior = false;
-            this.listView5.SelectedIndexChanged += new System.EventHandler(this.ListView5_SelectedIndexChanged);
-            this.listView5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView5_MouseDown);
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.listView6);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Mob Items";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // listView6
-            // 
-            this.listView6.BackColor = System.Drawing.Color.Snow;
-            this.listView6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView6.HideSelection = false;
-            this.listView6.Location = new System.Drawing.Point(0, 0);
-            this.listView6.Name = "listView6";
-            this.listView6.Size = new System.Drawing.Size(1056, 608);
-            this.listView6.TabIndex = 1;
-            this.listView6.UseCompatibleStateImageBehavior = false;
-            this.listView6.SelectedIndexChanged += new System.EventHandler(this.ListView6_SelectedIndexChanged);
-            this.listView6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView6_MouseDown);
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.listView7);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Base Building";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // listView7
-            // 
-            this.listView7.BackColor = System.Drawing.Color.Snow;
-            this.listView7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView7.HideSelection = false;
-            this.listView7.Location = new System.Drawing.Point(0, 0);
-            this.listView7.Name = "listView7";
-            this.listView7.Size = new System.Drawing.Size(1056, 608);
-            this.listView7.TabIndex = 1;
-            this.listView7.UseCompatibleStateImageBehavior = false;
-            this.listView7.SelectedIndexChanged += new System.EventHandler(this.ListView7_SelectedIndexChanged);
-            this.listView7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView7_MouseDown);
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.Controls.Add(this.listView8);
-            this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Treasures";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // listView8
-            // 
-            this.listView8.BackColor = System.Drawing.Color.Snow;
-            this.listView8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView8.HideSelection = false;
-            this.listView8.Location = new System.Drawing.Point(0, 0);
-            this.listView8.Name = "listView8";
-            this.listView8.Size = new System.Drawing.Size(1056, 608);
-            this.listView8.TabIndex = 1;
-            this.listView8.UseCompatibleStateImageBehavior = false;
-            this.listView8.SelectedIndexChanged += new System.EventHandler(this.ListView8_SelectedIndexChanged);
-            this.listView8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView8_MouseDown);
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.listView9);
-            this.tabPage9.Location = new System.Drawing.Point(4, 25);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "Wiring / Mechanics";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // listView9
-            // 
-            this.listView9.BackColor = System.Drawing.Color.Snow;
-            this.listView9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView9.HideSelection = false;
-            this.listView9.Location = new System.Drawing.Point(0, 0);
-            this.listView9.Name = "listView9";
-            this.listView9.Size = new System.Drawing.Size(1056, 608);
-            this.listView9.TabIndex = 1;
-            this.listView9.UseCompatibleStateImageBehavior = false;
-            this.listView9.SelectedIndexChanged += new System.EventHandler(this.ListView9_SelectedIndexChanged);
-            this.listView9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView9_MouseDown);
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.listView10);
-            this.tabPage10.Location = new System.Drawing.Point(4, 25);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage10.TabIndex = 9;
-            this.tabPage10.Text = "Plants / Seeds";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // listView10
-            // 
-            this.listView10.BackColor = System.Drawing.Color.Snow;
-            this.listView10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView10.HideSelection = false;
-            this.listView10.Location = new System.Drawing.Point(0, 0);
-            this.listView10.Name = "listView10";
-            this.listView10.Size = new System.Drawing.Size(1056, 608);
-            this.listView10.TabIndex = 1;
-            this.listView10.UseCompatibleStateImageBehavior = false;
-            this.listView10.SelectedIndexChanged += new System.EventHandler(this.ListView10_SelectedIndexChanged);
-            this.listView10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView10_MouseDown);
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.listView11);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage11.TabIndex = 10;
-            this.tabPage11.Text = "Armors";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // listView11
-            // 
-            this.listView11.BackColor = System.Drawing.Color.Snow;
-            this.listView11.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView11.HideSelection = false;
-            this.listView11.Location = new System.Drawing.Point(0, 0);
-            this.listView11.Name = "listView11";
-            this.listView11.Size = new System.Drawing.Size(1056, 608);
-            this.listView11.TabIndex = 1;
-            this.listView11.UseCompatibleStateImageBehavior = false;
-            this.listView11.SelectedIndexChanged += new System.EventHandler(this.ListView11_SelectedIndexChanged);
-            this.listView11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView11_MouseDown);
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.Controls.Add(this.listView12);
-            this.tabPage12.Location = new System.Drawing.Point(4, 25);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage12.TabIndex = 11;
-            this.tabPage12.Text = "Accessories";
-            this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // listView12
-            // 
-            this.listView12.BackColor = System.Drawing.Color.Snow;
-            this.listView12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView12.HideSelection = false;
-            this.listView12.Location = new System.Drawing.Point(0, 0);
-            this.listView12.Name = "listView12";
-            this.listView12.Size = new System.Drawing.Size(1056, 608);
-            this.listView12.TabIndex = 1;
-            this.listView12.UseCompatibleStateImageBehavior = false;
-            this.listView12.SelectedIndexChanged += new System.EventHandler(this.ListView12_SelectedIndexChanged);
-            this.listView12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView12_MouseDown);
-            // 
-            // tabPage13
-            // 
-            this.tabPage13.Controls.Add(this.listView13);
-            this.tabPage13.Location = new System.Drawing.Point(4, 25);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage13.TabIndex = 12;
-            this.tabPage13.Text = "Weapons";
-            this.tabPage13.UseVisualStyleBackColor = true;
-            // 
-            // listView13
-            // 
-            this.listView13.BackColor = System.Drawing.Color.Snow;
-            this.listView13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView13.HideSelection = false;
-            this.listView13.Location = new System.Drawing.Point(0, 0);
-            this.listView13.Name = "listView13";
-            this.listView13.Size = new System.Drawing.Size(1056, 608);
-            this.listView13.TabIndex = 1;
-            this.listView13.UseCompatibleStateImageBehavior = false;
-            this.listView13.SelectedIndexChanged += new System.EventHandler(this.ListView13_SelectedIndexChanged);
-            this.listView13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView13_MouseDown);
-            // 
-            // tabPage14
-            // 
-            this.tabPage14.Controls.Add(this.listView14);
-            this.tabPage14.Location = new System.Drawing.Point(4, 25);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage14.TabIndex = 13;
-            this.tabPage14.Text = "Consumables";
-            this.tabPage14.UseVisualStyleBackColor = true;
-            // 
-            // listView14
-            // 
-            this.listView14.BackColor = System.Drawing.Color.Snow;
-            this.listView14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView14.HideSelection = false;
-            this.listView14.Location = new System.Drawing.Point(0, 0);
-            this.listView14.Name = "listView14";
-            this.listView14.Size = new System.Drawing.Size(1056, 608);
-            this.listView14.TabIndex = 1;
-            this.listView14.UseCompatibleStateImageBehavior = false;
-            this.listView14.SelectedIndexChanged += new System.EventHandler(this.ListView14_SelectedIndexChanged);
-            this.listView14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView14_MouseDown);
-            // 
-            // tabPage15
-            // 
-            this.tabPage15.Controls.Add(this.listView15);
-            this.tabPage15.Location = new System.Drawing.Point(4, 25);
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage15.TabIndex = 14;
-            this.tabPage15.Text = "Seasonal";
-            this.tabPage15.UseVisualStyleBackColor = true;
-            // 
-            // listView15
-            // 
-            this.listView15.BackColor = System.Drawing.Color.Snow;
-            this.listView15.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView15.HideSelection = false;
-            this.listView15.Location = new System.Drawing.Point(0, 0);
-            this.listView15.Name = "listView15";
-            this.listView15.Size = new System.Drawing.Size(1056, 608);
-            this.listView15.TabIndex = 1;
-            this.listView15.UseCompatibleStateImageBehavior = false;
-            this.listView15.SelectedIndexChanged += new System.EventHandler(this.ListView15_SelectedIndexChanged);
-            this.listView15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView15_MouseDown);
-            // 
-            // tabPage16
-            // 
-            this.tabPage16.Controls.Add(this.listView16);
-            this.tabPage16.Location = new System.Drawing.Point(4, 25);
-            this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(1056, 608);
-            this.tabPage16.TabIndex = 15;
-            this.tabPage16.Text = "Search";
-            this.tabPage16.UseVisualStyleBackColor = true;
-            // 
-            // listView16
-            // 
-            this.listView16.BackColor = System.Drawing.Color.Snow;
-            this.listView16.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView16.HideSelection = false;
-            this.listView16.Location = new System.Drawing.Point(0, 0);
-            this.listView16.Name = "listView16";
-            this.listView16.Size = new System.Drawing.Size(1056, 608);
-            this.listView16.TabIndex = 1;
-            this.listView16.UseCompatibleStateImageBehavior = false;
-            this.listView16.SelectedIndexChanged += new System.EventHandler(this.ListView16_SelectedIndexChanged);
-            this.listView16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView16_MouseDown);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(575, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 22);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Remove Item";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 22);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Custom Amount:";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(117, 13);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            // Main_TabControl
+            // 
+            this.Main_TabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.Main_TabControl.Controls.Add(this.Tab1_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab2_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab3_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab4_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab5_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab6_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab7_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab8_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab9_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab10_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab11_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab12_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab13_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab14_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab15_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab16_TabPage);
+            this.Main_TabControl.Controls.Add(this.Tab17_TabPage);
+            this.Main_TabControl.Controls.Add(this.Search);
+            this.Main_TabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Main_TabControl.Location = new System.Drawing.Point(0, 44);
+            this.Main_TabControl.Multiline = true;
+            this.Main_TabControl.Name = "Main_TabControl";
+            this.Main_TabControl.SelectedIndex = 0;
+            this.Main_TabControl.Size = new System.Drawing.Size(1244, 637);
+            this.Main_TabControl.TabIndex = 12;
+            this.Main_TabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView16_MouseDown);
+            // 
+            // Tab1_TabPage
+            // 
+            this.Tab1_TabPage.BackColor = System.Drawing.Color.Snow;
+            this.Tab1_TabPage.Controls.Add(this.Tab1_ListView);
+            this.Tab1_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab1_TabPage.Name = "Tab1_TabPage";
+            this.Tab1_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab1_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab1_TabPage.TabIndex = 0;
+            this.Tab1_TabPage.Text = "Tools";
+            // 
+            // Tab1_ListView
+            // 
+            this.Tab1_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab1_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab1_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab1_ListView.HideSelection = false;
+            this.Tab1_ListView.Location = new System.Drawing.Point(3, 3);
+            this.Tab1_ListView.Name = "Tab1_ListView";
+            this.Tab1_ListView.Size = new System.Drawing.Size(1230, 602);
+            this.Tab1_ListView.TabIndex = 11;
+            this.Tab1_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab1_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
+            this.Tab1_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDown);
+            // 
+            // Tab2_TabPage
+            // 
+            this.Tab2_TabPage.Controls.Add(this.Tab2_ListView);
+            this.Tab2_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab2_TabPage.Name = "Tab2_TabPage";
+            this.Tab2_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab2_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab2_TabPage.TabIndex = 1;
+            this.Tab2_TabPage.Text = "Placeable Items";
+            this.Tab2_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab2_ListView
+            // 
+            this.Tab2_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab2_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab2_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab2_ListView.HideSelection = false;
+            this.Tab2_ListView.Location = new System.Drawing.Point(3, 3);
+            this.Tab2_ListView.Name = "Tab2_ListView";
+            this.Tab2_ListView.Size = new System.Drawing.Size(1230, 602);
+            this.Tab2_ListView.TabIndex = 1;
+            this.Tab2_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab2_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView2_SelectedIndexChanged);
+            this.Tab2_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView2MouseDown);
+            // 
+            // Tab3_TabPage
+            // 
+            this.Tab3_TabPage.Controls.Add(this.Tab3_ListView);
+            this.Tab3_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab3_TabPage.Name = "Tab3_TabPage";
+            this.Tab3_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab3_TabPage.TabIndex = 2;
+            this.Tab3_TabPage.Text = "Nature";
+            this.Tab3_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab3_ListView
+            // 
+            this.Tab3_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab3_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab3_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab3_ListView.HideSelection = false;
+            this.Tab3_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab3_ListView.Name = "Tab3_ListView";
+            this.Tab3_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab3_ListView.TabIndex = 1;
+            this.Tab3_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab3_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView3_SelectedIndexChanged);
+            this.Tab3_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView3_MouseDown);
+            // 
+            // Tab4_TabPage
+            // 
+            this.Tab4_TabPage.Controls.Add(this.Tab4_ListView);
+            this.Tab4_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab4_TabPage.Name = "Tab4_TabPage";
+            this.Tab4_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab4_TabPage.TabIndex = 3;
+            this.Tab4_TabPage.Text = "Materials";
+            this.Tab4_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab4_ListView
+            // 
+            this.Tab4_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab4_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab4_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab4_ListView.HideSelection = false;
+            this.Tab4_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab4_ListView.Name = "Tab4_ListView";
+            this.Tab4_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab4_ListView.TabIndex = 1;
+            this.Tab4_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab4_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView4_SelectedIndexChanged);
+            this.Tab4_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView4_MouseDown);
+            // 
+            // Tab5_TabPage
+            // 
+            this.Tab5_TabPage.Controls.Add(this.Tab5_ListView);
+            this.Tab5_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab5_TabPage.Name = "Tab5_TabPage";
+            this.Tab5_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab5_TabPage.TabIndex = 4;
+            this.Tab5_TabPage.Text = "Special";
+            this.Tab5_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab5_ListView
+            // 
+            this.Tab5_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab5_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab5_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab5_ListView.HideSelection = false;
+            this.Tab5_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab5_ListView.Name = "Tab5_ListView";
+            this.Tab5_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab5_ListView.TabIndex = 1;
+            this.Tab5_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab5_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView5_SelectedIndexChanged);
+            this.Tab5_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView5_MouseDown);
+            // 
+            // Tab6_TabPage
+            // 
+            this.Tab6_TabPage.Controls.Add(this.Tab6_ListView);
+            this.Tab6_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab6_TabPage.Name = "Tab6_TabPage";
+            this.Tab6_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab6_TabPage.TabIndex = 5;
+            this.Tab6_TabPage.Text = "Mob Items";
+            this.Tab6_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab6_ListView
+            // 
+            this.Tab6_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab6_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab6_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab6_ListView.HideSelection = false;
+            this.Tab6_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab6_ListView.Name = "Tab6_ListView";
+            this.Tab6_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab6_ListView.TabIndex = 1;
+            this.Tab6_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab6_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView6_SelectedIndexChanged);
+            this.Tab6_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView6_MouseDown);
+            // 
+            // Tab7_TabPage
+            // 
+            this.Tab7_TabPage.Controls.Add(this.Tab7_ListView);
+            this.Tab7_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab7_TabPage.Name = "Tab7_TabPage";
+            this.Tab7_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab7_TabPage.TabIndex = 6;
+            this.Tab7_TabPage.Text = "Base Building";
+            this.Tab7_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab7_ListView
+            // 
+            this.Tab7_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab7_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab7_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab7_ListView.HideSelection = false;
+            this.Tab7_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab7_ListView.Name = "Tab7_ListView";
+            this.Tab7_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab7_ListView.TabIndex = 1;
+            this.Tab7_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab7_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView7_SelectedIndexChanged);
+            this.Tab7_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView7_MouseDown);
+            // 
+            // Tab8_TabPage
+            // 
+            this.Tab8_TabPage.Controls.Add(this.Tab8_ListView);
+            this.Tab8_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab8_TabPage.Name = "Tab8_TabPage";
+            this.Tab8_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab8_TabPage.TabIndex = 7;
+            this.Tab8_TabPage.Text = "Treasures";
+            this.Tab8_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab8_ListView
+            // 
+            this.Tab8_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab8_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab8_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab8_ListView.HideSelection = false;
+            this.Tab8_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab8_ListView.Name = "Tab8_ListView";
+            this.Tab8_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab8_ListView.TabIndex = 1;
+            this.Tab8_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab8_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView8_SelectedIndexChanged);
+            this.Tab8_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView8_MouseDown);
+            // 
+            // Tab9_TabPage
+            // 
+            this.Tab9_TabPage.Controls.Add(this.Tab9_ListView);
+            this.Tab9_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab9_TabPage.Name = "Tab9_TabPage";
+            this.Tab9_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab9_TabPage.TabIndex = 8;
+            this.Tab9_TabPage.Text = "Wiring / Mechanics";
+            this.Tab9_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab9_ListView
+            // 
+            this.Tab9_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab9_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab9_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab9_ListView.HideSelection = false;
+            this.Tab9_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab9_ListView.Name = "Tab9_ListView";
+            this.Tab9_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab9_ListView.TabIndex = 1;
+            this.Tab9_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab9_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView9_SelectedIndexChanged);
+            this.Tab9_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView9_MouseDown);
+            // 
+            // Tab10_TabPage
+            // 
+            this.Tab10_TabPage.Controls.Add(this.Tab10_ListView);
+            this.Tab10_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab10_TabPage.Name = "Tab10_TabPage";
+            this.Tab10_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab10_TabPage.TabIndex = 9;
+            this.Tab10_TabPage.Text = "Plants / Seeds";
+            this.Tab10_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab10_ListView
+            // 
+            this.Tab10_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab10_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab10_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab10_ListView.HideSelection = false;
+            this.Tab10_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab10_ListView.Name = "Tab10_ListView";
+            this.Tab10_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab10_ListView.TabIndex = 1;
+            this.Tab10_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab10_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView10_SelectedIndexChanged);
+            this.Tab10_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView10_MouseDown);
+            // 
+            // Tab11_TabPage
+            // 
+            this.Tab11_TabPage.Controls.Add(this.Tab11_ListView);
+            this.Tab11_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab11_TabPage.Name = "Tab11_TabPage";
+            this.Tab11_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab11_TabPage.TabIndex = 10;
+            this.Tab11_TabPage.Text = "Armors";
+            this.Tab11_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab11_ListView
+            // 
+            this.Tab11_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab11_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab11_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab11_ListView.HideSelection = false;
+            this.Tab11_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab11_ListView.Name = "Tab11_ListView";
+            this.Tab11_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab11_ListView.TabIndex = 1;
+            this.Tab11_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab11_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView11_SelectedIndexChanged);
+            this.Tab11_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView11_MouseDown);
+            // 
+            // Tab12_TabPage
+            // 
+            this.Tab12_TabPage.Controls.Add(this.Tab12_ListView);
+            this.Tab12_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab12_TabPage.Name = "Tab12_TabPage";
+            this.Tab12_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab12_TabPage.TabIndex = 11;
+            this.Tab12_TabPage.Text = "Accessories";
+            this.Tab12_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab12_ListView
+            // 
+            this.Tab12_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab12_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab12_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab12_ListView.HideSelection = false;
+            this.Tab12_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab12_ListView.Name = "Tab12_ListView";
+            this.Tab12_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab12_ListView.TabIndex = 1;
+            this.Tab12_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab12_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView12_SelectedIndexChanged);
+            this.Tab12_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView12_MouseDown);
+            // 
+            // Tab13_TabPage
+            // 
+            this.Tab13_TabPage.Controls.Add(this.Tab13_ListView);
+            this.Tab13_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab13_TabPage.Name = "Tab13_TabPage";
+            this.Tab13_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab13_TabPage.TabIndex = 12;
+            this.Tab13_TabPage.Text = "Weapons";
+            this.Tab13_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab13_ListView
+            // 
+            this.Tab13_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab13_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab13_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab13_ListView.HideSelection = false;
+            this.Tab13_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab13_ListView.Name = "Tab13_ListView";
+            this.Tab13_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab13_ListView.TabIndex = 1;
+            this.Tab13_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab13_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView13_SelectedIndexChanged);
+            this.Tab13_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView13_MouseDown);
+            // 
+            // Tab14_TabPage
+            // 
+            this.Tab14_TabPage.Controls.Add(this.Tab14_ListView);
+            this.Tab14_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab14_TabPage.Name = "Tab14_TabPage";
+            this.Tab14_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab14_TabPage.TabIndex = 13;
+            this.Tab14_TabPage.Text = "Consumables";
+            this.Tab14_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab14_ListView
+            // 
+            this.Tab14_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab14_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab14_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab14_ListView.HideSelection = false;
+            this.Tab14_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab14_ListView.Name = "Tab14_ListView";
+            this.Tab14_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab14_ListView.TabIndex = 1;
+            this.Tab14_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab14_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView14_SelectedIndexChanged);
+            this.Tab14_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView14_MouseDown);
+            // 
+            // Tab15_TabPage
+            // 
+            this.Tab15_TabPage.Controls.Add(this.Tab15_ListView);
+            this.Tab15_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab15_TabPage.Name = "Tab15_TabPage";
+            this.Tab15_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab15_TabPage.TabIndex = 14;
+            this.Tab15_TabPage.Text = "Seasonal";
+            this.Tab15_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab15_ListView
+            // 
+            this.Tab15_ListView.BackColor = System.Drawing.Color.Snow;
+            this.Tab15_ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Tab15_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab15_ListView.HideSelection = false;
+            this.Tab15_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab15_ListView.Name = "Tab15_ListView";
+            this.Tab15_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab15_ListView.TabIndex = 1;
+            this.Tab15_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab15_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView15_SelectedIndexChanged);
+            this.Tab15_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView15_MouseDown);
+            // 
+            // Tab16_TabPage
+            // 
+            this.Tab16_TabPage.Controls.Add(this.Tab16_ListView);
+            this.Tab16_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab16_TabPage.Name = "Tab16_TabPage";
+            this.Tab16_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab16_TabPage.TabIndex = 16;
+            this.Tab16_TabPage.Text = "Unobtainable";
+            this.Tab16_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab16_ListView
+            // 
+            this.Tab16_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab16_ListView.HideSelection = false;
+            this.Tab16_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab16_ListView.Name = "Tab16_ListView";
+            this.Tab16_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab16_ListView.TabIndex = 0;
+            this.Tab16_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab16_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView16_SelectedIndexChanged);
+            // 
+            // Tab17_TabPage
+            // 
+            this.Tab17_TabPage.Controls.Add(this.Tab17_ListView);
+            this.Tab17_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Tab17_TabPage.Name = "Tab17_TabPage";
+            this.Tab17_TabPage.Size = new System.Drawing.Size(1236, 608);
+            this.Tab17_TabPage.TabIndex = 17;
+            this.Tab17_TabPage.Text = "Unused";
+            this.Tab17_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // Tab17_ListView
+            // 
+            this.Tab17_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tab17_ListView.HideSelection = false;
+            this.Tab17_ListView.Location = new System.Drawing.Point(0, 0);
+            this.Tab17_ListView.Name = "Tab17_ListView";
+            this.Tab17_ListView.Size = new System.Drawing.Size(1236, 608);
+            this.Tab17_ListView.TabIndex = 0;
+            this.Tab17_ListView.UseCompatibleStateImageBehavior = false;
+            this.Tab17_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView17_SelectedIndexChanged);
+            this.Tab17_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView17_MouseDown);
+            // 
+            // Search
+            // 
+            this.Search.Controls.Add(this.listViewSearch);
+            this.Search.Location = new System.Drawing.Point(4, 25);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(1236, 608);
+            this.Search.TabIndex = 15;
+            this.Search.Text = "Search";
+            this.Search.UseVisualStyleBackColor = true;
+            // 
+            // listViewSearch
+            // 
+            this.listViewSearch.BackColor = System.Drawing.Color.Snow;
+            this.listViewSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewSearch.HideSelection = false;
+            this.listViewSearch.Location = new System.Drawing.Point(0, 0);
+            this.listViewSearch.Name = "listViewSearch";
+            this.listViewSearch.Size = new System.Drawing.Size(1236, 608);
+            this.listViewSearch.TabIndex = 1;
+            this.listViewSearch.UseCompatibleStateImageBehavior = false;
+            this.listViewSearch.SelectedIndexChanged += new System.EventHandler(this.ListViewSearch_SelectedIndexChanged);
+            this.listViewSearch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListViewSearch_MouseDown);
+            // 
+            // RemoveItem_Button
+            // 
+            this.RemoveItem_Button.Location = new System.Drawing.Point(575, 12);
+            this.RemoveItem_Button.Name = "RemoveItem_Button";
+            this.RemoveItem_Button.Size = new System.Drawing.Size(80, 22);
+            this.RemoveItem_Button.TabIndex = 9;
+            this.RemoveItem_Button.Text = "Remove Item";
+            this.RemoveItem_Button.UseVisualStyleBackColor = true;
+            this.RemoveItem_Button.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // CustomAmount_Button
+            // 
+            this.CustomAmount_Button.Enabled = false;
+            this.CustomAmount_Button.Location = new System.Drawing.Point(12, 12);
+            this.CustomAmount_Button.Name = "CustomAmount_Button";
+            this.CustomAmount_Button.Size = new System.Drawing.Size(99, 22);
+            this.CustomAmount_Button.TabIndex = 0;
+            this.CustomAmount_Button.Text = "Custom Amount:";
+            this.CustomAmount_Button.UseVisualStyleBackColor = true;
+            // 
+            // CustomAmount_NumericUpDown
+            // 
+            this.CustomAmount_NumericUpDown.Location = new System.Drawing.Point(117, 13);
+            this.CustomAmount_NumericUpDown.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(130, 20);
-            this.numericUpDown1.TabIndex = 1;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.CustomAmount_NumericUpDown.Name = "CustomAmount_NumericUpDown";
+            this.CustomAmount_NumericUpDown.Size = new System.Drawing.Size(130, 20);
+            this.CustomAmount_NumericUpDown.TabIndex = 2;
+            this.CustomAmount_NumericUpDown.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
             // 
-            // button3
+            // CustomID_Button
             // 
-            this.button3.Location = new System.Drawing.Point(172, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 22);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Custom ID:";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.CustomID_Button.Location = new System.Drawing.Point(172, 12);
+            this.CustomID_Button.Name = "CustomID_Button";
+            this.CustomID_Button.Size = new System.Drawing.Size(75, 22);
+            this.CustomID_Button.TabIndex = 3;
+            this.CustomID_Button.Text = "Custom ID:";
+            this.CustomID_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CustomID_Button.UseVisualStyleBackColor = true;
+            this.CustomID_Button.Click += new System.EventHandler(this.Button3_Click);
             // 
-            // numericUpDown2
+            // CustomID_NumericUpDown
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(253, 13);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.CustomID_NumericUpDown.Location = new System.Drawing.Point(253, 13);
+            this.CustomID_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(130, 20);
-            this.numericUpDown2.TabIndex = 3;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.CustomID_NumericUpDown.Name = "CustomID_NumericUpDown";
+            this.CustomID_NumericUpDown.Size = new System.Drawing.Size(130, 20);
+            this.CustomID_NumericUpDown.TabIndex = 4;
+            this.CustomID_NumericUpDown.Value = new decimal(new int[] {
             110,
             0,
             0,
             0});
-            this.numericUpDown2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
+            this.CustomID_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
             // 
-            // button4
+            // Search_Button
             // 
-            this.button4.Location = new System.Drawing.Point(834, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 22);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Search";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.Search_Button.Location = new System.Drawing.Point(1001, 12);
+            this.Search_Button.Name = "Search_Button";
+            this.Search_Button.Size = new System.Drawing.Size(75, 22);
+            this.Search_Button.TabIndex = 1;
+            this.Search_Button.Text = "Search";
+            this.Search_Button.UseVisualStyleBackColor = true;
+            this.Search_Button.Click += new System.EventHandler(this.Button4_Click);
             // 
-            // textBox1
+            // Search_TextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(661, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
+            this.Search_TextBox.Location = new System.Drawing.Point(661, 13);
+            this.Search_TextBox.Name = "Search_TextBox";
+            this.Search_TextBox.Size = new System.Drawing.Size(415, 20);
+            this.Search_TextBox.TabIndex = 0;
+            this.Search_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             // 
-            // numericUpDown3
+            // ItemVariant_NumericUpDown
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(389, 13);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.ItemVariant_NumericUpDown.Location = new System.Drawing.Point(389, 13);
+            this.ItemVariant_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(130, 20);
-            this.numericUpDown3.TabIndex = 5;
-            this.numericUpDown3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
+            this.ItemVariant_NumericUpDown.Name = "ItemVariant_NumericUpDown";
+            this.ItemVariant_NumericUpDown.Size = new System.Drawing.Size(130, 20);
+            this.ItemVariant_NumericUpDown.TabIndex = 6;
+            this.ItemVariant_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
             // 
-            // button5
+            // ItemVariant_Button
             // 
-            this.button5.Location = new System.Drawing.Point(308, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 22);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Item Variant:";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.ItemVariant_Button.Location = new System.Drawing.Point(308, 12);
+            this.ItemVariant_Button.Name = "ItemVariant_Button";
+            this.ItemVariant_Button.Size = new System.Drawing.Size(75, 22);
+            this.ItemVariant_Button.TabIndex = 5;
+            this.ItemVariant_Button.Text = "Item Variant:";
+            this.ItemVariant_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ItemVariant_Button.UseVisualStyleBackColor = true;
+            this.ItemVariant_Button.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // button6
+            // OpenCookedFoodList_Button
             // 
-            this.button6.Location = new System.Drawing.Point(915, 12);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(137, 22);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Open Cooked Food List";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.OpenCookedFoodList_Button.Location = new System.Drawing.Point(1082, 12);
+            this.OpenCookedFoodList_Button.Name = "OpenCookedFoodList_Button";
+            this.OpenCookedFoodList_Button.Size = new System.Drawing.Size(150, 22);
+            this.OpenCookedFoodList_Button.TabIndex = 11;
+            this.OpenCookedFoodList_Button.Text = "Open Cooked Food List";
+            this.OpenCookedFoodList_Button.UseVisualStyleBackColor = true;
+            this.OpenCookedFoodList_Button.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // button7
+            // SkillType_Button
             // 
-            this.button7.Location = new System.Drawing.Point(439, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(80, 22);
-            this.button7.TabIndex = 12;
-            this.button7.Text = "Skill Type:";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.SkillType_Button.Location = new System.Drawing.Point(439, 12);
+            this.SkillType_Button.Name = "SkillType_Button";
+            this.SkillType_Button.Size = new System.Drawing.Size(80, 22);
+            this.SkillType_Button.TabIndex = 7;
+            this.SkillType_Button.Text = "Skill Type:";
+            this.SkillType_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SkillType_Button.UseVisualStyleBackColor = true;
+            this.SkillType_Button.Click += new System.EventHandler(this.Button7_Click);
             // 
-            // numericUpDown4
+            // SkillType_NumericUpDown
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(525, 13);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.SkillType_NumericUpDown.Location = new System.Drawing.Point(525, 13);
+            this.SkillType_NumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(130, 20);
-            this.numericUpDown4.TabIndex = 11;
-            this.numericUpDown4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
+            this.SkillType_NumericUpDown.Name = "SkillType_NumericUpDown";
+            this.SkillType_NumericUpDown.Size = new System.Drawing.Size(130, 20);
+            this.SkillType_NumericUpDown.TabIndex = 8;
+            this.SkillType_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
             // 
-            // button8
+            // SkillTypeInfo_Button
             // 
-            this.button8.Location = new System.Drawing.Point(555, 12);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(21, 22);
-            this.button8.TabIndex = 13;
-            this.button8.Text = "?";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            this.SkillTypeInfo_Button.Location = new System.Drawing.Point(555, 12);
+            this.SkillTypeInfo_Button.Name = "SkillTypeInfo_Button";
+            this.SkillTypeInfo_Button.Size = new System.Drawing.Size(21, 22);
+            this.SkillTypeInfo_Button.TabIndex = 10;
+            this.SkillTypeInfo_Button.Text = "?";
+            this.SkillTypeInfo_Button.UseVisualStyleBackColor = true;
+            this.SkillTypeInfo_Button.Click += new System.EventHandler(this.Button8_Click);
             // 
             // InventoryEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown4);
+            this.ClientSize = new System.Drawing.Size(1244, 681);
+            this.Controls.Add(this.SkillTypeInfo_Button);
+            this.Controls.Add(this.RemoveItem_Button);
+            this.Controls.Add(this.SkillType_Button);
+            this.Controls.Add(this.OpenCookedFoodList_Button);
+            this.Controls.Add(this.ItemVariant_Button);
+            this.Controls.Add(this.Search_Button);
+            this.Controls.Add(this.CustomID_Button);
+            this.Controls.Add(this.Main_TabControl);
+            this.Controls.Add(this.CustomAmount_Button);
+            this.Controls.Add(this.CustomAmount_NumericUpDown);
+            this.Controls.Add(this.CustomID_NumericUpDown);
+            this.Controls.Add(this.Search_TextBox);
+            this.Controls.Add(this.ItemVariant_NumericUpDown);
+            this.Controls.Add(this.SkillType_NumericUpDown);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -692,27 +745,29 @@ namespace CoreKeeperInventoryEditor
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage8.ResumeLayout(false);
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage13.ResumeLayout(false);
-            this.tabPage14.ResumeLayout(false);
-            this.tabPage15.ResumeLayout(false);
-            this.tabPage16.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            this.Main_TabControl.ResumeLayout(false);
+            this.Tab1_TabPage.ResumeLayout(false);
+            this.Tab2_TabPage.ResumeLayout(false);
+            this.Tab3_TabPage.ResumeLayout(false);
+            this.Tab4_TabPage.ResumeLayout(false);
+            this.Tab5_TabPage.ResumeLayout(false);
+            this.Tab6_TabPage.ResumeLayout(false);
+            this.Tab7_TabPage.ResumeLayout(false);
+            this.Tab8_TabPage.ResumeLayout(false);
+            this.Tab9_TabPage.ResumeLayout(false);
+            this.Tab10_TabPage.ResumeLayout(false);
+            this.Tab11_TabPage.ResumeLayout(false);
+            this.Tab12_TabPage.ResumeLayout(false);
+            this.Tab13_TabPage.ResumeLayout(false);
+            this.Tab14_TabPage.ResumeLayout(false);
+            this.Tab15_TabPage.ResumeLayout(false);
+            this.Tab16_TabPage.ResumeLayout(false);
+            this.Tab17_TabPage.ResumeLayout(false);
+            this.Search.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CustomAmount_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomID_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemVariant_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillType_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -720,51 +775,55 @@ namespace CoreKeeperInventoryEditor
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.TabPage tabPage14;
-        private System.Windows.Forms.TabPage tabPage15;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ListView listView4;
-        private System.Windows.Forms.ListView listView5;
-        private System.Windows.Forms.ListView listView6;
-        private System.Windows.Forms.ListView listView7;
-        private System.Windows.Forms.ListView listView8;
-        private System.Windows.Forms.ListView listView9;
-        private System.Windows.Forms.ListView listView10;
-        private System.Windows.Forms.ListView listView11;
-        private System.Windows.Forms.ListView listView12;
-        private System.Windows.Forms.ListView listView13;
-        private System.Windows.Forms.ListView listView14;
-        private System.Windows.Forms.ListView listView15;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.TabPage tabPage16;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListView listView16;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TabControl Main_TabControl;
+        private System.Windows.Forms.NumericUpDown CustomAmount_NumericUpDown;
+        private System.Windows.Forms.Button CustomAmount_Button;
+        private System.Windows.Forms.Button RemoveItem_Button;
+        private System.Windows.Forms.TabPage Tab1_TabPage;
+        private System.Windows.Forms.ListView Tab1_ListView;
+        private System.Windows.Forms.TabPage Tab2_TabPage;
+        private System.Windows.Forms.TabPage Tab3_TabPage;
+        private System.Windows.Forms.TabPage Tab4_TabPage;
+        private System.Windows.Forms.TabPage Tab5_TabPage;
+        private System.Windows.Forms.TabPage Tab6_TabPage;
+        private System.Windows.Forms.TabPage Tab7_TabPage;
+        private System.Windows.Forms.TabPage Tab8_TabPage;
+        private System.Windows.Forms.TabPage Tab9_TabPage;
+        private System.Windows.Forms.TabPage Tab10_TabPage;
+        private System.Windows.Forms.TabPage Tab11_TabPage;
+        private System.Windows.Forms.TabPage Tab12_TabPage;
+        private System.Windows.Forms.TabPage Tab13_TabPage;
+        private System.Windows.Forms.TabPage Tab14_TabPage;
+        private System.Windows.Forms.TabPage Tab15_TabPage;
+        private System.Windows.Forms.ListView Tab2_ListView;
+        private System.Windows.Forms.ListView Tab3_ListView;
+        private System.Windows.Forms.ListView Tab4_ListView;
+        private System.Windows.Forms.ListView Tab5_ListView;
+        private System.Windows.Forms.ListView Tab6_ListView;
+        private System.Windows.Forms.ListView Tab7_ListView;
+        private System.Windows.Forms.ListView Tab8_ListView;
+        private System.Windows.Forms.ListView Tab9_ListView;
+        private System.Windows.Forms.ListView Tab10_ListView;
+        private System.Windows.Forms.ListView Tab11_ListView;
+        private System.Windows.Forms.ListView Tab12_ListView;
+        private System.Windows.Forms.ListView Tab13_ListView;
+        private System.Windows.Forms.ListView Tab14_ListView;
+        private System.Windows.Forms.ListView Tab15_ListView;
+        private System.Windows.Forms.Button CustomID_Button;
+        private System.Windows.Forms.NumericUpDown CustomID_NumericUpDown;
+        private System.Windows.Forms.TabPage Search;
+        private System.Windows.Forms.Button Search_Button;
+        private System.Windows.Forms.TextBox Search_TextBox;
+        private System.Windows.Forms.ListView listViewSearch;
+        private System.Windows.Forms.NumericUpDown ItemVariant_NumericUpDown;
+        private System.Windows.Forms.Button ItemVariant_Button;
+        private System.Windows.Forms.Button OpenCookedFoodList_Button;
+        private System.Windows.Forms.Button SkillType_Button;
+        private System.Windows.Forms.NumericUpDown SkillType_NumericUpDown;
+        private System.Windows.Forms.Button SkillTypeInfo_Button;
+        private System.Windows.Forms.TabPage Tab16_TabPage;
+        private System.Windows.Forms.TabPage Tab17_TabPage;
+        private System.Windows.Forms.ListView Tab16_ListView;
+        private System.Windows.Forms.ListView Tab17_ListView;
     }
 }

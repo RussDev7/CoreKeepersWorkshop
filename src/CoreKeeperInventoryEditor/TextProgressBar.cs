@@ -1,7 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
+using System.Drawing;
+using System;
 
 namespace CoreKeepersWorkshop
 {
@@ -62,7 +62,7 @@ namespace CoreKeepersWorkshop
             set
             {
                 _visualMode = value;
-                Invalidate();//redraw component after change value from VS Properties section
+                Invalidate(); //redraw component after change value from VS Properties section.
             }
         }
 
@@ -78,7 +78,7 @@ namespace CoreKeepersWorkshop
             set
             {
                 _text = value;
-                Invalidate();//redraw component after change value from VS Properties section
+                Invalidate(); //redraw component after change value from VS Properties section.
             }
         }
 

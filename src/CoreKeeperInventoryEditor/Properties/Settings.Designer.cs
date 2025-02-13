@@ -529,25 +529,13 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00000000000")]
-        public string SkillEditorAddress {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SkillEditorUseEXP {
             get {
-                return ((string)(this["SkillEditorAddress"]));
+                return ((bool)(this["SkillEditorUseEXP"]));
             }
             set {
-                this["SkillEditorAddress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public decimal ActiveSkillAmount {
-            get {
-                return ((decimal)(this["ActiveSkillAmount"]));
-            }
-            set {
-                this["ActiveSkillAmount"] = value;
+                this["SkillEditorUseEXP"] = value;
             }
         }
         

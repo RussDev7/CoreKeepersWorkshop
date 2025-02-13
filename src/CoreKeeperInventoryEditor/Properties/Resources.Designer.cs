@@ -83,9 +83,39 @@ namespace CoreKeepersWorkshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MissingTexture {
+            get {
+                object obj = ResourceManager.GetObject("MissingTexture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Skill1 {
             get {
                 object obj = ResourceManager.GetObject("Skill1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Skill10 {
+            get {
+                object obj = ResourceManager.GetObject("Skill10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Skill11 {
+            get {
+                object obj = ResourceManager.GetObject("Skill11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

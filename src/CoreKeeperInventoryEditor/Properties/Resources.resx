@@ -124,8 +124,17 @@
   <data name="logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MissingTexture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\MissingTexture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Skill1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\skills\Skill1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Skill10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\skills\Skill10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Skill11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\skills\Skill11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Skill2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\skills\Skill2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

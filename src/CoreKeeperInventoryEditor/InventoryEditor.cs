@@ -1,12 +1,11 @@
-﻿using CoreKeepersWorkshop;
-using Siticone.UI.WinForms.Suite;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using CoreKeepersWorkshop;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.IO;
+using System;
 
 namespace CoreKeeperInventoryEditor
 {
@@ -24,7 +23,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<string> ImageFiles = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
         // Define folder names.
-        public IEnumerable<string> FolderNames = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") ? Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") : new String[] { "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null" }; // Ensure directory exists. Fix: v1.2.9.
+        public IEnumerable<string> FolderNames = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") ? Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") : new String[] { "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null" }; // Ensure directory exists. Fix: v1.2.9.
 
         // Define imagelist.
         readonly ImageList ImagelistTools = new ImageList();
@@ -57,6 +56,10 @@ namespace CoreKeeperInventoryEditor
         readonly ImageList ImagelistLargeConsumables = new ImageList();
         readonly ImageList ImagelistSeasonal = new ImageList();
         readonly ImageList ImagelistLargeSeasonal = new ImageList();
+        readonly ImageList ImagelistUnobtainable = new ImageList();
+        readonly ImageList ImagelistLargeUnobtainable = new ImageList();
+        readonly ImageList ImagelistUnused = new ImageList();
+        readonly ImageList ImagelistLargeUnused = new ImageList();
         readonly ImageList ImagelistSearch = new ImageList();
         readonly ImageList ImagelistLargeSearch = new ImageList();
 
@@ -82,14 +85,14 @@ namespace CoreKeeperInventoryEditor
             try
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)numericUpDown1.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)numericUpDown2.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)numericUpDown3.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = (int)numericUpDown4.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)CustomID_NumericUpDown.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)ItemVariant_NumericUpDown.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = (int)SkillType_NumericUpDown.Value;
                 CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = this.Location;
 
                 // Ensure current tab is not search, if so, reset.
-                if (tabControl1.SelectedTab == tabPage16)
+                if (Main_TabControl.SelectedTab == Search)
                 {
                     // Set value to tools.
                     CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "tabPage1";
@@ -97,7 +100,7 @@ namespace CoreKeeperInventoryEditor
                 else
                 {
                     // Save current tab.
-                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = tabControl1.SelectedTab.Name;
+                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = Main_TabControl.SelectedTab.Name;
                 }
             }
             catch (Exception)
@@ -166,40 +169,42 @@ namespace CoreKeeperInventoryEditor
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
-            toolTip.SetToolTip(numericUpDown2, "Enter a custom ID. Either press enter when done or use the button.");
-            toolTip.SetToolTip(numericUpDown3, "Enter a custom variant ID. Either press enter when done or use the button.");
-            toolTip.SetToolTip(numericUpDown4, "Enter a custom skillset ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(CustomAmount_NumericUpDown, "Enter the amount of items to add.");
+            toolTip.SetToolTip(CustomID_NumericUpDown, "Enter a custom ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(ItemVariant_NumericUpDown, "Enter a custom variant ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(SkillType_NumericUpDown, "Enter a custom skillset ID. Either press enter when done or use the button.");
 
-            toolTip.SetToolTip(button1, "Remove the item from this inventory slot.");
-            toolTip.SetToolTip(button3, "Spawn in custom item amount + ID.");
-            toolTip.SetToolTip(button4, "Start the search for a desired item.");
-            toolTip.SetToolTip(button5, "Spawn in custom item with variation.");
-            toolTip.SetToolTip(button6, "Open the food cookbook to easily search for food items.");
-            toolTip.SetToolTip(button8, "Launch a guide on how to find skillset IDs.");
+            toolTip.SetToolTip(CustomAmount_Button, "Remove the item from this inventory slot.");
+            toolTip.SetToolTip(CustomID_Button, "Spawn in custom item amount + ID.");
+            toolTip.SetToolTip(Search_Button, "Start the search for a desired item.");
+            toolTip.SetToolTip(ItemVariant_Button, "Spawn in custom item with variation.");
+            toolTip.SetToolTip(OpenCookedFoodList_Button, "Open the food cookbook to easily search for food items.");
+            toolTip.SetToolTip(SkillTypeInfo_Button, "Launch a guide on how to find skillset IDs.");
 
-            toolTip.SetToolTip(textBox1, "Enter a name to search for.");
+            toolTip.SetToolTip(Search_TextBox, "Enter a name to search for.");
 
             #endregion
 
             #region Do Loading Events
 
             // Set tab text based on the folder names.
-            tabControl1.TabPages[0].Text = new DirectoryInfo(FolderNames.ElementAt(0)).Name;
-            tabControl1.TabPages[1].Text = new DirectoryInfo(FolderNames.ElementAt(1)).Name;
-            tabControl1.TabPages[2].Text = new DirectoryInfo(FolderNames.ElementAt(2)).Name;
-            tabControl1.TabPages[3].Text = new DirectoryInfo(FolderNames.ElementAt(3)).Name;
-            tabControl1.TabPages[4].Text = new DirectoryInfo(FolderNames.ElementAt(4)).Name;
-            tabControl1.TabPages[5].Text = new DirectoryInfo(FolderNames.ElementAt(5)).Name;
-            tabControl1.TabPages[6].Text = new DirectoryInfo(FolderNames.ElementAt(6)).Name;
-            tabControl1.TabPages[7].Text = new DirectoryInfo(FolderNames.ElementAt(7)).Name;
-            tabControl1.TabPages[8].Text = new DirectoryInfo(FolderNames.ElementAt(8)).Name;
-            tabControl1.TabPages[9].Text = new DirectoryInfo(FolderNames.ElementAt(9)).Name;
-            tabControl1.TabPages[10].Text = new DirectoryInfo(FolderNames.ElementAt(10)).Name;
-            tabControl1.TabPages[11].Text = new DirectoryInfo(FolderNames.ElementAt(11)).Name;
-            tabControl1.TabPages[12].Text = new DirectoryInfo(FolderNames.ElementAt(12)).Name;
-            tabControl1.TabPages[13].Text = new DirectoryInfo(FolderNames.ElementAt(13)).Name;
-            tabControl1.TabPages[14].Text = new DirectoryInfo(FolderNames.ElementAt(14)).Name;
+            Main_TabControl.TabPages[0].Text = new DirectoryInfo(FolderNames.ElementAt(0)).Name;
+            Main_TabControl.TabPages[1].Text = new DirectoryInfo(FolderNames.ElementAt(1)).Name;
+            Main_TabControl.TabPages[2].Text = new DirectoryInfo(FolderNames.ElementAt(2)).Name;
+            Main_TabControl.TabPages[3].Text = new DirectoryInfo(FolderNames.ElementAt(3)).Name;
+            Main_TabControl.TabPages[4].Text = new DirectoryInfo(FolderNames.ElementAt(4)).Name;
+            Main_TabControl.TabPages[5].Text = new DirectoryInfo(FolderNames.ElementAt(5)).Name;
+            Main_TabControl.TabPages[6].Text = new DirectoryInfo(FolderNames.ElementAt(6)).Name;
+            Main_TabControl.TabPages[7].Text = new DirectoryInfo(FolderNames.ElementAt(7)).Name;
+            Main_TabControl.TabPages[8].Text = new DirectoryInfo(FolderNames.ElementAt(8)).Name;
+            Main_TabControl.TabPages[9].Text = new DirectoryInfo(FolderNames.ElementAt(9)).Name;
+            Main_TabControl.TabPages[10].Text = new DirectoryInfo(FolderNames.ElementAt(10)).Name;
+            Main_TabControl.TabPages[11].Text = new DirectoryInfo(FolderNames.ElementAt(11)).Name;
+            Main_TabControl.TabPages[12].Text = new DirectoryInfo(FolderNames.ElementAt(12)).Name;
+            Main_TabControl.TabPages[13].Text = new DirectoryInfo(FolderNames.ElementAt(13)).Name;
+            Main_TabControl.TabPages[14].Text = new DirectoryInfo(FolderNames.ElementAt(14)).Name;
+            Main_TabControl.TabPages[15].Text = new DirectoryInfo(FolderNames.ElementAt(15)).Name;
+            Main_TabControl.TabPages[16].Text = new DirectoryInfo(FolderNames.ElementAt(16)).Name;
 
             // Ensure the skillset is more then -1.
             if (CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset < 0)
@@ -208,11 +213,11 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Load some settings.
-            numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
-            numericUpDown2.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemID;
-            numericUpDown3.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation;
-            numericUpDown4.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset;
-            tabControl1.SelectedTab = tabControl1.TabPages[CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab];
+            CustomAmount_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
+            CustomID_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemID;
+            ItemVariant_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation;
+            SkillType_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset;
+            Main_TabControl.SelectedTab = Main_TabControl.TabPages[CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab];
 
             // Set Image Size
             ImagelistLargeTools.ImageSize = new Size(50, 60);
@@ -230,6 +235,8 @@ namespace CoreKeeperInventoryEditor
             ImagelistLargeWeapons.ImageSize = new Size(50, 60);
             ImagelistLargeConsumables.ImageSize = new Size(50, 60);
             ImagelistLargeSeasonal.ImageSize = new Size(50, 60);
+            ImagelistLargeUnobtainable.ImageSize = new Size(50, 60);
+            ImagelistLargeUnused.ImageSize = new Size(50, 60);
 
             // Define seperate counts.
             int countTools = 0;
@@ -247,6 +254,8 @@ namespace CoreKeeperInventoryEditor
             int countWeapons = 0;
             int countConsumables = 0;
             int countSeasonal = 0;
+            int countUnobtainable = 0;
+            int countUnused = 0;
 
             // Make sure assets exist.
             if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
@@ -277,10 +286,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistTools.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeTools.Images.Add(ImageFast.FromFile(file));
 
-                                listView1.LargeImageList = ImagelistTools;
+                                Tab1_ListView.LargeImageList = ImagelistTools;
 
                                 // Save filename information.
-                                listView1.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab1_ListView.Items.Add(new ListViewItem { ImageIndex = countTools, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countTools++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(1)).Name)
@@ -289,10 +298,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistPlaceableItems.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargePlaceableItems.Images.Add(ImageFast.FromFile(file));
 
-                                listView2.LargeImageList = ImagelistPlaceableItems;
+                                Tab2_ListView.LargeImageList = ImagelistPlaceableItems;
 
                                 // Save filename information.
-                                listView2.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab2_ListView.Items.Add(new ListViewItem { ImageIndex = countPlaceableItems, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countPlaceableItems++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(2)).Name)
@@ -301,10 +310,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistNature.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeNature.Images.Add(ImageFast.FromFile(file));
 
-                                listView3.LargeImageList = ImagelistNature;
+                                Tab3_ListView.LargeImageList = ImagelistNature;
 
                                 // Save filename information.
-                                listView3.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab3_ListView.Items.Add(new ListViewItem { ImageIndex = countNature, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countNature++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(3)).Name)
@@ -313,10 +322,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistMaterials.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeMaterials.Images.Add(ImageFast.FromFile(file));
 
-                                listView4.LargeImageList = ImagelistMaterials;
+                                Tab4_ListView.LargeImageList = ImagelistMaterials;
 
                                 // Save filename information.
-                                listView4.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab4_ListView.Items.Add(new ListViewItem { ImageIndex = countMaterials, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countMaterials++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(4)).Name)
@@ -325,10 +334,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistSpecial.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeSpecial.Images.Add(ImageFast.FromFile(file));
 
-                                listView5.LargeImageList = ImagelistSpecial;
+                                Tab5_ListView.LargeImageList = ImagelistSpecial;
 
                                 // Save filename information.
-                                listView5.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab5_ListView.Items.Add(new ListViewItem { ImageIndex = countSpecial, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countSpecial++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(5)).Name)
@@ -337,10 +346,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistMobItems.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeMobItems.Images.Add(ImageFast.FromFile(file));
 
-                                listView6.LargeImageList = ImagelistMobItems;
+                                Tab6_ListView.LargeImageList = ImagelistMobItems;
 
                                 // Save filename information.
-                                listView6.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab6_ListView.Items.Add(new ListViewItem { ImageIndex = countMobItems, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countMobItems++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(6)).Name)
@@ -349,10 +358,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistBaseBuilding.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeBaseBuilding.Images.Add(ImageFast.FromFile(file));
 
-                                listView7.LargeImageList = ImagelistBaseBuilding;
+                                Tab7_ListView.LargeImageList = ImagelistBaseBuilding;
 
                                 // Save filename information.
-                                listView7.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab7_ListView.Items.Add(new ListViewItem { ImageIndex = countBaseBuilding, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countBaseBuilding++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(7)).Name)
@@ -361,10 +370,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistTreasures.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeTreasures.Images.Add(ImageFast.FromFile(file));
 
-                                listView8.LargeImageList = ImagelistTreasures;
+                                Tab8_ListView.LargeImageList = ImagelistTreasures;
 
                                 // Save filename information.
-                                listView8.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab8_ListView.Items.Add(new ListViewItem { ImageIndex = countTreasures, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countTreasures++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(8)).Name)
@@ -373,10 +382,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistWiring.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeWiring.Images.Add(ImageFast.FromFile(file));
 
-                                listView9.LargeImageList = ImagelistWiring;
+                                Tab9_ListView.LargeImageList = ImagelistWiring;
 
                                 // Save filename information.
-                                listView9.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab9_ListView.Items.Add(new ListViewItem { ImageIndex = countWiring, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countWiring++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(9)).Name)
@@ -385,10 +394,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistPlants.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargePlants.Images.Add(ImageFast.FromFile(file));
 
-                                listView10.LargeImageList = ImagelistPlants;
+                                Tab10_ListView.LargeImageList = ImagelistPlants;
 
                                 // Save filename information.
-                                listView10.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab10_ListView.Items.Add(new ListViewItem { ImageIndex = countPlants, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countPlants++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(10)).Name)
@@ -397,10 +406,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistArmors.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeArmors.Images.Add(ImageFast.FromFile(file));
 
-                                listView11.LargeImageList = ImagelistArmors;
+                                Tab11_ListView.LargeImageList = ImagelistArmors;
 
                                 // Save filename information.
-                                listView11.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab11_ListView.Items.Add(new ListViewItem { ImageIndex = countArmors, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countArmors++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(11)).Name)
@@ -409,10 +418,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistAccessories.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeAccessories.Images.Add(ImageFast.FromFile(file));
 
-                                listView12.LargeImageList = ImagelistAccessories;
+                                Tab12_ListView.LargeImageList = ImagelistAccessories;
 
                                 // Save filename information.
-                                listView12.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab12_ListView.Items.Add(new ListViewItem { ImageIndex = countAccessories, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countAccessories++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(12)).Name)
@@ -421,10 +430,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistWeapons.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeWeapons.Images.Add(ImageFast.FromFile(file));
 
-                                listView13.LargeImageList = ImagelistWeapons;
+                                Tab13_ListView.LargeImageList = ImagelistWeapons;
 
                                 // Save filename information.
-                                listView13.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab13_ListView.Items.Add(new ListViewItem { ImageIndex = countWeapons, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countWeapons++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(13)).Name)
@@ -433,10 +442,10 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistConsumables.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeConsumables.Images.Add(ImageFast.FromFile(file));
 
-                                listView14.LargeImageList = ImagelistConsumables;
+                                Tab14_ListView.LargeImageList = ImagelistConsumables;
 
                                 // Save filename information.
-                                listView14.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab14_ListView.Items.Add(new ListViewItem { ImageIndex = countConsumables, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countConsumables++; // Add one to index count.
                             }
                             else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(14)).Name)
@@ -445,11 +454,35 @@ namespace CoreKeeperInventoryEditor
                                 ImagelistSeasonal.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeSeasonal.Images.Add(ImageFast.FromFile(file));
 
-                                listView15.LargeImageList = ImagelistSeasonal;
+                                Tab15_ListView.LargeImageList = ImagelistSeasonal;
 
                                 // Save filename information.
-                                listView15.Items.Add(new ListViewItem { ImageIndex = countSeasonal, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                Tab15_ListView.Items.Add(new ListViewItem { ImageIndex = countSeasonal, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countSeasonal++; // Add one to index count.
+                            }
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(15)).Name)
+                            {
+                                //Add images to Imagelist
+                                ImagelistUnobtainable.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeUnobtainable.Images.Add(ImageFast.FromFile(file));
+
+                                Tab16_ListView.LargeImageList = ImagelistUnobtainable;
+
+                                // Save filename information.
+                                Tab16_ListView.Items.Add(new ListViewItem { ImageIndex = countUnobtainable, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                countUnobtainable++; // Add one to index count.
+                            }
+                            else if (catergoryName == new DirectoryInfo(FolderNames.ElementAt(16)).Name)
+                            {
+                                //Add images to Imagelist
+                                ImagelistUnused.Images.Add(ImageFast.FromFile(file));
+                                ImagelistLargeUnused.Images.Add(ImageFast.FromFile(file));
+
+                                Tab17_ListView.LargeImageList = ImagelistUnused;
+
+                                // Save filename information.
+                                Tab17_ListView.Items.Add(new ListViewItem { ImageIndex = countUnused, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                countUnused++; // Add one to index count.
                             }
                         }
                         catch (Exception)
@@ -461,36 +494,40 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 //set the amall and large ImageList properties of listview
-                listView1.LargeImageList = ImagelistLargeTools;
-                listView1.View = View.LargeIcon;
-                listView2.LargeImageList = ImagelistPlaceableItems;
-                listView2.View = View.LargeIcon;
-                listView3.LargeImageList = ImagelistLargeNature;
-                listView3.View = View.LargeIcon;
-                listView4.LargeImageList = ImagelistLargeMaterials;
-                listView4.View = View.LargeIcon;
-                listView5.LargeImageList = ImagelistLargeSpecial;
-                listView5.View = View.LargeIcon;
-                listView6.LargeImageList = ImagelistLargeMobItems;
-                listView6.View = View.LargeIcon;
-                listView7.LargeImageList = ImagelistLargeBaseBuilding;
-                listView7.View = View.LargeIcon;
-                listView8.LargeImageList = ImagelistLargeTreasures;
-                listView8.View = View.LargeIcon;
-                listView9.LargeImageList = ImagelistLargeWiring;
-                listView9.View = View.LargeIcon;
-                listView10.LargeImageList = ImagelistLargePlants;
-                listView10.View = View.LargeIcon;
-                listView11.LargeImageList = ImagelistLargeArmors;
-                listView11.View = View.LargeIcon;
-                listView12.LargeImageList = ImagelistLargeAccessories;
-                listView12.View = View.LargeIcon;
-                listView13.LargeImageList = ImagelistLargeWeapons;
-                listView13.View = View.LargeIcon;
-                listView14.LargeImageList = ImagelistLargeConsumables;
-                listView14.View = View.LargeIcon;
-                listView15.LargeImageList = ImagelistLargeSeasonal;
-                listView15.View = View.LargeIcon;
+                Tab1_ListView.LargeImageList = ImagelistLargeTools;
+                Tab1_ListView.View = View.LargeIcon;
+                Tab2_ListView.LargeImageList = ImagelistPlaceableItems;
+                Tab2_ListView.View = View.LargeIcon;
+                Tab3_ListView.LargeImageList = ImagelistLargeNature;
+                Tab3_ListView.View = View.LargeIcon;
+                Tab4_ListView.LargeImageList = ImagelistLargeMaterials;
+                Tab4_ListView.View = View.LargeIcon;
+                Tab5_ListView.LargeImageList = ImagelistLargeSpecial;
+                Tab5_ListView.View = View.LargeIcon;
+                Tab6_ListView.LargeImageList = ImagelistLargeMobItems;
+                Tab6_ListView.View = View.LargeIcon;
+                Tab7_ListView.LargeImageList = ImagelistLargeBaseBuilding;
+                Tab7_ListView.View = View.LargeIcon;
+                Tab8_ListView.LargeImageList = ImagelistLargeTreasures;
+                Tab8_ListView.View = View.LargeIcon;
+                Tab9_ListView.LargeImageList = ImagelistLargeWiring;
+                Tab9_ListView.View = View.LargeIcon;
+                Tab10_ListView.LargeImageList = ImagelistLargePlants;
+                Tab10_ListView.View = View.LargeIcon;
+                Tab11_ListView.LargeImageList = ImagelistLargeArmors;
+                Tab11_ListView.View = View.LargeIcon;
+                Tab12_ListView.LargeImageList = ImagelistLargeAccessories;
+                Tab12_ListView.View = View.LargeIcon;
+                Tab13_ListView.LargeImageList = ImagelistLargeWeapons;
+                Tab13_ListView.View = View.LargeIcon;
+                Tab14_ListView.LargeImageList = ImagelistLargeConsumables;
+                Tab14_ListView.View = View.LargeIcon;
+                Tab15_ListView.LargeImageList = ImagelistLargeSeasonal;
+                Tab15_ListView.View = View.LargeIcon;
+                Tab16_ListView.LargeImageList = ImagelistLargeUnobtainable;
+                Tab16_ListView.View = View.LargeIcon;
+                Tab17_ListView.LargeImageList = ImagelistLargeUnused;
+                Tab17_ListView.View = View.LargeIcon;
             }
 
             #endregion
@@ -501,10 +538,10 @@ namespace CoreKeeperInventoryEditor
         // Add custom ID.
         private void Button3_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)numericUpDown2.Value;
-            selectedItemAmount = (int)numericUpDown1.Value;
-            selectedItemVariation = (int)numericUpDown3.Value;
-            selectedItemSkillset = (int)numericUpDown4.Value;
+            selectedItemType = (int)CustomID_NumericUpDown.Value;
+            selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
+            selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
             selectedOverwrite = true;
             this.Close();
         }
@@ -512,10 +549,10 @@ namespace CoreKeeperInventoryEditor
         // Add custom veriation.
         private void Button5_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)numericUpDown2.Value;
-            selectedItemAmount = (int)numericUpDown1.Value;
-            selectedItemVariation = (int)numericUpDown3.Value;
-            selectedItemSkillset = (int)numericUpDown4.Value;
+            selectedItemType = (int)CustomID_NumericUpDown.Value;
+            selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
+            selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
             selectedOverwrite = true;
             this.Close();
         }
@@ -523,10 +560,10 @@ namespace CoreKeeperInventoryEditor
         // Add custom skillset.
         private void Button7_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)numericUpDown2.Value;
-            selectedItemAmount = (int)numericUpDown1.Value;
-            selectedItemVariation = (int)numericUpDown3.Value;
-            selectedItemSkillset = (int)numericUpDown4.Value;
+            selectedItemType = (int)CustomID_NumericUpDown.Value;
+            selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
+            selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
             selectedOverwrite = true;
             this.Close();
         }
@@ -536,10 +573,10 @@ namespace CoreKeeperInventoryEditor
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectedItemType = (int)numericUpDown2.Value;
-                selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
-                selectedItemSkillset = (int)numericUpDown4.Value;
+                selectedItemType = (int)CustomID_NumericUpDown.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
+                selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
                 selectedOverwrite = true;
                 this.Close();
             }
@@ -550,10 +587,10 @@ namespace CoreKeeperInventoryEditor
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectedItemType = (int)numericUpDown2.Value;
-                selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
-                selectedItemSkillset = (int)numericUpDown4.Value;
+                selectedItemType = (int)CustomID_NumericUpDown.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
+                selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
                 selectedOverwrite = true;
                 this.Close();
             }
@@ -564,10 +601,10 @@ namespace CoreKeeperInventoryEditor
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectedItemType = (int)numericUpDown2.Value;
-                selectedItemAmount = (int)numericUpDown1.Value;
-                selectedItemVariation = (int)numericUpDown3.Value;
-                selectedItemSkillset = (int)numericUpDown4.Value;
+                selectedItemType = (int)CustomID_NumericUpDown.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
+                selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
                 selectedOverwrite = true;
                 this.Close();
             }
@@ -587,16 +624,16 @@ namespace CoreKeeperInventoryEditor
         private void Button4_Click(object sender, EventArgs e)
         {
             // Clear previous results.
-            listView16.Clear();
-            listView16.Items.Clear();
-            listView16.Refresh();
+            listViewSearch.Clear();
+            listViewSearch.Items.Clear();
+            listViewSearch.Refresh();
 
             // Clear previous image data.
             ImagelistSearch.Images.Clear();
             ImagelistLargeSearch.Images.Clear();
 
             // Tab over to search.
-            tabControl1.SelectedTab = tabPage16;
+            Main_TabControl.SelectedTab = Search;
 
             // Set Image Size
             ImagelistLargeSearch.ImageSize = new Size(50, 60);
@@ -625,16 +662,16 @@ namespace CoreKeeperInventoryEditor
                         if (filenameData[0] == "desktop.ini") continue;
 
                         // Get all matches.
-                        if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
+                        if (filenameData[0].ToLower().Contains(Search_TextBox.Text.ToLower()))
                         {
                             //Add images to Imagelist
                             ImagelistSearch.Images.Add(ImageFast.FromFile(file));
                             ImagelistLargeSearch.Images.Add(ImageFast.FromFile(file));
 
-                            listView16.LargeImageList = ImagelistSearch;
+                            listViewSearch.LargeImageList = ImagelistSearch;
 
                             // Save filename information.
-                            listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                            listViewSearch.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                             countSearch++; // Add one to index count.
                         }
                     }
@@ -642,8 +679,8 @@ namespace CoreKeeperInventoryEditor
             }
 
             //set the amall and large ImageList properties of listview
-            listView16.LargeImageList = ImagelistLargeSearch;
-            listView16.View = View.LargeIcon;
+            listViewSearch.LargeImageList = ImagelistLargeSearch;
+            listViewSearch.View = View.LargeIcon;
         }
 
         // Search for item via enter support.
@@ -652,16 +689,16 @@ namespace CoreKeeperInventoryEditor
             if (e.KeyCode == Keys.Enter)
             {
                 // Clear previous results.
-                listView16.Clear();
-                listView16.Items.Clear();
-                listView16.Refresh();
+                listViewSearch.Clear();
+                listViewSearch.Items.Clear();
+                listViewSearch.Refresh();
 
                 // Clear previous image data.
                 ImagelistSearch.Images.Clear();
                 ImagelistLargeSearch.Images.Clear();
 
                 // Tab over to search.
-                tabControl1.SelectedTab = tabPage16;
+                Main_TabControl.SelectedTab = Search;
 
                 // Set Image Size
                 ImagelistLargeSearch.ImageSize = new Size(50, 60);
@@ -690,16 +727,16 @@ namespace CoreKeeperInventoryEditor
                             if (filenameData[0] == "desktop.ini") continue;
 
                             // Get all matches.
-                            if (filenameData[0].ToLower().Contains(textBox1.Text.ToLower()))
+                            if (filenameData[0].ToLower().Contains(Search_TextBox.Text.ToLower()))
                             {
                                 //Add images to Imagelist
                                 ImagelistSearch.Images.Add(ImageFast.FromFile(file));
                                 ImagelistLargeSearch.Images.Add(ImageFast.FromFile(file));
 
-                                listView16.LargeImageList = ImagelistSearch;
+                                listViewSearch.LargeImageList = ImagelistSearch;
 
                                 // Save filename information.
-                                listView16.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
+                                listViewSearch.Items.Add(new ListViewItem { ImageIndex = countSearch, Text = filenameData[0], Tag = filenameData[1] + "," + filenameData[2].Split('.')[0] }); // Using object initializer to add the text
                                 countSearch++; // Add one to index count.
                             }
                         }
@@ -707,8 +744,8 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 //set the amall and large ImageList properties of listview
-                listView16.LargeImageList = ImagelistLargeSearch;
-                listView16.View = View.LargeIcon;
+                listViewSearch.LargeImageList = ImagelistLargeSearch;
+                listViewSearch.View = View.LargeIcon;
             }
         }
 
@@ -745,9 +782,9 @@ namespace CoreKeeperInventoryEditor
         // Get Value From Clicked Item
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView1.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab1_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView1.Items[listView1.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab1_ListView.Items[Tab1_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -764,16 +801,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView2.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab2_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView2.Items[listView2.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab2_ListView.Items[Tab2_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -790,16 +827,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView3.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab3_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView3.Items[listView3.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab3_ListView.Items[Tab3_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -816,16 +853,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView4.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab4_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView4.Items[listView4.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab4_ListView.Items[Tab4_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -842,16 +879,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView5.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab5_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView5.Items[listView5.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab5_ListView.Items[Tab5_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -868,16 +905,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView6.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab6_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView6.Items[listView6.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab6_ListView.Items[Tab6_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -894,16 +931,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView7_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView7.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab7_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView7.Items[listView7.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab7_ListView.Items[Tab7_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -920,16 +957,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView8.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab8_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView8.Items[listView8.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab8_ListView.Items[Tab8_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -946,16 +983,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView9_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView9.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab9_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView9.Items[listView9.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab9_ListView.Items[Tab9_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -972,16 +1009,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView10_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView10.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab10_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView10.Items[listView10.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab10_ListView.Items[Tab10_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -998,16 +1035,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView11_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView11.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab11_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView11.Items[listView11.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab11_ListView.Items[Tab11_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -1024,16 +1061,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView12_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView12.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab12_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView12.Items[listView12.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab12_ListView.Items[Tab12_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -1050,16 +1087,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView13_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView13.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab13_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView13.Items[listView13.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab13_ListView.Items[Tab13_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -1076,16 +1113,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView14_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView14.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab14_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView14.Items[listView14.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab14_ListView.Items[Tab14_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -1102,16 +1139,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView15_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView15.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab15_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView15.Items[listView15.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab15_ListView.Items[Tab15_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -1128,16 +1165,16 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
 
         // Get Value From Clicked Item
         private void ListView16_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView16.SelectedItems.Count; i++)
+            for (int i = 0; i < Tab16_ListView.SelectedItems.Count; i++)
             {
-                string[] PostNumber = listView16.Items[listView16.SelectedIndices[i]].Tag.ToString().Split(',');
+                string[] PostNumber = Tab16_ListView.Items[Tab16_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
                 // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
@@ -1154,7 +1191,59 @@ namespace CoreKeeperInventoryEditor
             }
             else if (e.Button == MouseButtons.Right) // Right is custom.
             {
-                selectedItemAmount = (int)numericUpDown1.Value;
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            }
+        }
+
+        // Get Value From Clicked Item
+        private void ListView17_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Tab17_ListView.SelectedItems.Count; i++)
+            {
+                string[] PostNumber = Tab17_ListView.Items[Tab17_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                this.Close();
+            }
+        }
+
+        // Get the amount to add to the game.
+        private void ListView17_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) // Left is add one.
+            {
+                selectedItemAmount = 1;
+            }
+            else if (e.Button == MouseButtons.Right) // Right is custom.
+            {
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            }
+        }
+
+        // Get Value From Clicked Item
+        private void ListViewSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listViewSearch.SelectedItems.Count; i++)
+            {
+                string[] PostNumber = listViewSearch.Items[listViewSearch.SelectedIndices[i]].Tag.ToString().Split(',');
+                selectedItemType = int.Parse(PostNumber[0]);
+                selectedItemVariation = int.Parse(PostNumber[1]);
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                this.Close();
+            }
+        }
+
+        // Get the amount to add to the game.
+        private void ListViewSearch_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) // Left is add one.
+            {
+                selectedItemAmount = 1;
+            }
+            else if (e.Button == MouseButtons.Right) // Right is custom.
+            {
+                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
             }
         }
         #endregion

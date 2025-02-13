@@ -1,13 +1,13 @@
-﻿using Memory;
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Globalization;
-using System.Linq;
-using System.Numerics;
-using System.Timers;
+﻿using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Diagnostics;
+using System.Numerics;
+using System.Drawing;
+using System.Timers;
+using System.Linq;
+using Memory;
+using System;
 
 namespace CoreKeepersWorkshop
 {
@@ -20,7 +20,7 @@ namespace CoreKeepersWorkshop
             InitializeComponent();
 
             // Set double buffering.
-            panel1.GetType().GetMethod("SetStyle", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(panel1, new object[] { System.Windows.Forms.ControlStyles.UserPaint | System.Windows.Forms.ControlStyles.AllPaintingInWmPaint | System.Windows.Forms.ControlStyles.DoubleBuffer, true });
+            Main_Panel.GetType().GetMethod("SetStyle", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(Main_Panel, new object[] { System.Windows.Forms.ControlStyles.UserPaint | System.Windows.Forms.ControlStyles.AllPaintingInWmPaint | System.Windows.Forms.ControlStyles.DoubleBuffer, true });
 
             // Define form hook.
             callarForm = parentForm;
@@ -79,14 +79,14 @@ namespace CoreKeepersWorkshop
             #region Set Form Controls
 
             // Set controls based on saved settings.
-            checkBox2.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs;
-            checkBox3.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
+            ShowEnemySpawnChunks_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs;
+            Debug_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
 
-            numericUpDown1.Visible = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
-            numericUpDown1.Value = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale;
+            DisplayArea_NumericUpDown.Visible = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
+            DisplayArea_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale;
 
             // ActiveForm.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity;
-            trackBar2.Value = (int)(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale / 0.2);
+            Scale_TrackBar.Value = (int)(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale / 0.2);
             mapScale = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale;
 
             this.Size = new Size((int)Math.Round(64 * mapScale) + 80, (int)Math.Round(64 * mapScale) + 160); // Form size.
@@ -110,16 +110,18 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(checkBox1, "Hides the main form making usability much better.");
-            toolTip.SetToolTip(checkBox2, "Shows the chunks the game uses to spawn enemies.");
-            toolTip.SetToolTip(checkBox3, "Hide or show debug tools.");
-            toolTip.SetToolTip(numericUpDown1, "Adjust the display area for the grid box.");
-            toolTip.SetToolTip(numericUpDown2, "Adjust the forms x-axis size offset.");
-            toolTip.SetToolTip(numericUpDown3, "Adjust the forms y-axis size offset.");
-            toolTip.SetToolTip(trackBar1, "Adjust the transparency of the form.");
-            toolTip.SetToolTip(trackBar2, "Adjust the scale of the grid.");
+            toolTip.SetToolTip(HideMainForm_CheckBox, "Hides the main form making usability much better.");
+            toolTip.SetToolTip(ShowEnemySpawnChunks_CheckBox, "Shows the chunks the game uses to spawn enemies.");
+            toolTip.SetToolTip(Debug_CheckBox, "Hide or show debug tools.");
+            toolTip.SetToolTip(DisplayArea_NumericUpDown, "Adjust the display area for the grid box.");
+            toolTip.SetToolTip(XAxisOffset_NumericUpDown, "Adjust the forms x-axis size offset.");
+            toolTip.SetToolTip(YAxisOffset_NumericUpDown, "Adjust the forms y-axis size offset.");
+            toolTip.SetToolTip(Opacity_TrackBar, "Adjust the transparency of the form.");
+            toolTip.SetToolTip(Scale_TrackBar, "Adjust the scale of the grid.");
             #endregion
         }
+
+        #region Control Logic
 
         // Do form closing events.
         private void ChunkViewer_FormClosing(object sender, FormClosingEventArgs e)
@@ -151,10 +153,10 @@ namespace CoreKeepersWorkshop
         private void CheckBox3_CheckedChanged(object sender, EventArgs e)
         {
             // Hide or unhide controls.
-            if (checkBox3.Checked)
+            if (Debug_CheckBox.Checked)
             {
                 // Disable
-                numericUpDown1.Visible = true; // Show numericupdown.
+                DisplayArea_NumericUpDown.Visible = true; // Show numericupdown.
 
                 // Save some form settings.
                 CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug = true;
@@ -162,7 +164,7 @@ namespace CoreKeepersWorkshop
             else
             {
                 // Enable
-                numericUpDown1.Visible = false; // Hide numericupdown.
+                DisplayArea_NumericUpDown.Visible = false; // Hide numericupdown.
 
                 // Save some form settings.
                 CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug = false;
@@ -173,7 +175,7 @@ namespace CoreKeepersWorkshop
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             // Save controls based on selection.
-            if (checkBox2.Checked)
+            if (ShowEnemySpawnChunks_CheckBox.Checked)
             {
                 // Save some form settings.
                 CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs = true;
@@ -189,14 +191,14 @@ namespace CoreKeepersWorkshop
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             // Save settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale = numericUpDown1.Value;
+            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale = DisplayArea_NumericUpDown.Value;
         }
 
         // Hide main form.
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             // Check if we are to hide or unhide the mainform.
-            if (checkBox1.Checked)
+            if (HideMainForm_CheckBox.Checked)
             {
                 // Hide.
                 callarForm.Hide();
@@ -212,7 +214,7 @@ namespace CoreKeepersWorkshop
         private void TrackBar1_ValueChanged(object sender, EventArgs e)
         {
             // Get the new value.
-            double newOpacity = ((double)trackBar1.Value) / 100.0;
+            double newOpacity = ((double)Opacity_TrackBar.Value) / 100.0;
             ActiveForm.Opacity = newOpacity;
 
             // Save the opacity.
@@ -226,7 +228,7 @@ namespace CoreKeepersWorkshop
             float sliderScale = 0.2f;
 
             // Set the map scale value.
-            mapScale = sliderScale * trackBar2.Value;
+            mapScale = sliderScale * Scale_TrackBar.Value;
 
             // Save the new scale.
             CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale = mapScale;
@@ -234,15 +236,17 @@ namespace CoreKeepersWorkshop
             // Define the offsets for the form size.
             int xOffset = 80;
             int yOffset = 160;
-            if (checkBox3.Checked)
+            if (Debug_CheckBox.Checked)
             {
-                xOffset = (int)numericUpDown2.Value;
-                yOffset = (int)numericUpDown3.Value;
+                xOffset = (int)XAxisOffset_NumericUpDown.Value;
+                yOffset = (int)YAxisOffset_NumericUpDown.Value;
             }
 
             // Set the form size.
             this.Size = new Size((int)Math.Round(64 * mapScale) + xOffset, (int)Math.Round(64 * mapScale) + yOffset);
         }
+        #endregion
+
         #endregion
 
         #region Do Painting
@@ -261,8 +265,9 @@ namespace CoreKeepersWorkshop
             {
                 // Get the addresses.
                 // Updated offsets 04Oct23.
-                string positionXAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("56", NumberStyles.Integer)).ToString("X");
-                string positionYAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("64", NumberStyles.Integer)).ToString("X");
+                // Updated offsets 07Feb25.
+                string positionXAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("0", NumberStyles.Integer)).ToString("X");
+                string positionYAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
 
                 float playerX = MemLib.ReadFloat(positionXAddress);
                 float playerY = MemLib.ReadFloat(positionYAddress);
@@ -283,7 +288,7 @@ namespace CoreKeepersWorkshop
                 playersPosition = new Vector2((float)(playerX * mapScale), (float)(playerY * mapScale));
 
                 // Refresh the pannel to draw.
-                panel1.Refresh();
+                Main_Panel.Refresh();
             }
             else
             {
@@ -333,10 +338,10 @@ namespace CoreKeepersWorkshop
             }
 
             // Draw coordinates.
-            e.Graphics.DrawString((checkBox3.Checked ? "A" : "") + "(" + (IsNegative(playersPosition.X) ? corner4.X : corner1.X) + ", " + (IsNegative(playersPosition.Y) ? corner2.Y : corner1.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, (int)Math.Round(64 * mapScale) + 40));                              // A: 0,0
-            e.Graphics.DrawString((checkBox3.Checked ? "B" : "") + "(" + (IsNegative(playersPosition.X) ? corner3.X : corner2.X) + ", " + (IsNegative(playersPosition.Y) ? corner1.Y : corner2.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, 16));                                                               // B: 0,63
-            e.Graphics.DrawString((checkBox3.Checked ? "C" : "") + "(" + (IsNegative(playersPosition.X) ? corner2.X : corner3.X) + ", " + (IsNegative(playersPosition.Y) ? corner4.Y : corner3.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, 16));                                  // C: 63,63
-            e.Graphics.DrawString((checkBox3.Checked ? "D" : "") + "(" + (IsNegative(playersPosition.X) ? corner1.X : corner4.X) + ", " + (IsNegative(playersPosition.Y) ? corner3.Y : corner4.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, (int)Math.Round(64 * mapScale) + 40)); // D: 63,0
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "A" : "") + "(" + (IsNegative(playersPosition.X) ? corner4.X : corner1.X) + ", " + (IsNegative(playersPosition.Y) ? corner2.Y : corner1.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, (int)Math.Round(64 * mapScale) + 40));                              // A: 0,0
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "B" : "") + "(" + (IsNegative(playersPosition.X) ? corner3.X : corner2.X) + ", " + (IsNegative(playersPosition.Y) ? corner1.Y : corner2.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, 16));                                                               // B: 0,63
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "C" : "") + "(" + (IsNegative(playersPosition.X) ? corner2.X : corner3.X) + ", " + (IsNegative(playersPosition.Y) ? corner4.Y : corner3.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, 16));                                  // C: 63,63
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "D" : "") + "(" + (IsNegative(playersPosition.X) ? corner1.X : corner4.X) + ", " + (IsNegative(playersPosition.Y) ? corner3.Y : corner4.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, (int)Math.Round(64 * mapScale) + 40)); // D: 63,0
             e.Graphics.DrawString("CHUNK: [" + (IsNegative(playersPosition.X) ? (currentChunk.X / 64) - 1 : (currentChunk.X / 64)) + ", " + (IsNegative(playersPosition.Y) ? (currentChunk.Y / 64) - 1 : (currentChunk.Y / 64)) + "]", new Font("Arial", 10, FontStyle.Italic), Brushes.Lime, new Point((((int)Math.Round(64 * mapScale) + 32) / 3) + 10, 16)); // Area
 
             // Begin graphics container
@@ -346,7 +351,7 @@ namespace CoreKeepersWorkshop
             e.Graphics.ScaleTransform(1.0F, -1.0F);
 
             // Translate the drawing area accordingly
-            var translateScale = (checkBox3.Checked) ? numericUpDown1.Value : (int)Math.Round(64 * mapScale) + 108;
+            var translateScale = (Debug_CheckBox.Checked) ? DisplayArea_NumericUpDown.Value : (int)Math.Round(64 * mapScale) + 108;
             e.Graphics.TranslateTransform(0.0F, -(float)translateScale);
 
             //Apply a smoothing mode to smooth out the line.
@@ -356,7 +361,7 @@ namespace CoreKeepersWorkshop
             e.Graphics.DrawRectangle(new Pen(Color.Lime, 3f), 32, 72, (int)Math.Round(64 * mapScale), (int)Math.Round(64 * mapScale));
 
             // Draw mob grid.
-            if (checkBox2.Checked)
+            if (ShowEnemySpawnChunks_CheckBox.Checked)
             {
                 int numOfCells = 4;
                 int cellSize = 16;
