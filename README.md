@@ -21,7 +21,7 @@
  - [x] Basic multiplayer support.
  - [x] Automatic map renderer.
  - [x] Player skill editor.
- - [x] Buff editor.
+ - [x] Player Buff editor.
  - [x] Player mods.
    - [x] Godmode
    - [x] Player Speed
@@ -50,11 +50,12 @@ After launching, you will need to put some torches in both your first and last i
 ![start2](https://user-images.githubusercontent.com/33048298/190875320-ac4f5496-2b0f-480c-b7f4-0f7179d2d423.png)
 
 The features for the application is as follows:
-![InventoryTab](https://user-images.githubusercontent.com/33048298/226137050-78fca5fa-9a07-4189-aaa2-d7977cbe5d63.png)
+![InventoryTab](https://github.com/user-attachments/assets/a656a12b-481f-489e-b859-28203bd1e27d)
 ![EditorAbout](https://user-images.githubusercontent.com/33048298/229268293-c1596b55-02c2-48ef-9f3c-fae54568e4be.PNG)
-![PlayerTab](https://github.com/RussDev7/CoreKeepersWorkshop/assets/33048298/96c03ab2-9661-4c40-b239-f03ccc52c668)
-![WorldTab](https://user-images.githubusercontent.com/33048298/226137088-bf037f45-4536-49e9-b8ea-8cf7a837c76e.png)
-![ChatTab](https://user-images.githubusercontent.com/33048298/226137097-9470e16b-ede3-409b-bd89-b159cd3e1c55.png)
+![PlayerTab](https://github.com/user-attachments/assets/771aad0e-79cc-426d-94f5-09c102e635b6)
+![WorldTab](https://github.com/user-attachments/assets/9a83e7bf-e259-4885-80a6-12d619e943ad)
+![ChatTab](https://github.com/user-attachments/assets/4c6c5e64-8963-4a95-b725-c4e7997a61ae)
+![SkillEditor](https://github.com/user-attachments/assets/002092b5-c449-4348-bcfc-48d9e98041d8)
 
 ## Explanation On Item Variants
 Variants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items regardless of variant all have a base ID. There is not a unique ID assosiated with each item variant, only the base ID. Refer to the formula below to understand how these are built.
@@ -98,6 +99,8 @@ Here is the list of all the available categories:
  - Weapons
  - Consumables
  - Seasonal
+ - Unobtainable
+ - Unused
 
 ## How To Add Custom Skins
 Adding background UI skins is now supported. You can add custom skins to the `\assets\backgrounds\{folder name}` directory by any name. These images must be 695x420. It's very important you keep the inventory boxes where they are, these do not move with the skins. You can cycle through the skins using the "Change Skin" tab-button at the top. These will save when you close and appear when re-opened.
