@@ -1,9 +1,38 @@
-Changes Since v1.3.6.1
+Changes Since v1.3.6.1 (1.0+ Release!)
 ===========================================================
 - Fixed the teleport player address. Game moved X by -0.05.
+- Fixed the force recall player mod.
+- Fixed the noclip player mod.
+- Fixed the no hunger player mod.
+- Fixed the passive ai player mod.
+- Fixed the chunk visualization mod.
+- Fixed the auto fishing mod.
+- Fixed all tab indexes for multiple forms.
+- Fixed the chat commands clear ground items tools mod.
+- Fixed clicking links in about tab not doing anything.
+- Updated and reworked the chat commands tab.
+- Updated the map reveal addresses.
 - Updated the auto fishing addresses.
 - Updated the dev rendering addresses.
 - Updated the place anywhere addresses.
+- Updated player mods addresses.
+- Updated skill editor with new skills.
+- Updated the food cookbook entrees.
+- Updated the buff editor entrees.
+- Updated the performance of the teleport player mod.
+- Updated teleport mods brute force to override overflow.
+- Updated all controls accross all forms with new names.
+
++ Added 600+ various missing assets.
++ Added infinite mana to the player mods.
++ Completely rehauled the skill editor.
++ Removed the obsolete anti collision player mod.
++ Added four new modes to the world properties editor.
++ Added an ingame overlay option to chat commands.
++ Added change world godmode to chat commands.
++ Added change world noclip to chat commands.
++ Added change world teleport to chat commands.
++ Added unobtainable & unused tabs to the inventory editor.
 
 Changes Since v1.3.6.0
 ===========================================================
