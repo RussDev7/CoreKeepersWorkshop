@@ -9,7 +9,7 @@
       <Value Profile="(Default)">110</Value>
     </Setting>
     <Setting Name="CurrentItemTab" Type="System.String" Scope="User">
-      <Value Profile="(Default)">TabPage1</Value>
+      <Value Profile="(Default)">Tab1_TabPage</Value>
     </Setting>
     <Setting Name="ItemVariation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

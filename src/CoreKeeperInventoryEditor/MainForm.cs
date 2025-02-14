@@ -10756,7 +10756,7 @@ namespace CoreKeeperInventoryEditor
                 if (e.Button == MouseButtons.Left) // Load inventory editor.
                 {
                     // Get the picturebox selected number.
-                    int slotNumber = int.Parse(pic.Name.Replace("pictureBox", ""));
+                    int slotNumber = int.Parse(pic.Name.Replace("Slot", "").Replace("_PictureBox", ""));
 
                     // Spawn item picker window.
                     InventoryEditor frm2 = new InventoryEditor();
@@ -10783,7 +10783,7 @@ namespace CoreKeeperInventoryEditor
                 else if (e.Button == MouseButtons.Middle) // Get item stats.
                 {
                     // Get the picturebox selected number.
-                    int slotNumber = int.Parse(pic.Name.Replace("pictureBox", ""));
+                    int slotNumber = int.Parse(pic.Name.Replace("Slot", "").Replace("_PictureBox", ""));
 
                     // Get item stats.
                     AddItemToInv(slotNumber, GetItemInfo: true);
@@ -10810,7 +10810,7 @@ namespace CoreKeeperInventoryEditor
                     }
 
                     // Get the picturebox selected number.
-                    int slotNumber = int.Parse(pic.Name.Replace("pictureBox", ""));
+                    int slotNumber = int.Parse(pic.Name.Replace("Slot", "").Replace("_PictureBox", ""));
 
                     // Get item slot values.
                     int[] itemInfo = GetSlotInfo(slotNumber);

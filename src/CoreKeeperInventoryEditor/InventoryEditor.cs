@@ -95,7 +95,7 @@ namespace CoreKeeperInventoryEditor
                 if (Main_TabControl.SelectedTab == Search)
                 {
                     // Set value to tools.
-                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "tabPage1";
+                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "Tab1_TabPage";
                 }
                 else
                 {

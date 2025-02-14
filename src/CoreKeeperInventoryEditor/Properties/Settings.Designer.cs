@@ -49,7 +49,7 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TabPage1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tab1_TabPage")]
         public string CurrentItemTab {
             get {
                 return ((string)(this["CurrentItemTab"]));
