@@ -467,7 +467,7 @@ namespace CoreKeeperInventoryEditor
                 // Save some form settings.
                 Settings.Default.ItemAmount = 50;
                 Settings.Default.ItemID = 110;
-                Settings.Default.CurrentItemTab = "TabPage1";
+                Settings.Default.CurrentItemTab = "Tab1_TabPage";
                 Settings.Default.ItemVariation = 0;
 
                 // Save UI form settings.
