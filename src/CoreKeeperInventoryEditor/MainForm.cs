@@ -158,7 +158,7 @@ namespace CoreKeeperInventoryEditor
                                     "1) Open your antivirus software.\n" +
                                     "2) Go to the 'Settings' or 'Exclusions' section.\n" +
                                     "3) Add an exclusion for 'Memory.dll' located in: " + dllPath + ".\n\n" +
-                                    "Once the exception is added, and memory.dll has been restored, restart the application.\n\n" +
+                                    "Once the exception is added, and Memory.dll has been restored, restart the application.\n\n" +
                                     "Exiting the application now.",
                                     errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
