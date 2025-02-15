@@ -1,6 +1,6 @@
 Changes Since v1.3.6.2
 ===========================================================
-- 
+- Added missing memory.dll check and upgraded packages.
 
 Changes Since v1.3.6.1 (1.0+ Release!)
 ===========================================================
