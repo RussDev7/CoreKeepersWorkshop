@@ -55,7 +55,7 @@ The features for the application is as follows:
 ![PlayerTab](https://github.com/user-attachments/assets/771aad0e-79cc-426d-94f5-09c102e635b6)
 ![WorldTab](https://github.com/user-attachments/assets/9a83e7bf-e259-4885-80a6-12d619e943ad)
 ![ChatTab](https://github.com/user-attachments/assets/4c6c5e64-8963-4a95-b725-c4e7997a61ae)
-![SkillEditor](https://github.com/user-attachments/assets/002092b5-c449-4348-bcfc-48d9e98041d8)
+![SkillEditor](https://github.com/user-attachments/assets/51d94246-1674-4697-bb6f-cf727de9f33c)
 
 ## Explanation On Item Variants
 Variants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items regardless of variant all have a base ID. There is not a unique ID assosiated with each item variant, only the base ID. Refer to the formula below to understand how these are built.
