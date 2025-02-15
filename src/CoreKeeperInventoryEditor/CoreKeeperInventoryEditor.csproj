@@ -75,7 +75,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>images\logo.ico</ApplicationIcon>
+    <ApplicationIcon>Images\logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -207,35 +207,35 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\UIBackground.png" />
+    <None Include="Images\UIBackground.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\logo.ico" />
+    <None Include="Images\logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\UnknownItem.png" />
+    <None Include="Images\UnknownItem.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\UIBackgroundSingle.png" />
+    <None Include="Images\UIBackgroundSingle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\UICursor.png" />
+    <None Include="Images\UICursor.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\TorchPlaceholder.png" />
-    <None Include="images\skills\Skill1.png" />
-    <None Include="images\skills\Skill2.png" />
-    <None Include="images\skills\Skill3.png" />
-    <None Include="images\skills\Skill4.png" />
-    <None Include="images\skills\Skill5.png" />
-    <None Include="images\skills\Skill6.png" />
-    <None Include="images\skills\Skill7.png" />
-    <None Include="images\skills\Skill8.png" />
-    <None Include="images\skills\Skill9.png" />
-    <None Include="images\skills\Skill10.png" />
-    <None Include="images\skills\Skill11.png" />
-    <None Include="images\MissingTexture.png" />
-    <Content Include="images\TeleportAddressGuide.gif" />
+    <None Include="Images\TorchPlaceholder.png" />
+    <None Include="Images\skills\Skill1.png" />
+    <None Include="Images\skills\Skill2.png" />
+    <None Include="Images\skills\Skill3.png" />
+    <None Include="Images\skills\Skill4.png" />
+    <None Include="Images\skills\Skill5.png" />
+    <None Include="Images\skills\Skill6.png" />
+    <None Include="Images\skills\Skill7.png" />
+    <None Include="Images\skills\Skill8.png" />
+    <None Include="Images\skills\Skill9.png" />
+    <None Include="Images\skills\Skill10.png" />
+    <None Include="Images\skills\Skill11.png" />
+    <None Include="Images\MissingTexture.png" />
+    <Content Include="Images\TeleportAddressGuide.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
