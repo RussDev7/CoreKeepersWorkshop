@@ -36,7 +36,7 @@ namespace CoreKeeperInventoryEditor
         #region Variables
 
         // Setup some variables.
-        public Mem MemLib = new Mem();
+        public Mem MemLib = null;                                     // Do not define memory.dll yet.
         public IEnumerable<long> AoBScanResultsInventory;
         public IEnumerable<long> AoBScanResultsPlayerName;
         public IEnumerable<long> AoBScanResultsChat;
@@ -141,6 +141,31 @@ namespace CoreKeeperInventoryEditor
                     // Close the application.
                     this.Close();
                 }
+                #endregion
+
+                #region Does Memory.dll Exist?
+
+                // Check if the users AV detected memory.dll as a false positive.
+                string startupPath = AppDomain.CurrentDomain.BaseDirectory;
+                string dllPath = Path.Combine(startupPath, "Memory.dll");
+
+                if (!File.Exists(dllPath))
+                {
+                    // If the DLL doesn't exist, show an error and close the app.
+                    MessageBox.Show("The required Memory.dll is missing from the application directory.\n\n" +
+                                    "This may have occurred because your antivirus software mistakenly flagged it as a false positive.\n\n" +
+                                    "To resolve this, please follow these steps to add an exception in your antivirus:\n\n" +
+                                    "1) Open your antivirus software.\n" +
+                                    "2) Go to the 'Settings' or 'Exclusions' section.\n" +
+                                    "3) Add an exclusion for 'Memory.dll' located in: " + dllPath + ".\n\n" +
+                                    "Once the exception is added, and memory.dll has been restored, restart the application.\n\n" +
+                                    "Exiting the application now.",
+                                    errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+
+                // Checks passed, initiate memory.dll.
+                InitiateMemoryDLL();
                 #endregion
 
                 #region Set Custom Cusror
@@ -376,6 +401,31 @@ namespace CoreKeeperInventoryEditor
             {
             }
         }
+
+        #region Memory Dll Loader
+
+        // Had to make this it's own void because winforms tries to initiate it reguardless of checks.
+        public void InitiateMemoryDLL()
+        {
+            try
+            {
+                // Try creating the Mem object only after the DLL is confirmed to exist.
+                MemLib = new Mem();
+            }
+            catch (FileNotFoundException ex)
+            {
+                // If the DLL can't be found despite the check, show an error and close.
+                MessageBox.Show("Memory.dll could not be loaded: " + ex.Message, errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Catch all other exceptions and close.
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+        #endregion
 
         #region Control Logic
 
