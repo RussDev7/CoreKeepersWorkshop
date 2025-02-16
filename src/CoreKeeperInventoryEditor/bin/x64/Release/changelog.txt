@@ -1,6 +1,9 @@
 Changes Since v1.3.6.2
 ===========================================================
 - Added missing memory.dll check and upgraded packages.
+- Fixed the buff editor.
+
++ Significantly decreased all scan times.
 
 Changes Since v1.3.6.1 (1.0+ Release!)
 ===========================================================
