@@ -12169,7 +12169,8 @@ namespace CoreKeeperInventoryEditor
 
             // Find the memory addresses.
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            AoBScanResultsPlayerBuffs = await MemLib.AoBScan("01 00 00 00 00 00 70 42 04 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00", true, true);
+            // Depreciated Address 15Feb25: 01 00 00 00 00 00 70 42 04 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00
+            AoBScanResultsPlayerBuffs = await MemLib.AoBScan("01 00 00 00 00 00 70 42 04 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00", true, true);
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsPlayerBuffs.Count() < 1)
@@ -12189,7 +12190,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get json file from resources.
-            string buffOffset = "00";
+            string buffIDValue = "1";
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.BuffIDs.json"))
             using (StreamReader reader = new StreamReader(stream))
             {
@@ -12206,8 +12207,8 @@ namespace CoreKeeperInventoryEditor
                     // Add the values to the combobox if it's not empty.
                     if (buffName == BuffType_ComboBox.Text)
                     {
-                        // Update the buffoffset.
-                        buffOffset = (string)file.offset;
+                        // Update the buffidvalue.
+                        buffIDValue = int.Parse((string)file.id).ToString();
 
                         // End the loop.
                         break;
@@ -12220,12 +12221,12 @@ namespace CoreKeeperInventoryEditor
             {
                 // Get byte offsets.
                 string buffID = res.ToString("X").ToString();
+                string buffTime = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                 string buffPower = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-                string buffTime = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
 
-                MemLib.WriteMemory(buffID, "byte", "0x" + buffOffset); // Write buff id.
-                MemLib.WriteMemory(buffPower, "int", Power_NumericUpDown.Value.ToString()); // Write buff power.
+                MemLib.WriteMemory(buffID, "int", buffIDValue);                              // Write buff id.
                 MemLib.WriteMemory(buffTime, "float", TimeS_NumericUpDown.Value.ToString()); // Write buff time.
+                MemLib.WriteMemory(buffPower, "int", Power_NumericUpDown.Value.ToString());  // Write buff power.
             }
 
             // Process completed, run finishing tasks.
