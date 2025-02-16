@@ -1,1234 +1,1234 @@
 [
    {
       "name":"None",
-      "id":"000",
+      "id":"000"
    },
    {
       "name":"Blue Glow",
-      "id":"001",
+      "id":"001"
    },
    {
       "name":"Slowed By Slime",
-      "id":"002",
+      "id":"002"
    },
    {
       "name":"Health Addition",
-      "id":"003",
+      "id":"003"
    },
    {
       "name":"Movement Speed Increase",
-      "id":"004",
+      "id":"004"
    },
    {
       "name":"Heal Over Time",
-      "id":"005",
+      "id":"005"
    },
    {
       "name":"Increased Max Health",
-      "id":"006",
+      "id":"006"
    },
    {
       "name":"Starving Movement Speed Decrease",
-      "id":"007",
+      "id":"007"
    },
    {
       "name":"Hunger Addition",
-      "id":"008",
+      "id":"008"
    },
    {
       "name":"Mining Increase",
-      "id":"009",
+      "id":"009"
    },
    {
       "name":"Physical Melee Damage Increase",
-      "id":"010",
+      "id":"010"
    },
    {
       "name":"Armor Increase",
-      "id":"011",
+      "id":"011"
    },
    {
       "name":"Crit Chance",
-      "id":"012",
+      "id":"012"
    },
    {
       "name":"Chance To Apply Poisoned",
-      "id":"013",
+      "id":"013"
    },
    {
       "name":"Poisoned",
-      "id":"014",
+      "id":"014"
    },
    {
       "name":"Dodge Chance",
-      "id":"015",
+      "id":"015"
    },
    {
       "name":"Increased Max Health Permanent",
-      "id":"016",
+      "id":"016"
    },
    {
       "name":"Acid Damage",
-      "id":"017",
+      "id":"017"
    },
    {
       "name":"Apply Slowed By Slime",
-      "id":"018",
+      "id":"018"
    },
    {
       "name":"Life On Hit",
-      "id":"019",
+      "id":"019"
    },
    {
       "name":"Immune To Slime Slow",
-      "id":"020",
+      "id":"020"
    },
    {
       "name":"Thorns Damage",
-      "id":"021",
+      "id":"021"
    },
    {
       "name":"Physical Range Damage Increase",
-      "id":"022",
+      "id":"022"
    },
    {
       "name":"Extra Harvest Chance",
-      "id":"023",
+      "id":"023"
    },
    {
       "name":"Suffocating",
-      "id":"024",
+      "id":"024"
    },
    {
       "name":"Chance On Hit To Knockback",
-      "id":"025",
+      "id":"025"
    },
    {
       "name":"Apply Snare",
-      "id":"026",
+      "id":"026"
    },
    {
       "name":"Snared",
-      "id":"027",
+      "id":"027"
    },
    {
       "name":"Larva Disguise",
-      "id":"028",
+      "id":"028"
    },
    {
       "name":"Burning",
-      "id":"029",
+      "id":"029"
    },
    {
       "name":"Apply Burning",
-      "id":"030",
+      "id":"030"
    },
    {
       "name":"Chance On Crit To Spawn Thunder Beam",
-      "id":"031",
+      "id":"031"
    },
    {
       "name":"Well Fed Movement Speed Increase",
-      "id":"032",
+      "id":"032"
    },
    {
       "name":"Reduced Damage From Bosses",
-      "id":"033",
+      "id":"033"
    },
    {
       "name":"Immune To Poison",
-      "id":"034",
+      "id":"034"
    },
    {
       "name":"Infected With Mold",
-      "id":"035",
+      "id":"035"
    },
    {
       "name":"Immune To Mold",
-      "id":"036",
+      "id":"036"
    },
    {
       "name":"Immune To Acid",
-      "id":"037",
+      "id":"037"
    },
    {
       "name":"Health Reduction",
-      "id":"038",
+      "id":"038"
    },
    {
       "name":"Movement Speed Decrease",
-      "id":"039",
+      "id":"039"
    },
    {
       "name":"Starving Health Decrease",
-      "id":"040",
+      "id":"040"
    },
    {
       "name":"Well Fed Health Increase",
-      "id":"041",
+      "id":"041"
    },
    {
       "name":"Starving Damage Decrease",
-      "id":"042",
+      "id":"042"
    },
    {
       "name":"Well Fed Damage Increase",
-      "id":"043",
+      "id":"043"
    },
    {
       "name":"Health Addition Percentage",
-      "id":"044",
+      "id":"044"
    },
    {
       "name":"Orange Glow",
-      "id":"045",
+      "id":"045"
    },
    {
       "name":"Increased Fishing",
-      "id":"046",
+      "id":"046"
    },
    {
       "name":"Love",
-      "id":"047",
+      "id":"047"
    },
    {
       "name":"Armor Percentage Increase",
-      "id":"048",
+      "id":"048"
    },
    {
       "name":"Mining Percentage Increase",
-      "id":"049",
+      "id":"049"
    },
    {
       "name":"Mining Speed Increase",
-      "id":"050",
+      "id":"050"
    },
    {
       "name":"Melee Attack Speed Increase",
-      "id":"051",
+      "id":"051"
    },
    {
       "name":"Range Attack Speed Increase",
-      "id":"052",
+      "id":"052"
    },
    {
       "name":"Visible Ore Distance Increase",
-      "id":"053",
+      "id":"053"
    },
    {
       "name":"Percentage Of Mining As Melee",
-      "id":"054",
+      "id":"054"
    },
    {
       "name":"Percentage Of Fishing As Range",
-      "id":"055",
+      "id":"055"
    },
    {
       "name":"Chance For Additional Ore",
-      "id":"056",
+      "id":"056"
    },
    {
       "name":"Increased Explosives Damage",
-      "id":"057",
+      "id":"057"
    },
    {
       "name":"Movement Speed Boost After Mining",
-      "id":"058",
+      "id":"058"
    },
    {
       "name":"Short Movement Speed Boost",
-      "id":"059",
+      "id":"059"
    },
    {
       "name":"Chance For Random Loot From Wall",
-      "id":"060",
+      "id":"060"
    },
    {
       "name":"Slippery Movement",
-      "id":"061",
+      "id":"061"
    },
    {
       "name":"Immune To Slippery Movement",
-      "id":"062",
+      "id":"062"
    },
    {
       "name":"Chance On Hit To Apply Slippery Movement",
-      "id":"063",
+      "id":"063"
    },
    {
       "name":"Slippery Movement From Ground",
-      "id":"064",
+      "id":"064"
    },
    {
       "name":"Kills Increase Crit Chance",
-      "id":"065",
+      "id":"065"
    },
    {
       "name":"Stacked Crit Chance",
-      "id":"066",
+      "id":"066"
    },
    {
       "name":"Drain Less Hunger",
-      "id":"067",
+      "id":"067"
    },
    {
       "name":"Armor Increase From Movement Speed",
-      "id":"068",
+      "id":"068"
    },
    {
       "name":"Snare And Stun Duration Reduction",
-      "id":"069",
+      "id":"069"
    },
    {
       "name":"Gain Dodge Increase While Standing Still",
-      "id":"070",
+      "id":"070"
    },
    {
       "name":"Dodge Increase From Standing Still",
-      "id":"071",
+      "id":"071"
    },
    {
       "name":"Gain Movement Speed From Running Consistently",
-      "id":"072",
+      "id":"072"
    },
    {
       "name":"Movement Speed Increase From Running Consistently",
-      "id":"073",
+      "id":"073"
    },
    {
       "name":"Movement Speed Boost After Dodge",
-      "id":"074",
+      "id":"074"
    },
    {
       "name":"Gain Damage Increase From Running",
-      "id":"075",
+      "id":"075"
    },
    {
       "name":"Damage Increase From Running",
-      "id":"076",
+      "id":"076"
    },
    {
       "name":"Aura Apply Movement Speed Decrease",
-      "id":"077",
+      "id":"077"
    },
    {
       "name":"Aura Movement Speed Decrease",
-      "id":"078",
+      "id":"078"
    },
    {
       "name":"Chance To Gain Extra Cooked Food",
-      "id":"079",
+      "id":"079"
    },
    {
       "name":"Chance For Extra Cooked Food To Be Rare",
-      "id":"080",
+      "id":"080"
    },
    {
       "name":"Immune To Damage After Respawn",
-      "id":"081",
+      "id":"081"
    },
    {
       "name":"Gain Melee Damage From Hitting",
-      "id":"082",
+      "id":"082"
    },
    {
       "name":"Melee Damage Increase From Hitting",
-      "id":"083",
+      "id":"083"
    },
    {
       "name":"Gain Range Damage From Shooting",
-      "id":"084",
+      "id":"084"
    },
    {
       "name":"Range Damage Increase From Shooting",
-      "id":"085",
+      "id":"085"
    },
    {
       "name":"Chance On Hit To Gain Melee Attack Speed",
-      "id":"086",
+      "id":"086"
    },
    {
       "name":"Melee Attack Speed From Chance On Hit",
-      "id":"087",
+      "id":"087"
    },
    {
       "name":"Chance On Shot To Gain Critical Hit Chance",
-      "id":"088",
+      "id":"088"
    },
    {
       "name":"Critical Hit Chance From Shot",
-      "id":"089",
+      "id":"089"
    },
    {
       "name":"Chance On Hit To Increase Range Damage",
-      "id":"090",
+      "id":"090"
    },
    {
       "name":"Increased Range Damage From Melee Hit",
-      "id":"091",
+      "id":"091"
    },
    {
       "name":"Chance On Shot To Increase Melee Damage",
-      "id":"092",
+      "id":"092"
    },
    {
       "name":"Increased Melee Damage From Shot",
-      "id":"093",
+      "id":"093"
    },
    {
       "name":"Gain Melee Damage Increase From Hitting Same Target",
-      "id":"094",
+      "id":"094"
    },
    {
       "name":"Melee Damage Increase From Hitting Same Target",
-      "id":"095",
+      "id":"095"
    },
    {
       "name":"Increased Damage Against Bosses",
-      "id":"096",
+      "id":"096"
    },
    {
       "name":"Chance To Restore Health On Melee Hit",
-      "id":"097",
+      "id":"097"
    },
    {
       "name":"Chance On Range Shot To Apply Slowed By Slime",
-      "id":"098",
+      "id":"098"
    },
    {
       "name":"Critical Damage Percentage Increase",
-      "id":"099",
+      "id":"099"
    },
    {
       "name":"Gain Range Damage Increase From Standing Still",
-      "id":"100",
+      "id":"100"
    },
    {
       "name":"Range Damage Increase From Standing Still",
-      "id":"101",
+      "id":"101"
    },
    {
       "name":"Chance On Range Shot To Stun",
-      "id":"102",
+      "id":"102"
    },
    {
       "name":"Immune To Stun",
-      "id":"103",
+      "id":"103"
    },
    {
       "name":"Stunned",
-      "id":"104",
+      "id":"104"
    },
    {
       "name":"Increased Health Regen Effectiveness",
-      "id":"105",
+      "id":"105"
    },
    {
       "name":"Gain Health Regen While Below Half Health",
-      "id":"106",
+      "id":"106"
    },
    {
       "name":"Health Regen From Being Below Half Health",
-      "id":"107",
+      "id":"107"
    },
    {
       "name":"Cheat Death",
-      "id":"108",
+      "id":"108"
    },
    {
       "name":"Gain Damage Increase At Max Health",
-      "id":"109",
+      "id":"109"
    },
    {
       "name":"Damage Increase At Max Health",
-      "id":"110",
+      "id":"110"
    },
    {
       "name":"Gain Damage Increase At Low Health",
-      "id":"111",
+      "id":"111"
    },
    {
       "name":"Damage Increase At Low Health",
-      "id":"112",
+      "id":"112"
    },
    {
       "name":"Healing Potion Add Heal Over Time",
-      "id":"113",
+      "id":"113"
    },
    {
       "name":"Heal Over Time From Potion",
-      "id":"114",
+      "id":"114"
    },
    {
       "name":"Gain Increased Max Health From All Skill Points",
-      "id":"115",
+      "id":"115"
    },
    {
       "name":"Increased Max Health From All Skill Points",
-      "id":"116",
+      "id":"116"
    },
    {
       "name":"Tool Durability Lasts Longer",
-      "id":"117",
+      "id":"117"
    },
    {
       "name":"Equipment Durability Lasts Longer",
-      "id":"118",
+      "id":"118"
    },
    {
       "name":"Chance To Gain Extra Item From Base Building",
-      "id":"119",
+      "id":"119"
    },
    {
       "name":"Chance To Gain Extra Item From Alchemy",
-      "id":"120",
+      "id":"120"
    },
    {
       "name":"Gain Extra Industry Items",
-      "id":"121",
+      "id":"121"
    },
    {
       "name":"Chance For Polished Jewelry",
-      "id":"122",
+      "id":"122"
    },
    {
       "name":"Reduced Anvil Equipment Costs",
-      "id":"123",
+      "id":"123"
    },
    {
       "name":"Gain Armor At Low Health",
-      "id":"124",
+      "id":"124"
    },
    {
       "name":"Increased Armor From Low Health",
-      "id":"125",
+      "id":"125"
    },
    {
       "name":"Chance To Gain Rare Plant",
-      "id":"126",
+      "id":"126"
    },
    {
       "name":"Seed Drop Chance",
-      "id":"127",
+      "id":"127"
    },
    {
       "name":"Chance To Not Consume Water Can",
-      "id":"128",
+      "id":"128"
    },
    {
       "name":"Gain More Food From Plants",
-      "id":"129",
+      "id":"129"
    },
    {
       "name":"Damage Increase Against Poisoned",
-      "id":"130",
+      "id":"130"
    },
    {
       "name":"Increased Chance To Get Fish",
-      "id":"131",
+      "id":"131"
    },
    {
       "name":"Increased Rod Range",
-      "id":"132",
+      "id":"132"
    },
    {
       "name":"Fish Bites Faster",
-      "id":"133",
+      "id":"133"
    },
    {
       "name":"Gain Increased Boss Damage From Eating Fish",
-      "id":"134",
+      "id":"134"
    },
    {
       "name":"Increased Boss Damage From Eating Fish",
-      "id":"135",
+      "id":"135"
    },
    {
       "name":"Fish Starts Closer To Be Reeled In",
-      "id":"136",
+      "id":"136"
    },
    {
       "name":"Reduced Impact Of Slippery Movement",
-      "id":"137",
+      "id":"137"
    },
    {
       "name":"Longer Cooked Food Buffs",
-      "id":"138",
+      "id":"138"
    },
    {
       "name":"Well Fed Buffs Threshold Reduction",
-      "id":"139",
+      "id":"139"
    },
    {
       "name":"Stronger Well Fed Buffs",
-      "id":"140",
+      "id":"140"
    },
    {
       "name":"Gain Melee Attack Speed From Cooked Food",
-      "id":"141",
+      "id":"141"
    },
    {
       "name":"Melee Attack Speed From Cooked Food",
-      "id":"142",
+      "id":"142"
    },
    {
       "name":"Gain More Food From Cooked Food",
-      "id":"143",
+      "id":"143"
    },
    {
       "name":"Aura Apply Damage Increase",
-      "id":"144",
+      "id":"144"
    },
    {
       "name":"Aura Damage Increase",
-      "id":"145",
+      "id":"145"
    },
    {
       "name":"Aura Apply Healing Over Time",
-      "id":"146",
+      "id":"146"
    },
    {
       "name":"Aura Healing Over Time",
-      "id":"147",
+      "id":"147"
    },
    {
       "name":"Critical Damage Percentage Increase From Gardening",
-      "id":"148",
+      "id":"148"
    },
    {
       "name":"Critical Damage Percentage Increase From Range",
-      "id":"149",
+      "id":"149"
    },
    {
       "name":"All Damage Increase",
-      "id":"150",
+      "id":"150"
    },
    {
       "name":"Gain Damage Increase After Mining",
-      "id":"151",
+      "id":"151"
    },
    {
       "name":"Damage Increase After Mining",
-      "id":"152",
+      "id":"152"
    },
    {
       "name":"Gain Critical Hit Chance From Standing Still",
-      "id":"153",
+      "id":"153"
    },
    {
       "name":"Critical Hit Chance From Standing Still",
-      "id":"154",
+      "id":"154"
    },
    {
       "name":"Chance On Hit To Kill Target With Lower Health",
-      "id":"155",
+      "id":"155"
    },
    {
       "name":"Chance To Apply Poison On Block",
-      "id":"156",
+      "id":"156"
    },
    {
       "name":"Increase Crit Chance After Poison Apply",
-      "id":"157",
+      "id":"157"
    },
    {
       "name":"Crit Chance Increase From Poison Apply",
-      "id":"158",
+      "id":"158"
    },
    {
       "name":"Immune To Burning",
-      "id":"159",
+      "id":"159"
    },
    {
       "name":"Aura Apply Damage Decrease",
-      "id":"160",
+      "id":"160"
    },
    {
       "name":"Aura Damage Decrease",
-      "id":"161",
+      "id":"161"
    },
    {
       "name":"All Damage Decrease",
-      "id":"162",
+      "id":"162"
    },
    {
       "name":"Aura Apply Burning",
-      "id":"163",
+      "id":"163"
    },
    {
       "name":"Aura Burning",
-      "id":"164",
+      "id":"164"
    },
    {
       "name":"Remove Poison",
-      "id":"165",
+      "id":"165"
    },
    {
       "name":"Melee Damage Increase From Potion",
-      "id":"166",
+      "id":"166"
    },
    {
       "name":"Range Damage Increase From Potion",
-      "id":"167",
+      "id":"167"
    },
    {
       "name":"Reduced Damage From Bosses From Potion",
-      "id":"168",
+      "id":"168"
    },
    {
       "name":"Armor Increase From Potion",
-      "id":"169",
+      "id":"169"
    },
    {
       "name":"Apply Movement Speed Reduction",
-      "id":"170",
+      "id":"170"
    },
    {
       "name":"Gain Attack Speed From Missing Health",
-      "id":"171",
+      "id":"171"
    },
    {
       "name":"Attack Speed From Missing Health",
-      "id":"172",
+      "id":"172"
    },
    {
       "name":"Attack Speed",
-      "id":"173",
+      "id":"173"
    },
    {
       "name":"Digging Increase",
-      "id":"174",
+      "id":"174"
    },
    {
       "name":"Chance On Kill To Summon Ghost",
-      "id":"175",
+      "id":"175"
    },
    {
       "name":"Increased Chance To Get Fish Loot",
-      "id":"176",
+      "id":"176"
    },
    {
       "name":"Chance On Range Hit To Spawn Octopus Boss Projectile",
-      "id":"177",
+      "id":"177"
    },
    {
       "name":"Chance To Get Double Fish",
-      "id":"178",
+      "id":"178"
    },
    {
       "name":"Movement Speed Increase From Potion",
-      "id":"179",
+      "id":"179"
    },
    {
       "name":"Increased Chance For Higher Rarity Fish",
-      "id":"180",
+      "id":"180"
    },
    {
       "name":"Increased Pick Up Radius",
-      "id":"181",
+      "id":"181"
    },
    {
       "name":"Increased Boat Speed",
-      "id":"182",
+      "id":"182"
    },
    {
       "name":"Apply Slippery Movement When Hit",
-      "id":"183",
+      "id":"183"
    },
    {
       "name":"Chance To Shoot Shock Wave On Block",
-      "id":"184",
+      "id":"184"
    },
    {
       "name":"Increased Armor Percentage While Adjacent To Water",
-      "id":"185",
+      "id":"185"
    },
    {
       "name":"Increased Armor Percentage From Adjacent Water",
-      "id":"186",
+      "id":"186"
    },
    {
       "name":"Immune To Damage After Login",
-      "id":"187",
+      "id":"187"
    },
    {
       "name":"King Of Slimes",
-      "id":"188",
+      "id":"188"
    },
    {
       "name":"Red Glowing Eyes",
-      "id":"189",
+      "id":"189"
    },
    {
       "name":"Look Like Ghost",
-      "id":"190",
+      "id":"190"
    },
    {
       "name":"Attack Speed Boost After Dodge",
-      "id":"191",
+      "id":"191"
    },
    {
       "name":"Deal Aoe Fire Damage On Block",
-      "id":"192",
+      "id":"192"
    },
    {
       "name":"Chance For Ore On Mining Wall",
-      "id":"193",
+      "id":"193"
    },
    {
       "name":"Damage Increase Against Burning",
-      "id":"194",
+      "id":"194"
    },
    {
       "name":"Crit Damage Increase Against Burning",
-      "id":"195",
+      "id":"195"
    },
    {
       "name":"Thorns Damage Added To Melee And Range",
-      "id":"196",
+      "id":"196"
    },
    {
       "name":"Chance On Hit To Spawn Scarab Boss Projectile",
-      "id":"197",
+      "id":"197"
    },
    {
       "name":"Gain Attack Speed Boost After Dodge",
-      "id":"198",
+      "id":"198"
    },
    {
       "name":"Giant Mushroom Buff",
-      "id":"199",
+      "id":"199"
    },
    {
       "name":"Amber Larva Buff",
-      "id":"200",
+      "id":"200"
    },
    {
       "name":"Starlight Nautilus Buff",
-      "id":"201",
+      "id":"201"
    },
    {
       "name":"Additional Chance On Crit To Spawn Thunder Beam",
-      "id":"202",
+      "id":"202"
    },
    {
       "name":"Additional Chance On Hit To Spawn Scarab Boss Projectile",
-      "id":"203",
+      "id":"203"
    },
    {
       "name":"Additional Chance On Range Hit To Spawn Octopus Boss Projectile",
-      "id":"204",
+      "id":"204"
    },
    {
       "name":"Increased Dash Duration",
-      "id":"205",
+      "id":"205"
    },
    {
       "name":"Aura Apply Radioactive Damage Over Time",
-      "id":"206",
+      "id":"206"
    },
    {
       "name":"Aura Radioactive Damage Over Time",
-      "id":"207",
+      "id":"207"
    },
    {
       "name":"Snowing",
-      "id":"208",
+      "id":"208"
    },
    {
       "name":"Attack Speed Increase From Potion",
-      "id":"209",
+      "id":"209"
    },
    {
       "name":"Sleeping",
-      "id":"210",
+      "id":"210"
    },
    {
       "name":"Heal Over Time Percentage",
-      "id":"211",
+      "id":"211"
    },
    {
       "name":"Golden Chocolate Buff",
-      "id":"212",
+      "id":"212"
    },
    {
       "name":"Immune To Charm",
-      "id":"213",
+      "id":"213"
    },
    {
       "name":"Chance To Apply Charmed",
-      "id":"214",
+      "id":"214"
    },
    {
       "name":"Charmed",
-      "id":"215",
+      "id":"215"
    },
    {
       "name":"Increased Charm Duration",
-      "id":"216",
+      "id":"216"
    },
    {
       "name":"Pink Glow",
-      "id":"217",
+      "id":"217"
    },
    {
       "name":"Anniversary Cake Buff",
-      "id":"218",
+      "id":"218"
    },
    {
       "name":"Chance On Melee Hit To Stun",
-      "id":"219",
+      "id":"219"
    },
    {
       "name":"Increased Applied Stun Duration",
-      "id":"220",
+      "id":"220"
    },
    {
       "name":"Damage Increase Against Stunned",
-      "id":"221",
+      "id":"221"
    },
    {
       "name":"Chance To Deal Triple Damage",
-      "id":"222",
+      "id":"222"
    },
    {
       "name":"Increased Damage Based On Target Remaining Health",
-      "id":"223",
+      "id":"223"
    },
    {
       "name":"Chance To Consume Burning",
-      "id":"224",
+      "id":"224"
    },
    {
       "name":"Piercing Projectiles",
-      "id":"225",
+      "id":"225"
    },
    {
       "name":"God Mode",
-      "id":"226",
+      "id":"226"
    },
    {
       "name":"Reduced Impact Of Slowed By Slime",
-      "id":"227",
+      "id":"227"
    },
    {
       "name":"Pet Melee Damage Increase",
-      "id":"228",
+      "id":"228"
    },
    {
       "name":"Pet Melee Attack Speed Increase",
-      "id":"229",
+      "id":"229"
    },
    {
       "name":"Pet Range Damage Increase",
-      "id":"230",
+      "id":"230"
    },
    {
       "name":"Pet Range Attack Speed Increase",
-      "id":"231",
+      "id":"231"
    },
    {
       "name":"Pet Crit Damage Increase",
-      "id":"232",
+      "id":"232"
    },
    {
       "name":"Pet Crit Chance Increase",
-      "id":"233",
+      "id":"233"
    },
    {
       "name":"Pet Buffs Increase",
-      "id":"234",
+      "id":"234"
    },
    {
       "name":"Apply Pet Damage Increase",
-      "id":"235",
+      "id":"235"
    },
    {
       "name":"Apply Pet Crit Damage Increase",
-      "id":"236",
+      "id":"236"
    },
    {
       "name":"Apply Pet Crit Chance Increase",
-      "id":"237",
+      "id":"237"
    },
    {
       "name":"Apply Pet Attack Speed Increase",
-      "id":"238",
+      "id":"238"
    },
    {
       "name":"Apply Pet Buffs Increase",
-      "id":"239",
+      "id":"239"
    },
    {
       "name":"Gain Increased Max Health From Pet",
-      "id":"240",
+      "id":"240"
    },
    {
       "name":"Increased Max Health From Pet",
-      "id":"241",
+      "id":"241"
    },
    {
       "name":"Atlantian Worm Heart Buff",
-      "id":"242",
+      "id":"242"
    },
    {
       "name":"Immune To Radioactive Damage",
-      "id":"243",
+      "id":"243"
    },
    {
       "name":"Increased Damage Taken Percentage",
-      "id":"244",
+      "id":"244"
    },
    {
       "name":"Reduced Damage Taken Percentage",
-      "id":"245",
+      "id":"245"
    },
    {
       "name":"Protective Armor",
-      "id":"246",
+      "id":"246"
    },
    {
       "name":"Vulnerable",
-      "id":"247",
+      "id":"247"
    },
    {
       "name":"Aura Apply Void Damage Percentage Over Time",
-      "id":"248",
+      "id":"248"
    },
    {
       "name":"Aura Void Damage Percentage Over Time",
-      "id":"249",
+      "id":"249"
    },
    {
       "name":"Aura Apply Immune To Void Damage Over Time",
-      "id":"250",
+      "id":"250"
    },
    {
       "name":"Immune To Void Damage Over Time",
-      "id":"251",
+      "id":"251"
    },
    {
       "name":"Durability Increase After Mining Ore",
-      "id":"252",
+      "id":"252"
    },
    {
       "name":"Hunger Addition On Harvest",
-      "id":"253",
+      "id":"253"
    },
    {
       "name":"Chance To Preserve Bait",
-      "id":"254",
+      "id":"254"
    },
    {
       "name":"Increased Mana Regen Effectiveness",
-      "id":"255",
+      "id":"255"
    },
    {
       "name":"Increased Max Mana",
-      "id":"256",
+      "id":"256"
    },
    {
       "name":"Increased Minion Lifespan Percentage",
-      "id":"257",
+      "id":"257"
    },
    {
       "name":"Increased Chance To Spawn Minion On Hit",
-      "id":"258",
+      "id":"258"
    },
    {
       "name":"Increased Max Minions",
-      "id":"259",
+      "id":"259"
    },
    {
       "name":"Increased Minion Damage Percentage",
-      "id":"260",
+      "id":"260"
    },
    {
       "name":"Increased Magic Damage Percentage",
-      "id":"261",
+      "id":"261"
    },
    {
       "name":"Mana Barrier",
-      "id":"262",
+      "id":"262"
    },
    {
       "name":"Magic Barrier",
-      "id":"263",
+      "id":"263"
    },
    {
       "name":"Gain Mana Percentage On Crit",
-      "id":"264",
+      "id":"264"
    },
    {
       "name":"Gain Mana On Heal",
-      "id":"265",
+      "id":"265"
    },
    {
       "name":"Well Fed Mana Regeneration Percentage",
-      "id":"266",
+      "id":"266"
    },
    {
       "name":"Gain Mana Percentage On Damage Taken",
-      "id":"267",
+      "id":"267"
    },
    {
       "name":"Gain Magic Damage Percentage Boost After Crit",
-      "id":"268",
+      "id":"268"
    },
    {
       "name":"Reduced Mana Regen Delay Percentage",
-      "id":"269",
+      "id":"269"
    },
    {
       "name":"Reduced Magic Barrier Regen Delay Percentage",
-      "id":"270",
+      "id":"270"
    },
    {
       "name":"Percentage Of Magic Barrier As Magic Damage",
-      "id":"271",
+      "id":"271"
    },
    {
       "name":"Magic Barrier As Mana Regen",
-      "id":"272",
+      "id":"272"
    },
    {
       "name":"Gain Remaining Mana As Magic Damage Percentage",
-      "id":"273",
+      "id":"273"
    },
    {
       "name":"Magic Damage Percentage Boost After Crit",
-      "id":"274",
+      "id":"274"
    },
    {
       "name":"Gain Range Attack Speed Per Minion",
-      "id":"275",
+      "id":"275"
    },
    {
       "name":"Range Attack Speed Per Minion",
-      "id":"276",
+      "id":"276"
    },
    {
       "name":"Increased Minion Attack Speed",
-      "id":"277",
+      "id":"277"
    },
    {
       "name":"Increased Minion Count As Magic Damage Percentage",
-      "id":"278",
+      "id":"278"
    },
    {
       "name":"Increased Magic Damage To Minion Damage",
-      "id":"279",
+      "id":"279"
    },
    {
       "name":"Increased Minion Count As Magic Barrier",
-      "id":"280",
+      "id":"280"
    },
    {
       "name":"Minion Count As Magic Barrier",
-      "id":"281",
+      "id":"281"
    },
    {
       "name":"Increased Heal On Minion Damage",
-      "id":"282",
+      "id":"282"
    },
    {
       "name":"Minion Count As Magic Damage Percentage",
-      "id":"283",
+      "id":"283"
    },
    {
       "name":"Liquid Metal Buff",
-      "id":"284",
+      "id":"284"
    },
    {
       "name":"Heal On Minion Despawn",
-      "id":"285",
+      "id":"285"
    },
    {
       "name":"Increased Mana Regen",
-      "id":"286",
+      "id":"286"
    },
    {
       "name":"Increased Minion Crit Chance",
-      "id":"287",
+      "id":"287"
    },
    {
       "name":"Increase Damage As Long As Not Being Hit",
-      "id":"288",
+      "id":"288"
    },
    {
       "name":"Melee Damage Increase",
-      "id":"289",
+      "id":"289"
    },
    {
       "name":"Range Damage Increase",
-      "id":"290",
+      "id":"290"
    },
    {
       "name":"Magic Damage Increase From Potion",
-      "id":"291",
+      "id":"291"
    },
    {
       "name":"Minion Damage Increase From Potion",
-      "id":"292",
+      "id":"292"
    },
    {
       "name":"Gain Melee Damage As Long As Not Taken Damage",
-      "id":"293",
+      "id":"293"
    },
    {
       "name":"Melee Damage As Long As Not Taken Damage",
-      "id":"294",
+      "id":"294"
    },
    {
       "name":"Increased Minion Count As Armor",
-      "id":"295",
+      "id":"295"
    },
    {
       "name":"Minion Count As Armor",
-      "id":"296",
+      "id":"296"
    },
    {
       "name":"Pet Chance To Gain Mana On Attack",
-      "id":"297",
+      "id":"297"
    },
    {
       "name":"Spawn Explosion On Damage Taken",
-      "id":"298",
+      "id":"298"
    },
    {
       "name":"Chance To Add Random Condition On Hit",
-      "id":"299",
+      "id":"299"
    },
    {
       "name":"Mitochondrion Buff",
-      "id":"300",
+      "id":"300"
    },
    {
       "name":"Fruit Basket Buff",
-      "id":"301",
+      "id":"301"
    },
    {
       "name":"Slowed By Ground Slime",
-      "id":"302",
+      "id":"302"
    },
    {
       "name":"Lightning Gun Chain Lightning",
-      "id":"303",
+      "id":"303"
    },
    {
       "name":"Increased Max Health Percentage",
-      "id":"304",
+      "id":"304"
    },
    {
       "name":"Superman",
-      "id":"305",
+      "id":"305"
    },
    {
       "name":"Bilibili Doge Chance",
-      "id":"306",
+      "id":"306"
    },
    {
       "name":"M A X_ V A L U E S",
-      "id":"307",
-   },
+      "id":"307"
+   }
 ]
