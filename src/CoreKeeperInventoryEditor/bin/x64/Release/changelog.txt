@@ -2,6 +2,8 @@ Changes Since v1.3.6.2
 ===========================================================
 - Added missing memory.dll check and upgraded packages.
 - Fixed the buff editor.
+- Fixed a wrong mouse click event handler in inv editor.
+- Updated all event handlers accross all forms.
 
 + Significantly decreased all scan times.
 
