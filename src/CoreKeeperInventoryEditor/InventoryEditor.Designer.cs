@@ -133,7 +133,6 @@ namespace CoreKeeperInventoryEditor
             this.Main_TabControl.SelectedIndex = 0;
             this.Main_TabControl.Size = new System.Drawing.Size(1244, 637);
             this.Main_TabControl.TabIndex = 12;
-            this.Main_TabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView16_MouseDown);
             // 
             // Tab1_TabPage
             // 
@@ -157,8 +156,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab1_ListView.Size = new System.Drawing.Size(1230, 602);
             this.Tab1_ListView.TabIndex = 11;
             this.Tab1_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab1_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
-            this.Tab1_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDown);
+            this.Tab1_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab1_ListView_SelectedIndexChanged);
+            this.Tab1_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab1_ListView_MouseDown);
             // 
             // Tab2_TabPage
             // 
@@ -182,8 +181,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab2_ListView.Size = new System.Drawing.Size(1230, 602);
             this.Tab2_ListView.TabIndex = 1;
             this.Tab2_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab2_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView2_SelectedIndexChanged);
-            this.Tab2_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView2MouseDown);
+            this.Tab2_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab2_ListView_SelectedIndexChanged);
+            this.Tab2_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab2_ListView_MouseDown);
             // 
             // Tab3_TabPage
             // 
@@ -206,8 +205,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab3_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab3_ListView.TabIndex = 1;
             this.Tab3_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab3_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView3_SelectedIndexChanged);
-            this.Tab3_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView3_MouseDown);
+            this.Tab3_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab3_ListView_SelectedIndexChanged);
+            this.Tab3_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab3_ListView_MouseDown);
             // 
             // Tab4_TabPage
             // 
@@ -230,8 +229,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab4_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab4_ListView.TabIndex = 1;
             this.Tab4_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab4_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView4_SelectedIndexChanged);
-            this.Tab4_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView4_MouseDown);
+            this.Tab4_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab4_ListView_SelectedIndexChanged);
+            this.Tab4_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab4_ListView_MouseDown);
             // 
             // Tab5_TabPage
             // 
@@ -254,8 +253,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab5_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab5_ListView.TabIndex = 1;
             this.Tab5_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab5_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView5_SelectedIndexChanged);
-            this.Tab5_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView5_MouseDown);
+            this.Tab5_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab5_ListView_SelectedIndexChanged);
+            this.Tab5_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab5_ListView_MouseDown);
             // 
             // Tab6_TabPage
             // 
@@ -278,8 +277,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab6_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab6_ListView.TabIndex = 1;
             this.Tab6_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab6_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView6_SelectedIndexChanged);
-            this.Tab6_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView6_MouseDown);
+            this.Tab6_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab6_ListView_SelectedIndexChanged);
+            this.Tab6_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab6_ListView_MouseDown);
             // 
             // Tab7_TabPage
             // 
@@ -302,8 +301,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab7_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab7_ListView.TabIndex = 1;
             this.Tab7_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab7_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView7_SelectedIndexChanged);
-            this.Tab7_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView7_MouseDown);
+            this.Tab7_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab7_ListView_SelectedIndexChanged);
+            this.Tab7_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab7_ListView_MouseDown);
             // 
             // Tab8_TabPage
             // 
@@ -326,8 +325,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab8_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab8_ListView.TabIndex = 1;
             this.Tab8_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab8_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView8_SelectedIndexChanged);
-            this.Tab8_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView8_MouseDown);
+            this.Tab8_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab8_ListView_SelectedIndexChanged);
+            this.Tab8_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab8_ListView_MouseDown);
             // 
             // Tab9_TabPage
             // 
@@ -350,8 +349,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab9_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab9_ListView.TabIndex = 1;
             this.Tab9_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab9_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView9_SelectedIndexChanged);
-            this.Tab9_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView9_MouseDown);
+            this.Tab9_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab9_ListView_SelectedIndexChanged);
+            this.Tab9_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab9_ListView_MouseDown);
             // 
             // Tab10_TabPage
             // 
@@ -374,8 +373,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab10_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab10_ListView.TabIndex = 1;
             this.Tab10_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab10_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView10_SelectedIndexChanged);
-            this.Tab10_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView10_MouseDown);
+            this.Tab10_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab10_ListView_SelectedIndexChanged);
+            this.Tab10_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab10_ListView_MouseDown);
             // 
             // Tab11_TabPage
             // 
@@ -398,8 +397,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab11_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab11_ListView.TabIndex = 1;
             this.Tab11_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab11_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView11_SelectedIndexChanged);
-            this.Tab11_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView11_MouseDown);
+            this.Tab11_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab11_ListView_SelectedIndexChanged);
+            this.Tab11_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab11_ListView_MouseDown);
             // 
             // Tab12_TabPage
             // 
@@ -422,8 +421,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab12_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab12_ListView.TabIndex = 1;
             this.Tab12_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab12_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView12_SelectedIndexChanged);
-            this.Tab12_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView12_MouseDown);
+            this.Tab12_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab12_ListView_SelectedIndexChanged);
+            this.Tab12_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab12_ListView_MouseDown);
             // 
             // Tab13_TabPage
             // 
@@ -446,8 +445,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab13_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab13_ListView.TabIndex = 1;
             this.Tab13_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab13_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView13_SelectedIndexChanged);
-            this.Tab13_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView13_MouseDown);
+            this.Tab13_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab13_ListView_SelectedIndexChanged);
+            this.Tab13_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab13_ListView_MouseDown);
             // 
             // Tab14_TabPage
             // 
@@ -470,8 +469,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab14_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab14_ListView.TabIndex = 1;
             this.Tab14_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab14_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView14_SelectedIndexChanged);
-            this.Tab14_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView14_MouseDown);
+            this.Tab14_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab14_ListView_SelectedIndexChanged);
+            this.Tab14_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab14_ListView_MouseDown);
             // 
             // Tab15_TabPage
             // 
@@ -494,8 +493,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab15_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab15_ListView.TabIndex = 1;
             this.Tab15_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab15_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView15_SelectedIndexChanged);
-            this.Tab15_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView15_MouseDown);
+            this.Tab15_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab15_ListView_SelectedIndexChanged);
+            this.Tab15_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab15_ListView_MouseDown);
             // 
             // Tab16_TabPage
             // 
@@ -516,7 +515,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab16_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab16_ListView.TabIndex = 0;
             this.Tab16_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab16_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView16_SelectedIndexChanged);
+            this.Tab16_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab16_ListView_SelectedIndexChanged);
+            this.Tab16_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab16_ListView_MouseDown);
             // 
             // Tab17_TabPage
             // 
@@ -537,8 +537,8 @@ namespace CoreKeeperInventoryEditor
             this.Tab17_ListView.Size = new System.Drawing.Size(1236, 608);
             this.Tab17_ListView.TabIndex = 0;
             this.Tab17_ListView.UseCompatibleStateImageBehavior = false;
-            this.Tab17_ListView.SelectedIndexChanged += new System.EventHandler(this.ListView17_SelectedIndexChanged);
-            this.Tab17_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView17_MouseDown);
+            this.Tab17_ListView.SelectedIndexChanged += new System.EventHandler(this.Tab17_ListView_SelectedIndexChanged);
+            this.Tab17_ListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tab17_ListView_MouseDown);
             // 
             // Search
             // 
@@ -572,7 +572,7 @@ namespace CoreKeeperInventoryEditor
             this.RemoveItem_Button.TabIndex = 9;
             this.RemoveItem_Button.Text = "Remove Item";
             this.RemoveItem_Button.UseVisualStyleBackColor = true;
-            this.RemoveItem_Button.Click += new System.EventHandler(this.Button2_Click);
+            this.RemoveItem_Button.Click += new System.EventHandler(this.RemoveItem_Button_Click);
             // 
             // CustomAmount_Button
             // 
@@ -610,7 +610,7 @@ namespace CoreKeeperInventoryEditor
             this.CustomID_Button.Text = "Custom ID:";
             this.CustomID_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CustomID_Button.UseVisualStyleBackColor = true;
-            this.CustomID_Button.Click += new System.EventHandler(this.Button3_Click);
+            this.CustomID_Button.Click += new System.EventHandler(this.CustomID_Button_Click);
             // 
             // CustomID_NumericUpDown
             // 
@@ -628,7 +628,7 @@ namespace CoreKeeperInventoryEditor
             0,
             0,
             0});
-            this.CustomID_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
+            this.CustomID_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomID_NumericUpDown_KeyDown);
             // 
             // Search_Button
             // 
@@ -638,7 +638,7 @@ namespace CoreKeeperInventoryEditor
             this.Search_Button.TabIndex = 1;
             this.Search_Button.Text = "Search";
             this.Search_Button.UseVisualStyleBackColor = true;
-            this.Search_Button.Click += new System.EventHandler(this.Button4_Click);
+            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
             // 
             // Search_TextBox
             // 
@@ -646,7 +646,7 @@ namespace CoreKeeperInventoryEditor
             this.Search_TextBox.Name = "Search_TextBox";
             this.Search_TextBox.Size = new System.Drawing.Size(415, 20);
             this.Search_TextBox.TabIndex = 0;
-            this.Search_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
+            this.Search_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_TextBox_KeyDown);
             // 
             // ItemVariant_NumericUpDown
             // 
@@ -659,7 +659,7 @@ namespace CoreKeeperInventoryEditor
             this.ItemVariant_NumericUpDown.Name = "ItemVariant_NumericUpDown";
             this.ItemVariant_NumericUpDown.Size = new System.Drawing.Size(130, 20);
             this.ItemVariant_NumericUpDown.TabIndex = 6;
-            this.ItemVariant_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
+            this.ItemVariant_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemVariant_NumericUpDown_KeyDown);
             // 
             // ItemVariant_Button
             // 
@@ -670,7 +670,7 @@ namespace CoreKeeperInventoryEditor
             this.ItemVariant_Button.Text = "Item Variant:";
             this.ItemVariant_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ItemVariant_Button.UseVisualStyleBackColor = true;
-            this.ItemVariant_Button.Click += new System.EventHandler(this.Button5_Click);
+            this.ItemVariant_Button.Click += new System.EventHandler(this.ItemVariant_Button_Click);
             // 
             // OpenCookedFoodList_Button
             // 
@@ -680,7 +680,7 @@ namespace CoreKeeperInventoryEditor
             this.OpenCookedFoodList_Button.TabIndex = 11;
             this.OpenCookedFoodList_Button.Text = "Open Cooked Food List";
             this.OpenCookedFoodList_Button.UseVisualStyleBackColor = true;
-            this.OpenCookedFoodList_Button.Click += new System.EventHandler(this.Button6_Click);
+            this.OpenCookedFoodList_Button.Click += new System.EventHandler(this.OpenCookedFoodList_Button_Click);
             // 
             // SkillType_Button
             // 
@@ -691,7 +691,7 @@ namespace CoreKeeperInventoryEditor
             this.SkillType_Button.Text = "Skill Type:";
             this.SkillType_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SkillType_Button.UseVisualStyleBackColor = true;
-            this.SkillType_Button.Click += new System.EventHandler(this.Button7_Click);
+            this.SkillType_Button.Click += new System.EventHandler(this.SkillType_Button_Click);
             // 
             // SkillType_NumericUpDown
             // 
@@ -704,7 +704,7 @@ namespace CoreKeeperInventoryEditor
             this.SkillType_NumericUpDown.Name = "SkillType_NumericUpDown";
             this.SkillType_NumericUpDown.Size = new System.Drawing.Size(130, 20);
             this.SkillType_NumericUpDown.TabIndex = 8;
-            this.SkillType_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
+            this.SkillType_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SkillType_NumericUpDown_KeyDown);
             // 
             // SkillTypeInfo_Button
             // 
@@ -714,7 +714,7 @@ namespace CoreKeeperInventoryEditor
             this.SkillTypeInfo_Button.TabIndex = 10;
             this.SkillTypeInfo_Button.Text = "?";
             this.SkillTypeInfo_Button.UseVisualStyleBackColor = true;
-            this.SkillTypeInfo_Button.Click += new System.EventHandler(this.Button8_Click);
+            this.SkillTypeInfo_Button.Click += new System.EventHandler(this.SkillTypeInfo_Button_Click);
             // 
             // InventoryEditor
             // 
@@ -743,8 +743,8 @@ namespace CoreKeeperInventoryEditor
             this.Name = "InventoryEditor";
             this.Text = "Item Selection Menu --> Left-Click Adds: 1 | Right-Click Adds: Custom Amount";
             this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InventoryEditor_FormClosing);
+            this.Load += new System.EventHandler(this.InventoryEditor_Load);
             this.Main_TabControl.ResumeLayout(false);
             this.Tab1_TabPage.ResumeLayout(false);
             this.Tab2_TabPage.ResumeLayout(false);

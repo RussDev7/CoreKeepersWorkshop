@@ -61,7 +61,7 @@
             this.Main_Panel.Name = "Main_Panel";
             this.Main_Panel.Size = new System.Drawing.Size(338, 338);
             this.Main_Panel.TabIndex = 0;
-            this.Main_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            this.Main_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Panel_Paint);
             // 
             // YAxisOffset_NumericUpDown
             // 
@@ -123,7 +123,7 @@
             0,
             0});
             this.DisplayArea_NumericUpDown.Visible = false;
-            this.DisplayArea_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
+            this.DisplayArea_NumericUpDown.ValueChanged += new System.EventHandler(this.DisplayArea_NumericUpDown_ValueChanged);
             // 
             // HideMainForm_CheckBox
             // 
@@ -135,7 +135,7 @@
             this.HideMainForm_CheckBox.TabIndex = 4;
             this.HideMainForm_CheckBox.Text = "Hide Main Form";
             this.HideMainForm_CheckBox.UseVisualStyleBackColor = true;
-            this.HideMainForm_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.HideMainForm_CheckBox.CheckedChanged += new System.EventHandler(this.HideMainForm_CheckBox_CheckedChanged);
             // 
             // ShowEnemySpawnChunks_CheckBox
             // 
@@ -147,7 +147,7 @@
             this.ShowEnemySpawnChunks_CheckBox.TabIndex = 3;
             this.ShowEnemySpawnChunks_CheckBox.Text = "Show Enemy Spawn Chunks";
             this.ShowEnemySpawnChunks_CheckBox.UseVisualStyleBackColor = true;
-            this.ShowEnemySpawnChunks_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.ShowEnemySpawnChunks_CheckBox.CheckedChanged += new System.EventHandler(this.ShowEnemySpawnChunks_CheckBox_CheckedChanged);
             // 
             // Opacity_TrackBar
             // 
@@ -160,7 +160,7 @@
             this.Opacity_TrackBar.TabIndex = 1;
             this.Opacity_TrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.Opacity_TrackBar.Value = 100;
-            this.Opacity_TrackBar.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
+            this.Opacity_TrackBar.ValueChanged += new System.EventHandler(this.Opacity_TrackBar_ValueChanged);
             // 
             // Opacity_Label
             // 
@@ -182,7 +182,7 @@
             this.Debug_CheckBox.TabIndex = 5;
             this.Debug_CheckBox.Text = "Debug";
             this.Debug_CheckBox.UseVisualStyleBackColor = true;
-            this.Debug_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            this.Debug_CheckBox.CheckedChanged += new System.EventHandler(this.Debug_CheckBox_CheckedChanged);
             // 
             // Scale_TrackBar
             // 
@@ -196,7 +196,7 @@
             this.Scale_TrackBar.TabIndex = 2;
             this.Scale_TrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.Scale_TrackBar.Value = 21;
-            this.Scale_TrackBar.ValueChanged += new System.EventHandler(this.TrackBar2_ValueChanged);
+            this.Scale_TrackBar.ValueChanged += new System.EventHandler(this.Scale_TrackBar_ValueChanged);
             // 
             // Scale_Label
             // 

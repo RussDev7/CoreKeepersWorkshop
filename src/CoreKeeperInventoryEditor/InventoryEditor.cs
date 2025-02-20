@@ -71,7 +71,7 @@ namespace CoreKeeperInventoryEditor
         #region Form Controls
 
         // Do form closing events.
-        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        private void InventoryEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
@@ -108,7 +108,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Lanch about skillset message.
-        private void Button8_Click(object sender, EventArgs e)
+        private void SkillTypeInfo_Button_Click(object sender, EventArgs e)
         {
             MessageBox.Show("How to find my pet's skillset ID?\r\n    - Each pet only has 4 skillsets and are typically +4/-4 the current pets skillset. For example, if your pet has an assigned skillset of 150 then the 4 skillset IDs will be within the 146-154 range. For fresh pets first name the pet and it will be assigned a skillset id.\r\n\r\nWhy is it like this?\r\n    - The game generates progressive \"skill tables\" rather than using a static ID for a pets skills. Bad system I know, nothing I can do about it.\r\n", "How To Use --> Get Skillset ID", MessageBoxButtons.OK, MessageBoxIcon.Question);
             return;
@@ -145,7 +145,7 @@ namespace CoreKeeperInventoryEditor
         #endregion
 
         // Do loading events.
-        private void Form2_Load(object sender, EventArgs e)
+        private void InventoryEditor_Load(object sender, EventArgs e)
         {
             #region Set Custom Cusror
 
@@ -536,7 +536,7 @@ namespace CoreKeeperInventoryEditor
         #region Main Form Controls
 
         // Add custom ID.
-        private void Button3_Click(object sender, EventArgs e)
+        private void CustomID_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = (int)CustomID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
@@ -547,7 +547,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Add custom veriation.
-        private void Button5_Click(object sender, EventArgs e)
+        private void ItemVariant_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = (int)CustomID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
@@ -558,7 +558,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Add custom skillset.
-        private void Button7_Click(object sender, EventArgs e)
+        private void SkillType_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = (int)CustomID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
@@ -569,7 +569,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Add custom veriation - Enter shortcut.
-        private void NumericUpDown3_KeyDown(object sender, KeyEventArgs e)
+        private void ItemVariant_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -583,7 +583,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Add custom ID - Enter shortcut.
-        private void NumericUpDown2_KeyDown(object sender, KeyEventArgs e)
+        private void CustomID_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -597,7 +597,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Add custom skillset - Enter shortcut.
-        private void NumericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        private void SkillType_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -611,7 +611,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Remove item.
-        private void Button2_Click(object sender, EventArgs e)
+        private void RemoveItem_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = 0;
             selectedItemAmount = 1;
@@ -621,7 +621,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Search for item.
-        private void Button4_Click(object sender, EventArgs e)
+        private void Search_Button_Click(object sender, EventArgs e)
         {
             // Clear previous results.
             listViewSearch.Clear();
@@ -684,7 +684,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Search for item via enter support.
-        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        private void Search_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -750,7 +750,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Launch the food cookbook.
-        private void Button6_Click(object sender, EventArgs e)
+        private void OpenCookedFoodList_Button_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             FoodCookbook frm4 = new FoodCookbook();
@@ -780,7 +780,7 @@ namespace CoreKeeperInventoryEditor
         #region Selection Indexes
 
         // Get Value From Clicked Item
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab1_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab1_ListView.SelectedItems.Count; i++)
             {
@@ -793,7 +793,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView1_MouseDown(object sender, MouseEventArgs e)
+        private void Tab1_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -806,7 +806,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView2_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab2_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab2_ListView.SelectedItems.Count; i++)
             {
@@ -819,7 +819,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView2MouseDown(object sender, MouseEventArgs e)
+        private void Tab2_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -832,7 +832,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView3_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab3_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab3_ListView.SelectedItems.Count; i++)
             {
@@ -845,7 +845,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView3_MouseDown(object sender, MouseEventArgs e)
+        private void Tab3_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -858,7 +858,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView4_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab4_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab4_ListView.SelectedItems.Count; i++)
             {
@@ -871,7 +871,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView4_MouseDown(object sender, MouseEventArgs e)
+        private void Tab4_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -884,7 +884,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView5_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab5_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab5_ListView.SelectedItems.Count; i++)
             {
@@ -897,7 +897,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView5_MouseDown(object sender, MouseEventArgs e)
+        private void Tab5_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -910,7 +910,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView6_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab6_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab6_ListView.SelectedItems.Count; i++)
             {
@@ -923,7 +923,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView6_MouseDown(object sender, MouseEventArgs e)
+        private void Tab6_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -936,7 +936,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView7_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab7_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab7_ListView.SelectedItems.Count; i++)
             {
@@ -949,7 +949,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView7_MouseDown(object sender, MouseEventArgs e)
+        private void Tab7_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -962,7 +962,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView8_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab8_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab8_ListView.SelectedItems.Count; i++)
             {
@@ -975,7 +975,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView8_MouseDown(object sender, MouseEventArgs e)
+        private void Tab8_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -988,7 +988,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView9_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab9_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab9_ListView.SelectedItems.Count; i++)
             {
@@ -1001,7 +1001,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView9_MouseDown(object sender, MouseEventArgs e)
+        private void Tab9_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1014,7 +1014,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView10_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab10_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab10_ListView.SelectedItems.Count; i++)
             {
@@ -1027,7 +1027,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView10_MouseDown(object sender, MouseEventArgs e)
+        private void Tab10_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1040,7 +1040,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView11_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab11_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab11_ListView.SelectedItems.Count; i++)
             {
@@ -1053,7 +1053,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView11_MouseDown(object sender, MouseEventArgs e)
+        private void Tab11_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1066,7 +1066,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView12_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab12_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab12_ListView.SelectedItems.Count; i++)
             {
@@ -1079,7 +1079,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView12_MouseDown(object sender, MouseEventArgs e)
+        private void Tab12_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1092,7 +1092,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView13_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab13_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab13_ListView.SelectedItems.Count; i++)
             {
@@ -1105,7 +1105,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView13_MouseDown(object sender, MouseEventArgs e)
+        private void Tab13_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1118,7 +1118,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView14_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab14_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab14_ListView.SelectedItems.Count; i++)
             {
@@ -1131,7 +1131,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView14_MouseDown(object sender, MouseEventArgs e)
+        private void Tab14_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1144,7 +1144,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView15_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab15_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab15_ListView.SelectedItems.Count; i++)
             {
@@ -1157,7 +1157,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView15_MouseDown(object sender, MouseEventArgs e)
+        private void Tab15_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1170,7 +1170,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView16_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab16_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab16_ListView.SelectedItems.Count; i++)
             {
@@ -1183,7 +1183,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView16_MouseDown(object sender, MouseEventArgs e)
+        private void Tab16_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {
@@ -1196,7 +1196,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get Value From Clicked Item
-        private void ListView17_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tab17_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tab17_ListView.SelectedItems.Count; i++)
             {
@@ -1209,7 +1209,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get the amount to add to the game.
-        private void ListView17_MouseDown(object sender, MouseEventArgs e)
+        private void Tab17_ListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) // Left is add one.
             {

@@ -150,7 +150,7 @@
             this.SkillID0_NumericUpDown.Name = "SkillID0_NumericUpDown";
             this.SkillID0_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID0_NumericUpDown.TabIndex = 5;
-            this.SkillID0_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
+            this.SkillID0_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID0_NumericUpDown_ValueChanged);
             // 
             // SkillILvL0_NumericUpDown
             // 
@@ -173,7 +173,7 @@
             this.ChangeSkills_Button.TabIndex = 26;
             this.ChangeSkills_Button.Text = "Change Skills";
             this.ChangeSkills_Button.UseVisualStyleBackColor = true;
-            this.ChangeSkills_Button.Click += new System.EventHandler(this.Button1_Click);
+            this.ChangeSkills_Button.Click += new System.EventHandler(this.ChangeSkills_Button_Click);
             // 
             // ChangeSkills_ProgressBar
             // 
@@ -215,7 +215,7 @@
             this.MaxLevelsHelp_Button.TabIndex = 4;
             this.MaxLevelsHelp_Button.Text = "?";
             this.MaxLevelsHelp_Button.UseVisualStyleBackColor = true;
-            this.MaxLevelsHelp_Button.Click += new System.EventHandler(this.Button4_Click);
+            this.MaxLevelsHelp_Button.Click += new System.EventHandler(this.MaxLevelsHelp_Button_Click);
             // 
             // LvLRow1_Label
             // 
@@ -278,7 +278,7 @@
             0,
             0,
             0});
-            this.SkillID1_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown3_ValueChanged);
+            this.SkillID1_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID1_NumericUpDown_ValueChanged);
             // 
             // SkillILvL1_NumericUpDown
             // 
@@ -331,7 +331,7 @@
             0,
             0,
             0});
-            this.SkillID2_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown5_ValueChanged);
+            this.SkillID2_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID2_NumericUpDown_ValueChanged);
             // 
             // SkillILvL2_NumericUpDown
             // 
@@ -384,7 +384,7 @@
             0,
             0,
             0});
-            this.SkillID3_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown7_ValueChanged);
+            this.SkillID3_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID3_NumericUpDown_ValueChanged);
             // 
             // SkillILvL3_NumericUpDown
             // 
@@ -459,7 +459,7 @@
             0,
             0,
             0});
-            this.SkillID4_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown9_ValueChanged);
+            this.SkillID4_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID4_NumericUpDown_ValueChanged);
             // 
             // SkillILvL4_NumericUpDown
             // 
@@ -512,7 +512,7 @@
             0,
             0,
             0});
-            this.SkillID5_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown11_ValueChanged);
+            this.SkillID5_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID5_NumericUpDown_ValueChanged);
             // 
             // SkillILvL5_NumericUpDown
             // 
@@ -565,7 +565,7 @@
             0,
             0,
             0});
-            this.SkillID6_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown13_ValueChanged);
+            this.SkillID6_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID6_NumericUpDown_ValueChanged);
             // 
             // SkillILvL6_NumericUpDown
             // 
@@ -640,7 +640,7 @@
             0,
             0,
             0});
-            this.SkillID7_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown15_ValueChanged);
+            this.SkillID7_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID7_NumericUpDown_ValueChanged);
             // 
             // SkillILvL7_NumericUpDown
             // 
@@ -693,7 +693,7 @@
             0,
             0,
             0});
-            this.SkillID8_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown17_ValueChanged);
+            this.SkillID8_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID8_NumericUpDown_ValueChanged);
             // 
             // SkillILvL8_NumericUpDown
             // 
@@ -716,7 +716,7 @@
             this.MaxAllSkills_Button.TabIndex = 28;
             this.MaxAllSkills_Button.Text = "Max";
             this.MaxAllSkills_Button.UseVisualStyleBackColor = true;
-            this.MaxAllSkills_Button.Click += new System.EventHandler(this.Button2_Click);
+            this.MaxAllSkills_Button.Click += new System.EventHandler(this.MaxAllSkills_Button_Click);
             // 
             // ResetAllSkills_Button
             // 
@@ -727,7 +727,7 @@
             this.ResetAllSkills_Button.TabIndex = 27;
             this.ResetAllSkills_Button.Text = "Reset";
             this.ResetAllSkills_Button.UseVisualStyleBackColor = true;
-            this.ResetAllSkills_Button.Click += new System.EventHandler(this.Button3_Click);
+            this.ResetAllSkills_Button.Click += new System.EventHandler(this.ResetAllSkills_Button_Click);
             // 
             // Skill10_Panel
             // 
@@ -768,7 +768,7 @@
             0,
             0,
             0});
-            this.SkillID10_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown24_ValueChanged);
+            this.SkillID10_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID10_NumericUpDown_ValueChanged);
             // 
             // SkillILvL10_NumericUpDown
             // 
@@ -821,7 +821,7 @@
             0,
             0,
             0});
-            this.SkillID9_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown22_ValueChanged);
+            this.SkillID9_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID9_NumericUpDown_ValueChanged);
             // 
             // SkillILvL9_NumericUpDown
             // 
@@ -865,7 +865,7 @@
             this.GetPlayerSkillAddresses_Button.TabIndex = 0;
             this.GetPlayerSkillAddresses_Button.Text = "Get Player Skill Addresses";
             this.GetPlayerSkillAddresses_Button.UseVisualStyleBackColor = true;
-            this.GetPlayerSkillAddresses_Button.Click += new System.EventHandler(this.Button5_Click);
+            this.GetPlayerSkillAddresses_Button.Click += new System.EventHandler(this.GetPlayerSkillAddresses_Button_Click);
             // 
             // PlayerSkill_ProgressBar
             // 
@@ -895,7 +895,7 @@
             this.PreviousSkillAddress_Button.TabIndex = 1;
             this.PreviousSkillAddress_Button.Text = "Previous";
             this.PreviousSkillAddress_Button.UseVisualStyleBackColor = true;
-            this.PreviousSkillAddress_Button.Click += new System.EventHandler(this.Button20_Click);
+            this.PreviousSkillAddress_Button.Click += new System.EventHandler(this.PreviousSkillAddress_Button_Click);
             // 
             // NextSkillAddress_Button
             // 
@@ -906,7 +906,7 @@
             this.NextSkillAddress_Button.TabIndex = 2;
             this.NextSkillAddress_Button.Text = "Next";
             this.NextSkillAddress_Button.UseVisualStyleBackColor = true;
-            this.NextSkillAddress_Button.Click += new System.EventHandler(this.Button21_Click);
+            this.NextSkillAddress_Button.Click += new System.EventHandler(this.NextSkillAddress_Button_Click);
             // 
             // UseSkillAddress_Button
             // 
@@ -917,7 +917,7 @@
             this.UseSkillAddress_Button.TabIndex = 3;
             this.UseSkillAddress_Button.Text = "Use";
             this.UseSkillAddress_Button.UseVisualStyleBackColor = true;
-            this.UseSkillAddress_Button.Click += new System.EventHandler(this.Button6_Click);
+            this.UseSkillAddress_Button.Click += new System.EventHandler(this.UseSkillAddress_Button_Click);
             // 
             // UseEXPValues_CheckBox
             // 
@@ -930,7 +930,7 @@
             this.UseEXPValues_CheckBox.TabIndex = 25;
             this.UseEXPValues_CheckBox.Text = "Use EXP Values";
             this.UseEXPValues_CheckBox.UseVisualStyleBackColor = true;
-            this.UseEXPValues_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.UseEXPValues_CheckBox.CheckedChanged += new System.EventHandler(this.UseEXPValues_CheckBox_CheckedChanged);
             // 
             // SkillEditor
             // 

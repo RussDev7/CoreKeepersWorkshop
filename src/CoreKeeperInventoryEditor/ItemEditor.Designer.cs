@@ -96,8 +96,8 @@ namespace CoreKeepersWorkshop
             0,
             0,
             0});
-            this.ItemID_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
-            this.ItemID_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown1_KeyDown);
+            this.ItemID_NumericUpDown.ValueChanged += new System.EventHandler(this.ItemID_NumericUpDown_ValueChanged);
+            this.ItemID_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemID_NumericUpDown_KeyDown);
             // 
             // VariationNumerical_NumericUpDown
             // 
@@ -110,8 +110,8 @@ namespace CoreKeepersWorkshop
             this.VariationNumerical_NumericUpDown.Name = "VariationNumerical_NumericUpDown";
             this.VariationNumerical_NumericUpDown.Size = new System.Drawing.Size(145, 20);
             this.VariationNumerical_NumericUpDown.TabIndex = 2;
-            this.VariationNumerical_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown3_ValueChanged);
-            this.VariationNumerical_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown3_KeyDown);
+            this.VariationNumerical_NumericUpDown.ValueChanged += new System.EventHandler(this.VariationNumerical_NumericUpDown_ValueChanged);
+            this.VariationNumerical_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VariationNumerical_NumericUpDown_KeyDown);
             // 
             // Quantity_NumericUpDown
             // 
@@ -134,7 +134,7 @@ namespace CoreKeepersWorkshop
             0,
             0,
             0});
-            this.Quantity_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown2_KeyDown);
+            this.Quantity_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Quantity_NumericUpDown_KeyDown);
             // 
             // Quantity_Button
             // 
@@ -158,8 +158,8 @@ namespace CoreKeepersWorkshop
             this.Variation1_NumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.Variation1_NumericUpDown.TabIndex = 3;
             this.Variation1_NumericUpDown.Visible = false;
-            this.Variation1_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown4_ValueChanged);
-            this.Variation1_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
+            this.Variation1_NumericUpDown.ValueChanged += new System.EventHandler(this.Variation1_NumericUpDown_ValueChanged);
+            this.Variation1_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Variation1_NumericUpDown_KeyDown);
             // 
             // VariationAnd_Button
             // 
@@ -184,8 +184,8 @@ namespace CoreKeepersWorkshop
             this.Variation2_NumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.Variation2_NumericUpDown.TabIndex = 4;
             this.Variation2_NumericUpDown.Visible = false;
-            this.Variation2_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown5_ValueChanged);
-            this.Variation2_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
+            this.Variation2_NumericUpDown.ValueChanged += new System.EventHandler(this.Variation2_NumericUpDown_ValueChanged);
+            this.Variation2_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Variation2_NumericUpDown_KeyDown);
             // 
             // RemoveItem_Button
             // 
@@ -195,7 +195,7 @@ namespace CoreKeepersWorkshop
             this.RemoveItem_Button.TabIndex = 7;
             this.RemoveItem_Button.Text = "Remove Item";
             this.RemoveItem_Button.UseVisualStyleBackColor = true;
-            this.RemoveItem_Button.Click += new System.EventHandler(this.Button5_Click);
+            this.RemoveItem_Button.Click += new System.EventHandler(this.RemoveItem_Button_Click);
             // 
             // CookedFoodList_Button
             // 
@@ -205,7 +205,7 @@ namespace CoreKeepersWorkshop
             this.CookedFoodList_Button.TabIndex = 6;
             this.CookedFoodList_Button.Text = "Cooked Food List";
             this.CookedFoodList_Button.UseVisualStyleBackColor = true;
-            this.CookedFoodList_Button.Click += new System.EventHandler(this.Button6_Click);
+            this.CookedFoodList_Button.Click += new System.EventHandler(this.CookedFoodList_Button_Click);
             // 
             // ItemID_Label
             // 
@@ -228,7 +228,7 @@ namespace CoreKeepersWorkshop
             this.Variation_Label.Size = new System.Drawing.Size(130, 17);
             this.Variation_Label.TabIndex = 9;
             this.Variation_Label.Text = "Variation [Ingredients]";
-            this.Variation_Label.Click += new System.EventHandler(this.Label2_Click);
+            this.Variation_Label.Click += new System.EventHandler(this.Variation_Label_Click);
             // 
             // Slot1_PictureBox
             // 
@@ -239,7 +239,7 @@ namespace CoreKeepersWorkshop
             this.Slot1_PictureBox.Size = new System.Drawing.Size(64, 64);
             this.Slot1_PictureBox.TabIndex = 10;
             this.Slot1_PictureBox.TabStop = false;
-            this.Slot1_PictureBox.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.Slot1_PictureBox.Click += new System.EventHandler(this.Slot1_PictureBox_Click);
             // 
             // Slot2_PictureBox
             // 
@@ -250,7 +250,7 @@ namespace CoreKeepersWorkshop
             this.Slot2_PictureBox.Size = new System.Drawing.Size(64, 64);
             this.Slot2_PictureBox.TabIndex = 11;
             this.Slot2_PictureBox.TabStop = false;
-            this.Slot2_PictureBox.Click += new System.EventHandler(this.PictureBox2_Click);
+            this.Slot2_PictureBox.Click += new System.EventHandler(this.Slot2_PictureBox_Click);
             // 
             // Slot3_PictureBox
             // 
@@ -261,7 +261,7 @@ namespace CoreKeepersWorkshop
             this.Slot3_PictureBox.Size = new System.Drawing.Size(64, 64);
             this.Slot3_PictureBox.TabIndex = 12;
             this.Slot3_PictureBox.TabStop = false;
-            this.Slot3_PictureBox.Click += new System.EventHandler(this.PictureBox3_Click);
+            this.Slot3_PictureBox.Click += new System.EventHandler(this.Slot3_PictureBox_Click);
             // 
             // Item1_Label
             // 
@@ -304,7 +304,7 @@ namespace CoreKeepersWorkshop
             this.ChangeRarity_Button.TabIndex = 5;
             this.ChangeRarity_Button.Text = "Change Rarity";
             this.ChangeRarity_Button.UseVisualStyleBackColor = true;
-            this.ChangeRarity_Button.Click += new System.EventHandler(this.Button1_Click);
+            this.ChangeRarity_Button.Click += new System.EventHandler(this.ChangeRarity_Button_Click);
             // 
             // Done_Button
             // 
@@ -314,7 +314,7 @@ namespace CoreKeepersWorkshop
             this.Done_Button.TabIndex = 8;
             this.Done_Button.Text = "Done";
             this.Done_Button.UseVisualStyleBackColor = true;
-            this.Done_Button.Click += new System.EventHandler(this.Button3_Click);
+            this.Done_Button.Click += new System.EventHandler(this.Done_Button_Click);
             // 
             // QuickQuantitySelector_GroupBox
             // 
@@ -345,8 +345,8 @@ namespace CoreKeepersWorkshop
             this.CustomQuantity1_Button.TabIndex = 17;
             this.CustomQuantity1_Button.Text = "1";
             this.CustomQuantity1_Button.UseVisualStyleBackColor = true;
-            this.CustomQuantity1_Button.Click += new System.EventHandler(this.Button7_Click);
-            this.CustomQuantity1_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button7_MouseDown);
+            this.CustomQuantity1_Button.Click += new System.EventHandler(this.CustomQuantity1_Button_Click);
+            this.CustomQuantity1_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomQuantity1_Button_MouseDown);
             // 
             // CustomQuantity3_Button
             // 
@@ -357,8 +357,8 @@ namespace CoreKeepersWorkshop
             this.CustomQuantity3_Button.TabIndex = 19;
             this.CustomQuantity3_Button.Text = "500";
             this.CustomQuantity3_Button.UseVisualStyleBackColor = true;
-            this.CustomQuantity3_Button.Click += new System.EventHandler(this.Button9_Click);
-            this.CustomQuantity3_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button9_MouseDown);
+            this.CustomQuantity3_Button.Click += new System.EventHandler(this.CustomQuantity3_Button_Click);
+            this.CustomQuantity3_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomQuantity3_Button_MouseDown);
             // 
             // CustomQuantity4_Button
             // 
@@ -369,8 +369,8 @@ namespace CoreKeepersWorkshop
             this.CustomQuantity4_Button.TabIndex = 20;
             this.CustomQuantity4_Button.Text = "5000";
             this.CustomQuantity4_Button.UseVisualStyleBackColor = true;
-            this.CustomQuantity4_Button.Click += new System.EventHandler(this.Button10_Click);
-            this.CustomQuantity4_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button10_MouseDown);
+            this.CustomQuantity4_Button.Click += new System.EventHandler(this.CustomQuantity4_Button_Click);
+            this.CustomQuantity4_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomQuantity4_Button_MouseDown);
             // 
             // CustomQuantity5_Button
             // 
@@ -381,8 +381,8 @@ namespace CoreKeepersWorkshop
             this.CustomQuantity5_Button.TabIndex = 21;
             this.CustomQuantity5_Button.Text = "9999";
             this.CustomQuantity5_Button.UseVisualStyleBackColor = true;
-            this.CustomQuantity5_Button.Click += new System.EventHandler(this.Button11_Click);
-            this.CustomQuantity5_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button11_MouseDown);
+            this.CustomQuantity5_Button.Click += new System.EventHandler(this.CustomQuantity5_Button_Click);
+            this.CustomQuantity5_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomQuantity5_Button_MouseDown);
             // 
             // CustomQuantity1_NumericUpDown
             // 
@@ -406,7 +406,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.CustomQuantity1_NumericUpDown.Visible = false;
-            this.CustomQuantity1_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown6_KeyDown);
+            this.CustomQuantity1_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomQuantity1_NumericUpDown_KeyDown);
             // 
             // CustomQuantity3_NumericUpDown
             // 
@@ -430,7 +430,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.CustomQuantity3_NumericUpDown.Visible = false;
-            this.CustomQuantity3_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown8_KeyDown);
+            this.CustomQuantity3_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomQuantity3_NumericUpDown_KeyDown);
             // 
             // CustomQuantity4_NumericUpDown
             // 
@@ -454,7 +454,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.CustomQuantity4_NumericUpDown.Visible = false;
-            this.CustomQuantity4_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown9_KeyDown);
+            this.CustomQuantity4_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomQuantity4_NumericUpDown_KeyDown);
             // 
             // CustomQuantity5_NumericUpDown
             // 
@@ -478,7 +478,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.CustomQuantity5_NumericUpDown.Visible = false;
-            this.CustomQuantity5_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown10_KeyDown);
+            this.CustomQuantity5_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomQuantity5_NumericUpDown_KeyDown);
             // 
             // CustomQuantity2_Button
             // 
@@ -490,7 +490,7 @@ namespace CoreKeepersWorkshop
             this.CustomQuantity2_Button.Text = "50";
             this.CustomQuantity2_Button.UseVisualStyleBackColor = true;
             this.CustomQuantity2_Button.Click += new System.EventHandler(this.Button8_Click);
-            this.CustomQuantity2_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button8_MouseDown);
+            this.CustomQuantity2_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomQuantity2_Button_MouseDown);
             // 
             // CustomQuantity2_NumericUpDown
             // 
@@ -514,7 +514,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.CustomQuantity2_NumericUpDown.Visible = false;
-            this.CustomQuantity2_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown7_KeyDown);
+            this.CustomQuantity2_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomQuantity2_NumericUpDown_KeyDown);
             // 
             // Skillset_Button
             // 
@@ -538,7 +538,7 @@ namespace CoreKeepersWorkshop
             this.Skillset_NumericUpDown.Name = "Skillset_NumericUpDown";
             this.Skillset_NumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.Skillset_NumericUpDown.TabIndex = 18;
-            this.Skillset_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown11_KeyDown);
+            this.Skillset_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Skillset_Button_KeyDown);
             // 
             // SkillsetHelp_Button
             // 
@@ -548,7 +548,7 @@ namespace CoreKeepersWorkshop
             this.SkillsetHelp_Button.TabIndex = 19;
             this.SkillsetHelp_Button.Text = "?";
             this.SkillsetHelp_Button.UseVisualStyleBackColor = true;
-            this.SkillsetHelp_Button.Click += new System.EventHandler(this.Button13_Click);
+            this.SkillsetHelp_Button.Click += new System.EventHandler(this.SkillsetHelp_Button_Click);
             // 
             // ItemEditor
             // 

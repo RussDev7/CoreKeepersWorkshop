@@ -150,7 +150,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Toggle debug mode.
-        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
+        private void Debug_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Hide or unhide controls.
             if (Debug_CheckBox.Checked)
@@ -172,7 +172,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Toggle show mob grid.
-        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        private void ShowEnemySpawnChunks_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Save controls based on selection.
             if (ShowEnemySpawnChunks_CheckBox.Checked)
@@ -188,14 +188,14 @@ namespace CoreKeepersWorkshop
         }
 
         // Save scale settings.
-        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void DisplayArea_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Save settings.
             CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale = DisplayArea_NumericUpDown.Value;
         }
 
         // Hide main form.
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        private void HideMainForm_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Check if we are to hide or unhide the mainform.
             if (HideMainForm_CheckBox.Checked)
@@ -211,7 +211,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Change the opacity of the form.
-        private void TrackBar1_ValueChanged(object sender, EventArgs e)
+        private void Opacity_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             // Get the new value.
             double newOpacity = ((double)Opacity_TrackBar.Value) / 100.0;
@@ -222,7 +222,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Adjust the grid scale.
-        private void TrackBar2_ValueChanged(object sender, EventArgs e)
+        private void Scale_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             // Get the scale to multiply by to get a larger range.
             float sliderScale = 0.2f;
@@ -310,7 +310,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Do painting events for the panel.
-        private void Panel1_Paint(object sender, PaintEventArgs e)
+        private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
             // Get location varibles for this chunk.
             Vector2 currentChunk = GetChunk(new Vector2(playersPosition.X / mapScale, playersPosition.Y / mapScale)); // Chunk location.

@@ -437,7 +437,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Change the top most varible.
-        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        private void AlwaysOnTop_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Check if the application is already set to top most or not.
             if (!AlwaysOnTop_CheckBox.Checked)
@@ -459,7 +459,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Populate combobox upon dropdown.
-        private void ComboBox1_DropDown(object sender, EventArgs e)
+        private void BuffType_ComboBox_DropDown(object sender, EventArgs e)
         {
             if (BuffType_ComboBox.Items.Count == 0)
             {
@@ -488,7 +488,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Launch the link in the (users defualt) browser.
-        private void RichTextBox2_LinkClicked(object sender, LinkClickedEventArgs e)
+        private void About_RichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             try
             {
@@ -540,7 +540,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Move window to the bottom left.
-        private void Form1_Resize(object sender, EventArgs e)
+        private void MainForm_Resize(object sender, EventArgs e)
         {
             // Get height for both types of taskbar modes.
             Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
@@ -605,7 +605,7 @@ namespace CoreKeeperInventoryEditor
 
         // Control switching tabs.
         int previousTab = 0;
-        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Main_TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Main_TabControl.SelectedTab == Inventory_TabPage) // Inventory.
             {
@@ -868,7 +868,7 @@ namespace CoreKeeperInventoryEditor
         #endregion // End Image Tools
 
         // Get Inventory addresses.
-        private void Button1_Click(object sender, EventArgs e)
+        private void GetInventoryAddresses_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             Inventory_ProgressBar.Value = 0;
@@ -10670,7 +10670,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Previous address button.
-        private void Button20_Click(object sender, EventArgs e)
+        private void PreviousInvAddress_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             Inventory_ProgressBar.Value = 0;
@@ -10724,7 +10724,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Next address button.
-        private void Button21_Click(object sender, EventArgs e)
+        private void NextInvAddress_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             Inventory_ProgressBar.Value = 0;
@@ -10752,7 +10752,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Reload Inventory.
-        private void Button2_Click(object sender, EventArgs e)
+        private void ReloadInventory_Button_Click(object sender, EventArgs e)
         {
             // Change button labels.
             ReloadInventory_Button.Text = "Loading..";
@@ -10766,7 +10766,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Remove entire Inventory.
-        private void Button3_Click(object sender, EventArgs e)
+        private void RemoveAll_Button_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Delete ALL items? Are you sure?", "Remove All", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -10793,9 +10793,9 @@ namespace CoreKeeperInventoryEditor
                 inventoryInformation = null;
 
                 // Toggle slider.
-                InfiniteResources_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith7_CheckedChanged;
+                InfiniteResources_ToggleSwith.CheckedChanged -= InfiniteResources_ToggleSwith_CheckedChanged;
                 InfiniteResources_ToggleSwith.Checked = false;
-                InfiniteResources_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
+                InfiniteResources_ToggleSwith.CheckedChanged += InfiniteResources_ToggleSwith_CheckedChanged;
             }
 
             PictureBox pic = sender as PictureBox;
@@ -11316,7 +11316,7 @@ namespace CoreKeeperInventoryEditor
         #region Move Players Tab
 
         // Move the player pannel horizontally.
-        private void SiticoneTrackBar1_ValueChanged(object sender, EventArgs e)
+        private void Mods_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             PlayerTools_Panel.AutoScrollMargin = new Size(500, 0); // Define amount of space to scroll over too.
             PlayerTools_Panel.AutoScrollPosition = new Point((PlayerTools_Panel.AutoScrollMargin.Width / 100) * Mods_TrackBar.Value, 0);
@@ -11331,7 +11331,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Player Name
 
         // Change player name.
-        private async void Button4_Click(object sender, EventArgs e)
+        private async void ChanngeName_Button_Click(object sender, EventArgs e)
         {
             // Ensure properties are filled.
             if (CurrentName_TextBox.Text == "" || NewName_TextBox.Text == "")
@@ -11405,7 +11405,7 @@ namespace CoreKeeperInventoryEditor
         #region Import / Export
 
         // Import a player file.
-        private void Button5_Click(object sender, EventArgs e)
+        private void ImportPlayer_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -11535,7 +11535,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Export a player file.
-        private void Button6_Click(object sender, EventArgs e)
+        private void ExportPlayer_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -11568,7 +11568,7 @@ namespace CoreKeeperInventoryEditor
         #region Player Tool Addresses
 
         // Get player address.
-        private void Button10_Click(object sender, EventArgs e)
+        private void GetAddresses_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             PlayerTools_ProgressBar.Value = 0;
@@ -11667,15 +11667,15 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle godmode.
         public IEnumerable<long> AoBScanResultsFreeCraftingTools = null;
-        private async void SiticoneWinToggleSwith10_CheckedChanged(object sender, EventArgs e)
+        private async void FreeCrafting_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                FreeCrafting_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
+                FreeCrafting_ToggleSwith.CheckedChanged -= FreeCrafting_ToggleSwith_CheckedChanged;
                 FreeCrafting_ToggleSwith.Checked = false;
-                FreeCrafting_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
+                FreeCrafting_ToggleSwith.CheckedChanged += FreeCrafting_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -11727,9 +11727,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsFreeCraftingTools = null;
 
                     // Toggle slider.
-                    FreeCrafting_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith10_CheckedChanged;
+                    FreeCrafting_ToggleSwith.CheckedChanged -= FreeCrafting_ToggleSwith_CheckedChanged;
                     FreeCrafting_ToggleSwith.Checked = false;
-                    FreeCrafting_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith10_CheckedChanged;
+                    FreeCrafting_ToggleSwith.CheckedChanged += FreeCrafting_ToggleSwith_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -11798,15 +11798,15 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer playersKeepInventoryTimer = new System.Timers.Timer();
         List<Tuple<int, int[]>> keepInventoryInformation = new List<Tuple<int, int[]>>();
         string playerHealthAddress = "0";
-        private void SiticoneWinToggleSwith14_CheckedChanged(object sender, EventArgs e)
+        private void KeepInventory_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                KeepInventory_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith14_CheckedChanged;
+                KeepInventory_ToggleSwith.CheckedChanged -= KeepInventory_ToggleSwith_CheckedChanged;
                 KeepInventory_ToggleSwith.Checked = false;
-                KeepInventory_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith14_CheckedChanged;
+                KeepInventory_ToggleSwith.CheckedChanged += KeepInventory_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -11816,9 +11816,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsInventory == null)
             {
                 // Toggle slider.
-                KeepInventory_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith14_CheckedChanged;
+                KeepInventory_ToggleSwith.CheckedChanged -= KeepInventory_ToggleSwith_CheckedChanged;
                 KeepInventory_ToggleSwith.Checked = false;
-                KeepInventory_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith14_CheckedChanged;
+                KeepInventory_ToggleSwith.CheckedChanged += KeepInventory_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -11828,9 +11828,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                KeepInventory_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith14_CheckedChanged;
+                KeepInventory_ToggleSwith.CheckedChanged -= KeepInventory_ToggleSwith_CheckedChanged;
                 KeepInventory_ToggleSwith.Checked = false;
-                KeepInventory_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith14_CheckedChanged;
+                KeepInventory_ToggleSwith.CheckedChanged += KeepInventory_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12010,15 +12010,15 @@ namespace CoreKeeperInventoryEditor
         // Toggle infinite resources.
         readonly System.Timers.Timer playersInfiniteResourcesTimer = new System.Timers.Timer();
         List<Tuple<int, int[]>> inventoryInformation = new List<Tuple<int, int[]>>();
-        private void SiticoneWinToggleSwith7_CheckedChanged(object sender, EventArgs e)
+        private void InfiniteResources_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                InfiniteResources_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith7_CheckedChanged;
+                InfiniteResources_ToggleSwith.CheckedChanged -= InfiniteResources_ToggleSwith_CheckedChanged;
                 InfiniteResources_ToggleSwith.Checked = false;
-                InfiniteResources_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
+                InfiniteResources_ToggleSwith.CheckedChanged += InfiniteResources_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12028,9 +12028,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsInventory == null)
             {
                 // Toggle slider.
-                InfiniteResources_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith7_CheckedChanged;
+                InfiniteResources_ToggleSwith.CheckedChanged -= InfiniteResources_ToggleSwith_CheckedChanged;
                 InfiniteResources_ToggleSwith.Checked = false;
-                InfiniteResources_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith7_CheckedChanged;
+                InfiniteResources_ToggleSwith.CheckedChanged += InfiniteResources_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12147,7 +12147,7 @@ namespace CoreKeeperInventoryEditor
         #region Buff Editor
 
         // Change the players buff.
-        private async void Button12_Click(object sender, EventArgs e)
+        private async void ApplyBuff_Button_Click(object sender, EventArgs e)
         {
             // Check if the combobox has a value and is not null.
             if (BuffType_ComboBox.Text == "")
@@ -12241,15 +12241,15 @@ namespace CoreKeeperInventoryEditor
         // PlacementHandler.allowPlacingAnywhere;
         // Place anywhere.
         public IEnumerable<long> AoBScanResultsPlaceAnywhereTools = null;
-        private async void SiticoneWinToggleSwith12_CheckedChanged(object sender, EventArgs e)
+        private async void PlaceAnywhere_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                PlaceAnywhere_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith12_CheckedChanged;
+                PlaceAnywhere_ToggleSwith.CheckedChanged -= PlaceAnywhere_ToggleSwith_CheckedChanged;
                 PlaceAnywhere_ToggleSwith.Checked = false;
-                PlaceAnywhere_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith12_CheckedChanged;
+                PlaceAnywhere_ToggleSwith.CheckedChanged += PlaceAnywhere_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12305,9 +12305,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsPlaceAnywhereTools = null;
 
                     // Toggle slider.
-                    PlaceAnywhere_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith12_CheckedChanged;
+                    PlaceAnywhere_ToggleSwith.CheckedChanged -= PlaceAnywhere_ToggleSwith_CheckedChanged;
                     PlaceAnywhere_ToggleSwith.Checked = false;
-                    PlaceAnywhere_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith12_CheckedChanged;
+                    PlaceAnywhere_ToggleSwith.CheckedChanged += PlaceAnywhere_ToggleSwith_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the place anywhere addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -12374,12 +12374,12 @@ namespace CoreKeeperInventoryEditor
         // PlayerController player = Manager.main.player;
         // Placement Range.
         public IEnumerable<long> AoBScanResultsPlacementRangeTools = null;
-        private async void SiticoneWinToggleSwith13_CheckedChanged(object sender, EventArgs e)
+        private async void Range_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Mod is currently broken - toggle slider off.
-            Range_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith13_CheckedChanged;
+            Range_ToggleSwith.CheckedChanged -= Range_ToggleSwith_CheckedChanged;
             Range_ToggleSwith.Checked = false;
-            Range_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith13_CheckedChanged;
+            Range_ToggleSwith.CheckedChanged += Range_ToggleSwith_CheckedChanged;
             return;
 
             #pragma warning disable // Suppress Unreachable code.
@@ -12387,9 +12387,9 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Range_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith13_CheckedChanged;
+                Range_ToggleSwith.CheckedChanged -= Range_ToggleSwith_CheckedChanged;
                 Range_ToggleSwith.Checked = false;
-                Range_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith13_CheckedChanged;
+                Range_ToggleSwith.CheckedChanged += Range_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12448,9 +12448,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsPlacementRangeTools = null;
 
                     // Toggle slider.
-                    Range_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith13_CheckedChanged;
+                    Range_ToggleSwith.CheckedChanged -= Range_ToggleSwith_CheckedChanged;
                     Range_ToggleSwith.Checked = false;
-                    Range_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith13_CheckedChanged;
+                    Range_ToggleSwith.CheckedChanged += Range_ToggleSwith_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the placement range addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -12520,15 +12520,15 @@ namespace CoreKeeperInventoryEditor
         #region Skill Editor
 
         // Launch skill editor.
-        private void Button40_Click(object sender, EventArgs e)
+        private void OpenSkillEditor_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
                 DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12562,14 +12562,14 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle force keep the inventory empty.
         readonly System.Timers.Timer playersKeepInventoryEmptyTimer = new System.Timers.Timer();
-        private void SiticoneWinToggleSwith15_CheckedChanged(object sender, EventArgs e)
+        private void TrashInventory_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             if (TrashInventory_ToggleSwith.Checked && MessageBox.Show("This mod will delete ALL inventory items and ALL picked up ground items. Are you sure?", "Trash Inventory", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
                 // Toggle slider.
-                TrashInventory_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith15_CheckedChanged;
+                TrashInventory_ToggleSwith.CheckedChanged -= TrashInventory_ToggleSwith_CheckedChanged;
                 TrashInventory_ToggleSwith.Checked = false;
-                TrashInventory_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith15_CheckedChanged;
+                TrashInventory_ToggleSwith.CheckedChanged += TrashInventory_ToggleSwith_CheckedChanged;
 
                 // User declined, return.
                 return;
@@ -12579,9 +12579,9 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                TrashInventory_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith15_CheckedChanged;
+                TrashInventory_ToggleSwith.CheckedChanged -= TrashInventory_ToggleSwith_CheckedChanged;
                 TrashInventory_ToggleSwith.Checked = false;
-                TrashInventory_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith15_CheckedChanged;
+                TrashInventory_ToggleSwith.CheckedChanged += TrashInventory_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12591,9 +12591,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsInventory == null)
             {
                 // Toggle slider.
-                TrashInventory_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith15_CheckedChanged;
+                TrashInventory_ToggleSwith.CheckedChanged -= TrashInventory_ToggleSwith_CheckedChanged;
                 TrashInventory_ToggleSwith.Checked = false;
-                TrashInventory_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith15_CheckedChanged;
+                TrashInventory_ToggleSwith.CheckedChanged += TrashInventory_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12678,12 +12678,12 @@ namespace CoreKeeperInventoryEditor
         // Toggle minecart max speed.
         readonly System.Timers.Timer minecartMaxSpeedTimer = new System.Timers.Timer();
         public IEnumerable<long> AoBScanResultsMaxMinecartSpeed = null;
-        private async void SiticoneWinToggleSwith16_CheckedChanged(object sender, EventArgs e)
+        private async void MaxMinecartSpeed_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Mod is currently broken - toggle slider off.
-            MaxMinecartSpeed_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith16_CheckedChanged;
+            MaxMinecartSpeed_ToggleSwith.CheckedChanged -= MaxMinecartSpeed_ToggleSwith_CheckedChanged;
             MaxMinecartSpeed_ToggleSwith.Checked = false;
-            MaxMinecartSpeed_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith16_CheckedChanged;
+            MaxMinecartSpeed_ToggleSwith.CheckedChanged += MaxMinecartSpeed_ToggleSwith_CheckedChanged;
             return;
 
             #pragma warning disable // Suppress Unreachable code.
@@ -12691,9 +12691,9 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                MaxMinecartSpeed_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith16_CheckedChanged;
+                MaxMinecartSpeed_ToggleSwith.CheckedChanged -= MaxMinecartSpeed_ToggleSwith_CheckedChanged;
                 MaxMinecartSpeed_ToggleSwith.Checked = false;
-                MaxMinecartSpeed_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith16_CheckedChanged;
+                MaxMinecartSpeed_ToggleSwith.CheckedChanged += MaxMinecartSpeed_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12745,9 +12745,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsMaxMinecartSpeed = null;
 
                     // Toggle slider.
-                    MaxMinecartSpeed_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith16_CheckedChanged;
+                    MaxMinecartSpeed_ToggleSwith.CheckedChanged -= MaxMinecartSpeed_ToggleSwith_CheckedChanged;
                     MaxMinecartSpeed_ToggleSwith.Checked = false;
-                    MaxMinecartSpeed_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith16_CheckedChanged;
+                    MaxMinecartSpeed_ToggleSwith.CheckedChanged += MaxMinecartSpeed_ToggleSwith_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the minecart addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -12809,21 +12809,21 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Show the slider value text.
-        private void SiticoneMetroTrackBar1_MouseHover(object sender, EventArgs e)
+        private void MaxMinecartSpeed_MetroTrackBar_MouseHover(object sender, EventArgs e)
         {
             MinecartSpeed_Label.Visible = false;
             MaxMinecartSpeed_Label.Visible = true;
         }
 
         // Hide the slider value text.
-        private void SiticoneMetroTrackBar1_MouseLeave(object sender, EventArgs e)
+        private void MaxMinecartSpeed_MetroTrackBar_MouseLeave(object sender, EventArgs e)
         {
             MinecartSpeed_Label.Visible = true;
             MaxMinecartSpeed_Label.Visible = false;
         }
 
         // Change the labels text to the new sliders value.
-        private void SiticoneMetroTrackBar1_ValueChanged(object sender, EventArgs e)
+        private void MaxMinecartSpeed_MetroTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MaxMinecartSpeed_Label.Text = "- MaxSpeed: " + MaxMinecartSpeed_MetroTrackBar.Value.ToString();
         }
@@ -12835,15 +12835,15 @@ namespace CoreKeeperInventoryEditor
 
         // Enable player xy tool.
         readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
-        private void SiticoneWinToggleSwith1_CheckedChanged(object sender, EventArgs e)
+        private void DisplayLocation_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
                 DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12853,9 +12853,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
                 DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12933,15 +12933,15 @@ namespace CoreKeeperInventoryEditor
         #endregion // End player math.
 
         // Get chunk information.
-        private void Button35_Click(object sender, EventArgs e)
+        private void OpenChunkVisualizer_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
                 DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith1_CheckedChanged;
+                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -12985,15 +12985,15 @@ namespace CoreKeeperInventoryEditor
         // Toggle godmode.
         readonly System.Timers.Timer playersGodmodeTimer = new System.Timers.Timer();
         string godmodeAddress = "0";
-        private void SiticoneWinToggleSwith2_CheckedChanged(object sender, EventArgs e)
+        private void Godmode_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Godmode_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
                 Godmode_ToggleSwith.Checked = false;
-                Godmode_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13003,9 +13003,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Godmode_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
                 Godmode_ToggleSwith.Checked = false;
-                Godmode_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13043,15 +13043,15 @@ namespace CoreKeeperInventoryEditor
 
         // Change player speed.
         string originalSpeed = "336"; // Original max speed.
-        private void SiticoneWinToggleSwith3_CheckedChanged(object sender, EventArgs e)
+        private void Speed_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Speed_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
+                Speed_ToggleSwith.CheckedChanged -= Speed_ToggleSwith_CheckedChanged;
                 Speed_ToggleSwith.Checked = false;
-                Speed_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
+                Speed_ToggleSwith.CheckedChanged += Speed_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13061,9 +13061,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Speed_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith3_CheckedChanged;
+                Speed_ToggleSwith.CheckedChanged -= Speed_ToggleSwith_CheckedChanged;
                 Speed_ToggleSwith.Checked = false;
-                Speed_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith3_CheckedChanged;
+                Speed_ToggleSwith.CheckedChanged += Speed_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13104,15 +13104,15 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer playersNoHungerTimer = new System.Timers.Timer();
         string hungerAddress = "0";
         // public IEnumerable<long> AoBScanResultsNoHunger1Tools = null;
-        private void SiticoneWinToggleSwith5_CheckedChanged(object sender, EventArgs e)
+        private void InfiniteHealth_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Godmode_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
                 Godmode_ToggleSwith.Checked = false;
-                Godmode_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13122,9 +13122,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Godmode_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
                 Godmode_ToggleSwith.Checked = false;
-                Godmode_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13288,15 +13288,15 @@ namespace CoreKeeperInventoryEditor
         // Toggle infinite mana.
         readonly System.Timers.Timer playersInfiniteManaTimer = new System.Timers.Timer();
         string manaAddress = "0";
-        private void SiticoneWinToggleSwith8_CheckedChanged(object sender, EventArgs e)
+        private void InfiniteMana_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                InfiniteMana_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith8_CheckedChanged;
+                InfiniteMana_ToggleSwith.CheckedChanged -= InfiniteMana_ToggleSwith_CheckedChanged;
                 InfiniteMana_ToggleSwith.Checked = false;
-                InfiniteMana_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith8_CheckedChanged;
+                InfiniteMana_ToggleSwith.CheckedChanged += InfiniteMana_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13306,9 +13306,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                InfiniteMana_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith8_CheckedChanged;
+                InfiniteMana_ToggleSwith.CheckedChanged -= InfiniteMana_ToggleSwith_CheckedChanged;
                 InfiniteMana_ToggleSwith.Checked = false;
-                InfiniteMana_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith8_CheckedChanged;
+                InfiniteMana_ToggleSwith.CheckedChanged += InfiniteMana_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13348,15 +13348,15 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer playersNoclipTimer = new System.Timers.Timer();
         string noclipAddress = "0";
         string noclipOriginalValue = "4";
-        private void SiticoneWinToggleSwith4_CheckedChanged(object sender, EventArgs e)
+        private void Noclip_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Noclip_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
                 Noclip_ToggleSwith.Checked = false;
-                Noclip_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13366,9 +13366,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Noclip_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
                 Noclip_ToggleSwith.Checked = false;
-                Noclip_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13424,15 +13424,15 @@ namespace CoreKeeperInventoryEditor
         #region Suicide
 
         // Kill the player via suicide.
-        private void SiticoneWinToggleSwith6_CheckedChanged(object sender, EventArgs e)
+        private void Suicide_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Suicide_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+                Suicide_ToggleSwith.CheckedChanged -= Suicide_ToggleSwith_CheckedChanged;
                 Suicide_ToggleSwith.Checked = false;
-                Suicide_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+                Suicide_ToggleSwith.CheckedChanged += Suicide_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13442,9 +13442,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Suicide_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+                Suicide_ToggleSwith.CheckedChanged -= Suicide_ToggleSwith_CheckedChanged;
                 Suicide_ToggleSwith.Checked = false;
-                Suicide_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+                Suicide_ToggleSwith.CheckedChanged += Suicide_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13457,24 +13457,24 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
 
             // Toggle slider.
-            Suicide_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith6_CheckedChanged;
+            Suicide_ToggleSwith.CheckedChanged -= Suicide_ToggleSwith_CheckedChanged;
             Suicide_ToggleSwith.Checked = false;
-            Suicide_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith6_CheckedChanged;
+            Suicide_ToggleSwith.CheckedChanged += Suicide_ToggleSwith_CheckedChanged;
         }
         #endregion
 
         #region Force Recall
 
         // Kill the player via suicide.
-        private async void SiticoneWinToggleSwith9_CheckedChanged(object sender, EventArgs e)
+        private async void ForceRecall_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                ForceRecall_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith9_CheckedChanged;
+                ForceRecall_ToggleSwith.CheckedChanged -= ForceRecall_ToggleSwith_CheckedChanged;
                 ForceRecall_ToggleSwith.Checked = false;
-                ForceRecall_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
+                ForceRecall_ToggleSwith.CheckedChanged += ForceRecall_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13484,9 +13484,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                ForceRecall_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith9_CheckedChanged;
+                ForceRecall_ToggleSwith.CheckedChanged -= ForceRecall_ToggleSwith_CheckedChanged;
                 ForceRecall_ToggleSwith.Checked = false;
-                ForceRecall_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
+                ForceRecall_ToggleSwith.CheckedChanged += ForceRecall_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13511,9 +13511,9 @@ namespace CoreKeeperInventoryEditor
             ForceRecall_ToggleSwith.Enabled = true;
 
             // Toggle slider.
-            ForceRecall_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith9_CheckedChanged;
+            ForceRecall_ToggleSwith.CheckedChanged -= ForceRecall_ToggleSwith_CheckedChanged;
             ForceRecall_ToggleSwith.Checked = false;
-            ForceRecall_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith9_CheckedChanged;
+            ForceRecall_ToggleSwith.CheckedChanged += ForceRecall_ToggleSwith_CheckedChanged;
         }
         #endregion // End goto spawn.
 
@@ -13521,15 +13521,15 @@ namespace CoreKeeperInventoryEditor
 
         // Passive AI.
         // public IEnumerable<long> AoBScanResultsPassiveAITools = null;
-        private void SiticoneWinToggleSwith11_CheckedChanged(object sender, EventArgs e)
+        private void PassiveAI_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                PassiveAI_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith11_CheckedChanged;
+                PassiveAI_ToggleSwith.CheckedChanged -= PassiveAI_ToggleSwith_CheckedChanged;
                 PassiveAI_ToggleSwith.Checked = false;
-                PassiveAI_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
+                PassiveAI_ToggleSwith.CheckedChanged += PassiveAI_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13539,9 +13539,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                PassiveAI_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith11_CheckedChanged;
+                PassiveAI_ToggleSwith.CheckedChanged -= PassiveAI_ToggleSwith_CheckedChanged;
                 PassiveAI_ToggleSwith.Checked = false;
-                PassiveAI_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith11_CheckedChanged;
+                PassiveAI_ToggleSwith.CheckedChanged += PassiveAI_ToggleSwith_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -13810,7 +13810,7 @@ namespace CoreKeeperInventoryEditor
         #region Teleport Tool Addresses
 
         // Get Teleport Player addresses.
-        private void Button11_Click(object sender, EventArgs e)
+        private void GetTeleportAddresses_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             TeleportPlayer_ProgressBar.Value = 0;
@@ -13820,7 +13820,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Launch the teleport address guide.
-        private void Button36_Click(object sender, EventArgs e)
+        private void TeleportPlayerHelp_Button_Click(object sender, EventArgs e)
         {
             // De-select button.
             TeleportPlayerHelp_Button.Enabled = false;
@@ -13835,7 +13835,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Toggle brute force teleport player addresses.
-        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
+        private void BruteForce_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Double check if the player wishes to enable this.
             if (BruteForce_CheckBox.Checked && MessageBox.Show("This option should only be used if normal scaning brings no results.\n\nThis could crash your game in the process -\nSaving prior is recommended!\n\nAre you sure you wish to brute force the address searching?", "Brute Force Teleport Address Search", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -14152,7 +14152,7 @@ namespace CoreKeeperInventoryEditor
         #region Map Rendering Addresses
 
         // Get map rendering addresses.
-        private void Button30_Click(object sender, EventArgs e)
+        private void GetMapRenderingAddresses_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             MapRendering_ProgressBar.Value = 0;
@@ -14350,7 +14350,7 @@ namespace CoreKeeperInventoryEditor
         #region Set Render Distance
 
         // Set custom render distaance.
-        private async void Button27_Click(object sender, EventArgs e)
+        private async void SetRevealRange_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -14396,7 +14396,7 @@ namespace CoreKeeperInventoryEditor
         #region Set Defualt Render Distance
 
         // Restore defualt render.
-        private async void Button25_Click(object sender, EventArgs e)
+        private async void RestoreDefualtRange_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -14444,7 +14444,7 @@ namespace CoreKeeperInventoryEditor
         #region Controls
 
         // Pause operations.
-        private void Button31_Click(object sender, EventArgs e)
+        private void PauseOperation_Button_Click(object sender, EventArgs e)
         {
             // Ensure the button is enabled first.
             if (PauseOperation_Button.Enabled)
@@ -14474,7 +14474,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Cancle auto renderer.
-        private void Button28_Click(object sender, EventArgs e)
+        private void CancelOperation_Button_Click(object sender, EventArgs e)
         {
             // Disable the groupbox.
             MapRendering_GroupBox.Enabled = false;
@@ -14487,7 +14487,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Prevent value from being larger then the max radius.
-        private void NumericUpDown16_ValueChanged(object sender, EventArgs e)
+        private void StartRadius_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Check value.
             if (StartRadius_NumericUpDown.Value > MaxRadius_NumericUpDown.Value)
@@ -14514,7 +14514,7 @@ namespace CoreKeeperInventoryEditor
         // Auto rebnder the map.
         public bool cancleRenderingOperation = false;
         public bool pauseRenderingOperation = false;
-        private async void Button22_Click(object sender, EventArgs e)
+        private async void AutoMapRenderer_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -15050,7 +15050,7 @@ namespace CoreKeeperInventoryEditor
         #region Remove Ground Items
 
         // Delete all ground items.
-        private async void Button8_Click(object sender, EventArgs e)
+        private async void TrashGroundItems_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -15185,7 +15185,7 @@ namespace CoreKeeperInventoryEditor
         #region Teleport Player
 
         // Teleport the player to a world position.
-        private void Button9_Click(object sender, EventArgs e)
+        private void TeleportXY_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -15226,7 +15226,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Numericupdown key down teleport player.
-        private void NumericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        private void TeleportX_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -15270,7 +15270,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Numericupdown key down teleport player.
-        private void NumericUpDown5_KeyDown(object sender, KeyEventArgs e)
+        private void TeleportY_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -15318,7 +15318,7 @@ namespace CoreKeeperInventoryEditor
         #region Get World Information
 
         // Get world information.
-        private async void Button16_Click(object sender, EventArgs e)
+        private async void GetWorldInformation_Button_Click(object sender, EventArgs e)
         {
             // Ensure properties are filled.
             if (WorldInformation_TextBox.Text == "")
@@ -15340,7 +15340,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Get world information keydown.
-        private async void TextBox3_KeyDown(object sender, KeyEventArgs e)
+        private async void WorldInformation_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             // Get enter key.
             if (e.KeyCode == Keys.Enter)
@@ -15368,7 +15368,7 @@ namespace CoreKeeperInventoryEditor
         #region Copy Cell Text
 
         // Copy the value to the clipboard.
-        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void WorldInformation_DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Catch any errors.
             try
@@ -15389,7 +15389,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Color Dropdown Choices
 
-        private void ComboBox3_DrawItem(object sender, DrawItemEventArgs e)
+        private void WorldDifficulty_ComboBox_DrawItem(object sender, DrawItemEventArgs e)
         {
             // Draw the background.
             e.DrawBackground();
@@ -15447,7 +15447,7 @@ namespace CoreKeeperInventoryEditor
         #region Deselect Combobox
 
         // Unselect the combobox text after the dropdown closes.
-        private void ComboBox3_DropDownClosed(object sender, EventArgs e)
+        private void WorldDifficulty_ComboBox_DropDownClosed(object sender, EventArgs e)
         {
             // Unselect combobox text.
             this.BeginInvoke(new Action(() => { WorldDifficulty_ComboBox.Select(0, 0); }));
@@ -15457,7 +15457,7 @@ namespace CoreKeeperInventoryEditor
         #region Change World Icon Label
 
         // Change the icon text based on the selection.
-        private void NumericUpDown23_ValueChanged(object sender, EventArgs e)
+        private void Icon_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Set the labels text based on numeric updowns value.
             if (Icon_NumericUpDown.Value == 0)
@@ -15801,7 +15801,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Difficutly
 
         // Change world difficulty.
-        private void Button17_Click(object sender, EventArgs e)
+        private void ChangeDifficulty_Button_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -15988,7 +15988,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Seed
 
         // Change world icon.
-        private void Button37_Click(object sender, EventArgs e)
+        private void ChangeSeed_Button_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -16162,7 +16162,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Icon
 
         // Change world icon.
-        private void Button38_Click(object sender, EventArgs e)
+        private void ChangeIcon_Button_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -16336,7 +16336,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Creation Date
 
         // Change world date.
-        private void Button15_Click(object sender, EventArgs e)
+        private void ChangeDate_Button_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -16520,7 +16520,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Activated Crystals
 
         // Change activated crystals.
-        private void Button18_Click(object sender, EventArgs e)
+        private void ChangeCrystals_Button_Click(object sender, EventArgs e)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -16715,7 +16715,7 @@ namespace CoreKeeperInventoryEditor
         #region Change Console ForeColor
 
         // Change console fore color.
-        private void Button39_Click(object sender, EventArgs e)
+        private void ChangeConsoleForeColor_Button_Click(object sender, EventArgs e)
         {
             // Update button text.
             ChangeConsoleForeColor_Button.Text = "Pick New Color";
@@ -16767,7 +16767,7 @@ namespace CoreKeeperInventoryEditor
         string fishTypeAddress = "0";
         // string fishFightAddress = "0";
         bool autoFishingChecked = false;
-        private async void Button19_Click(object sender, EventArgs e)
+        private async void AutomaticFishing_Button_Click(object sender, EventArgs e)
         {
             // Check if button was toggled.
             if (!autoFishingChecked)
@@ -16959,7 +16959,7 @@ namespace CoreKeeperInventoryEditor
         #region Toggle Controls
 
         // Enable the numericupdown based on if selected radiobutton is checked.
-        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        private void Custom_RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (Custom_RadioButton.Checked == true)
             {
@@ -17093,7 +17093,7 @@ namespace CoreKeeperInventoryEditor
         // Toggle chat commands.
         bool chatEnabled = false;
         public System.Timers.Timer chatTimer = new System.Timers.Timer(500);
-        private async void Button7_Click(object sender, EventArgs e)
+        private async void EnableChatCommands_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -17409,9 +17409,9 @@ namespace CoreKeeperInventoryEditor
                             if (godmodeEnabled)
                             {
                                 // Toggle slider.
-                                Godmode_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
                                 Godmode_ToggleSwith.Checked = true;
-                                Godmode_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
 
                                 // Slider is being toggled on.
                                 // Start the timed events.
@@ -17429,9 +17429,9 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // Toggle slider.
-                                Godmode_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith2_CheckedChanged;
+                                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
                                 Godmode_ToggleSwith.Checked = false;
-                                Godmode_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith2_CheckedChanged;
+                                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
 
                                 // Slider is being toggled off.
                                 // Stop the timers.
@@ -17503,9 +17503,9 @@ namespace CoreKeeperInventoryEditor
                             if (noclipEnabled)
                             {
                                 // Toggle slider.
-                                Noclip_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
                                 Noclip_ToggleSwith.Checked = true;
-                                Noclip_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+                                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
 
                                 // Toggle force on checkbox.
                                 ForceNoclip_Checkbox.Checked = true;
@@ -17529,9 +17529,9 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // Toggle slider.
-                                Noclip_ToggleSwith.CheckedChanged -= SiticoneWinToggleSwith4_CheckedChanged;
+                                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
                                 Noclip_ToggleSwith.Checked = false;
-                                Noclip_ToggleSwith.CheckedChanged += SiticoneWinToggleSwith4_CheckedChanged;
+                                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
 
                                 // Toggle force on checkbox.
                                 ForceNoclip_Checkbox.Checked = false;
@@ -17912,7 +17912,7 @@ namespace CoreKeeperInventoryEditor
         #region Clear Logs
 
         // Clear the debug log.
-        private void Button42_Click(object sender, EventArgs e)
+        private void ClearDebugLog_Button_Click(object sender, EventArgs e)
         {
             // Set the debug logs content.
             Debug_RichTextBox.Text = String.Concat(new string[] {
@@ -17922,7 +17922,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Clear the world tools log.
-        private void Button43_Click(object sender, EventArgs e)
+        private void ClearWorldToolsLog_Button_Click(object sender, EventArgs e)
         {
             // Set the debug logs content.
             WorldTools_RichTextBox.Text = String.Concat(new string[] {
@@ -17935,7 +17935,7 @@ namespace CoreKeeperInventoryEditor
         #region Item ID List Builder
 
         // Create an ID list from all installed assets.
-        private void Label7_Click(object sender, EventArgs e)
+        private void DevTools3_Label_Click(object sender, EventArgs e)
         {
             // Recolor label.
             DevTools3_Label.ForeColor = Color.Lime;
@@ -18030,7 +18030,7 @@ namespace CoreKeeperInventoryEditor
         #region Random Food ID
 
         // Get a random food ID.
-        private void Label4_Click(object sender, EventArgs e)
+        private void DevTools2_Label_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -18141,7 +18141,7 @@ namespace CoreKeeperInventoryEditor
         int currentSwapVariation = 0;
         bool itemSwapActive = false; // Define toggle for on / off.
         readonly System.Timers.Timer itemSwapTimer = new System.Timers.Timer();
-        private void Label8_Click(object sender, EventArgs e)
+        private void DevTools1_Label_Click(object sender, EventArgs e)
         {
             // Check if item swap is active or not.
             if (!itemSwapActive)
@@ -18232,7 +18232,7 @@ namespace CoreKeeperInventoryEditor
         #region Recenter Game
 
         // Bring game window back to the center and resize.
-        private void Label30_Click(object sender, EventArgs e)
+        private void DevTools5_Label_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -18264,7 +18264,7 @@ namespace CoreKeeperInventoryEditor
 
         // Auto render map memory logger.
         bool memoryLoggerActive = false; // Define toggle for on / off.
-        private void Label31_Click(object sender, EventArgs e)
+        private void DevTools4_Label_Click(object sender, EventArgs e)
         {
             // Create directories if they do not exist.
             if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\debug\"))
@@ -18371,14 +18371,14 @@ namespace CoreKeeperInventoryEditor
 
         // Save the previous priority value.
         public string originalPriorityValue = "Normal";
-        private void ComboBox2_Enter(object sender, EventArgs e)
+        private void AppPriority_ComboBox_Enter(object sender, EventArgs e)
         {
             // Update the global string with the new value.
             originalPriorityValue = AppPriority_ComboBox.Text;
         }
 
         // Change process priority.
-        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void AppPriority_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Try to get the priority based on a string.
             ProcessPriorityClass priority = ProcessPriorityClass.Normal; // Define defualt priority.

@@ -474,7 +474,7 @@ namespace CoreKeepersWorkshop
         #region Keydown Events
 
         // Do enter events.
-        private void NumericUpDown1_KeyDown(object sender, KeyEventArgs e)
+        private void ItemID_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -517,7 +517,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void NumericUpDown2_KeyDown(object sender, KeyEventArgs e)
+        private void Quantity_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -560,7 +560,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void NumericUpDown3_KeyDown(object sender, KeyEventArgs e)
+        private void VariationNumerical_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -603,7 +603,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void NumericUpDown4_KeyDown(object sender, KeyEventArgs e)
+        private void Variation1_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -646,7 +646,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void NumericUpDown5_KeyDown(object sender, KeyEventArgs e)
+        private void Variation2_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -689,7 +689,7 @@ namespace CoreKeepersWorkshop
                 this.Close();
             }
         }
-        private void NumericUpDown11_KeyDown(object sender, KeyEventArgs e)
+        private void Skillset_Button_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -734,7 +734,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Remove item.
-        private void Button5_Click(object sender, EventArgs e)
+        private void RemoveItem_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = 0;
             selectedItemAmount = 1;
@@ -746,7 +746,7 @@ namespace CoreKeepersWorkshop
 
         #region Form Controls
         // Toggle variant settings.
-        private void Label2_Click(object sender, EventArgs e)
+        private void Variation_Label_Click(object sender, EventArgs e)
         {
             // Check if item or food mode is enabled.
             if (!VariationNumerical_NumericUpDown.Visible)
@@ -792,7 +792,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Open food cookbook.
-        private void Button6_Click(object sender, EventArgs e)
+        private void CookedFoodList_Button_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             FoodCookbook frm4 = new FoodCookbook();
@@ -817,35 +817,35 @@ namespace CoreKeepersWorkshop
         }
 
         // Value had changed, reload images and labels.
-        private void NumericUpDown3_ValueChanged(object sender, EventArgs e)
+        private void VariationNumerical_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Value had changed, reload images and labels.
-        private void NumericUpDown4_ValueChanged(object sender, EventArgs e)
+        private void Variation1_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Value had changed, reload images and labels.
-        private void NumericUpDown5_ValueChanged(object sender, EventArgs e)
+        private void Variation2_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Value had changed, reload images and labels.
-        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void ItemID_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
             ReloadPictureBoxes(useTextboxeData: true);
         }
 
         // Change item rarity.
-        private void Button1_Click(object sender, EventArgs e)
+        private void ChangeRarity_Button_Click(object sender, EventArgs e)
         {
             string originalName = "Unkown";
             string originalRarity = "Uncommon";
@@ -1009,7 +1009,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Lanch about skillset message.
-        private void Button13_Click(object sender, EventArgs e)
+        private void SkillsetHelp_Button_Click(object sender, EventArgs e)
         {
             MessageBox.Show("How to find my pet's skillset ID?\r\n    - Each pet only has 4 skillsets and are typically +4/-4 the current pets skillset. For example, if your pet has an assigned skillset of 150 then the 4 skillset IDs will be within the 146-154 range. For fresh pets first name the pet and it will be assigned a skillset id.\r\n\r\nWhy is it like this?\r\n    - The game generates progressive \"skill tables\" rather than using a static ID for a pets skills. Bad system I know, nothing I can do about it.\r\n", "How To Use --> Get Skillset ID", MessageBoxButtons.OK, MessageBoxIcon.Question);
             return;
@@ -1021,7 +1021,7 @@ namespace CoreKeepersWorkshop
         #region Quick Quantity Selector.
 
         // Quick change the items quantity to 1.
-        private void Button7_Click(object sender, EventArgs e)
+        private void CustomQuantity1_Button_Click(object sender, EventArgs e)
         {
             // Change the existing items quanitity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
@@ -1111,7 +1111,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Quick change the items quantity to 500.
-        private void Button9_Click(object sender, EventArgs e)
+        private void CustomQuantity3_Button_Click(object sender, EventArgs e)
         {
             // Change the existing items quanitity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
@@ -1156,7 +1156,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Quick change the items quantity to 5000.
-        private void Button10_Click(object sender, EventArgs e)
+        private void CustomQuantity4_Button_Click(object sender, EventArgs e)
         {
             // Change the existing items quanitity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
@@ -1201,7 +1201,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Quick change the items quantity to 9999.
-        private void Button11_Click(object sender, EventArgs e)
+        private void CustomQuantity5_Button_Click(object sender, EventArgs e)
         {
             // Change the existing items quanitity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
@@ -1249,7 +1249,7 @@ namespace CoreKeepersWorkshop
         #region Set Custom Quick Quantity Selector Values
 
         // QQS Button 1.
-        private void Button7_MouseDown(object sender, MouseEventArgs e)
+        private void CustomQuantity1_Button_MouseDown(object sender, MouseEventArgs e)
         {
             // Detect if the right mouse was pressed.
             if (e.Button == MouseButtons.Right)
@@ -1259,7 +1259,7 @@ namespace CoreKeepersWorkshop
                 CustomQuantity1_NumericUpDown.Visible = true;
             }
         }
-        private void NumericUpDown6_KeyDown(object sender, KeyEventArgs e)
+        private void CustomQuantity1_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             // Detect if enter was pressesed.
             if (e.KeyCode == Keys.Enter)
@@ -1277,7 +1277,7 @@ namespace CoreKeepersWorkshop
         }
 
         // QQS Button 2.
-        private void Button8_MouseDown(object sender, MouseEventArgs e)
+        private void CustomQuantity2_Button_MouseDown(object sender, MouseEventArgs e)
         {
             // Detect if the right mouse was pressed.
             if (e.Button == MouseButtons.Right)
@@ -1287,7 +1287,7 @@ namespace CoreKeepersWorkshop
                 CustomQuantity2_NumericUpDown.Visible = true;
             }
         }
-        private void NumericUpDown7_KeyDown(object sender, KeyEventArgs e)
+        private void CustomQuantity2_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             // Detect if enter was pressesed.
             if (e.KeyCode == Keys.Enter)
@@ -1305,7 +1305,7 @@ namespace CoreKeepersWorkshop
         }
 
         // QQS Button 3.
-        private void Button9_MouseDown(object sender, MouseEventArgs e)
+        private void CustomQuantity3_Button_MouseDown(object sender, MouseEventArgs e)
         {
             // Detect if the right mouse was pressed.
             if (e.Button == MouseButtons.Right)
@@ -1315,7 +1315,7 @@ namespace CoreKeepersWorkshop
                 CustomQuantity3_NumericUpDown.Visible = true;
             }
         }
-        private void NumericUpDown8_KeyDown(object sender, KeyEventArgs e)
+        private void CustomQuantity3_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             // Detect if enter was pressesed.
             if (e.KeyCode == Keys.Enter)
@@ -1333,7 +1333,7 @@ namespace CoreKeepersWorkshop
         }
 
         // QQS Button 4.
-        private void Button10_MouseDown(object sender, MouseEventArgs e)
+        private void CustomQuantity4_Button_MouseDown(object sender, MouseEventArgs e)
         {
             // Detect if the right mouse was pressed.
             if (e.Button == MouseButtons.Right)
@@ -1343,7 +1343,7 @@ namespace CoreKeepersWorkshop
                 CustomQuantity4_NumericUpDown.Visible = true;
             }
         }
-        private void NumericUpDown9_KeyDown(object sender, KeyEventArgs e)
+        private void CustomQuantity4_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             // Detect if enter was pressesed.
             if (e.KeyCode == Keys.Enter)
@@ -1361,7 +1361,7 @@ namespace CoreKeepersWorkshop
         }
 
         // QQS Button 5.
-        private void Button11_MouseDown(object sender, MouseEventArgs e)
+        private void CustomQuantity5_Button_MouseDown(object sender, MouseEventArgs e)
         {
             // Detect if the right mouse was pressed.
             if (e.Button == MouseButtons.Right)
@@ -1371,7 +1371,7 @@ namespace CoreKeepersWorkshop
                 CustomQuantity5_NumericUpDown.Visible = true;
             }
         }
-        private void NumericUpDown10_KeyDown(object sender, KeyEventArgs e)
+        private void CustomQuantity5_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             // Detect if enter was pressesed.
             if (e.KeyCode == Keys.Enter)
@@ -1390,7 +1390,7 @@ namespace CoreKeepersWorkshop
         #endregion // End set quick quantity selector values.
 
         // Launch item explorer.
-        private void PictureBox1_Click(object sender, EventArgs e)
+        private void Slot1_PictureBox_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             InventoryEditor frm3 = new InventoryEditor();
@@ -1413,7 +1413,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Launch item explorer.
-        private void PictureBox2_Click(object sender, EventArgs e)
+        private void Slot2_PictureBox_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             InventoryEditor frm3 = new InventoryEditor();
@@ -1444,7 +1444,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Launch item explorer.
-        private void PictureBox3_Click(object sender, EventArgs e)
+        private void Slot3_PictureBox_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
             InventoryEditor frm3 = new InventoryEditor();
@@ -1467,7 +1467,7 @@ namespace CoreKeepersWorkshop
         }
 
         // User clicked done, save and close form.
-        private void Button3_Click(object sender, EventArgs e)
+        private void Done_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = (int)ItemID_NumericUpDown.Value;
             selectedItemAmount = (int)Quantity_NumericUpDown.Value;

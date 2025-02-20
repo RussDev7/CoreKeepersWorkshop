@@ -386,7 +386,7 @@ namespace CoreKeeperInventoryEditor
             this.Main_TabControl.SelectedIndex = 0;
             this.Main_TabControl.Size = new System.Drawing.Size(740, 455);
             this.Main_TabControl.TabIndex = 5;
-            this.Main_TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
+            this.Main_TabControl.SelectedIndexChanged += new System.EventHandler(this.Main_TabControl_SelectedIndexChanged);
             // 
             // Inventory_TabPage
             // 
@@ -686,7 +686,7 @@ namespace CoreKeeperInventoryEditor
             this.NextInvAddress_Button.TabIndex = 4;
             this.NextInvAddress_Button.Text = "Next";
             this.NextInvAddress_Button.UseVisualStyleBackColor = true;
-            this.NextInvAddress_Button.Click += new System.EventHandler(this.Button21_Click);
+            this.NextInvAddress_Button.Click += new System.EventHandler(this.NextInvAddress_Button_Click);
             // 
             // PreviousInvAddress_Button
             // 
@@ -697,7 +697,7 @@ namespace CoreKeeperInventoryEditor
             this.PreviousInvAddress_Button.TabIndex = 2;
             this.PreviousInvAddress_Button.Text = "Previous";
             this.PreviousInvAddress_Button.UseVisualStyleBackColor = true;
-            this.PreviousInvAddress_Button.Click += new System.EventHandler(this.Button20_Click);
+            this.PreviousInvAddress_Button.Click += new System.EventHandler(this.PreviousInvAddress_Button_Click);
             // 
             // Inventory_ProgressBar
             // 
@@ -717,7 +717,7 @@ namespace CoreKeeperInventoryEditor
             this.RemoveAll_Button.TabIndex = 5;
             this.RemoveAll_Button.Text = "Remove All";
             this.RemoveAll_Button.UseVisualStyleBackColor = true;
-            this.RemoveAll_Button.Click += new System.EventHandler(this.Button3_Click);
+            this.RemoveAll_Button.Click += new System.EventHandler(this.RemoveAll_Button_Click);
             // 
             // ReloadInventory_Button
             // 
@@ -728,7 +728,7 @@ namespace CoreKeeperInventoryEditor
             this.ReloadInventory_Button.TabIndex = 6;
             this.ReloadInventory_Button.Text = "Reload Inventory";
             this.ReloadInventory_Button.UseVisualStyleBackColor = true;
-            this.ReloadInventory_Button.Click += new System.EventHandler(this.Button2_Click);
+            this.ReloadInventory_Button.Click += new System.EventHandler(this.ReloadInventory_Button_Click);
             // 
             // Slot30_PictureBox
             // 
@@ -1068,7 +1068,7 @@ namespace CoreKeeperInventoryEditor
             this.GetInventoryAddresses_Button.TabIndex = 1;
             this.GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
             this.GetInventoryAddresses_Button.UseVisualStyleBackColor = true;
-            this.GetInventoryAddresses_Button.Click += new System.EventHandler(this.Button1_Click);
+            this.GetInventoryAddresses_Button.Click += new System.EventHandler(this.GetInventoryAddresses_Button_Click);
             // 
             // Inventory_RichTextBox
             // 
@@ -1181,7 +1181,7 @@ namespace CoreKeeperInventoryEditor
             this.About_RichTextBox.Size = new System.Drawing.Size(348, 127);
             this.About_RichTextBox.TabIndex = 0;
             this.About_RichTextBox.Text = "";
-            this.About_RichTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichTextBox2_LinkClicked);
+            this.About_RichTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.About_RichTextBox_LinkClicked);
             // 
             // Debug_TabPage
             // 
@@ -1211,7 +1211,7 @@ namespace CoreKeeperInventoryEditor
             this.ClearDebugLog_Button.TabIndex = 13;
             this.ClearDebugLog_Button.Text = "Clear";
             this.ClearDebugLog_Button.UseVisualStyleBackColor = true;
-            this.ClearDebugLog_Button.Click += new System.EventHandler(this.Button42_Click);
+            this.ClearDebugLog_Button.Click += new System.EventHandler(this.ClearDebugLog_Button_Click);
             // 
             // Debug_RichTextBox
             // 
@@ -1255,7 +1255,7 @@ namespace CoreKeeperInventoryEditor
             this.ClearWorldToolsLog_Button.TabIndex = 12;
             this.ClearWorldToolsLog_Button.Text = "Clear";
             this.ClearWorldToolsLog_Button.UseVisualStyleBackColor = true;
-            this.ClearWorldToolsLog_Button.Click += new System.EventHandler(this.Button43_Click);
+            this.ClearWorldToolsLog_Button.Click += new System.EventHandler(this.ClearWorldToolsLog_Button_Click);
             // 
             // WorldTools_RichTextBox
             // 
@@ -1317,8 +1317,8 @@ namespace CoreKeeperInventoryEditor
             this.AppPriority_ComboBox.Size = new System.Drawing.Size(84, 21);
             this.AppPriority_ComboBox.TabIndex = 24;
             this.AppPriority_ComboBox.Text = "Normal";
-            this.AppPriority_ComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox2_SelectedIndexChanged);
-            this.AppPriority_ComboBox.Enter += new System.EventHandler(this.ComboBox2_Enter);
+            this.AppPriority_ComboBox.SelectedIndexChanged += new System.EventHandler(this.AppPriority_ComboBox_SelectedIndexChanged);
+            this.AppPriority_ComboBox.Enter += new System.EventHandler(this.AppPriority_ComboBox_Enter);
             // 
             // AlwaysOnTop_CheckBox
             // 
@@ -1332,7 +1332,7 @@ namespace CoreKeeperInventoryEditor
             this.AlwaysOnTop_CheckBox.TabIndex = 26;
             this.AlwaysOnTop_CheckBox.Text = "Always on top";
             this.AlwaysOnTop_CheckBox.UseVisualStyleBackColor = true;
-            this.AlwaysOnTop_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.AlwaysOnTop_CheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTop_CheckBox_CheckedChanged);
             // 
             // DevTools4_Label
             // 
@@ -1343,7 +1343,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools4_Label.Size = new System.Drawing.Size(218, 13);
             this.DevTools4_Label.TabIndex = 10;
             this.DevTools4_Label.Text = "[Click Me] Auto map renderer memory logger.";
-            this.DevTools4_Label.Click += new System.EventHandler(this.Label31_Click);
+            this.DevTools4_Label.Click += new System.EventHandler(this.DevTools4_Label_Click);
             // 
             // DevTools5_Label
             // 
@@ -1354,7 +1354,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools5_Label.Size = new System.Drawing.Size(160, 13);
             this.DevTools5_Label.TabIndex = 9;
             this.DevTools5_Label.Text = "[Click Me] Center game process.";
-            this.DevTools5_Label.Click += new System.EventHandler(this.Label30_Click);
+            this.DevTools5_Label.Click += new System.EventHandler(this.DevTools5_Label_Click);
             // 
             // DevTools1_Label
             // 
@@ -1365,7 +1365,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools1_Label.Size = new System.Drawing.Size(277, 13);
             this.DevTools1_Label.TabIndex = 7;
             this.DevTools1_Label.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
-            this.DevTools1_Label.Click += new System.EventHandler(this.Label8_Click);
+            this.DevTools1_Label.Click += new System.EventHandler(this.DevTools1_Label_Click);
             // 
             // DevTools3_Label
             // 
@@ -1376,7 +1376,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools3_Label.Size = new System.Drawing.Size(245, 13);
             this.DevTools3_Label.TabIndex = 6;
             this.DevTools3_Label.Text = "[Click Me] Create an ID list from all installed assets.";
-            this.DevTools3_Label.Click += new System.EventHandler(this.Label7_Click);
+            this.DevTools3_Label.Click += new System.EventHandler(this.DevTools3_Label_Click);
             // 
             // DevTools_Label
             // 
@@ -1399,7 +1399,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools2_Label.Size = new System.Drawing.Size(250, 13);
             this.DevTools2_Label.TabIndex = 1;
             this.DevTools2_Label.Text = "[Click Me] Randomize slot2\'s variety based on a list.\r\n";
-            this.DevTools2_Label.Click += new System.EventHandler(this.Label4_Click);
+            this.DevTools2_Label.Click += new System.EventHandler(this.DevTools2_Label_Click);
             // 
             // DevToolsDelay_NumericUpDown
             // 
@@ -1606,9 +1606,9 @@ namespace CoreKeeperInventoryEditor
             this.MaxMinecartSpeed_MetroTrackBar.TabIndex = 46;
             this.MaxMinecartSpeed_MetroTrackBar.ThumbColor = System.Drawing.Color.Lime;
             this.MaxMinecartSpeed_MetroTrackBar.Value = 800;
-            this.MaxMinecartSpeed_MetroTrackBar.ValueChanged += new System.EventHandler(this.SiticoneMetroTrackBar1_ValueChanged);
-            this.MaxMinecartSpeed_MetroTrackBar.MouseLeave += new System.EventHandler(this.SiticoneMetroTrackBar1_MouseLeave);
-            this.MaxMinecartSpeed_MetroTrackBar.MouseHover += new System.EventHandler(this.SiticoneMetroTrackBar1_MouseHover);
+            this.MaxMinecartSpeed_MetroTrackBar.ValueChanged += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_ValueChanged);
+            this.MaxMinecartSpeed_MetroTrackBar.MouseLeave += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseLeave);
+            this.MaxMinecartSpeed_MetroTrackBar.MouseHover += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseHover);
             // 
             // MaxMinecartSpeed_ToggleSwith
             // 
@@ -1620,7 +1620,7 @@ namespace CoreKeeperInventoryEditor
             this.MaxMinecartSpeed_ToggleSwith.TabIndex = 40;
             this.MaxMinecartSpeed_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.MaxMinecartSpeed_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.MaxMinecartSpeed_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith16_CheckedChanged);
+            this.MaxMinecartSpeed_ToggleSwith.CheckedChanged += new System.EventHandler(this.MaxMinecartSpeed_ToggleSwith_CheckedChanged);
             // 
             // MinecartSpeed_Label
             // 
@@ -1642,7 +1642,7 @@ namespace CoreKeeperInventoryEditor
             this.TrashInventory_ToggleSwith.TabIndex = 38;
             this.TrashInventory_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.TrashInventory_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.TrashInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith15_CheckedChanged);
+            this.TrashInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.TrashInventory_ToggleSwith_CheckedChanged);
             // 
             // TrashInventory_Label
             // 
@@ -1664,7 +1664,7 @@ namespace CoreKeeperInventoryEditor
             this.KeepInventory_ToggleSwith.TabIndex = 36;
             this.KeepInventory_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.KeepInventory_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.KeepInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith14_CheckedChanged);
+            this.KeepInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.KeepInventory_ToggleSwith_CheckedChanged);
             // 
             // KeepInventory_Label
             // 
@@ -1685,7 +1685,7 @@ namespace CoreKeeperInventoryEditor
             this.OpenSkillEditor_Button.TabIndex = 35;
             this.OpenSkillEditor_Button.Text = "Open Skill Editor 2.0 (Beta)";
             this.OpenSkillEditor_Button.UseVisualStyleBackColor = true;
-            this.OpenSkillEditor_Button.Click += new System.EventHandler(this.Button40_Click);
+            this.OpenSkillEditor_Button.Click += new System.EventHandler(this.OpenSkillEditor_Button_Click);
             // 
             // Range_NumericUpDown
             // 
@@ -1724,7 +1724,7 @@ namespace CoreKeeperInventoryEditor
             this.Range_ToggleSwith.TabIndex = 21;
             this.Range_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.Range_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Range_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith13_CheckedChanged);
+            this.Range_ToggleSwith.CheckedChanged += new System.EventHandler(this.Range_ToggleSwith_CheckedChanged);
             // 
             // PlaceAnywhere_Label
             // 
@@ -1746,7 +1746,7 @@ namespace CoreKeeperInventoryEditor
             this.PlaceAnywhere_ToggleSwith.TabIndex = 20;
             this.PlaceAnywhere_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.PlaceAnywhere_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.PlaceAnywhere_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith12_CheckedChanged);
+            this.PlaceAnywhere_ToggleSwith.CheckedChanged += new System.EventHandler(this.PlaceAnywhere_ToggleSwith_CheckedChanged);
             // 
             // MoreMobs_Label
             // 
@@ -1769,7 +1769,7 @@ namespace CoreKeeperInventoryEditor
             this.Godmode_ToggleSwith.TabIndex = 7;
             this.Godmode_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.Godmode_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Godmode_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith2_CheckedChanged);
+            this.Godmode_ToggleSwith.CheckedChanged += new System.EventHandler(this.Godmode_ToggleSwith_CheckedChanged);
             // 
             // DisplayPosition_Label
             // 
@@ -1800,7 +1800,7 @@ namespace CoreKeeperInventoryEditor
             this.OpenChunkVisualizer_Button.TabIndex = 19;
             this.OpenChunkVisualizer_Button.Text = "Open Chunk Visualizer";
             this.OpenChunkVisualizer_Button.UseVisualStyleBackColor = true;
-            this.OpenChunkVisualizer_Button.Click += new System.EventHandler(this.Button35_Click);
+            this.OpenChunkVisualizer_Button.Click += new System.EventHandler(this.OpenChunkVisualizer_Button_Click);
             // 
             // InfiniteResources_ToggleSwith
             // 
@@ -1812,7 +1812,7 @@ namespace CoreKeeperInventoryEditor
             this.InfiniteResources_ToggleSwith.TabIndex = 13;
             this.InfiniteResources_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.InfiniteResources_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteResources_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith7_CheckedChanged);
+            this.InfiniteResources_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteResources_ToggleSwith_CheckedChanged);
             // 
             // DisplayLocation_ToggleSwith
             // 
@@ -1824,7 +1824,7 @@ namespace CoreKeeperInventoryEditor
             this.DisplayLocation_ToggleSwith.TabIndex = 18;
             this.DisplayLocation_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.DisplayLocation_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.DisplayLocation_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith1_CheckedChanged);
+            this.DisplayLocation_ToggleSwith.CheckedChanged += new System.EventHandler(this.DisplayLocation_ToggleSwith_CheckedChanged);
             // 
             // Godmode_Label
             // 
@@ -1856,7 +1856,7 @@ namespace CoreKeeperInventoryEditor
             this.PassiveAI_ToggleSwith.TabIndex = 17;
             this.PassiveAI_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.PassiveAI_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.PassiveAI_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith11_CheckedChanged);
+            this.PassiveAI_ToggleSwith.CheckedChanged += new System.EventHandler(this.PassiveAI_ToggleSwith_CheckedChanged);
             // 
             // InfiniteMana_ToggleSwith
             // 
@@ -1868,7 +1868,7 @@ namespace CoreKeeperInventoryEditor
             this.InfiniteMana_ToggleSwith.TabIndex = 12;
             this.InfiniteMana_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.InfiniteMana_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteMana_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith8_CheckedChanged);
+            this.InfiniteMana_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteMana_ToggleSwith_CheckedChanged);
             // 
             // Speed_ToggleSwith
             // 
@@ -1880,7 +1880,7 @@ namespace CoreKeeperInventoryEditor
             this.Speed_ToggleSwith.TabIndex = 10;
             this.Speed_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.Speed_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Speed_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith3_CheckedChanged);
+            this.Speed_ToggleSwith.CheckedChanged += new System.EventHandler(this.Speed_ToggleSwith_CheckedChanged);
             // 
             // Suicide_Label
             // 
@@ -1943,7 +1943,7 @@ namespace CoreKeeperInventoryEditor
             this.Suicide_ToggleSwith.TabIndex = 14;
             this.Suicide_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.Suicide_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Suicide_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith6_CheckedChanged);
+            this.Suicide_ToggleSwith.CheckedChanged += new System.EventHandler(this.Suicide_ToggleSwith_CheckedChanged);
             // 
             // ForceRecall_ToggleSwith
             // 
@@ -1955,7 +1955,7 @@ namespace CoreKeeperInventoryEditor
             this.ForceRecall_ToggleSwith.TabIndex = 16;
             this.ForceRecall_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.ForceRecall_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.ForceRecall_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith9_CheckedChanged);
+            this.ForceRecall_ToggleSwith.CheckedChanged += new System.EventHandler(this.ForceRecall_ToggleSwith_CheckedChanged);
             // 
             // InfiniteHealth_ToggleSwith
             // 
@@ -1967,7 +1967,7 @@ namespace CoreKeeperInventoryEditor
             this.InfiniteHealth_ToggleSwith.TabIndex = 9;
             this.InfiniteHealth_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.InfiniteHealth_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteHealth_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith5_CheckedChanged);
+            this.InfiniteHealth_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteHealth_ToggleSwith_CheckedChanged);
             // 
             // Speed_Label
             // 
@@ -1999,7 +1999,7 @@ namespace CoreKeeperInventoryEditor
             this.FreeCrafting_ToggleSwith.TabIndex = 15;
             this.FreeCrafting_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.FreeCrafting_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.FreeCrafting_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith10_CheckedChanged);
+            this.FreeCrafting_ToggleSwith.CheckedChanged += new System.EventHandler(this.FreeCrafting_ToggleSwith_CheckedChanged);
             // 
             // SpeedAmount_NumericUpDown
             // 
@@ -2028,7 +2028,7 @@ namespace CoreKeeperInventoryEditor
             this.Noclip_ToggleSwith.TabIndex = 8;
             this.Noclip_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
             this.Noclip_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Noclip_ToggleSwith.CheckedChanged += new System.EventHandler(this.SiticoneWinToggleSwith4_CheckedChanged);
+            this.Noclip_ToggleSwith.CheckedChanged += new System.EventHandler(this.Noclip_ToggleSwith_CheckedChanged);
             // 
             // Noclip_Label
             // 
@@ -2061,7 +2061,7 @@ namespace CoreKeeperInventoryEditor
             this.Mods_TrackBar.TabIndex = 0;
             this.Mods_TrackBar.ThumbColor = System.Drawing.Color.Lime;
             this.Mods_TrackBar.Value = 0;
-            this.Mods_TrackBar.ValueChanged += new System.EventHandler(this.SiticoneTrackBar1_ValueChanged);
+            this.Mods_TrackBar.ValueChanged += new System.EventHandler(this.Mods_TrackBar_ValueChanged);
             // 
             // PlayerTools_ProgressBar
             // 
@@ -2081,7 +2081,7 @@ namespace CoreKeeperInventoryEditor
             this.GetAddresses_Button.TabIndex = 6;
             this.GetAddresses_Button.Text = "Get Addresses";
             this.GetAddresses_Button.UseVisualStyleBackColor = true;
-            this.GetAddresses_Button.Click += new System.EventHandler(this.Button10_Click);
+            this.GetAddresses_Button.Click += new System.EventHandler(this.GetAddresses_Button_Click);
             // 
             // PlayerTools_RichTextBox
             // 
@@ -2124,7 +2124,7 @@ namespace CoreKeeperInventoryEditor
             this.ExportPlayer_Button.TabIndex = 5;
             this.ExportPlayer_Button.Text = "Export Player";
             this.ExportPlayer_Button.UseVisualStyleBackColor = true;
-            this.ExportPlayer_Button.Click += new System.EventHandler(this.Button6_Click);
+            this.ExportPlayer_Button.Click += new System.EventHandler(this.ExportPlayer_Button_Click);
             // 
             // ImportPlayer_Button
             // 
@@ -2135,7 +2135,7 @@ namespace CoreKeeperInventoryEditor
             this.ImportPlayer_Button.TabIndex = 4;
             this.ImportPlayer_Button.Text = "Import Player";
             this.ImportPlayer_Button.UseVisualStyleBackColor = true;
-            this.ImportPlayer_Button.Click += new System.EventHandler(this.Button5_Click);
+            this.ImportPlayer_Button.Click += new System.EventHandler(this.ImportPlayer_Button_Click);
             // 
             // ChangePlayersName_GroupBox
             // 
@@ -2182,7 +2182,7 @@ namespace CoreKeeperInventoryEditor
             this.ChanngeName_Button.TabIndex = 3;
             this.ChanngeName_Button.Text = "Change Name";
             this.ChanngeName_Button.UseVisualStyleBackColor = true;
-            this.ChanngeName_Button.Click += new System.EventHandler(this.Button4_Click);
+            this.ChanngeName_Button.Click += new System.EventHandler(this.ChanngeName_Button_Click);
             // 
             // NewName_TextBox
             // 
@@ -2241,7 +2241,7 @@ namespace CoreKeeperInventoryEditor
             this.ApplyBuff_Button.TabIndex = 23;
             this.ApplyBuff_Button.Text = "Apply";
             this.ApplyBuff_Button.UseVisualStyleBackColor = true;
-            this.ApplyBuff_Button.Click += new System.EventHandler(this.Button12_Click);
+            this.ApplyBuff_Button.Click += new System.EventHandler(this.ApplyBuff_Button_Click);
             // 
             // Power_NumericUpDown
             // 
@@ -2274,7 +2274,7 @@ namespace CoreKeeperInventoryEditor
             this.BuffType_ComboBox.Sorted = true;
             this.BuffType_ComboBox.TabIndex = 24;
             this.BuffType_ComboBox.Text = "None";
-            this.BuffType_ComboBox.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
+            this.BuffType_ComboBox.DropDown += new System.EventHandler(this.BuffType_ComboBox_DropDown);
             // 
             // World_TabPage
             // 
@@ -2384,7 +2384,7 @@ namespace CoreKeeperInventoryEditor
             this.TrashGroundItems_Button.TabIndex = 32;
             this.TrashGroundItems_Button.Text = "Trash Ground Items";
             this.TrashGroundItems_Button.UseVisualStyleBackColor = true;
-            this.TrashGroundItems_Button.Click += new System.EventHandler(this.Button8_Click);
+            this.TrashGroundItems_Button.Click += new System.EventHandler(this.TrashGroundItems_Button_Click);
             // 
             // TrashGroundItems_Label
             // 
@@ -2405,7 +2405,7 @@ namespace CoreKeeperInventoryEditor
             this.AutomaticFishing_Button.TabIndex = 33;
             this.AutomaticFishing_Button.Text = "Automatic Fishing";
             this.AutomaticFishing_Button.UseVisualStyleBackColor = true;
-            this.AutomaticFishing_Button.Click += new System.EventHandler(this.Button19_Click);
+            this.AutomaticFishing_Button.Click += new System.EventHandler(this.AutomaticFishing_Button_Click);
             // 
             // MapRendering_GroupBox
             // 
@@ -2459,7 +2459,7 @@ namespace CoreKeeperInventoryEditor
             this.PauseOperation_Button.TabIndex = 15;
             this.PauseOperation_Button.Text = "Pause Operation";
             this.PauseOperation_Button.UseVisualStyleBackColor = true;
-            this.PauseOperation_Button.Click += new System.EventHandler(this.Button31_Click);
+            this.PauseOperation_Button.Click += new System.EventHandler(this.PauseOperation_Button_Click);
             // 
             // SaveEachRing_CheckBox
             // 
@@ -2494,7 +2494,7 @@ namespace CoreKeeperInventoryEditor
             this.StartRadius_NumericUpDown.Name = "StartRadius_NumericUpDown";
             this.StartRadius_NumericUpDown.Size = new System.Drawing.Size(50, 20);
             this.StartRadius_NumericUpDown.TabIndex = 17;
-            this.StartRadius_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown16_ValueChanged);
+            this.StartRadius_NumericUpDown.ValueChanged += new System.EventHandler(this.StartRadius_NumericUpDown_ValueChanged);
             // 
             // NextRingDelay_NumericUpDown
             // 
@@ -2538,7 +2538,7 @@ namespace CoreKeeperInventoryEditor
             this.RestoreDefualtRange_Button.TabIndex = 9;
             this.RestoreDefualtRange_Button.Text = "Restore Default Range";
             this.RestoreDefualtRange_Button.UseVisualStyleBackColor = true;
-            this.RestoreDefualtRange_Button.Click += new System.EventHandler(this.Button25_Click);
+            this.RestoreDefualtRange_Button.Click += new System.EventHandler(this.RestoreDefualtRange_Button_Click);
             // 
             // SetRevealRange_Button
             // 
@@ -2549,7 +2549,7 @@ namespace CoreKeeperInventoryEditor
             this.SetRevealRange_Button.TabIndex = 6;
             this.SetRevealRange_Button.Text = "Set Reveal Range";
             this.SetRevealRange_Button.UseVisualStyleBackColor = true;
-            this.SetRevealRange_Button.Click += new System.EventHandler(this.Button27_Click);
+            this.SetRevealRange_Button.Click += new System.EventHandler(this.SetRevealRange_Button_Click);
             // 
             // RenderRange_Button
             // 
@@ -2635,7 +2635,7 @@ namespace CoreKeeperInventoryEditor
             this.GetMapRenderingAddresses_Button.TabIndex = 5;
             this.GetMapRenderingAddresses_Button.Text = "Get Addresses";
             this.GetMapRenderingAddresses_Button.UseVisualStyleBackColor = true;
-            this.GetMapRenderingAddresses_Button.Click += new System.EventHandler(this.Button30_Click);
+            this.GetMapRenderingAddresses_Button.Click += new System.EventHandler(this.GetMapRenderingAddresses_Button_Click);
             // 
             // MapRenderingAddresses_RichTextBox
             // 
@@ -2657,7 +2657,7 @@ namespace CoreKeeperInventoryEditor
             this.AutoMapRenderer_Button.TabIndex = 10;
             this.AutoMapRenderer_Button.Text = "Auto Map Renderer";
             this.AutoMapRenderer_Button.UseVisualStyleBackColor = true;
-            this.AutoMapRenderer_Button.Click += new System.EventHandler(this.Button22_Click);
+            this.AutoMapRenderer_Button.Click += new System.EventHandler(this.AutoMapRenderer_Button_Click);
             // 
             // CancelOperation_Button
             // 
@@ -2669,7 +2669,7 @@ namespace CoreKeeperInventoryEditor
             this.CancelOperation_Button.Text = "Cancel Operation";
             this.CancelOperation_Button.UseVisualStyleBackColor = true;
             this.CancelOperation_Button.Visible = false;
-            this.CancelOperation_Button.Click += new System.EventHandler(this.Button28_Click);
+            this.CancelOperation_Button.Click += new System.EventHandler(this.CancelOperation_Button_Click);
             // 
             // WorldInformation_GroupBox
             // 
@@ -2732,7 +2732,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeConsoleForeColor_Button.TabIndex = 35;
             this.ChangeConsoleForeColor_Button.Text = "Change Console ForeColor";
             this.ChangeConsoleForeColor_Button.UseVisualStyleBackColor = true;
-            this.ChangeConsoleForeColor_Button.Click += new System.EventHandler(this.Button39_Click);
+            this.ChangeConsoleForeColor_Button.Click += new System.EventHandler(this.ChangeConsoleForeColor_Button_Click);
             // 
             // CurrentIcon_Label
             // 
@@ -2774,8 +2774,8 @@ namespace CoreKeeperInventoryEditor
             this.WorldDifficulty_ComboBox.Size = new System.Drawing.Size(163, 21);
             this.WorldDifficulty_ComboBox.TabIndex = 21;
             this.WorldDifficulty_ComboBox.Text = "Standard";
-            this.WorldDifficulty_ComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox3_DrawItem);
-            this.WorldDifficulty_ComboBox.DropDownClosed += new System.EventHandler(this.ComboBox3_DropDownClosed);
+            this.WorldDifficulty_ComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.WorldDifficulty_ComboBox_DrawItem);
+            this.WorldDifficulty_ComboBox.DropDownClosed += new System.EventHandler(this.WorldDifficulty_ComboBox_DropDownClosed);
             // 
             // Icon_NumericUpDown
             // 
@@ -2788,7 +2788,7 @@ namespace CoreKeeperInventoryEditor
             this.Icon_NumericUpDown.Name = "Icon_NumericUpDown";
             this.Icon_NumericUpDown.Size = new System.Drawing.Size(35, 20);
             this.Icon_NumericUpDown.TabIndex = 25;
-            this.Icon_NumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown23_ValueChanged);
+            this.Icon_NumericUpDown.ValueChanged += new System.EventHandler(this.Icon_NumericUpDown_ValueChanged);
             // 
             // Seed_NumericUpDown
             // 
@@ -2811,7 +2811,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeIcon_Button.TabIndex = 26;
             this.ChangeIcon_Button.Text = "Change Icon";
             this.ChangeIcon_Button.UseVisualStyleBackColor = true;
-            this.ChangeIcon_Button.Click += new System.EventHandler(this.Button38_Click);
+            this.ChangeIcon_Button.Click += new System.EventHandler(this.ChangeIcon_Button_Click);
             // 
             // ChangeSeed_Button
             // 
@@ -2822,7 +2822,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeSeed_Button.TabIndex = 24;
             this.ChangeSeed_Button.Text = "Change Seed";
             this.ChangeSeed_Button.UseVisualStyleBackColor = true;
-            this.ChangeSeed_Button.Click += new System.EventHandler(this.Button37_Click);
+            this.ChangeSeed_Button.Click += new System.EventHandler(this.ChangeSeed_Button_Click);
             // 
             // WorldInformation_ProgressBar
             // 
@@ -2923,7 +2923,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeCrystals_Button.TabIndex = 34;
             this.ChangeCrystals_Button.Text = "Change Crystals";
             this.ChangeCrystals_Button.UseVisualStyleBackColor = true;
-            this.ChangeCrystals_Button.Click += new System.EventHandler(this.Button18_Click);
+            this.ChangeCrystals_Button.Click += new System.EventHandler(this.ChangeCrystals_Button_Click);
             // 
             // Day_NumericUpDown
             // 
@@ -3020,7 +3020,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeDate_Button.TabIndex = 30;
             this.ChangeDate_Button.Text = "Change Date";
             this.ChangeDate_Button.UseVisualStyleBackColor = true;
-            this.ChangeDate_Button.Click += new System.EventHandler(this.Button15_Click);
+            this.ChangeDate_Button.Click += new System.EventHandler(this.ChangeDate_Button_Click);
             // 
             // WorldInformation_Label
             // 
@@ -3038,7 +3038,7 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_TextBox.Name = "WorldInformation_TextBox";
             this.WorldInformation_TextBox.Size = new System.Drawing.Size(161, 20);
             this.WorldInformation_TextBox.TabIndex = 20;
-            this.WorldInformation_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyDown);
+            this.WorldInformation_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WorldInformation_TextBox_KeyDown);
             // 
             // GetWorldInformation_Button
             // 
@@ -3049,7 +3049,7 @@ namespace CoreKeeperInventoryEditor
             this.GetWorldInformation_Button.TabIndex = 20;
             this.GetWorldInformation_Button.Text = "Get Information";
             this.GetWorldInformation_Button.UseVisualStyleBackColor = true;
-            this.GetWorldInformation_Button.Click += new System.EventHandler(this.Button16_Click);
+            this.GetWorldInformation_Button.Click += new System.EventHandler(this.GetWorldInformation_Button_Click);
             // 
             // ChangeDifficulty_Button
             // 
@@ -3060,7 +3060,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeDifficulty_Button.TabIndex = 22;
             this.ChangeDifficulty_Button.Text = "Change Difficulty";
             this.ChangeDifficulty_Button.UseVisualStyleBackColor = true;
-            this.ChangeDifficulty_Button.Click += new System.EventHandler(this.Button17_Click);
+            this.ChangeDifficulty_Button.Click += new System.EventHandler(this.ChangeDifficulty_Button_Click);
             // 
             // WorldInformationData_GroupBox
             // 
@@ -3115,7 +3115,7 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ShowRowErrors = false;
             this.WorldInformation_DataGridView.Size = new System.Drawing.Size(340, 202);
             this.WorldInformation_DataGridView.TabIndex = 0;
-            this.WorldInformation_DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.WorldInformation_DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.WorldInformation_DataGridView_CellDoubleClick);
             // 
             // TeleportPlayer_GroupBox
             // 
@@ -3148,7 +3148,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportPlayerHelp_Button.TabIndex = 29;
             this.TeleportPlayerHelp_Button.Text = "Help";
             this.TeleportPlayerHelp_Button.UseVisualStyleBackColor = true;
-            this.TeleportPlayerHelp_Button.Click += new System.EventHandler(this.Button36_Click);
+            this.TeleportPlayerHelp_Button.Click += new System.EventHandler(this.TeleportPlayerHelp_Button_Click);
             // 
             // BruteForce_Label
             // 
@@ -3170,7 +3170,7 @@ namespace CoreKeeperInventoryEditor
             this.BruteForce_CheckBox.TabIndex = 27;
             this.BruteForce_CheckBox.Text = "Brute Force";
             this.BruteForce_CheckBox.UseVisualStyleBackColor = true;
-            this.BruteForce_CheckBox.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            this.BruteForce_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForce_CheckBox_CheckedChanged);
             // 
             // Y_Button
             // 
@@ -3210,7 +3210,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportY_NumericUpDown.Name = "TeleportY_NumericUpDown";
             this.TeleportY_NumericUpDown.Size = new System.Drawing.Size(98, 20);
             this.TeleportY_NumericUpDown.TabIndex = 4;
-            this.TeleportY_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown5_KeyDown);
+            this.TeleportY_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TeleportY_NumericUpDown_KeyDown);
             // 
             // TeleportPlayer_ProgressBar
             // 
@@ -3230,7 +3230,7 @@ namespace CoreKeeperInventoryEditor
             this.GetTeleportAddresses_Button.TabIndex = 1;
             this.GetTeleportAddresses_Button.Text = "Get Addresses";
             this.GetTeleportAddresses_Button.UseVisualStyleBackColor = true;
-            this.GetTeleportAddresses_Button.Click += new System.EventHandler(this.Button11_Click);
+            this.GetTeleportAddresses_Button.Click += new System.EventHandler(this.GetTeleportAddresses_Button_Click);
             // 
             // TeleportPlayerAddresses_RichTextBox
             // 
@@ -3259,7 +3259,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportX_NumericUpDown.Name = "TeleportX_NumericUpDown";
             this.TeleportX_NumericUpDown.Size = new System.Drawing.Size(98, 20);
             this.TeleportX_NumericUpDown.TabIndex = 3;
-            this.TeleportX_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumericUpDown4_KeyDown);
+            this.TeleportX_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TeleportX_NumericUpDown_KeyDown);
             // 
             // TeleportXY_Button
             // 
@@ -3270,7 +3270,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportXY_Button.TabIndex = 2;
             this.TeleportXY_Button.Text = "Teleport XY";
             this.TeleportXY_Button.UseVisualStyleBackColor = true;
-            this.TeleportXY_Button.Click += new System.EventHandler(this.Button9_Click);
+            this.TeleportXY_Button.Click += new System.EventHandler(this.TeleportXY_Button_Click);
             // 
             // Chat_TabPage
             // 
@@ -3310,7 +3310,7 @@ namespace CoreKeeperInventoryEditor
             this.EnableChatCommands_Button.TabIndex = 5;
             this.EnableChatCommands_Button.Text = "Enable";
             this.EnableChatCommands_Button.UseVisualStyleBackColor = true;
-            this.EnableChatCommands_Button.Click += new System.EventHandler(this.Button7_Click);
+            this.EnableChatCommands_Button.Click += new System.EventHandler(this.EnableChatCommands_Button_Click);
             // 
             // CustomAmount_NumericUpDown
             // 
@@ -3345,7 +3345,7 @@ namespace CoreKeeperInventoryEditor
             this.Custom_RadioButton.TabIndex = 3;
             this.Custom_RadioButton.Text = "Custom:";
             this.Custom_RadioButton.UseVisualStyleBackColor = true;
-            this.Custom_RadioButton.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
+            this.Custom_RadioButton.CheckedChanged += new System.EventHandler(this.Custom_RadioButton_CheckedChanged);
             // 
             // AddToEmptySlots_RadioButton
             // 
@@ -3484,7 +3484,7 @@ namespace CoreKeeperInventoryEditor
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.Main_TabControl.ResumeLayout(false);
             this.Inventory_TabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Slot50_PictureBox)).EndInit();

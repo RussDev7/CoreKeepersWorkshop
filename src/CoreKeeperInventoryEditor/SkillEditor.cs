@@ -131,7 +131,7 @@ namespace CoreKeepersWorkshop
         #region Display Levels or EXP
 
         // Change the format the skill values are displayed in. EXP or Levels.
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        private void UseEXPValues_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Get the current state.
             if (UseEXPValues_CheckBox.Checked)
@@ -214,7 +214,7 @@ namespace CoreKeepersWorkshop
         // Picturebox 1.
         // Warn users about changing this value.
         // bool warnUsers = true;
-        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void SkillID0_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // if (warnUsers && MessageBox.Show("Are you sure you want to change the value of the first skill?\nChanging this will break any further descoveries of this players skills!\n\nContinue?", "Change the ID of first skill?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             // {
@@ -237,7 +237,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 2.
-        private void NumericUpDown3_ValueChanged(object sender, EventArgs e)
+        private void SkillID1_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill1_PictureBox.BackgroundImage = GetBitmap((int)SkillID1_NumericUpDown.Value);
 
@@ -246,7 +246,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 3.
-        private void NumericUpDown5_ValueChanged(object sender, EventArgs e)
+        private void SkillID2_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill2_PictureBox.BackgroundImage = GetBitmap((int)SkillID2_NumericUpDown.Value);
 
@@ -255,7 +255,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 4.
-        private void NumericUpDown7_ValueChanged(object sender, EventArgs e)
+        private void SkillID3_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill3_PictureBox.BackgroundImage = GetBitmap((int)SkillID3_NumericUpDown.Value);
 
@@ -264,7 +264,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 5.
-        private void NumericUpDown9_ValueChanged(object sender, EventArgs e)
+        private void SkillID4_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill4_PictureBox.BackgroundImage = GetBitmap((int)SkillID4_NumericUpDown.Value);
 
@@ -273,7 +273,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 6.
-        private void NumericUpDown11_ValueChanged(object sender, EventArgs e)
+        private void SkillID5_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill5_PictureBox.BackgroundImage = GetBitmap((int)SkillID5_NumericUpDown.Value);
 
@@ -282,7 +282,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 7.
-        private void NumericUpDown13_ValueChanged(object sender, EventArgs e)
+        private void SkillID6_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill6_PictureBox.BackgroundImage = GetBitmap((int)SkillID6_NumericUpDown.Value);
 
@@ -291,7 +291,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 8.
-        private void NumericUpDown15_ValueChanged(object sender, EventArgs e)
+        private void SkillID7_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill7_PictureBox.BackgroundImage = GetBitmap((int)SkillID7_NumericUpDown.Value);
 
@@ -300,7 +300,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 9.
-        private void NumericUpDown17_ValueChanged(object sender, EventArgs e)
+        private void SkillID8_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill8_PictureBox.BackgroundImage = GetBitmap((int)SkillID8_NumericUpDown.Value);
 
@@ -309,7 +309,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 10.
-        private void NumericUpDown22_ValueChanged(object sender, EventArgs e)
+        private void SkillID9_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill9_PictureBox.BackgroundImage = GetBitmap((int)SkillID9_NumericUpDown.Value);
 
@@ -318,7 +318,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Picturebox 11.
-        private void NumericUpDown24_ValueChanged(object sender, EventArgs e)
+        private void SkillID10_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Skill10_PictureBox.BackgroundImage = GetBitmap((int)SkillID10_NumericUpDown.Value);
 
@@ -401,7 +401,7 @@ namespace CoreKeepersWorkshop
         #region Help Buttons
 
         // Show skill help button.
-        private void Button4_Click(object sender, EventArgs e)
+        private void MaxLevelsHelp_Button_Click(object sender, EventArgs e)
         {
             MessageBox.Show("SKILL-NAME\tID\tMAX-LEVEL\r\n" +
                             "=========================\r\n" +
@@ -425,7 +425,7 @@ namespace CoreKeepersWorkshop
         #region Scan For Initial Address
 
         // Get valid skill addresses.
-        private async void Button5_Click(object sender, EventArgs e)
+        private async void GetPlayerSkillAddresses_Button_Click(object sender, EventArgs e)
         {
             #region Toggle Controls
 
@@ -671,7 +671,7 @@ namespace CoreKeepersWorkshop
         #region Forward & Backward Buttons
 
         // Previous address button.
-        private void Button20_Click(object sender, EventArgs e)
+        private void PreviousSkillAddress_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             PlayerSkill_ProgressBar.Value = 0;
@@ -699,7 +699,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Next address button.
-        private void Button21_Click(object sender, EventArgs e)
+        private void NextSkillAddress_Button_Click(object sender, EventArgs e)
         {
             // Reset progress bar.
             PlayerSkill_ProgressBar.Value = 0;
@@ -730,7 +730,7 @@ namespace CoreKeepersWorkshop
         #region Scan Address For Current Skill Layout
 
         // Get all addresses for the selected skill layout.
-        private async void Button6_Click(object sender, EventArgs e)
+        private async void UseSkillAddress_Button_Click(object sender, EventArgs e)
         {
             // Reset player address to null each change.
             MainForm.AoBScanResultsSkillLoadout = null;
@@ -1404,7 +1404,7 @@ namespace CoreKeepersWorkshop
         #region Reset Stats
 
         // Reset skills.
-        private void Button3_Click(object sender, EventArgs e)
+        private void ResetAllSkills_Button_Click(object sender, EventArgs e)
         {
             // Ensure the scan results are populated.
             if (MainForm.AoBScanResultsSkills == null)
@@ -1528,7 +1528,7 @@ namespace CoreKeepersWorkshop
         #region Manual Stats
 
         // Manual set skils.
-        private void Button1_Click(object sender, EventArgs e)
+        private void ChangeSkills_Button_Click(object sender, EventArgs e)
         {
             // Ensure the scan results are populated.
             if (MainForm.AoBScanResultsSkills == null)
@@ -1642,7 +1642,7 @@ namespace CoreKeepersWorkshop
         #region Max Stats
 
         // Max skills. 
-        private void Button2_Click(object sender, EventArgs e)
+        private void MaxAllSkills_Button_Click(object sender, EventArgs e)
         {
             // Ensure the scan results are populated.
             if (MainForm.AoBScanResultsSkills == null)
