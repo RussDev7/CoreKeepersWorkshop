@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Main_TabControl = new System.Windows.Forms.TabControl();
             this.Inventory_TabPage = new System.Windows.Forms.TabPage();
             this.Slot50_PictureBox = new System.Windows.Forms.PictureBox();
@@ -243,10 +243,12 @@ namespace CoreKeeperInventoryEditor
             this.ChangeDifficulty_Button = new System.Windows.Forms.Button();
             this.WorldInformationData_GroupBox = new System.Windows.Forms.GroupBox();
             this.WorldInformation_DataGridView = new System.Windows.Forms.DataGridView();
+            this.Header_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Information_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeleportPlayer_GroupBox = new System.Windows.Forms.GroupBox();
             this.TeleportPlayerHelp_Button = new System.Windows.Forms.Button();
-            this.BruteForce_Label = new System.Windows.Forms.Label();
-            this.BruteForce_CheckBox = new System.Windows.Forms.CheckBox();
+            this.BruteForceTP_Label = new System.Windows.Forms.Label();
+            this.BruteForceTP_CheckBox = new System.Windows.Forms.CheckBox();
             this.Y_Button = new System.Windows.Forms.Button();
             this.X_Button = new System.Windows.Forms.Button();
             this.TeleportY_NumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -269,8 +271,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_Label = new System.Windows.Forms.Label();
             this.ChatCommands_ProgressBar = new System.Windows.Forms.ProgressBar();
             this.ChangeSkin_TabPage = new System.Windows.Forms.TabPage();
-            this.Header_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Information_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BruteForceTrash_CheckBox = new System.Windows.Forms.CheckBox();
             this.Main_TabControl.SuspendLayout();
             this.Inventory_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Slot50_PictureBox)).BeginInit();
@@ -2294,12 +2295,13 @@ namespace CoreKeeperInventoryEditor
             // WorldUtilities_GroupBox
             // 
             this.WorldUtilities_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.WorldUtilities_GroupBox.Controls.Add(this.BruteForceTrash_CheckBox);
+            this.WorldUtilities_GroupBox.Controls.Add(this.TrashGroundItems_Label);
             this.WorldUtilities_GroupBox.Controls.Add(this.FishingPadding_NumericUpDown);
             this.WorldUtilities_GroupBox.Controls.Add(this.FishingPadding_Button);
             this.WorldUtilities_GroupBox.Controls.Add(this.CastDelay_NumericUpDown);
             this.WorldUtilities_GroupBox.Controls.Add(this.CastDelay_Button);
             this.WorldUtilities_GroupBox.Controls.Add(this.TrashGroundItems_Button);
-            this.WorldUtilities_GroupBox.Controls.Add(this.TrashGroundItems_Label);
             this.WorldUtilities_GroupBox.Controls.Add(this.AutomaticFishing_Button);
             this.WorldUtilities_GroupBox.ForeColor = System.Drawing.Color.Lime;
             this.WorldUtilities_GroupBox.Location = new System.Drawing.Point(11, 245);
@@ -2392,9 +2394,9 @@ namespace CoreKeeperInventoryEditor
             this.TrashGroundItems_Label.ForeColor = System.Drawing.Color.Snow;
             this.TrashGroundItems_Label.Location = new System.Drawing.Point(118, 24);
             this.TrashGroundItems_Label.Name = "TrashGroundItems_Label";
-            this.TrashGroundItems_Label.Size = new System.Drawing.Size(230, 13);
+            this.TrashGroundItems_Label.Size = new System.Drawing.Size(167, 13);
             this.TrashGroundItems_Label.TabIndex = 0;
-            this.TrashGroundItems_Label.Text = "- Deletes all active items floating on the ground.";
+            this.TrashGroundItems_Label.Text = "(Deletes all floating ground items) |";
             // 
             // AutomaticFishing_Button
             // 
@@ -3080,21 +3082,21 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
             this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
             this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
             this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Header_Column,
@@ -3104,9 +3106,9 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ReadOnly = true;
             this.WorldInformation_DataGridView.RowHeadersVisible = false;
             this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.WorldInformation_DataGridView.ShowCellErrors = false;
@@ -3117,12 +3119,26 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.TabIndex = 0;
             this.WorldInformation_DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.WorldInformation_DataGridView_CellDoubleClick);
             // 
+            // Header_Column
+            // 
+            this.Header_Column.FillWeight = 70F;
+            this.Header_Column.HeaderText = "Header";
+            this.Header_Column.Name = "Header_Column";
+            this.Header_Column.ReadOnly = true;
+            // 
+            // Information_Column
+            // 
+            this.Information_Column.FillWeight = 149.2386F;
+            this.Information_Column.HeaderText = "Information";
+            this.Information_Column.Name = "Information_Column";
+            this.Information_Column.ReadOnly = true;
+            // 
             // TeleportPlayer_GroupBox
             // 
             this.TeleportPlayer_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportPlayerHelp_Button);
-            this.TeleportPlayer_GroupBox.Controls.Add(this.BruteForce_Label);
-            this.TeleportPlayer_GroupBox.Controls.Add(this.BruteForce_CheckBox);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.BruteForceTP_Label);
+            this.TeleportPlayer_GroupBox.Controls.Add(this.BruteForceTP_CheckBox);
             this.TeleportPlayer_GroupBox.Controls.Add(this.Y_Button);
             this.TeleportPlayer_GroupBox.Controls.Add(this.X_Button);
             this.TeleportPlayer_GroupBox.Controls.Add(this.TeleportY_NumericUpDown);
@@ -3150,27 +3166,27 @@ namespace CoreKeeperInventoryEditor
             this.TeleportPlayerHelp_Button.UseVisualStyleBackColor = true;
             this.TeleportPlayerHelp_Button.Click += new System.EventHandler(this.TeleportPlayerHelp_Button_Click);
             // 
-            // BruteForce_Label
+            // BruteForceTP_Label
             // 
-            this.BruteForce_Label.AutoSize = true;
-            this.BruteForce_Label.ForeColor = System.Drawing.Color.Snow;
-            this.BruteForce_Label.Location = new System.Drawing.Point(101, 77);
-            this.BruteForce_Label.Name = "BruteForce_Label";
-            this.BruteForce_Label.Size = new System.Drawing.Size(252, 13);
-            this.BruteForce_Label.TabIndex = 28;
-            this.BruteForce_Label.Text = "- Test all positions instead of filtered when scanning.";
+            this.BruteForceTP_Label.AutoSize = true;
+            this.BruteForceTP_Label.ForeColor = System.Drawing.Color.Snow;
+            this.BruteForceTP_Label.Location = new System.Drawing.Point(101, 77);
+            this.BruteForceTP_Label.Name = "BruteForceTP_Label";
+            this.BruteForceTP_Label.Size = new System.Drawing.Size(252, 13);
+            this.BruteForceTP_Label.TabIndex = 28;
+            this.BruteForceTP_Label.Text = "- Test all positions instead of filtered when scanning.";
             // 
-            // BruteForce_CheckBox
+            // BruteForceTP_CheckBox
             // 
-            this.BruteForce_CheckBox.AutoSize = true;
-            this.BruteForce_CheckBox.ForeColor = System.Drawing.Color.Snow;
-            this.BruteForce_CheckBox.Location = new System.Drawing.Point(7, 76);
-            this.BruteForce_CheckBox.Name = "BruteForce_CheckBox";
-            this.BruteForce_CheckBox.Size = new System.Drawing.Size(81, 17);
-            this.BruteForce_CheckBox.TabIndex = 27;
-            this.BruteForce_CheckBox.Text = "Brute Force";
-            this.BruteForce_CheckBox.UseVisualStyleBackColor = true;
-            this.BruteForce_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForce_CheckBox_CheckedChanged);
+            this.BruteForceTP_CheckBox.AutoSize = true;
+            this.BruteForceTP_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.BruteForceTP_CheckBox.Location = new System.Drawing.Point(7, 76);
+            this.BruteForceTP_CheckBox.Name = "BruteForceTP_CheckBox";
+            this.BruteForceTP_CheckBox.Size = new System.Drawing.Size(81, 17);
+            this.BruteForceTP_CheckBox.TabIndex = 27;
+            this.BruteForceTP_CheckBox.Text = "Brute Force";
+            this.BruteForceTP_CheckBox.UseVisualStyleBackColor = true;
+            this.BruteForceTP_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForceTP_CheckBox_CheckedChanged);
             // 
             // Y_Button
             // 
@@ -3453,19 +3469,17 @@ namespace CoreKeeperInventoryEditor
             this.ChangeSkin_TabPage.TabIndex = 3;
             this.ChangeSkin_TabPage.Text = "Change Skin";
             // 
-            // Header_Column
+            // BruteForceTrash_CheckBox
             // 
-            this.Header_Column.FillWeight = 70F;
-            this.Header_Column.HeaderText = "Header";
-            this.Header_Column.Name = "Header_Column";
-            this.Header_Column.ReadOnly = true;
-            // 
-            // Information_Column
-            // 
-            this.Information_Column.FillWeight = 149.2386F;
-            this.Information_Column.HeaderText = "Information";
-            this.Information_Column.Name = "Information_Column";
-            this.Information_Column.ReadOnly = true;
+            this.BruteForceTrash_CheckBox.AutoSize = true;
+            this.BruteForceTrash_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.BruteForceTrash_CheckBox.Location = new System.Drawing.Point(284, 23);
+            this.BruteForceTrash_CheckBox.Name = "BruteForceTrash_CheckBox";
+            this.BruteForceTrash_CheckBox.Size = new System.Drawing.Size(81, 17);
+            this.BruteForceTrash_CheckBox.TabIndex = 53;
+            this.BruteForceTrash_CheckBox.Text = "Brute Force";
+            this.BruteForceTrash_CheckBox.UseVisualStyleBackColor = true;
+            this.BruteForceTrash_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForceTrash_CheckBox_CheckedChanged);
             // 
             // MainForm
             // 
@@ -3792,12 +3806,12 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.CheckBox AlwaysOnTop_CheckBox;
         private System.Windows.Forms.Label FreeCrafting_Label;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith FreeCrafting_ToggleSwith;
-        private System.Windows.Forms.CheckBox BruteForce_CheckBox;
+        private System.Windows.Forms.CheckBox BruteForceTP_CheckBox;
         private System.Windows.Forms.NumericUpDown CastDelay_NumericUpDown;
         private System.Windows.Forms.Button CastDelay_Button;
         private System.Windows.Forms.NumericUpDown FishingPadding_NumericUpDown;
         private System.Windows.Forms.Button FishingPadding_Button;
-        private System.Windows.Forms.Label BruteForce_Label;
+        private System.Windows.Forms.Label BruteForceTP_Label;
         private System.Windows.Forms.Button ResetControls_Button;
         private System.Windows.Forms.Label PassiveAI_Label;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith PassiveAI_ToggleSwith;
@@ -3839,6 +3853,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.CheckBox UseOverlay_CheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Header_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Information_Column;
+        private System.Windows.Forms.CheckBox BruteForceTrash_CheckBox;
     }
 }
 

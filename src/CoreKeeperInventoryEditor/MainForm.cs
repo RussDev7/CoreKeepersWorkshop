@@ -336,8 +336,8 @@ namespace CoreKeeperInventoryEditor
 
                 toolTip.SetToolTip(SaveEachRing_CheckBox, "Save the map to file after each completed ring.");
                 toolTip.SetToolTip(AlwaysOnTop_CheckBox, "Keep this application always on top of other applications.");
-                toolTip.SetToolTip(BruteForce_CheckBox, "Brute force the address searching for the teleport address.");
-
+                toolTip.SetToolTip(BruteForceTP_CheckBox, "Brute force the address searching for the teleport address.");
+                toolTip.SetToolTip(BruteForceTrash_CheckBox, "Brute force the trashing of items by singling out each item.");
                 toolTip.SetToolTip(ForceNoclip_Checkbox, "Force noclip to always be on.");
 
                 toolTip.SetToolTip(Inventory_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
@@ -13835,13 +13835,13 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Toggle brute force teleport player addresses.
-        private void BruteForce_CheckBox_CheckedChanged(object sender, EventArgs e)
+        private void BruteForceTP_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Double check if the player wishes to enable this.
-            if (BruteForce_CheckBox.Checked && MessageBox.Show("This option should only be used if normal scaning brings no results.\n\nThis could crash your game in the process -\nSaving prior is recommended!\n\nAre you sure you wish to brute force the address searching?", "Brute Force Teleport Address Search", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (BruteForceTP_CheckBox.Checked && MessageBox.Show("This option should only be used if normal scaning brings no results.\n\nThis could crash your game in the process -\nSaving prior is recommended!\n\nAre you sure you wish to brute force the address searching?", "Brute Force Teleport Address Search", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 // Disable the checkbox.
-                BruteForce_CheckBox.Checked = false;
+                BruteForceTP_CheckBox.Checked = false;
             }
         }
 
@@ -13876,7 +13876,7 @@ namespace CoreKeeperInventoryEditor
 
             // Select an address based on brute force mode.
             string AoBPlayerLocationArray = "9? 99 19 3E 00 00 00 00 ?? 99 D9 3F 00 00 80 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3F";
-            if (BruteForce_CheckBox.Checked)
+            if (BruteForceTP_CheckBox.Checked)
             {
                 // Brute force mode is enabled, switch array.
                 AoBPlayerLocationArray = "9? 99 19 3E 00 00 00 00 ?? 99 D9 3F";
@@ -14095,7 +14095,7 @@ namespace CoreKeeperInventoryEditor
 
                 // return; No return is needed.
             }
-            else if (AoBScanResultsPlayerLocation.Count() > 10 && !BruteForce_CheckBox.Checked) // Override check if brute force is on.
+            else if (AoBScanResultsPlayerLocation.Count() > 10 && !BruteForceTP_CheckBox.Checked) // Override check if brute force is on.
             {
                 // Reset textbox.
                 TeleportPlayerAddresses_RichTextBox.Text = "Addresses Loaded: 0";
@@ -15070,11 +15070,23 @@ namespace CoreKeeperInventoryEditor
 
             // Disable button to prevent spamming.
             TrashGroundItems_Button.Enabled = false;
+            BruteForceTrash_CheckBox.Enabled = false;
 
+            // Check if brute force mode is enabled.
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-            // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
-            // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
-            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+            if (BruteForceTrash_CheckBox.Checked)
+            {
+                // Do brute force scanning.
+                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? 00 00 ?? ?? 00 00 ?? ?? 00 00 00 00 00 00 ?? ?? 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+            }
+            else
+            {
+                // Do normal scanning.
+                // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
+                // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
+                // Depreciated Address 23Feb25: 01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+            }
 
             // Adjust the max value of the progress bar.
             PlayerTools_ProgressBar.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
@@ -15085,8 +15097,9 @@ namespace CoreKeeperInventoryEditor
                 // Rename button back to defualt.
                 TrashGroundItems_Button.Text = "Remove Ground Items";
 
-                // Enable button.
+                // Enable controls.
                 TrashGroundItems_Button.Enabled = true;
+                BruteForceTrash_CheckBox.Enabled = true;
 
                 // Ensure progressbar is at 100.
                 TeleportPlayer_ProgressBar.Value = 100;
@@ -15105,82 +15118,166 @@ namespace CoreKeeperInventoryEditor
             TeleportPlayer_ProgressBar.PerformStep();
 
             // Remove ground items.
-            RemoveGroundItems();
+            await RemoveGroundItemsAsync();
 
             // Process completed, run finishing tasks.
             // Rename button back to defualt.
             TrashGroundItems_Button.Text = "Remove Ground Items";
 
-            // Enable button.
+            // Enable controls.
             TrashGroundItems_Button.Enabled = true;
+            BruteForceTrash_CheckBox.Enabled = true;
+        }
+
+        // Toggle brute force trash ground items addresses.
+        private void BruteForceTrash_CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Double check if the player wishes to enable this.
+            if (BruteForceTrash_CheckBox.Checked && MessageBox.Show("This option should only be used if normal item removal brings no results.\n\nThis could crash your game in the process -\nSaving prior is recommended!\n\nAre you sure you wish to brute force the removal of ground items?", "Brute Force Trash Ground Items", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                // Disable the checkbox.
+                BruteForceTrash_CheckBox.Checked = false;
+            }
         }
 
         // Remove items function.
-        public void RemoveGroundItems()
+        public async Task RemoveGroundItemsAsync()
         {
-            // Reset progress bar.
-            TeleportPlayer_ProgressBar.Maximum = 100;
-            TeleportPlayer_ProgressBar.Step = 100 / AoBScanResultsGroundItems.Count();
-            TeleportPlayer_ProgressBar.Value = 0;
-
-            // Iterate through each found address.
-            foreach (long res in AoBScanResultsGroundItems)
+            await Task.Run(() =>
             {
-                // Start at the last byte of the memory address.
-                string currentByte = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("68", NumberStyles.Integer)).ToString("X");
-                bool foundPattern = true;
-
-                // Climb down the address for each item.
-                while (foundPattern)
+                // Reset progress bar on UI thread.
+                TeleportPlayer_ProgressBar.Invoke((MethodInvoker)(() =>
                 {
-                    // Subtract current byte by 8 and 7 to get the double one values.
-                    int byteValueOne = MemLib.ReadInt(BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X"));
-                    int byteValueTwo = MemLib.ReadInt(BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X"));
+                    TeleportPlayer_ProgressBar.Maximum = 100;
+                    TeleportPlayer_ProgressBar.Step = 100 / Math.Max(1, AoBScanResultsGroundItems.Count());
+                    TeleportPlayer_ProgressBar.Value = 0;
+                    TeleportPlayer_ProgressBar.Visible = true;
+                }));
 
-                    // Check if the current 8th and 9th bits are "1 1".
-                    if (byteValueOne == 1 && byteValueTwo == 1)
+                // Iterate through each found address.
+                foreach (long res in AoBScanResultsGroundItems)
+                {
+                    // Ensure the proccess is still alive.
+                    if (!MemLib.OpenProcess("CoreKeeper"))
+                    {
+                        MessageBox.Show("The process appears to have died! Canceling task.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Check if brute force mode is enabled.
+                    if (BruteForceTrash_CheckBox.Checked)
                     {
                         // Gather record debug data pointers.
-                        string ItemHeader1 = BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                        string ItemHeader1 = res.ToString("X").ToString();
                         // string ItemHeader2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                         string ItemType = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
                         string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
                         string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
                         // string UnknownVariable = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
                         string ItemSkillset = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                        // string ItemFooter1 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
+                        // string ItemFooter2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
 
                         // Log the items removed.
-                        WorldTools_RichTextBox.AppendText("Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine);
-                        WorldTools_RichTextBox.ScrollToCaret();
+                        string logMessage = "Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine;
 
-                        // If "1 1" is found, set the previous 9 bits to 0.
-                        string byteSets = currentByte;
-                        for (int x = 1; x < 10; x++)
+                        // Update UI with removed item details
+                        WorldTools_RichTextBox.Invoke((MethodInvoker)(() =>
                         {
-                            // Write current value to zero. Subtract to next stepback byte.
-                            MemLib.WriteMemory(byteSets, "int", "0");
-                            byteSets = BigInteger.Subtract(BigInteger.Parse(byteSets, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-                        }
+                            WorldTools_RichTextBox.AppendText(logMessage);
+                            WorldTools_RichTextBox.ScrollToCaret();
+                            WorldTools_RichTextBox.Refresh();
+                        }));
 
-                        // Move the index 9 bytes back.
-                        currentByte = BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
+                        // Write all ground item values to zero.
+                        MemLib.WriteMemory(ItemType, "int", "0");
+                        MemLib.WriteMemory(ItemAmount, "int", "0");
+                        MemLib.WriteMemory(ItemVariant, "int", "0");
+                        MemLib.WriteMemory(ItemSkillset, "int", "0");
                     }
                     else
                     {
-                        // If "1 1" is not found, break the loop.
-                        foundPattern = false;
+                        // Start at the last byte of the memory address.
+                        string currentByte = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                        bool foundPattern = true;
+
+                        // Climb down the address for each item.
+                        while (foundPattern)
+                        {
+                            // Subtract current byte by 8 and 7 to get the double one values.
+                            int byteValueOne = MemLib.ReadInt(BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X"));
+                            int byteValueTwo = MemLib.ReadInt(BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X"));
+
+                            // Check if the current 8th and 9th bytes are both "1".
+                            if (byteValueOne == 1 && byteValueTwo == 1)
+                            {
+                                // Gather record debug data pointers.
+                                string ItemHeader1 = BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                                // string ItemHeader2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                                string ItemType = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                                string ItemAmount = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
+                                string ItemVariant = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
+                                // string UnknownVariable = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("20", NumberStyles.Integer)).ToString("X");
+                                string ItemSkillset = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                                // string ItemFooter1 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("28", NumberStyles.Integer)).ToString("X");
+                                // string ItemFooter2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+
+                                // Log the items removed.
+                                string logMessage = "Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine;
+
+                                // Update UI with removed item details
+                                WorldTools_RichTextBox.Invoke((MethodInvoker)(() =>
+                                {
+                                    WorldTools_RichTextBox.AppendText(logMessage);
+                                    WorldTools_RichTextBox.ScrollToCaret();
+                                    WorldTools_RichTextBox.Refresh();
+                                }));
+
+                                // Write all ground item values to zero.
+                                MemLib.WriteMemory(ItemType, "int", "0");
+                                MemLib.WriteMemory(ItemAmount, "int", "0");
+                                MemLib.WriteMemory(ItemVariant, "int", "0");
+                                MemLib.WriteMemory(ItemSkillset, "int", "0");
+
+                                // !! Obsolete Code 23Feb25 !!
+                                /*
+                                // If "1 1" is found, set the previous 9 bytes to 0.
+                                string byteSets = currentByte;
+                                for (int x = 1; x < 10; x++)
+                                {
+                                    // Write current value to zero. Subtract to next stepback byte.
+                                    MemLib.WriteMemory(byteSets, "int", "0");
+                                    byteSets = BigInteger.Subtract(BigInteger.Parse(byteSets, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                                }
+                                */
+
+                                // Move the index 9 bytes back.
+                                currentByte = BigInteger.Subtract(BigInteger.Parse(currentByte, NumberStyles.HexNumber), BigInteger.Parse("36", NumberStyles.Integer)).ToString("X");
+                            }
+                            else
+                            {
+                                // If "1 1" is not found, break the loop.
+                                foundPattern = false;
+                            }
+                        }
                     }
+
+                    // Progress the progress bar.
+                    TeleportPlayer_ProgressBar.Invoke((MethodInvoker)(() =>
+                    {
+                        TeleportPlayer_ProgressBar.PerformStep();
+                    }));
                 }
 
-                // Progress the progress bar.
-                TeleportPlayer_ProgressBar.PerformStep();
-            }
-
-            // Ensure progressbar is at 100.
-            TeleportPlayer_ProgressBar.Value = 100;
-            TeleportPlayer_ProgressBar.Visible = false;
+                // Ensure progress bar is at 100 and hide it.
+                TeleportPlayer_ProgressBar.Invoke((MethodInvoker)(() =>
+                {
+                    TeleportPlayer_ProgressBar.Value = 100;
+                    TeleportPlayer_ProgressBar.Visible = false;
+                }));
+            });
         }
-        #endregion // End world tools.
+        #endregion // End trash ground items.
 
         #region Teleport Player
 
@@ -17655,10 +17752,10 @@ namespace CoreKeeperInventoryEditor
                             ChatCommands_RichTextBox.ScrollToCaret();
 
                             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
                             // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
                             // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
-                            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+			                // Depreciated Address 23Feb25: 01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
 
                             // If the count is zero, the scan had an error.
                             if (AoBScanResultsGroundItems.Count() == 0)
@@ -17670,7 +17767,7 @@ namespace CoreKeeperInventoryEditor
                             }
 
                             // Remove ground items.
-                            RemoveGroundItems();
+                            await RemoveGroundItemsAsync();
 
                             // Log evensts.
                             RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] Ground items cleared!", UseOverlay_CheckBox.Checked);
