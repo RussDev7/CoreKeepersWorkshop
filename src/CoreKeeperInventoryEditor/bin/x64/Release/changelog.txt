@@ -6,6 +6,7 @@ Changes Since v1.3.6.2
 - Updated all event handlers across all forms.
 
 + Significantly decreased all scan times.
++ Added a brute force option for the trash items mod.
 
 Changes Since v1.3.6.1 (1.0+ Release!)
 ===========================================================
