@@ -15106,12 +15106,18 @@ namespace CoreKeeperInventoryEditor
                 TeleportPlayer_ProgressBar.Value = 100;
                 TeleportPlayer_ProgressBar.Visible = false;
 
-                // Update consoile with the status.
-                WorldTools_RichTextBox.AppendText("[RemoveGroundItems] Throw a torch on the ground, and walk away from it!!" + Environment.NewLine);
+                // Update console with the status.
+                if (BruteForceTrash_CheckBox.Checked)
+                    WorldTools_RichTextBox.AppendText("[RemoveGroundItems_BruteForce] Failed to find any addresses. No ground items found!!" + Environment.NewLine);
+                else
+                    WorldTools_RichTextBox.AppendText("[RemoveGroundItems] Throw a torch on the ground, and walk away from it!!" + Environment.NewLine);
                 WorldTools_RichTextBox.ScrollToCaret();
 
                 // Display error message.
-                MessageBox.Show("You must throw a torch on the ground, and walk away from it!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (BruteForceTrash_CheckBox.Checked)
+                    MessageBox.Show("Failed to find any addresses. No ground items found!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("You must throw a torch on the ground, and walk away from it!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -15180,21 +15186,31 @@ namespace CoreKeeperInventoryEditor
                         // string ItemFooter2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
 
                         // Log the items removed.
-                        string logMessage = "Item Removed BruteForce: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + Environment.NewLine;
+                        int ItemTypeValue = MemLib.ReadInt(ItemType);
+                        int ItemAmountValue = MemLib.ReadInt(ItemType);
+                        string logMessage = "Item Removed BruteForce: " + "ItemID: " + ItemTypeValue + " | Amount: " + ItemAmountValue + Environment.NewLine;
 
-                        // Update UI with removed item details
+                        // Update UI with removed item details.
                         WorldTools_RichTextBox.Invoke((MethodInvoker)(() =>
                         {
-                            WorldTools_RichTextBox.AppendText(logMessage);
-                            WorldTools_RichTextBox.ScrollToCaret();
-                            WorldTools_RichTextBox.Refresh();
+                            // Ensure that the item is valid.
+                            if (ItemTypeValue != 0)
+                            {
+                                WorldTools_RichTextBox.AppendText(logMessage);
+                                WorldTools_RichTextBox.ScrollToCaret();
+                                WorldTools_RichTextBox.Refresh();
+                            }
                         }));
 
-                        // Write all ground item values to zero.
-                        MemLib.WriteMemory(ItemType, "int", "0");
-                        MemLib.WriteMemory(ItemAmount, "int", "0");
-                        // MemLib.WriteMemory(ItemVariant, "int", "0");
-                        // MemLib.WriteMemory(ItemSkillset, "int", "0");
+                        // Ensure that the item is valid.
+                        if (ItemTypeValue != 0)
+                        {
+                            // Write all ground item values to zero.
+                            MemLib.WriteMemory(ItemType, "int", "0");
+                            MemLib.WriteMemory(ItemAmount, "int", "0");
+                            // MemLib.WriteMemory(ItemVariant, "int", "0");
+                            // MemLib.WriteMemory(ItemSkillset, "int", "0");
+                        }
                     }
                     else
                     {
@@ -15224,21 +15240,33 @@ namespace CoreKeeperInventoryEditor
                                 // string ItemFooter2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
 
                                 // Log the items removed.
-                                string logMessage = "Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine;
+                                int ItemTypeValue = MemLib.ReadInt(ItemType);
+                                int ItemAmountValue = MemLib.ReadInt(ItemType);
+                                int ItemVariantValue = MemLib.ReadInt(ItemVariant);
+                                int ItemSkillsetValue = MemLib.ReadInt(ItemSkillset);
+                                string logMessage = "Item Removed: " + "ItemID: " + ItemTypeValue + " | Amount: " + ItemAmountValue + " | Variation: " + ItemVariantValue + " | Skillset: " + ItemSkillsetValue + Environment.NewLine;
 
-                                // Update UI with removed item details
+                                // Update UI with removed item details.
                                 WorldTools_RichTextBox.Invoke((MethodInvoker)(() =>
                                 {
-                                    WorldTools_RichTextBox.AppendText(logMessage);
-                                    WorldTools_RichTextBox.ScrollToCaret();
-                                    WorldTools_RichTextBox.Refresh();
+                                    // Ensure that the item is valid.
+                                    if (ItemTypeValue != 0)
+                                    {
+                                        WorldTools_RichTextBox.AppendText(logMessage);
+                                        WorldTools_RichTextBox.ScrollToCaret();
+                                        WorldTools_RichTextBox.Refresh();
+                                    }
                                 }));
 
-                                // Write all ground item values to zero.
-                                MemLib.WriteMemory(ItemType, "int", "0");
-                                MemLib.WriteMemory(ItemAmount, "int", "0");
-                                MemLib.WriteMemory(ItemVariant, "int", "0");
-                                MemLib.WriteMemory(ItemSkillset, "int", "0");
+                                // Ensure that the item is valid.
+                                if (ItemTypeValue != 0)
+                                {
+                                    // Write all ground item values to zero.
+                                    MemLib.WriteMemory(ItemType, "int", "0");
+                                    MemLib.WriteMemory(ItemAmount, "int", "0");
+                                    MemLib.WriteMemory(ItemVariant, "int", "0");
+                                    MemLib.WriteMemory(ItemSkillset, "int", "0");
+                                }
 
                                 // !! Obsolete Code 23Feb25 !!
                                 /*
@@ -15273,7 +15301,7 @@ namespace CoreKeeperInventoryEditor
                 // Ensure progress bar is at 100 and hide it.
                 TeleportPlayer_ProgressBar.Invoke((MethodInvoker)(() =>
                 {
-                    TeleportPlayer_ProgressBar.Value = 100;
+                    TeleportPlayer_ProgressBar.Value = TeleportPlayer_ProgressBar.Maximum;
                     TeleportPlayer_ProgressBar.Visible = false;
                 }));
             });
@@ -17772,7 +17800,10 @@ namespace CoreKeeperInventoryEditor
                             if (AoBScanResultsGroundItems.Count() == 0)
                             {
                                 // Display error message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] You must throw at least one torch on the ground!!", UseOverlay_CheckBox.Checked);
+                                if (BruteForceTrash_CheckBox.Checked)
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround_BruteForce] Failed to find any addresses. No ground items found!!", UseOverlay_CheckBox.Checked);
+                                else
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] You must throw at least one torch on the ground!!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
                             }
