@@ -15060,8 +15060,8 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Reset progress bar.
-            TeleportPlayer_ProgressBar.Step = 10;
-            TeleportPlayer_ProgressBar.Value = 0;
+            TeleportPlayer_ProgressBar.Step = 1;
+            TeleportPlayer_ProgressBar.Value = 5;
             TeleportPlayer_ProgressBar.Visible = true;
             TeleportPlayer_ProgressBar.PerformStep(); // Progress 10%.
 
@@ -15077,7 +15077,7 @@ namespace CoreKeeperInventoryEditor
             if (BruteForceTrash_CheckBox.Checked)
             {
                 // Do brute force scanning.
-                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? 00 00 ?? ?? 00 00 ?? ?? 00 00 00 00 00 00 ?? ?? 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
             }
             else
             {
@@ -15089,7 +15089,8 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Adjust the max value of the progress bar.
-            PlayerTools_ProgressBar.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : AoBScanResultsGroundItems.Count();
+            // PlayerTools_ProgressBar.Step = AoBScanResultsGroundItems.Count() == 0 ? 0 : 90.0 / Math.Max(1, AoBScanResultsGroundItems.Count());
+            PlayerTools_ProgressBar.Maximum = AoBScanResultsGroundItems.Count();
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsGroundItems.Count() == 0)
@@ -15115,7 +15116,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Perform step.
-            TeleportPlayer_ProgressBar.PerformStep();
+            // TeleportPlayer_ProgressBar.PerformStep();
 
             // Remove ground items.
             await RemoveGroundItemsAsync();
@@ -15148,8 +15149,8 @@ namespace CoreKeeperInventoryEditor
                 // Reset progress bar on UI thread.
                 TeleportPlayer_ProgressBar.Invoke((MethodInvoker)(() =>
                 {
-                    TeleportPlayer_ProgressBar.Maximum = 100;
-                    TeleportPlayer_ProgressBar.Step = 100 / Math.Max(1, AoBScanResultsGroundItems.Count());
+                    TeleportPlayer_ProgressBar.Maximum = AoBScanResultsGroundItems.Count();
+                    TeleportPlayer_ProgressBar.Step = 1;
                     TeleportPlayer_ProgressBar.Value = 0;
                     TeleportPlayer_ProgressBar.Visible = true;
                 }));
@@ -15179,7 +15180,7 @@ namespace CoreKeeperInventoryEditor
                         // string ItemFooter2 = BigInteger.Add(BigInteger.Parse(ItemHeader1, NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
 
                         // Log the items removed.
-                        string logMessage = "Item Removed: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + " | Variation: " + MemLib.ReadInt(ItemVariant) + " | Skillset: " + MemLib.ReadInt(ItemSkillset) + Environment.NewLine;
+                        string logMessage = "Item Removed BruteForce: " + "ItemID: " + MemLib.ReadInt(ItemType) + " | Amount: " + MemLib.ReadInt(ItemAmount) + Environment.NewLine;
 
                         // Update UI with removed item details
                         WorldTools_RichTextBox.Invoke((MethodInvoker)(() =>
@@ -15192,8 +15193,8 @@ namespace CoreKeeperInventoryEditor
                         // Write all ground item values to zero.
                         MemLib.WriteMemory(ItemType, "int", "0");
                         MemLib.WriteMemory(ItemAmount, "int", "0");
-                        MemLib.WriteMemory(ItemVariant, "int", "0");
-                        MemLib.WriteMemory(ItemSkillset, "int", "0");
+                        // MemLib.WriteMemory(ItemVariant, "int", "0");
+                        // MemLib.WriteMemory(ItemSkillset, "int", "0");
                     }
                     else
                     {
@@ -17751,11 +17752,21 @@ namespace CoreKeeperInventoryEditor
                             ChatCommands_RichTextBox.AppendText(currentCommand + " - Loading please wait.." + Environment.NewLine);
                             ChatCommands_RichTextBox.ScrollToCaret();
 
+                            // Check if brute force mode is enabled.
                             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                            // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
-                            // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
-			                // Depreciated Address 23Feb25: 01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-                            AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+                            if (BruteForceTrash_CheckBox.Checked)
+                            {
+                                // Do brute force scanning.
+                                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+                            }
+                            else
+                            {
+                                // Do normal scanning.
+                                // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
+                                // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
+                                // Depreciated Address 23Feb25: 01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+                            }
 
                             // If the count is zero, the scan had an error.
                             if (AoBScanResultsGroundItems.Count() == 0)
