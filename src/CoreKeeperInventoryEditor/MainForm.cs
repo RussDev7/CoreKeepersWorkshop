@@ -15129,7 +15129,8 @@ namespace CoreKeeperInventoryEditor
 
             // Process completed, run finishing tasks.
             // Rename button back to defualt.
-            TrashGroundItems_Button.Text = "Remove Ground Items";
+            TrashGroundItems_Button.Text = "Trash Ground Items";
+            TeleportPlayer_ProgressBar.Visible = false;
 
             // Enable controls.
             TrashGroundItems_Button.Enabled = true;
