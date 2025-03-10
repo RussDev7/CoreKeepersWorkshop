@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Main_TabControl = new System.Windows.Forms.TabControl();
             this.Inventory_TabPage = new System.Windows.Forms.TabPage();
             this.Slot50_PictureBox = new System.Windows.Forms.PictureBox();
@@ -157,7 +157,7 @@ namespace CoreKeeperInventoryEditor
             this.FreeCrafting_Label = new System.Windows.Forms.Label();
             this.Suicide_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.ForceRecall_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.InfiniteHealth_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.InfiniteFood_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.Speed_Label = new System.Windows.Forms.Label();
             this.InfiniteMana_Label = new System.Windows.Forms.Label();
             this.FreeCrafting_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
@@ -186,12 +186,13 @@ namespace CoreKeeperInventoryEditor
             this.BuffType_ComboBox = new System.Windows.Forms.ComboBox();
             this.World_TabPage = new System.Windows.Forms.TabPage();
             this.WorldUtilities_GroupBox = new System.Windows.Forms.GroupBox();
+            this.BruteForceTrash_CheckBox = new System.Windows.Forms.CheckBox();
+            this.TrashGroundItems_Label = new System.Windows.Forms.Label();
             this.FishingPadding_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.FishingPadding_Button = new System.Windows.Forms.Button();
             this.CastDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CastDelay_Button = new System.Windows.Forms.Button();
             this.TrashGroundItems_Button = new System.Windows.Forms.Button();
-            this.TrashGroundItems_Label = new System.Windows.Forms.Label();
             this.AutomaticFishing_Button = new System.Windows.Forms.Button();
             this.MapRendering_GroupBox = new System.Windows.Forms.GroupBox();
             this.MapRendering_TextProgressBar = new CoreKeepersWorkshop.TextProgressBar();
@@ -271,7 +272,6 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_Label = new System.Windows.Forms.Label();
             this.ChatCommands_ProgressBar = new System.Windows.Forms.ProgressBar();
             this.ChangeSkin_TabPage = new System.Windows.Forms.TabPage();
-            this.BruteForceTrash_CheckBox = new System.Windows.Forms.CheckBox();
             this.Main_TabControl.SuspendLayout();
             this.Inventory_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Slot50_PictureBox)).BeginInit();
@@ -1549,7 +1549,7 @@ namespace CoreKeeperInventoryEditor
             this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_Label);
             this.PlayerTools_Panel.Controls.Add(this.Suicide_ToggleSwith);
             this.PlayerTools_Panel.Controls.Add(this.ForceRecall_ToggleSwith);
-            this.PlayerTools_Panel.Controls.Add(this.InfiniteHealth_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteFood_ToggleSwith);
             this.PlayerTools_Panel.Controls.Add(this.Speed_Label);
             this.PlayerTools_Panel.Controls.Add(this.InfiniteMana_Label);
             this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_ToggleSwith);
@@ -1958,17 +1958,17 @@ namespace CoreKeeperInventoryEditor
             this.ForceRecall_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
             this.ForceRecall_ToggleSwith.CheckedChanged += new System.EventHandler(this.ForceRecall_ToggleSwith_CheckedChanged);
             // 
-            // InfiniteHealth_ToggleSwith
+            // InfiniteFood_ToggleSwith
             // 
-            this.InfiniteHealth_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.InfiniteHealth_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteHealth_ToggleSwith.Location = new System.Drawing.Point(3, 31);
-            this.InfiniteHealth_ToggleSwith.Name = "InfiniteHealth_ToggleSwith";
-            this.InfiniteHealth_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.InfiniteHealth_ToggleSwith.TabIndex = 9;
-            this.InfiniteHealth_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.InfiniteHealth_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteHealth_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteHealth_ToggleSwith_CheckedChanged);
+            this.InfiniteFood_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteFood_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_ToggleSwith.Location = new System.Drawing.Point(3, 31);
+            this.InfiniteFood_ToggleSwith.Name = "InfiniteFood_ToggleSwith";
+            this.InfiniteFood_ToggleSwith.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteFood_ToggleSwith.TabIndex = 9;
+            this.InfiniteFood_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteFood_ToggleSwith_CheckedChanged);
             // 
             // Speed_Label
             // 
@@ -2311,6 +2311,28 @@ namespace CoreKeeperInventoryEditor
             this.WorldUtilities_GroupBox.TabStop = false;
             this.WorldUtilities_GroupBox.Text = "World Utilities";
             // 
+            // BruteForceTrash_CheckBox
+            // 
+            this.BruteForceTrash_CheckBox.AutoSize = true;
+            this.BruteForceTrash_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.BruteForceTrash_CheckBox.Location = new System.Drawing.Point(284, 23);
+            this.BruteForceTrash_CheckBox.Name = "BruteForceTrash_CheckBox";
+            this.BruteForceTrash_CheckBox.Size = new System.Drawing.Size(81, 17);
+            this.BruteForceTrash_CheckBox.TabIndex = 53;
+            this.BruteForceTrash_CheckBox.Text = "Brute Force";
+            this.BruteForceTrash_CheckBox.UseVisualStyleBackColor = true;
+            this.BruteForceTrash_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForceTrash_CheckBox_CheckedChanged);
+            // 
+            // TrashGroundItems_Label
+            // 
+            this.TrashGroundItems_Label.AutoSize = true;
+            this.TrashGroundItems_Label.ForeColor = System.Drawing.Color.Snow;
+            this.TrashGroundItems_Label.Location = new System.Drawing.Point(118, 24);
+            this.TrashGroundItems_Label.Name = "TrashGroundItems_Label";
+            this.TrashGroundItems_Label.Size = new System.Drawing.Size(167, 13);
+            this.TrashGroundItems_Label.TabIndex = 0;
+            this.TrashGroundItems_Label.Text = "(Deletes all floating ground items) |";
+            // 
             // FishingPadding_NumericUpDown
             // 
             this.FishingPadding_NumericUpDown.Location = new System.Drawing.Point(310, 49);
@@ -2387,16 +2409,6 @@ namespace CoreKeeperInventoryEditor
             this.TrashGroundItems_Button.Text = "Trash Ground Items";
             this.TrashGroundItems_Button.UseVisualStyleBackColor = true;
             this.TrashGroundItems_Button.Click += new System.EventHandler(this.TrashGroundItems_Button_Click);
-            // 
-            // TrashGroundItems_Label
-            // 
-            this.TrashGroundItems_Label.AutoSize = true;
-            this.TrashGroundItems_Label.ForeColor = System.Drawing.Color.Snow;
-            this.TrashGroundItems_Label.Location = new System.Drawing.Point(118, 24);
-            this.TrashGroundItems_Label.Name = "TrashGroundItems_Label";
-            this.TrashGroundItems_Label.Size = new System.Drawing.Size(167, 13);
-            this.TrashGroundItems_Label.TabIndex = 0;
-            this.TrashGroundItems_Label.Text = "(Deletes all floating ground items) |";
             // 
             // AutomaticFishing_Button
             // 
@@ -3082,21 +3094,21 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
             this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
             this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
             this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Header_Column,
@@ -3106,9 +3118,9 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ReadOnly = true;
             this.WorldInformation_DataGridView.RowHeadersVisible = false;
             this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.WorldInformation_DataGridView.ShowCellErrors = false;
@@ -3469,18 +3481,6 @@ namespace CoreKeeperInventoryEditor
             this.ChangeSkin_TabPage.TabIndex = 3;
             this.ChangeSkin_TabPage.Text = "Change Skin";
             // 
-            // BruteForceTrash_CheckBox
-            // 
-            this.BruteForceTrash_CheckBox.AutoSize = true;
-            this.BruteForceTrash_CheckBox.ForeColor = System.Drawing.Color.Snow;
-            this.BruteForceTrash_CheckBox.Location = new System.Drawing.Point(284, 23);
-            this.BruteForceTrash_CheckBox.Name = "BruteForceTrash_CheckBox";
-            this.BruteForceTrash_CheckBox.Size = new System.Drawing.Size(81, 17);
-            this.BruteForceTrash_CheckBox.TabIndex = 53;
-            this.BruteForceTrash_CheckBox.Text = "Brute Force";
-            this.BruteForceTrash_CheckBox.UseVisualStyleBackColor = true;
-            this.BruteForceTrash_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForceTrash_CheckBox_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3691,7 +3691,7 @@ namespace CoreKeeperInventoryEditor
         private Siticone.UI.WinForms.SiticoneWinToggleSwith Noclip_ToggleSwith;
         private System.Windows.Forms.NumericUpDown SpeedAmount_NumericUpDown;
         private System.Windows.Forms.Label InfiniteFood_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteHealth_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteFood_ToggleSwith;
         private System.Windows.Forms.Button ApplyBuff_Button;
         private System.Windows.Forms.ComboBox BuffType_ComboBox;
         private System.Windows.Forms.Label Power_Label;
