@@ -4,7 +4,11 @@ Changes Since v1.3.6.2
 - Fixed the buff editor.
 - Fixed a wrong mouse click event handler in inv editor.
 - Updated all event handlers across all forms.
+- Fixed the scan inventory address AoB header.
+- Fixed the infinite hunger toggle being broken.
+- Updated player mods addresses.
 
++ Added 100+ various missing assets.
 + Significantly decreased all scan times.
 + Added a brute force option for the trash items mod.
 
