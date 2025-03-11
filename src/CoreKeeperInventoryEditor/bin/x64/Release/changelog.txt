@@ -7,6 +7,7 @@ Changes Since v1.3.6.2
 - Fixed the scan inventory address AoB header.
 - Fixed the infinite hunger toggle being broken.
 - Updated player mods addresses.
+- Updated skill editor with a new skill.
 
 + Added 100+ various missing assets.
 + Significantly decreased all scan times.
