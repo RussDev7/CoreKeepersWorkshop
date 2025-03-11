@@ -12,7 +12,7 @@ Changes Since v1.3.6.2
 + Added 100+ various missing assets.
 + Significantly decreased all scan times.
 + Added a brute force option for the trash items mod.
-+ Increased the reliability of the kill editor.
++ Increased the reliability of the skill editor.
 
 Changes Since v1.3.6.1 (1.0+ Release!)
 ===========================================================
