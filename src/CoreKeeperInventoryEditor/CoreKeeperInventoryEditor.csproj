@@ -236,6 +236,7 @@
     <None Include="Images\skills\Skill10.png" />
     <None Include="Images\skills\Skill11.png" />
     <None Include="Images\MissingTexture.png" />
+    <None Include="Images\skills\Skill12.png" />
     <Content Include="Images\TeleportAddressGuide.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

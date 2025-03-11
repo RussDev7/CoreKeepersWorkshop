@@ -93,6 +93,10 @@
             this.NextSkillAddress_Button = new System.Windows.Forms.Button();
             this.UseSkillAddress_Button = new System.Windows.Forms.Button();
             this.UseEXPValues_CheckBox = new System.Windows.Forms.CheckBox();
+            this.Skill11_Panel = new System.Windows.Forms.Panel();
+            this.Skill11_PictureBox = new System.Windows.Forms.PictureBox();
+            this.SkillID11_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SkillILvL11_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.SkillID0_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkillILvL0_NumericUpDown)).BeginInit();
             this.Skill0_Panel.SuspendLayout();
@@ -137,13 +141,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.Skill9_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkillID9_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkillILvL9_NumericUpDown)).BeginInit();
+            this.Skill11_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Skill11_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillID11_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillILvL11_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // SkillID0_NumericUpDown
             // 
             this.SkillID0_NumericUpDown.Location = new System.Drawing.Point(33, 54);
             this.SkillID0_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -266,7 +274,7 @@
             // 
             this.SkillID1_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID1_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -319,7 +327,7 @@
             // 
             this.SkillID2_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID2_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -372,7 +380,7 @@
             // 
             this.SkillID3_NumericUpDown.Location = new System.Drawing.Point(33, 54);
             this.SkillID3_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -447,7 +455,7 @@
             // 
             this.SkillID4_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID4_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -500,7 +508,7 @@
             // 
             this.SkillID5_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID5_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -553,7 +561,7 @@
             // 
             this.SkillID6_NumericUpDown.Location = new System.Drawing.Point(33, 54);
             this.SkillID6_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -628,7 +636,7 @@
             // 
             this.SkillID7_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID7_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -681,7 +689,7 @@
             // 
             this.SkillID8_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID8_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -756,7 +764,7 @@
             // 
             this.SkillID10_NumericUpDown.Location = new System.Drawing.Point(0, 54);
             this.SkillID10_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -809,7 +817,7 @@
             // 
             this.SkillID9_NumericUpDown.Location = new System.Drawing.Point(33, 54);
             this.SkillID9_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
@@ -932,12 +940,66 @@
             this.UseEXPValues_CheckBox.UseVisualStyleBackColor = true;
             this.UseEXPValues_CheckBox.CheckedChanged += new System.EventHandler(this.UseEXPValues_CheckBox_CheckedChanged);
             // 
+            // Skill11_Panel
+            // 
+            this.Skill11_Panel.Controls.Add(this.Skill11_PictureBox);
+            this.Skill11_Panel.Controls.Add(this.SkillID11_NumericUpDown);
+            this.Skill11_Panel.Controls.Add(this.SkillILvL11_NumericUpDown);
+            this.Skill11_Panel.Enabled = false;
+            this.Skill11_Panel.Location = new System.Drawing.Point(157, 430);
+            this.Skill11_Panel.Name = "Skill11_Panel";
+            this.Skill11_Panel.Size = new System.Drawing.Size(51, 106);
+            this.Skill11_Panel.TabIndex = 27;
+            // 
+            // Skill11_PictureBox
+            // 
+            this.Skill11_PictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(103)))), ((int)(((byte)(61)))));
+            this.Skill11_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.Skill12;
+            this.Skill11_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Skill11_PictureBox.InitialImage = null;
+            this.Skill11_PictureBox.Location = new System.Drawing.Point(0, 0);
+            this.Skill11_PictureBox.Name = "Skill11_PictureBox";
+            this.Skill11_PictureBox.Size = new System.Drawing.Size(50, 50);
+            this.Skill11_PictureBox.TabIndex = 15;
+            this.Skill11_PictureBox.TabStop = false;
+            // 
+            // SkillID11_NumericUpDown
+            // 
+            this.SkillID11_NumericUpDown.Location = new System.Drawing.Point(0, 54);
+            this.SkillID11_NumericUpDown.Maximum = new decimal(new int[] {
+            11,
+            0,
+            0,
+            0});
+            this.SkillID11_NumericUpDown.Name = "SkillID11_NumericUpDown";
+            this.SkillID11_NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.SkillID11_NumericUpDown.TabIndex = 24;
+            this.SkillID11_NumericUpDown.Value = new decimal(new int[] {
+            11,
+            0,
+            0,
+            0});
+            this.SkillID11_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID11_NumericUpDown_ValueChanged);
+            // 
+            // SkillILvL11_NumericUpDown
+            // 
+            this.SkillILvL11_NumericUpDown.Location = new System.Drawing.Point(0, 80);
+            this.SkillILvL11_NumericUpDown.Name = "SkillILvL11_NumericUpDown";
+            this.SkillILvL11_NumericUpDown.Size = new System.Drawing.Size(51, 20);
+            this.SkillILvL11_NumericUpDown.TabIndex = 24;
+            this.SkillILvL11_NumericUpDown.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
             // SkillEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(220, 642);
+            this.Controls.Add(this.Skill11_Panel);
             this.Controls.Add(this.LvLRow4_Label);
             this.Controls.Add(this.IDRow4_Label);
             this.Controls.Add(this.LvLRow3_Label);
@@ -1020,6 +1082,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.Skill9_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkillID9_NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkillILvL9_NumericUpDown)).EndInit();
+            this.Skill11_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Skill11_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillID11_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillILvL11_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1091,5 +1157,9 @@
         private System.Windows.Forms.Label LvLRow1_Label;
         private System.Windows.Forms.Label IDRow1_Label;
         private System.Windows.Forms.Button MaxLevelsHelp_Button;
+        private System.Windows.Forms.Panel Skill11_Panel;
+        private System.Windows.Forms.PictureBox Skill11_PictureBox;
+        private System.Windows.Forms.NumericUpDown SkillID11_NumericUpDown;
+        private System.Windows.Forms.NumericUpDown SkillILvL11_NumericUpDown;
     }
 }

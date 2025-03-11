@@ -70,6 +70,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(SkillID8_NumericUpDown, "Set the current skilltype to desired a ID.");
             toolTip.SetToolTip(SkillID9_NumericUpDown, "Set the current skilltype to desired a ID.");
             toolTip.SetToolTip(SkillID10_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID11_NumericUpDown, "Set the current skilltype to desired a ID.");
 
             toolTip.SetToolTip(SkillILvL0_NumericUpDown, "Set the EXP amount for the desired skill.");
             toolTip.SetToolTip(SkillILvL1_NumericUpDown, "Set the EXP amount for the desired skill.");
@@ -82,6 +83,7 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(SkillILvL8_NumericUpDown, "Set the EXP amount for the desired skill.");
             toolTip.SetToolTip(SkillILvL9_NumericUpDown, "Set the EXP amount for the desired skill.");
             toolTip.SetToolTip(SkillILvL10_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL11_NumericUpDown, "Set the EXP amount for the desired skill.");
 
             // toolTip.SetToolTip(numericUpDown19, "Define how many skills the player has discovered over 1 EXP.");
             // toolTip.SetToolTip(numericUpDown20, "DEBUG: Define the header1 offset.");
@@ -150,6 +152,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL8_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID8_NumericUpDown.Value);
                 SkillILvL9_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID9_NumericUpDown.Value);
                 SkillILvL10_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID10_NumericUpDown.Value);
+                SkillILvL11_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID11_NumericUpDown.Value);
 
                 // Since increasing, translate the numerics to a heigher value.
                 SkillILvL0_NumericUpDown.Value = GetConvertedValues((int)SkillID0_NumericUpDown.Value, (int)SkillILvL0_NumericUpDown.Value, true, true);
@@ -163,6 +166,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL8_NumericUpDown.Value = GetConvertedValues((int)SkillID8_NumericUpDown.Value, (int)SkillILvL8_NumericUpDown.Value, true, true);
                 SkillILvL9_NumericUpDown.Value = GetConvertedValues((int)SkillID9_NumericUpDown.Value, (int)SkillILvL9_NumericUpDown.Value, true, true);
                 SkillILvL10_NumericUpDown.Value = GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, true, true);
+                SkillILvL11_NumericUpDown.Value = GetConvertedValues((int)SkillID11_NumericUpDown.Value, (int)SkillILvL11_NumericUpDown.Value, true, true);
 
                 // Change the labels.
                 LvLRow1_Label.Text = "EXP";
@@ -186,6 +190,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL8_NumericUpDown.Value = GetConvertedValues((int)SkillID8_NumericUpDown.Value, (int)SkillILvL8_NumericUpDown.Value, true, false);
                 SkillILvL9_NumericUpDown.Value = GetConvertedValues((int)SkillID9_NumericUpDown.Value, (int)SkillILvL9_NumericUpDown.Value, true, false);
                 SkillILvL10_NumericUpDown.Value = GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, true, false);
+                SkillILvL11_NumericUpDown.Value = GetConvertedValues((int)SkillID11_NumericUpDown.Value, (int)SkillILvL11_NumericUpDown.Value, true, false);
 
                 // Chanegt the numerics max value.
                 SkillILvL0_NumericUpDown.Maximum = 100;
@@ -199,6 +204,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL8_NumericUpDown.Maximum = 100;
                 SkillILvL9_NumericUpDown.Maximum = 100;
                 SkillILvL10_NumericUpDown.Maximum = 100;
+                SkillILvL11_NumericUpDown.Maximum = 100;
 
                 // Change the labels.
                 LvLRow1_Label.Text = "LVL";
@@ -326,6 +332,15 @@ namespace CoreKeepersWorkshop
             SkillSelection_ValueChanged();
         }
 
+        // Picturebox 12.
+        private void SkillID11_NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Skill11_PictureBox.BackgroundImage = GetBitmap((int)SkillID11_NumericUpDown.Value);
+
+            // Set the new maximum.
+            SkillSelection_ValueChanged();
+        }
+
         // Get image per numericupdown value.
         Bitmap GetBitmap(int value)
         {
@@ -351,6 +366,8 @@ namespace CoreKeepersWorkshop
                 return Properties.Resources.Skill10;
             if (value == 10)
                 return Properties.Resources.Skill11;
+            if (value == 11)
+                return Properties.Resources.Skill12;
 
             return Properties.Resources.UnknownItem;
         }
@@ -359,7 +376,6 @@ namespace CoreKeepersWorkshop
         #endregion // End form controls.
 
         #region Event Handeler Helpers
-
 
         // Event handler for skill selection change
         private void SkillSelection_ValueChanged()
@@ -379,6 +395,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL8_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID8_NumericUpDown.Value);
                 SkillILvL9_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID9_NumericUpDown.Value);
                 SkillILvL10_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID10_NumericUpDown.Value);
+                SkillILvL11_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID11_NumericUpDown.Value);
             }
             else
             {
@@ -394,6 +411,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL8_NumericUpDown.Maximum = 100;
                 SkillILvL9_NumericUpDown.Maximum = 100;
                 SkillILvL10_NumericUpDown.Maximum = 100;
+                SkillILvL11_NumericUpDown.Maximum = 100;
             }
         }
         #endregion
@@ -415,7 +433,8 @@ namespace CoreKeepersWorkshop
                             "Fishing\t\t| 7 |\t1494\r\n" +
                             "Cooking\t\t| 8 |\t5000\r\n" +
                             "Magic\t\t| 9 |\t20001\r\n" +
-                            "Summoning\t| 10 |\t59663", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            "Summoning\t| 10 |\t59663\r\n" +
+                            "Explosives\t| 11 |\t2006", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion
@@ -456,6 +475,7 @@ namespace CoreKeepersWorkshop
             Skill8_Panel.Enabled = false;
             Skill9_Panel.Enabled = false;
             Skill10_Panel.Enabled = false;
+            Skill11_Panel.Enabled = false;
 
             UseEXPValues_CheckBox.Enabled = false;
 
@@ -471,10 +491,12 @@ namespace CoreKeepersWorkshop
                 // Helper for progressbar.
                 int scanAmounts = 2;
 
+                // Ex: 1 0 2 3 4 5 6 7 8 9 10
                 #region Scan Run #1
 
                 // Define the AoB and scan it into an array list.
-                string AoB = "02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? 05 00 00 00 ?? ?? ?? ?? 06 00 00 00 ?? ?? ?? ?? 07 00 00 00 ?? ?? ?? ?? 08 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
+                // Depreciated Address 11Mar25: 02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? 05 00 00 00 ?? ?? ?? ?? 06 00 00 00 ?? ?? ?? ?? 07 00 00 00 ?? ?? ?? ?? 08 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00
+                string AoB = "02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
 
                 // Define new array for holding the scan results.
                 List<long> AoBScanResultsTemp = (await MemLib.AoBScan(AoB, true, true)).ToList();
@@ -506,15 +528,17 @@ namespace CoreKeepersWorkshop
                     // Perform step.
                     PlayerSkill_ProgressBar.PerformStep();
 
-                    // Backup 6 bits and look for either 10 or 11.
-                    string skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                    // Backup 6 & 8 bytes [24, 32] and look for either 10, 11 or 12.
+                    string skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X"); // 8 bytes.
+                    int skillAddressValue = MemLib.ReadInt(skillAddress);
 
-                    // Check for correct values
-                    if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                    // Check for correct values.
+                    if (skillAddressValue < 10 || skillAddressValue > 16)
                     {
-                        skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                        skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");    // 6 bytes.
+                        skillAddressValue = MemLib.ReadInt(skillAddress);
 
-                        if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                        if (skillAddressValue < 10 || skillAddressValue > 16)
                         {
                             // Value not found, remove this from the list.
                             AoBScanResultsTemp.Remove(res);
@@ -532,10 +556,12 @@ namespace CoreKeepersWorkshop
                 }
                 #endregion
 
+                // Ex: 9 1 0 2 3 4 5 6 7 8 10
                 #region Scan Run #2
 
                 // Define the AoB and scan it into an array list.
-                AoB = "02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? 05 00 00 00 ?? ?? ?? ?? 06 00 00 00 ?? ?? ?? ?? 07 00 00 00 ?? ?? ?? ?? 08 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
+                // Depreciated Address 11Mar25: 02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? 05 00 00 00 ?? ?? ?? ?? 06 00 00 00 ?? ?? ?? ?? 07 00 00 00 ?? ?? ?? ?? 08 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00
+                AoB = "02 00 00 00 ?? ?? ?? ?? 03 00 00 00 ?? ?? ?? ?? 04 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00";
 
                 // Define new array for holding the scan results.
                 AoBScanResultsTemp.Clear();
@@ -566,15 +592,17 @@ namespace CoreKeepersWorkshop
                     // Perform step.
                     PlayerSkill_ProgressBar.PerformStep();
 
-                    // Backup 6 bits and look for either 10 or 11.
-                    string skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");
+                    // Backup 6 & 8 bytes [24, 32] and look for either 10, 11 or 12.
+                    string skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X"); // 8 bytes.
+                    int skillAddressValue = MemLib.ReadInt(skillAddress);
 
-                    // Check for correct values
-                    if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                    // Check for correct values.
+                    if (skillAddressValue < 10 || skillAddressValue > 16)
                     {
-                        skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("32", NumberStyles.Integer)).ToString("X");
+                        skillAddress = BigInteger.Subtract(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("24", NumberStyles.Integer)).ToString("X");    // 6 bytes.
+                        skillAddressValue = MemLib.ReadInt(skillAddress);
 
-                        if (!(MemLib.ReadInt(skillAddress) == 10 || MemLib.ReadInt(skillAddress) == 11))
+                        if (skillAddressValue < 10 || skillAddressValue > 16)
                         {
                             // Value not found, remove this from the list.
                             AoBScanResultsTemp.Remove(res);
@@ -639,6 +667,7 @@ namespace CoreKeepersWorkshop
                 Skill8_Panel.Enabled = true;
                 Skill9_Panel.Enabled = true;
                 Skill10_Panel.Enabled = true;
+                Skill11_Panel.Enabled = true;
 
                 UseEXPValues_CheckBox.Enabled = true;
 
@@ -759,6 +788,7 @@ namespace CoreKeepersWorkshop
             Skill8_Panel.Enabled = false;
             Skill9_Panel.Enabled = false;
             Skill10_Panel.Enabled = false;
+            Skill11_Panel.Enabled = false;
 
             UseEXPValues_CheckBox.Enabled = false;
 
@@ -780,7 +810,7 @@ namespace CoreKeepersWorkshop
                 // Parse header base once.
                 BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
 
-                int skillCount = 11; // Technically 12.
+                int skillCount = 12;
                 int[] skillIDs = new int[skillCount];
                 int[] skillValues = new int[skillCount];
 
@@ -898,6 +928,7 @@ namespace CoreKeepersWorkshop
                 Skill8_Panel.Enabled = true;
                 Skill9_Panel.Enabled = true;
                 Skill10_Panel.Enabled = true;
+                Skill11_Panel.Enabled = true;
 
                 // Enable controls.
                 ChangeSkills_Button.Enabled = true;
@@ -943,7 +974,7 @@ namespace CoreKeepersWorkshop
             // Skill max levels dictionary
             Dictionary<int, int> skillMaxLevels = new Dictionary<int, int>
             {
-                { 0, 59978 },   // Mining
+                { 0, 59978 },    // Mining
                 { 1, 498767 },   // Running
                 { 2, 20001 },    // Melee Combat
                 { 3, 4999038 },  // Vitality
@@ -953,7 +984,8 @@ namespace CoreKeepersWorkshop
                 { 7, 1494 },     // Fishing
                 { 8, 5000 },     // Cooking
                 { 9, 20001 },    // Magic
-                { 10, 59663 }    // Summoning
+                { 10, 59663 },   // Summoning
+                { 11, 2006 }     // Explosives
             };
 
             // Ensure the skill exists in the dictionary
@@ -975,7 +1007,7 @@ namespace CoreKeepersWorkshop
             // Skill max levels dictionary
             Dictionary<int, int> skillMaxLevels = new Dictionary<int, int>
             {
-                { 0, 59978 },   // Mining
+                { 0, 59978 },    // Mining
                 { 1, 498767 },   // Running
                 { 2, 20001 },    // Melee Combat
                 { 3, 4999038 },  // Vitality
@@ -985,7 +1017,8 @@ namespace CoreKeepersWorkshop
                 { 7, 1494 },     // Fishing
                 { 8, 5000 },     // Cooking
                 { 9, 20001 },    // Magic
-                { 10, 59663 }    // Summoning
+                { 10, 59663 },   // Summoning
+                { 11, 2006 }     // Explosives
             };
 
             // Ensure the skill exists in the dictionary.
@@ -1075,7 +1108,7 @@ namespace CoreKeepersWorkshop
             // Parse header base once.
             BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
 
-            int skillCount = 11; // Technically 12.
+            int skillCount = 12;
             int[] skillIDs = new int[skillCount];
             int[] skillValues = new int[skillCount];
 
@@ -1201,7 +1234,7 @@ namespace CoreKeepersWorkshop
                         PlayerSkill_ProgressBar.Visible = true;
 
                         // Disable controls.
-                        GetPlayerSkillAddresses_Button.Enabled = false;
+                        GetPlayerSkillAddresses_Button.Enabled = true; // Enable this control.
 
                         ChangeSkills_Button.Enabled = false;
                         MaxAllSkills_Button.Enabled = false;
@@ -1284,6 +1317,9 @@ namespace CoreKeepersWorkshop
                 SkillID10_NumericUpDown.Value = (decimal)skillIDs[10];
                 SkillILvL10_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID10_NumericUpDown.Value, skillValues[10]);
 
+                SkillID11_NumericUpDown.Value = (decimal)skillIDs[11];
+                SkillILvL11_NumericUpDown.Value = (decimal)GetConvertedValues((int)SkillID11_NumericUpDown.Value, skillValues[11]);
+
                 #endregion
             }
             catch (Exception)
@@ -1350,7 +1386,7 @@ namespace CoreKeepersWorkshop
                     PlayerSkill_ProgressBar.Visible = true;
 
                     // Disable controls.
-                    GetPlayerSkillAddresses_Button.Enabled = false;
+                    GetPlayerSkillAddresses_Button.Enabled = true; // Enable this control.
 
                     ChangeSkills_Button.Enabled = false;
                     MaxAllSkills_Button.Enabled = false;
@@ -1370,6 +1406,7 @@ namespace CoreKeepersWorkshop
                     Skill8_Panel.Enabled = false;
                     Skill9_Panel.Enabled = false;
                     Skill10_Panel.Enabled = false;
+                    Skill11_Panel.Enabled = false;
 
                     UseEXPValues_CheckBox.Enabled = false;
 
@@ -1431,6 +1468,7 @@ namespace CoreKeepersWorkshop
                 Skill8_Panel.Enabled = false;
                 Skill9_Panel.Enabled = false;
                 Skill10_Panel.Enabled = false;
+                Skill11_Panel.Enabled = false;
 
                 ChangeSkills_ProgressBar.Value = 0;
                 return;
@@ -1448,7 +1486,7 @@ namespace CoreKeepersWorkshop
             // Parse header base once.
             BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
 
-            int skillCount = 11; // Technically 12.
+            int skillCount = 12;
             string[] skillIDs = new string[skillCount];
             string[] skillValues = new string[skillCount];
 
@@ -1505,6 +1543,9 @@ namespace CoreKeepersWorkshop
             MemLib.WriteMemory(skillIDs[10], "int", ((int)SkillID10_NumericUpDown.Value).ToString());
             MemLib.WriteMemory(skillValues[10], "int", "0");
 
+            MemLib.WriteMemory(skillIDs[11], "int", ((int)SkillID11_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[11], "int", "0");
+
             #endregion
 
             // Adjust progressbar.
@@ -1522,6 +1563,7 @@ namespace CoreKeepersWorkshop
             SkillILvL8_NumericUpDown.Value = 0;
             SkillILvL9_NumericUpDown.Value = 0;
             SkillILvL10_NumericUpDown.Value = 0;
+            SkillILvL11_NumericUpDown.Value = 0;
         }
         #endregion
 
@@ -1555,6 +1597,7 @@ namespace CoreKeepersWorkshop
                 Skill8_Panel.Enabled = false;
                 Skill9_Panel.Enabled = false;
                 Skill10_Panel.Enabled = false;
+                Skill11_Panel.Enabled = false;
 
                 ChangeSkills_ProgressBar.Value = 0;
                 return;
@@ -1572,7 +1615,7 @@ namespace CoreKeepersWorkshop
             // Parse header base once.
             BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
 
-            int skillCount = 11; // Technically 12.
+            int skillCount = 12;
             string[] skillIDs = new string[skillCount];
             string[] skillValues = new string[skillCount];
 
@@ -1632,6 +1675,9 @@ namespace CoreKeepersWorkshop
             MemLib.WriteMemory(skillIDs[10], "int", ((int)SkillID10_NumericUpDown.Value).ToString());
             MemLib.WriteMemory(skillValues[10], "int", GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, upConvert: true).ToString());
 
+            MemLib.WriteMemory(skillIDs[11], "int", ((int)SkillID11_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillValues[11], "int", GetConvertedValues((int)SkillID11_NumericUpDown.Value, (int)SkillILvL11_NumericUpDown.Value, upConvert: true).ToString());
+
             #endregion
 
             // Adjust progressbar.
@@ -1669,6 +1715,7 @@ namespace CoreKeepersWorkshop
                 Skill8_Panel.Enabled = false;
                 Skill9_Panel.Enabled = false;
                 Skill10_Panel.Enabled = false;
+                Skill11_Panel.Enabled = false;
 
                 ChangeSkills_ProgressBar.Value = 0;
                 return;
@@ -1686,7 +1733,7 @@ namespace CoreKeepersWorkshop
             // Parse header base once.
             BigInteger baseAddress = BigInteger.Parse(headerBase, NumberStyles.HexNumber);
 
-            int skillCount = 11; // Technically 12.
+            int skillCount = 12;
             string[] skillIDs = new string[skillCount];
             string[] skillValues = new string[skillCount];
 
@@ -1713,7 +1760,7 @@ namespace CoreKeepersWorkshop
             // Dictionary mapping skill IDs to max values.
             Dictionary<int, int> skillMaxValues = new Dictionary<int, int>
             {
-                { 0, 59978 },   // Mining
+                { 0, 59978 },    // Mining
                 { 1, 498767 },   // Running
                 { 2, 20001 },    // Melee Combat
                 { 3, 4999038 },  // Vitality
@@ -1723,7 +1770,8 @@ namespace CoreKeepersWorkshop
                 { 7, 1494 },     // Fishing
                 { 8, 5000 },     // Cooking
                 { 9, 20001 },    // Magic
-                { 10, 59663 }    // Summoning
+                { 10, 59663 },   // Summoning
+                { 11, 2006 }     // Explosives
             };
 
             // Iterate through all skills and assign max values.
@@ -1754,6 +1802,7 @@ namespace CoreKeepersWorkshop
             MemLib.WriteMemory(skillIDs[8], "int", ((int)SkillID8_NumericUpDown.Value).ToString());
             MemLib.WriteMemory(skillIDs[9], "int", ((int)SkillID9_NumericUpDown.Value).ToString());
             MemLib.WriteMemory(skillIDs[10], "int", ((int)SkillID10_NumericUpDown.Value).ToString());
+            MemLib.WriteMemory(skillIDs[11], "int", ((int)SkillID11_NumericUpDown.Value).ToString());
 
             #endregion
 
@@ -1772,6 +1821,7 @@ namespace CoreKeepersWorkshop
             SkillILvL8_NumericUpDown.Value = SkillILvL8_NumericUpDown.Maximum;
             SkillILvL9_NumericUpDown.Value = SkillILvL9_NumericUpDown.Maximum;
             SkillILvL10_NumericUpDown.Value = SkillILvL10_NumericUpDown.Maximum;
+            SkillILvL11_NumericUpDown.Value = SkillILvL11_NumericUpDown.Maximum;
         }
         #endregion
     }
