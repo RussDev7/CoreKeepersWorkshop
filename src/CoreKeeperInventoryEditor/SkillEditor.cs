@@ -20,7 +20,7 @@ namespace CoreKeepersWorkshop
 
         #region Variables
 
-        // Define some varibles.
+        // Define some variables.
         public Mem MemLib = new Mem();
         public int useAddress = 1;
 
@@ -962,110 +962,61 @@ namespace CoreKeepersWorkshop
 
         #region Helpers
 
-        // Helper for getting the raw skill exp reguardless of format.
+        #region Get Numeric Maximum
+
+        // Helper for getting the raw skill EXP regardless of format.
         public int GetNumericMaximum(int skillId)
         {
-            // Check if use exp values is enabled.
+            // Check if "Use EXP values" is enabled.
             if (!UseEXPValues_CheckBox.Checked)
             {
-                return 100;
+                return 100; // Default max level if EXP values are not used.
             }
 
-            // Skill max levels dictionary
-            Dictionary<int, int> skillMaxLevels = new Dictionary<int, int>
+            // Validate that the skill ID is within the SkillID enum.
+            if (Enum.IsDefined(typeof(SkillID), skillId))
             {
-                { 0, 59978 },    // Mining
-                { 1, 498767 },   // Running
-                { 2, 20001 },    // Melee Combat
-                { 3, 4999038 },  // Vitality
-                { 4, 29995 },    // Crafting
-                { 5, 20001 },    // Range Combat
-                { 6, 6602 },     // Gardening
-                { 7, 1494 },     // Fishing
-                { 8, 5000 },     // Cooking
-                { 9, 20001 },    // Magic
-                { 10, 59663 },   // Summoning
-                { 11, 2006 }     // Explosives
-            };
+                SkillID skillIDEnum = (SkillID)skillId;
 
-            // Ensure the skill exists in the dictionary
-            int maxLevel;
-            if (skillMaxLevels.TryGetValue(skillId, out maxLevel))
-            {
-                return maxLevel;
+                // Get the official max level for this skill.
+                int maxLevel = GetMaxSkillLevel(skillIDEnum);
+
+                // Convert the max level to the raw EXP value.
+                return GetSkillFromLevel(skillIDEnum, maxLevel);
             }
-            else
-            {
-                return 100; // Default max if skill ID is invalid. Should not happen.
-            }
+
+            return 100; // Default value if skill ID is invalid.
         }
+        #endregion
+
+        #region Get Converted Values
 
         // Helper for getting the raw skill exp regardless of format.
-        // TODO: Change the rounding functions to represent the actual in-game values.
-        public int GetConvertedValues(int skillId, int currentLevel, bool forceConvert = false, bool upConvert = false)
+        // COMPLETED: Change the rounding functions to represent the actual in-game values.
+        public int GetConvertedValues(int skillId, int currentValue, bool forceConvert = false, bool upConvert = false)
         {
-            // Skill max levels dictionary
-            Dictionary<int, int> skillMaxLevels = new Dictionary<int, int>
+            // If using raw EXP values, just return the current value.
+            if (UseEXPValues_CheckBox.Checked && !forceConvert)
             {
-                { 0, 59978 },    // Mining
-                { 1, 498767 },   // Running
-                { 2, 20001 },    // Melee Combat
-                { 3, 4999038 },  // Vitality
-                { 4, 29995 },    // Crafting
-                { 5, 20001 },    // Range Combat
-                { 6, 6602 },     // Gardening
-                { 7, 1494 },     // Fishing
-                { 8, 5000 },     // Cooking
-                { 9, 20001 },    // Magic
-                { 10, 59663 },   // Summoning
-                { 11, 2006 }     // Explosives
-            };
+                return currentValue;
+            }
 
-            // Ensure the skill exists in the dictionary.
-            int maxLevel;
-            if (!skillMaxLevels.TryGetValue(skillId, out maxLevel))
-                throw new ArgumentException("Invalid skill ID");
-
-            // Convert value.
-            if (!UseEXPValues_CheckBox.Checked || forceConvert)
+            // Convert using the official conversion methods.
+            SkillID officialSkillId = (SkillID)skillId;
+            if (upConvert)
             {
-                // Ensure we dont convert values if the option is off.
-                if (forceConvert)
-                {
-                    if (upConvert)
-                    {
-                        // Converts 50% -> 50018 EXP
-                        // Convert from 0-100 scale to the skill's max level
-                        return (int)Math.Round((currentLevel / 100.0) * maxLevel);
-                    }
-                    else
-                    {
-                        // Converts 50018 Mining EXP -> 50
-                        // Convert from skill max level to a 0-100 scale
-                        return (int)Math.Round((currentLevel / (double)maxLevel) * 100);
-                    }
-                }
-
-                // Force convert all values to EXP reguardless of input.
-                if (upConvert)
-                {
-                    // Converts 50% -> 50018 EXP
-                    // Convert from 0-100 scale to the skill's max level
-                    return (int)Math.Round((currentLevel / 100.0) * maxLevel);
-                }
-                else // Normal operations.
-                {
-                    // Converts 50018 Mining EXP -> 50
-                    // Convert from skill max level to a 0-100 scale
-                    return (int)Math.Round((currentLevel / (double)maxLevel) * 100);
-                }
+                // Convert from in-game level to raw EXP.
+                return GetSkillFromLevel(officialSkillId, currentValue);
             }
             else
             {
-                // Use raw exp value.
-                return currentLevel;
+                // Convert from raw EXP to in-game level.
+                return GetLevelFromSkill(officialSkillId, currentValue);
             }
         }
+        #endregion
+
+        #region Update Skills
 
         // Function for updating the GUI with the skill data.
         public bool warnUser = false;
@@ -1438,6 +1389,192 @@ namespace CoreKeepersWorkshop
         }
         #endregion
 
+        #region Skill Extensions
+
+        private readonly float MiningMulFactor = 1.039572f;
+
+        private readonly int MiningBase = 50;
+
+        private readonly float runningMulFactor = 1.0494f;
+
+        private readonly int runningBase = 200;
+
+        private readonly float meleeMulFactor = 1.02382f;
+
+        private readonly int meleeBase = 50;
+
+        private readonly float vitalityMulFactor = 1.04943f;
+
+        private readonly int vitalityBase = 2000;
+
+        private readonly float craftingMulFactor = 1.03706f;
+
+        private readonly int craftingBase = 30;
+
+        private readonly float rangeMulFactor = 1.02382f;
+
+        private readonly int rangeBase = 50;
+
+        private readonly float gardeningMulFactor = 1.02526f;
+
+        private readonly int gardeningBase = 15;
+
+        private readonly float fishingMulFactor = 1.0193f;
+
+        private readonly int fishingBase = 5;
+
+        private readonly float cookingMulFactor = 1.03706f;
+
+        private readonly int cookingBase = 5;
+
+        private readonly float magicMulFactor = 1.02382f;
+
+        private readonly int magicBase = 50;
+
+        private readonly float summoningMulFactor = 1.0395f;
+
+        private readonly int summoningBase = 50;
+
+        private readonly float explosivesMulFactor = 1.0128f;
+
+        private readonly int explosivesBase = 10;
+
+        public enum SkillID
+        {
+            Mining,
+            Running,
+            Melee,
+            Vitality,
+            Crafting,
+            Range,
+            Gardening,
+            Fishing,
+            Cooking,
+            Magic,
+            Summoning,
+            Explosives
+        }
+
+        private int GetSkillBase(SkillID skillID)
+        {
+            switch (skillID)
+            {
+                case SkillID.Mining:
+                    return MiningBase;
+                case SkillID.Running:
+                    return runningBase;
+                case SkillID.Melee:
+                    return meleeBase;
+                case SkillID.Vitality:
+                    return vitalityBase;
+                case SkillID.Crafting:
+                    return craftingBase;
+                case SkillID.Range:
+                    return rangeBase;
+                case SkillID.Gardening:
+                    return gardeningBase;
+                case SkillID.Fishing:
+                    return fishingBase;
+                case SkillID.Cooking:
+                    return cookingBase;
+                case SkillID.Magic:
+                    return magicBase;
+                case SkillID.Summoning:
+                    return summoningBase;
+                case SkillID.Explosives:
+                    return explosivesBase;
+                default:
+                    return 1;
+            }
+        }
+
+        private float GetSkillMulFactor(SkillID skillID)
+        {
+            switch (skillID)
+            {
+                case SkillID.Mining:
+                    return MiningMulFactor;
+                case SkillID.Running:
+                    return runningMulFactor;
+                case SkillID.Melee:
+                    return meleeMulFactor;
+                case SkillID.Vitality:
+                    return vitalityMulFactor;
+                case SkillID.Crafting:
+                    return craftingMulFactor;
+                case SkillID.Range:
+                    return rangeMulFactor;
+                case SkillID.Gardening:
+                    return gardeningMulFactor;
+                case SkillID.Fishing:
+                    return fishingMulFactor;
+                case SkillID.Cooking:
+                    return cookingMulFactor;
+                case SkillID.Magic:
+                    return magicMulFactor;
+                case SkillID.Summoning:
+                    return summoningMulFactor;
+                case SkillID.Explosives:
+                    return explosivesMulFactor;
+                default:
+                    return 1f;
+            }
+        }
+
+        public int GetMaxSkillLevel(SkillID skillID)
+        {
+            switch (skillID)
+            {
+                case SkillID.Mining:
+                    return 100;
+                case SkillID.Running:
+                    return 100;
+                case SkillID.Melee:
+                    return 100;
+                case SkillID.Vitality:
+                    return 100;
+                case SkillID.Crafting:
+                    return 100;
+                case SkillID.Range:
+                    return 100;
+                case SkillID.Gardening:
+                    return 100;
+                case SkillID.Fishing:
+                    return 100;
+                case SkillID.Cooking:
+                    return 100;
+                case SkillID.Magic:
+                    return 100;
+                case SkillID.Summoning:
+                    return 100;
+                case SkillID.Explosives:
+                    return 100;
+                default:
+                    return 100;
+            }
+        }
+
+        public int GetSkillFromLevel(SkillID skillID, int level)
+        {
+            float skillMulFactor = GetSkillMulFactor(skillID);
+            int num = (int)Math.Round((float)GetSkillBase(skillID) * (1f - Math.Pow(skillMulFactor, (float)level)) / (1f - skillMulFactor));
+            for (int i = GetLevelFromSkill(skillID, num); i < Math.Min(level, 100); i = GetLevelFromSkill(skillID, num))
+            {
+                num++;
+            }
+            return num;
+        }
+
+        public int GetLevelFromSkill(SkillID skillID, int skillValue)
+        {
+            float skillMulFactor = GetSkillMulFactor(skillID);
+            int skillBase = GetSkillBase(skillID);
+            return Math.Min((int)(Math.Log(1f - (float)skillValue * (1f - skillMulFactor) / (float)skillBase) / Math.Log(skillMulFactor)), GetMaxSkillLevel(skillID));
+        }
+        #endregion
+
+        #endregion
+
         #region Reset Stats
 
         // Reset skills.
@@ -1757,33 +1894,25 @@ namespace CoreKeepersWorkshop
             // Write values to the game.
             #region Set Max Levels
 
-            // Dictionary mapping skill IDs to max values.
-            Dictionary<int, int> skillMaxValues = new Dictionary<int, int>
-            {
-                { 0, 59978 },    // Mining
-                { 1, 498767 },   // Running
-                { 2, 20001 },    // Melee Combat
-                { 3, 4999038 },  // Vitality
-                { 4, 29995 },    // Crafting
-                { 5, 20001 },    // Range Combat
-                { 6, 6602 },     // Gardening
-                { 7, 1494 },     // Fishing
-                { 8, 5000 },     // Cooking
-                { 9, 20001 },    // Magic
-                { 10, 59663 },   // Summoning
-                { 11, 2006 }     // Explosives
-            };
-
-            // Iterate through all skills and assign max values.
+            // Iterate through all skills and assign their official max EXP values.
             for (int i = 0; i < skillCount; i++)
             {
                 // Read the skill ID from memory.
-                int skillID = MemLib.ReadInt(skillIDs[i]);
+                int skillIDInt = MemLib.ReadInt(skillIDs[i]);
 
-                // If the skill ID is valid, write its max value.
-                if (skillMaxValues.ContainsKey(skillID))
+                // Check if the skill ID is valid by testing if it exists in the SkillID enum.
+                if (Enum.IsDefined(typeof(SkillID), skillIDInt))
                 {
-                    MemLib.WriteMemory(skillValues[i], "int", skillMaxValues[skillID].ToString());
+                    SkillID skillID = (SkillID)skillIDInt;
+
+                    // Get the official max skill level (this is typically 100, but can change if modified).
+                    int maxLevel = GetMaxSkillLevel(skillID);
+
+                    // Convert the max level to the raw EXP value using the official conversion.
+                    int maxExpValue = GetSkillFromLevel(skillID, maxLevel);
+
+                    // Write the official max EXP value to memory.
+                    MemLib.WriteMemory(skillValues[i], "int", maxExpValue.ToString());
                 }
             }
 
