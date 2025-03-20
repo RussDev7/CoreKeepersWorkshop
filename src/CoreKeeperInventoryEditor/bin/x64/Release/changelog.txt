@@ -1,5 +1,6 @@
 Changes Since v1.3.6.3
 ===========================================================
+- Updated skill-editor to represent actual in-game values.
 
 Changes Since v1.3.6.2
 ===========================================================
