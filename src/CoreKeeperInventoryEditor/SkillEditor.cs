@@ -111,7 +111,7 @@ namespace CoreKeepersWorkshop
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
-                // User pressed the "X" button cancle task.
+                // User pressed the "X" button cancel task.
                 this.Close();
             }
 
@@ -140,7 +140,7 @@ namespace CoreKeepersWorkshop
             {
                 // Use exp.
 
-                // Chanegt the numerics max value.
+                // Change the numerics max value.
                 SkillILvL0_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID0_NumericUpDown.Value);
                 SkillILvL1_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID1_NumericUpDown.Value);
                 SkillILvL2_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID2_NumericUpDown.Value);
@@ -154,7 +154,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL10_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID10_NumericUpDown.Value);
                 SkillILvL11_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID11_NumericUpDown.Value);
 
-                // Since increasing, translate the numerics to a heigher value.
+                // Since increasing, translate the numerics to a higher value.
                 SkillILvL0_NumericUpDown.Value = GetConvertedValues((int)SkillID0_NumericUpDown.Value, (int)SkillILvL0_NumericUpDown.Value, true, true);
                 SkillILvL1_NumericUpDown.Value = GetConvertedValues((int)SkillID1_NumericUpDown.Value, (int)SkillILvL1_NumericUpDown.Value, true, true);
                 SkillILvL2_NumericUpDown.Value = GetConvertedValues((int)SkillID2_NumericUpDown.Value, (int)SkillILvL2_NumericUpDown.Value, true, true);
@@ -192,7 +192,7 @@ namespace CoreKeepersWorkshop
                 SkillILvL10_NumericUpDown.Value = GetConvertedValues((int)SkillID10_NumericUpDown.Value, (int)SkillILvL10_NumericUpDown.Value, true, false);
                 SkillILvL11_NumericUpDown.Value = GetConvertedValues((int)SkillID11_NumericUpDown.Value, (int)SkillILvL11_NumericUpDown.Value, true, false);
 
-                // Chanegt the numerics max value.
+                // Change the numerics max value.
                 SkillILvL0_NumericUpDown.Maximum = 100;
                 SkillILvL1_NumericUpDown.Maximum = 100;
                 SkillILvL2_NumericUpDown.Maximum = 100;
@@ -222,10 +222,10 @@ namespace CoreKeepersWorkshop
         // bool warnUsers = true;
         private void SkillID0_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            // if (warnUsers && MessageBox.Show("Are you sure you want to change the value of the first skill?\nChanging this will break any further descoveries of this players skills!\n\nContinue?", "Change the ID of first skill?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            // if (warnUsers && MessageBox.Show("Are you sure you want to change the value of the first skill?\nChanging this will break any further discoveries of this players skills!\n\nContinue?", "Change the ID of first skill?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             // {
-            //     // Defualt the up down.
-            //     warnUsers = false; // Disable temporarly to disable further notifications.
+            //     // Default the up down.
+            //     warnUsers = false; // Disable temporarily to disable further notifications.
             //     numericUpDown1.Value = 1;
             //     warnUsers = true; // Re-enable.
             // }
@@ -375,15 +375,15 @@ namespace CoreKeepersWorkshop
 
         #endregion // End form controls.
 
-        #region Event Handeler Helpers
+        #region Event Handeler & Form Helpers
 
-        // Event handler for skill selection change
+        // Event handler for skill selection change.
         private void SkillSelection_ValueChanged()
         {
             // Check if 
             if (UseEXPValues_CheckBox.Checked)
             {
-                // Chanegt the numerics max value.
+                // Change the numerics max value.
                 SkillILvL0_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID0_NumericUpDown.Value);
                 SkillILvL1_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID1_NumericUpDown.Value);
                 SkillILvL2_NumericUpDown.Maximum = GetNumericMaximum((int)SkillID2_NumericUpDown.Value);
@@ -399,7 +399,7 @@ namespace CoreKeepersWorkshop
             }
             else
             {
-                // Chanegt the numerics max value.
+                // Change the numerics max value.
                 SkillILvL0_NumericUpDown.Maximum = 100;
                 SkillILvL1_NumericUpDown.Maximum = 100;
                 SkillILvL2_NumericUpDown.Maximum = 100;
@@ -412,6 +412,20 @@ namespace CoreKeepersWorkshop
                 SkillILvL9_NumericUpDown.Maximum = 100;
                 SkillILvL10_NumericUpDown.Maximum = 100;
                 SkillILvL11_NumericUpDown.Maximum = 100;
+            }
+        }
+
+        private void SetReadOnly(Control parent, bool readOnly)
+        {
+            foreach(Control control in parent.Controls)
+            {
+                if (control is NumericUpDown numericUpDown)
+                {
+                    numericUpDown.ReadOnly = readOnly;                                                   // Set the readonly attributes.
+                    numericUpDown.Controls[0].Enabled = !readOnly;                                       // Enable/disable the up/down buttons.
+                    numericUpDown.KeyDown += (s, e) => e.SuppressKeyPress = readOnly;                    // Block/unblock the mouse and keyboard input.
+                    numericUpDown.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = readOnly;
+                }
             }
         }
         #endregion
@@ -476,6 +490,19 @@ namespace CoreKeepersWorkshop
             Skill9_Panel.Enabled = false;
             Skill10_Panel.Enabled = false;
             Skill11_Panel.Enabled = false;
+
+            SetReadOnly(Skill0_Panel, true);
+            SetReadOnly(Skill1_Panel, true);
+            SetReadOnly(Skill2_Panel, true);
+            SetReadOnly(Skill3_Panel, true);
+            SetReadOnly(Skill4_Panel, true);
+            SetReadOnly(Skill5_Panel, true);
+            SetReadOnly(Skill6_Panel, true);
+            SetReadOnly(Skill7_Panel, true);
+            SetReadOnly(Skill8_Panel, true);
+            SetReadOnly(Skill9_Panel, true);
+            SetReadOnly(Skill10_Panel, true);
+            SetReadOnly(Skill11_Panel, true);
 
             UseEXPValues_CheckBox.Enabled = false;
 
@@ -795,6 +822,43 @@ namespace CoreKeepersWorkshop
             // Scan for address is needed.
             if (MemLib.OpenProcess("CoreKeeper") && MainForm.AoBScanResultsSkillLoadout == null)
             {
+                // Ensure selected skill levels are not all level 0.
+                if ((int)SkillILvL0_NumericUpDown.Value == 0 && (int)SkillILvL1_NumericUpDown.Value == 0 && (int)SkillILvL2_NumericUpDown.Value == 0 && (int)SkillILvL3_NumericUpDown.Value == 0 && (int)SkillILvL4_NumericUpDown.Value == 0 && (int)SkillILvL5_NumericUpDown.Value == 0 &&
+                    (int)SkillILvL6_NumericUpDown.Value == 0 && (int)SkillILvL7_NumericUpDown.Value == 0 && (int)SkillILvL8_NumericUpDown.Value == 0 && (int)SkillILvL9_NumericUpDown.Value == 0 && (int)SkillILvL10_NumericUpDown.Value == 0 && (int)SkillILvL11_NumericUpDown.Value == 0 &&
+                    MessageBox.Show("It's not advised to 'use' a skill loadout that is all level 0.\nDoing this will lead to very long scan times.\n\nIt's recommended to get at least one or more skills to level 1 or higher.\n\nContinue?", "Player Skill Editor - Use selected skill loadout?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+				{
+                    #region Toggle Controls
+
+                    // Hide progressbar.
+                    PlayerSkill_ProgressBar.Visible = false;
+
+                    // Enable controls.
+                    PreviousSkillAddress_Button.Enabled = true;
+                    NextSkillAddress_Button.Enabled = true;
+
+                    // Enable controls.
+                    GetPlayerSkillAddresses_Button.Enabled = true;
+                    UseSkillAddress_Button.Enabled = true;
+
+                    Skill0_Panel.Enabled = true;
+                    Skill1_Panel.Enabled = true;
+                    Skill2_Panel.Enabled = true;
+                    Skill3_Panel.Enabled = true;
+                    Skill4_Panel.Enabled = true;
+                    Skill5_Panel.Enabled = true;
+                    Skill6_Panel.Enabled = true;
+                    Skill7_Panel.Enabled = true;
+                    Skill8_Panel.Enabled = true;
+                    Skill9_Panel.Enabled = true;
+                    Skill10_Panel.Enabled = true;
+                    Skill11_Panel.Enabled = true;
+
+                    // Enable controls.
+                    UseEXPValues_CheckBox.Enabled = true;
+
+                    #endregion
+				}
+
                 // Adjust progressbar.
                 PlayerSkill_ProgressBar.Value = 30;
                 PlayerSkill_ProgressBar.Visible = true;
@@ -866,7 +930,7 @@ namespace CoreKeepersWorkshop
                 // Check if any results where found.
                 if (MainForm.AoBScanResultsSkillLoadout.Count() == 0)
                 {
-                    MessageBox.Show("Of the loaded skill addresses, no skill loadouts where found!\nTry a different skill address or tru restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Of the loaded skill addresses, no skill loadouts where found!\nTry a different skill address or try restarting your game!", "Player Skill Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     // Enable controls.
                     GetPlayerSkillAddresses_Button.Enabled = true;
@@ -929,6 +993,19 @@ namespace CoreKeepersWorkshop
                 Skill9_Panel.Enabled = true;
                 Skill10_Panel.Enabled = true;
                 Skill11_Panel.Enabled = true;
+
+                SetReadOnly(Skill0_Panel, false);
+                SetReadOnly(Skill1_Panel, false);
+                SetReadOnly(Skill2_Panel, false);
+                SetReadOnly(Skill3_Panel, false);
+                SetReadOnly(Skill4_Panel, false);
+                SetReadOnly(Skill5_Panel, false);
+                SetReadOnly(Skill6_Panel, false);
+                SetReadOnly(Skill7_Panel, false);
+                SetReadOnly(Skill8_Panel, false);
+                SetReadOnly(Skill9_Panel, false);
+                SetReadOnly(Skill10_Panel, false);
+                SetReadOnly(Skill11_Panel, false);
 
                 // Enable controls.
                 ChangeSkills_Button.Enabled = true;

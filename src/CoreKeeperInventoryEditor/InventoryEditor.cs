@@ -17,7 +17,7 @@ namespace CoreKeeperInventoryEditor
         int selectedItemVariation = 0;
         int selectedItemSkillset = 0;
         bool selectedOverwrite = false;
-        bool userCancledTask = false;
+        bool userCanceldTask = false;
 
         // Define texture data.
         public IEnumerable<string> ImageFiles = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
@@ -76,8 +76,8 @@ namespace CoreKeeperInventoryEditor
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
-                // User pressed the "X" button cancle task.
-                userCancledTask = true;
+                // User pressed the "X" button cancel task.
+                userCanceldTask = true;
                 this.Close();
             }
 
@@ -107,7 +107,7 @@ namespace CoreKeeperInventoryEditor
             { } // Do nothing.
         }
 
-        // Lanch about skillset message.
+        // Launch about skillset message.
         private void SkillTypeInfo_Button_Click(object sender, EventArgs e)
         {
             MessageBox.Show("How to find my pet's skillset ID?\r\n    - Each pet only has 4 skillsets and are typically +4/-4 the current pets skillset. For example, if your pet has an assigned skillset of 150 then the 4 skillset IDs will be within the 146-154 range. For fresh pets first name the pet and it will be assigned a skillset id.\r\n\r\nWhy is it like this?\r\n    - The game generates progressive \"skill tables\" rather than using a static ID for a pets skills. Bad system I know, nothing I can do about it.\r\n", "How To Use --> Get Skillset ID", MessageBoxButtons.OK, MessageBoxIcon.Question);
@@ -117,7 +117,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Closing Varibles
 
-        // Define closing varibles.
+        // Define closing variables.
         public int GetItemTypeFromList()
         {
             return selectedItemType;
@@ -134,9 +134,9 @@ namespace CoreKeeperInventoryEditor
         {
             return selectedItemSkillset;
         }
-        public bool GetUserCancledTask()
+        public bool GetUserCanceldTask()
         {
-            return userCancledTask;
+            return userCanceldTask;
         }
         public bool GetSelectedOverwriteTask()
         {
@@ -269,7 +269,7 @@ namespace CoreKeeperInventoryEditor
                     // Retrieve all image files
                     foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                     {
-                        // Get file infomration.
+                        // Get file information.
                         var fi = new FileInfo(file);
                         string[] filenameData = fi.Name.Split(',');
 
@@ -493,7 +493,7 @@ namespace CoreKeeperInventoryEditor
                     }
                 }
 
-                //set the amall and large ImageList properties of listview
+                // Set the small and large ImageList properties of listview
                 Tab1_ListView.LargeImageList = ImagelistLargeTools;
                 Tab1_ListView.View = View.LargeIcon;
                 Tab2_ListView.LargeImageList = ImagelistPlaceableItems;
@@ -546,7 +546,7 @@ namespace CoreKeeperInventoryEditor
             this.Close();
         }
 
-        // Add custom veriation.
+        // Add custom variation.
         private void ItemVariant_Button_Click(object sender, EventArgs e)
         {
             selectedItemType = (int)CustomID_NumericUpDown.Value;
@@ -568,7 +568,7 @@ namespace CoreKeeperInventoryEditor
             this.Close();
         }
 
-        // Add custom veriation - Enter shortcut.
+        // Add custom variation - Enter shortcut.
         private void ItemVariant_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -639,7 +639,7 @@ namespace CoreKeeperInventoryEditor
             ImagelistLargeSearch.ImageSize = new Size(50, 60);
             ImagelistSearch.ImageSize = new Size(50, 60);
 
-            // Define seperate counts.
+            // Define separate counts.
             int countSearch = 0;
 
             // Make sure assets exist.
@@ -654,7 +654,7 @@ namespace CoreKeeperInventoryEditor
                     // Retrieve all image files
                     foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                     {
-                        // Get file infomration.
+                        // Get file information.
                         var fi = new FileInfo(file);
                         string[] filenameData = fi.Name.Split(',');
 
@@ -678,7 +678,7 @@ namespace CoreKeeperInventoryEditor
                 }
             }
 
-            //set the amall and large ImageList properties of listview
+            //set the small and large ImageList properties of listview
             listViewSearch.LargeImageList = ImagelistLargeSearch;
             listViewSearch.View = View.LargeIcon;
         }
@@ -704,7 +704,7 @@ namespace CoreKeeperInventoryEditor
                 ImagelistLargeSearch.ImageSize = new Size(50, 60);
                 ImagelistSearch.ImageSize = new Size(50, 60);
 
-                // Define seperate counts.
+                // Define separate counts.
 
                 int countSearch = 0;
                 // Make sure assets exist.
@@ -719,7 +719,7 @@ namespace CoreKeeperInventoryEditor
                         // Retrieve all image files
                         foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                         {
-                            // Get file infomration.
+                            // Get file information.
                             var fi = new FileInfo(file);
                             string[] filenameData = fi.Name.Split(',');
 
@@ -743,7 +743,7 @@ namespace CoreKeeperInventoryEditor
                     }
                 }
 
-                //set the amall and large ImageList properties of listview
+                //set the small and large ImageList properties of listview
                 listViewSearch.LargeImageList = ImagelistLargeSearch;
                 listViewSearch.View = View.LargeIcon;
             }
@@ -760,8 +760,8 @@ namespace CoreKeeperInventoryEditor
             int itemType = frm4.GetItemTypeFromList();
             int itemAmount = frm4.GetItemAmountFromList();
             int itemVariation = frm4.GetItemVeriationFromList() == 0 ? 0 : (frm4.GetItemVeriationFromList()); // If variation is not zero, add offset.
-            // int itemSkillset = frm4.GetItemSkillsetFromList(); // Not implimented yet;
-            bool wasAborted = frm4.GetUserCancledTask();
+            // int itemSkillset = frm4.GetItemSkillsetFromList(); // Not implemented yet;
+            bool wasAborted = frm4.GetUserCanceldTask();
             // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
             frm4.Close();
 
@@ -772,7 +772,7 @@ namespace CoreKeeperInventoryEditor
             selectedItemType = itemType;
             selectedItemAmount = itemAmount;
             selectedItemVariation = itemVariation;
-            // selectedItemSkillset = itemSkillset; // Not implimented yet;
+            // selectedItemSkillset = itemSkillset; // Not implemented yet;
             this.Close();
         }
         #endregion
@@ -787,7 +787,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab1_ListView.Items[Tab1_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -813,7 +813,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab2_ListView.Items[Tab2_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -839,7 +839,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab3_ListView.Items[Tab3_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -865,7 +865,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab4_ListView.Items[Tab4_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -891,7 +891,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab5_ListView.Items[Tab5_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -917,7 +917,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab6_ListView.Items[Tab6_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -943,7 +943,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab7_ListView.Items[Tab7_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -969,7 +969,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab8_ListView.Items[Tab8_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -995,7 +995,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab9_ListView.Items[Tab9_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1021,7 +1021,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab10_ListView.Items[Tab10_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1047,7 +1047,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab11_ListView.Items[Tab11_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1073,7 +1073,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab12_ListView.Items[Tab12_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1099,7 +1099,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab13_ListView.Items[Tab13_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1125,7 +1125,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab14_ListView.Items[Tab14_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1151,7 +1151,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab15_ListView.Items[Tab15_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1177,7 +1177,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab16_ListView.Items[Tab16_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1203,7 +1203,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = Tab17_ListView.Items[Tab17_ListView.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }
@@ -1229,7 +1229,7 @@ namespace CoreKeeperInventoryEditor
                 string[] PostNumber = listViewSearch.Items[listViewSearch.SelectedIndices[i]].Tag.ToString().Split(',');
                 selectedItemType = int.Parse(PostNumber[0]);
                 selectedItemVariation = int.Parse(PostNumber[1]);
-                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implimented yet;
+                // selectedItemSkillset = int.Parse(PostNumber[2]); // Not implemented yet;
                 this.Close();
             }
         }

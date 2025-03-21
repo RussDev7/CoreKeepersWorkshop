@@ -89,7 +89,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Process Handle Classes
 
-        // Set the proccess overlay class.
+        // Set the process overlay class.
         [DllImport("user32.dll")]
         public static extern IntPtr GetDC(IntPtr hwnd);
         [DllImport("User32.dll")]
@@ -136,7 +136,7 @@ namespace CoreKeeperInventoryEditor
                 #region Are We Admin?
 
                 // Check if the application was started in administrator mode.
-                if (!IsAdministrator() && MessageBox.Show("The mods in this application require administrator privileges.\n\nWould you like to proceed anyways? (not reccomended)", "WARNING: LAUNCHED WITHOUT ADMINISTRATIVE RIGHTS", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
+                if (!IsAdministrator() && MessageBox.Show("The mods in this application require administrator privileges.\n\nWould you like to proceed anyways? (not recommended)", "WARNING: LAUNCHED WITHOUT ADMINISTRATIVE RIGHTS", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
                 {
                     // Close the application.
                     this.Close();
@@ -310,13 +310,13 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(ApplyBuff_Button, "Replaces the glow tulip buff with a desired buff.");
                 toolTip.SetToolTip(ChangeDate_Button, "Change the date created of the current world.");
                 toolTip.SetToolTip(GetWorldInformation_Button, "Fills the datagridview with the world header information.");
-                toolTip.SetToolTip(ChangeDifficulty_Button, "Change the difficutly of the current world.");
+                toolTip.SetToolTip(ChangeDifficulty_Button, "Change the difficulty of the current world.");
                 toolTip.SetToolTip(ChangeCrystals_Button, "Change the activated crystals of the current world.");
                 toolTip.SetToolTip(AutomaticFishing_Button, "Automatically fishes for you. First throw reel into water.");
                 toolTip.SetToolTip(PreviousInvAddress_Button, "Switch to the previous found inventory.");
                 toolTip.SetToolTip(NextInvAddress_Button, "Switch to the next found inventory.");
                 toolTip.SetToolTip(AutoMapRenderer_Button, "Automatically render very large areas around the player.");
-                toolTip.SetToolTip(RestoreDefualtRange_Button, "Restore the default range and disable full map brightness.");
+                toolTip.SetToolTip(RestoreDefaultRange_Button, "Restore the default range and disable full map brightness.");
                 toolTip.SetToolTip(SetRevealRange_Button, "Turn on custom map render distance with full map brightness.");
                 toolTip.SetToolTip(CancelOperation_Button, "Cancel the map rendering operation.");
                 toolTip.SetToolTip(GetMapRenderingAddresses_Button, "Get the required addresses for custom map rendering.");
@@ -354,7 +354,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(InfiniteMana_ToggleSwith, "Enabling will keep the players mana replenished.");
                 toolTip.SetToolTip(ForceRecall_ToggleSwith, "Recalls the player to spawn immediately.");
                 toolTip.SetToolTip(FreeCrafting_ToggleSwith, "Enables the ability to craft without consuming resources.");
-                toolTip.SetToolTip(PassiveAI_ToggleSwith, "Toggles enemies aggression torwards the player.");
+                toolTip.SetToolTip(PassiveAI_ToggleSwith, "Toggles enemies aggression towards the player.");
                 toolTip.SetToolTip(PlaceAnywhere_ToggleSwith, "Enabling will allow the player to place on invalid tiles.");
                 // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith13, "Enabling will allow the player to adjust the placement range.");
                 toolTip.SetToolTip(Range_ToggleSwith, "Coming back soon...");
@@ -366,10 +366,10 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(OverwriteSlotOne_RadioButton, "Overwrite item slot one.");
                 toolTip.SetToolTip(AddToEmptySlots_RadioButton, "Add item to an empty inventory slot.");
                 toolTip.SetToolTip(Custom_RadioButton, "Add items to a custom inventory slot.");
-                toolTip.SetToolTip(WorldDifficulty_ComboBox, "Change the world difficutly (mode).");
+                toolTip.SetToolTip(WorldDifficulty_ComboBox, "Change the world difficulty (mode).");
 
                 toolTip.SetToolTip(CustomAmount_NumericUpDown, "Change what item slot to send items too.");
-                toolTip.SetToolTip(DevToolsDelay_NumericUpDown, "Change the interval of dev-tools that use delays. (defualt: 80)");
+                toolTip.SetToolTip(DevToolsDelay_NumericUpDown, "Change the interval of dev-tools that use delays. (default: 80)");
                 toolTip.SetToolTip(SpeedAmount_NumericUpDown, "Change the base speed the player will walk at.");
                 toolTip.SetToolTip(TeleportX_NumericUpDown, "Change the x-axis world position to be teleported on.");
                 toolTip.SetToolTip(TeleportY_NumericUpDown, "Change the y-axis world position to be teleported on.");
@@ -377,11 +377,11 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(TimeS_NumericUpDown, "Change the amount of time the buff will be active for.");
                 toolTip.SetToolTip(MaxRadius_NumericUpDown, "The (radius x range) of tiles to render around the player.");
                 toolTip.SetToolTip(NextRingDelay_NumericUpDown, "Change the cooldown time (milliseconds) before the next teleport.");
-                toolTip.SetToolTip(StartRadius_NumericUpDown, "Set the mininum range in tiles away from the player to start the map render.");
+                toolTip.SetToolTip(StartRadius_NumericUpDown, "Set the minimum range in tiles away from the player to start the map render.");
                 toolTip.SetToolTip(RenderRange_NumericUpDown, "Set the maximum range in tiles to render the map by.");
-                toolTip.SetToolTip(RadialMoveScale_NumericUpDown, "Set a custom radialMoveScale for auto map rendering. (defualt: 0.1)");
+                toolTip.SetToolTip(RadialMoveScale_NumericUpDown, "Set a custom radialMoveScale for auto map rendering. (default: 0.1)");
                 toolTip.SetToolTip(CastDelay_NumericUpDown, "Set the delay for re-casting the fishing pole.");
-                toolTip.SetToolTip(FishingPadding_NumericUpDown, "Set the delay for loop operations. Ex: Cought fish checking.");
+                toolTip.SetToolTip(FishingPadding_NumericUpDown, "Set the delay for loop operations. Ex: Caught fish checking.");
 
                 toolTip.SetToolTip(DevTools3_Label, "Create an ID list from all installed assets.");
                 toolTip.SetToolTip(DevTools2_Label, "Sets the variant of item slot2 based on a file list.");
@@ -404,7 +404,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Memory Dll Loader
 
-        // Had to make this it's own void because winforms tries to initiate it reguardless of checks.
+        // Had to make this it's own void because winforms tries to initiate it regardless of checks.
         public void InitiateMemoryDLL()
         {
             try
@@ -436,7 +436,7 @@ namespace CoreKeeperInventoryEditor
                       .IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        // Change the top most varible.
+        // Change the top most variable.
         private void AlwaysOnTop_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Check if the application is already set to top most or not.
@@ -487,7 +487,7 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
-        // Launch the link in the (users defualt) browser.
+        // Launch the link in the (users default) browser.
         private void About_RichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             try
@@ -501,7 +501,7 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
-        // Reset inventory stats back to defualts.
+        // Reset inventory stats back to defaults.
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Ensure we catch all closing exceptions. // Fix v1.3.3.
@@ -924,7 +924,7 @@ namespace CoreKeeperInventoryEditor
                 Inventory_ProgressBar.Value = 0;
                 Inventory_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
 
                 // Re-enable button.
@@ -1008,7 +1008,7 @@ namespace CoreKeeperInventoryEditor
 
             if (AoBScanResultsInventory == null)
             {
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
                 ReloadInventory_Button.Text = "Reload Inventory";
                 RemoveAll_Button.Text = "Remove All";
@@ -1048,13 +1048,13 @@ namespace CoreKeeperInventoryEditor
                 }
             }
 
-            // Define some varibles for item info.
+            // Define some variables for item info.
             int infoType = 0;
             int infoAmount = 0;
             int infoVariant = 0;
             int infoSkillset = 0;
 
-            // Define a varible to hold the new item amount information.
+            // Define a variable to hold the new item amount information.
             int finalItemAmount = 0;
 
             // Select the inventory to use.
@@ -1168,7 +1168,7 @@ namespace CoreKeeperInventoryEditor
                     }
                     else
                     {
-                        // Export inventeory to list.
+                        // Export inventory to list.
                         if (ExportInventory)
                         {
                             if (!ExportPlayerItems.ContainsKey("itemSlot1"))
@@ -7407,13 +7407,13 @@ namespace CoreKeeperInventoryEditor
             // Gather item info and announce.
             #region Announce Item Info
 
-            // Ammounce the information.
+            // Announce the information.
             if (GetItemInfo)
             {
                 // Get the name of the item.
                 string baseItemName = "";
-                string baseIngrdient1Name = "";
-                string baseIngrdient2Name = "";
+                string baseingredient1Name = "";
+                string baseingredient2Name = "";
 
                 // Get base item name.
                 if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (infoVariant == 0 ? 0 : infoVariant).ToString()) != null)
@@ -7436,50 +7436,50 @@ namespace CoreKeeperInventoryEditor
                         baseItemName = "UnkownItem";
                     }
                 }
-                // Check if the items variant is an lengh of 1. 
+                // Check if the items variant is an length of 1. 
                 if (infoVariant >= 1)
                 {
-                    // Get base item ingrdient 1 name.
+                    // Get base item ingredient 1 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseIngrdient1Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
+                        baseingredient1Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
                         // Check if the item id is 0.
                         if (infoType == 0)
                         {
-                            baseIngrdient1Name = "Empty";
+                            baseingredient1Name = "Empty";
                         }
                         else
                         {
-                            baseIngrdient1Name = "UnkownItem";
+                            baseingredient1Name = "UnkownItem";
                         }
                     }
-                    // Get base item ingrdient 2 name.
+                    // Get base item ingredient 2 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseIngrdient2Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
+                        baseingredient2Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
                         // Check if the item id is 0.
                         if (infoType == 0)
                         {
-                            baseIngrdient2Name = "Empty";
+                            baseingredient2Name = "Empty";
                         }
                         else
                         {
-                            baseIngrdient2Name = "UnkownItem";
+                            baseingredient2Name = "UnkownItem";
                         }
                     }
                 }
 
-                // Check if the items variant is an lengh of 1. 
+                // Check if the items variant is an length of 1. 
                 string itemMessage = "";
                 if (infoVariant >= 1)
                 {
-                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "Base ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Skillset: " + infoSkillset + Environment.NewLine + Environment.NewLine + "Variant IDs: (" + infoVariant + ")" + Environment.NewLine + "- Ingrdient1: " + baseIngrdient1Name + " [" + VariationHelper.GetIngredient1FromFoodVariation(infoVariant) + "]" + Environment.NewLine + "- Ingrdient2: " + baseIngrdient2Name + " [" + VariationHelper.GetIngredient2FromFoodVariation(infoVariant) + "]";
+                    itemMessage = "Inventory Slot " + itemSlot + "'s Item Info: " + Environment.NewLine + Environment.NewLine + "Name: " + baseItemName + Environment.NewLine + "Base ID: " + infoType + Environment.NewLine + "Amount: " + infoAmount + Environment.NewLine + "Skillset: " + infoSkillset + Environment.NewLine + Environment.NewLine + "Variant IDs: (" + infoVariant + ")" + Environment.NewLine + "- ingredient1: " + baseingredient1Name + " [" + VariationHelper.GetIngredient1FromFoodVariation(infoVariant) + "]" + Environment.NewLine + "- ingredient2: " + baseingredient2Name + " [" + VariationHelper.GetIngredient2FromFoodVariation(infoVariant) + "]";
                 }
                 else
                 {
@@ -7495,13 +7495,13 @@ namespace CoreKeeperInventoryEditor
 
             #region Load Pictures Upon Editing
 
-            // Define varible for addtoempty.
+            // Define variable for addtoempty.
             bool emptySlotFound = false;
 
             // Load Picture
             if (!loadInventory && !GetItemInfo && (itemSlot == 1 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot1_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7564,7 +7564,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 2 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot2_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7627,7 +7627,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 3 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot3_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7690,7 +7690,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 4 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot4_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7753,7 +7753,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 5 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot5_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7816,7 +7816,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 6 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot6_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7879,7 +7879,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 7 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot7_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -7942,7 +7942,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 8 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot8_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8005,7 +8005,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 9 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot9_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8068,7 +8068,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 10 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot10_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8131,7 +8131,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 11 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot11_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8194,7 +8194,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 12 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot12_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8257,7 +8257,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 13 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot13_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8320,7 +8320,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 14 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot14_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8383,7 +8383,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 15 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot15_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8446,7 +8446,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 16 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot16_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8509,7 +8509,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 17 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot17_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8572,7 +8572,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 18 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot18_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8635,7 +8635,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 19 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot19_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8698,7 +8698,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 20 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot20_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8761,7 +8761,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 21 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot21_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8824,7 +8824,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 22 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot22_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8887,7 +8887,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 23 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot23_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -8950,7 +8950,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 24 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot24_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9013,7 +9013,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 25 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot25_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9076,7 +9076,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 26 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot26_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9139,7 +9139,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 27 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot27_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9202,7 +9202,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 28 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot28_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9265,7 +9265,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 29 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot29_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9328,7 +9328,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 30 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot30_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9391,7 +9391,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 31 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot31_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9454,7 +9454,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 32 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot32_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9517,7 +9517,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 33 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot33_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9580,7 +9580,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 34 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot34_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9643,7 +9643,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 35 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot35_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9706,7 +9706,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 36 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot36_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9769,7 +9769,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 37 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot37_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9832,7 +9832,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 38 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot38_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9895,7 +9895,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 39 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot39_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -9958,7 +9958,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 40 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot40_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10021,7 +10021,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 41 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot41_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10084,7 +10084,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 42 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot42_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10147,7 +10147,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 43 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot43_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10210,7 +10210,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 44 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot44_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10273,7 +10273,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 45 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot45_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10336,7 +10336,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 46 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot46_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10399,7 +10399,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 47 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot4_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10462,7 +10462,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 48 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot48_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10525,7 +10525,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 49 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot49_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10588,7 +10588,7 @@ namespace CoreKeeperInventoryEditor
             }
             if (!loadInventory && !GetItemInfo && (itemSlot == 50 || CycleAll || AddToEmpty))
             {
-                // If slot is empty, add item to invintory.
+                // If slot is empty, add item to inventory.
                 if (AddToEmpty && Slot50_PictureBox.Image == null && !emptySlotFound)
                 {
                     // Add item to inventory.
@@ -10655,10 +10655,10 @@ namespace CoreKeeperInventoryEditor
             // Check if there was no slots empty.
             if (AddToEmpty && !emptySlotFound)
             {
-                MessageBox.Show("Your inventoy is full!" + Environment.NewLine + Environment.NewLine + "Try using the reload inventory button.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Your inventory is full!" + Environment.NewLine + Environment.NewLine + "Try using the reload inventory button.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
             ReloadInventory_Button.Text = "Reload Inventory";
             RemoveAll_Button.Text = "Remove All";
@@ -10818,7 +10818,7 @@ namespace CoreKeeperInventoryEditor
                     int itemAmount = frm2.GetItemAmountFromList();
                     int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : (frm2.GetItemVeriationFromList()); // If variation is not zero, add offset.
                     int itemSkillset = frm2.GetItemSkillsetFromList();
-                    bool wasAborted = frm2.GetUserCancledTask();
+                    bool wasAborted = frm2.GetUserCanceldTask();
                     bool itemOverwrite = frm2.GetSelectedOverwriteTask();
                     frm2.Close();
 
@@ -10847,7 +10847,7 @@ namespace CoreKeeperInventoryEditor
                     // Open the process and check if it was successful before the AoB scan.
                     if (AoBScanResultsInventory == null)
                     {
-                        // Rename button back to defualt.
+                        // Rename button back to default.
                         GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
                         ReloadInventory_Button.Text = "Reload Inventory";
                         RemoveAll_Button.Text = "Remove All";
@@ -10868,7 +10868,7 @@ namespace CoreKeeperInventoryEditor
 
                     // Save some form settings.
                     Settings.Default.InfoID = itemInfo[0];
-                    Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negitive numbers throwing an exception. // Fix v1.3.4.4.
+                    Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negative numbers throwing an exception. // Fix v1.3.4.4.
                     Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
                     Settings.Default.InfoSkillset = itemInfo[3];
 
@@ -10881,7 +10881,7 @@ namespace CoreKeeperInventoryEditor
                     int itemAmount = frm3.GetItemAmountFromList();
                     int itemVariation = frm3.GetItemVeriationFromList() == 0 ? 0 : (frm3.GetItemVeriationFromList()); // If variation is not zero, add offset.
                     int itemSkillset = frm3.GetItemSkillsetFromList();
-                    bool wasAborted = frm3.GetUserCancledTask();
+                    bool wasAborted = frm3.GetUserCanceldTask();
                     // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
                     frm3.Close();
 
@@ -10907,7 +10907,7 @@ namespace CoreKeeperInventoryEditor
             // Define main string.
             int[] itemInfo = new int[4];
 
-            // Define some varibles for item info.
+            // Define some variables for item info.
             int infoType;
             int infoAmount;
             int infoVariant;
@@ -11299,8 +11299,8 @@ namespace CoreKeeperInventoryEditor
         // Below contains all the offsets for the player mods.
         // These values are all all added to the players base address. // Base + Offset.
         readonly string godmodeOffset = "-1732";                   // Godmode.
-        readonly string possitionXOffset = "0";                    // Player possition X.
-        readonly string possitionYOffset = "8";                    // Player possition Y.
+        readonly string positionXOffset = "0";                     // Player position X.
+        readonly string positionYOffset = "8";                     // Player position Y.
         readonly string speedOffset = "-172";                      // Player speed.  // 336 default.
         readonly string hungerOffset = "-4";                       // Player hunger. // What even is this game anymore LOL.
         readonly string manaOffset = "-636";                       // Player mana.
@@ -11308,7 +11308,7 @@ namespace CoreKeeperInventoryEditor
         readonly string passiveAIOffset = "4672";                  // Passive AI.    // 5 = off, 8 = on.
 
         // Obsolete Offsets 05Feb25:
-        // readonly string playerStateBaseOffset = "248";          // For player effects like recal and anti collision.
+        // readonly string playerStateBaseOffset = "248";          // For player effects like recall and anti collision.
         // readonly string playerStateAntiCollisionOffset = "312"; // Anti collision effect.
         // readonly string playerStateRecallOffset = "384";        // Recall effect.
 
@@ -11338,7 +11338,7 @@ namespace CoreKeeperInventoryEditor
             if (CurrentName_TextBox.Text == "" || NewName_TextBox.Text == "")
             {
                 // Display error message.
-                MessageBox.Show("You must type your playername and a new name!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must type your player name and a new name!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -11365,7 +11365,7 @@ namespace CoreKeeperInventoryEditor
             // If the count is zero, the scan had an error.
             if (AoBScanResultsPlayerName.Count() == 0 | AoBScanResultsPlayerName.Count() < 10)
             {
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChanngeName_Button.Text = "Change Name";
 
                 // Display error message.
@@ -11378,24 +11378,24 @@ namespace CoreKeeperInventoryEditor
         }
 
         // this function is async, which means it does not block other code.
-        public void ChangePlayersName(string NewName, int NewLengh)
+        public void ChangePlayersName(string NewName, int NewLength)
         {
             // Iterate through each found address.
             foreach (long res in AoBScanResultsPlayerName)
             {
                 // Get address from loop.
                 string baseAddress = res.ToString("X").ToString();
-                string nameLenghAddress = BigInteger.Subtract(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
+                string nameLengthAddress = BigInteger.Subtract(BigInteger.Parse(baseAddress, NumberStyles.HexNumber), BigInteger.Parse("2", NumberStyles.Integer)).ToString("X");
 
-                // Write new name lengh.
-                MemLib.WriteMemory(nameLenghAddress, "int", NewLengh.ToString());
+                // Write new name length.
+                MemLib.WriteMemory(nameLengthAddress, "int", NewLength.ToString());
 
                 // Write new name to addresses.
                 MemLib.WriteMemory(baseAddress, "string", NewName);
             }
 
             // Process completed, run finishing tasks.
-            // Rename button back to defualt.
+            // Rename button back to default.
             ChanngeName_Button.Text = "Change Name";
             CurrentName_TextBox.Text = NewName;
             NewName_TextBox.Text = "";
@@ -11418,7 +11418,7 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsInventory == null)
             {
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
                 ReloadInventory_Button.Text = "Reload Inventory";
                 RemoveAll_Button.Text = "Remove All";
@@ -11548,7 +11548,7 @@ namespace CoreKeeperInventoryEditor
             // Ensure pointers are found.
             if (AoBScanResultsInventory == null)
             {
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
                 ReloadInventory_Button.Text = "Reload Inventory";
                 RemoveAll_Button.Text = "Remove All";
@@ -11621,7 +11621,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 0;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
@@ -11654,7 +11654,7 @@ namespace CoreKeeperInventoryEditor
             // button10.Enabled = true;
             PlayerTools_GroupBox.Enabled = true;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             GetAddresses_Button.Text = "Get Addresses";
 
             // Complete progress bar.
@@ -11757,7 +11757,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 FreeCrafting_Label.Text = "- Free Crafting";
 
                 // Toggle on free item crafting.
@@ -11875,7 +11875,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 KeepInventory_Label.Text = "- Keep Inventory";
 
                 // Start the timed events.
@@ -11978,7 +11978,7 @@ namespace CoreKeeperInventoryEditor
                     // Stop the timer.
                     playersKeepInventoryTimer.Stop();
 
-                    // Wait 100 miliseconds.
+                    // Wait 100 milliseconds.
                     //await Task.Delay(100);
 
                     // Continue.
@@ -12068,7 +12068,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 InfiniteResources_Label.Text = "- Infinite Resources";
 
                 // Start the timed events.
@@ -12177,7 +12177,7 @@ namespace CoreKeeperInventoryEditor
             // If the count is zero, the scan had an error.
             if (AoBScanResultsPlayerBuffs.Count() < 1)
             {
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ApplyBuff_Button.Text = "Apply";
 
                 // Re-enable button.;
@@ -12232,7 +12232,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Process completed, run finishing tasks.
-            // Rename button back to defualt.
+            // Rename button back to default.
             ApplyBuff_Button.Text = "Apply";
             ApplyBuff_Button.Enabled = true;
         }
@@ -12335,7 +12335,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 PlaceAnywhere_Label.Text = "- Place Anywhere";
 
                 // Toggle on place anywhere.
@@ -12419,7 +12419,7 @@ namespace CoreKeeperInventoryEditor
                     float placementRange = MemLib.ReadFloat(placementRangeAddress);
 
                     // Check if we need to rescan placement range or not.
-                    // Defualt 1.5.
+                    // default 1.5.
                     if (placementRange > (float)Range_NumericUpDown.Maximum && placementRange < (float)CustomAmount_NumericUpDown.Minimum)
                     {
                         // Rescan placement range addresses.
@@ -12478,7 +12478,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 Range_Label.Text = "- Range:";
 
                 // Toggle on placement range.
@@ -12617,7 +12617,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 TrashInventory_Label.Text = "- Trash Inventory";
 
                 // Append mod header to world tools.
@@ -12775,7 +12775,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 100;
                 PlayerTools_ProgressBar.Visible = false;
 
-                // Rename label to defualt text.
+                // Rename label to default text.
                 MinecartSpeed_Label.Text = "- Minecart Speed";
 
                 // Enable the slider.
@@ -12881,7 +12881,7 @@ namespace CoreKeeperInventoryEditor
                 // Stop the timers.
                 playersPositionTimer.Stop();
 
-                // Change appllication text back to defualt.
+                // Change appllication text back to default.
                 this.Text = "CoreKeeper's Workshop";
 
                 // Update consoile with the status.
@@ -12895,8 +12895,8 @@ namespace CoreKeeperInventoryEditor
         {
             // Get the addresses.
             // Old 04Oct23: BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-            string positionX = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(possitionXOffset, NumberStyles.Integer)).ToString("X");
-            string positionY = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(possitionYOffset, NumberStyles.Integer)).ToString("X");
+            string positionX = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(positionXOffset, NumberStyles.Integer)).ToString("X");
+            string positionY = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(positionYOffset, NumberStyles.Integer)).ToString("X");
 
             // Convert values to number.
             string playerPositionX = MemLib.ReadFloat(positionX).ToString();
@@ -12914,7 +12914,7 @@ namespace CoreKeeperInventoryEditor
                 this.Text = "CoreKeeper's Workshop | PlayersPos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
             }
         }
-        #endregion // End player positon.
+        #endregion // End player position.
 
         #region Player Position Chunk
 
@@ -12926,7 +12926,7 @@ namespace CoreKeeperInventoryEditor
             return new Vector2(IRoundTo((int)((Vector2)Position).X, 64), IRoundTo((int)((Vector2)Position).Y, 64));
         }
 
-        // Algorithm for compairing two intagers.
+        // Algorithm for comparing two integers.
         public static int IRoundTo(int inval, int nearest)
         {
             inval /= nearest;
@@ -13234,7 +13234,7 @@ namespace CoreKeeperInventoryEditor
                     progressBar5.Value = 100;
                     progressBar5.Visible = false;
     
-                    // Rename label to defualt text.
+                    // Rename label to default text.
                     label14.Text = "- Infinite Food";
     
                     // Start the timed events.
@@ -13648,7 +13648,7 @@ namespace CoreKeeperInventoryEditor
                     progressBar5.Value = 100;
                     progressBar5.Visible = false;
     
-                    // Rename label to defualt text.
+                    // Rename label to default text.
                     label33.Text = "- Passive AI";
     
                     // Toggle on passive AI.
@@ -13903,7 +13903,7 @@ namespace CoreKeeperInventoryEditor
                 TeleportPlayer_ProgressBar.Value = 0;
                 TeleportPlayer_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetTeleportAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
@@ -14075,7 +14075,7 @@ namespace CoreKeeperInventoryEditor
                 TeleportPlayer_ProgressBar.Value = 0;
                 TeleportPlayer_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetTeleportAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
@@ -14106,7 +14106,7 @@ namespace CoreKeeperInventoryEditor
                 TeleportPlayer_ProgressBar.Value = 0;
                 TeleportPlayer_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetTeleportAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
@@ -14140,7 +14140,7 @@ namespace CoreKeeperInventoryEditor
             // button11.Enabled = true;
             TeleportPlayer_GroupBox.Enabled = true;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             GetTeleportAddresses_Button.Text = "Get Addresses";
 
             // Complete progress bar.
@@ -14170,7 +14170,7 @@ namespace CoreKeeperInventoryEditor
         // Depreciated Address 10May23: 00 00 30 41 00 00 40 41
         // Depreciated Address 05Oct23: 00 00 40 41 00 00 10 42
         //
-        // This bool is for seperating the vanilla & modded reveal ranges.
+        // This bool is for separating the vanilla & modded reveal ranges.
         public static bool mapRevealIsVanilla = false;
         public async void GetMapRevealAddresses()
         {
@@ -14200,7 +14200,7 @@ namespace CoreKeeperInventoryEditor
             #region Depreciated: Scan GameAssembly.dll Module
 
             // // Find the GameAssembly.dll module start and end region within memory.
-            // // Get a collection of all modules within a procces.
+            // // Get a collection of all modules within a process.
             // ProcessModuleCollection modules = Process.GetProcessesByName("CoreKeeper")[0].Modules;
             // 
             // // Loop through each of the modules.
@@ -14220,7 +14220,7 @@ namespace CoreKeeperInventoryEditor
             // long moduleStart = Convert.ToInt64(dllBaseAdressIWant.BaseAddress.ToString("X"), 16);
             // long moduleEnd = Convert.ToInt64(BigInteger.Add(BigInteger.Parse(dllBaseAdressIWant.BaseAddress.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(dllBaseAdressIWant.ModuleMemorySize.ToString("X"), NumberStyles.HexNumber)).ToString("X"), 16);
             // 
-            // // Define reveal range address varible.
+            // // Define reveal range address variable.
             // AoBScanResultsRevealMapRange = await MemLib.AoBScan(moduleStart, moduleEnd, "00 00 40 41 00 00 10 42", true, true, false);
             // 
             // // Adjust the offset of the address.
@@ -14230,7 +14230,7 @@ namespace CoreKeeperInventoryEditor
             //     // Add the new offset to the list.
             //     // long revealRange = (long)BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer));
             // 
-            //     // Ensure the defualt value is 12.
+            //     // Ensure the default value is 12.
             //     if (MemLib.ReadFloat(res.ToString("X")).ToString() == "12")
             //     {
             //         AoBScanResultsRevealMapRangeTemp.Add(res);
@@ -14245,7 +14245,7 @@ namespace CoreKeeperInventoryEditor
             // Modded:  00 00 40 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0C 00 00 00 34 00 00 00 00 00 04 40
 
             // Scan the modded address first.
-            mapRevealIsVanilla = false; // Change flag to defualt.
+            mapRevealIsVanilla = false; // Change flag to default.
             AoBScanResultsRevealMapRange = await MemLib.AoBScan("00 00 40 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0C 00 00 00 34 00 00 00 00 00 04 40", true, true);
 
             // Check if the modded AOB address was found.
@@ -14268,7 +14268,7 @@ namespace CoreKeeperInventoryEditor
                 MapRendering_ProgressBar.Value = 0;
                 MapRendering_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetMapRenderingAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
@@ -14278,7 +14278,7 @@ namespace CoreKeeperInventoryEditor
                 // Reset aob scan results
                 AoBScanResultsDevMapReveal = null;
 
-                MessageBox.Show("There was an issue gathing the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count() + "\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an issue gathering the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count() + "\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -14305,7 +14305,7 @@ namespace CoreKeeperInventoryEditor
                 MapRendering_ProgressBar.Value = 0;
                 MapRendering_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetMapRenderingAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
@@ -14338,7 +14338,7 @@ namespace CoreKeeperInventoryEditor
             // button11.Enabled = true;
             MapRendering_GroupBox.Enabled = true;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             GetMapRenderingAddresses_Button.Text = "Get Addresses";
 
             // Complete progress bar.
@@ -14351,7 +14351,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Set Render Distance
 
-        // Set custom render distaance.
+        // Set custom render distance.
         private async void SetRevealRange_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -14395,10 +14395,10 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion // End set render distance.
 
-        #region Set Defualt Render Distance
+        #region Set default Render Distance
 
-        // Restore defualt render.
-        private async void RestoreDefualtRange_Button_Click(object sender, EventArgs e)
+        // Restore default render.
+        private async void RestoreDefaultRange_Button_Click(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
@@ -14439,7 +14439,7 @@ namespace CoreKeeperInventoryEditor
             await Task.Delay(1000);
             MapRendering_ProgressBar.Visible = false;
         }
-        #endregion // End set defualt render distance.
+        #endregion // End set default render distance.
 
         #region Auto Render Map
 
@@ -14475,7 +14475,7 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
-        // Cancle auto renderer.
+        // Cancel auto renderer.
         private void CancelOperation_Button_Click(object sender, EventArgs e)
         {
             // Disable the groupbox.
@@ -14484,7 +14484,7 @@ namespace CoreKeeperInventoryEditor
             // Ensure the button is visable first.
             if (CancelOperation_Button.Visible)
             {
-                cancleRenderingOperation = true;
+                cancelRenderingOperation = true;
             }
         }
 
@@ -14513,8 +14513,8 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(renderMapGodmodeAddress, "int", "100000"); // Godmode.
         }
 
-        // Auto rebnder the map.
-        public bool cancleRenderingOperation = false;
+        // Auto render the map.
+        public bool cancelRenderingOperation = false;
         public bool pauseRenderingOperation = false;
         private async void AutoMapRenderer_Button_Click(object sender, EventArgs e)
         {
@@ -14557,7 +14557,7 @@ namespace CoreKeeperInventoryEditor
             // Do a try statement.
             try
             {
-                // Do initial varible reset.
+                // Do initial variable reset.
                 // renderMapPlayerStateAddress = "";
                 renderMapNoClipAddress = "";
                 renderMapNoClipOriginalValue = "";
@@ -14565,8 +14565,8 @@ namespace CoreKeeperInventoryEditor
 
                 // Define players initial position.
                 var initialres = AoBScanResultsPlayerTools.Last();
-                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(possitionXOffset, NumberStyles.Integer)).ToString("X"));
-                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(possitionYOffset, NumberStyles.Integer)).ToString("X"));
+                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionXOffset, NumberStyles.Integer)).ToString("X"));
+                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionYOffset, NumberStyles.Integer)).ToString("X"));
                 Vector2 initialPosition = new Vector2(xlocres, ylocres);
 
                 // Define entree values.
@@ -14588,7 +14588,7 @@ namespace CoreKeeperInventoryEditor
                 int r;
                 int rPrevious = minRadius;
 
-                // Calculate time and primpt user.
+                // Calculate time and prompt user.
                 int calculateCount = 0;
 
                 #region Calculate Render Time
@@ -14618,7 +14618,7 @@ namespace CoreKeeperInventoryEditor
                 time = (((calculateCount * (int)NextRingDelay_NumericUpDown.Value) / 60000 / 60) >= 24) ? (((calculateCount * (int)NextRingDelay_NumericUpDown.Value) / 60000 / 60) / 24) + " days." : time;
                 if (MessageBox.Show("This operaration will take ~" + time + "\n\nContinue?", "Attention!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {
-                    // User cancled, exit void.
+                    // User canceld, exit void.
                     return;
                 }
                 #endregion
@@ -14636,7 +14636,7 @@ namespace CoreKeeperInventoryEditor
                 AutoMapRenderer_Button.Visible = false;
                 CancelOperation_Button.Visible = true;
                 PauseOperation_Button.Enabled = true;
-                cancleRenderingOperation = false;
+                cancelRenderingOperation = false;
 
                 // Enable custom render.
                 foreach (long res in AoBScanResultsDevMapReveal)
@@ -14723,15 +14723,15 @@ namespace CoreKeeperInventoryEditor
                         }
                     }
 
-                    // Cancle the rendering operation.
-                    if (cancleRenderingOperation)
+                    // Cancel the rendering operation.
+                    if (cancelRenderingOperation)
                     {
                         // Reenable controls.
-                        cancleRenderingOperation = false;
+                        cancelRenderingOperation = false;
                         AutoMapRenderer_Button.Enabled = true;
                         AutoMapRenderer_Button.Visible = true;
                         AutoMapRenderer_Button.Text = "Auto Map Renderer";
-                        CancelOperation_Button.Visible = false; // Hide cancle button.
+                        CancelOperation_Button.Visible = false; // Hide cancel button.
                         PauseOperation_Button.Enabled = false;
                         MapRendering_GroupBox.Enabled = true;
 
@@ -14794,15 +14794,15 @@ namespace CoreKeeperInventoryEditor
                             }
                         }
 
-                        // Cancle the rendering operation.
-                        if (cancleRenderingOperation)
+                        // Cancel the rendering operation.
+                        if (cancelRenderingOperation)
                         {
                             // Reenable controls.
-                            cancleRenderingOperation = false;
+                            cancelRenderingOperation = false;
                             AutoMapRenderer_Button.Enabled = true;
                             AutoMapRenderer_Button.Visible = true;
                             AutoMapRenderer_Button.Text = "Auto Map Renderer";
-                            CancelOperation_Button.Visible = false; // Hide cancle button.
+                            CancelOperation_Button.Visible = false; // Hide cancel button.
                             MapRendering_GroupBox.Enabled = true;
 
                             // End look.
@@ -14865,15 +14865,15 @@ namespace CoreKeeperInventoryEditor
                             }
                         }
 
-                        // Cancle the rendering operation.
-                        if (cancleRenderingOperation)
+                        // Cancel the rendering operation.
+                        if (cancelRenderingOperation)
                         {
                             // Reenable controls.
-                            cancleRenderingOperation = false;
+                            cancelRenderingOperation = false;
                             AutoMapRenderer_Button.Enabled = true;
                             AutoMapRenderer_Button.Visible = true;
                             AutoMapRenderer_Button.Text = "Auto Map Renderer";
-                            CancelOperation_Button.Visible = false; // Hide cancle button.
+                            CancelOperation_Button.Visible = false; // Hide cancel button.
                             MapRendering_GroupBox.Enabled = true;
 
                             // End look.
@@ -14928,11 +14928,11 @@ namespace CoreKeeperInventoryEditor
 
                         // Reenable controls.
                         MapRendering_GroupBox.Enabled = true;
-                        cancleRenderingOperation = false;
+                        cancelRenderingOperation = false;
                         AutoMapRenderer_Button.Enabled = true;
                         AutoMapRenderer_Button.Visible = true;
                         AutoMapRenderer_Button.Text = "Auto Map Renderer";
-                        CancelOperation_Button.Visible = false; // Hide cancle button.
+                        CancelOperation_Button.Visible = false; // Hide cancel button.
                         MapRendering_GroupBox.Enabled = true;
 
                         // End look.
@@ -14954,11 +14954,11 @@ namespace CoreKeeperInventoryEditor
 
                 // Reenable controls.
                 MapRendering_GroupBox.Enabled = true;
-                cancleRenderingOperation = false;
+                cancelRenderingOperation = false;
                 AutoMapRenderer_Button.Enabled = true;
                 AutoMapRenderer_Button.Visible = true;
                 AutoMapRenderer_Button.Text = "Auto Map Renderer";
-                CancelOperation_Button.Visible = false; // Hide cancle button.
+                CancelOperation_Button.Visible = false; // Hide cancel button.
                 PauseOperation_Button.Enabled = false;
                 MapRendering_TextProgressBar.Visible = false;
                 MapRendering_TextProgressBar.Maximum = 100;
@@ -15097,7 +15097,7 @@ namespace CoreKeeperInventoryEditor
             // If the count is zero, the scan had an error.
             if (AoBScanResultsGroundItems.Count() == 0)
             {
-                // Rename button back to defualt.
+                // Rename button back to default.
                 TrashGroundItems_Button.Text = "Remove Ground Items";
 
                 // Enable controls.
@@ -15130,7 +15130,7 @@ namespace CoreKeeperInventoryEditor
             await RemoveGroundItemsAsync();
 
             // Process completed, run finishing tasks.
-            // Rename button back to defualt.
+            // Rename button back to default.
             TrashGroundItems_Button.Text = "Trash Ground Items";
             TeleportPlayer_ProgressBar.Visible = false;
 
@@ -15167,7 +15167,7 @@ namespace CoreKeeperInventoryEditor
                 // Iterate through each found address.
                 foreach (long res in AoBScanResultsGroundItems)
                 {
-                    // Ensure the proccess is still alive.
+                    // Ensure the process is still alive.
                     if (!MemLib.OpenProcess("CoreKeeper"))
                     {
                         MessageBox.Show("The process appears to have died! Canceling task.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -15349,7 +15349,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Process completed, run finishing tasks.
-            // Rename button back to defualt.
+            // Rename button back to default.
             TeleportXY_Button.Text = "Teleport XY";
             TeleportXY_Button.Enabled = true;
         }
@@ -15392,7 +15392,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Process completed, run finishing tasks.
-                // Rename button back to defualt.
+                // Rename button back to default.
                 TeleportXY_Button.Text = "Teleport XY";
                 TeleportXY_Button.Enabled = true;
             }
@@ -15436,7 +15436,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Process completed, run finishing tasks.
-                // Rename button back to defualt.
+                // Rename button back to default.
                 TeleportXY_Button.Text = "Teleport XY";
                 TeleportXY_Button.Enabled = true;
 
@@ -15730,7 +15730,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 GetWorldInformation_Button.Text = "Get Information";
 
                 // Re-enable button.
@@ -15763,11 +15763,11 @@ namespace CoreKeeperInventoryEditor
                 // Reset found json data.
                 getJsonData = "";
 
-                // Get the cirrent base address.
+                // Get the current base address.
                 string baseJsonAddress = res.ToString("X");
 
                 // Search result and add it to the string.
-                getJsonData = MemLib.ReadString(baseJsonAddress.ToString(), length: 600); // Double lengh.
+                getJsonData = MemLib.ReadString(baseJsonAddress.ToString(), length: 600); // Double length.
 
                 // Add a catch to prevent exceptions to bad addresses.
                 try
@@ -15860,7 +15860,7 @@ namespace CoreKeeperInventoryEditor
 
                         #region Adjust Controls
 
-                        // Toggle controls based on world difficutly.
+                        // Toggle controls based on world difficulty.
                         WorldDifficulty_ComboBox.SelectedIndex = int.Parse(mode);
 
                         // Set seed.
@@ -15876,7 +15876,7 @@ namespace CoreKeeperInventoryEditor
                         Day_NumericUpDown.Value = int.Parse(day);
 
                         // Set activated crystals.
-                        // If not null, and desired eliment exists, and if ,1,2,3 text not null, use ,1,2,3, else 0.
+                        // If not null, and desired element exists, and if ,1,2,3 text not null, use ,1,2,3, else 0.
                         CrystalOne_NumericUpDown.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',').ElementAtOrDefault(0) != null) ? (activatedCrystals.Split(',')[0] != "") ? int.Parse(activatedCrystals.Split(',')[0]) : 0 : 0 : 0;
                         CrystalTwo_NumericUpDown.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',').ElementAtOrDefault(1) != null) ? (activatedCrystals.Split(',')[1] != "") ? int.Parse(activatedCrystals.Split(',')[1]) : 0 : 0 : 0;
                         CrystalThree_NumericUpDown.Value = (activatedCrystals != "") ? (activatedCrystals.Split(',').ElementAtOrDefault(2) != null) ? (activatedCrystals.Split(',')[2] != "") ? int.Parse(activatedCrystals.Split(',')[2]) : 0 : 0 : 0;
@@ -15921,13 +15921,13 @@ namespace CoreKeeperInventoryEditor
             WorldInformation_ProgressBar.Value = 100;
             WorldInformation_ProgressBar.Visible = false;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             GetWorldInformation_Button.Text = "Get Information";
             WorldInformation_GroupBox.Enabled = true;
         }
         #endregion // End get world information.
 
-        #region Change Difficutly
+        #region Change difficulty
 
         // Change world difficulty.
         private void ChangeDifficulty_Button_Click(object sender, EventArgs e)
@@ -15957,8 +15957,8 @@ namespace CoreKeeperInventoryEditor
             ChangeWorldDifficulty();
         }
 
-        // Change world difficutly.
-        public async void ChangeWorldDifficulty(int difficutly = -1)
+        // Change world difficulty.
+        public async void ChangeWorldDifficulty(int difficulty = -1)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -16032,8 +16032,8 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
-                ChangeDifficulty_Button.Text = "Change Difficutly";
+                // Rename button back to default.
+                ChangeDifficulty_Button.Text = "Change difficulty";
 
                 // Re-enable button.
                 WorldInformation_GroupBox.Enabled = true;
@@ -16052,8 +16052,8 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
-                ChangeDifficulty_Button.Text = "Change Difficutly";
+                // Rename button back to default.
+                ChangeDifficulty_Button.Text = "Change difficulty";
 
                 // Re-enable button.
                 WorldInformation_GroupBox.Enabled = true;
@@ -16075,7 +16075,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Get the new mode.
                 string modeType = WorldDifficulty_ComboBox.SelectedIndex.ToString();
-                modeType = (difficutly == -1) ? modeType : difficutly.ToString(); // Check if mode override was selected.
+                modeType = (difficulty == -1) ? modeType : difficulty.ToString(); // Check if mode override was selected.
 
                 // Set the new mode value. // Convert ASCII text to hex.
 
@@ -16099,20 +16099,20 @@ namespace CoreKeeperInventoryEditor
             else modeString = "Unknown";
 
             // Change the datagridviews mode data.
-            WorldInformation_DataGridView.Rows[modeRowIndex].Cells[1].Value = (difficutly == -1) ? modeString : modeString + " - " + difficutly.ToString(); // Mod string will auto detect the correct string.
+            WorldInformation_DataGridView.Rows[modeRowIndex].Cells[1].Value = (difficulty == -1) ? modeString : modeString + " - " + difficulty.ToString(); // Mod string will auto detect the correct string.
 
             // Update the progress bar.
             WorldInformation_ProgressBar.Value = 100;
             WorldInformation_ProgressBar.Visible = false;
 
-            // Rename button back to defualt.
-            ChangeDifficulty_Button.Text = "Change Difficutly";
+            // Rename button back to default.
+            ChangeDifficulty_Button.Text = "Change difficulty";
             WorldInformation_GroupBox.Enabled = true;
 
             // Refresh address.
             // await LoadWorldInformation();
         }
-        #endregion // End change world difficutly.
+        #endregion // End change world difficulty.
 
         #region Change Seed
 
@@ -16140,7 +16140,7 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // Change difficutky.
+            // Change difficulty.
             ChangeWorldSeed();
         }
 
@@ -16219,7 +16219,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeSeed_Button.Text = "Change Seed";
 
                 // Re-enable button.
@@ -16239,7 +16239,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeSeed_Button.Text = "Change Seed";
 
                 // Re-enable button.
@@ -16279,7 +16279,7 @@ namespace CoreKeeperInventoryEditor
             WorldInformation_ProgressBar.Value = 100;
             WorldInformation_ProgressBar.Visible = false;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             ChangeSeed_Button.Text = "Change Seed";
             WorldInformation_GroupBox.Enabled = true;
 
@@ -16314,7 +16314,7 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // Change difficutky.
+            // Change difficulty.
             ChangeWorldIcon();
         }
 
@@ -16393,7 +16393,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeIcon_Button.Text = "Change Icon";
 
                 // Re-enable button.
@@ -16403,7 +16403,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldSeedIconMode = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minutes.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (AoBScanResultsWorldSeedIconMode.Count() > 1 && MessageBox.Show(AoBScanResultsWorldSeedIconMode.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
@@ -16413,7 +16413,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeIcon_Button.Text = "Change Icon";
 
                 // Re-enable button.
@@ -16453,7 +16453,7 @@ namespace CoreKeeperInventoryEditor
             WorldInformation_ProgressBar.Value = 100;
             WorldInformation_ProgressBar.Visible = false;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             ChangeIcon_Button.Text = "Change Icon";
             WorldInformation_GroupBox.Enabled = true;
 
@@ -16488,7 +16488,7 @@ namespace CoreKeeperInventoryEditor
                 return;
             }
 
-            // Change difficutky.
+            // Change difficulty.
             ChangeWorldCreationDate();
         }
 
@@ -16567,7 +16567,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeDate_Button.Text = "Change Date";
 
                 // Re-enable button.
@@ -16577,7 +16577,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldCreationDate = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the correct addresses!!\n\nLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find the correct addresses!!\n\nLoad the world and play for a few minutes.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (AoBScanResultsWorldCreationDate.Count() > 1 && MessageBox.Show(AoBScanResultsWorldCreationDate.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
@@ -16587,7 +16587,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeDate_Button.Text = "Change Date";
 
                 // Re-enable button.
@@ -16637,7 +16637,7 @@ namespace CoreKeeperInventoryEditor
             WorldInformation_ProgressBar.Value = 100;
             WorldInformation_ProgressBar.Visible = false;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             ChangeDate_Button.Text = "Change Date";
             WorldInformation_GroupBox.Enabled = true;
 
@@ -16752,7 +16752,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeCrystals_Button.Text = "Change Crystals";
 
                 // Re-enable button.
@@ -16762,7 +16762,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsWorldActivatedCrystals = null;
 
                 // Display error message.
-                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minuites.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find the correct addresses!!/RLoad the world and play for a few minutes.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (AoBScanResultsWorldActivatedCrystals.Count() > 1 && MessageBox.Show(AoBScanResultsWorldActivatedCrystals.Count().ToString() + " addresses have been found!\n\nThis typically happens when another world contains the same information.\nContinuing will overwrite both worlds' data.\n\nWould you like to proceed anyways?", "World Properties Editor", MessageBoxButtons.YesNo) == DialogResult.No) // More then one found.
@@ -16772,7 +16772,7 @@ namespace CoreKeeperInventoryEditor
                 WorldInformation_ProgressBar.Value = 0;
                 WorldInformation_ProgressBar.Visible = false;
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 ChangeCrystals_Button.Text = "Change Crystals";
 
                 // Re-enable button.
@@ -16832,7 +16832,7 @@ namespace CoreKeeperInventoryEditor
             WorldInformation_ProgressBar.Value = 100;
             WorldInformation_ProgressBar.Visible = false;
 
-            // Rename button back to defualt.
+            // Rename button back to default.
             ChangeCrystals_Button.Text = "Change Crystals";
             WorldInformation_GroupBox.Enabled = true;
 
@@ -16955,7 +16955,7 @@ namespace CoreKeeperInventoryEditor
                     TeleportPlayer_ProgressBar.Value = 0;
                     TeleportPlayer_ProgressBar.Visible = false;
 
-                    // Rename button back to defualt.
+                    // Rename button back to default.
                     AutomaticFishing_Button.Text = "Automatic Fishing";
 
                     // Re-enable button.
@@ -16997,7 +16997,7 @@ namespace CoreKeeperInventoryEditor
                 // fishTypeAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X");
                 // fishFightAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X");
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 AutomaticFishing_Button.Text = "Disable Fishing Bot";
 
                 // Re-enable button.
@@ -17016,7 +17016,7 @@ namespace CoreKeeperInventoryEditor
                 // Stop the timers.
                 autoFishingTimer.Stop();
 
-                // Rename button back to defualt.
+                // Rename button back to default.
                 AutomaticFishing_Button.Text = "Automatic Fishing";
 
                 // Toggle bool.
@@ -17068,7 +17068,7 @@ namespace CoreKeeperInventoryEditor
                 // Add some cast delay.
                 await Task.Delay((int)CastDelay_NumericUpDown.Value);
 
-                // Cought finished.
+                // Caught finished.
                 mouse_event(MOUSEEVENT_RIGHTDOWN, 0, 0, 0, 0);
                 mouse_event(MOUSEEVENT_RIGHTUP, 0, 0, 0, 0);
 
@@ -17340,8 +17340,8 @@ namespace CoreKeeperInventoryEditor
 
                         // Item name, amount, and variation (from the command)
                         string itemName = cmdParts.Length > 1 ? cmdParts[1] : "";                                                  // Keep blank to indicate null items.
-                        string itemAmount = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : "1";    // Ensure the defualt is 1.
-                        string itemVariation = cmdParts.Length > 3 && !string.IsNullOrWhiteSpace(cmdParts[3]) ? cmdParts[3] : "0"; // Ensure the defualt is 0.
+                        string itemAmount = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : "1";    // Ensure the default is 1.
+                        string itemVariation = cmdParts.Length > 3 && !string.IsNullOrWhiteSpace(cmdParts[3]) ? cmdParts[3] : "0"; // Ensure the default is 0.
 
                         // Do first run.
                         // INFO: Loop runs multiple times, run once via checking cmd execution in log.
@@ -17379,7 +17379,7 @@ namespace CoreKeeperInventoryEditor
                             try
                             {
                                 // With item variation.
-                                // itemVariation = currentCommand.Split(' ')[3] != "" ? currentCommand.Split(' ')[3] : "0"; // Ensure the defualt is 0.
+                                // itemVariation = currentCommand.Split(' ')[3] != "" ? currentCommand.Split(' ')[3] : "0"; // Ensure the default is 0.
 
                                 // Make sure assets exist.
                                 if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
@@ -17393,7 +17393,7 @@ namespace CoreKeeperInventoryEditor
                                         // Retrieve all image files
                                         foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                                         {
-                                            // Get file infomration.
+                                            // Get file information.
                                             var fi = new FileInfo(file);
                                             string[] filenameData = fi.Name.Split(',');
 
@@ -17443,7 +17443,7 @@ namespace CoreKeeperInventoryEditor
                                         // Retrieve all image files
                                         foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
                                         {
-                                            // Get file infomration.
+                                            // Get file information.
                                             var fi = new FileInfo(file);
                                             string[] filenameData = fi.Name.Split(',');
 
@@ -17513,7 +17513,7 @@ namespace CoreKeeperInventoryEditor
                             // Open the process and check if it was successful before the AoB scan.
                             if (!MemLib.OpenProcess("CoreKeeper"))
                             {
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
@@ -17605,7 +17605,7 @@ namespace CoreKeeperInventoryEditor
                             // Open the process and check if it was successful before the AoB scan.
                             if (!MemLib.OpenProcess("CoreKeeper"))
                             {
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
@@ -17624,7 +17624,7 @@ namespace CoreKeeperInventoryEditor
                             noclipEnabled = !noclipEnabled;
 
                             // Get the addresses.
-                            // Old alternitive address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
+                            // Old alternative address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
                             // POINTER MAP: 03 ?? (02) - Use the second one.
                             noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclipOffset, NumberStyles.Integer)).ToString("X");
 
@@ -17711,7 +17711,7 @@ namespace CoreKeeperInventoryEditor
                             // Ensure command is fully populated.
                             if (xLocation == "" || yLocation == "")
                             {
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] CMD ERROR: You need to specify both X & Y coordinates!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
@@ -17720,7 +17720,7 @@ namespace CoreKeeperInventoryEditor
                             // Open the process and check if it was successful before the AoB scan.
                             if (!MemLib.OpenProcess("CoreKeeper"))
                             {
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
@@ -17814,7 +17814,7 @@ namespace CoreKeeperInventoryEditor
                             // Remove ground items.
                             await RemoveGroundItemsAsync();
 
-                            // Log evensts.
+                            // Log events.
                             RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] Ground items cleared!", UseOverlay_CheckBox.Checked);
                             ChatCommands_RichTextBox.ScrollToCaret();
 
@@ -17852,8 +17852,8 @@ namespace CoreKeeperInventoryEditor
                             // Ensure command is fully populated.
                             if (worldName == "" || mode == "")
                             {
-                                // Log evensts.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] CMD ERROR: /mode [worldName] [Difficutly = 'normal' or 'hard']", UseOverlay_CheckBox.Checked);
+                                // Log events.
+                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] CMD ERROR: /mode [worldName] [difficulty = 'normal' or 'hard']", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
                             }
@@ -17861,7 +17861,7 @@ namespace CoreKeeperInventoryEditor
                             // Open the process and check if it was successful before the AoB scan.
                             if (!MemLib.OpenProcess("CoreKeeper"))
                             {
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                                 break;
@@ -17879,22 +17879,22 @@ namespace CoreKeeperInventoryEditor
                             // Load world information.
                             Task.Run(async () => { await LoadWorldInformation(worldName); }).Wait();
 
-                            // Change world difficutly.
+                            // Change world difficulty.
                             if (mode.ToLower() == "normal")
                             {
-                                // Change world difficutly to normal.
+                                // Change world difficulty to normal.
                                 ChangeWorldDifficulty(0);
 
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to normal!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                             }
                             else if (mode.ToLower() == "hard")
                             {
-                                // Change world difficutly to hard.
+                                // Change world difficulty to hard.
                                 ChangeWorldDifficulty(1);
 
-                                // Log evensts.
+                                // Log events.
                                 RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to hard!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
                             }
@@ -17903,7 +17903,7 @@ namespace CoreKeeperInventoryEditor
                         // End chat command.
                         break;
                     }
-                    #endregion // End change world difficutly.
+                    #endregion // End change world difficulty.
 
 
                     // ~~Misc~~
@@ -17931,7 +17931,7 @@ namespace CoreKeeperInventoryEditor
                             // Handle overlay differently.
                             if (UseOverlay_CheckBox.Checked)
                             {
-                                // Get page number. - ensure a valid suffex exists or just use the first page.
+                                // Get page number. - ensure a valid suffix exists or just use the first page.
                                 // Make a list of each command part.
                                 string[] cmdParts = currentCommand.Split(' ');
 
@@ -17998,7 +17998,7 @@ namespace CoreKeeperInventoryEditor
                     }
                     else if (currentCommand.Split(' ')[0].Contains('/'))
                     {
-                        // Unkown command.
+                        // Unknown command.
 
                         // Erase current chat values.
                         MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
@@ -18523,13 +18523,13 @@ namespace CoreKeeperInventoryEditor
         private void AppPriority_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Try to get the priority based on a string.
-            ProcessPriorityClass priority = ProcessPriorityClass.Normal; // Define defualt priority.
+            ProcessPriorityClass priority = ProcessPriorityClass.Normal; // Define default priority.
             if (Enum.TryParse<ProcessPriorityClass>(AppPriority_ComboBox.SelectedItem.ToString().Replace(" ", ""), out priority))
             {
                 // Double check if the player wishes to enable this.
                 if (Settings.Default.ProcessPriorityIndex != 0 && priority == ProcessPriorityClass.RealTime && MessageBox.Show("Are you sure you wish to enable real time priority?\n\nThis setting may cause your PC to freeze while memory scanning or performing some operations.", "Enable Real Time Priority:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {
-                    // User cancled, revert changes.
+                    // User canceld, revert changes.
                     AppPriority_ComboBox.SelectedIndex = Settings.Default.ProcessPriorityIndex;
 
                     // Close function.
@@ -18540,7 +18540,7 @@ namespace CoreKeeperInventoryEditor
                 Process[] processes = Process.GetProcessesByName("CoreKeepersWorkshop");
                 foreach (Process proc in processes)
                 {
-                    // Set the piority of the found process.
+                    // Set the priority of the found process.
                     proc.PriorityClass = priority;
                 }
 

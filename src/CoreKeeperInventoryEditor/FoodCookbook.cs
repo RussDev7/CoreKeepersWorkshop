@@ -19,9 +19,9 @@ namespace CoreKeepersWorkshop
         int selectedItemType = 0;
         int selectedItemAmount = 0;
         int selectedItemVariation = 0;
-        bool userCancledTask = false;
+        bool userCanceldTask = false;
 
-        // Define closing varibles.
+        // Define closing variables.
         public int GetItemTypeFromList()
         {
             return selectedItemType;
@@ -34,9 +34,9 @@ namespace CoreKeepersWorkshop
         {
             return selectedItemVariation;
         }
-        public bool GetUserCancledTask()
+        public bool GetUserCanceldTask()
         {
-            return userCancledTask;
+            return userCanceldTask;
         }
 
         #region Form Load And Closing Events
@@ -104,8 +104,8 @@ namespace CoreKeepersWorkshop
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
-                // User pressed the "X" button cancle task.
-                userCancledTask = true;
+                // User pressed the "X" button cancel task.
+                userCanceldTask = true;
                 this.Close();
             }
 
@@ -142,7 +142,7 @@ namespace CoreKeepersWorkshop
                             // Search rows only rows after the selected row.
                             if (dataGridView1.SelectedRows[0].Index < row.Index)
                             {
-                                // Check if rows cirst cell contains the value.
+                                // Check if rows current cell contains the value.
                                 if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().ToLower().Contains(searchValue))
                                 {
                                     // Search match found.
@@ -167,7 +167,7 @@ namespace CoreKeepersWorkshop
                     {
                         for (int i = 0; i < row.Cells.Count; i++)
                         {
-                            // Check if rows cirst cell contains the value.
+                            // Check if rows current cell contains the value.
                             if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().ToLower().Contains(searchValue))
                             {
                                 // Search match found.
@@ -234,7 +234,7 @@ namespace CoreKeepersWorkshop
                                 // Search rows only rows after the selected row.
                                 if (dataGridView1.SelectedRows[0].Index < row.Index)
                                 {
-                                    // Check if rows cirst cell contains the value.
+                                    // Check if rows current cell contains the value.
                                     if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().ToLower().Contains(searchValue))
                                     {
                                         // Search match found.
@@ -259,7 +259,7 @@ namespace CoreKeepersWorkshop
                         {
                             for (int i = 0; i < row.Cells.Count; i++)
                             {
-                                // Check if rows cirst cell contains the value.
+                                // Check if rows current cell contains the value.
                                 if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().ToLower().Contains(searchValue))
                                 {
                                     // Search match found.

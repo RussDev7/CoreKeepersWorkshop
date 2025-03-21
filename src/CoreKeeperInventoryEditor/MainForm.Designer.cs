@@ -202,7 +202,7 @@ namespace CoreKeeperInventoryEditor
             this.StartRadius_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.NextRingDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.NextRingDelay_Button = new System.Windows.Forms.Button();
-            this.RestoreDefualtRange_Button = new System.Windows.Forms.Button();
+            this.RestoreDefaultRange_Button = new System.Windows.Forms.Button();
             this.SetRevealRange_Button = new System.Windows.Forms.Button();
             this.RenderRange_Button = new System.Windows.Forms.Button();
             this.RenderRange_NumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -2431,7 +2431,7 @@ namespace CoreKeeperInventoryEditor
             this.MapRendering_GroupBox.Controls.Add(this.StartRadius_NumericUpDown);
             this.MapRendering_GroupBox.Controls.Add(this.NextRingDelay_NumericUpDown);
             this.MapRendering_GroupBox.Controls.Add(this.NextRingDelay_Button);
-            this.MapRendering_GroupBox.Controls.Add(this.RestoreDefualtRange_Button);
+            this.MapRendering_GroupBox.Controls.Add(this.RestoreDefaultRange_Button);
             this.MapRendering_GroupBox.Controls.Add(this.SetRevealRange_Button);
             this.MapRendering_GroupBox.Controls.Add(this.RenderRange_Button);
             this.MapRendering_GroupBox.Controls.Add(this.RenderRange_NumericUpDown);
@@ -2543,16 +2543,16 @@ namespace CoreKeeperInventoryEditor
             this.NextRingDelay_Button.Text = "Delay:";
             this.NextRingDelay_Button.UseVisualStyleBackColor = true;
             // 
-            // RestoreDefualtRange_Button
+            // RestoreDefaultRange_Button
             // 
-            this.RestoreDefualtRange_Button.ForeColor = System.Drawing.Color.Black;
-            this.RestoreDefualtRange_Button.Location = new System.Drawing.Point(231, 48);
-            this.RestoreDefualtRange_Button.Name = "RestoreDefualtRange_Button";
-            this.RestoreDefualtRange_Button.Size = new System.Drawing.Size(129, 23);
-            this.RestoreDefualtRange_Button.TabIndex = 9;
-            this.RestoreDefualtRange_Button.Text = "Restore Default Range";
-            this.RestoreDefualtRange_Button.UseVisualStyleBackColor = true;
-            this.RestoreDefualtRange_Button.Click += new System.EventHandler(this.RestoreDefualtRange_Button_Click);
+            this.RestoreDefaultRange_Button.ForeColor = System.Drawing.Color.Black;
+            this.RestoreDefaultRange_Button.Location = new System.Drawing.Point(231, 48);
+            this.RestoreDefaultRange_Button.Name = "RestoreDefaultRange_Button";
+            this.RestoreDefaultRange_Button.Size = new System.Drawing.Size(129, 23);
+            this.RestoreDefaultRange_Button.TabIndex = 9;
+            this.RestoreDefaultRange_Button.Text = "Restore Default Range";
+            this.RestoreDefaultRange_Button.UseVisualStyleBackColor = true;
+            this.RestoreDefaultRange_Button.Click += new System.EventHandler(this.RestoreDefaultRange_Button_Click);
             // 
             // SetRevealRange_Button
             // 
@@ -3786,7 +3786,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.RichTextBox MapRenderingAddresses_RichTextBox;
         private System.Windows.Forms.NumericUpDown RenderRange_NumericUpDown;
         private System.Windows.Forms.Button SetRevealRange_Button;
-        private System.Windows.Forms.Button RestoreDefualtRange_Button;
+        private System.Windows.Forms.Button RestoreDefaultRange_Button;
         private System.Windows.Forms.Button RenderRange_Button;
         private System.Windows.Forms.Button CancelOperation_Button;
         private System.Windows.Forms.Label ForceRecall_Label;

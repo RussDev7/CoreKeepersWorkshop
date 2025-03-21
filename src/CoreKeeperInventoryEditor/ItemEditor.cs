@@ -26,9 +26,9 @@ namespace CoreKeepersWorkshop
         int selectedItemAmount = 0;
         int selectedItemVariation = 0;
         int selectedItemSkillset = 0;
-        bool userCancledTask = false;
+        bool userCanceldTask = false;
 
-        // Define closing varibles.
+        // Define closing variables.
         public int GetItemTypeFromList()
         {
             return selectedItemType;
@@ -45,9 +45,9 @@ namespace CoreKeepersWorkshop
         {
             return selectedItemSkillset;
         }
-        public bool GetUserCancledTask()
+        public bool GetUserCanceldTask()
         {
-            return userCancledTask;
+            return userCanceldTask;
         }
 
         #region Reload Pictureboxes & Labels
@@ -114,7 +114,7 @@ namespace CoreKeepersWorkshop
                 // Check if the items variant is populated.
                 if (baseItemVariation >= 1)
                 {
-                    // Get base item ingrdient 1 name.
+                    // Get base item ingredient 1 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString()) != null)
                     {
                         Item2_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
@@ -149,7 +149,7 @@ namespace CoreKeepersWorkshop
                 // Check if the items variant is populated.
                 if (baseItemVariation >= 1 && !VariationNumerical_NumericUpDown.Visible)
                 {
-                    // Get base item ingrdient 2 name.
+                    // Get base item ingredient 2 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString()) != null)
                     {
                         Item3_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
@@ -192,7 +192,7 @@ namespace CoreKeepersWorkshop
                     // Check if target is item mode or not. // Fix v1.3.5.6.
                     if (!VariationNumerical_NumericUpDown.Visible)
                     {
-                        // Get base item ingrdient 1 name.
+                        // Get base item ingredient 1 name.
                         if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
                         {
                             Item2_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
@@ -233,7 +233,7 @@ namespace CoreKeepersWorkshop
                 // Check if the items variant is populated.
                 if (baseIngredient2ID.ToString().Length > 0 && !VariationNumerical_NumericUpDown.Visible) // Make sure duel texbox mode is enabled.
                 {
-                    // Get base item ingrdient 2 name.
+                    // Get base item ingredient 2 name.
                     if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID) != null)
                     {
                         Item3_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)).Split(',')[0];
@@ -311,19 +311,19 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(CustomQuantity3_NumericUpDown, "Press the enter key when finished.");
             toolTip.SetToolTip(CustomQuantity4_NumericUpDown, "Press the enter key when finished.");
             toolTip.SetToolTip(CustomQuantity5_NumericUpDown, "Press the enter key when finished.");
-            toolTip.SetToolTip(Skillset_NumericUpDown, "Enter a custom skillset ID. Either press enter when done or use the botton.");
+            toolTip.SetToolTip(Skillset_NumericUpDown, "Enter a custom skillset ID. Either press enter when done or use the button.");
 
-            toolTip.SetToolTip(Variation_Label, "Toggle the GUI between food / item variaty.");
+            toolTip.SetToolTip(Variation_Label, "Toggle the GUI between food / item variety.");
 
             toolTip.SetToolTip(ChangeRarity_Button, "Change your food rarity. Press enter when done.");
             toolTip.SetToolTip(Done_Button, "Finish editing the item.");
             toolTip.SetToolTip(RemoveItem_Button, "Remove the item from this inventory slot.");
             toolTip.SetToolTip(CookedFoodList_Button, "Open the food cookbook to easily search for food items.");
-            toolTip.SetToolTip(CustomQuantity1_Button, "Quick change the items quanitity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity2_Button, "Quick change the items quanitity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity3_Button, "Quick change the items quanitity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity4_Button, "Quick change the items quanitity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity5_Button, "Quick change the items quanitity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity1_Button, "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity2_Button, "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity3_Button, "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity4_Button, "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity5_Button, "Quick change the items quantity. Right click to edit.");
             toolTip.SetToolTip(SkillsetHelp_Button, "Launch a guide on how to find skillset IDs.");
 
             toolTip.SetToolTip(Slot1_PictureBox, "Click to open the item explorer.");
@@ -408,7 +408,7 @@ namespace CoreKeepersWorkshop
 
             #region Load Pictures & Names
 
-            // Reload all pictureboxes and labels from the defualt load data.
+            // Reload all pictureboxes and labels from the default load data.
             ReloadPictureBoxes(useTextboxeData: true);
             #endregion
         }
@@ -419,8 +419,8 @@ namespace CoreKeepersWorkshop
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
-                // User pressed the "X" button cancle task.
-                userCancledTask = true;
+                // User pressed the "X" button cancel task.
+                userCanceldTask = true;
                 this.Close();
             }
 
@@ -802,7 +802,7 @@ namespace CoreKeepersWorkshop
             int itemType = frm4.GetItemTypeFromList();
             int itemAmount = frm4.GetItemAmountFromList();
             int itemVariation = frm4.GetItemVeriationFromList() == 0 ? 0 : (frm4.GetItemVeriationFromList()); // If variation is not zero, add offset.
-            bool wasAborted = frm4.GetUserCancledTask();
+            bool wasAborted = frm4.GetUserCanceldTask();
             // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
             frm4.Close();
 
@@ -847,7 +847,7 @@ namespace CoreKeepersWorkshop
         // Change item rarity.
         private void ChangeRarity_Button_Click(object sender, EventArgs e)
         {
-            string originalName = "Unkown";
+            string originalName = "Unknown";
             string originalRarity = "Uncommon";
             int originalBase = (int)ItemID_NumericUpDown.Value;
             bool foundNewRarity = false;
@@ -873,7 +873,7 @@ namespace CoreKeepersWorkshop
                 originalVariation = (int)VariationNumerical_NumericUpDown.Value;
             }
 
-            // Ensure original variation is 8 in lengh.
+            // Ensure original variation is 8 in length.
             if (originalVariation >= 1)
             {
                 // Get the original items prefix.
@@ -913,7 +913,7 @@ namespace CoreKeepersWorkshop
                     }
                 }
 
-                // Determin the next prefix we need to match.
+                // Determine the next prefix we need to match.
                 string nextRarity;
                 if (originalRarity == "Uncommon")
                 {
@@ -1008,7 +1008,7 @@ namespace CoreKeepersWorkshop
             }
         }
 
-        // Lanch about skillset message.
+        // Launch about skillset message.
         private void SkillsetHelp_Button_Click(object sender, EventArgs e)
         {
             MessageBox.Show("How to find my pet's skillset ID?\r\n    - Each pet only has 4 skillsets and are typically +4/-4 the current pets skillset. For example, if your pet has an assigned skillset of 150 then the 4 skillset IDs will be within the 146-154 range. For fresh pets first name the pet and it will be assigned a skillset id.\r\n\r\nWhy is it like this?\r\n    - The game generates progressive \"skill tables\" rather than using a static ID for a pets skills. Bad system I know, nothing I can do about it.\r\n", "How To Use --> Get Skillset ID", MessageBoxButtons.OK, MessageBoxIcon.Question);
@@ -1023,7 +1023,7 @@ namespace CoreKeepersWorkshop
         // Quick change the items quantity to 1.
         private void CustomQuantity1_Button_Click(object sender, EventArgs e)
         {
-            // Change the existing items quanitity. 
+            // Change the existing items quantity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomQuantity1_NumericUpDown.Value; // QQS Button 1.
             selectedItemSkillset = (int)Skillset_NumericUpDown.Value;
@@ -1068,7 +1068,7 @@ namespace CoreKeepersWorkshop
         // Quick change the items quantity to 50.
         private void Button8_Click(object sender, EventArgs e)
         {
-            // Change the existing items quanitity. 
+            // Change the existing items quantity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomQuantity2_NumericUpDown.Value; // QQS Button 2.
             selectedItemSkillset = (int)Skillset_NumericUpDown.Value;
@@ -1113,7 +1113,7 @@ namespace CoreKeepersWorkshop
         // Quick change the items quantity to 500.
         private void CustomQuantity3_Button_Click(object sender, EventArgs e)
         {
-            // Change the existing items quanitity. 
+            // Change the existing items quantity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomQuantity3_NumericUpDown.Value; // QQS Button 3.
             selectedItemSkillset = (int)Skillset_NumericUpDown.Value;
@@ -1158,7 +1158,7 @@ namespace CoreKeepersWorkshop
         // Quick change the items quantity to 5000.
         private void CustomQuantity4_Button_Click(object sender, EventArgs e)
         {
-            // Change the existing items quanitity. 
+            // Change the existing items quantity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomQuantity4_NumericUpDown.Value; // QQS Button 4.
             selectedItemSkillset = (int)Skillset_NumericUpDown.Value;
@@ -1203,7 +1203,7 @@ namespace CoreKeepersWorkshop
         // Quick change the items quantity to 9999.
         private void CustomQuantity5_Button_Click(object sender, EventArgs e)
         {
-            // Change the existing items quanitity. 
+            // Change the existing items quantity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;
             selectedItemAmount = (int)CustomQuantity5_NumericUpDown.Value; // QQS Button 5.
             selectedItemSkillset = (int)Skillset_NumericUpDown.Value;
@@ -1261,7 +1261,7 @@ namespace CoreKeepersWorkshop
         }
         private void CustomQuantity1_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
-            // Detect if enter was pressesed.
+            // Detect if enter was pressed.
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
@@ -1289,7 +1289,7 @@ namespace CoreKeepersWorkshop
         }
         private void CustomQuantity2_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
-            // Detect if enter was pressesed.
+            // Detect if enter was pressed.
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
@@ -1317,7 +1317,7 @@ namespace CoreKeepersWorkshop
         }
         private void CustomQuantity3_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
-            // Detect if enter was pressesed.
+            // Detect if enter was pressed.
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
@@ -1345,7 +1345,7 @@ namespace CoreKeepersWorkshop
         }
         private void CustomQuantity4_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
-            // Detect if enter was pressesed.
+            // Detect if enter was pressed.
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
@@ -1373,7 +1373,7 @@ namespace CoreKeepersWorkshop
         }
         private void CustomQuantity5_NumericUpDown_KeyDown(object sender, KeyEventArgs e)
         {
-            // Detect if enter was pressesed.
+            // Detect if enter was pressed.
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
@@ -1398,7 +1398,7 @@ namespace CoreKeepersWorkshop
 
             // Get returned item from picker.
             int itemType = frm3.GetItemTypeFromList();
-            bool wasAborted = frm3.GetUserCancledTask();
+            bool wasAborted = frm3.GetUserCanceldTask();
             // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
             frm3.Close();
 
@@ -1421,7 +1421,7 @@ namespace CoreKeepersWorkshop
 
             // Get returned item from picker.
             int itemType = frm3.GetItemTypeFromList();
-            bool wasAborted = frm3.GetUserCancledTask();
+            bool wasAborted = frm3.GetUserCanceldTask();
             // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
             frm3.Close();
 
@@ -1452,7 +1452,7 @@ namespace CoreKeepersWorkshop
 
             // Get returned item from picker.
             int itemType = frm3.GetItemTypeFromList();
-            bool wasAborted = frm3.GetUserCancledTask();
+            bool wasAborted = frm3.GetUserCanceldTask();
             // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
             frm3.Close();
 

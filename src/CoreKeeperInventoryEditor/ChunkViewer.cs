@@ -11,7 +11,7 @@ using System;
 
 namespace CoreKeepersWorkshop
 {
-    // Painting on a pannel code referenced from: https://www.codeproject.com/Articles/198419/Painting-on-a-panel
+    // Painting on a panel code referenced from: https://www.codeproject.com/Articles/198419/Painting-on-a-panel
     public partial class ChunkViewer : Form
     {
         readonly Form callarForm;
@@ -28,7 +28,7 @@ namespace CoreKeepersWorkshop
 
         #region Variables
 
-        // Define some varibles.
+        // Define some variables.
         public Mem MemLib = new Mem();
         readonly System.Timers.Timer timedEvents = new System.Timers.Timer();
 
@@ -42,7 +42,7 @@ namespace CoreKeepersWorkshop
             return new Vector2(IRoundTo((int)((Vector2)Position).X, 64), IRoundTo((int)((Vector2)Position).Y, 64));
         }
 
-        // Algorithm for compairing two intagers.
+        // Algorithm for comparing two integers.
         public static int IRoundTo(int inval, int nearest)
         {
             inval /= nearest;
@@ -135,7 +135,7 @@ namespace CoreKeepersWorkshop
             // Check if the "X" button was pressed to close form.
             if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
             {
-                // User pressed the "X" button cancle task.
+                // User pressed the "X" button cancel task.
                 this.Close();
             }
 
@@ -287,7 +287,7 @@ namespace CoreKeepersWorkshop
                 // Define the point to draw.
                 playersPosition = new Vector2((float)(playerX * mapScale), (float)(playerY * mapScale));
 
-                // Refresh the pannel to draw.
+                // Refresh the panel to draw.
                 Main_Panel.Refresh();
             }
             else
@@ -312,14 +312,14 @@ namespace CoreKeepersWorkshop
         // Do painting events for the panel.
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
-            // Get location varibles for this chunk.
+            // Get location variables for this chunk.
             Vector2 currentChunk = GetChunk(new Vector2(playersPosition.X / mapScale, playersPosition.Y / mapScale)); // Chunk location.
             Vector2 corner1 = new Vector2(currentChunk.X, currentChunk.Y);                                                                                                                   // A: 0,0
             Vector2 corner2 = new Vector2(currentChunk.X, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);                                                           // B: 0,63
             Vector2 corner3 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);   // C: 63,63
             Vector2 corner4 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, currentChunk.Y);                                                           // D: 63,0
 
-            // Check if values are -64 to 0, adjust offsets. // Fix for negitive chunks.
+            // Check if values are -64 to 0, adjust offsets. // Fix for negative chunks.
             if (IsNegative(playersPosition.X) && (currentChunk.X / 64) - 1 == -1) // Adjust X axis.
             {
                 corner3 = new Vector2((IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63) * -1, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);   // C: 63,63

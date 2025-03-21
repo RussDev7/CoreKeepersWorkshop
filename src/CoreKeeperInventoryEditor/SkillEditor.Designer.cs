@@ -156,6 +156,7 @@
             0,
             0});
             this.SkillID0_NumericUpDown.Name = "SkillID0_NumericUpDown";
+            this.SkillID0_NumericUpDown.ReadOnly = true;
             this.SkillID0_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID0_NumericUpDown.TabIndex = 5;
             this.SkillID0_NumericUpDown.ValueChanged += new System.EventHandler(this.SkillID0_NumericUpDown_ValueChanged);
@@ -164,6 +165,7 @@
             // 
             this.SkillILvL0_NumericUpDown.Location = new System.Drawing.Point(33, 80);
             this.SkillILvL0_NumericUpDown.Name = "SkillILvL0_NumericUpDown";
+            this.SkillILvL0_NumericUpDown.ReadOnly = true;
             this.SkillILvL0_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL0_NumericUpDown.TabIndex = 6;
             this.SkillILvL0_NumericUpDown.Value = new decimal(new int[] {
@@ -279,6 +281,7 @@
             0,
             0});
             this.SkillID1_NumericUpDown.Name = "SkillID1_NumericUpDown";
+            this.SkillID1_NumericUpDown.ReadOnly = true;
             this.SkillID1_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID1_NumericUpDown.TabIndex = 7;
             this.SkillID1_NumericUpDown.Value = new decimal(new int[] {
@@ -292,6 +295,7 @@
             // 
             this.SkillILvL1_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL1_NumericUpDown.Name = "SkillILvL1_NumericUpDown";
+            this.SkillILvL1_NumericUpDown.ReadOnly = true;
             this.SkillILvL1_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL1_NumericUpDown.TabIndex = 8;
             this.SkillILvL1_NumericUpDown.Value = new decimal(new int[] {
@@ -332,6 +336,7 @@
             0,
             0});
             this.SkillID2_NumericUpDown.Name = "SkillID2_NumericUpDown";
+            this.SkillID2_NumericUpDown.ReadOnly = true;
             this.SkillID2_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID2_NumericUpDown.TabIndex = 9;
             this.SkillID2_NumericUpDown.Value = new decimal(new int[] {
@@ -345,6 +350,7 @@
             // 
             this.SkillILvL2_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL2_NumericUpDown.Name = "SkillILvL2_NumericUpDown";
+            this.SkillILvL2_NumericUpDown.ReadOnly = true;
             this.SkillILvL2_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL2_NumericUpDown.TabIndex = 10;
             this.SkillILvL2_NumericUpDown.Value = new decimal(new int[] {
@@ -385,6 +391,7 @@
             0,
             0});
             this.SkillID3_NumericUpDown.Name = "SkillID3_NumericUpDown";
+            this.SkillID3_NumericUpDown.ReadOnly = true;
             this.SkillID3_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID3_NumericUpDown.TabIndex = 11;
             this.SkillID3_NumericUpDown.Value = new decimal(new int[] {
@@ -398,6 +405,7 @@
             // 
             this.SkillILvL3_NumericUpDown.Location = new System.Drawing.Point(33, 80);
             this.SkillILvL3_NumericUpDown.Name = "SkillILvL3_NumericUpDown";
+            this.SkillILvL3_NumericUpDown.ReadOnly = true;
             this.SkillILvL3_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL3_NumericUpDown.TabIndex = 12;
             this.SkillILvL3_NumericUpDown.Value = new decimal(new int[] {
@@ -460,6 +468,7 @@
             0,
             0});
             this.SkillID4_NumericUpDown.Name = "SkillID4_NumericUpDown";
+            this.SkillID4_NumericUpDown.ReadOnly = true;
             this.SkillID4_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID4_NumericUpDown.TabIndex = 13;
             this.SkillID4_NumericUpDown.Value = new decimal(new int[] {
@@ -473,6 +482,7 @@
             // 
             this.SkillILvL4_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL4_NumericUpDown.Name = "SkillILvL4_NumericUpDown";
+            this.SkillILvL4_NumericUpDown.ReadOnly = true;
             this.SkillILvL4_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL4_NumericUpDown.TabIndex = 14;
             this.SkillILvL4_NumericUpDown.Value = new decimal(new int[] {
@@ -513,6 +523,7 @@
             0,
             0});
             this.SkillID5_NumericUpDown.Name = "SkillID5_NumericUpDown";
+            this.SkillID5_NumericUpDown.ReadOnly = true;
             this.SkillID5_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID5_NumericUpDown.TabIndex = 15;
             this.SkillID5_NumericUpDown.Value = new decimal(new int[] {
@@ -526,6 +537,7 @@
             // 
             this.SkillILvL5_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL5_NumericUpDown.Name = "SkillILvL5_NumericUpDown";
+            this.SkillILvL5_NumericUpDown.ReadOnly = true;
             this.SkillILvL5_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL5_NumericUpDown.TabIndex = 16;
             this.SkillILvL5_NumericUpDown.Value = new decimal(new int[] {
@@ -566,6 +578,7 @@
             0,
             0});
             this.SkillID6_NumericUpDown.Name = "SkillID6_NumericUpDown";
+            this.SkillID6_NumericUpDown.ReadOnly = true;
             this.SkillID6_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID6_NumericUpDown.TabIndex = 17;
             this.SkillID6_NumericUpDown.Value = new decimal(new int[] {
@@ -579,6 +592,7 @@
             // 
             this.SkillILvL6_NumericUpDown.Location = new System.Drawing.Point(33, 80);
             this.SkillILvL6_NumericUpDown.Name = "SkillILvL6_NumericUpDown";
+            this.SkillILvL6_NumericUpDown.ReadOnly = true;
             this.SkillILvL6_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL6_NumericUpDown.TabIndex = 18;
             this.SkillILvL6_NumericUpDown.Value = new decimal(new int[] {
@@ -641,6 +655,7 @@
             0,
             0});
             this.SkillID7_NumericUpDown.Name = "SkillID7_NumericUpDown";
+            this.SkillID7_NumericUpDown.ReadOnly = true;
             this.SkillID7_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID7_NumericUpDown.TabIndex = 19;
             this.SkillID7_NumericUpDown.Value = new decimal(new int[] {
@@ -654,6 +669,7 @@
             // 
             this.SkillILvL7_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL7_NumericUpDown.Name = "SkillILvL7_NumericUpDown";
+            this.SkillILvL7_NumericUpDown.ReadOnly = true;
             this.SkillILvL7_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL7_NumericUpDown.TabIndex = 20;
             this.SkillILvL7_NumericUpDown.Value = new decimal(new int[] {
@@ -694,6 +710,7 @@
             0,
             0});
             this.SkillID8_NumericUpDown.Name = "SkillID8_NumericUpDown";
+            this.SkillID8_NumericUpDown.ReadOnly = true;
             this.SkillID8_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID8_NumericUpDown.TabIndex = 21;
             this.SkillID8_NumericUpDown.Value = new decimal(new int[] {
@@ -707,6 +724,7 @@
             // 
             this.SkillILvL8_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL8_NumericUpDown.Name = "SkillILvL8_NumericUpDown";
+            this.SkillILvL8_NumericUpDown.ReadOnly = true;
             this.SkillILvL8_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL8_NumericUpDown.TabIndex = 22;
             this.SkillILvL8_NumericUpDown.Value = new decimal(new int[] {
@@ -769,6 +787,7 @@
             0,
             0});
             this.SkillID10_NumericUpDown.Name = "SkillID10_NumericUpDown";
+            this.SkillID10_NumericUpDown.ReadOnly = true;
             this.SkillID10_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID10_NumericUpDown.TabIndex = 24;
             this.SkillID10_NumericUpDown.Value = new decimal(new int[] {
@@ -782,6 +801,7 @@
             // 
             this.SkillILvL10_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL10_NumericUpDown.Name = "SkillILvL10_NumericUpDown";
+            this.SkillILvL10_NumericUpDown.ReadOnly = true;
             this.SkillILvL10_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL10_NumericUpDown.TabIndex = 24;
             this.SkillILvL10_NumericUpDown.Value = new decimal(new int[] {
@@ -822,6 +842,7 @@
             0,
             0});
             this.SkillID9_NumericUpDown.Name = "SkillID9_NumericUpDown";
+            this.SkillID9_NumericUpDown.ReadOnly = true;
             this.SkillID9_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID9_NumericUpDown.TabIndex = 22;
             this.SkillID9_NumericUpDown.Value = new decimal(new int[] {
@@ -835,6 +856,7 @@
             // 
             this.SkillILvL9_NumericUpDown.Location = new System.Drawing.Point(33, 80);
             this.SkillILvL9_NumericUpDown.Name = "SkillILvL9_NumericUpDown";
+            this.SkillILvL9_NumericUpDown.ReadOnly = true;
             this.SkillILvL9_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL9_NumericUpDown.TabIndex = 23;
             this.SkillILvL9_NumericUpDown.Value = new decimal(new int[] {
@@ -972,6 +994,7 @@
             0,
             0});
             this.SkillID11_NumericUpDown.Name = "SkillID11_NumericUpDown";
+            this.SkillID11_NumericUpDown.ReadOnly = true;
             this.SkillID11_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillID11_NumericUpDown.TabIndex = 24;
             this.SkillID11_NumericUpDown.Value = new decimal(new int[] {
@@ -985,6 +1008,7 @@
             // 
             this.SkillILvL11_NumericUpDown.Location = new System.Drawing.Point(0, 80);
             this.SkillILvL11_NumericUpDown.Name = "SkillILvL11_NumericUpDown";
+            this.SkillILvL11_NumericUpDown.ReadOnly = true;
             this.SkillILvL11_NumericUpDown.Size = new System.Drawing.Size(51, 20);
             this.SkillILvL11_NumericUpDown.TabIndex = 24;
             this.SkillILvL11_NumericUpDown.Value = new decimal(new int[] {
