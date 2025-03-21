@@ -419,7 +419,7 @@ namespace CoreKeepersWorkshop
         {
             foreach(Control control in parent.Controls)
             {
-                // .NET 7.0+: if (control is NumericUpDown numericUpDown)
+                // C# 7.0+: if (control is NumericUpDown numericUpDown)
                 NumericUpDown numericUpDown = control as NumericUpDown;
                 if (numericUpDown != null)
                 {
@@ -857,6 +857,9 @@ namespace CoreKeepersWorkshop
 
                     // Enable controls.
                     UseEXPValues_CheckBox.Enabled = true;
+
+					// Return.
+					return;
 
                     #endregion
                 }
