@@ -1,6 +1,8 @@
 Changes Since v1.3.6.3
 ===========================================================
 - Updated skill-editor to represent actual in-game values.
+- Fixed typos across multiple forms.
+- Added a warning to the skill editor for use all zeros.
 
 Changes Since v1.3.6.2
 ===========================================================
@@ -160,14 +162,14 @@ Changes Since v1.3.5.3
 
 Changes Since v1.3.5.2
 ===========================================================
-- Fixed first negitive chunks not retaining negitive signs.
+- Fixed first negative chunks not retaining negative signs.
 - Fixed some issues with debug mode removing coordinates.
-- Fixed issues with transparancy slider.
+- Fixed issues with transparency slider.
 - Fixed all tab indexes for multiple forms.
 - Fixed issues with the reveal range addresses.
 
 + Added a chunk viewer to player tools.
-+ Added scale slder to chunk viewer.
++ Added scale slider to chunk viewer.
 + Added various debugging tools to chunk viewer.
 + Added auto form scaling for the scale slider.
 + Added retention to some of the chunk viewer controls.
@@ -266,11 +268,11 @@ Changes Since v1.3.4.5
 + Added an anti collision to the players tools.
 + Added force recall to the player tools.
 + Added new background assets.
-+ Added a minumum radius for the auto map renderer.
++ Added a minimum radius for the auto map renderer.
 + Added a hollow mode for the auto map renderer.
 + Added a pause button to auto map renderer.
-+ Added some varible controls to the dev tools.
-+ Fixed tooltip timing accross all forms.
++ Added some variable controls to the dev tools.
++ Fixed tooltip timing across all forms.
 + Added a progressbar to show the map renderers completion.
 + Added seconds to the auto map renderers time estimate.
 
@@ -322,7 +324,7 @@ Changes Since v1.3.4.1
 + Application now requires administrator to launch.
 + Added back the world tab for easier tool identification.
 + Added a load world header information button.
-+ Added a change world difficutly button.
++ Added a change world difficulty button.
 + Added missing tooltips to the world tools.
 + Added change world difficulty to chat commands.
 + Added change world creation date button.
@@ -347,10 +349,10 @@ Changes Since v1.3.3.1
 - Fixed a crash caused from not having any ui assets.
 - Fixed some items having the incorrect ids.
 - Fixed slot1 not adding item amounts correctly.
-- Fixed wrong tooltips accross multiple forms.
-- Fixed wrong tabindexes accross multiple forms.
+- Fixed wrong tooltips across multiple forms.
+- Fixed wrong tabindexes across multiple forms.
 - Fixed the minimized player position text being to large.
-- Adjusted the scalling of the inventory controls.
+- Adjusted the scaling of the inventory controls.
 - Misc bugs fixed.
 
 + The world tab was combined with the player tab.
@@ -365,7 +367,7 @@ Changes Since v1.3.3.1
 + Added all new christmas update assets.
 + Added a world position teleporter to world tools.
 + Added a buff editor to player tools.
-+ Added a scuicide toggle to player tools.
++ Added a suicides toggle to player tools.
 
 Changes Since v1.3.3
 ===========================================================
@@ -446,7 +448,7 @@ Changes Since v1.2.7
 
 Changes Since v1.2.6
 ===========================================================
-- Misc bug fixes accross mutliple forms.
+- Misc bug fixes across multiple forms.
 
 + Application now remembers all window locations.
 + Added missing assets.
@@ -465,7 +467,7 @@ Changes Since v1.2.5
 
 Changes Since v1.2.4
 ===========================================================
-- Restored funtionality to the item variant feature.
+- Restored functionality to the item variant feature.
 - Fixed assets of the same ID causing render issues.
 - Misc bugs fixed.
 
@@ -519,7 +521,7 @@ Changes Since v1.1.7
 Changes Since v1.1.6
 ===========================================================
 - Fixed the debug menu not being read only.
-- Fixed some issues with items getting corruted.
+- Fixed some issues with items getting corrupted.
 - Renamed textbox "variation" to "item variant".
 
 + Added item count to the inventory slots.
