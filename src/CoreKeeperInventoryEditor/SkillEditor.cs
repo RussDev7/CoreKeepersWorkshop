@@ -419,7 +419,9 @@ namespace CoreKeepersWorkshop
         {
             foreach(Control control in parent.Controls)
             {
-                if (control is NumericUpDown numericUpDown)
+                // .NET 7.0+: if (control is NumericUpDown numericUpDown)
+                NumericUpDown numericUpDown = control as NumericUpDown;
+                if (numericUpDown != null)
                 {
                     numericUpDown.ReadOnly = readOnly;                                                   // Set the readonly attributes.
                     numericUpDown.Controls[0].Enabled = !readOnly;                                       // Enable/disable the up/down buttons.
@@ -826,7 +828,7 @@ namespace CoreKeepersWorkshop
                 if ((int)SkillILvL0_NumericUpDown.Value == 0 && (int)SkillILvL1_NumericUpDown.Value == 0 && (int)SkillILvL2_NumericUpDown.Value == 0 && (int)SkillILvL3_NumericUpDown.Value == 0 && (int)SkillILvL4_NumericUpDown.Value == 0 && (int)SkillILvL5_NumericUpDown.Value == 0 &&
                     (int)SkillILvL6_NumericUpDown.Value == 0 && (int)SkillILvL7_NumericUpDown.Value == 0 && (int)SkillILvL8_NumericUpDown.Value == 0 && (int)SkillILvL9_NumericUpDown.Value == 0 && (int)SkillILvL10_NumericUpDown.Value == 0 && (int)SkillILvL11_NumericUpDown.Value == 0 &&
                     MessageBox.Show("It's not advised to 'use' a skill loadout that is all level 0.\nDoing this will lead to very long scan times.\n\nIt's recommended to get at least one or more skills to level 1 or higher.\n\nContinue?", "Player Skill Editor - Use selected skill loadout?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-				{
+                {
                     #region Toggle Controls
 
                     // Hide progressbar.
@@ -857,7 +859,7 @@ namespace CoreKeepersWorkshop
                     UseEXPValues_CheckBox.Enabled = true;
 
                     #endregion
-				}
+                }
 
                 // Adjust progressbar.
                 PlayerSkill_ProgressBar.Value = 30;
