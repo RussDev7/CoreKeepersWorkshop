@@ -3,6 +3,9 @@ Changes Since v1.3.6.3
 - Updated skill-editor to represent actual in-game values.
 - Fixed typos across multiple forms.
 - Added a warning to the skill editor for use all zeros.
+- Updated the place anywhere addresses.
+
++ Significantly decreased all scan times.
 
 Changes Since v1.3.6.2
 ===========================================================
