@@ -192,7 +192,7 @@ namespace CoreKeeperInventoryEditor
                 @"// This project would never have grown if not for the following:" + Environment.NewLine + Environment.NewLine,
 
                 @"1) Ultimaton2   - Most helpful debugger in the projects lifetime." + Environment.NewLine,
-                @"2) Pharuxtan    - Helped get the new variaton system working." + Environment.NewLine,
+                @"2) Pharuxtan    - Helped get the new variation system working." + Environment.NewLine,
                 @"3) Roupiks       - Created assets for all the tabs!" + Environment.NewLine + Environment.NewLine,
 
                 @"Honorable Mentions:" + Environment.NewLine,
@@ -11667,7 +11667,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Free Crafting
 
-        // Toggle godmode.
+        // Toggle free crafting.
         public IEnumerable<long> AoBScanResultsFreeCraftingTools = null;
         private async void FreeCrafting_ToggleSwith_CheckedChanged(object sender, EventArgs e)
         {
@@ -11969,7 +11969,7 @@ namespace CoreKeeperInventoryEditor
             {
                 // Player has died. Restore inventory.
                 //
-                // Lets wait for the player to respon.
+                // Lets wait for the player to respond.
                 while (MemLib.ReadInt(playerHealthAddress) <= 0)
                 {
                     // Enable player died.
@@ -12275,22 +12275,23 @@ namespace CoreKeeperInventoryEditor
                 // Depreciated Address 26Apr24: 01 00 00 00 00 00 00 28 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 3B 4D 00 00 00 01 02 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
                 // Depreciated Address 23Aug24: 01 00 00 00 00 00 00 28 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 01 02 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
                 // Depreciated Address 05Feb25: 32 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 02 01 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                // Depreciated Address 22Mar25: 0? 8D 84 F0 35 AC F0 76 00 00 00 00 00 00 00 00
                 if (AoBScanResultsPlaceAnywhereTools != null)
                 {
-                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlaceAnywhereTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X");
-                    int placeAnywhere = MemLib.ReadInt(placeAnywhereAddress);
+                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlaceAnywhereTools.Last().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+                    int placeAnywhere = MemLib.ReadByte(placeAnywhereAddress);
 
                     // Check if we need to rescan place anywhere or not.
                     if (placeAnywhere != 0 && placeAnywhere != 1)
                     {
                         // Rescan place anywhere address.
-                        AoBScanResultsPlaceAnywhereTools = await MemLib.AoBScan("0? 8D 84 F0 35 AC F0 76 00 00 00 00 00 00 00 00", true, true);
+                        AoBScanResultsPlaceAnywhereTools = await MemLib.AoBScan("3F 2A 40 ED A5 87 85 B3 0? 3A F5 ?0", true, true);
                     }
                 }
                 else
                 {
                     // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                    AoBScanResultsPlaceAnywhereTools = await MemLib.AoBScan("0? 8D 84 F0 35 AC F0 76 00 00 00 00 00 00 00 00", true, true);
+                    AoBScanResultsPlaceAnywhereTools = await MemLib.AoBScan("3F 2A 40 ED A5 87 85 B3 0? 3A F5 ?0", true, true);
                 }
 
                 // If the count is zero, the scan had an error.
@@ -12342,10 +12343,10 @@ namespace CoreKeeperInventoryEditor
                 foreach (long res in AoBScanResultsPlaceAnywhereTools)
                 {
                     // Get the place anywhere addresses.
-                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X");
+                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
                     // Write value.
-                    MemLib.WriteMemory(placeAnywhereAddress, "int", "1"); // Overwrite new value.
+                    MemLib.WriteMemory(placeAnywhereAddress, "byte", "1"); // Overwrite new value.
                 }
             }
             else
@@ -12362,10 +12363,10 @@ namespace CoreKeeperInventoryEditor
                 foreach (long res in AoBScanResultsPlaceAnywhereTools)
                 {
                     // Get the place anywhere addresses.
-                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("120", NumberStyles.Integer)).ToString("X");
+                    string placeAnywhereAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
 
                     // Write value.
-                    MemLib.WriteMemory(placeAnywhereAddress, "int", "0"); // Overwrite new value.
+                    MemLib.WriteMemory(placeAnywhereAddress, "byte", "0"); // Overwrite new value.
                 }
             }
         }

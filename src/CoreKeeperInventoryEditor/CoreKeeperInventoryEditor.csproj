@@ -81,9 +81,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Memory, Version=1.2.27.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Memory, Version=1.2.28.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Memory.dll.x64.1.2.27\lib\netstandard2.0\Memory.dll</HintPath>
+      <HintPath>..\packages\Memory.dll.x64.1.2.28\lib\netstandard2.0\Memory.dll</HintPath>
     </Reference>
     <Reference Include="netstandard" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
