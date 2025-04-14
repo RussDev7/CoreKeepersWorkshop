@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Main_TabControl = new System.Windows.Forms.TabControl();
             this.Inventory_TabPage = new System.Windows.Forms.TabPage();
             this.Slot50_PictureBox = new System.Windows.Forms.PictureBox();
@@ -186,6 +186,11 @@ namespace CoreKeeperInventoryEditor
             this.BuffType_ComboBox = new System.Windows.Forms.ComboBox();
             this.World_TabPage = new System.Windows.Forms.TabPage();
             this.WorldUtilities_GroupBox = new System.Windows.Forms.GroupBox();
+            this.RTRange_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.RTRange_Button = new System.Windows.Forms.Button();
+            this.RTDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.RTDelay_Button = new System.Windows.Forms.Button();
+            this.RandomTeleport_Button = new System.Windows.Forms.Button();
             this.BruteForceTrash_CheckBox = new System.Windows.Forms.CheckBox();
             this.TrashGroundItems_Label = new System.Windows.Forms.Label();
             this.FishingPadding_NumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -345,6 +350,8 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.Power_NumericUpDown)).BeginInit();
             this.World_TabPage.SuspendLayout();
             this.WorldUtilities_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RTRange_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RTDelay_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FishingPadding_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CastDelay_NumericUpDown)).BeginInit();
             this.MapRendering_GroupBox.SuspendLayout();
@@ -1141,7 +1148,7 @@ namespace CoreKeeperInventoryEditor
             this.PlayerTab_GroupBox.Location = new System.Drawing.Point(10, 111);
             this.PlayerTab_GroupBox.Name = "PlayerTab_GroupBox";
             this.PlayerTab_GroupBox.Size = new System.Drawing.Size(366, 173);
-            this.PlayerTab_GroupBox.TabIndex = 37;
+            this.PlayerTab_GroupBox.TabIndex = 0;
             this.PlayerTab_GroupBox.TabStop = false;
             // 
             // PlayerTab_TabControl
@@ -1508,7 +1515,7 @@ namespace CoreKeeperInventoryEditor
             this.PlayerTools_GroupBox.Location = new System.Drawing.Point(384, 5);
             this.PlayerTools_GroupBox.Name = "PlayerTools_GroupBox";
             this.PlayerTools_GroupBox.Size = new System.Drawing.Size(342, 221);
-            this.PlayerTools_GroupBox.TabIndex = 18;
+            this.PlayerTools_GroupBox.TabIndex = 0;
             this.PlayerTools_GroupBox.TabStop = false;
             this.PlayerTools_GroupBox.Text = "Player Tools";
             // 
@@ -2105,7 +2112,7 @@ namespace CoreKeeperInventoryEditor
             this.ImportExport_GroupBox.Location = new System.Drawing.Point(254, 5);
             this.ImportExport_GroupBox.Name = "ImportExport_GroupBox";
             this.ImportExport_GroupBox.Size = new System.Drawing.Size(122, 105);
-            this.ImportExport_GroupBox.TabIndex = 7;
+            this.ImportExport_GroupBox.TabIndex = 0;
             this.ImportExport_GroupBox.TabStop = false;
             this.ImportExport_GroupBox.Text = "Import / Export";
             // 
@@ -2150,7 +2157,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangePlayersName_GroupBox.Location = new System.Drawing.Point(10, 5);
             this.ChangePlayersName_GroupBox.Name = "ChangePlayersName_GroupBox";
             this.ChangePlayersName_GroupBox.Size = new System.Drawing.Size(238, 105);
-            this.ChangePlayersName_GroupBox.TabIndex = 5;
+            this.ChangePlayersName_GroupBox.TabIndex = 0;
             this.ChangePlayersName_GroupBox.TabStop = false;
             this.ChangePlayersName_GroupBox.Text = "Change Player\'s Name";
             // 
@@ -2212,7 +2219,7 @@ namespace CoreKeeperInventoryEditor
             this.BuffEditor_GroupBox.Location = new System.Drawing.Point(384, 232);
             this.BuffEditor_GroupBox.Name = "BuffEditor_GroupBox";
             this.BuffEditor_GroupBox.Size = new System.Drawing.Size(343, 52);
-            this.BuffEditor_GroupBox.TabIndex = 24;
+            this.BuffEditor_GroupBox.TabIndex = 0;
             this.BuffEditor_GroupBox.TabStop = false;
             this.BuffEditor_GroupBox.Text = "Buff Editor";
             // 
@@ -2295,6 +2302,11 @@ namespace CoreKeeperInventoryEditor
             // WorldUtilities_GroupBox
             // 
             this.WorldUtilities_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.WorldUtilities_GroupBox.Controls.Add(this.RTRange_NumericUpDown);
+            this.WorldUtilities_GroupBox.Controls.Add(this.RTRange_Button);
+            this.WorldUtilities_GroupBox.Controls.Add(this.RTDelay_NumericUpDown);
+            this.WorldUtilities_GroupBox.Controls.Add(this.RTDelay_Button);
+            this.WorldUtilities_GroupBox.Controls.Add(this.RandomTeleport_Button);
             this.WorldUtilities_GroupBox.Controls.Add(this.BruteForceTrash_CheckBox);
             this.WorldUtilities_GroupBox.Controls.Add(this.TrashGroundItems_Label);
             this.WorldUtilities_GroupBox.Controls.Add(this.FishingPadding_NumericUpDown);
@@ -2307,9 +2319,87 @@ namespace CoreKeeperInventoryEditor
             this.WorldUtilities_GroupBox.Location = new System.Drawing.Point(11, 245);
             this.WorldUtilities_GroupBox.Name = "WorldUtilities_GroupBox";
             this.WorldUtilities_GroupBox.Size = new System.Drawing.Size(366, 173);
-            this.WorldUtilities_GroupBox.TabIndex = 49;
+            this.WorldUtilities_GroupBox.TabIndex = 0;
             this.WorldUtilities_GroupBox.TabStop = false;
             this.WorldUtilities_GroupBox.Text = "World Utilities";
+            // 
+            // RTRange_NumericUpDown
+            // 
+            this.RTRange_NumericUpDown.Location = new System.Drawing.Point(296, 78);
+            this.RTRange_NumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.RTRange_NumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.RTRange_NumericUpDown.Name = "RTRange_NumericUpDown";
+            this.RTRange_NumericUpDown.Size = new System.Drawing.Size(64, 20);
+            this.RTRange_NumericUpDown.TabIndex = 42;
+            this.RTRange_NumericUpDown.Value = new decimal(new int[] {
+            250000,
+            0,
+            0,
+            0});
+            // 
+            // RTRange_Button
+            // 
+            this.RTRange_Button.Enabled = false;
+            this.RTRange_Button.ForeColor = System.Drawing.Color.Black;
+            this.RTRange_Button.Location = new System.Drawing.Point(247, 77);
+            this.RTRange_Button.Name = "RTRange_Button";
+            this.RTRange_Button.Size = new System.Drawing.Size(50, 22);
+            this.RTRange_Button.TabIndex = 0;
+            this.RTRange_Button.Text = "Range:";
+            this.RTRange_Button.UseVisualStyleBackColor = true;
+            // 
+            // RTDelay_NumericUpDown
+            // 
+            this.RTDelay_NumericUpDown.DecimalPlaces = 1;
+            this.RTDelay_NumericUpDown.Location = new System.Drawing.Point(191, 78);
+            this.RTDelay_NumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.RTDelay_NumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.RTDelay_NumericUpDown.Name = "RTDelay_NumericUpDown";
+            this.RTDelay_NumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.RTDelay_NumericUpDown.TabIndex = 41;
+            this.RTDelay_NumericUpDown.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // RTDelay_Button
+            // 
+            this.RTDelay_Button.Enabled = false;
+            this.RTDelay_Button.ForeColor = System.Drawing.Color.Black;
+            this.RTDelay_Button.Location = new System.Drawing.Point(121, 77);
+            this.RTDelay_Button.Name = "RTDelay_Button";
+            this.RTDelay_Button.Size = new System.Drawing.Size(71, 22);
+            this.RTDelay_Button.TabIndex = 0;
+            this.RTDelay_Button.Text = "TP Delay:";
+            this.RTDelay_Button.UseVisualStyleBackColor = true;
+            // 
+            // RandomTeleport_Button
+            // 
+            this.RandomTeleport_Button.ForeColor = System.Drawing.Color.Black;
+            this.RandomTeleport_Button.Location = new System.Drawing.Point(6, 77);
+            this.RandomTeleport_Button.Name = "RandomTeleport_Button";
+            this.RandomTeleport_Button.Size = new System.Drawing.Size(110, 23);
+            this.RandomTeleport_Button.TabIndex = 40;
+            this.RandomTeleport_Button.Text = "Random Teleport";
+            this.RandomTeleport_Button.UseVisualStyleBackColor = true;
+            this.RandomTeleport_Button.Click += new System.EventHandler(this.RandomTeleport_Button_Click);
             // 
             // BruteForceTrash_CheckBox
             // 
@@ -2318,7 +2408,7 @@ namespace CoreKeeperInventoryEditor
             this.BruteForceTrash_CheckBox.Location = new System.Drawing.Point(284, 23);
             this.BruteForceTrash_CheckBox.Name = "BruteForceTrash_CheckBox";
             this.BruteForceTrash_CheckBox.Size = new System.Drawing.Size(81, 17);
-            this.BruteForceTrash_CheckBox.TabIndex = 53;
+            this.BruteForceTrash_CheckBox.TabIndex = 36;
             this.BruteForceTrash_CheckBox.Text = "Brute Force";
             this.BruteForceTrash_CheckBox.UseVisualStyleBackColor = true;
             this.BruteForceTrash_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForceTrash_CheckBox_CheckedChanged);
@@ -2348,7 +2438,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.FishingPadding_NumericUpDown.Name = "FishingPadding_NumericUpDown";
             this.FishingPadding_NumericUpDown.Size = new System.Drawing.Size(50, 20);
-            this.FishingPadding_NumericUpDown.TabIndex = 52;
+            this.FishingPadding_NumericUpDown.TabIndex = 39;
             this.FishingPadding_NumericUpDown.Value = new decimal(new int[] {
             100,
             0,
@@ -2362,7 +2452,7 @@ namespace CoreKeeperInventoryEditor
             this.FishingPadding_Button.Location = new System.Drawing.Point(247, 48);
             this.FishingPadding_Button.Name = "FishingPadding_Button";
             this.FishingPadding_Button.Size = new System.Drawing.Size(64, 22);
-            this.FishingPadding_Button.TabIndex = 51;
+            this.FishingPadding_Button.TabIndex = 0;
             this.FishingPadding_Button.Text = "Padding:";
             this.FishingPadding_Button.UseVisualStyleBackColor = true;
             // 
@@ -2381,7 +2471,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.CastDelay_NumericUpDown.Name = "CastDelay_NumericUpDown";
             this.CastDelay_NumericUpDown.Size = new System.Drawing.Size(50, 20);
-            this.CastDelay_NumericUpDown.TabIndex = 32;
+            this.CastDelay_NumericUpDown.TabIndex = 38;
             this.CastDelay_NumericUpDown.Value = new decimal(new int[] {
             100,
             0,
@@ -2395,7 +2485,7 @@ namespace CoreKeeperInventoryEditor
             this.CastDelay_Button.Location = new System.Drawing.Point(121, 48);
             this.CastDelay_Button.Name = "CastDelay_Button";
             this.CastDelay_Button.Size = new System.Drawing.Size(71, 22);
-            this.CastDelay_Button.TabIndex = 31;
+            this.CastDelay_Button.TabIndex = 0;
             this.CastDelay_Button.Text = "Cast Delay:";
             this.CastDelay_Button.UseVisualStyleBackColor = true;
             // 
@@ -2405,7 +2495,7 @@ namespace CoreKeeperInventoryEditor
             this.TrashGroundItems_Button.Location = new System.Drawing.Point(5, 19);
             this.TrashGroundItems_Button.Name = "TrashGroundItems_Button";
             this.TrashGroundItems_Button.Size = new System.Drawing.Size(110, 23);
-            this.TrashGroundItems_Button.TabIndex = 32;
+            this.TrashGroundItems_Button.TabIndex = 35;
             this.TrashGroundItems_Button.Text = "Trash Ground Items";
             this.TrashGroundItems_Button.UseVisualStyleBackColor = true;
             this.TrashGroundItems_Button.Click += new System.EventHandler(this.TrashGroundItems_Button_Click);
@@ -2416,7 +2506,7 @@ namespace CoreKeeperInventoryEditor
             this.AutomaticFishing_Button.Location = new System.Drawing.Point(5, 48);
             this.AutomaticFishing_Button.Name = "AutomaticFishing_Button";
             this.AutomaticFishing_Button.Size = new System.Drawing.Size(110, 23);
-            this.AutomaticFishing_Button.TabIndex = 33;
+            this.AutomaticFishing_Button.TabIndex = 37;
             this.AutomaticFishing_Button.Text = "Automatic Fishing";
             this.AutomaticFishing_Button.UseVisualStyleBackColor = true;
             this.AutomaticFishing_Button.Click += new System.EventHandler(this.AutomaticFishing_Button_Click);
@@ -2446,7 +2536,7 @@ namespace CoreKeeperInventoryEditor
             this.MapRendering_GroupBox.Location = new System.Drawing.Point(10, 109);
             this.MapRendering_GroupBox.Name = "MapRendering_GroupBox";
             this.MapRendering_GroupBox.Size = new System.Drawing.Size(366, 130);
-            this.MapRendering_GroupBox.TabIndex = 43;
+            this.MapRendering_GroupBox.TabIndex = 0;
             this.MapRendering_GroupBox.TabStop = false;
             this.MapRendering_GroupBox.Text = "Map Rendering";
             // 
@@ -2457,7 +2547,7 @@ namespace CoreKeeperInventoryEditor
             this.MapRendering_TextProgressBar.Name = "MapRendering_TextProgressBar";
             this.MapRendering_TextProgressBar.ProgressColor = System.Drawing.Color.Lime;
             this.MapRendering_TextProgressBar.Size = new System.Drawing.Size(256, 21);
-            this.MapRendering_TextProgressBar.TabIndex = 30;
+            this.MapRendering_TextProgressBar.TabIndex = 0;
             this.MapRendering_TextProgressBar.TextColor = System.Drawing.Color.Black;
             this.MapRendering_TextProgressBar.TextFont = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MapRendering_TextProgressBar.Visible = false;
@@ -2482,7 +2572,7 @@ namespace CoreKeeperInventoryEditor
             this.SaveEachRing_CheckBox.Location = new System.Drawing.Point(259, 103);
             this.SaveEachRing_CheckBox.Name = "SaveEachRing_CheckBox";
             this.SaveEachRing_CheckBox.Size = new System.Drawing.Size(104, 17);
-            this.SaveEachRing_CheckBox.TabIndex = 18;
+            this.SaveEachRing_CheckBox.TabIndex = 17;
             this.SaveEachRing_CheckBox.Text = "Save Each Ring";
             this.SaveEachRing_CheckBox.UseVisualStyleBackColor = true;
             // 
@@ -2493,7 +2583,7 @@ namespace CoreKeeperInventoryEditor
             this.StartRadius_Button.Location = new System.Drawing.Point(122, 99);
             this.StartRadius_Button.Name = "StartRadius_Button";
             this.StartRadius_Button.Size = new System.Drawing.Size(82, 22);
-            this.StartRadius_Button.TabIndex = 16;
+            this.StartRadius_Button.TabIndex = 0;
             this.StartRadius_Button.Text = "Start Radius:";
             this.StartRadius_Button.UseVisualStyleBackColor = true;
             // 
@@ -2507,7 +2597,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.StartRadius_NumericUpDown.Name = "StartRadius_NumericUpDown";
             this.StartRadius_NumericUpDown.Size = new System.Drawing.Size(50, 20);
-            this.StartRadius_NumericUpDown.TabIndex = 17;
+            this.StartRadius_NumericUpDown.TabIndex = 16;
             this.StartRadius_NumericUpDown.ValueChanged += new System.EventHandler(this.StartRadius_NumericUpDown_ValueChanged);
             // 
             // NextRingDelay_NumericUpDown
@@ -2539,7 +2629,7 @@ namespace CoreKeeperInventoryEditor
             this.NextRingDelay_Button.Location = new System.Drawing.Point(259, 77);
             this.NextRingDelay_Button.Name = "NextRingDelay_Button";
             this.NextRingDelay_Button.Size = new System.Drawing.Size(54, 22);
-            this.NextRingDelay_Button.TabIndex = 13;
+            this.NextRingDelay_Button.TabIndex = 0;
             this.NextRingDelay_Button.Text = "Delay:";
             this.NextRingDelay_Button.UseVisualStyleBackColor = true;
             // 
@@ -2549,7 +2639,7 @@ namespace CoreKeeperInventoryEditor
             this.RestoreDefaultRange_Button.Location = new System.Drawing.Point(231, 48);
             this.RestoreDefaultRange_Button.Name = "RestoreDefaultRange_Button";
             this.RestoreDefaultRange_Button.Size = new System.Drawing.Size(129, 23);
-            this.RestoreDefaultRange_Button.TabIndex = 9;
+            this.RestoreDefaultRange_Button.TabIndex = 11;
             this.RestoreDefaultRange_Button.Text = "Restore Default Range";
             this.RestoreDefaultRange_Button.UseVisualStyleBackColor = true;
             this.RestoreDefaultRange_Button.Click += new System.EventHandler(this.RestoreDefaultRange_Button_Click);
@@ -2560,7 +2650,7 @@ namespace CoreKeeperInventoryEditor
             this.SetRevealRange_Button.Location = new System.Drawing.Point(6, 48);
             this.SetRevealRange_Button.Name = "SetRevealRange_Button";
             this.SetRevealRange_Button.Size = new System.Drawing.Size(110, 23);
-            this.SetRevealRange_Button.TabIndex = 6;
+            this.SetRevealRange_Button.TabIndex = 9;
             this.SetRevealRange_Button.Text = "Set Reveal Range";
             this.SetRevealRange_Button.UseVisualStyleBackColor = true;
             this.SetRevealRange_Button.Click += new System.EventHandler(this.SetRevealRange_Button_Click);
@@ -2572,7 +2662,7 @@ namespace CoreKeeperInventoryEditor
             this.RenderRange_Button.Location = new System.Drawing.Point(122, 48);
             this.RenderRange_Button.Name = "RenderRange_Button";
             this.RenderRange_Button.Size = new System.Drawing.Size(54, 22);
-            this.RenderRange_Button.TabIndex = 7;
+            this.RenderRange_Button.TabIndex = 0;
             this.RenderRange_Button.Text = "Range:";
             this.RenderRange_Button.UseVisualStyleBackColor = true;
             // 
@@ -2591,7 +2681,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.RenderRange_NumericUpDown.Name = "RenderRange_NumericUpDown";
             this.RenderRange_NumericUpDown.Size = new System.Drawing.Size(50, 20);
-            this.RenderRange_NumericUpDown.TabIndex = 8;
+            this.RenderRange_NumericUpDown.TabIndex = 10;
             this.RenderRange_NumericUpDown.Value = new decimal(new int[] {
             10,
             0,
@@ -2605,7 +2695,7 @@ namespace CoreKeeperInventoryEditor
             this.MaxRadius_Button.Location = new System.Drawing.Point(122, 77);
             this.MaxRadius_Button.Name = "MaxRadius_Button";
             this.MaxRadius_Button.Size = new System.Drawing.Size(82, 22);
-            this.MaxRadius_Button.TabIndex = 11;
+            this.MaxRadius_Button.TabIndex = 0;
             this.MaxRadius_Button.Text = "Max Radius:";
             this.MaxRadius_Button.UseVisualStyleBackColor = true;
             // 
@@ -2633,7 +2723,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.MaxRadius_NumericUpDown.Name = "MaxRadius_NumericUpDown";
             this.MaxRadius_NumericUpDown.Size = new System.Drawing.Size(50, 20);
-            this.MaxRadius_NumericUpDown.TabIndex = 12;
+            this.MaxRadius_NumericUpDown.TabIndex = 13;
             this.MaxRadius_NumericUpDown.Value = new decimal(new int[] {
             150,
             0,
@@ -2646,7 +2736,7 @@ namespace CoreKeeperInventoryEditor
             this.GetMapRenderingAddresses_Button.Location = new System.Drawing.Point(6, 19);
             this.GetMapRenderingAddresses_Button.Name = "GetMapRenderingAddresses_Button";
             this.GetMapRenderingAddresses_Button.Size = new System.Drawing.Size(92, 23);
-            this.GetMapRenderingAddresses_Button.TabIndex = 5;
+            this.GetMapRenderingAddresses_Button.TabIndex = 8;
             this.GetMapRenderingAddresses_Button.Text = "Get Addresses";
             this.GetMapRenderingAddresses_Button.UseVisualStyleBackColor = true;
             this.GetMapRenderingAddresses_Button.Click += new System.EventHandler(this.GetMapRenderingAddresses_Button_Click);
@@ -2668,7 +2758,7 @@ namespace CoreKeeperInventoryEditor
             this.AutoMapRenderer_Button.Location = new System.Drawing.Point(6, 77);
             this.AutoMapRenderer_Button.Name = "AutoMapRenderer_Button";
             this.AutoMapRenderer_Button.Size = new System.Drawing.Size(110, 22);
-            this.AutoMapRenderer_Button.TabIndex = 10;
+            this.AutoMapRenderer_Button.TabIndex = 12;
             this.AutoMapRenderer_Button.Text = "Auto Map Renderer";
             this.AutoMapRenderer_Button.UseVisualStyleBackColor = true;
             this.AutoMapRenderer_Button.Click += new System.EventHandler(this.AutoMapRenderer_Button_Click);
@@ -2720,7 +2810,7 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_GroupBox.Location = new System.Drawing.Point(382, 223);
             this.WorldInformation_GroupBox.Name = "WorldInformation_GroupBox";
             this.WorldInformation_GroupBox.Size = new System.Drawing.Size(342, 195);
-            this.WorldInformation_GroupBox.TabIndex = 42;
+            this.WorldInformation_GroupBox.TabIndex = 0;
             this.WorldInformation_GroupBox.TabStop = false;
             this.WorldInformation_GroupBox.Text = "World Information";
             this.WorldInformation_GroupBox.UseCompatibleTextRendering = true;
@@ -2734,7 +2824,7 @@ namespace CoreKeeperInventoryEditor
             this.ColorSample_Button.Location = new System.Drawing.Point(276, 101);
             this.ColorSample_Button.Name = "ColorSample_Button";
             this.ColorSample_Button.Size = new System.Drawing.Size(60, 5);
-            this.ColorSample_Button.TabIndex = 55;
+            this.ColorSample_Button.TabIndex = 0;
             this.ColorSample_Button.UseVisualStyleBackColor = false;
             // 
             // ChangeConsoleForeColor_Button
@@ -2743,7 +2833,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeConsoleForeColor_Button.Location = new System.Drawing.Point(275, 48);
             this.ChangeConsoleForeColor_Button.Name = "ChangeConsoleForeColor_Button";
             this.ChangeConsoleForeColor_Button.Size = new System.Drawing.Size(62, 52);
-            this.ChangeConsoleForeColor_Button.TabIndex = 35;
+            this.ChangeConsoleForeColor_Button.TabIndex = 22;
             this.ChangeConsoleForeColor_Button.Text = "Change Console ForeColor";
             this.ChangeConsoleForeColor_Button.UseVisualStyleBackColor = true;
             this.ChangeConsoleForeColor_Button.Click += new System.EventHandler(this.ChangeConsoleForeColor_Button_Click);
@@ -2755,7 +2845,7 @@ namespace CoreKeeperInventoryEditor
             this.CurrentIcon_Label.Location = new System.Drawing.Point(157, 111);
             this.CurrentIcon_Label.Name = "CurrentIcon_Label";
             this.CurrentIcon_Label.Size = new System.Drawing.Size(57, 13);
-            this.CurrentIcon_Label.TabIndex = 28;
+            this.CurrentIcon_Label.TabIndex = 0;
             this.CurrentIcon_Label.Text = "Glow Tulip";
             // 
             // WorldIconTack_Label
@@ -2801,7 +2891,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.Icon_NumericUpDown.Name = "Icon_NumericUpDown";
             this.Icon_NumericUpDown.Size = new System.Drawing.Size(35, 20);
-            this.Icon_NumericUpDown.TabIndex = 25;
+            this.Icon_NumericUpDown.TabIndex = 26;
             this.Icon_NumericUpDown.ValueChanged += new System.EventHandler(this.Icon_NumericUpDown_ValueChanged);
             // 
             // Seed_NumericUpDown
@@ -2814,7 +2904,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.Seed_NumericUpDown.Name = "Seed_NumericUpDown";
             this.Seed_NumericUpDown.Size = new System.Drawing.Size(163, 20);
-            this.Seed_NumericUpDown.TabIndex = 23;
+            this.Seed_NumericUpDown.TabIndex = 24;
             // 
             // ChangeIcon_Button
             // 
@@ -2822,7 +2912,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeIcon_Button.Location = new System.Drawing.Point(5, 106);
             this.ChangeIcon_Button.Name = "ChangeIcon_Button";
             this.ChangeIcon_Button.Size = new System.Drawing.Size(99, 23);
-            this.ChangeIcon_Button.TabIndex = 26;
+            this.ChangeIcon_Button.TabIndex = 25;
             this.ChangeIcon_Button.Text = "Change Icon";
             this.ChangeIcon_Button.UseVisualStyleBackColor = true;
             this.ChangeIcon_Button.Click += new System.EventHandler(this.ChangeIcon_Button_Click);
@@ -2833,7 +2923,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeSeed_Button.Location = new System.Drawing.Point(5, 77);
             this.ChangeSeed_Button.Name = "ChangeSeed_Button";
             this.ChangeSeed_Button.Size = new System.Drawing.Size(99, 23);
-            this.ChangeSeed_Button.TabIndex = 24;
+            this.ChangeSeed_Button.TabIndex = 23;
             this.ChangeSeed_Button.Text = "Change Seed";
             this.ChangeSeed_Button.UseVisualStyleBackColor = true;
             this.ChangeSeed_Button.Click += new System.EventHandler(this.ChangeSeed_Button_Click);
@@ -2857,7 +2947,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.CrystalThree_NumericUpDown.Name = "CrystalThree_NumericUpDown";
             this.CrystalThree_NumericUpDown.Size = new System.Drawing.Size(45, 20);
-            this.CrystalThree_NumericUpDown.TabIndex = 33;
+            this.CrystalThree_NumericUpDown.TabIndex = 34;
             this.CrystalThree_NumericUpDown.Value = new decimal(new int[] {
             2502,
             0,
@@ -2874,7 +2964,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.CrystalTwo_NumericUpDown.Name = "CrystalTwo_NumericUpDown";
             this.CrystalTwo_NumericUpDown.Size = new System.Drawing.Size(45, 20);
-            this.CrystalTwo_NumericUpDown.TabIndex = 32;
+            this.CrystalTwo_NumericUpDown.TabIndex = 33;
             this.CrystalTwo_NumericUpDown.Value = new decimal(new int[] {
             2501,
             0,
@@ -2888,7 +2978,7 @@ namespace CoreKeeperInventoryEditor
             this.CrystalThree_Label.Location = new System.Drawing.Point(255, 169);
             this.CrystalThree_Label.Name = "CrystalThree_Label";
             this.CrystalThree_Label.Size = new System.Drawing.Size(38, 13);
-            this.CrystalThree_Label.TabIndex = 47;
+            this.CrystalThree_Label.TabIndex = 0;
             this.CrystalThree_Label.Text = "Three:";
             // 
             // CrystalTwo_Label
@@ -2898,7 +2988,7 @@ namespace CoreKeeperInventoryEditor
             this.CrystalTwo_Label.Location = new System.Drawing.Point(181, 169);
             this.CrystalTwo_Label.Name = "CrystalTwo_Label";
             this.CrystalTwo_Label.Size = new System.Drawing.Size(31, 13);
-            this.CrystalTwo_Label.TabIndex = 45;
+            this.CrystalTwo_Label.TabIndex = 0;
             this.CrystalTwo_Label.Text = "Two:";
             // 
             // CrystalOne_Label
@@ -2908,7 +2998,7 @@ namespace CoreKeeperInventoryEditor
             this.CrystalOne_Label.Location = new System.Drawing.Point(105, 169);
             this.CrystalOne_Label.Name = "CrystalOne_Label";
             this.CrystalOne_Label.Size = new System.Drawing.Size(30, 13);
-            this.CrystalOne_Label.TabIndex = 43;
+            this.CrystalOne_Label.TabIndex = 0;
             this.CrystalOne_Label.Text = "One:";
             // 
             // CrystalOne_NumericUpDown
@@ -2921,7 +3011,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.CrystalOne_NumericUpDown.Name = "CrystalOne_NumericUpDown";
             this.CrystalOne_NumericUpDown.Size = new System.Drawing.Size(45, 20);
-            this.CrystalOne_NumericUpDown.TabIndex = 31;
+            this.CrystalOne_NumericUpDown.TabIndex = 32;
             this.CrystalOne_NumericUpDown.Value = new decimal(new int[] {
             2500,
             0,
@@ -2934,7 +3024,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeCrystals_Button.Location = new System.Drawing.Point(5, 164);
             this.ChangeCrystals_Button.Name = "ChangeCrystals_Button";
             this.ChangeCrystals_Button.Size = new System.Drawing.Size(99, 23);
-            this.ChangeCrystals_Button.TabIndex = 34;
+            this.ChangeCrystals_Button.TabIndex = 31;
             this.ChangeCrystals_Button.Text = "Change Crystals";
             this.ChangeCrystals_Button.UseVisualStyleBackColor = true;
             this.ChangeCrystals_Button.Click += new System.EventHandler(this.ChangeCrystals_Button_Click);
@@ -2949,7 +3039,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.Day_NumericUpDown.Name = "Day_NumericUpDown";
             this.Day_NumericUpDown.Size = new System.Drawing.Size(35, 20);
-            this.Day_NumericUpDown.TabIndex = 29;
+            this.Day_NumericUpDown.TabIndex = 30;
             this.Day_NumericUpDown.Value = new decimal(new int[] {
             23,
             0,
@@ -2963,7 +3053,7 @@ namespace CoreKeeperInventoryEditor
             this.Day_Label.Location = new System.Drawing.Point(272, 140);
             this.Day_Label.Name = "Day_Label";
             this.Day_Label.Size = new System.Drawing.Size(29, 13);
-            this.Day_Label.TabIndex = 39;
+            this.Day_Label.TabIndex = 0;
             this.Day_Label.Text = "Day:";
             // 
             // Month_NumericUpDown
@@ -2981,7 +3071,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.Month_NumericUpDown.Name = "Month_NumericUpDown";
             this.Month_NumericUpDown.Size = new System.Drawing.Size(35, 20);
-            this.Month_NumericUpDown.TabIndex = 28;
+            this.Month_NumericUpDown.TabIndex = 29;
             this.Month_NumericUpDown.Value = new decimal(new int[] {
             12,
             0,
@@ -2995,7 +3085,7 @@ namespace CoreKeeperInventoryEditor
             this.Month_Label.Location = new System.Drawing.Point(195, 140);
             this.Month_Label.Name = "Month_Label";
             this.Month_Label.Size = new System.Drawing.Size(40, 13);
-            this.Month_Label.TabIndex = 37;
+            this.Month_Label.TabIndex = 0;
             this.Month_Label.Text = "Month:";
             // 
             // Year_NumericUpDown
@@ -3008,7 +3098,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.Year_NumericUpDown.Name = "Year_NumericUpDown";
             this.Year_NumericUpDown.Size = new System.Drawing.Size(57, 20);
-            this.Year_NumericUpDown.TabIndex = 27;
+            this.Year_NumericUpDown.TabIndex = 28;
             this.Year_NumericUpDown.Value = new decimal(new int[] {
             2022,
             0,
@@ -3022,7 +3112,7 @@ namespace CoreKeeperInventoryEditor
             this.Year_Label.Location = new System.Drawing.Point(105, 140);
             this.Year_Label.Name = "Year_Label";
             this.Year_Label.Size = new System.Drawing.Size(32, 13);
-            this.Year_Label.TabIndex = 35;
+            this.Year_Label.TabIndex = 0;
             this.Year_Label.Text = "Year:";
             // 
             // ChangeDate_Button
@@ -3031,7 +3121,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeDate_Button.Location = new System.Drawing.Point(5, 135);
             this.ChangeDate_Button.Name = "ChangeDate_Button";
             this.ChangeDate_Button.Size = new System.Drawing.Size(99, 23);
-            this.ChangeDate_Button.TabIndex = 30;
+            this.ChangeDate_Button.TabIndex = 27;
             this.ChangeDate_Button.Text = "Change Date";
             this.ChangeDate_Button.UseVisualStyleBackColor = true;
             this.ChangeDate_Button.Click += new System.EventHandler(this.ChangeDate_Button_Click);
@@ -3060,7 +3150,7 @@ namespace CoreKeeperInventoryEditor
             this.GetWorldInformation_Button.Location = new System.Drawing.Point(5, 19);
             this.GetWorldInformation_Button.Name = "GetWorldInformation_Button";
             this.GetWorldInformation_Button.Size = new System.Drawing.Size(99, 23);
-            this.GetWorldInformation_Button.TabIndex = 20;
+            this.GetWorldInformation_Button.TabIndex = 18;
             this.GetWorldInformation_Button.Text = "Get Information";
             this.GetWorldInformation_Button.UseVisualStyleBackColor = true;
             this.GetWorldInformation_Button.Click += new System.EventHandler(this.GetWorldInformation_Button_Click);
@@ -3071,7 +3161,7 @@ namespace CoreKeeperInventoryEditor
             this.ChangeDifficulty_Button.Location = new System.Drawing.Point(5, 48);
             this.ChangeDifficulty_Button.Name = "ChangeDifficulty_Button";
             this.ChangeDifficulty_Button.Size = new System.Drawing.Size(99, 23);
-            this.ChangeDifficulty_Button.TabIndex = 22;
+            this.ChangeDifficulty_Button.TabIndex = 20;
             this.ChangeDifficulty_Button.Text = "Change Difficulty";
             this.ChangeDifficulty_Button.UseVisualStyleBackColor = true;
             this.ChangeDifficulty_Button.Click += new System.EventHandler(this.ChangeDifficulty_Button_Click);
@@ -3094,21 +3184,21 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
             this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
             this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
             this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Header_Column,
@@ -3118,9 +3208,9 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ReadOnly = true;
             this.WorldInformation_DataGridView.RowHeadersVisible = false;
             this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.WorldInformation_DataGridView.ShowCellErrors = false;
@@ -3163,7 +3253,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportPlayer_GroupBox.Location = new System.Drawing.Point(10, 5);
             this.TeleportPlayer_GroupBox.Name = "TeleportPlayer_GroupBox";
             this.TeleportPlayer_GroupBox.Size = new System.Drawing.Size(366, 98);
-            this.TeleportPlayer_GroupBox.TabIndex = 40;
+            this.TeleportPlayer_GroupBox.TabIndex = 0;
             this.TeleportPlayer_GroupBox.TabStop = false;
             this.TeleportPlayer_GroupBox.Text = "Teleport Player";
             // 
@@ -3173,7 +3263,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportPlayerHelp_Button.Location = new System.Drawing.Point(322, 19);
             this.TeleportPlayerHelp_Button.Name = "TeleportPlayerHelp_Button";
             this.TeleportPlayerHelp_Button.Size = new System.Drawing.Size(38, 23);
-            this.TeleportPlayerHelp_Button.TabIndex = 29;
+            this.TeleportPlayerHelp_Button.TabIndex = 3;
             this.TeleportPlayerHelp_Button.Text = "Help";
             this.TeleportPlayerHelp_Button.UseVisualStyleBackColor = true;
             this.TeleportPlayerHelp_Button.Click += new System.EventHandler(this.TeleportPlayerHelp_Button_Click);
@@ -3185,7 +3275,7 @@ namespace CoreKeeperInventoryEditor
             this.BruteForceTP_Label.Location = new System.Drawing.Point(101, 77);
             this.BruteForceTP_Label.Name = "BruteForceTP_Label";
             this.BruteForceTP_Label.Size = new System.Drawing.Size(252, 13);
-            this.BruteForceTP_Label.TabIndex = 28;
+            this.BruteForceTP_Label.TabIndex = 0;
             this.BruteForceTP_Label.Text = "- Test all positions instead of filtered when scanning.";
             // 
             // BruteForceTP_CheckBox
@@ -3195,7 +3285,7 @@ namespace CoreKeeperInventoryEditor
             this.BruteForceTP_CheckBox.Location = new System.Drawing.Point(7, 76);
             this.BruteForceTP_CheckBox.Name = "BruteForceTP_CheckBox";
             this.BruteForceTP_CheckBox.Size = new System.Drawing.Size(81, 17);
-            this.BruteForceTP_CheckBox.TabIndex = 27;
+            this.BruteForceTP_CheckBox.TabIndex = 7;
             this.BruteForceTP_CheckBox.Text = "Brute Force";
             this.BruteForceTP_CheckBox.UseVisualStyleBackColor = true;
             this.BruteForceTP_CheckBox.CheckedChanged += new System.EventHandler(this.BruteForceTP_CheckBox_CheckedChanged);
@@ -3237,7 +3327,7 @@ namespace CoreKeeperInventoryEditor
             -2147483648});
             this.TeleportY_NumericUpDown.Name = "TeleportY_NumericUpDown";
             this.TeleportY_NumericUpDown.Size = new System.Drawing.Size(98, 20);
-            this.TeleportY_NumericUpDown.TabIndex = 4;
+            this.TeleportY_NumericUpDown.TabIndex = 6;
             this.TeleportY_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TeleportY_NumericUpDown_KeyDown);
             // 
             // TeleportPlayer_ProgressBar
@@ -3246,7 +3336,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportPlayer_ProgressBar.Name = "TeleportPlayer_ProgressBar";
             this.TeleportPlayer_ProgressBar.Size = new System.Drawing.Size(221, 21);
             this.TeleportPlayer_ProgressBar.Step = 1;
-            this.TeleportPlayer_ProgressBar.TabIndex = 24;
+            this.TeleportPlayer_ProgressBar.TabIndex = 2;
             this.TeleportPlayer_ProgressBar.Visible = false;
             // 
             // GetTeleportAddresses_Button
@@ -3286,7 +3376,7 @@ namespace CoreKeeperInventoryEditor
             -2147483648});
             this.TeleportX_NumericUpDown.Name = "TeleportX_NumericUpDown";
             this.TeleportX_NumericUpDown.Size = new System.Drawing.Size(98, 20);
-            this.TeleportX_NumericUpDown.TabIndex = 3;
+            this.TeleportX_NumericUpDown.TabIndex = 5;
             this.TeleportX_NumericUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TeleportX_NumericUpDown_KeyDown);
             // 
             // TeleportXY_Button
@@ -3295,7 +3385,7 @@ namespace CoreKeeperInventoryEditor
             this.TeleportXY_Button.Location = new System.Drawing.Point(6, 48);
             this.TeleportXY_Button.Name = "TeleportXY_Button";
             this.TeleportXY_Button.Size = new System.Drawing.Size(92, 23);
-            this.TeleportXY_Button.TabIndex = 2;
+            this.TeleportXY_Button.TabIndex = 4;
             this.TeleportXY_Button.Text = "Teleport XY";
             this.TeleportXY_Button.UseVisualStyleBackColor = true;
             this.TeleportXY_Button.Click += new System.EventHandler(this.TeleportXY_Button_Click);
@@ -3325,7 +3415,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommandsOptions_GroupBox.Location = new System.Drawing.Point(241, 5);
             this.ChatCommandsOptions_GroupBox.Name = "ChatCommandsOptions_GroupBox";
             this.ChatCommandsOptions_GroupBox.Size = new System.Drawing.Size(133, 111);
-            this.ChatCommandsOptions_GroupBox.TabIndex = 18;
+            this.ChatCommandsOptions_GroupBox.TabIndex = 0;
             this.ChatCommandsOptions_GroupBox.TabStop = false;
             this.ChatCommandsOptions_GroupBox.Text = "Options";
             // 
@@ -3407,7 +3497,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommandsLog_GroupBox.Location = new System.Drawing.Point(10, 117);
             this.ChatCommandsLog_GroupBox.Name = "ChatCommandsLog_GroupBox";
             this.ChatCommandsLog_GroupBox.Size = new System.Drawing.Size(364, 138);
-            this.ChatCommandsLog_GroupBox.TabIndex = 17;
+            this.ChatCommandsLog_GroupBox.TabIndex = 0;
             this.ChatCommandsLog_GroupBox.TabStop = false;
             // 
             // UseOverlay_CheckBox
@@ -3425,7 +3515,7 @@ namespace CoreKeeperInventoryEditor
             this.UseOverlay_CheckBox.Location = new System.Drawing.Point(274, 10);
             this.UseOverlay_CheckBox.Name = "UseOverlay_CheckBox";
             this.UseOverlay_CheckBox.Size = new System.Drawing.Size(69, 19);
-            this.UseOverlay_CheckBox.TabIndex = 1;
+            this.UseOverlay_CheckBox.TabIndex = 6;
             this.UseOverlay_CheckBox.Text = "Use Overlay";
             this.UseOverlay_CheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.UseOverlay_CheckBox.UseVisualStyleBackColor = false;
@@ -3451,7 +3541,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_GroupBox.Location = new System.Drawing.Point(10, 5);
             this.ChatCommands_GroupBox.Name = "ChatCommands_GroupBox";
             this.ChatCommands_GroupBox.Size = new System.Drawing.Size(232, 111);
-            this.ChatCommands_GroupBox.TabIndex = 16;
+            this.ChatCommands_GroupBox.TabIndex = 0;
             this.ChatCommands_GroupBox.TabStop = false;
             this.ChatCommands_GroupBox.Text = "Chat Commands";
             // 
@@ -3462,7 +3552,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_Label.Location = new System.Drawing.Point(2, 14);
             this.ChatCommands_Label.Name = "ChatCommands_Label";
             this.ChatCommands_Label.Size = new System.Drawing.Size(231, 91);
-            this.ChatCommands_Label.TabIndex = 2;
+            this.ChatCommands_Label.TabIndex = 0;
             this.ChatCommands_Label.Text = resources.GetString("ChatCommands_Label.Text");
             // 
             // ChatCommands_ProgressBar
@@ -3470,7 +3560,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_ProgressBar.Location = new System.Drawing.Point(10, 259);
             this.ChatCommands_ProgressBar.Name = "ChatCommands_ProgressBar";
             this.ChatCommands_ProgressBar.Size = new System.Drawing.Size(364, 23);
-            this.ChatCommands_ProgressBar.TabIndex = 17;
+            this.ChatCommands_ProgressBar.TabIndex = 0;
             // 
             // ChangeSkin_TabPage
             // 
@@ -3577,6 +3667,8 @@ namespace CoreKeeperInventoryEditor
             this.World_TabPage.ResumeLayout(false);
             this.WorldUtilities_GroupBox.ResumeLayout(false);
             this.WorldUtilities_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RTRange_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RTDelay_NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FishingPadding_NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CastDelay_NumericUpDown)).EndInit();
             this.MapRendering_GroupBox.ResumeLayout(false);
@@ -3854,6 +3946,11 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.DataGridViewTextBoxColumn Header_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Information_Column;
         private System.Windows.Forms.CheckBox BruteForceTrash_CheckBox;
+        private System.Windows.Forms.NumericUpDown RTRange_NumericUpDown;
+        private System.Windows.Forms.Button RTRange_Button;
+        private System.Windows.Forms.NumericUpDown RTDelay_NumericUpDown;
+        private System.Windows.Forms.Button RTDelay_Button;
+        private System.Windows.Forms.Button RandomTeleport_Button;
     }
 }
 
