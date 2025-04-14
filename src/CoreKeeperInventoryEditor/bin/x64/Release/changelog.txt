@@ -4,8 +4,10 @@ Changes Since v1.3.6.3
 - Fixed typos across multiple forms.
 - Added a warning to the skill editor for use all zeros.
 - Updated the place anywhere addresses.
+- Corrected the tab indexes for the world tab.
 
 + Significantly decreased all scan times.
++ Added a random teleport mod to the world tools.
 
 Changes Since v1.3.6.2
 ===========================================================
