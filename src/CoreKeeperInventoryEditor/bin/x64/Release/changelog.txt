@@ -8,6 +8,7 @@ Changes Since v1.3.6.3
 
 + Significantly decreased all scan times.
 + Added a random teleport mod to the world tools.
++ Added 20+ various missing assets.
 
 Changes Since v1.3.6.2
 ===========================================================
