@@ -117,7 +117,7 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 - [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 
 ## Legal
-- [License (MS-PL)](https://github.com/RussDev7/CoreKeepersWorkshop/blob/main/LICENSE)
+- [License (GPL-3.0)](https://github.com/RussDev7/CoreKeepersWorkshop/blob/main/LICENSE)
 
 ## Support & Credits
 
