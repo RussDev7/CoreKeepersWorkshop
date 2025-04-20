@@ -1,3 +1,7 @@
+Changes Since v1.3.6.4
+===========================================================
+- Renamed all assets to their correct in-game names.
+
 Changes Since v1.3.6.3
 ===========================================================
 - Updated skill-editor to represent actual in-game values.
