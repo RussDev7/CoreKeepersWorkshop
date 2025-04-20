@@ -6,11 +6,25 @@
 @ECHO OFF
 
 Rem | Set Params
-Set "VersionPrefix=1.3.6.4"
+Set "VersionPrefix=1.3.6.5"
 Set "filename=CoreKeeperInventoryEditor-%VersionPrefix%"
 
-Rem | Install SLN Under x64 Profile
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe ".\src\CoreKeeperInventoryEditor.sln" /p:Configuration=Release /p:Platform=x64"
+Rem | Put the expected location of vswhere into a variable.
+set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+
+Rem | Ask for the newest VS install that includes Microsoft.Component.MSBuild
+Rem | and let vswhere do the glob‑expansion that finds MSBuild.exe.
+for /f "usebackq tokens=*" %%I in (`
+  "%VSWHERE%" -latest ^
+              -products * ^
+              -requires Microsoft.Component.MSBuild ^
+              -find MSBuild\**\Bin\MSBuild.exe
+`) do (
+    set "MSBUILD=%%I"
+)
+
+Rem | Install SLN under x64 profile.
+"%MSBUILD%" ".\src\CoreKeeperInventoryEditor.sln" /p:Configuration=Release /p:Platform=x64"
 
 Rem | Delete Paths & Create Paths
 rmdir /s /q ".\release"
