@@ -2,6 +2,13 @@ Changes Since v1.3.6.4
 ===========================================================
 - Renamed all assets to their correct in-game names.
 - Corrected misplaced assets.
+- Updated player mods addresses.
+- Updated the map reveal addresses.
+- Updated the auto fishing addresses.
+- Updated the dev rendering addresses.
+- Updated the place anywhere addresses.
+
++ Added 10+ various missing assets.
 
 Changes Since v1.3.6.3
 ===========================================================
