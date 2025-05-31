@@ -81,12 +81,12 @@ namespace CoreKeeperInventoryEditor
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
-        private const int MOUSEEVENT_LEFTDOWN = 0x02;
-        private const int MOUSEEVENT_LEFTUP = 0x04;
+        private const int MOUSEEVENT_LEFTDOWN   = 0x02;
+        private const int MOUSEEVENT_LEFTUP     = 0x04;
+        private const int MOUSEEVENT_RIGHTDOWN  = 0x08;
+        private const int MOUSEEVENT_RIGHTUP    = 0x10;
         private const int MOUSEEVENT_MIDDLEDOWN = 0x20;
-        private const int MOUSEEVENT_MIDDLEUP = 0x40;
-        private const int MOUSEEVENT_RIGHTDOWN = 0x08;
-        private const int MOUSEEVENT_RIGHTUP = 0x10;
+        private const int MOUSEEVENT_MIDDLEUP   = 0x40;
 
         #region Process Handle Classes
 
@@ -109,19 +109,49 @@ namespace CoreKeeperInventoryEditor
         static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
+        private static IntPtr GetWindowLongPtr(IntPtr hWnd, int nIndex)
+        {
+            if (IntPtr.Size == 8)
+                return GetWindowLongPtr64(hWnd, nIndex);
+            else
+                return new IntPtr(GetWindowLong32(hWnd, nIndex));
+        }
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
+        private static extern int GetWindowLong32(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
+        private static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        private static extern bool IsWindowVisible(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        private static extern bool IsIconic(IntPtr hWnd);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
-            public int Left;        // x position of upper-left corner
-            public int Top;         // y position of upper-left corner
-            public int Right;       // x position of lower-right corner
-            public int Bottom;      // y position of lower-right corner
+            public int Left;   // x position of upper-left corner.
+            public int Top;    // y position of upper-left corner.
+            public int Right;  // x position of lower-right corner.
+            public int Bottom; // y position of lower-right corner.
         }
 
-        private const int SWP_NOSIZE = 0x0001;
-        private const int SWP_NOZORDER = 0x0004;
-        private const int SWP_SHOWWINDOW = 0x0040;
+        private const int SWP_NOSIZE      = 0x0001;
+        private const int SWP_NOZORDER    = 0x0004;
+        private const int SWP_SHOWWINDOW  = 0x0040;
+
+        private const int GWL_STYLE       = -16;
+        private const int GWL_EXSTYLE     = -20;
+
+        private const long WS_BORDER      = 0x00800000L;
+        private const long WS_CAPTION     = 0x00C00000L; // WS_BORDER | WS_DLGFRAME .
+        private const long WS_DLGFRAME    = 0x00400000L;
+        private const long WS_OVERLAPPED  = 0x00000000L;
+        private const long WS_POPUP       = unchecked((long)0x80000000L);
+        private const long WS_SYSMENU     = 0x00080000L;
+        private const long WS_THICKFRAME  = 0x00040000L; // resizable border.
+        private const long WS_MINIMIZEBOX = 0x00020000L;
+        private const long WS_MAXIMIZEBOX = 0x00010000L;
 
         #endregion
 
@@ -533,10 +563,10 @@ namespace CoreKeeperInventoryEditor
                 // Save some form controls.
                 Settings.Default.DevToolDelay = (int)DevToolsDelay_NumericUpDown.Value; // Dev tool operation delay.
                 Settings.Default.RadialMoveScale = RadialMoveScale_NumericUpDown.Value; // Auto render maps radialMoveScale.
-                Settings.Default.MapRenderingMax = MaxRadius_NumericUpDown.Value; // Map rendering max radius.
-                Settings.Default.MapRenderingStart = StartRadius_NumericUpDown.Value; // Map rendering start radius.
-                Settings.Default.FishingCast = CastDelay_NumericUpDown.Value; // Fishing bot casting delay.
-                Settings.Default.FishingPadding = FishingPadding_NumericUpDown.Value; // Fishing bot padding delay.
+                Settings.Default.MapRenderingMax = MaxRadius_NumericUpDown.Value;       // Map rendering max radius.
+                Settings.Default.MapRenderingStart = StartRadius_NumericUpDown.Value;   // Map rendering start radius.
+                Settings.Default.FishingCast = CastDelay_NumericUpDown.Value;           // Fishing bot casting delay.
+                Settings.Default.FishingPadding = FishingPadding_NumericUpDown.Value;   // Fishing bot padding delay.
                 Settings.Default.Save();
             }
             catch (Exception)
@@ -563,7 +593,17 @@ namespace CoreKeeperInventoryEditor
                 this.Size = new Size(320, 37);
 
                 // Adjust the form location.
-                this.Location = new Point(0, activeScreenDimensions.Height - 40);
+                // Try to place this window top left of the games window.
+                Process[] procs = Process.GetProcessesByName("corekeeper");
+                if (procs.Length != 0 && !IsIconic(procs[0].MainWindowHandle) && GetWindowRect(procs[0].MainWindowHandle, out RECT rect))
+                {
+                    // Check if the game is fullscreen or borderless fullscreen. If windowed add a +6 x-buffer.
+                    bool hasCaption = (GetWindowLongPtr(procs[0].MainWindowHandle, GWL_STYLE).ToInt64() & WS_CAPTION) != 0;
+                    int leftOffset = (hasCaption) ? 6 : 0;
+                    this.Location = new Point(rect.Left + leftOffset, rect.Top + 6);
+                }
+                else
+                    this.Location = new Point(0, 6);
 
                 // Adjust window properties
                 this.Opacity = 0.8;
@@ -581,7 +621,7 @@ namespace CoreKeeperInventoryEditor
                 this.MinimizeBox = true;
 
                 // Ensure we got the correct tab size to maximize back too.
-                if (Main_TabControl.SelectedTab == Inventory_TabPage) // Inventory.
+                if (Main_TabControl.SelectedTab == Inventory_TabPage)   // Inventory.
                 {
                     this.Size = new Size(756, 494);
                 }
@@ -589,11 +629,11 @@ namespace CoreKeeperInventoryEditor
                 {
                     this.Size = new Size(756, 360);
                 }
-                else if (Main_TabControl.SelectedTab == World_TabPage) // World.
+                else if (Main_TabControl.SelectedTab == World_TabPage)  // World.
                 {
                     this.Size = new Size(756, 494);
                 }
-                else if (Main_TabControl.SelectedTab == Chat_TabPage) // Chat.
+                else if (Main_TabControl.SelectedTab == Chat_TabPage)   // Chat.
                 {
                     this.Size = new Size(410, 360);
                 }
