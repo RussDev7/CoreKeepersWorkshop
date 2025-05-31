@@ -10,6 +10,7 @@ Changes Since v1.3.6.4
 - Increased the max reveal range to 15.
 
 + Added 10+ various missing assets.
++ Reworked minimizing to now fold top-left of games window.
 
 Changes Since v1.3.6.3
 ===========================================================
