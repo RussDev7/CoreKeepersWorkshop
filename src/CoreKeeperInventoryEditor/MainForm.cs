@@ -372,6 +372,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(BruteForceTP_CheckBox, "Brute force the address searching for the teleport address.");
                 toolTip.SetToolTip(BruteForceTrash_CheckBox, "Brute force the trashing of items by singling out each item.");
                 toolTip.SetToolTip(ForceNoclip_Checkbox, "Force noclip to always be on.");
+                toolTip.SetToolTip(MapTeleport_CheckBox, "Use the overhead map to left-click teleport to any position.");
 
                 toolTip.SetToolTip(Inventory_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(PlayerTools_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
@@ -14241,7 +14242,7 @@ namespace CoreKeeperInventoryEditor
 
         #region Map Teleport Addresses
 
-        // public IEnumerable<long> AoBScanResultsPlayerMapLocationScanner = null;
+        // Using a 'Task' instead of a 'void' to allow for 'await'ing.
         public async Task GetPlayerMapLocationAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
