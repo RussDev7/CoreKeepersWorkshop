@@ -158,6 +158,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeepersWorkshop.OverlayHelper.OverlayForm._messages")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.randomTeleportTimer")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.initialRTPosition")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.mapTeleportTimer")]
 [assembly: SuppressMessage("Style", "IDE0300:Simplify collection initialization", Justification = "CompatibilityReasons", Scope = "member", Target = "~M:CoreKeeperInventoryEditor.MainForm.MakeGrayscale3(System.Drawing.Bitmap)~System.Drawing.Bitmap")]
 [assembly: SuppressMessage("Style", "IDE0300:Simplify collection initialization", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.ChatSkins")]
 [assembly: SuppressMessage("Style", "IDE0300:Simplify collection initialization", Justification = "CompatibilityReasons", Scope = "member", Target = "~F:CoreKeeperInventoryEditor.MainForm.CommandReader.commands")]

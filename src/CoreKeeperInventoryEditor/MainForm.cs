@@ -44,6 +44,7 @@ namespace CoreKeeperInventoryEditor
         public IEnumerable<long> AoBScanResultsGroundItems;
         public IEnumerable<long> AoBScanResultsPlayerTools;
         public IEnumerable<long> AoBScanResultsPlayerLocation;
+        public IEnumerable<long> AoBScanResultsPlayerMapLocation;
         public IEnumerable<long> AoBScanResultsPlayerBuffs;
         public IEnumerable<long> AoBScanResultsWorldData;
         public IEnumerable<long> AoBScanResultsFishingData;
@@ -11378,14 +11379,14 @@ namespace CoreKeeperInventoryEditor
 
         // Below contains all the offsets for the player mods.
         // These values are all added to the players base address. // Base + Offset.
-        readonly string positionXOffset = "0";                     // Player position X.
-        readonly string positionYOffset = "4";                     // Player position Y.
-        readonly string godmodeOffset   = "1248";                  // Godmode.
-        readonly string speedOffset     = "2808";                  // Player speed.  // 336 default.
-        readonly string hungerOffset    = "2912";                  // Player hunger. // What even is this game anymore LOL.
-        readonly string manaOffset      = "3808";                  // Player mana.
-        readonly string noclipOffset    = "6624";                  // Noclip.        // 4 = off, 32 = on, 524288 = Recall (wait 5s).
-        readonly string passiveAIOffset = "7716";                  // Passive AI.    // 5 = off, 8  = on.
+        readonly string positionX_Offset = "0";                    // Player position X.
+        readonly string positionY_Offset = "4";                    // Player position Y.
+        readonly string godmode_Offset   = "1248";                 // Godmode.
+        readonly string speed_Offset     = "2808";                 // Player speed.  // 336 default.
+        readonly string hunger_Offset    = "2912";                 // Player hunger. // What even is this game anymore LOL.
+        readonly string mana_Offset      = "3808";                 // Player mana.
+        readonly string noclip_Offset    = "6624";                 // Noclip.        // 4 = off, 32 = on, 524288 = Recall (wait 5s).
+        readonly string passiveAI_Offset = "7716";                 // Passive AI.    // 5 = off, 8  = on.
 
         // Obsolete Offsets 05Feb25:
         // readonly string playerStateBaseOffset = "248";          // For player effects like recall and anti collision.
@@ -11933,7 +11934,7 @@ namespace CoreKeeperInventoryEditor
                 PlayerTools_ProgressBar.Value = 0;
 
                 // Get the players health address.
-                playerHealthAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+                playerHealthAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
 
                 // Advance the progress bar.
                 PlayerTools_ProgressBar.PerformStep();
@@ -12982,8 +12983,8 @@ namespace CoreKeeperInventoryEditor
         {
             // Get the addresses.
             // Old 04Oct23: BigInteger.Subtract(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-            string positionX = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(positionXOffset, NumberStyles.Integer)).ToString("X");
-            string positionY = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(positionYOffset, NumberStyles.Integer)).ToString("X");
+            string positionX = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(positionX_Offset, NumberStyles.Integer)).ToString("X");
+            string positionY = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(positionY_Offset, NumberStyles.Integer)).ToString("X");
 
             // Convert values to number.
             string playerPositionX = MemLib.ReadFloat(positionX).ToString();
@@ -13101,7 +13102,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (Godmode_ToggleSwith.Checked)
@@ -13159,7 +13160,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(speedOffset, NumberStyles.Integer)).ToString("X");
+            string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(speed_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (Speed_ToggleSwith.Checked)
@@ -13220,7 +13221,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            hungerAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(hungerOffset, NumberStyles.Integer)).ToString("X");
+            hungerAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(hunger_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (InfiniteFood_ToggleSwith.Checked)
@@ -13404,7 +13405,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            manaAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(manaOffset, NumberStyles.Integer)).ToString("X");
+            manaAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mana_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (InfiniteMana_ToggleSwith.Checked)
@@ -13466,7 +13467,7 @@ namespace CoreKeeperInventoryEditor
             // Get the addresses.
             // Old alternitive address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
             // POINTER MAP: 03 ?? (02) - Use the second one.
-            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclipOffset, NumberStyles.Integer)).ToString("X");
+            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
             if (Noclip_ToggleSwith.Checked)
@@ -13540,7 +13541,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
 
             // Write value.
             MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
@@ -13582,7 +13583,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Fetch some addresses. // Using noclipOffset as the player state. // 4 = off, 524288 = on.
-            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclipOffset, NumberStyles.Integer)).ToString("X");
+            string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
 
             // Disable slider.
             ForceRecall_ToggleSwith.Enabled = false;
@@ -13637,7 +13638,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Get the addresses.
-            string passiveAIAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(passiveAIOffset, NumberStyles.Integer)).ToString("X");
+            string passiveAIAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(passiveAI_Offset, NumberStyles.Integer)).ToString("X");
 
             // Toggle on passive AI.
             if (PassiveAI_ToggleSwith.Checked)
@@ -13934,7 +13935,7 @@ namespace CoreKeeperInventoryEditor
             }
         }
 
-        public IEnumerable<long> AoBScanResultsPlayerLocationScanner;
+        public IEnumerable<long> AoBScanResultsPlayerLocationScanner = null;
         public async void GetPlayerLocationAddresses()
         {
             // Amount of times to rescan the address.
@@ -13997,7 +13998,7 @@ namespace CoreKeeperInventoryEditor
                 GetTeleportAddresses_Button.Enabled = true;
                 TeleportPlayer_GroupBox.Enabled = true;
 
-                // Reset aob scan results
+                // Reset aob scan results.
                 AoBScanResultsPlayerLocation = null;
                 AoBScanResultsPlayerLocationScanner = null;
 
@@ -14169,7 +14170,7 @@ namespace CoreKeeperInventoryEditor
                 GetTeleportAddresses_Button.Enabled = true;
                 TeleportPlayer_GroupBox.Enabled = true;
 
-                // Reset aob scan results
+                // Reset aob scan results.
                 AoBScanResultsPlayerLocation = null;
                 AoBScanResultsPlayerLocationScanner = null;
 
@@ -14200,7 +14201,7 @@ namespace CoreKeeperInventoryEditor
                 GetTeleportAddresses_Button.Enabled = true;
                 TeleportPlayer_GroupBox.Enabled = true;
 
-                // Reset aob scan results
+                // Reset aob scan results.
                 AoBScanResultsPlayerLocation = null;
                 AoBScanResultsPlayerLocationScanner = null;
 
@@ -14237,6 +14238,135 @@ namespace CoreKeeperInventoryEditor
             TeleportPlayer_ProgressBar.Visible = false;
         }
         #endregion // End world tool addresses.
+
+        #region Map Teleport Addresses
+
+        // public IEnumerable<long> AoBScanResultsPlayerMapLocationScanner = null;
+        public async Task GetPlayerMapLocationAddresses()
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Name button to indicate loading.
+            GetTeleportAddresses_Button.Text = "Loading...";
+
+            // Disable button to prevent spamming.
+            TeleportPlayer_GroupBox.Enabled = false;
+
+            // Reset textbox.
+            TeleportPlayerAddresses_RichTextBox.Text = "Addresses Loaded: 0";
+
+            // Offset the progress bar to show it's working.
+            TeleportPlayer_ProgressBar.Visible = true;
+            TeleportPlayer_ProgressBar.Maximum = 100;
+            TeleportPlayer_ProgressBar.Step = 25;
+            TeleportPlayer_ProgressBar.Value = 10;
+
+            // Select an address based on brute force mode.
+            //                                                                                                            [           ] - mapOpenedAtLeastOnce.
+            string AoBPlayerMapLocationArrayOne = "?? 02 00 00 00 00 00 00 04 00 00 00 CD CC CC 3D 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 80 3F 00 00 00 00";
+            string AoBPlayerMapLocationArrayTwo = "?? 02 00 00 00 00 00 00 04 00 00 00 CD CC CC 3D 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 00 00 80 3F 00 00 00 00";
+
+            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+            AoBScanResultsPlayerMapLocation = await MemLib.AoBScan(AoBPlayerMapLocationArrayOne, true, true);
+
+            // Update the progress bar.
+            TeleportPlayer_ProgressBar.Value = 50;
+
+            // If the count is zero, the scan had an error.
+            if (AoBScanResultsPlayerMapLocation.Count() < 1)
+            {
+                // Reset textbox.
+                TeleportPlayerAddresses_RichTextBox.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                TeleportPlayer_ProgressBar.Value = 0;
+                TeleportPlayer_ProgressBar.Visible = false;
+
+                // Rename button back to default.
+                GetTeleportAddresses_Button.Text = "Get Addresses";
+
+                // Re-enable button.
+                GetTeleportAddresses_Button.Enabled = true;
+                TeleportPlayer_GroupBox.Enabled = true;
+
+                // Reset aob scan results.
+                AoBScanResultsPlayerMapLocation = null;
+
+                // Display error message.
+                MessageBox.Show("There was an issue trying to fetch the map teleport addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (AoBScanResultsPlayerMapLocation.Count() > 1)
+            {
+                // If the count is more then one, try using array two.
+                // Display info message.
+                MessageBox.Show("Multiple map teleport addresses where found. This is normal and will require an additional step.\r\r1) Open the overhead map.\r2) Press 'ok' when ready!", "Map Teleport Helper", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Update the progress bar.
+                TeleportPlayer_ProgressBar.Value = 75;
+
+                // Rescan the AoB using the second array.
+                AoBScanResultsPlayerMapLocation = await MemLib.AoBScan(AoBPlayerMapLocationArrayTwo, true, true);
+            }
+
+            // If the count is not one, the scan had an error.
+            if (AoBScanResultsPlayerMapLocation.Count() != 1)
+            {
+                // Reset textbox.
+                TeleportPlayerAddresses_RichTextBox.Text = "Addresses Loaded: 0";
+
+                // Reset progress bar.
+                TeleportPlayer_ProgressBar.Value = 0;
+                TeleportPlayer_ProgressBar.Visible = false;
+
+                // Rename button back to default.
+                GetTeleportAddresses_Button.Text = "Get Addresses";
+
+                // Re-enable button.
+                GetTeleportAddresses_Button.Enabled = true;
+                TeleportPlayer_GroupBox.Enabled = true;
+
+                // Reset aob scan results.
+                AoBScanResultsPlayerMapLocation = null;
+
+                // Display error message.
+                MessageBox.Show($"There was an issue trying to fetch the map teleport addresses. Count: [{AoBScanResultsPlayerMapLocation.Count()}]" + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Update richtextbox with found addresses.
+            foreach (long res in AoBScanResultsPlayerMapLocation)
+            {
+                if (TeleportPlayerAddresses_RichTextBox.Text == "Addresses Loaded: 0")
+                {
+                    TeleportPlayerAddresses_RichTextBox.Text = "Teleport Map Addresses Loaded: " + AoBScanResultsPlayerMapLocation.Count().ToString() + " [" + res.ToString("X").ToString();
+                }
+                else
+                {
+                    TeleportPlayerAddresses_RichTextBox.Text += ", " + res.ToString("X").ToString();
+                }
+            }
+            TeleportPlayerAddresses_RichTextBox.Text += "]";
+
+            // Re-enable button.
+            // button11.Enabled = true;
+            TeleportPlayer_GroupBox.Enabled = true;
+
+            // Rename button back to default.
+            GetTeleportAddresses_Button.Text = "Get Addresses";
+
+            // Complete progress bar.
+            TeleportPlayer_ProgressBar.Value = 100;
+
+            // Hide progressbar.
+            TeleportPlayer_ProgressBar.Visible = false;
+        }
+        #endregion
 
         #region Map Rendering Addresses
 
@@ -14664,8 +14794,8 @@ namespace CoreKeeperInventoryEditor
 
                 // Define players initial position.
                 var initialres = AoBScanResultsPlayerTools.Last();
-                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionXOffset, NumberStyles.Integer)).ToString("X"));
-                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionYOffset, NumberStyles.Integer)).ToString("X"));
+                float xlocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionX_Offset, NumberStyles.Integer)).ToString("X"));
+                float ylocres = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionY_Offset, NumberStyles.Integer)).ToString("X"));
                 Vector2 initialPosition = new Vector2(xlocres, ylocres);
 
                 // Define entree values.
@@ -14760,11 +14890,11 @@ namespace CoreKeeperInventoryEditor
                 // Get the anti collision addresses.
                 // renderMapPlayerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(playerStateBaseOffset, NumberStyles.Integer)).ToString("X");
                 // renderMapPlayerStateOriginalValue = MemLib.ReadInt(renderMapPlayerStateAddress).ToString(); // Save state for returning later.
-                renderMapNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclipOffset, NumberStyles.Integer)).ToString("X");
+                renderMapNoClipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
                 renderMapNoClipOriginalValue = MemLib.ReadInt(renderMapNoClipAddress).ToString(); // Save state for returning later.
 
                 // Get the godmode address.
-                renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+                renderMapGodmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
 
                 // Declare the current start time.
                 DateTime startTime = DateTime.Now;
@@ -15544,6 +15674,130 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End teleport player.
+
+        #region Map Teleport
+
+        #region Map Teleport Mod Offsets
+
+        // Below contains all the offsets for the map teleport mod.
+        // These values are all added to the map teleports base address.
+                                                             // Base + Offset.
+        readonly string mapMiddleClickX_Offset      = "20";  // (this.mapUI.GetCursorWorldPosition().X).
+        readonly string mapOpenedAtLeastOnce_Offset = "24";  // (0=false, 1=true).
+        readonly string mapMiddleClickY_Offset      = "28";  // (this.mapUI.GetCursorWorldPosition().Y).
+        readonly string mapOpen_Offset              = "92";  // (0=close, 1=open).
+        readonly string mapLeftClickX_Offset        = "136"; // (this.mapUI.GetCursorWorldPosition().X).
+        readonly string mapLeftClickY_Offset        = "140"; // (this.mapUI.GetCursorWorldPosition().Y).
+
+        #endregion
+
+        // Toggle map teleport.
+        readonly System.Timers.Timer mapTeleportTimer = new System.Timers.Timer();
+        string mapOpen_Address        = "0";
+        string mapLeftClickX_Address  = "0";
+        string mapLeftClickY_Address  = "0";
+        private async void MapTeleport_CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Check if the checkbox's state is checked to ensure the checks are only ran upon checked.
+            if (MapTeleport_CheckBox.Checked)
+            {
+                // Open the process and check if it was successful before the AoB scan.
+                if (!MemLib.OpenProcess("CoreKeeper"))
+                {
+                    // Toggle checkbox.
+                    MapTeleport_CheckBox.Checked = false;
+
+                    MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Ensure the teleport player pointers are found.
+                if (AoBScanResultsPlayerLocation == null)
+                {
+                    // Toggle checkbox.
+                    MapTeleport_CheckBox.Checked = false;
+
+                    MessageBox.Show("You need to first scan for the Teleport Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Ensure pointers are found.
+                if (AoBScanResultsPlayerMapLocation == null)
+                {
+                    // First scan for the map location address.
+                    await GetPlayerMapLocationAddresses();
+
+                    // Ensure the address fetching was successful.
+                    if (AoBScanResultsPlayerMapLocation == null)
+                    {
+                        // Toggle checkbox; No need for error message, this was handled by the fetch.
+                        MapTeleport_CheckBox.Checked = false;
+                        return;
+                    }
+                }
+
+                // Calculate the address offsets outside of the timed loop to save perfomance.
+                mapOpen_Address = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mapOpen_Offset, NumberStyles.Integer)).ToString("X");
+                mapLeftClickX_Address = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mapLeftClickX_Offset, NumberStyles.Integer)).ToString("X");
+                mapLeftClickY_Address = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mapLeftClickY_Offset, NumberStyles.Integer)).ToString("X");
+
+                // Checkbox is being toggled on.
+                // Start the timed events.
+                mapTeleportTimer.Interval = 1; // Custom intervals.
+                mapTeleportTimer.Elapsed += new ElapsedEventHandler(MapTeleportTimedEvent);
+                mapTeleportTimer.Start();
+            }
+            else
+            {
+                // Checkbox is being toggled off.
+                // Stop the timers.
+                mapTeleportTimer.Stop();
+            }
+        }
+
+        // Map teleport timer.
+        float oldmapToWorldPosX = 0;
+        float oldmapToWorldPosY = 0;
+        private void MapTeleportTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            // Check if the overhead map is open.
+            bool mapIsOpen = MemLib.ReadInt(mapOpen_Address) == 1;
+
+            // Ensure the map is currently opened.
+            if (mapIsOpen)
+            {
+                // Gather the existing clicked locations.
+                float mapToWorldPosX = MemLib.ReadFloat(mapLeftClickX_Address);
+                float mapToWorldPosY = MemLib.ReadFloat(mapLeftClickY_Address);
+                bool clickPositionChanged = mapToWorldPosX != oldmapToWorldPosX || mapToWorldPosY != oldmapToWorldPosY;
+
+                // Update the old click positions reguardless of 0,0 checks.
+                if (clickPositionChanged)
+                {
+                    oldmapToWorldPosX = mapToWorldPosX;
+                    oldmapToWorldPosY = mapToWorldPosY;
+                }
+
+                // Check if the existing click position changed and the initial positions are not 0,0.
+                if (clickPositionChanged && mapToWorldPosX != 0 && mapToWorldPosY != 0)
+                {
+                    // Iterate through each found address.
+                    foreach (long res in AoBScanResultsPlayerLocation)
+                    {
+                        // Get address from loop.
+                        string playerX = res.ToString("X").ToString();
+                        string playerY = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                        // Send player to X.
+                        MemLib.WriteMemory(playerX, "float", mapToWorldPosX.ToString());
+
+                        // Send player to Y.
+                        MemLib.WriteMemory(playerY, "float", mapToWorldPosY.ToString());
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region Get World Information
 
@@ -16991,11 +17245,23 @@ namespace CoreKeeperInventoryEditor
 
         #region Auto Fishing Bot
 
+        #region Auto Fishing Bot Offsets
+
+        // Below contains all the offsets for the auto fishing bot.
+        // These values are all added to the auto fishing bots base address.
+                                                    // Base + Offset.
+        readonly string baseFishing_Offset = "0";   // Base address.
+        readonly string fishType_Offset    = "872"; // ID of the fish currently on the line. Will be '0' with no fish on the line.
+        readonly string fishFight_Offset   = "N/A"; // FISH MINI-GAME: Fish is currently fighting, do not pull in line during this.
+                                                    // As of version 0.9.9.9, they removed the fighting minigame.
+
+        #endregion
+
         // Toggle auto fishing.
         readonly System.Timers.Timer autoFishingTimer = new System.Timers.Timer();
-        string baseFishingAddress = "0";
-        string fishTypeAddress = "0";
-        // string fishFightAddress = "0";
+        string baseFishing_Address  = "0";
+        string fishType_Address     = "0";
+        // string fishFight_Address = "0";
         bool autoFishingChecked = false;
         private async void AutomaticFishing_Button_Click(object sender, EventArgs e)
         {
@@ -17086,10 +17352,10 @@ namespace CoreKeeperInventoryEditor
                 TeleportPlayer_ProgressBar.Visible = false;
 
                 // Get the addresses.
-                baseFishingAddress = AoBScanResultsFishingData.Last().ToString("X"); // Rod type. // Always use the last address!
-                fishTypeAddress = BigInteger.Subtract(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("872", NumberStyles.Integer)).ToString("X");
-                // fishTypeAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X");
-                // fishFightAddress = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X");
+                baseFishing_Address = AoBScanResultsFishingData.Last().ToString("X"); // Rod type. // Always use the last address!
+                fishType_Address = BigInteger.Subtract(BigInteger.Parse(baseFishing_Address, NumberStyles.HexNumber), BigInteger.Parse(fishType_Offset, NumberStyles.Integer)).ToString("X");
+                // fishType_Address = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("784", NumberStyles.Integer)).ToString("X");
+                // fishFight_Address = BigInteger.Add(BigInteger.Parse(baseFishingAddress, NumberStyles.HexNumber), BigInteger.Parse("804", NumberStyles.Integer)).ToString("X");
 
                 // Rename button back to default.
                 AutomaticFishing_Button.Text = "Disable Fishing Bot";
@@ -17125,7 +17391,7 @@ namespace CoreKeeperInventoryEditor
         private async void AutoFishingTimedEvent(Object source, ElapsedEventArgs e)
         {
             // Fetch current addresses.
-            fishType = MemLib.ReadInt(fishTypeAddress);
+            fishType = MemLib.ReadInt(fishType_Address);
             // fishFighting = (MemLib.ReadInt(fishFightAddress) == 1);
 
             // Fish is on the hook, attempt to reel in. //
@@ -17216,8 +17482,8 @@ namespace CoreKeeperInventoryEditor
 
                 // Define players initial position.
                 var initialres = AoBScanResultsPlayerTools.Last();
-                float xPos = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionXOffset, NumberStyles.Integer)).ToString("X"));
-                float yPos = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionYOffset, NumberStyles.Integer)).ToString("X"));
+                float xPos = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionX_Offset, NumberStyles.Integer)).ToString("X"));
+                float yPos = MemLib.ReadFloat(BigInteger.Add(BigInteger.Parse(initialres.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(positionY_Offset, NumberStyles.Integer)).ToString("X"));
                 initialRTPosition = new Vector2(xPos, yPos);
 
                 // Slider is being toggled on.
@@ -17727,7 +17993,7 @@ namespace CoreKeeperInventoryEditor
                             godmodeEnabled = !godmodeEnabled;
 
                             // Get the addresses.
-                            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmodeOffset, NumberStyles.Integer)).ToString("X");
+                            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
 
                             // Check if the slider was not yet checked.
                             if (godmodeEnabled)
@@ -17821,7 +18087,7 @@ namespace CoreKeeperInventoryEditor
                             // Get the addresses.
                             // Old alternative address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
                             // POINTER MAP: 03 ?? (02) - Use the second one.
-                            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclipOffset, NumberStyles.Integer)).ToString("X");
+                            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
 
                             // Check if the slider was not yet checked.
                             if (noclipEnabled)
