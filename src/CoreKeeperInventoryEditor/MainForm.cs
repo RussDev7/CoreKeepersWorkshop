@@ -15680,6 +15680,10 @@ namespace CoreKeeperInventoryEditor
 
         #region Map Teleport Mod Offsets
 
+        // Suppress CS0414 (field is assigned but its value is never used).
+        // Suppressing since these are modding offsets meant for future use or documentation.
+        #pragma warning disable CS0414
+
         // Below contains all the offsets for the map teleport mod.
         // These values are all added to the map teleports base address.
                                                              // Base + Offset.
@@ -15689,6 +15693,8 @@ namespace CoreKeeperInventoryEditor
         readonly string mapOpen_Offset              = "92";  // (0=close, 1=open).
         readonly string mapLeftClickX_Offset        = "136"; // (this.mapUI.GetCursorWorldPosition().X).
         readonly string mapLeftClickY_Offset        = "140"; // (this.mapUI.GetCursorWorldPosition().Y).
+
+        #pragma warning restore CS0414
 
         #endregion
 
@@ -17248,6 +17254,10 @@ namespace CoreKeeperInventoryEditor
 
         #region Auto Fishing Bot Offsets
 
+        // Suppress CS0414 (field is assigned but its value is never used).
+        // Suppressing since these are modding offsets meant for future use or documentation.
+        #pragma warning disable CS0414
+
         // Below contains all the offsets for the auto fishing bot.
         // These values are all added to the auto fishing bots base address.
                                                     // Base + Offset.
@@ -17255,6 +17265,8 @@ namespace CoreKeeperInventoryEditor
         readonly string fishType_Offset    = "872"; // ID of the fish currently on the line. Will be '0' with no fish on the line.
         readonly string fishFight_Offset   = "N/A"; // FISH MINI-GAME: Fish is currently fighting, do not pull in line during this.
                                                     // As of version 0.9.9.9, they removed the fighting minigame.
+
+        #pragma warning restore CS0414
 
         #endregion
 
