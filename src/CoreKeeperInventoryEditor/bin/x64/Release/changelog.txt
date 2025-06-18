@@ -1,6 +1,7 @@
 Changes Since v1.3.6.5
 ===========================================================
 - Updated the map reveal addresses.
+- Fixed 'amount' within remove ground items message.
 
 + Added a map teleport mod.
 
