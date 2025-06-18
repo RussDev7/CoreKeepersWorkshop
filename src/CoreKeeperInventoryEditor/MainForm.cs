@@ -15728,19 +15728,33 @@ namespace CoreKeeperInventoryEditor
                     return;
                 }
 
-                // Ensure pointers are found.
+                // STEP1: Ensure pointers are found.
                 if (AoBScanResultsPlayerMapLocation == null)
                 {
                     // First scan for the map location address.
                     await GetPlayerMapLocationAddresses();
+                }
+                else
+                {
+                    // Pointers are found, check if they are still valid.
+                    //
+                    string mapLocationCheckAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
+                    float mapLocationCheck = MemLib.ReadFloat(mapLocationCheckAddress, round: false); // _pingCooldown - Should be 0.1f.
 
-                    // Ensure the address fetching was successful.
-                    if (AoBScanResultsPlayerMapLocation == null)
+                    // Check if we need to rescan crafting or not.
+                    if (mapLocationCheck != 0.1f)
                     {
-                        // Toggle checkbox; No need for error message, this was handled by the fetch.
-                        MapTeleport_CheckBox.Checked = false;
-                        return;
+                        // Scan for the map location address.
+                        await GetPlayerMapLocationAddresses();
                     }
+                }
+
+                // STEP2: Ensure the address fetching was successful.
+                if (AoBScanResultsPlayerMapLocation == null)
+                {
+                    // Toggle checkbox; No need for error message, this was handled by the fetch.
+                    MapTeleport_CheckBox.Checked = false;
+                    return;
                 }
 
                 // Calculate the address offsets outside of the timed loop to save perfomance.
