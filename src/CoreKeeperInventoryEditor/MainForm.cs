@@ -15422,7 +15422,7 @@ namespace CoreKeeperInventoryEditor
 
                         // Log the items removed.
                         int ItemTypeValue = MemLib.ReadInt(ItemType);
-                        int ItemAmountValue = MemLib.ReadInt(ItemType);
+                        int ItemAmountValue = MemLib.ReadInt(ItemAmount);
                         string logMessage = "Item Removed BruteForce: " + "ItemID: " + ItemTypeValue + " | Amount: " + ItemAmountValue + Environment.NewLine;
 
                         // Update UI with removed item details.
@@ -15476,7 +15476,7 @@ namespace CoreKeeperInventoryEditor
 
                                 // Log the items removed.
                                 int ItemTypeValue = MemLib.ReadInt(ItemType);
-                                int ItemAmountValue = MemLib.ReadInt(ItemType);
+                                int ItemAmountValue = MemLib.ReadInt(ItemAmount);
                                 int ItemVariantValue = MemLib.ReadInt(ItemVariant);
                                 int ItemSkillsetValue = MemLib.ReadInt(ItemSkillset);
                                 string logMessage = "Item Removed: " + "ItemID: " + ItemTypeValue + " | Amount: " + ItemAmountValue + " | Variation: " + ItemVariantValue + " | Skillset: " + ItemSkillsetValue + Environment.NewLine;
