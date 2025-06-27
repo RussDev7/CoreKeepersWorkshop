@@ -1,0 +1,56 @@
+name: Build CoreKeepersWorkshop
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Get version from AssemblyInfo.cs
+      id: get_version
+      run: |
+        $content = Get-Content "src/CoreKeeperInventoryEditor/Properties/AssemblyInfo.cs"
+        $versionLine = $content | Where-Object { $_ -match '\[assembly: AssemblyFileVersion\("(.+?)"\)\]' }
+        if ($versionLine -match '\("(.+?)"\)') {
+          $version = $matches[1]
+          echo "Version extracted: $version"
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+        } else {
+          Write-Error "Could not find version in AssemblyInfo.cs"
+          exit 1
+        }
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build Solution
+      run: msbuild .\src\CoreKeeperInventoryEditor.sln /p:Configuration=Release /p:Platform=x64
+
+    - name: Create release folder
+      run: |
+        if (Test-Path ".\release") { Remove-Item ".\release" -Recurse -Force }
+        New-Item -ItemType Directory -Path ".\release\CoreKeeperInventoryEditor-${{ steps.get_version.outputs.version }}"
+
+    - name: Copy build output
+      run: Copy-Item -Path ".\src\CoreKeeperInventoryEditor\bin\x64\Release\*" -Destination ".\release\CoreKeeperInventoryEditor-${{ steps.get_version.outputs.version }}" -Recurse -Force
+
+    - name: Clean unnecessary files
+      run: |
+        Get-ChildItem -Path ".\release" -Recurse -Include *.xml, *.pdb, *.config | Remove-Item -Force
+
+    - name: Zip the release
+      run: Compress-Archive -Path ".\release\*" -DestinationPath ".\CoreKeeperInventoryEditor-${{ steps.get_version.outputs.version }}.zip"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CoreKeeperInventoryEditor-${{ steps.get_version.outputs.version }}
+        path: .\CoreKeeperInventoryEditor-${{ steps.get_version.outputs.version }}.zip
