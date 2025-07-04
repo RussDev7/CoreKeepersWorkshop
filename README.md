@@ -115,6 +115,8 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 ## Requirements
 
 - [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+- [Visual Studio 2019 or later](https://visualstudio.microsoft.com/downloads/) (Community or Build Tools) – Only necessary if compiling the project using [build.bat](https://github.com/RussDev7/CoreKeepersWorkshop/blob/main/build.bat).
+  - If you do not need the full IDE, you can install [Build Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
 
 ## Legal
 - [License (GPL-3.0)](https://github.com/RussDev7/CoreKeepersWorkshop/blob/main/LICENSE)
