@@ -16086,13 +16086,20 @@ namespace CoreKeeperInventoryEditor
             GetWorldInformation_Button.Text = "Loading...";
             WorldInformation_GroupBox.Enabled = false;
 
+            // Reset world properties.
+            // This is so each property rescans on each new world.
+            AoBScanResultsWorldData = null;
+            AoBScanResultsWorldSeedIconMode = null;
+            AoBScanResultsWorldCreationDate = null;
+            AoBScanResultsWorldActivatedCrystals = null;
+
             // Clear the datagridview.
             WorldInformation_DataGridView.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
             WorldInformation_DataGridView.DataSource = null;
             WorldInformation_DataGridView.Rows.Clear();
             WorldInformation_DataGridView.Refresh();
 
-            // Get current player name.
+            // Get current world name.
             string world = (worldName != "") ? worldName : WorldInformation_TextBox.Text; // Check if world name override is active.
             string searchString = "{\"name\":\"" + world + "\"";
             StringBuilder builder = new StringBuilder();
@@ -16117,7 +16124,7 @@ namespace CoreKeeperInventoryEditor
                 // Re-enable button.
                 WorldInformation_GroupBox.Enabled = true;
 
-                // Reset aob scan results
+                // Reset aob scan results.
                 AoBScanResultsWorldData = null;
                 AoBScanResultsWorldSeedIconMode = null;
                 AoBScanResultsWorldCreationDate = null;
@@ -16174,7 +16181,7 @@ namespace CoreKeeperInventoryEditor
 
                         // Extract the data from the string.
                         string guid = Regex.Match(getJsonData, "\\\"guid\":\"(?<Data>[^\"]*)\\\"").Groups["Data"].Value;
-                        string seedString = Regex.Match(getJsonData, "\\\"seedString\":\"(?<Data>[^\"]*)\\\"").Groups["Data"].Value;                         // New 1.0+.
+                        string seedString = Regex.Match(getJsonData, "\\\"seedString\":\"(?<Data>[^\"]*)\\\"").Groups["Data"].Value;                                    // New 1.0+.
                         string seed = Regex.Match(getJsonData, "\\\"seed\":(?<Data>\\d+)").Groups["Data"].Value;
                         string activatedCrystals = Regex.Match(getJsonData, "\\\"activatedCrystals\":\\[(?<Data>[0-9, ]*)\\]").Groups["Data"].Value.Trim();
                         string year = Regex.Match(getJsonData, "\\\"year\":(?<Data>\\d+)").Groups["Data"].Value;
@@ -16182,11 +16189,13 @@ namespace CoreKeeperInventoryEditor
                         string day = Regex.Match(getJsonData, "\\\"day\":(?<Data>\\d+)").Groups["Data"].Value;
                         string iconIndex = Regex.Match(getJsonData, "\\\"iconIndex\":(?<Data>\\d+)").Groups["Data"].Value;
                         string mode = Regex.Match(getJsonData, "\\\"mode\":(?<Data>\\d+)").Groups["Data"].Value;
-                        string bossesKilled = Regex.Match(getJsonData, "\\\"bossesKilled\":(?<Data>\\d+)").Groups["Data"].Value;                             // New 1.0+.
-                        string worldGenerationType = Regex.Match(getJsonData, "\\\"worldGenerationType\":(?<Data>\\d+)").Groups["Data"].Value;               // New 1.0+.
+                        string bossesKilled = Regex.Match(getJsonData, "\\\"bossesKilled\":(?<Data>\\d+)").Groups["Data"].Value;                                        // New 1.0+.
+                        string worldGenerationType = Regex.Match(getJsonData, "\\\"worldGenerationType\":(?<Data>\\d+)").Groups["Data"].Value;                          // New 1.0+.
+                        string nextNewContentBundle = Regex.Match(getJsonData, "\\\"nextNewContentBundle\":(?<Data>\\d+)").Groups["Data"].Value;                        // New 1.1+.
+                        string activatedContentBundles = Regex.Match(getJsonData, "\\\"activatedContentBundles\":\\[(?<Data>[0-9, ]*)\\]").Groups["Data"].Value.Trim(); // New 1.1+.
 
                         // Extract world generation settings as JSON array of objects
-                        MatchCollection worldGenMatches = Regex.Matches(getJsonData, "\\{\"type\":(?<Type>\\d+),\"level\":(?<Level>\\d+)\\}");               // New 1.0+.
+                        MatchCollection worldGenMatches = Regex.Matches(getJsonData, "\\{\"type\":(?<Type>\\d+),\"level\":(?<Level>\\d+)\\}");                          // New 1.0+.
                         string worldGenerationSettings = "";
                         foreach (Match match in worldGenMatches)
                         {
@@ -16227,17 +16236,8 @@ namespace CoreKeeperInventoryEditor
                         WorldInformation_DataGridView.Invoke((MethodInvoker)(() => WorldInformation_DataGridView.Rows.Add("bossesKilled:", string.IsNullOrEmpty(bossesKilled) ? "N/A" : bossesKilled)));
                         WorldInformation_DataGridView.Invoke((MethodInvoker)(() => WorldInformation_DataGridView.Rows.Add("generationType:", string.IsNullOrEmpty(worldGenerationType) ? "N/A" : worldGenerationType)));
                         WorldInformation_DataGridView.Invoke((MethodInvoker)(() => WorldInformation_DataGridView.Rows.Add("generationSettings:", string.IsNullOrEmpty(worldGenerationSettings) ? "Default" : worldGenerationSettings)));
-
-                        // Define offsets of data.
-                        // nameOffset = getJsonData.IndexOf("\"name\"") + "\"name\"".Length + 2;
-                        // guidOffset = getJsonData.IndexOf("\"guid\"") + "\"guid\"".Length + 2;
-                        // seedOffset = getJsonData.IndexOf("\"seed\"") + "\"seed\"".Length + 1;
-                        // crystalsOffset = getJsonData.IndexOf("\"activatedCrystals\"") + "\"activatedCrystals\"".Length + 2;
-                        // yearOffset = getJsonData.IndexOf("\"year\"") + "\"year\"".Length + 1;
-                        // monthOffset = getJsonData.IndexOf("\"month\"") + "\"month\"".Length + 1;
-                        // dayOffset = getJsonData.IndexOf("\"day\"") + "\"day\"".Length + 1;
-                        // iconindexOffset = getJsonData.IndexOf("\"iconIndex\"") + "\"iconIndex\"".Length + 1;
-                        // modeOffset = getJsonData.IndexOf("\"mode\"") + "\"mode\"".Length + 1;
+                        WorldInformation_DataGridView.Invoke((MethodInvoker)(() => WorldInformation_DataGridView.Rows.Add("nextNewContentBundle:", string.IsNullOrEmpty(nextNewContentBundle) ? "N/A" : nextNewContentBundle)));
+                        WorldInformation_DataGridView.Invoke((MethodInvoker)(() => WorldInformation_DataGridView.Rows.Add("activatedContentBundles:", string.IsNullOrEmpty(activatedContentBundles) ? "N/A" : activatedContentBundles)));
 
                         #region Adjust Controls
 
@@ -16246,7 +16246,7 @@ namespace CoreKeeperInventoryEditor
 
                         // Set seed.
                         // numericUpDown22.Value = (string.IsNullOrEmpty(seed) ? (string.IsNullOrEmpty(seedString) ? 0 : int.Parse(seedString)) : (seed == "0") ? (string.IsNullOrEmpty(seedString) ? 0 : int.Parse(seedString)) : int.Parse(seed));
-                        Seed_NumericUpDown.Value = int.Parse(seed);
+                        Seed_NumericUpDown.Value = uint.Parse(seed);
 
                         // Set icon.
                         Icon_NumericUpDown.Value = int.Parse(iconIndex);
@@ -16526,7 +16526,7 @@ namespace CoreKeeperInventoryEditor
         }
 
         // Change world seed.
-        public async void ChangeWorldSeed(int seed = -1)
+        public async void ChangeWorldSeed(uint seed = 0)
         {
             // Ensure the datagridview is populated.
             if (WorldInformation_DataGridView == null || WorldInformation_DataGridView.Rows.Count == 0)
@@ -16590,8 +16590,7 @@ namespace CoreKeeperInventoryEditor
             string result = string.Join(" ", BitConverter.GetBytes(worldSeed).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldIcon).Select(b => b.ToString("X2"))) + " " + string.Join(" ", BitConverter.GetBytes(worldMode).Select(b => b.ToString("X2")));
 
             // Scan for the addresses. // Only re-scan address if address is null.
-            if (AoBScanResultsWorldSeedIconMode == null)
-                AoBScanResultsWorldSeedIconMode = await MemLib.AoBScan(result, true, true);
+            AoBScanResultsWorldSeedIconMode ??= await MemLib.AoBScan(result, true, true);
 
             // If the count is zero, the scan had an error.
             if (AoBScanResultsWorldSeedIconMode.Count() < 1) // No results found.
@@ -16643,18 +16642,32 @@ namespace CoreKeeperInventoryEditor
 
                 // Get the new seed.
                 string seedValue = Seed_NumericUpDown.Value.ToString();
-                seedValue = (seed == -1) ? seedValue : seed.ToString(); // Check if seed override was selected.
+                seedValue = (seed == 0) ? seedValue : seed.ToString(); // Check if seed override was selected.
 
                 // Set the new mode value. // Convert ASCII text to hex.
 
-                MemLib.WriteMemory(seedAddress, "int", seedValue);
+                // Memory.dll does not have a direct "uint" type. So lets use "bytes".
+                // MemLib.WriteMemory(seedAddress, "int", seedValue);
+
+                #region Write UInt Value
+
+                // Convert the uint into bytes (little-endian):
+                byte[] bytes = BitConverter.GetBytes(uint.Parse(seedValue));
+
+                // Convert byte array to hex-string representation:
+                string byteString = BitConverter.ToString(bytes).Replace("-", " ");
+
+                // Write the bytes to memory.
+                MemLib.WriteMemory(seedAddress, "bytes", byteString);
+
+                #endregion
 
                 // Perform progress step.
                 WorldInformation_ProgressBar.PerformStep();
             }
 
             // Update datagridview.
-            WorldInformation_DataGridView.Rows[seedRowIndex].Cells[1].Value = (seed == -1) ? Seed_NumericUpDown.Value.ToString() : seed.ToString();
+            WorldInformation_DataGridView.Rows[seedRowIndex].Cells[1].Value = (seed == 0) ? Seed_NumericUpDown.Value.ToString() : seed.ToString();
 
             // Update the progress bar.
             WorldInformation_ProgressBar.Value = 100;
