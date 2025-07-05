@@ -14182,7 +14182,7 @@ namespace CoreKeeperInventoryEditor
             else if (AoBScanResultsPlayerLocation.Count() > 1 && AoBScanResultsPlayerLocation.Count() < 10) // Check if or between 1 & 9.
             {
                 // Display error message.
-                MessageBox.Show("WARNING! There is more than a single address found! While this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"WARNING! There is more than a single address found! ({AoBScanResultsPlayerLocation.Count()})\nWhile this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 // return; No return is needed.
             }
