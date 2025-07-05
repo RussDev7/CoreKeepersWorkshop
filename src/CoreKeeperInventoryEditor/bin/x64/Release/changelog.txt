@@ -4,6 +4,7 @@ Changes Since v1.3.6.5
 - Fixed 'amount' within remove ground items message.
 - Fixed loading errors with the world properties.
 - Fixed the teleport player address warning icon.
+- Reduced the "AddItemToInv" code lines from 9669 to 420.
 
 + Added a map teleport mod.
 + Added two new properties to the world information tool.
