@@ -76,8 +76,8 @@ namespace CoreKeeperInventoryEditor
         public int chatSkinCounter = Settings.Default.ChatBackgroundCount;
 
         // Define warning and error titles.
-        public static readonly string warningTitle = $"WARNING: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion};
-        public static readonly string errorTitle   = $"ERROR: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion};
+        public static readonly string warningTitle = $"WARNING: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
+        public static readonly string errorTitle   = $"ERROR: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
 
         // Set the mouse event class.
         [System.Runtime.InteropServices.DllImport("user32.dll")]
