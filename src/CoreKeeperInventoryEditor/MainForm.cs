@@ -75,8 +75,9 @@ namespace CoreKeeperInventoryEditor
         public int worldSkinCounter = Settings.Default.WorldBackgroundCount;
         public int chatSkinCounter = Settings.Default.ChatBackgroundCount;
 
-        // Define error title.
-        public static readonly string errorTitle = "ERROR: " + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName + " v" + FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion;
+        // Define warning and error titles.
+        public static readonly string warningTitle = $"WARNING: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion};
+        public static readonly string errorTitle   = $"ERROR: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion};
 
         // Set the mouse event class.
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -14182,7 +14183,7 @@ namespace CoreKeeperInventoryEditor
             else if (AoBScanResultsPlayerLocation.Count() > 1 && AoBScanResultsPlayerLocation.Count() < 10) // Check if or between 1 & 9.
             {
                 // Display error message.
-                MessageBox.Show($"WARNING! There is more than a single address found! ({AoBScanResultsPlayerLocation.Count()})\nWhile this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"WARNING! There is more than a single address found! ({AoBScanResultsPlayerLocation.Count()})\nWhile this mod may still work, long term use may cause crashes.\r\rIt's recommended to reload the world or restart the game and scan again.", warningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 // return; No return is needed.
             }
