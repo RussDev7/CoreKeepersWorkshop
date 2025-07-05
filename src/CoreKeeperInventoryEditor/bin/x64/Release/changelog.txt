@@ -3,6 +3,7 @@ Changes Since v1.3.6.5
 - Updated the map reveal addresses (again).
 - Fixed 'amount' within remove ground items message.
 - Fixed loading errors with the world properties.
+- Fixed the teleport player address warning icon.
 
 + Added a map teleport mod.
 + Added two new properties to the world information tool.
