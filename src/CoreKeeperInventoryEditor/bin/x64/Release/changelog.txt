@@ -5,9 +5,11 @@ Changes Since v1.3.6.5
 - Fixed loading errors with the world properties.
 - Fixed the teleport player address warning icon.
 - Reduced the "AddItemToInv" code lines from 9669 to 420.
+- Fixed multiple control name typos.
 
 + Added a map teleport mod.
 + Added two new properties to the world information tool.
++ Added freeze item slots to the player mods.
 
 Changes Since v1.3.6.4
 ===========================================================
