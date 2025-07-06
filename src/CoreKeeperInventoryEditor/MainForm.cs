@@ -3414,8 +3414,8 @@ namespace CoreKeeperInventoryEditor
 
         private void PlayersFreezeItemSlotsTimedEvent(object sender, ElapsedEventArgs e)
         {
-            // Run on the UI thread if you plan to call UI methods.
-            this.Invoke(() =>
+            // Run on the UI thread for calling UI methods.
+            this.Invoke((MethodInvoker)(() =>
             {
                 foreach (var kv in _frozenSlotInfo.ToList())
                 {
@@ -3466,7 +3466,7 @@ namespace CoreKeeperInventoryEditor
                     */
                     #endregion
                 }
-            });
+            }));
         }
 
         #region Checkbox Helpers
