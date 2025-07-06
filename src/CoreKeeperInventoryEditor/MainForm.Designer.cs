@@ -123,46 +123,48 @@ namespace CoreKeeperInventoryEditor
             this.SpecialThanks_RichTextBox = new System.Windows.Forms.RichTextBox();
             this.PlayerTools_GroupBox = new System.Windows.Forms.GroupBox();
             this.PlayerTools_Panel = new Siticone.UI.WinForms.SiticonePanel();
+            this.FreezeItemSlots_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.FreezeItemSlots_Label = new System.Windows.Forms.Label();
             this.ForceNoclip_Checkbox = new Siticone.UI.WinForms.SiticoneCheckBox();
             this.MaxMinecartSpeed_Label = new System.Windows.Forms.Label();
             this.MaxMinecartSpeed_MetroTrackBar = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
-            this.MaxMinecartSpeed_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.MaxMinecartSpeed_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.MinecartSpeed_Label = new System.Windows.Forms.Label();
-            this.TrashInventory_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.TrashInventory_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.TrashInventory_Label = new System.Windows.Forms.Label();
-            this.KeepInventory_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.KeepInventory_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.KeepInventory_Label = new System.Windows.Forms.Label();
             this.OpenSkillEditor_Button = new System.Windows.Forms.Button();
             this.Range_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Range_Label = new System.Windows.Forms.Label();
-            this.Range_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Range_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.PlaceAnywhere_Label = new System.Windows.Forms.Label();
-            this.PlaceAnywhere_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.PlaceAnywhere_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.MoreMobs_Label = new System.Windows.Forms.Label();
-            this.Godmode_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Godmode_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.DisplayPosition_Label = new System.Windows.Forms.Label();
             this.PassiveAI_Label = new System.Windows.Forms.Label();
             this.OpenChunkVisualizer_Button = new System.Windows.Forms.Button();
-            this.InfiniteResources_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.DisplayLocation_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.InfiniteResources_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.DisplayLocation_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.Godmode_Label = new System.Windows.Forms.Label();
             this.InfiniteResources_Label = new System.Windows.Forms.Label();
-            this.PassiveAI_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.InfiniteMana_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.Speed_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.PassiveAI_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.InfiniteMana_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Speed_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.Suicide_Label = new System.Windows.Forms.Label();
             this.ForceRecall_Label = new System.Windows.Forms.Label();
             this.OpenChunkVisualizer_Label = new System.Windows.Forms.Label();
             this.InfiniteFood_Label = new System.Windows.Forms.Label();
             this.FreeCrafting_Label = new System.Windows.Forms.Label();
-            this.Suicide_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.ForceRecall_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
-            this.InfiniteFood_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Suicide_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.ForceRecall_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.InfiniteFood_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.Speed_Label = new System.Windows.Forms.Label();
             this.InfiniteMana_Label = new System.Windows.Forms.Label();
-            this.FreeCrafting_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.FreeCrafting_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.SpeedAmount_NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.Noclip_ToggleSwith = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
+            this.Noclip_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.Noclip_Label = new System.Windows.Forms.Label();
             this.MaxMinecartSpeedArrow_Label = new System.Windows.Forms.Label();
             this.Mods_TrackBar = new Siticone.UI.WinForms.SiticoneTrackBar();
@@ -1524,46 +1526,48 @@ namespace CoreKeeperInventoryEditor
             // PlayerTools_Panel
             // 
             this.PlayerTools_Panel.AutoScroll = true;
+            this.PlayerTools_Panel.Controls.Add(this.FreezeItemSlots_ToggleSwitch);
+            this.PlayerTools_Panel.Controls.Add(this.FreezeItemSlots_Label);
             this.PlayerTools_Panel.Controls.Add(this.ForceNoclip_Checkbox);
             this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_Label);
             this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_MetroTrackBar);
-            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.MinecartSpeed_Label);
-            this.PlayerTools_Panel.Controls.Add(this.TrashInventory_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.TrashInventory_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.TrashInventory_Label);
-            this.PlayerTools_Panel.Controls.Add(this.KeepInventory_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.KeepInventory_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.KeepInventory_Label);
             this.PlayerTools_Panel.Controls.Add(this.OpenSkillEditor_Button);
             this.PlayerTools_Panel.Controls.Add(this.Range_NumericUpDown);
             this.PlayerTools_Panel.Controls.Add(this.Range_Label);
-            this.PlayerTools_Panel.Controls.Add(this.Range_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Range_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.PlaceAnywhere_Label);
-            this.PlayerTools_Panel.Controls.Add(this.PlaceAnywhere_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.PlaceAnywhere_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.MoreMobs_Label);
-            this.PlayerTools_Panel.Controls.Add(this.Godmode_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Godmode_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.DisplayPosition_Label);
             this.PlayerTools_Panel.Controls.Add(this.PassiveAI_Label);
             this.PlayerTools_Panel.Controls.Add(this.OpenChunkVisualizer_Button);
-            this.PlayerTools_Panel.Controls.Add(this.InfiniteResources_ToggleSwith);
-            this.PlayerTools_Panel.Controls.Add(this.DisplayLocation_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteResources_ToggleSwitch);
+            this.PlayerTools_Panel.Controls.Add(this.DisplayLocation_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.Godmode_Label);
             this.PlayerTools_Panel.Controls.Add(this.InfiniteResources_Label);
-            this.PlayerTools_Panel.Controls.Add(this.PassiveAI_ToggleSwith);
-            this.PlayerTools_Panel.Controls.Add(this.InfiniteMana_ToggleSwith);
-            this.PlayerTools_Panel.Controls.Add(this.Speed_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.PassiveAI_ToggleSwitch);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteMana_ToggleSwitch);
+            this.PlayerTools_Panel.Controls.Add(this.Speed_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.Suicide_Label);
             this.PlayerTools_Panel.Controls.Add(this.ForceRecall_Label);
             this.PlayerTools_Panel.Controls.Add(this.OpenChunkVisualizer_Label);
             this.PlayerTools_Panel.Controls.Add(this.InfiniteFood_Label);
             this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_Label);
-            this.PlayerTools_Panel.Controls.Add(this.Suicide_ToggleSwith);
-            this.PlayerTools_Panel.Controls.Add(this.ForceRecall_ToggleSwith);
-            this.PlayerTools_Panel.Controls.Add(this.InfiniteFood_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Suicide_ToggleSwitch);
+            this.PlayerTools_Panel.Controls.Add(this.ForceRecall_ToggleSwitch);
+            this.PlayerTools_Panel.Controls.Add(this.InfiniteFood_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.Speed_Label);
             this.PlayerTools_Panel.Controls.Add(this.InfiniteMana_Label);
-            this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.FreeCrafting_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.SpeedAmount_NumericUpDown);
-            this.PlayerTools_Panel.Controls.Add(this.Noclip_ToggleSwith);
+            this.PlayerTools_Panel.Controls.Add(this.Noclip_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.Noclip_Label);
             this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeedArrow_Label);
             this.PlayerTools_Panel.Location = new System.Drawing.Point(6, 46);
@@ -1571,6 +1575,28 @@ namespace CoreKeeperInventoryEditor
             this.PlayerTools_Panel.ShadowDecoration.Parent = this.PlayerTools_Panel;
             this.PlayerTools_Panel.Size = new System.Drawing.Size(704, 140);
             this.PlayerTools_Panel.TabIndex = 38;
+            // 
+            // FreezeItemSlots_ToggleSwitch
+            // 
+            this.FreezeItemSlots_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.FreezeItemSlots_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.FreezeItemSlots_ToggleSwitch.Location = new System.Drawing.Point(534, 115);
+            this.FreezeItemSlots_ToggleSwitch.Name = "FreezeItemSlots_ToggleSwitch";
+            this.FreezeItemSlots_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.FreezeItemSlots_ToggleSwitch.TabIndex = 49;
+            this.FreezeItemSlots_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.FreezeItemSlots_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.FreezeItemSlots_ToggleSwitch.CheckedChanged += new System.EventHandler(this.FreezeItemSlots_ToggleSwitch_CheckedChanged);
+            // 
+            // FreezeItemSlots_Label
+            // 
+            this.FreezeItemSlots_Label.AutoSize = true;
+            this.FreezeItemSlots_Label.ForeColor = System.Drawing.Color.Snow;
+            this.FreezeItemSlots_Label.Location = new System.Drawing.Point(585, 119);
+            this.FreezeItemSlots_Label.Name = "FreezeItemSlots_Label";
+            this.FreezeItemSlots_Label.Size = new System.Drawing.Size(94, 13);
+            this.FreezeItemSlots_Label.TabIndex = 50;
+            this.FreezeItemSlots_Label.Text = "- Freeze Item Slots";
             // 
             // ForceNoclip_Checkbox
             // 
@@ -1620,17 +1646,17 @@ namespace CoreKeeperInventoryEditor
             this.MaxMinecartSpeed_MetroTrackBar.MouseLeave += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseLeave);
             this.MaxMinecartSpeed_MetroTrackBar.MouseHover += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseHover);
             // 
-            // MaxMinecartSpeed_ToggleSwith
+            // MaxMinecartSpeed_ToggleSwitch
             // 
-            this.MaxMinecartSpeed_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.MaxMinecartSpeed_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.MaxMinecartSpeed_ToggleSwith.Location = new System.Drawing.Point(534, 59);
-            this.MaxMinecartSpeed_ToggleSwith.Name = "MaxMinecartSpeed_ToggleSwith";
-            this.MaxMinecartSpeed_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.MaxMinecartSpeed_ToggleSwith.TabIndex = 40;
-            this.MaxMinecartSpeed_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.MaxMinecartSpeed_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.MaxMinecartSpeed_ToggleSwith.CheckedChanged += new System.EventHandler(this.MaxMinecartSpeed_ToggleSwith_CheckedChanged);
+            this.MaxMinecartSpeed_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.MaxMinecartSpeed_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_ToggleSwitch.Location = new System.Drawing.Point(534, 59);
+            this.MaxMinecartSpeed_ToggleSwitch.Name = "MaxMinecartSpeed_ToggleSwitch";
+            this.MaxMinecartSpeed_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.MaxMinecartSpeed_ToggleSwitch.TabIndex = 40;
+            this.MaxMinecartSpeed_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.MaxMinecartSpeed_ToggleSwitch.CheckedChanged += new System.EventHandler(this.MaxMinecartSpeed_ToggleSwitch_CheckedChanged);
             // 
             // MinecartSpeed_Label
             // 
@@ -1642,17 +1668,17 @@ namespace CoreKeeperInventoryEditor
             this.MinecartSpeed_Label.TabIndex = 41;
             this.MinecartSpeed_Label.Text = "- Minecart Speed";
             // 
-            // TrashInventory_ToggleSwith
+            // TrashInventory_ToggleSwitch
             // 
-            this.TrashInventory_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.TrashInventory_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.TrashInventory_ToggleSwith.Location = new System.Drawing.Point(534, 31);
-            this.TrashInventory_ToggleSwith.Name = "TrashInventory_ToggleSwith";
-            this.TrashInventory_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.TrashInventory_ToggleSwith.TabIndex = 38;
-            this.TrashInventory_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.TrashInventory_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.TrashInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.TrashInventory_ToggleSwith_CheckedChanged);
+            this.TrashInventory_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.TrashInventory_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.TrashInventory_ToggleSwitch.Location = new System.Drawing.Point(534, 31);
+            this.TrashInventory_ToggleSwitch.Name = "TrashInventory_ToggleSwitch";
+            this.TrashInventory_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.TrashInventory_ToggleSwitch.TabIndex = 38;
+            this.TrashInventory_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.TrashInventory_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.TrashInventory_ToggleSwitch.CheckedChanged += new System.EventHandler(this.TrashInventory_ToggleSwitch_CheckedChanged);
             // 
             // TrashInventory_Label
             // 
@@ -1664,17 +1690,17 @@ namespace CoreKeeperInventoryEditor
             this.TrashInventory_Label.TabIndex = 39;
             this.TrashInventory_Label.Text = "- Trash Inventory";
             // 
-            // KeepInventory_ToggleSwith
+            // KeepInventory_ToggleSwitch
             // 
-            this.KeepInventory_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.KeepInventory_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.KeepInventory_ToggleSwith.Location = new System.Drawing.Point(534, 3);
-            this.KeepInventory_ToggleSwith.Name = "KeepInventory_ToggleSwith";
-            this.KeepInventory_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.KeepInventory_ToggleSwith.TabIndex = 36;
-            this.KeepInventory_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.KeepInventory_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.KeepInventory_ToggleSwith.CheckedChanged += new System.EventHandler(this.KeepInventory_ToggleSwith_CheckedChanged);
+            this.KeepInventory_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.KeepInventory_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.KeepInventory_ToggleSwitch.Location = new System.Drawing.Point(534, 3);
+            this.KeepInventory_ToggleSwitch.Name = "KeepInventory_ToggleSwitch";
+            this.KeepInventory_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.KeepInventory_ToggleSwitch.TabIndex = 36;
+            this.KeepInventory_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.KeepInventory_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.KeepInventory_ToggleSwitch.CheckedChanged += new System.EventHandler(this.KeepInventory_ToggleSwitch_CheckedChanged);
             // 
             // KeepInventory_Label
             // 
@@ -1724,17 +1750,17 @@ namespace CoreKeeperInventoryEditor
             this.Range_Label.TabIndex = 34;
             this.Range_Label.Text = "- Range:";
             // 
-            // Range_ToggleSwith
+            // Range_ToggleSwitch
             // 
-            this.Range_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.Range_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.Range_ToggleSwith.Location = new System.Drawing.Point(353, 87);
-            this.Range_ToggleSwith.Name = "Range_ToggleSwith";
-            this.Range_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.Range_ToggleSwith.TabIndex = 21;
-            this.Range_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.Range_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Range_ToggleSwith.CheckedChanged += new System.EventHandler(this.Range_ToggleSwith_CheckedChanged);
+            this.Range_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Range_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Range_ToggleSwitch.Location = new System.Drawing.Point(353, 87);
+            this.Range_ToggleSwitch.Name = "Range_ToggleSwitch";
+            this.Range_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.Range_ToggleSwitch.TabIndex = 21;
+            this.Range_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Range_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Range_ToggleSwitch.CheckedChanged += new System.EventHandler(this.Range_ToggleSwitch_CheckedChanged);
             // 
             // PlaceAnywhere_Label
             // 
@@ -1746,17 +1772,17 @@ namespace CoreKeeperInventoryEditor
             this.PlaceAnywhere_Label.TabIndex = 32;
             this.PlaceAnywhere_Label.Text = "- Place Anywhere";
             // 
-            // PlaceAnywhere_ToggleSwith
+            // PlaceAnywhere_ToggleSwitch
             // 
-            this.PlaceAnywhere_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.PlaceAnywhere_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.PlaceAnywhere_ToggleSwith.Location = new System.Drawing.Point(353, 59);
-            this.PlaceAnywhere_ToggleSwith.Name = "PlaceAnywhere_ToggleSwith";
-            this.PlaceAnywhere_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.PlaceAnywhere_ToggleSwith.TabIndex = 20;
-            this.PlaceAnywhere_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.PlaceAnywhere_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.PlaceAnywhere_ToggleSwith.CheckedChanged += new System.EventHandler(this.PlaceAnywhere_ToggleSwith_CheckedChanged);
+            this.PlaceAnywhere_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.PlaceAnywhere_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_ToggleSwitch.Location = new System.Drawing.Point(353, 59);
+            this.PlaceAnywhere_ToggleSwitch.Name = "PlaceAnywhere_ToggleSwitch";
+            this.PlaceAnywhere_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.PlaceAnywhere_ToggleSwitch.TabIndex = 20;
+            this.PlaceAnywhere_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.PlaceAnywhere_ToggleSwitch.CheckedChanged += new System.EventHandler(this.PlaceAnywhere_ToggleSwitch_CheckedChanged);
             // 
             // MoreMobs_Label
             // 
@@ -1769,17 +1795,17 @@ namespace CoreKeeperInventoryEditor
             this.MoreMobs_Label.TabIndex = 30;
             this.MoreMobs_Label.Text = "More →";
             // 
-            // Godmode_ToggleSwith
+            // Godmode_ToggleSwitch
             // 
-            this.Godmode_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.Godmode_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.Godmode_ToggleSwith.Location = new System.Drawing.Point(3, 3);
-            this.Godmode_ToggleSwith.Name = "Godmode_ToggleSwith";
-            this.Godmode_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.Godmode_ToggleSwith.TabIndex = 7;
-            this.Godmode_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.Godmode_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Godmode_ToggleSwith.CheckedChanged += new System.EventHandler(this.Godmode_ToggleSwith_CheckedChanged);
+            this.Godmode_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Godmode_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Godmode_ToggleSwitch.Location = new System.Drawing.Point(3, 3);
+            this.Godmode_ToggleSwitch.Name = "Godmode_ToggleSwitch";
+            this.Godmode_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.Godmode_ToggleSwitch.TabIndex = 7;
+            this.Godmode_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Godmode_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Godmode_ToggleSwitch.CheckedChanged += new System.EventHandler(this.Godmode_ToggleSwitch_CheckedChanged);
             // 
             // DisplayPosition_Label
             // 
@@ -1812,29 +1838,29 @@ namespace CoreKeeperInventoryEditor
             this.OpenChunkVisualizer_Button.UseVisualStyleBackColor = true;
             this.OpenChunkVisualizer_Button.Click += new System.EventHandler(this.OpenChunkVisualizer_Button_Click);
             // 
-            // InfiniteResources_ToggleSwith
+            // InfiniteResources_ToggleSwitch
             // 
-            this.InfiniteResources_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.InfiniteResources_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteResources_ToggleSwith.Location = new System.Drawing.Point(152, 59);
-            this.InfiniteResources_ToggleSwith.Name = "InfiniteResources_ToggleSwith";
-            this.InfiniteResources_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.InfiniteResources_ToggleSwith.TabIndex = 13;
-            this.InfiniteResources_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.InfiniteResources_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteResources_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteResources_ToggleSwith_CheckedChanged);
+            this.InfiniteResources_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteResources_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_ToggleSwitch.Location = new System.Drawing.Point(152, 59);
+            this.InfiniteResources_ToggleSwitch.Name = "InfiniteResources_ToggleSwitch";
+            this.InfiniteResources_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteResources_ToggleSwitch.TabIndex = 13;
+            this.InfiniteResources_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteResources_ToggleSwitch.CheckedChanged += new System.EventHandler(this.InfiniteResources_ToggleSwitch_CheckedChanged);
             // 
-            // DisplayLocation_ToggleSwith
+            // DisplayLocation_ToggleSwitch
             // 
-            this.DisplayLocation_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.DisplayLocation_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.DisplayLocation_ToggleSwith.Location = new System.Drawing.Point(353, 3);
-            this.DisplayLocation_ToggleSwith.Name = "DisplayLocation_ToggleSwith";
-            this.DisplayLocation_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.DisplayLocation_ToggleSwith.TabIndex = 18;
-            this.DisplayLocation_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.DisplayLocation_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.DisplayLocation_ToggleSwith.CheckedChanged += new System.EventHandler(this.DisplayLocation_ToggleSwith_CheckedChanged);
+            this.DisplayLocation_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.DisplayLocation_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.DisplayLocation_ToggleSwitch.Location = new System.Drawing.Point(353, 3);
+            this.DisplayLocation_ToggleSwitch.Name = "DisplayLocation_ToggleSwitch";
+            this.DisplayLocation_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.DisplayLocation_ToggleSwitch.TabIndex = 18;
+            this.DisplayLocation_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.DisplayLocation_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.DisplayLocation_ToggleSwitch.CheckedChanged += new System.EventHandler(this.DisplayLocation_ToggleSwitch_CheckedChanged);
             // 
             // Godmode_Label
             // 
@@ -1856,41 +1882,41 @@ namespace CoreKeeperInventoryEditor
             this.InfiniteResources_Label.TabIndex = 19;
             this.InfiniteResources_Label.Text = "- Infinite Resources";
             // 
-            // PassiveAI_ToggleSwith
+            // PassiveAI_ToggleSwitch
             // 
-            this.PassiveAI_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.PassiveAI_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.PassiveAI_ToggleSwith.Location = new System.Drawing.Point(152, 115);
-            this.PassiveAI_ToggleSwith.Name = "PassiveAI_ToggleSwith";
-            this.PassiveAI_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.PassiveAI_ToggleSwith.TabIndex = 17;
-            this.PassiveAI_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.PassiveAI_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.PassiveAI_ToggleSwith.CheckedChanged += new System.EventHandler(this.PassiveAI_ToggleSwith_CheckedChanged);
+            this.PassiveAI_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.PassiveAI_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.PassiveAI_ToggleSwitch.Location = new System.Drawing.Point(152, 115);
+            this.PassiveAI_ToggleSwitch.Name = "PassiveAI_ToggleSwitch";
+            this.PassiveAI_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.PassiveAI_ToggleSwitch.TabIndex = 17;
+            this.PassiveAI_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.PassiveAI_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.PassiveAI_ToggleSwitch.CheckedChanged += new System.EventHandler(this.PassiveAI_ToggleSwitch_CheckedChanged);
             // 
-            // InfiniteMana_ToggleSwith
+            // InfiniteMana_ToggleSwitch
             // 
-            this.InfiniteMana_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.InfiniteMana_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteMana_ToggleSwith.Location = new System.Drawing.Point(3, 59);
-            this.InfiniteMana_ToggleSwith.Name = "InfiniteMana_ToggleSwith";
-            this.InfiniteMana_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.InfiniteMana_ToggleSwith.TabIndex = 12;
-            this.InfiniteMana_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.InfiniteMana_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteMana_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteMana_ToggleSwith_CheckedChanged);
+            this.InfiniteMana_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteMana_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_ToggleSwitch.Location = new System.Drawing.Point(3, 59);
+            this.InfiniteMana_ToggleSwitch.Name = "InfiniteMana_ToggleSwitch";
+            this.InfiniteMana_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteMana_ToggleSwitch.TabIndex = 12;
+            this.InfiniteMana_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteMana_ToggleSwitch.CheckedChanged += new System.EventHandler(this.InfiniteMana_ToggleSwitch_CheckedChanged);
             // 
-            // Speed_ToggleSwith
+            // Speed_ToggleSwitch
             // 
-            this.Speed_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.Speed_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.Speed_ToggleSwith.Location = new System.Drawing.Point(152, 31);
-            this.Speed_ToggleSwith.Name = "Speed_ToggleSwith";
-            this.Speed_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.Speed_ToggleSwith.TabIndex = 10;
-            this.Speed_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.Speed_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Speed_ToggleSwith.CheckedChanged += new System.EventHandler(this.Speed_ToggleSwith_CheckedChanged);
+            this.Speed_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Speed_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Speed_ToggleSwitch.Location = new System.Drawing.Point(152, 31);
+            this.Speed_ToggleSwitch.Name = "Speed_ToggleSwitch";
+            this.Speed_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.Speed_ToggleSwitch.TabIndex = 10;
+            this.Speed_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Speed_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Speed_ToggleSwitch.CheckedChanged += new System.EventHandler(this.Speed_ToggleSwitch_CheckedChanged);
             // 
             // Suicide_Label
             // 
@@ -1943,41 +1969,41 @@ namespace CoreKeeperInventoryEditor
             this.FreeCrafting_Label.TabIndex = 25;
             this.FreeCrafting_Label.Text = "- Free Crafting";
             // 
-            // Suicide_ToggleSwith
+            // Suicide_ToggleSwitch
             // 
-            this.Suicide_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.Suicide_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.Suicide_ToggleSwith.Location = new System.Drawing.Point(3, 87);
-            this.Suicide_ToggleSwith.Name = "Suicide_ToggleSwith";
-            this.Suicide_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.Suicide_ToggleSwith.TabIndex = 14;
-            this.Suicide_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.Suicide_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Suicide_ToggleSwith.CheckedChanged += new System.EventHandler(this.Suicide_ToggleSwith_CheckedChanged);
+            this.Suicide_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Suicide_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Suicide_ToggleSwitch.Location = new System.Drawing.Point(3, 87);
+            this.Suicide_ToggleSwitch.Name = "Suicide_ToggleSwitch";
+            this.Suicide_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.Suicide_ToggleSwitch.TabIndex = 14;
+            this.Suicide_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Suicide_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Suicide_ToggleSwitch.CheckedChanged += new System.EventHandler(this.Suicide_ToggleSwitch_CheckedChanged);
             // 
-            // ForceRecall_ToggleSwith
+            // ForceRecall_ToggleSwitch
             // 
-            this.ForceRecall_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.ForceRecall_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.ForceRecall_ToggleSwith.Location = new System.Drawing.Point(3, 115);
-            this.ForceRecall_ToggleSwith.Name = "ForceRecall_ToggleSwith";
-            this.ForceRecall_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.ForceRecall_ToggleSwith.TabIndex = 16;
-            this.ForceRecall_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.ForceRecall_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.ForceRecall_ToggleSwith.CheckedChanged += new System.EventHandler(this.ForceRecall_ToggleSwith_CheckedChanged);
+            this.ForceRecall_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.ForceRecall_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.ForceRecall_ToggleSwitch.Location = new System.Drawing.Point(3, 115);
+            this.ForceRecall_ToggleSwitch.Name = "ForceRecall_ToggleSwitch";
+            this.ForceRecall_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.ForceRecall_ToggleSwitch.TabIndex = 16;
+            this.ForceRecall_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.ForceRecall_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.ForceRecall_ToggleSwitch.CheckedChanged += new System.EventHandler(this.ForceRecall_ToggleSwitch_CheckedChanged);
             // 
-            // InfiniteFood_ToggleSwith
+            // InfiniteFood_ToggleSwitch
             // 
-            this.InfiniteFood_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.InfiniteFood_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteFood_ToggleSwith.Location = new System.Drawing.Point(3, 31);
-            this.InfiniteFood_ToggleSwith.Name = "InfiniteFood_ToggleSwith";
-            this.InfiniteFood_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.InfiniteFood_ToggleSwith.TabIndex = 9;
-            this.InfiniteFood_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.InfiniteFood_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.InfiniteFood_ToggleSwith.CheckedChanged += new System.EventHandler(this.InfiniteFood_ToggleSwith_CheckedChanged);
+            this.InfiniteFood_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.InfiniteFood_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_ToggleSwitch.Location = new System.Drawing.Point(3, 31);
+            this.InfiniteFood_ToggleSwitch.Name = "InfiniteFood_ToggleSwitch";
+            this.InfiniteFood_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.InfiniteFood_ToggleSwitch.TabIndex = 9;
+            this.InfiniteFood_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.InfiniteFood_ToggleSwitch.CheckedChanged += new System.EventHandler(this.InfiniteFood_ToggleSwitch_CheckedChanged);
             // 
             // Speed_Label
             // 
@@ -1999,17 +2025,17 @@ namespace CoreKeeperInventoryEditor
             this.InfiniteMana_Label.TabIndex = 21;
             this.InfiniteMana_Label.Text = "- Infinite Mana";
             // 
-            // FreeCrafting_ToggleSwith
+            // FreeCrafting_ToggleSwitch
             // 
-            this.FreeCrafting_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.FreeCrafting_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.FreeCrafting_ToggleSwith.Location = new System.Drawing.Point(152, 87);
-            this.FreeCrafting_ToggleSwith.Name = "FreeCrafting_ToggleSwith";
-            this.FreeCrafting_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.FreeCrafting_ToggleSwith.TabIndex = 15;
-            this.FreeCrafting_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.FreeCrafting_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.FreeCrafting_ToggleSwith.CheckedChanged += new System.EventHandler(this.FreeCrafting_ToggleSwith_CheckedChanged);
+            this.FreeCrafting_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.FreeCrafting_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_ToggleSwitch.Location = new System.Drawing.Point(152, 87);
+            this.FreeCrafting_ToggleSwitch.Name = "FreeCrafting_ToggleSwitch";
+            this.FreeCrafting_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.FreeCrafting_ToggleSwitch.TabIndex = 15;
+            this.FreeCrafting_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.FreeCrafting_ToggleSwitch.CheckedChanged += new System.EventHandler(this.FreeCrafting_ToggleSwitch_CheckedChanged);
             // 
             // SpeedAmount_NumericUpDown
             // 
@@ -2028,17 +2054,17 @@ namespace CoreKeeperInventoryEditor
             0,
             0});
             // 
-            // Noclip_ToggleSwith
+            // Noclip_ToggleSwitch
             // 
-            this.Noclip_ToggleSwith.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
-            this.Noclip_ToggleSwith.CheckedInnerColor = System.Drawing.Color.Snow;
-            this.Noclip_ToggleSwith.Location = new System.Drawing.Point(152, 3);
-            this.Noclip_ToggleSwith.Name = "Noclip_ToggleSwith";
-            this.Noclip_ToggleSwith.Size = new System.Drawing.Size(45, 22);
-            this.Noclip_ToggleSwith.TabIndex = 8;
-            this.Noclip_ToggleSwith.UncheckedBorderColor = System.Drawing.Color.Snow;
-            this.Noclip_ToggleSwith.UncheckInnerColor = System.Drawing.Color.Snow;
-            this.Noclip_ToggleSwith.CheckedChanged += new System.EventHandler(this.Noclip_ToggleSwith_CheckedChanged);
+            this.Noclip_ToggleSwitch.CheckedFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(218)))), ((int)(((byte)(100)))));
+            this.Noclip_ToggleSwitch.CheckedInnerColor = System.Drawing.Color.Snow;
+            this.Noclip_ToggleSwitch.Location = new System.Drawing.Point(152, 3);
+            this.Noclip_ToggleSwitch.Name = "Noclip_ToggleSwitch";
+            this.Noclip_ToggleSwitch.Size = new System.Drawing.Size(45, 22);
+            this.Noclip_ToggleSwitch.TabIndex = 8;
+            this.Noclip_ToggleSwitch.UncheckedBorderColor = System.Drawing.Color.Snow;
+            this.Noclip_ToggleSwitch.UncheckInnerColor = System.Drawing.Color.Snow;
+            this.Noclip_ToggleSwitch.CheckedChanged += new System.EventHandler(this.Noclip_ToggleSwitch_CheckedChanged);
             // 
             // Noclip_Label
             // 
@@ -3800,16 +3826,16 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.ProgressBar PlayerTools_ProgressBar;
         private System.Windows.Forms.Button GetAddresses_Button;
         private System.Windows.Forms.RichTextBox PlayerTools_RichTextBox;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith Godmode_ToggleSwith;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith DisplayLocation_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Godmode_ToggleSwitch;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith DisplayLocation_ToggleSwitch;
         private System.Windows.Forms.Label Godmode_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith Speed_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Speed_ToggleSwitch;
         private System.Windows.Forms.Label Speed_Label;
         private System.Windows.Forms.Label Noclip_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith Noclip_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Noclip_ToggleSwitch;
         private System.Windows.Forms.NumericUpDown SpeedAmount_NumericUpDown;
         private System.Windows.Forms.Label InfiniteFood_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteFood_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteFood_ToggleSwitch;
         private System.Windows.Forms.Button ApplyBuff_Button;
         private System.Windows.Forms.ComboBox BuffType_ComboBox;
         private System.Windows.Forms.Label Power_Label;
@@ -3819,7 +3845,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label TimeS_Label;
         private System.Windows.Forms.Label BuffType_Label;
         private System.Windows.Forms.Label Suicide_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith Suicide_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Suicide_ToggleSwitch;
         private System.Windows.Forms.TabControl PlayerTab_TabControl;
         private System.Windows.Forms.TabPage About_TabPage;
         private System.Windows.Forms.RichTextBox About_RichTextBox;
@@ -3868,7 +3894,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.NumericUpDown CrystalThree_NumericUpDown;
         private System.Windows.Forms.Button AutomaticFishing_Button;
         private System.Windows.Forms.Label InfiniteResources_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteResources_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteResources_ToggleSwitch;
         private System.Windows.Forms.Button NextInvAddress_Button;
         private System.Windows.Forms.Button PreviousInvAddress_Button;
         private System.Windows.Forms.TabPage SpecialThanks_TabPage;
@@ -3908,9 +3934,9 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button RenderRange_Button;
         private System.Windows.Forms.Button CancelOperation_Button;
         private System.Windows.Forms.Label ForceRecall_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith ForceRecall_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith ForceRecall_ToggleSwitch;
         private System.Windows.Forms.Label InfiniteMana_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteMana_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith InfiniteMana_ToggleSwitch;
         private System.Windows.Forms.Button StartRadius_Button;
         private System.Windows.Forms.NumericUpDown StartRadius_NumericUpDown;
         private System.Windows.Forms.CheckBox SaveEachRing_CheckBox;
@@ -3923,7 +3949,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label DevTools4_Label;
         private System.Windows.Forms.CheckBox AlwaysOnTop_CheckBox;
         private System.Windows.Forms.Label FreeCrafting_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith FreeCrafting_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith FreeCrafting_ToggleSwitch;
         private System.Windows.Forms.CheckBox BruteForceTP_CheckBox;
         private System.Windows.Forms.NumericUpDown CastDelay_NumericUpDown;
         private System.Windows.Forms.Button CastDelay_Button;
@@ -3932,7 +3958,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label BruteForceTP_Label;
         private System.Windows.Forms.Button ResetControls_Button;
         private System.Windows.Forms.Label PassiveAI_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith PassiveAI_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith PassiveAI_ToggleSwitch;
         private System.Windows.Forms.Button OpenChunkVisualizer_Button;
         private System.Windows.Forms.Label OpenChunkVisualizer_Label;
         private System.Windows.Forms.Label AppPriority_Label;
@@ -3943,9 +3969,9 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label MoreMobs_Label;
         private System.Windows.Forms.NumericUpDown Range_NumericUpDown;
         private System.Windows.Forms.Label Range_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith Range_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith Range_ToggleSwitch;
         private System.Windows.Forms.Label PlaceAnywhere_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith PlaceAnywhere_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith PlaceAnywhere_ToggleSwitch;
         private System.Windows.Forms.Button OpenSkillEditor_Button;
         private System.Windows.Forms.Button ChangeIcon_Button;
         private System.Windows.Forms.Button ChangeSeed_Button;
@@ -3956,13 +3982,13 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label WorldIconTack_Label;
         private System.Windows.Forms.Button ChangeConsoleForeColor_Button;
         private System.Windows.Forms.Button ColorSample_Button;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith KeepInventory_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith KeepInventory_ToggleSwitch;
         private System.Windows.Forms.Label KeepInventory_Label;
         private System.Windows.Forms.Button ClearWorldToolsLog_Button;
         private System.Windows.Forms.Button ClearDebugLog_Button;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith TrashInventory_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith TrashInventory_ToggleSwitch;
         private System.Windows.Forms.Label TrashInventory_Label;
-        private Siticone.UI.WinForms.SiticoneWinToggleSwith MaxMinecartSpeed_ToggleSwith;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith MaxMinecartSpeed_ToggleSwitch;
         private System.Windows.Forms.Label MinecartSpeed_Label;
         private Siticone.UI.WinForms.SiticoneMetroTrackBar MaxMinecartSpeed_MetroTrackBar;
         private System.Windows.Forms.Label MaxMinecartSpeedArrow_Label;
@@ -3979,6 +4005,8 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Button RandomTeleport_Button;
         private System.Windows.Forms.Label MapTeleport_Label;
         private System.Windows.Forms.CheckBox MapTeleport_CheckBox;
+        private Siticone.UI.WinForms.SiticoneWinToggleSwith FreezeItemSlots_ToggleSwitch;
+        private System.Windows.Forms.Label FreezeItemSlots_Label;
     }
 }
 

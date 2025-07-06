@@ -378,25 +378,26 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(Inventory_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(PlayerTools_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
 
-                toolTip.SetToolTip(DisplayLocation_ToggleSwith, "Gets the players XY coordinates and displays it.");
-                toolTip.SetToolTip(Godmode_ToggleSwith, "Enabling will prevent the player from being killed.");
-                toolTip.SetToolTip(Speed_ToggleSwith, "Set a custom run speed for the player.");
-                toolTip.SetToolTip(Noclip_ToggleSwith, "Spacebar will allow the player to pass through walls.");
-                toolTip.SetToolTip(InfiniteFood_ToggleSwith, "Enabling will keep the players food replenished.");
-                toolTip.SetToolTip(Suicide_ToggleSwith, "Enabling this will instantly kill the player.");
-                toolTip.SetToolTip(InfiniteResources_ToggleSwith, "Prevents the diminishing of inventory items.");
+                toolTip.SetToolTip(DisplayLocation_ToggleSwitch, "Gets the players XY coordinates and displays it.");
+                toolTip.SetToolTip(Godmode_ToggleSwitch, "Enabling will prevent the player from being killed.");
+                toolTip.SetToolTip(Speed_ToggleSwitch, "Set a custom run speed for the player.");
+                toolTip.SetToolTip(Noclip_ToggleSwitch, "Spacebar will allow the player to pass through walls.");
+                toolTip.SetToolTip(InfiniteFood_ToggleSwitch, "Enabling will keep the players food replenished.");
+                toolTip.SetToolTip(Suicide_ToggleSwitch, "Enabling this will instantly kill the player.");
+                toolTip.SetToolTip(InfiniteResources_ToggleSwitch, "Prevents the diminishing of inventory items.");
                 // OBSOLETE: toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls. Use the t-key to toggle.");
-                toolTip.SetToolTip(InfiniteMana_ToggleSwith, "Enabling will keep the players mana replenished.");
-                toolTip.SetToolTip(ForceRecall_ToggleSwith, "Recalls the player to spawn immediately.");
-                toolTip.SetToolTip(FreeCrafting_ToggleSwith, "Enables the ability to craft without consuming resources.");
-                toolTip.SetToolTip(PassiveAI_ToggleSwith, "Toggles enemies aggression towards the player.");
-                toolTip.SetToolTip(PlaceAnywhere_ToggleSwith, "Enabling will allow the player to place on invalid tiles.");
+                toolTip.SetToolTip(InfiniteMana_ToggleSwitch, "Enabling will keep the players mana replenished.");
+                toolTip.SetToolTip(ForceRecall_ToggleSwitch, "Recalls the player to spawn immediately.");
+                toolTip.SetToolTip(FreeCrafting_ToggleSwitch, "Enables the ability to craft without consuming resources.");
+                toolTip.SetToolTip(PassiveAI_ToggleSwitch, "Toggles enemies aggression towards the player.");
+                toolTip.SetToolTip(PlaceAnywhere_ToggleSwitch, "Enabling will allow the player to place on invalid tiles.");
                 // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith13, "Enabling will allow the player to adjust the placement range.");
-                toolTip.SetToolTip(Range_ToggleSwith, "Coming back soon...");
-                toolTip.SetToolTip(KeepInventory_ToggleSwith, "Prevents losing inventory items upon death.");
-                toolTip.SetToolTip(TrashInventory_ToggleSwith, "Enabling will continuously remove all items from the inventory. Items will be logged.");
+                toolTip.SetToolTip(Range_ToggleSwitch, "Coming back soon...");
+                toolTip.SetToolTip(KeepInventory_ToggleSwitch, "Prevents losing inventory items upon death.");
+                toolTip.SetToolTip(TrashInventory_ToggleSwitch, "Enabling will continuously remove all items from the inventory. Items will be logged.");
                 // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith16, "Set a custom max speed for minecarts.");
-                toolTip.SetToolTip(MaxMinecartSpeed_ToggleSwith, "Coming back soon...");
+                toolTip.SetToolTip(MaxMinecartSpeed_ToggleSwitch, "Coming back soon...");
+                toolTip.SetToolTip(FreezeItemSlots_ToggleSwitch, "Adds checkboxes to the inventory editor for freezing an items property(s).");
 
                 toolTip.SetToolTip(OverwriteSlotOne_RadioButton, "Overwrite item slot one.");
                 toolTip.SetToolTip(AddToEmptySlots_RadioButton, "Add item to an empty inventory slot.");
@@ -1046,36 +1047,36 @@ namespace CoreKeeperInventoryEditor
             {
                 // Enable controls.
                 ReloadInventory_Button.Enabled = true; // Reload.
-                RemoveAll_Button.Enabled = true; // Remove all.
+                RemoveAll_Button.Enabled = true;       // Remove all.
 
                 // If scan is larger then 1 result, enable arrow controls.
                 if (AoBScanResultsInventory.Count() > 1)
                 {
                     // Enable arrow buttons.
                     PreviousInvAddress_Button.Enabled = true; // Previous.
-                    NextInvAddress_Button.Enabled = true; // Next.
+                    NextInvAddress_Button.Enabled = true;     // Next.
                 }
                 else
                 {
                     // Disable arrow buttons.
                     PreviousInvAddress_Button.Enabled = false; // Previous.
-                    NextInvAddress_Button.Enabled = false; // Next.
+                    NextInvAddress_Button.Enabled = false;     // Next.
                 }
             }
             else
             {
                 // Disable controls.
-                ReloadInventory_Button.Enabled = false; // Reload.
-                RemoveAll_Button.Enabled = false; // Remove all.
+                ReloadInventory_Button.Enabled = false;    // Reload.
+                RemoveAll_Button.Enabled = false;          // Remove all.
                 PreviousInvAddress_Button.Enabled = false; // Previous.
-                NextInvAddress_Button.Enabled = false; // Next.
+                NextInvAddress_Button.Enabled = false;     // Next.
             }
 
             // Toggle placeholder torches off.
             TogglePlaceholderTorches(false);
 
             // Reset item id richtextbox.
-            Debug_RichTextBox.Text = "If any unknown items are found, their ID's will appear here!" + Environment.NewLine + "------------------------------------------------------------------------------------------------------------" + Environment.NewLine;
+            Debug_RichTextBox.Text = "If any unknown items are found, their ID's will appear here!\n------------------------------------------------------------------------------------------------------------\n";
 
             // Name button to indicate loading.
             GetInventoryAddresses_Button.Text = "Loading Assets...";
@@ -1628,9 +1629,9 @@ namespace CoreKeeperInventoryEditor
                 inventoryInformation = null;
 
                 // Toggle slider.
-                InfiniteResources_ToggleSwith.CheckedChanged -= InfiniteResources_ToggleSwith_CheckedChanged;
-                InfiniteResources_ToggleSwith.Checked = false;
-                InfiniteResources_ToggleSwith.CheckedChanged += InfiniteResources_ToggleSwith_CheckedChanged;
+                InfiniteResources_ToggleSwitch.CheckedChanged -= InfiniteResources_ToggleSwitch_CheckedChanged;
+                InfiniteResources_ToggleSwitch.Checked = false;
+                InfiniteResources_ToggleSwitch.CheckedChanged += InfiniteResources_ToggleSwitch_CheckedChanged;
             }
 
             PictureBox pic = sender as PictureBox;
@@ -2178,22 +2179,22 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle free crafting.
         public IEnumerable<long> AoBScanResultsFreeCraftingTools = null;
-        private async void FreeCrafting_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private async void FreeCrafting_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                FreeCrafting_ToggleSwith.CheckedChanged -= FreeCrafting_ToggleSwith_CheckedChanged;
-                FreeCrafting_ToggleSwith.Checked = false;
-                FreeCrafting_ToggleSwith.CheckedChanged += FreeCrafting_ToggleSwith_CheckedChanged;
+                FreeCrafting_ToggleSwitch.CheckedChanged -= FreeCrafting_ToggleSwitch_CheckedChanged;
+                FreeCrafting_ToggleSwitch.Checked = false;
+                FreeCrafting_ToggleSwitch.CheckedChanged += FreeCrafting_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (FreeCrafting_ToggleSwith.Checked)
+            if (FreeCrafting_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -2238,9 +2239,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsFreeCraftingTools = null;
 
                     // Toggle slider.
-                    FreeCrafting_ToggleSwith.CheckedChanged -= FreeCrafting_ToggleSwith_CheckedChanged;
-                    FreeCrafting_ToggleSwith.Checked = false;
-                    FreeCrafting_ToggleSwith.CheckedChanged += FreeCrafting_ToggleSwith_CheckedChanged;
+                    FreeCrafting_ToggleSwitch.CheckedChanged -= FreeCrafting_ToggleSwitch_CheckedChanged;
+                    FreeCrafting_ToggleSwitch.Checked = false;
+                    FreeCrafting_ToggleSwitch.CheckedChanged += FreeCrafting_ToggleSwitch_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the free crafting addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2309,15 +2310,15 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer playersKeepInventoryTimer = new System.Timers.Timer();
         List<Tuple<int, int[]>> keepInventoryInformation = new List<Tuple<int, int[]>>();
         string playerHealthAddress = "0";
-        private void KeepInventory_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void KeepInventory_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                KeepInventory_ToggleSwith.CheckedChanged -= KeepInventory_ToggleSwith_CheckedChanged;
-                KeepInventory_ToggleSwith.Checked = false;
-                KeepInventory_ToggleSwith.CheckedChanged += KeepInventory_ToggleSwith_CheckedChanged;
+                KeepInventory_ToggleSwitch.CheckedChanged -= KeepInventory_ToggleSwitch_CheckedChanged;
+                KeepInventory_ToggleSwitch.Checked = false;
+                KeepInventory_ToggleSwitch.CheckedChanged += KeepInventory_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -2327,9 +2328,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsInventory == null)
             {
                 // Toggle slider.
-                KeepInventory_ToggleSwith.CheckedChanged -= KeepInventory_ToggleSwith_CheckedChanged;
-                KeepInventory_ToggleSwith.Checked = false;
-                KeepInventory_ToggleSwith.CheckedChanged += KeepInventory_ToggleSwith_CheckedChanged;
+                KeepInventory_ToggleSwitch.CheckedChanged -= KeepInventory_ToggleSwitch_CheckedChanged;
+                KeepInventory_ToggleSwitch.Checked = false;
+                KeepInventory_ToggleSwitch.CheckedChanged += KeepInventory_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -2339,16 +2340,16 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                KeepInventory_ToggleSwith.CheckedChanged -= KeepInventory_ToggleSwith_CheckedChanged;
-                KeepInventory_ToggleSwith.Checked = false;
-                KeepInventory_ToggleSwith.CheckedChanged += KeepInventory_ToggleSwith_CheckedChanged;
+                KeepInventory_ToggleSwitch.CheckedChanged -= KeepInventory_ToggleSwitch_CheckedChanged;
+                KeepInventory_ToggleSwitch.Checked = false;
+                KeepInventory_ToggleSwitch.CheckedChanged += KeepInventory_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (KeepInventory_ToggleSwith.Checked)
+            if (KeepInventory_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -2521,15 +2522,15 @@ namespace CoreKeeperInventoryEditor
         // Toggle infinite resources.
         readonly System.Timers.Timer playersInfiniteResourcesTimer = new System.Timers.Timer();
         List<Tuple<int, int[]>> inventoryInformation = new List<Tuple<int, int[]>>();
-        private void InfiniteResources_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void InfiniteResources_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                InfiniteResources_ToggleSwith.CheckedChanged -= InfiniteResources_ToggleSwith_CheckedChanged;
-                InfiniteResources_ToggleSwith.Checked = false;
-                InfiniteResources_ToggleSwith.CheckedChanged += InfiniteResources_ToggleSwith_CheckedChanged;
+                InfiniteResources_ToggleSwitch.CheckedChanged -= InfiniteResources_ToggleSwitch_CheckedChanged;
+                InfiniteResources_ToggleSwitch.Checked = false;
+                InfiniteResources_ToggleSwitch.CheckedChanged += InfiniteResources_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -2539,16 +2540,16 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsInventory == null)
             {
                 // Toggle slider.
-                InfiniteResources_ToggleSwith.CheckedChanged -= InfiniteResources_ToggleSwith_CheckedChanged;
-                InfiniteResources_ToggleSwith.Checked = false;
-                InfiniteResources_ToggleSwith.CheckedChanged += InfiniteResources_ToggleSwith_CheckedChanged;
+                InfiniteResources_ToggleSwitch.CheckedChanged -= InfiniteResources_ToggleSwitch_CheckedChanged;
+                InfiniteResources_ToggleSwitch.Checked = false;
+                InfiniteResources_ToggleSwitch.CheckedChanged += InfiniteResources_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (InfiniteResources_ToggleSwith.Checked)
+            if (InfiniteResources_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -2752,22 +2753,22 @@ namespace CoreKeeperInventoryEditor
         // PlacementHandler.allowPlacingAnywhere;
         // Place anywhere.
         public IEnumerable<long> AoBScanResultsPlaceAnywhereTools = null;
-        private async void PlaceAnywhere_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private async void PlaceAnywhere_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                PlaceAnywhere_ToggleSwith.CheckedChanged -= PlaceAnywhere_ToggleSwith_CheckedChanged;
-                PlaceAnywhere_ToggleSwith.Checked = false;
-                PlaceAnywhere_ToggleSwith.CheckedChanged += PlaceAnywhere_ToggleSwith_CheckedChanged;
+                PlaceAnywhere_ToggleSwitch.CheckedChanged -= PlaceAnywhere_ToggleSwitch_CheckedChanged;
+                PlaceAnywhere_ToggleSwitch.Checked = false;
+                PlaceAnywhere_ToggleSwitch.CheckedChanged += PlaceAnywhere_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (PlaceAnywhere_ToggleSwith.Checked)
+            if (PlaceAnywhere_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -2820,9 +2821,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsPlaceAnywhereTools = null;
 
                     // Toggle slider.
-                    PlaceAnywhere_ToggleSwith.CheckedChanged -= PlaceAnywhere_ToggleSwith_CheckedChanged;
-                    PlaceAnywhere_ToggleSwith.Checked = false;
-                    PlaceAnywhere_ToggleSwith.CheckedChanged += PlaceAnywhere_ToggleSwith_CheckedChanged;
+                    PlaceAnywhere_ToggleSwitch.CheckedChanged -= PlaceAnywhere_ToggleSwitch_CheckedChanged;
+                    PlaceAnywhere_ToggleSwitch.Checked = false;
+                    PlaceAnywhere_ToggleSwitch.CheckedChanged += PlaceAnywhere_ToggleSwitch_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the place anywhere addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2891,12 +2892,12 @@ namespace CoreKeeperInventoryEditor
         // PlayerController player = Manager.main.player;
         // Placement Range.
         public IEnumerable<long> AoBScanResultsPlacementRangeTools = null;
-        private async void Range_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private async void Range_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Mod is currently broken - toggle slider off.
-            Range_ToggleSwith.CheckedChanged -= Range_ToggleSwith_CheckedChanged;
-            Range_ToggleSwith.Checked = false;
-            Range_ToggleSwith.CheckedChanged += Range_ToggleSwith_CheckedChanged;
+            Range_ToggleSwitch.CheckedChanged -= Range_ToggleSwitch_CheckedChanged;
+            Range_ToggleSwitch.Checked = false;
+            Range_ToggleSwitch.CheckedChanged += Range_ToggleSwitch_CheckedChanged;
             return;
 
             #pragma warning disable // Suppress Unreachable code.
@@ -2904,16 +2905,16 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Range_ToggleSwith.CheckedChanged -= Range_ToggleSwith_CheckedChanged;
-                Range_ToggleSwith.Checked = false;
-                Range_ToggleSwith.CheckedChanged += Range_ToggleSwith_CheckedChanged;
+                Range_ToggleSwitch.CheckedChanged -= Range_ToggleSwitch_CheckedChanged;
+                Range_ToggleSwitch.Checked = false;
+                Range_ToggleSwitch.CheckedChanged += Range_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (Range_ToggleSwith.Checked)
+            if (Range_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -2965,9 +2966,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsPlacementRangeTools = null;
 
                     // Toggle slider.
-                    Range_ToggleSwith.CheckedChanged -= Range_ToggleSwith_CheckedChanged;
-                    Range_ToggleSwith.Checked = false;
-                    Range_ToggleSwith.CheckedChanged += Range_ToggleSwith_CheckedChanged;
+                    Range_ToggleSwitch.CheckedChanged -= Range_ToggleSwitch_CheckedChanged;
+                    Range_ToggleSwitch.Checked = false;
+                    Range_ToggleSwitch.CheckedChanged += Range_ToggleSwitch_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the placement range addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3043,9 +3044,9 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
-                DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
+                DisplayLocation_ToggleSwitch.CheckedChanged -= DisplayLocation_ToggleSwitch_CheckedChanged;
+                DisplayLocation_ToggleSwitch.Checked = false;
+                DisplayLocation_ToggleSwitch.CheckedChanged += DisplayLocation_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3079,14 +3080,14 @@ namespace CoreKeeperInventoryEditor
 
         // Toggle force keep the inventory empty.
         readonly System.Timers.Timer playersKeepInventoryEmptyTimer = new System.Timers.Timer();
-        private void TrashInventory_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void TrashInventory_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            if (TrashInventory_ToggleSwith.Checked && MessageBox.Show("This mod will delete ALL inventory items and ALL picked up ground items. Are you sure?", "Trash Inventory", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if (TrashInventory_ToggleSwitch.Checked && MessageBox.Show("This mod will delete ALL inventory items and ALL picked up ground items. Are you sure?", "Trash Inventory", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
             {
                 // Toggle slider.
-                TrashInventory_ToggleSwith.CheckedChanged -= TrashInventory_ToggleSwith_CheckedChanged;
-                TrashInventory_ToggleSwith.Checked = false;
-                TrashInventory_ToggleSwith.CheckedChanged += TrashInventory_ToggleSwith_CheckedChanged;
+                TrashInventory_ToggleSwitch.CheckedChanged -= TrashInventory_ToggleSwitch_CheckedChanged;
+                TrashInventory_ToggleSwitch.Checked = false;
+                TrashInventory_ToggleSwitch.CheckedChanged += TrashInventory_ToggleSwitch_CheckedChanged;
 
                 // User declined, return.
                 return;
@@ -3096,9 +3097,9 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                TrashInventory_ToggleSwith.CheckedChanged -= TrashInventory_ToggleSwith_CheckedChanged;
-                TrashInventory_ToggleSwith.Checked = false;
-                TrashInventory_ToggleSwith.CheckedChanged += TrashInventory_ToggleSwith_CheckedChanged;
+                TrashInventory_ToggleSwitch.CheckedChanged -= TrashInventory_ToggleSwitch_CheckedChanged;
+                TrashInventory_ToggleSwitch.Checked = false;
+                TrashInventory_ToggleSwitch.CheckedChanged += TrashInventory_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3108,16 +3109,16 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsInventory == null)
             {
                 // Toggle slider.
-                TrashInventory_ToggleSwith.CheckedChanged -= TrashInventory_ToggleSwith_CheckedChanged;
-                TrashInventory_ToggleSwith.Checked = false;
-                TrashInventory_ToggleSwith.CheckedChanged += TrashInventory_ToggleSwith_CheckedChanged;
+                TrashInventory_ToggleSwitch.CheckedChanged -= TrashInventory_ToggleSwitch_CheckedChanged;
+                TrashInventory_ToggleSwitch.Checked = false;
+                TrashInventory_ToggleSwitch.CheckedChanged += TrashInventory_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (TrashInventory_ToggleSwith.Checked)
+            if (TrashInventory_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -3195,12 +3196,12 @@ namespace CoreKeeperInventoryEditor
         // Toggle minecart max speed.
         readonly System.Timers.Timer minecartMaxSpeedTimer = new System.Timers.Timer();
         public IEnumerable<long> AoBScanResultsMaxMinecartSpeed = null;
-        private async void MaxMinecartSpeed_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private async void MaxMinecartSpeed_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Mod is currently broken - toggle slider off.
-            MaxMinecartSpeed_ToggleSwith.CheckedChanged -= MaxMinecartSpeed_ToggleSwith_CheckedChanged;
-            MaxMinecartSpeed_ToggleSwith.Checked = false;
-            MaxMinecartSpeed_ToggleSwith.CheckedChanged += MaxMinecartSpeed_ToggleSwith_CheckedChanged;
+            MaxMinecartSpeed_ToggleSwitch.CheckedChanged -= MaxMinecartSpeed_ToggleSwitch_CheckedChanged;
+            MaxMinecartSpeed_ToggleSwitch.Checked = false;
+            MaxMinecartSpeed_ToggleSwitch.CheckedChanged += MaxMinecartSpeed_ToggleSwitch_CheckedChanged;
             return;
 
             #pragma warning disable // Suppress Unreachable code.
@@ -3208,16 +3209,16 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                MaxMinecartSpeed_ToggleSwith.CheckedChanged -= MaxMinecartSpeed_ToggleSwith_CheckedChanged;
-                MaxMinecartSpeed_ToggleSwith.Checked = false;
-                MaxMinecartSpeed_ToggleSwith.CheckedChanged += MaxMinecartSpeed_ToggleSwith_CheckedChanged;
+                MaxMinecartSpeed_ToggleSwitch.CheckedChanged -= MaxMinecartSpeed_ToggleSwitch_CheckedChanged;
+                MaxMinecartSpeed_ToggleSwitch.Checked = false;
+                MaxMinecartSpeed_ToggleSwitch.CheckedChanged += MaxMinecartSpeed_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (MaxMinecartSpeed_ToggleSwith.Checked)
+            if (MaxMinecartSpeed_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Name button to indicate loading.
@@ -3262,9 +3263,9 @@ namespace CoreKeeperInventoryEditor
                     AoBScanResultsMaxMinecartSpeed = null;
 
                     // Toggle slider.
-                    MaxMinecartSpeed_ToggleSwith.CheckedChanged -= MaxMinecartSpeed_ToggleSwith_CheckedChanged;
-                    MaxMinecartSpeed_ToggleSwith.Checked = false;
-                    MaxMinecartSpeed_ToggleSwith.CheckedChanged += MaxMinecartSpeed_ToggleSwith_CheckedChanged;
+                    MaxMinecartSpeed_ToggleSwitch.CheckedChanged -= MaxMinecartSpeed_ToggleSwitch_CheckedChanged;
+                    MaxMinecartSpeed_ToggleSwitch.Checked = false;
+                    MaxMinecartSpeed_ToggleSwitch.CheckedChanged += MaxMinecartSpeed_ToggleSwitch_CheckedChanged;
 
                     // Display error message.
                     MessageBox.Show("There was an issue trying to fetch the minecart addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3346,21 +3347,201 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion
 
+        #region Freeze Slot Stats
+
+        private PictureBox[] _slotPictures;             // Holds references to each SlotN_PictureBox on the Inventory tab.
+        private Dictionary<int, CheckBox> _freezeBoxes; // Maps a slot index to its dynamically created “freeze” CheckBox.
+        private Dictionary<int, int[]> _frozenSlotInfo; // Stores the original [type, amount, variation, skillset] info for each slot the user has frozen.
+        readonly System.Timers.Timer playersFreezeItemSlotsTimer = new System.Timers.Timer();
+        private void FreezeItemSlots_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            // Open the process and check if it was successful before the AoB scan.
+            if (!MemLib.OpenProcess("CoreKeeper"))
+            {
+                // Toggle slider.
+                FreezeItemSlots_ToggleSwitch.CheckedChanged -= FreezeItemSlots_ToggleSwitch_CheckedChanged;
+                FreezeItemSlots_ToggleSwitch.Checked = false;
+                FreezeItemSlots_ToggleSwitch.CheckedChanged += FreezeItemSlots_ToggleSwitch_CheckedChanged;
+
+                MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ensure the inventory was loaded.
+            if (AoBScanResultsInventory == null)
+            {
+                // Toggle slider.
+                FreezeItemSlots_ToggleSwitch.CheckedChanged -= FreezeItemSlots_ToggleSwitch_CheckedChanged;
+                FreezeItemSlots_ToggleSwitch.Checked = false;
+                FreezeItemSlots_ToggleSwitch.CheckedChanged += FreezeItemSlots_ToggleSwitch_CheckedChanged;
+
+                MessageBox.Show("You need to first scan for the Inventory addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (FreezeItemSlots_ToggleSwitch.Checked)
+            {
+                // Show the checkboxes.
+                BuildSlotArrays();
+                CreateFreezeCheckboxes();
+
+                // Snapshot every checked slot.
+                _frozenSlotInfo = [];
+                foreach (var kv in _freezeBoxes)
+                    if (kv.Value.Checked)
+                        _frozenSlotInfo[kv.Key] = GetSlotInfo(kv.Key);
+
+                // Start the timed events.
+                playersFreezeItemSlotsTimer.Interval = 100; // Custom intervals.
+                playersFreezeItemSlotsTimer.Elapsed += new ElapsedEventHandler(PlayersFreezeItemSlotsTimedEvent);
+                playersFreezeItemSlotsTimer.Start();
+            }
+            else
+            {
+                // Stop freezing.
+                playersFreezeItemSlotsTimer.Stop();
+                _frozenSlotInfo.Clear();
+
+                // Remove the checkboxes. We dont just want them to sit hidden or linger invisibly.
+                foreach (var cb in _freezeBoxes.Values)
+                {
+                    cb.Parent?.Controls.Remove(cb);
+                    cb.Dispose();
+                }
+                _freezeBoxes.Clear();
+            }
+        }
+
+        private void PlayersFreezeItemSlotsTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            // Run on the UI thread if you plan to call UI methods.
+            this.Invoke(() =>
+            {
+                foreach (var kv in _frozenSlotInfo.ToList())
+                {
+                    int slot = kv.Key;
+                    int[] original = kv.Value;
+                    int[] current = GetSlotInfo(slot);
+
+                    // If item type changed, re-snapshot.
+                    if (current[0] != original[0])
+                    {
+                        _frozenSlotInfo[slot] = current;
+                        continue;
+                    }
+
+                    // If amount decreased, write it back.
+                    if (current[1] != original[1])
+                    {
+                        AddItemToInv(
+                            ItemSlot:  slot,
+                            Type:      original[0],
+                            Amount:    original[1],
+                            Variation: original[2],
+                            Skillset:  original[3],
+                            Overwrite: true
+                        );
+                    }
+
+                    #region Disabled: Allow Value Increases
+
+                    /*
+                    // If amount decreased, write it back.
+                    if (current[1] < original[1])
+                    {
+                        AddItemToInv(
+                            ItemSlot:  slot,
+                            Type:      original[0],
+                            Amount:    original[1],
+                            Variation: original[2],
+                            Skillset:  original[3],
+                            Overwrite: true
+                        );
+                    }
+                    else if (current[1] > original[1])
+                    {
+                        // If amount increased, update baseline.
+                        _frozenSlotInfo[slot] = current;
+                    }
+                    */
+                    #endregion
+                }
+            });
+        }
+
+        #region Checkbox Helpers
+
+        private void BuildSlotArrays()
+        {
+            // Count the total amount of pictureboxes on the inventory tab.
+            int slotCount = Main_TabControl.TabPages["Inventory_TabPage"].Controls.OfType<PictureBox>().Count();
+
+            var tab = Main_TabControl.TabPages["Inventory_TabPage"];
+            _slotPictures = [.. Enumerable.Range(1, slotCount)
+                .Select(i => tab.Controls.Find($"Slot{i}_PictureBox", true)
+                                 .FirstOrDefault() as PictureBox)];
+        }
+
+        private void CreateFreezeCheckboxes()
+        {
+            var tab = Main_TabControl.TabPages["Inventory_TabPage"];
+            _freezeBoxes = [];
+
+            for (int i = 1; i <= _slotPictures.Length; i++)
+            {
+                var pic = _slotPictures[i - 1];
+                if (pic == null) continue;
+
+                var cb = new CheckBox
+                {
+                    Name = $"FreezeSlot{i}_CheckBox",
+                    Tag = i,                                      // Store the slot.
+                    Size = new Size(16, 16),
+                    Location = new Point(pic.Width - 18, 2),      // Relative to pic.ClientRectangle.
+                    BackColor = Color.FromArgb(150, Color.Black),
+                    ForeColor = Color.White,
+                    Parent = pic,                                 // Make it a child.
+                    AutoSize = false
+                };
+                cb.CheckedChanged += FreezeSlotCheckBox_CheckedChanged;
+
+                pic.Controls.Add(cb);                             // Add to pic rather than tab.
+                _freezeBoxes[i] = cb;
+            }
+        }
+
+        private void FreezeSlotCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // If user checks it while the feature is on, immediately capture its current info.
+            if (FreezeItemSlots_ToggleSwitch.Checked)
+            {
+                var cb = (CheckBox)sender;
+                int slot = (int)cb.Tag; // Get it back safely.
+                if (cb.Checked)
+                    _frozenSlotInfo[slot] = GetSlotInfo(slot);
+                else
+                    _frozenSlotInfo.Remove(slot);
+            }
+        }
+        #endregion
+
+        #endregion // End freeze item slots.
+
         // Mods below use the "Player Mod Offsets".
 
         #region Player Position
 
         // Enable player xy tool.
         readonly System.Timers.Timer playersPositionTimer = new System.Timers.Timer();
-        private void DisplayLocation_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void DisplayLocation_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
-                DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
+                DisplayLocation_ToggleSwitch.CheckedChanged -= DisplayLocation_ToggleSwitch_CheckedChanged;
+                DisplayLocation_ToggleSwitch.Checked = false;
+                DisplayLocation_ToggleSwitch.CheckedChanged += DisplayLocation_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3370,16 +3551,16 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
-                DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
+                DisplayLocation_ToggleSwitch.CheckedChanged -= DisplayLocation_ToggleSwitch_CheckedChanged;
+                DisplayLocation_ToggleSwitch.Checked = false;
+                DisplayLocation_ToggleSwitch.CheckedChanged += DisplayLocation_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (DisplayLocation_ToggleSwith.Checked)
+            if (DisplayLocation_ToggleSwitch.Checked)
             {
                 // Start the timed events.
                 playersPositionTimer.Interval = 100; // Custom intervals.
@@ -3456,16 +3637,16 @@ namespace CoreKeeperInventoryEditor
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                DisplayLocation_ToggleSwith.CheckedChanged -= DisplayLocation_ToggleSwith_CheckedChanged;
-                DisplayLocation_ToggleSwith.Checked = false;
-                DisplayLocation_ToggleSwith.CheckedChanged += DisplayLocation_ToggleSwith_CheckedChanged;
+                DisplayLocation_ToggleSwitch.CheckedChanged -= DisplayLocation_ToggleSwitch_CheckedChanged;
+                DisplayLocation_ToggleSwitch.Checked = false;
+                DisplayLocation_ToggleSwitch.CheckedChanged += DisplayLocation_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Check if the slider was not yet checked.
-            if (DisplayLocation_ToggleSwith.Checked)
+            if (DisplayLocation_ToggleSwitch.Checked)
             {
                 // Ensure pointers are found.
                 if (AoBScanResultsPlayerTools == null)
@@ -3502,15 +3683,15 @@ namespace CoreKeeperInventoryEditor
         // Toggle godmode.
         readonly System.Timers.Timer playersGodmodeTimer = new System.Timers.Timer();
         string godmodeAddress = "0";
-        private void Godmode_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void Godmode_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
-                Godmode_ToggleSwith.Checked = false;
-                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
+                Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
+                Godmode_ToggleSwitch.Checked = false;
+                Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3520,9 +3701,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
-                Godmode_ToggleSwith.Checked = false;
-                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
+                Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
+                Godmode_ToggleSwitch.Checked = false;
+                Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3532,7 +3713,7 @@ namespace CoreKeeperInventoryEditor
             godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
-            if (Godmode_ToggleSwith.Checked)
+            if (Godmode_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Start the timed events.
@@ -3560,15 +3741,15 @@ namespace CoreKeeperInventoryEditor
 
         // Change player speed.
         string originalSpeed = "336"; // Original max speed.
-        private void Speed_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void Speed_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Speed_ToggleSwith.CheckedChanged -= Speed_ToggleSwith_CheckedChanged;
-                Speed_ToggleSwith.Checked = false;
-                Speed_ToggleSwith.CheckedChanged += Speed_ToggleSwith_CheckedChanged;
+                Speed_ToggleSwitch.CheckedChanged -= Speed_ToggleSwitch_CheckedChanged;
+                Speed_ToggleSwitch.Checked = false;
+                Speed_ToggleSwitch.CheckedChanged += Speed_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3578,9 +3759,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Speed_ToggleSwith.CheckedChanged -= Speed_ToggleSwith_CheckedChanged;
-                Speed_ToggleSwith.Checked = false;
-                Speed_ToggleSwith.CheckedChanged += Speed_ToggleSwith_CheckedChanged;
+                Speed_ToggleSwitch.CheckedChanged -= Speed_ToggleSwitch_CheckedChanged;
+                Speed_ToggleSwitch.Checked = false;
+                Speed_ToggleSwitch.CheckedChanged += Speed_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3590,7 +3771,7 @@ namespace CoreKeeperInventoryEditor
             string playerSpeedAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(speed_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
-            if (Speed_ToggleSwith.Checked)
+            if (Speed_ToggleSwitch.Checked)
             {
                 // Disable numericupdown.
                 SpeedAmount_NumericUpDown.Enabled = false;
@@ -3621,15 +3802,15 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer playersNoHungerTimer = new System.Timers.Timer();
         string hungerAddress = "0";
         // public IEnumerable<long> AoBScanResultsNoHunger1Tools = null;
-        private void InfiniteFood_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void InfiniteFood_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                InfiniteFood_ToggleSwith.CheckedChanged -= InfiniteFood_ToggleSwith_CheckedChanged;
-                InfiniteFood_ToggleSwith.Checked = false;
-                InfiniteFood_ToggleSwith.CheckedChanged += InfiniteFood_ToggleSwith_CheckedChanged;
+                InfiniteFood_ToggleSwitch.CheckedChanged -= InfiniteFood_ToggleSwitch_CheckedChanged;
+                InfiniteFood_ToggleSwitch.Checked = false;
+                InfiniteFood_ToggleSwitch.CheckedChanged += InfiniteFood_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3639,9 +3820,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                InfiniteFood_ToggleSwith.CheckedChanged -= InfiniteFood_ToggleSwith_CheckedChanged;
-                InfiniteFood_ToggleSwith.Checked = false;
-                InfiniteFood_ToggleSwith.CheckedChanged += InfiniteFood_ToggleSwith_CheckedChanged;
+                InfiniteFood_ToggleSwitch.CheckedChanged -= InfiniteFood_ToggleSwitch_CheckedChanged;
+                InfiniteFood_ToggleSwitch.Checked = false;
+                InfiniteFood_ToggleSwitch.CheckedChanged += InfiniteFood_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3651,7 +3832,7 @@ namespace CoreKeeperInventoryEditor
             hungerAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(hunger_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
-            if (InfiniteFood_ToggleSwith.Checked)
+            if (InfiniteFood_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Start the timed events.
@@ -3805,15 +3986,15 @@ namespace CoreKeeperInventoryEditor
         // Toggle infinite mana.
         readonly System.Timers.Timer playersInfiniteManaTimer = new System.Timers.Timer();
         string manaAddress = "0";
-        private void InfiniteMana_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void InfiniteMana_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                InfiniteMana_ToggleSwith.CheckedChanged -= InfiniteMana_ToggleSwith_CheckedChanged;
-                InfiniteMana_ToggleSwith.Checked = false;
-                InfiniteMana_ToggleSwith.CheckedChanged += InfiniteMana_ToggleSwith_CheckedChanged;
+                InfiniteMana_ToggleSwitch.CheckedChanged -= InfiniteMana_ToggleSwitch_CheckedChanged;
+                InfiniteMana_ToggleSwitch.Checked = false;
+                InfiniteMana_ToggleSwitch.CheckedChanged += InfiniteMana_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3823,9 +4004,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                InfiniteMana_ToggleSwith.CheckedChanged -= InfiniteMana_ToggleSwith_CheckedChanged;
-                InfiniteMana_ToggleSwith.Checked = false;
-                InfiniteMana_ToggleSwith.CheckedChanged += InfiniteMana_ToggleSwith_CheckedChanged;
+                InfiniteMana_ToggleSwitch.CheckedChanged -= InfiniteMana_ToggleSwitch_CheckedChanged;
+                InfiniteMana_ToggleSwitch.Checked = false;
+                InfiniteMana_ToggleSwitch.CheckedChanged += InfiniteMana_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3835,7 +4016,7 @@ namespace CoreKeeperInventoryEditor
             manaAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mana_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
-            if (InfiniteMana_ToggleSwith.Checked)
+            if (InfiniteMana_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Start the timed events.
@@ -3865,15 +4046,15 @@ namespace CoreKeeperInventoryEditor
         readonly System.Timers.Timer playersNoclipTimer = new System.Timers.Timer();
         string noclipAddress = "0";
         string noclipOriginalValue = "4";
-        private void Noclip_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void Noclip_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
-                Noclip_ToggleSwith.Checked = false;
-                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
+                Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
+                Noclip_ToggleSwitch.Checked = false;
+                Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3883,9 +4064,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
-                Noclip_ToggleSwith.Checked = false;
-                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
+                Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
+                Noclip_ToggleSwitch.Checked = false;
+                Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3897,7 +4078,7 @@ namespace CoreKeeperInventoryEditor
             noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
 
             // Check if the slider was not yet checked.
-            if (Noclip_ToggleSwith.Checked)
+            if (Noclip_ToggleSwitch.Checked)
             {
                 // Slider is being toggled on.
                 // Get original value.
@@ -3941,15 +4122,15 @@ namespace CoreKeeperInventoryEditor
         #region Suicide
 
         // Kill the player via suicide.
-        private void Suicide_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void Suicide_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                Suicide_ToggleSwith.CheckedChanged -= Suicide_ToggleSwith_CheckedChanged;
-                Suicide_ToggleSwith.Checked = false;
-                Suicide_ToggleSwith.CheckedChanged += Suicide_ToggleSwith_CheckedChanged;
+                Suicide_ToggleSwitch.CheckedChanged -= Suicide_ToggleSwitch_CheckedChanged;
+                Suicide_ToggleSwitch.Checked = false;
+                Suicide_ToggleSwitch.CheckedChanged += Suicide_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3959,9 +4140,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                Suicide_ToggleSwith.CheckedChanged -= Suicide_ToggleSwith_CheckedChanged;
-                Suicide_ToggleSwith.Checked = false;
-                Suicide_ToggleSwith.CheckedChanged += Suicide_ToggleSwith_CheckedChanged;
+                Suicide_ToggleSwitch.CheckedChanged -= Suicide_ToggleSwitch_CheckedChanged;
+                Suicide_ToggleSwitch.Checked = false;
+                Suicide_ToggleSwitch.CheckedChanged += Suicide_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3974,24 +4155,24 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(godmodeAddress, "int", "0"); // Overwrite new value.
 
             // Toggle slider.
-            Suicide_ToggleSwith.CheckedChanged -= Suicide_ToggleSwith_CheckedChanged;
-            Suicide_ToggleSwith.Checked = false;
-            Suicide_ToggleSwith.CheckedChanged += Suicide_ToggleSwith_CheckedChanged;
+            Suicide_ToggleSwitch.CheckedChanged -= Suicide_ToggleSwitch_CheckedChanged;
+            Suicide_ToggleSwitch.Checked = false;
+            Suicide_ToggleSwitch.CheckedChanged += Suicide_ToggleSwitch_CheckedChanged;
         }
         #endregion
 
         #region Force Recall
 
         // Kill the player via suicide.
-        private async void ForceRecall_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private async void ForceRecall_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                ForceRecall_ToggleSwith.CheckedChanged -= ForceRecall_ToggleSwith_CheckedChanged;
-                ForceRecall_ToggleSwith.Checked = false;
-                ForceRecall_ToggleSwith.CheckedChanged += ForceRecall_ToggleSwith_CheckedChanged;
+                ForceRecall_ToggleSwitch.CheckedChanged -= ForceRecall_ToggleSwitch_CheckedChanged;
+                ForceRecall_ToggleSwitch.Checked = false;
+                ForceRecall_ToggleSwitch.CheckedChanged += ForceRecall_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -4001,9 +4182,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                ForceRecall_ToggleSwith.CheckedChanged -= ForceRecall_ToggleSwith_CheckedChanged;
-                ForceRecall_ToggleSwith.Checked = false;
-                ForceRecall_ToggleSwith.CheckedChanged += ForceRecall_ToggleSwith_CheckedChanged;
+                ForceRecall_ToggleSwitch.CheckedChanged -= ForceRecall_ToggleSwitch_CheckedChanged;
+                ForceRecall_ToggleSwitch.Checked = false;
+                ForceRecall_ToggleSwitch.CheckedChanged += ForceRecall_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -4013,7 +4194,7 @@ namespace CoreKeeperInventoryEditor
             string playerStateAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
 
             // Disable slider.
-            ForceRecall_ToggleSwith.Enabled = false;
+            ForceRecall_ToggleSwitch.Enabled = false;
 
             // Enable recall sequence value.
             MemLib.WriteMemory(playerStateAddress, "int", "524288");
@@ -4025,12 +4206,12 @@ namespace CoreKeeperInventoryEditor
             MemLib.WriteMemory(playerStateAddress, "int", "4");
 
             // Enable slider.
-            ForceRecall_ToggleSwith.Enabled = true;
+            ForceRecall_ToggleSwitch.Enabled = true;
 
             // Toggle slider.
-            ForceRecall_ToggleSwith.CheckedChanged -= ForceRecall_ToggleSwith_CheckedChanged;
-            ForceRecall_ToggleSwith.Checked = false;
-            ForceRecall_ToggleSwith.CheckedChanged += ForceRecall_ToggleSwith_CheckedChanged;
+            ForceRecall_ToggleSwitch.CheckedChanged -= ForceRecall_ToggleSwitch_CheckedChanged;
+            ForceRecall_ToggleSwitch.Checked = false;
+            ForceRecall_ToggleSwitch.CheckedChanged += ForceRecall_ToggleSwitch_CheckedChanged;
         }
         #endregion // End goto spawn.
 
@@ -4038,15 +4219,15 @@ namespace CoreKeeperInventoryEditor
 
         // Passive AI.
         // public IEnumerable<long> AoBScanResultsPassiveAITools = null;
-        private void PassiveAI_ToggleSwith_CheckedChanged(object sender, EventArgs e)
+        private void PassiveAI_ToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
             // Open the process and check if it was successful before the AoB scan.
             if (!MemLib.OpenProcess("CoreKeeper"))
             {
                 // Toggle slider.
-                PassiveAI_ToggleSwith.CheckedChanged -= PassiveAI_ToggleSwith_CheckedChanged;
-                PassiveAI_ToggleSwith.Checked = false;
-                PassiveAI_ToggleSwith.CheckedChanged += PassiveAI_ToggleSwith_CheckedChanged;
+                PassiveAI_ToggleSwitch.CheckedChanged -= PassiveAI_ToggleSwitch_CheckedChanged;
+                PassiveAI_ToggleSwitch.Checked = false;
+                PassiveAI_ToggleSwitch.CheckedChanged += PassiveAI_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("Process Is Not Found or Open!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -4056,9 +4237,9 @@ namespace CoreKeeperInventoryEditor
             if (AoBScanResultsPlayerTools == null)
             {
                 // Toggle slider.
-                PassiveAI_ToggleSwith.CheckedChanged -= PassiveAI_ToggleSwith_CheckedChanged;
-                PassiveAI_ToggleSwith.Checked = false;
-                PassiveAI_ToggleSwith.CheckedChanged += PassiveAI_ToggleSwith_CheckedChanged;
+                PassiveAI_ToggleSwitch.CheckedChanged -= PassiveAI_ToggleSwitch_CheckedChanged;
+                PassiveAI_ToggleSwitch.Checked = false;
+                PassiveAI_ToggleSwitch.CheckedChanged += PassiveAI_ToggleSwitch_CheckedChanged;
 
                 MessageBox.Show("You need to first scan for the Player addresses!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -4068,7 +4249,7 @@ namespace CoreKeeperInventoryEditor
             string passiveAIAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(passiveAI_Offset, NumberStyles.Integer)).ToString("X");
 
             // Toggle on passive AI.
-            if (PassiveAI_ToggleSwith.Checked)
+            if (PassiveAI_ToggleSwitch.Checked)
             {
                 // On.
                 // Write value.
@@ -8470,9 +8651,9 @@ namespace CoreKeeperInventoryEditor
                             if (godmodeEnabled)
                             {
                                 // Toggle slider.
-                                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
-                                Godmode_ToggleSwith.Checked = true;
-                                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
+                                Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
+                                Godmode_ToggleSwitch.Checked = true;
+                                Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
 
                                 // Slider is being toggled on.
                                 // Start the timed events.
@@ -8490,9 +8671,9 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // Toggle slider.
-                                Godmode_ToggleSwith.CheckedChanged -= Godmode_ToggleSwith_CheckedChanged;
-                                Godmode_ToggleSwith.Checked = false;
-                                Godmode_ToggleSwith.CheckedChanged += Godmode_ToggleSwith_CheckedChanged;
+                                Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
+                                Godmode_ToggleSwitch.Checked = false;
+                                Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
 
                                 // Slider is being toggled off.
                                 // Stop the timers.
@@ -8564,9 +8745,9 @@ namespace CoreKeeperInventoryEditor
                             if (noclipEnabled)
                             {
                                 // Toggle slider.
-                                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
-                                Noclip_ToggleSwith.Checked = true;
-                                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
+                                Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
+                                Noclip_ToggleSwitch.Checked = true;
+                                Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
 
                                 // Toggle force on checkbox.
                                 ForceNoclip_Checkbox.Checked = true;
@@ -8590,9 +8771,9 @@ namespace CoreKeeperInventoryEditor
                             else
                             {
                                 // Toggle slider.
-                                Noclip_ToggleSwith.CheckedChanged -= Noclip_ToggleSwith_CheckedChanged;
-                                Noclip_ToggleSwith.Checked = false;
-                                Noclip_ToggleSwith.CheckedChanged += Noclip_ToggleSwith_CheckedChanged;
+                                Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
+                                Noclip_ToggleSwitch.Checked = false;
+                                Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
 
                                 // Toggle force on checkbox.
                                 ForceNoclip_Checkbox.Checked = false;
