@@ -3486,7 +3486,7 @@ namespace CoreKeeperInventoryEditor
         private void CreateFreezeCheckboxes()
         {
             var tab = Main_TabControl.TabPages["Inventory_TabPage"];
-            _freezeBoxes = [];
+            _freezeBoxes = new Dictionary<int, CheckBox>();
 
             for (int i = 1; i <= _slotPictures.Length; i++)
             {
