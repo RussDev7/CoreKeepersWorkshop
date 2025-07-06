@@ -3386,7 +3386,7 @@ namespace CoreKeeperInventoryEditor
                 CreateFreezeCheckboxes();
 
                 // Snapshot every checked slot.
-                _frozenSlotInfo = [];
+                _frozenSlotInfo = new Dictionary<int, int[]>();
                 foreach (var kv in _freezeBoxes)
                     if (kv.Value.Checked)
                         _frozenSlotInfo[kv.Key] = GetSlotInfo(kv.Key);
@@ -3477,9 +3477,10 @@ namespace CoreKeeperInventoryEditor
             int slotCount = Main_TabControl.TabPages["Inventory_TabPage"].Controls.OfType<PictureBox>().Count();
 
             var tab = Main_TabControl.TabPages["Inventory_TabPage"];
-            _slotPictures = [.. Enumerable.Range(1, slotCount)
+            _slotPictures = Enumerable.Range(1, slotCount)
                 .Select(i => tab.Controls.Find($"Slot{i}_PictureBox", true)
-                                 .FirstOrDefault() as PictureBox)];
+                .FirstOrDefault() as PictureBox)
+                .ToArray();
         }
 
         private void CreateFreezeCheckboxes()
