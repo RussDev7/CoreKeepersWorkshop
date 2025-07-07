@@ -134,5 +134,8 @@
     <Setting Name="ConsoleForeColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Snow</Value>
     </Setting>
+    <Setting Name="FormOpacity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
