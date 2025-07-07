@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ImageFast.cs" />
+    <Compile Include="InventoryImageCache.cs" />
     <Compile Include="ItemEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +135,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryEditor.cs">
+    <Compile Include="ItemSelectionMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InventoryEditor.Designer.cs">
-      <DependentUpon>InventoryEditor.cs</DependentUpon>
+    <Compile Include="ItemSelectionMenu.Designer.cs">
+      <DependentUpon>ItemSelectionMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,8 +172,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InventoryEditor.resx">
-      <DependentUpon>InventoryEditor.cs</DependentUpon>
+    <EmbeddedResource Include="ItemSelectionMenu.resx">
+      <DependentUpon>ItemSelectionMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

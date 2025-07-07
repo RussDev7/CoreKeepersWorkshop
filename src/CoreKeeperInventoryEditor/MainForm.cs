@@ -1641,27 +1641,36 @@ namespace CoreKeeperInventoryEditor
             {
                 if (e.Button == MouseButtons.Left) // Load inventory editor.
                 {
+                    // Before showing the InventoryEditor popup form, check if the images are already loaded in memory cache.
+                    // If not, load them now (this only happens once).
+                    if (!InventoryImageCache.IsLoaded)
+                    {
+                        // Loads all images from disk into memory (static cache).
+                        // Pass the FolderNames to tell it what folders to load.
+                        InventoryImageCache.LoadAllImages(ItemSelectionMenu.FolderNames);
+                    }
+
                     // Get the picturebox selected number.
                     int slotNumber = int.Parse(pic.Name.Replace("Slot", "").Replace("_PictureBox", ""));
 
                     // Spawn item picker window.
-                    InventoryEditor frm2 = new InventoryEditor();
-                    DialogResult dr = frm2.ShowDialog(this);
+                    ItemSelectionMenu itemSelectionMenu = new ItemSelectionMenu();
+                    DialogResult dr = itemSelectionMenu.ShowDialog(this);
 
                     // Get returned item from picker.
-                    int itemType = frm2.GetItemTypeFromList();
-                    int itemAmount = frm2.GetItemAmountFromList();
-                    int itemVariation = frm2.GetItemVeriationFromList() == 0 ? 0 : (frm2.GetItemVeriationFromList()); // If variation is not zero, add offset.
-                    int itemSkillset = frm2.GetItemSkillsetFromList();
-                    bool wasAborted = frm2.GetUserCanceldTask();
-                    bool itemOverwrite = frm2.GetSelectedOverwriteTask();
-                    frm2.Close();
+                    int itemType       = itemSelectionMenu.GetItemTypeFromList();
+                    int itemAmount     = itemSelectionMenu.GetItemAmountFromList();
+                    int itemVariation  = itemSelectionMenu.GetItemVeriationFromList() == 0 ? 0 : (itemSelectionMenu.GetItemVeriationFromList()); // If variation is not zero, add offset.
+                    int itemSkillset   = itemSelectionMenu.GetItemSkillsetFromList()  == 0 ? 0 : (itemSelectionMenu.GetItemSkillsetFromList());  // If skillset is not zero, add offset.
+                    bool wasAborted    = itemSelectionMenu.GetUserCanceldTask();
+                    bool itemOverwrite = itemSelectionMenu.GetSelectedOverwriteTask();
+                    itemSelectionMenu.Close();
 
                     // Check if user closed the form
                     if (wasAborted) { return; };
 
                     // Spawn the item.
-                    AddItemToInv(slotNumber, Type: itemType, Amount: itemAmount, Variation: itemVariation, Overwrite: itemOverwrite);
+                    AddItemToInv(slotNumber, Type: itemType, Amount: itemAmount, Variation: itemVariation, Skillset: itemSkillset, Overwrite: itemOverwrite);
 
                     // Reload Inventory. Added: v1.3.4.5.
                     AddItemToInv(LoadInventory: true);
@@ -1708,17 +1717,17 @@ namespace CoreKeeperInventoryEditor
                     Settings.Default.InfoSkillset = itemInfo[3];
 
                     // Spawn item picker window.
-                    ItemEditor frm3 = new ItemEditor();
-                    DialogResult dr = frm3.ShowDialog(this);
+                    ItemEditor itemEditor = new ItemEditor();
+                    DialogResult dr = itemEditor.ShowDialog(this);
 
                     // Get returned item from picker.
-                    int itemType = frm3.GetItemTypeFromList();
-                    int itemAmount = frm3.GetItemAmountFromList();
-                    int itemVariation = frm3.GetItemVeriationFromList() == 0 ? 0 : (frm3.GetItemVeriationFromList()); // If variation is not zero, add offset.
-                    int itemSkillset = frm3.GetItemSkillsetFromList();
-                    bool wasAborted = frm3.GetUserCanceldTask();
-                    // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
-                    frm3.Close();
+                    int itemType      = itemEditor.GetItemTypeFromList();
+                    int itemAmount    = itemEditor.GetItemAmountFromList();
+                    int itemVariation = itemEditor.GetItemVeriationFromList() == 0 ? 0 : (itemEditor.GetItemVeriationFromList()); // If variation is not zero, add offset.
+                    int itemSkillset  = itemEditor.GetItemSkillsetFromList()  == 0 ? 0 : (itemEditor.GetItemSkillsetFromList());  // If skillset is not zero, add offset.
+                    bool wasAborted   = itemEditor.GetUserCanceldTask();
+                    // bool itemOverwrite = itemEditor.GetSelectedOverwriteTask();
+                    itemEditor.Close();
 
                     // Check if user closed the form
                     if (wasAborted) { return; };
@@ -3065,11 +3074,11 @@ namespace CoreKeeperInventoryEditor
             // Spawn item picker window.
             try
             {
-                SkillEditor frm5 = new SkillEditor();
-                DialogResult dr = frm5.ShowDialog();
+                SkillEditor skillEditor = new SkillEditor();
+                DialogResult dr = skillEditor.ShowDialog();
 
                 // Get returned item from chunk viewer.
-                frm5.Close();
+                skillEditor.Close();
             }
             catch
             { }
@@ -3662,11 +3671,11 @@ namespace CoreKeeperInventoryEditor
                 // Spawn item picker window.
                 try
                 {
-                    ChunkViewer frm4 = new ChunkViewer(this);
-                    DialogResult dr = frm4.ShowDialog(this);
+                    ChunkViewer chunkViewer = new ChunkViewer(this);
+                    DialogResult dr = chunkViewer.ShowDialog(this);
 
                     // Get returned item from chunk viewer.
-                    frm4.Close();
+                    chunkViewer.Close();
                 }
                 catch
                 { }
@@ -4526,11 +4535,11 @@ namespace CoreKeeperInventoryEditor
             TeleportPlayerHelp_Button.Enabled = true;
 
             // Spawn teleport address guide window.
-            TeleportAddressGuide frm6 = new TeleportAddressGuide();
-            DialogResult dr = frm6.ShowDialog(this);
+            TeleportAddressGuide teleportAddressGuide = new TeleportAddressGuide();
+            DialogResult dr = teleportAddressGuide.ShowDialog(this);
 
             // Close returning form.
-            frm6.Close();
+            teleportAddressGuide.Close();
         }
 
         // Toggle brute force teleport player addresses.

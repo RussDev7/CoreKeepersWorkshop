@@ -1393,7 +1393,7 @@ namespace CoreKeepersWorkshop
         private void Slot1_PictureBox_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
-            InventoryEditor frm3 = new InventoryEditor();
+            ItemSelectionMenu frm3 = new ItemSelectionMenu();
             DialogResult dr = frm3.ShowDialog(this);
 
             // Get returned item from picker.
@@ -1416,7 +1416,7 @@ namespace CoreKeepersWorkshop
         private void Slot2_PictureBox_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
-            InventoryEditor frm3 = new InventoryEditor();
+            ItemSelectionMenu frm3 = new ItemSelectionMenu();
             DialogResult dr = frm3.ShowDialog(this);
 
             // Get returned item from picker.
@@ -1447,7 +1447,7 @@ namespace CoreKeepersWorkshop
         private void Slot3_PictureBox_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
-            InventoryEditor frm3 = new InventoryEditor();
+            ItemSelectionMenu frm3 = new ItemSelectionMenu();
             DialogResult dr = frm3.ShowDialog(this);
 
             // Get returned item from picker.
