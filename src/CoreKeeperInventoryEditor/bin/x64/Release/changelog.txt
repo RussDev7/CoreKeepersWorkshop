@@ -15,6 +15,7 @@ Changes Since v1.3.6.5
 + Significantly increased item selection menu load times.
 + Added optional ability to use skillsets in item names.
 + Added a form opacity option to the dev-tools.
++ Added various missing tooltips.
 
 Changes Since v1.3.6.4
 ===========================================================
