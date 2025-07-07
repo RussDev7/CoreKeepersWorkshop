@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Linq;
 using System.IO;
 using System;
+using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeepersWorkshop
 {
@@ -56,6 +57,12 @@ namespace CoreKeepersWorkshop
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.CookbookLocation;
             #endregion
 
+            #region Set Form Transparency
+
+            // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            #endregion
+
             #region Tooltips
 
             // Create a new tooltip.
@@ -98,6 +105,8 @@ namespace CoreKeepersWorkshop
             #endregion
         }
 
+        #region Form Closing
+
         // Do form closing events.
         private void FoodCookbook_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -118,6 +127,8 @@ namespace CoreKeepersWorkshop
             catch (Exception)
             { } // Do nothing.
         }
+        #endregion
+
         #endregion
 
         #region Form Controls

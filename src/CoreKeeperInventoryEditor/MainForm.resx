@@ -264,6 +264,18 @@
         HXXfGrsAANxK962xCwDArfzPvv3+j/8E9Pu8dBfai5EAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="DevTools_Label.Text" xml:space="preserve">
+    <value>This section contains useful debugging tools for maintainers and devs.
+--------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------</value>
+  </data>
   <metadata name="Header_Column.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

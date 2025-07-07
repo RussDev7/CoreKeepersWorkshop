@@ -8,6 +8,7 @@ using System.Timers;
 using System.Linq;
 using Memory;
 using System;
+using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeepersWorkshop
 {
@@ -74,6 +75,12 @@ namespace CoreKeepersWorkshop
 
             // Set the forms active location based on previous save.
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerLocation;
+            #endregion
+
+            #region Set Form Transparency
+
+            // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Set Form Controls

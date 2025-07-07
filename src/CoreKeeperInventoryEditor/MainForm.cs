@@ -236,9 +236,9 @@ namespace CoreKeeperInventoryEditor
                 #region Set Dev-Tool / Main Control Contents
 
                 // Main controls.
-                MaxRadius_NumericUpDown.Value = Settings.Default.MapRenderingMax; // Map rendering max radius.
+                MaxRadius_NumericUpDown.Value = Settings.Default.MapRenderingMax;     // Map rendering max radius.
                 StartRadius_NumericUpDown.Value = Settings.Default.MapRenderingStart; // Map rendering start radius.
-                CastDelay_NumericUpDown.Value = Settings.Default.FishingCast; // Fishing bot casting delay.
+                CastDelay_NumericUpDown.Value = Settings.Default.FishingCast;         // Fishing bot casting delay.
                 FishingPadding_NumericUpDown.Value = Settings.Default.FishingPadding; // Fishing bot padding delay.
 
                 // Console color.
@@ -251,9 +251,16 @@ namespace CoreKeeperInventoryEditor
 
                 // Dev tools.
                 DevToolsDelay_NumericUpDown.Value = (decimal)Settings.Default.DevToolDelay; // Dev tool operation delay.
-                RadialMoveScale_NumericUpDown.Value = Settings.Default.RadialMoveScale; // Auto render maps radialMoveScale.
-                AlwaysOnTop_CheckBox.Checked = Settings.Default.TopMost; // Set as top most.
+                RadialMoveScale_NumericUpDown.Value = Settings.Default.RadialMoveScale;     // Auto render maps radialMoveScale.
+                AlwaysOnTop_CheckBox.Checked = Settings.Default.TopMost;                    // Set as top most.
                 AppPriority_ComboBox.SelectedIndex = Settings.Default.ProcessPriorityIndex; // Set the process priority.
+                FormOpacity_TrackBar.Value = Settings.Default.FormOpacity;                  // Set the trackbar value.
+                #endregion
+
+                #region Set Form Transparency
+
+                // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
+                this.Opacity = Settings.Default.FormOpacity / 100.0;
                 #endregion
 
                 #region Set Form Locations
@@ -474,6 +481,8 @@ namespace CoreKeeperInventoryEditor
                       .IsInRole(WindowsBuiltInRole.Administrator);
         }
 
+        #region TopMost Checkbox Logic
+
         // Change the top most variable.
         private void AlwaysOnTop_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -495,6 +504,9 @@ namespace CoreKeeperInventoryEditor
                 Settings.Default.TopMost = true;
             }
         }
+        #endregion
+
+        #region Initialize Buff Editor Dropdown Content
 
         // Populate combobox upon dropdown.
         private void BuffType_ComboBox_DropDown(object sender, EventArgs e)
@@ -524,6 +536,9 @@ namespace CoreKeeperInventoryEditor
                 }
             }
         }
+        #endregion
+
+        #region Clicked About Link Logic
 
         // Launch the link in the (users default) browser.
         private void About_RichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
@@ -538,6 +553,9 @@ namespace CoreKeeperInventoryEditor
                 MessageBox.Show("Failed to open link: " + ex.Message, errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
+
+        #region Form Closing
 
         // Reset inventory stats back to defaults.
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -571,11 +589,15 @@ namespace CoreKeeperInventoryEditor
                 Settings.Default.MapRenderingStart = StartRadius_NumericUpDown.Value;   // Map rendering start radius.
                 Settings.Default.FishingCast = CastDelay_NumericUpDown.Value;           // Fishing bot casting delay.
                 Settings.Default.FishingPadding = FishingPadding_NumericUpDown.Value;   // Fishing bot padding delay.
+                Settings.Default.FormOpacity = FormOpacity_TrackBar.Value;    // Dev tool form transparency.
                 Settings.Default.Save();
             }
             catch (Exception)
             { } // Do nothing.
         }
+        #endregion
+
+        #region Form Resize
 
         // Move window to the bottom left.
         private void MainForm_Resize(object sender, EventArgs e)
@@ -650,6 +672,9 @@ namespace CoreKeeperInventoryEditor
                 isMinimized = false;
             }
         }
+        #endregion
+
+        #region Switching Tabs
 
         // Control switching tabs.
         int previousTab = 0;
@@ -785,6 +810,7 @@ namespace CoreKeeperInventoryEditor
             // Update the previous tab value.
             previousTab = Main_TabControl.SelectedIndex;
         }
+        #endregion
 
         #endregion // End control logic.
 
@@ -9632,7 +9658,7 @@ namespace CoreKeeperInventoryEditor
         }
         #endregion
 
-        #region Set Process Priority.
+        #region Set Process Priority
 
         // Save the previous priority value.
         public string originalPriorityValue = "Normal";
@@ -9673,6 +9699,21 @@ namespace CoreKeeperInventoryEditor
         }
 
         #endregion // End set process priority.
+
+        #region Set Form Transparency
+
+        private void FormOpacity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            // Set form opacity based on trackbars value (1 to 100 -> 0.01 to 1.0).
+            this.Opacity = FormOpacity_TrackBar.Value / 100.0;
+
+            // Update the trackbars label.
+            FormOpacity_Label.Text = $"Form Opacity: [{FormOpacity_TrackBar.Value}%]";
+
+            // Save the changed opacity value to the settings to be used elsewhere.
+            Settings.Default.FormOpacity = FormOpacity_TrackBar.Value;
+        }
+        #endregion
 
         #endregion // End admin tools.
     }

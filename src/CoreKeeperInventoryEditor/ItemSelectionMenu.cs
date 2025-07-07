@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.IO;
 using System;
+using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeeperInventoryEditor
 {
@@ -160,6 +161,12 @@ namespace CoreKeeperInventoryEditor
 
             // Set the forms active location based on previous save.
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
+            #endregion
+
+            #region Set Form Transparency
+
+            // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
