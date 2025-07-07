@@ -5,11 +5,15 @@ Changes Since v1.3.6.5
 - Fixed loading errors with the world properties.
 - Fixed the teleport player address warning icon.
 - Reduced the "AddItemToInv" code lines from 9669 to 420.
+- Reduced the "ItemSelectionMenu" code lines by ~half.
 - Fixed multiple control name typos.
+- Fixed "ItemSelectionMenu" to display items full names.
 
 + Added a map teleport mod.
 + Added two new properties to the world information tool.
 + Added freeze item slots to the player mods.
++ Significantly increased item selection menu load times.
++ Added optional ability to use skillsets in item names.
 
 Changes Since v1.3.6.4
 ===========================================================
