@@ -22,6 +22,8 @@ namespace CoreKeepersWorkshop
         // Define texture data.
         public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
 
+        #region Closing Varibles
+
         // Form closing saving.
         int selectedItemType = 0;
         int selectedItemAmount = 0;
@@ -50,6 +52,7 @@ namespace CoreKeepersWorkshop
         {
             return userCanceldTask;
         }
+        #endregion
 
         #region Reload Pictureboxes & Labels
 
@@ -292,7 +295,7 @@ namespace CoreKeepersWorkshop
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation;
             #endregion
 
-            #region Set Form Transparency
+            #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
             this.Opacity = Settings.Default.FormOpacity / 100.0;
@@ -1077,7 +1080,7 @@ namespace CoreKeepersWorkshop
         }
 
         // Quick change the items quantity to 50.
-        private void Button8_Click(object sender, EventArgs e)
+        private void CustomQuantity2_Button_Click(object sender, EventArgs e)
         {
             // Change the existing items quantity. 
             selectedItemType = (int)ItemID_NumericUpDown.Value;

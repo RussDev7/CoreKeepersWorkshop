@@ -16,6 +16,8 @@ namespace CoreKeepersWorkshop
             InitializeComponent();
         }
 
+        #region Closing Varibles
+
         // Form closing saving.
         int selectedItemType = 0;
         int selectedItemAmount = 0;
@@ -39,6 +41,7 @@ namespace CoreKeepersWorkshop
         {
             return userCanceldTask;
         }
+        #endregion
 
         #region Form Load And Closing Events
 
@@ -57,7 +60,7 @@ namespace CoreKeepersWorkshop
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.CookbookLocation;
             #endregion
 
-            #region Set Form Transparency
+            #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
             this.Opacity = Settings.Default.FormOpacity / 100.0;

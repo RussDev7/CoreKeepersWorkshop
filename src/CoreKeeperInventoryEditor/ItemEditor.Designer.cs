@@ -489,7 +489,7 @@ namespace CoreKeepersWorkshop
             this.CustomQuantity2_Button.TabIndex = 18;
             this.CustomQuantity2_Button.Text = "50";
             this.CustomQuantity2_Button.UseVisualStyleBackColor = true;
-            this.CustomQuantity2_Button.Click += new System.EventHandler(this.Button8_Click);
+            this.CustomQuantity2_Button.Click += new System.EventHandler(this.CustomQuantity2_Button_Click);
             this.CustomQuantity2_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomQuantity2_Button_MouseDown);
             // 
             // CustomQuantity2_NumericUpDown

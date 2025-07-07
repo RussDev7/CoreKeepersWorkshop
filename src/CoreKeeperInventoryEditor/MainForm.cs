@@ -254,10 +254,10 @@ namespace CoreKeeperInventoryEditor
                 RadialMoveScale_NumericUpDown.Value = Settings.Default.RadialMoveScale;     // Auto render maps radialMoveScale.
                 AlwaysOnTop_CheckBox.Checked = Settings.Default.TopMost;                    // Set as top most.
                 AppPriority_ComboBox.SelectedIndex = Settings.Default.ProcessPriorityIndex; // Set the process priority.
-                FormOpacity_TrackBar.Value = Settings.Default.FormOpacity;                  // Set the trackbar value.
+                FormOpacity_TrackBar.Value = Settings.Default.FormOpacity;                  // Set the form opacity trackbar value.
                 #endregion
 
-                #region Set Form Transparency
+                #region Set Form Opacity
 
                 // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
                 this.Opacity = Settings.Default.FormOpacity / 100.0;
@@ -371,6 +371,7 @@ namespace CoreKeeperInventoryEditor
                 // toolTip.SetToolTip(button41, "This is the console color visualizer.");
                 toolTip.SetToolTip(ClearDebugLog_Button, "Clear the debug console.");
                 toolTip.SetToolTip(ClearWorldToolsLog_Button, "Clear the world tools console.");
+                toolTip.SetToolTip(ResetControls_Button, "Used to reset (defaults) all saved control settings across all forms.");
 
                 toolTip.SetToolTip(BuffType_ComboBox, "Open a list of all ingame buffs and debuffs.");
                 toolTip.SetToolTip(AppPriority_ComboBox, "Set this applications process priority.");
@@ -436,7 +437,8 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(MoreMobs_Label, "Use the slider below for more mods!");
 
                 toolTip.SetToolTip(Mods_TrackBar, "Used to scroll to other player mods.");
-                toolTip.SetToolTip(MaxMinecartSpeed_MetroTrackBar, "Used to set a custom max speed for minecarts.");
+                toolTip.SetToolTip(MaxMinecartSpeed_TrackBar, "Used to set a custom max speed for minecarts.");
+                toolTip.SetToolTip(FormOpacity_TrackBar, "Used to set a custom opacity that applies to all forms.");
 
                 // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
 
@@ -589,7 +591,7 @@ namespace CoreKeeperInventoryEditor
                 Settings.Default.MapRenderingStart = StartRadius_NumericUpDown.Value;   // Map rendering start radius.
                 Settings.Default.FishingCast = CastDelay_NumericUpDown.Value;           // Fishing bot casting delay.
                 Settings.Default.FishingPadding = FishingPadding_NumericUpDown.Value;   // Fishing bot padding delay.
-                Settings.Default.FormOpacity = FormOpacity_TrackBar.Value;    // Dev tool form transparency.
+                Settings.Default.FormOpacity = FormOpacity_TrackBar.Value;              // Dev tool form opacity.
                 Settings.Default.Save();
             }
             catch (Exception)
@@ -3330,7 +3332,7 @@ namespace CoreKeeperInventoryEditor
                 MinecartSpeed_Label.Text = "- Minecart Speed";
 
                 // Enable the slider.
-                MaxMinecartSpeed_MetroTrackBar.Enabled = true;
+                MaxMinecartSpeed_TrackBar.Enabled = true;
 
                 // Start the timed events.
                 minecartMaxSpeedTimer.Interval = 1; // Custom intervals.
@@ -3348,7 +3350,7 @@ namespace CoreKeeperInventoryEditor
                 // siticoneMetroTrackBar1.Value = 800;
 
                 // Enable the slider.
-                MaxMinecartSpeed_MetroTrackBar.Enabled = false;
+                MaxMinecartSpeed_TrackBar.Enabled = false;
             }
             #pragma warning restore // Suppress Unreachable code.
         }
@@ -3358,7 +3360,7 @@ namespace CoreKeeperInventoryEditor
         {
             // Write value.
             string maxMinecartSpeedAddress = BigInteger.Subtract(BigInteger.Parse(AoBScanResultsMaxMinecartSpeed.Last().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
-            MemLib.WriteMemory(maxMinecartSpeedAddress, "float", MaxMinecartSpeed_MetroTrackBar.Value.ToString()); // Overwrite new value.
+            MemLib.WriteMemory(maxMinecartSpeedAddress, "float", MaxMinecartSpeed_TrackBar.Value.ToString()); // Overwrite new value.
         }
 
         // Show the slider value text.
@@ -3378,7 +3380,7 @@ namespace CoreKeeperInventoryEditor
         // Change the labels text to the new sliders value.
         private void MaxMinecartSpeed_MetroTrackBar_ValueChanged(object sender, EventArgs e)
         {
-            MaxMinecartSpeed_Label.Text = "- MaxSpeed: " + MaxMinecartSpeed_MetroTrackBar.Value.ToString();
+            MaxMinecartSpeed_Label.Text = "- MaxSpeed: " + MaxMinecartSpeed_TrackBar.Value.ToString();
         }
         #endregion
 
@@ -9600,7 +9602,7 @@ namespace CoreKeeperInventoryEditor
         #region Reset All Controls
 
         // Reset all controls.
-        private void Button34_Click(object sender, EventArgs e)
+        private void ResetControls_Button_Click(object sender, EventArgs e)
         {
             // Ask user if they are sure to reset all controls.
             if (MessageBox.Show("Are you sure you wish to reset all form controls?", "Reset All Controls", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -9623,9 +9625,9 @@ namespace CoreKeeperInventoryEditor
                 Main_TabControl.TabPages[3].BackgroundImage = null;
 
                 // Main controls.
-                MaxRadius_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering max radius.
+                MaxRadius_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);     // Map rendering max radius.
                 StartRadius_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
-                CastDelay_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot casting delay.
+                CastDelay_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);         // Fishing bot casting delay.
                 FishingPadding_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
 
                 // World properties console.
@@ -9640,10 +9642,11 @@ namespace CoreKeeperInventoryEditor
                 ColorSample_Button.BackColor = Color.Snow;
 
                 // Dev tools.
-                DevToolsDelay_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Dev tool operation delay.
+                DevToolsDelay_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);      // Dev tool operation delay.
                 RadialMoveScale_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
-                AlwaysOnTop_CheckBox.Checked = bool.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set as top most.
+                AlwaysOnTop_CheckBox.Checked = bool.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);                   // Set as top most.
                 AppPriority_ComboBox.SelectedIndex = int.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.ProcessPriorityIndex)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set the priority.
+                FormOpacity_TrackBar.Value = int.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FormOpacity)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);                  // Set the form opacity.
 
                 // Display completed message.
                 MessageBox.Show("All controls have been reset!", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Information);

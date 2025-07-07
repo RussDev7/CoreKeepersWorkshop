@@ -133,7 +133,7 @@ namespace CoreKeeperInventoryEditor
             this.FreezeItemSlots_Label = new System.Windows.Forms.Label();
             this.ForceNoclip_Checkbox = new Siticone.UI.WinForms.SiticoneCheckBox();
             this.MaxMinecartSpeed_Label = new System.Windows.Forms.Label();
-            this.MaxMinecartSpeed_MetroTrackBar = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
+            this.MaxMinecartSpeed_TrackBar = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
             this.MaxMinecartSpeed_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
             this.MinecartSpeed_Label = new System.Windows.Forms.Label();
             this.TrashInventory_ToggleSwitch = new Siticone.UI.WinForms.SiticoneWinToggleSwith();
@@ -1226,7 +1226,7 @@ namespace CoreKeeperInventoryEditor
             this.ClearDebugLog_Button.Location = new System.Drawing.Point(297, 5);
             this.ClearDebugLog_Button.Name = "ClearDebugLog_Button";
             this.ClearDebugLog_Button.Size = new System.Drawing.Size(35, 19);
-            this.ClearDebugLog_Button.TabIndex = 13;
+            this.ClearDebugLog_Button.TabIndex = 1;
             this.ClearDebugLog_Button.Text = "Clear";
             this.ClearDebugLog_Button.UseVisualStyleBackColor = true;
             this.ClearDebugLog_Button.Click += new System.EventHandler(this.ClearDebugLog_Button_Click);
@@ -1270,7 +1270,7 @@ namespace CoreKeeperInventoryEditor
             this.ClearWorldToolsLog_Button.Location = new System.Drawing.Point(297, 5);
             this.ClearWorldToolsLog_Button.Name = "ClearWorldToolsLog_Button";
             this.ClearWorldToolsLog_Button.Size = new System.Drawing.Size(35, 19);
-            this.ClearWorldToolsLog_Button.TabIndex = 12;
+            this.ClearWorldToolsLog_Button.TabIndex = 1;
             this.ClearWorldToolsLog_Button.Text = "Clear";
             this.ClearWorldToolsLog_Button.UseVisualStyleBackColor = true;
             this.ClearWorldToolsLog_Button.Click += new System.EventHandler(this.ClearWorldToolsLog_Button_Click);
@@ -1326,7 +1326,7 @@ namespace CoreKeeperInventoryEditor
             this.FormOpacity_TrackBar.Minimum = 1;
             this.FormOpacity_TrackBar.Name = "FormOpacity_TrackBar";
             this.FormOpacity_TrackBar.Size = new System.Drawing.Size(130, 23);
-            this.FormOpacity_TrackBar.TabIndex = 35;
+            this.FormOpacity_TrackBar.TabIndex = 10;
             this.FormOpacity_TrackBar.ThumbColor = System.Drawing.Color.Lime;
             this.FormOpacity_TrackBar.Value = 100;
             this.FormOpacity_TrackBar.ValueChanged += new System.EventHandler(this.FormOpacity_TrackBar_ValueChanged);
@@ -1338,7 +1338,7 @@ namespace CoreKeeperInventoryEditor
             this.FormOpacity_Label.Location = new System.Drawing.Point(193, 133);
             this.FormOpacity_Label.Name = "FormOpacity_Label";
             this.FormOpacity_Label.Size = new System.Drawing.Size(107, 13);
-            this.FormOpacity_Label.TabIndex = 34;
+            this.FormOpacity_Label.TabIndex = 0;
             this.FormOpacity_Label.Text = "Form Opacity: [100%]";
             // 
             // DefualtControls_Label
@@ -1348,7 +1348,7 @@ namespace CoreKeeperInventoryEditor
             this.DefualtControls_Label.Location = new System.Drawing.Point(99, 133);
             this.DefualtControls_Label.Name = "DefualtControls_Label";
             this.DefualtControls_Label.Size = new System.Drawing.Size(85, 13);
-            this.DefualtControls_Label.TabIndex = 33;
+            this.DefualtControls_Label.TabIndex = 0;
             this.DefualtControls_Label.Text = "Defualt Controls:";
             // 
             // DevToolsDelay_Label
@@ -1358,7 +1358,7 @@ namespace CoreKeeperInventoryEditor
             this.DevToolsDelay_Label.Location = new System.Drawing.Point(3, 216);
             this.DevToolsDelay_Label.Name = "DevToolsDelay_Label";
             this.DevToolsDelay_Label.Size = new System.Drawing.Size(83, 13);
-            this.DevToolsDelay_Label.TabIndex = 32;
+            this.DevToolsDelay_Label.TabIndex = 0;
             this.DevToolsDelay_Label.Text = "DevToolsDelay:";
             // 
             // RadialMoveScale_Label
@@ -1368,7 +1368,7 @@ namespace CoreKeeperInventoryEditor
             this.RadialMoveScale_Label.Location = new System.Drawing.Point(3, 175);
             this.RadialMoveScale_Label.Name = "RadialMoveScale_Label";
             this.RadialMoveScale_Label.Size = new System.Drawing.Size(94, 13);
-            this.RadialMoveScale_Label.TabIndex = 31;
+            this.RadialMoveScale_Label.TabIndex = 0;
             this.RadialMoveScale_Label.Text = "RadialMoveScale:";
             // 
             // DevSettings_Label
@@ -1378,7 +1378,7 @@ namespace CoreKeeperInventoryEditor
             this.DevSettings_Label.Location = new System.Drawing.Point(260, 110);
             this.DevSettings_Label.Name = "DevSettings_Label";
             this.DevSettings_Label.Size = new System.Drawing.Size(77, 13);
-            this.DevSettings_Label.TabIndex = 30;
+            this.DevSettings_Label.TabIndex = 0;
             this.DevSettings_Label.Text = "Dev Settings ↓";
             // 
             // AppPriority_Label
@@ -1388,7 +1388,7 @@ namespace CoreKeeperInventoryEditor
             this.AppPriority_Label.Location = new System.Drawing.Point(3, 133);
             this.AppPriority_Label.Name = "AppPriority_Label";
             this.AppPriority_Label.Size = new System.Drawing.Size(63, 13);
-            this.AppPriority_Label.TabIndex = 29;
+            this.AppPriority_Label.TabIndex = 0;
             this.AppPriority_Label.Text = "App Priority:";
             // 
             // AppPriority_ComboBox
@@ -1404,7 +1404,7 @@ namespace CoreKeeperInventoryEditor
             this.AppPriority_ComboBox.Location = new System.Drawing.Point(6, 149);
             this.AppPriority_ComboBox.Name = "AppPriority_ComboBox";
             this.AppPriority_ComboBox.Size = new System.Drawing.Size(86, 21);
-            this.AppPriority_ComboBox.TabIndex = 24;
+            this.AppPriority_ComboBox.TabIndex = 6;
             this.AppPriority_ComboBox.Text = "Normal";
             this.AppPriority_ComboBox.SelectedIndexChanged += new System.EventHandler(this.AppPriority_ComboBox_SelectedIndexChanged);
             this.AppPriority_ComboBox.Enter += new System.EventHandler(this.AppPriority_ComboBox_Enter);
@@ -1418,7 +1418,7 @@ namespace CoreKeeperInventoryEditor
             this.AlwaysOnTop_CheckBox.Location = new System.Drawing.Point(242, 238);
             this.AlwaysOnTop_CheckBox.Name = "AlwaysOnTop_CheckBox";
             this.AlwaysOnTop_CheckBox.Size = new System.Drawing.Size(92, 17);
-            this.AlwaysOnTop_CheckBox.TabIndex = 26;
+            this.AlwaysOnTop_CheckBox.TabIndex = 11;
             this.AlwaysOnTop_CheckBox.Text = "Always on top";
             this.AlwaysOnTop_CheckBox.UseVisualStyleBackColor = true;
             this.AlwaysOnTop_CheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTop_CheckBox_CheckedChanged);
@@ -1430,7 +1430,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools4_Label.Location = new System.Drawing.Point(1, 87);
             this.DevTools4_Label.Name = "DevTools4_Label";
             this.DevTools4_Label.Size = new System.Drawing.Size(218, 13);
-            this.DevTools4_Label.TabIndex = 10;
+            this.DevTools4_Label.TabIndex = 4;
             this.DevTools4_Label.Text = "[Click Me] Auto map renderer memory logger.";
             this.DevTools4_Label.Click += new System.EventHandler(this.DevTools4_Label_Click);
             // 
@@ -1441,7 +1441,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools5_Label.Location = new System.Drawing.Point(1, 106);
             this.DevTools5_Label.Name = "DevTools5_Label";
             this.DevTools5_Label.Size = new System.Drawing.Size(160, 13);
-            this.DevTools5_Label.TabIndex = 9;
+            this.DevTools5_Label.TabIndex = 5;
             this.DevTools5_Label.Text = "[Click Me] Center game process.";
             this.DevTools5_Label.Click += new System.EventHandler(this.DevTools5_Label_Click);
             // 
@@ -1452,7 +1452,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools1_Label.Location = new System.Drawing.Point(1, 30);
             this.DevTools1_Label.Name = "DevTools1_Label";
             this.DevTools1_Label.Size = new System.Drawing.Size(277, 13);
-            this.DevTools1_Label.TabIndex = 7;
+            this.DevTools1_Label.TabIndex = 1;
             this.DevTools1_Label.Text = "[Click Me] Quick change slot2\'s item ID using arrow keys.\r\n";
             this.DevTools1_Label.Click += new System.EventHandler(this.DevTools1_Label_Click);
             // 
@@ -1463,7 +1463,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools3_Label.Location = new System.Drawing.Point(1, 68);
             this.DevTools3_Label.Name = "DevTools3_Label";
             this.DevTools3_Label.Size = new System.Drawing.Size(245, 13);
-            this.DevTools3_Label.TabIndex = 6;
+            this.DevTools3_Label.TabIndex = 3;
             this.DevTools3_Label.Text = "[Click Me] Create an ID list from all installed assets.";
             this.DevTools3_Label.Click += new System.EventHandler(this.DevTools3_Label_Click);
             // 
@@ -1474,7 +1474,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools2_Label.Location = new System.Drawing.Point(1, 49);
             this.DevTools2_Label.Name = "DevTools2_Label";
             this.DevTools2_Label.Size = new System.Drawing.Size(250, 13);
-            this.DevTools2_Label.TabIndex = 1;
+            this.DevTools2_Label.TabIndex = 2;
             this.DevTools2_Label.Text = "[Click Me] Randomize slot2\'s variety based on a list.\r\n";
             this.DevTools2_Label.Click += new System.EventHandler(this.DevTools2_Label_Click);
             // 
@@ -1500,7 +1500,7 @@ namespace CoreKeeperInventoryEditor
             0});
             this.DevToolsDelay_NumericUpDown.Name = "DevToolsDelay_NumericUpDown";
             this.DevToolsDelay_NumericUpDown.Size = new System.Drawing.Size(38, 20);
-            this.DevToolsDelay_NumericUpDown.TabIndex = 28;
+            this.DevToolsDelay_NumericUpDown.TabIndex = 8;
             this.DevToolsDelay_NumericUpDown.Value = new decimal(new int[] {
             80,
             0,
@@ -1530,7 +1530,7 @@ namespace CoreKeeperInventoryEditor
             131072});
             this.RadialMoveScale_NumericUpDown.Name = "RadialMoveScale_NumericUpDown";
             this.RadialMoveScale_NumericUpDown.Size = new System.Drawing.Size(45, 20);
-            this.RadialMoveScale_NumericUpDown.TabIndex = 27;
+            this.RadialMoveScale_NumericUpDown.TabIndex = 7;
             this.RadialMoveScale_NumericUpDown.ThousandsSeparator = true;
             this.RadialMoveScale_NumericUpDown.Value = new decimal(new int[] {
             1,
@@ -1543,10 +1543,10 @@ namespace CoreKeeperInventoryEditor
             this.ResetControls_Button.Location = new System.Drawing.Point(102, 149);
             this.ResetControls_Button.Name = "ResetControls_Button";
             this.ResetControls_Button.Size = new System.Drawing.Size(84, 21);
-            this.ResetControls_Button.TabIndex = 25;
+            this.ResetControls_Button.TabIndex = 9;
             this.ResetControls_Button.Text = "Reset Controls";
             this.ResetControls_Button.UseVisualStyleBackColor = true;
-            this.ResetControls_Button.Click += new System.EventHandler(this.Button34_Click);
+            this.ResetControls_Button.Click += new System.EventHandler(this.ResetControls_Button_Click);
             // 
             // DevTools_Label
             // 
@@ -1555,7 +1555,7 @@ namespace CoreKeeperInventoryEditor
             this.DevTools_Label.Location = new System.Drawing.Point(0, 3);
             this.DevTools_Label.Name = "DevTools_Label";
             this.DevTools_Label.Size = new System.Drawing.Size(337, 130);
-            this.DevTools_Label.TabIndex = 2;
+            this.DevTools_Label.TabIndex = 0;
             this.DevTools_Label.Text = resources.GetString("DevTools_Label.Text");
             // 
             // SpecialThanks_TabPage
@@ -1605,7 +1605,7 @@ namespace CoreKeeperInventoryEditor
             this.PlayerTools_Panel.Controls.Add(this.FreezeItemSlots_Label);
             this.PlayerTools_Panel.Controls.Add(this.ForceNoclip_Checkbox);
             this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_Label);
-            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_MetroTrackBar);
+            this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_TrackBar);
             this.PlayerTools_Panel.Controls.Add(this.MaxMinecartSpeed_ToggleSwitch);
             this.PlayerTools_Panel.Controls.Add(this.MinecartSpeed_Label);
             this.PlayerTools_Panel.Controls.Add(this.TrashInventory_ToggleSwitch);
@@ -1702,24 +1702,24 @@ namespace CoreKeeperInventoryEditor
             this.MaxMinecartSpeed_Label.Text = "- MaxSpeed: 800";
             this.MaxMinecartSpeed_Label.Visible = false;
             // 
-            // MaxMinecartSpeed_MetroTrackBar
+            // MaxMinecartSpeed_TrackBar
             // 
-            this.MaxMinecartSpeed_MetroTrackBar.Enabled = false;
-            this.MaxMinecartSpeed_MetroTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.MaxMinecartSpeed_MetroTrackBar.HoveredState.Parent = this.MaxMinecartSpeed_MetroTrackBar;
-            this.MaxMinecartSpeed_MetroTrackBar.LargeChange = 500;
-            this.MaxMinecartSpeed_MetroTrackBar.Location = new System.Drawing.Point(567, 87);
-            this.MaxMinecartSpeed_MetroTrackBar.Maximum = 9000;
-            this.MaxMinecartSpeed_MetroTrackBar.MouseWheelBarPartitions = 100;
-            this.MaxMinecartSpeed_MetroTrackBar.Name = "MaxMinecartSpeed_MetroTrackBar";
-            this.MaxMinecartSpeed_MetroTrackBar.Size = new System.Drawing.Size(103, 23);
-            this.MaxMinecartSpeed_MetroTrackBar.SmallChange = 50;
-            this.MaxMinecartSpeed_MetroTrackBar.TabIndex = 46;
-            this.MaxMinecartSpeed_MetroTrackBar.ThumbColor = System.Drawing.Color.Lime;
-            this.MaxMinecartSpeed_MetroTrackBar.Value = 800;
-            this.MaxMinecartSpeed_MetroTrackBar.ValueChanged += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_ValueChanged);
-            this.MaxMinecartSpeed_MetroTrackBar.MouseLeave += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseLeave);
-            this.MaxMinecartSpeed_MetroTrackBar.MouseHover += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseHover);
+            this.MaxMinecartSpeed_TrackBar.Enabled = false;
+            this.MaxMinecartSpeed_TrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.MaxMinecartSpeed_TrackBar.HoveredState.Parent = this.MaxMinecartSpeed_TrackBar;
+            this.MaxMinecartSpeed_TrackBar.LargeChange = 500;
+            this.MaxMinecartSpeed_TrackBar.Location = new System.Drawing.Point(567, 87);
+            this.MaxMinecartSpeed_TrackBar.Maximum = 9000;
+            this.MaxMinecartSpeed_TrackBar.MouseWheelBarPartitions = 100;
+            this.MaxMinecartSpeed_TrackBar.Name = "MaxMinecartSpeed_TrackBar";
+            this.MaxMinecartSpeed_TrackBar.Size = new System.Drawing.Size(103, 23);
+            this.MaxMinecartSpeed_TrackBar.SmallChange = 50;
+            this.MaxMinecartSpeed_TrackBar.TabIndex = 46;
+            this.MaxMinecartSpeed_TrackBar.ThumbColor = System.Drawing.Color.Lime;
+            this.MaxMinecartSpeed_TrackBar.Value = 800;
+            this.MaxMinecartSpeed_TrackBar.ValueChanged += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_ValueChanged);
+            this.MaxMinecartSpeed_TrackBar.MouseLeave += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseLeave);
+            this.MaxMinecartSpeed_TrackBar.MouseHover += new System.EventHandler(this.MaxMinecartSpeed_MetroTrackBar_MouseHover);
             // 
             // MaxMinecartSpeed_ToggleSwitch
             // 
@@ -4065,7 +4065,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label TrashInventory_Label;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith MaxMinecartSpeed_ToggleSwitch;
         private System.Windows.Forms.Label MinecartSpeed_Label;
-        private Siticone.UI.WinForms.SiticoneMetroTrackBar MaxMinecartSpeed_MetroTrackBar;
+        private Siticone.UI.WinForms.SiticoneMetroTrackBar MaxMinecartSpeed_TrackBar;
         private System.Windows.Forms.Label MaxMinecartSpeedArrow_Label;
         private System.Windows.Forms.Label MaxMinecartSpeed_Label;
         private Siticone.UI.WinForms.SiticoneCheckBox ForceNoclip_Checkbox;

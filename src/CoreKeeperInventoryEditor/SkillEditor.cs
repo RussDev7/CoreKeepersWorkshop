@@ -44,7 +44,7 @@ namespace CoreKeepersWorkshop
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorLocation;
             #endregion
 
-            #region Set Form Transparency
+            #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
             this.Opacity = Settings.Default.FormOpacity / 100.0;
