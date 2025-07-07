@@ -14,6 +14,7 @@ Changes Since v1.3.6.5
 + Added freeze item slots to the player mods.
 + Significantly increased item selection menu load times.
 + Added optional ability to use skillsets in item names.
++ Added a form opacity option to the dev-tools.
 
 Changes Since v1.3.6.4
 ===========================================================
