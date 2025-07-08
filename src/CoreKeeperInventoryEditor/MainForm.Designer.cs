@@ -1323,7 +1323,7 @@ namespace CoreKeeperInventoryEditor
             this.FormOpacity_TrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
             this.FormOpacity_TrackBar.HoveredState.Parent = this.FormOpacity_TrackBar;
             this.FormOpacity_TrackBar.Location = new System.Drawing.Point(196, 150);
-            this.FormOpacity_TrackBar.Minimum = 1;
+            this.FormOpacity_TrackBar.Minimum = 20;
             this.FormOpacity_TrackBar.Name = "FormOpacity_TrackBar";
             this.FormOpacity_TrackBar.Size = new System.Drawing.Size(130, 23);
             this.FormOpacity_TrackBar.TabIndex = 10;

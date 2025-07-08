@@ -667,7 +667,7 @@ namespace CoreKeeperInventoryEditor
                 }
 
                 // Adjust some final form settings.
-                this.Opacity = 100;
+                this.Opacity = Settings.Default.FormOpacity / 100.0;
                 this.Location = Settings.Default.MainFormLocation;
 
                 // Adjust minimized bool.
