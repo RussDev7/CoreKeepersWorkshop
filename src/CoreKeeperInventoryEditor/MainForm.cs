@@ -8457,721 +8457,681 @@ namespace CoreKeeperInventoryEditor
         #region Chat Events
 
         // Do events for the chat.
-        bool firstRun = true;        // Do text reset bool.
-        bool firstItem = true;       // Ensure we only add to one slot.
-        bool godmodeEnabled = false; // Holder for godmode toggle.
-        bool noclipEnabled = false;  // Holder for noclip toggle.
+        bool firstRun = true;                  // Do text reset bool.
+        bool firstItem = true;                 // Ensure we only add to one slot.
+        bool godmodeEnabled = false;           // Holder for godmode toggle.
+        bool noclipEnabled = false;            // Holder for noclip toggle.
+        private bool _chatHandlerBusy = false; // Guard against overlapping timer ticks.
         private async void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            // Iterate through each found address.
-            foreach (long res in AoBScanResultsChat)
+            if (_chatHandlerBusy) return; // If already running, skip this tick (don't overlap execution).
+            _chatHandlerBusy = true;      // Set the flag to block re-entry.
+            try
             {
-                // Get address from loop.
-                string baseAddress = res.ToString("X").ToString();
-
-                // Get address value.
-                string currentCommand = MemLib.ReadString(baseAddress);
-
-                // Do chat actions.
-                /* More coming soon! */
-                try
+                // Iterate through each found address.
+                foreach (long res in AoBScanResultsChat)
                 {
-                    // ~~Inventory~~
-                    //
-                    #region Give Item
+                    // Get address from loop.
+                    string baseAddress = res.ToString("X").ToString();
 
-                    // Check if current value is valid command and it's unique.
-                    if (currentCommand.Split(' ')[0] == "/item")
+                    // Get address value.
+                    string currentCommand = MemLib.ReadString(baseAddress);
+
+                    // Do chat actions.
+                    /* More coming soon! */
+                    try
                     {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
+                        // ~~Inventory~~
+                        //
+                        #region Give Item
 
-                        // Make a list of each command part.
-                        string[] cmdParts = currentCommand.Split(' ');
-
-                        // Item name, amount, and variation (from the command)
-                        string itemName = cmdParts.Length > 1 ? cmdParts[1] : "";                                                  // Keep blank to indicate null items.
-                        string itemAmount = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : "1";    // Ensure the default is 1.
-                        string itemVariation = cmdParts.Length > 3 && !string.IsNullOrWhiteSpace(cmdParts[3]) ? cmdParts[3] : "0"; // Ensure the default is 0.
-
-                        // Do first run.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        // Ensure the previous ran command was not the same. (prevents duplicate runs per address)
-                        if (!(currentCommand == ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1]
-                             || currentCommand == ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2]
-                             || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1] == "ERROR: You need to first scan for the Inventory addresses!"
-                             || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2] == "ERROR: You need to first scan for the Inventory addresses!") && firstRun)
+                        // Before running the give item command, check if the images are already loaded in memory cache.
+                        // If not, load them now (this only happens once).
+                        if (!InventoryImageCache.IsLoaded)
                         {
-                            // Prevent further entries this loop.
-                            firstRun = false;
-
-                            // Display the chat command.
-                            if (itemName != "")
-                            {
-                                // Display message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[GiveItem] " + currentCommand, UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                            }
-                            else
-                            {
-                                // End loop.
-                                break;
-                            }
-
-                            // Ensure pointers are found.
-                            if (AoBScanResultsInventory == null)
-                            {
-                                // Display message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Inventory addresses!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            try
-                            {
-                                // With item variation.
-                                // itemVariation = currentCommand.Split(' ')[3] != "" ? currentCommand.Split(' ')[3] : "0"; // Ensure the default is 0.
-
-                                // Make sure assets exist.
-                                if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
-                                {
-                                    // Get each folder in inventory.
-                                    foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
-                                    {
-                                        // Get current folder name.
-                                        var catergoryName = new DirectoryInfo(catergoryFolder).Name;
-
-                                        // Retrieve all image files
-                                        foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
-                                        {
-                                            // Get file information.
-                                            var fi = new FileInfo(file);
-                                            string[] filenameData = fi.Name.Split(',');
-
-                                            // Catch desktop.ini from throwing errors.
-                                            if (filenameData[0] == "desktop.ini") continue;
-
-                                            // Get all matches.
-                                            if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
-                                            {
-                                                // Check if to overwrite or to add to empty slots.
-                                                if (OverwriteSlotOne_RadioButton.Checked) // Overwrite slot1.
-                                                {
-                                                    AddItemToInv(ItemSlot: 1, Type: int.Parse(filenameData[1]), Amount: int.Parse(itemAmount), Variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
-                                                }
-                                                else if (AddToEmptySlots_RadioButton.Checked) // Add item to an empty slot.
-                                                {
-                                                    // Reload inventory if add to empty is checked.
-                                                    if (AddToEmptySlots_RadioButton.Checked && firstItem)
-                                                    {
-                                                        // Mark item as first.
-                                                        firstItem = false;
-
-                                                        AddItemToInv(AddToEmpty: true, Type: int.Parse(filenameData[1]), Amount: int.Parse(itemAmount), Variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
-                                                    }
-                                                }
-                                                else if (Custom_RadioButton.Checked) // Custom slot.
-                                                {
-                                                    AddItemToInv(ItemSlot: (int)CustomAmount_NumericUpDown.Value, Type: int.Parse(filenameData[1]), Amount: int.Parse(itemAmount), Variation: int.Parse(itemVariation) == 0 ? 0 : (int.Parse(itemVariation)), Overwrite: true);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception)
-                            {
-                                // Without item variation.
-                                // Make sure assets exist.
-                                if (Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
-                                {
-                                    // Get each folder in inventory.
-                                    foreach (var catergoryFolder in Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\"))
-                                    {
-                                        // Get current folder name.
-                                        var catergoryName = new DirectoryInfo(catergoryFolder).Name;
-
-                                        // Retrieve all image files
-                                        foreach (var file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"\assets\Inventory\" + catergoryName))
-                                        {
-                                            // Get file information.
-                                            var fi = new FileInfo(file);
-                                            string[] filenameData = fi.Name.Split(',');
-
-                                            // Catch desktop.ini from throwing errors.
-                                            if (filenameData[0] == "desktop.ini") continue;
-
-                                            // Get all matches.
-                                            if (filenameData[0].ToLower().Contains(itemName.Replace(" ", "")) || filenameData[1] == itemName.Replace(" ", "")) // Name or ID.
-                                            {
-                                                // Check if to overwrite or to add to empty slots.
-                                                if (OverwriteSlotOne_RadioButton.Checked) // Overwrite slot1.
-                                                {
-                                                    AddItemToInv(ItemSlot: 1, Type: int.Parse(filenameData[1]), Amount: int.Parse(itemAmount), Overwrite: true);
-                                                }
-                                                else if (AddToEmptySlots_RadioButton.Checked) // Add item to an empty slot.
-                                                {
-                                                    // Reload inventory if add to empty is checked.
-                                                    if (AddToEmptySlots_RadioButton.Checked && firstItem)
-                                                    {
-                                                        // Mark item as first.
-                                                        firstItem = false;
-
-                                                        AddItemToInv(AddToEmpty: true, Type: int.Parse(filenameData[1]), Amount: int.Parse(itemAmount), Overwrite: true);
-                                                    }
-                                                }
-                                                else if (Custom_RadioButton.Checked) // Custom slot.
-                                                {
-                                                    AddItemToInv(ItemSlot: (int)CustomAmount_NumericUpDown.Value, Type: int.Parse(filenameData[1]), Amount: int.Parse(itemAmount), Overwrite: true);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            // Loads all images from disk into memory (static cache).
+                            // Pass the FolderNames to tell it what folders to load.
+                            InventoryImageCache.LoadAllImages(ItemSelectionMenu.FolderNames);
                         }
 
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End give item.
-
-
-                    // ~~Player~~
-                    //
-                    #region Godmode
-
-                    if (currentCommand.Split(' ')[0] == "/godmode")
-                    {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[Godmode]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[Godmode]") && firstRun)
+                        if (currentCommand.Split(' ')[0] == "/item")
                         {
-                            // Prevent further entries this loop.
-                            firstRun = false;
-
-                            // Make a list of each command part.
-                            // string[] cmdParts = currentCommand.Split(' ');
-
-                            // Get strings.
-                            // string worldName = cmdParts.Length > 1 ? cmdParts[1] : "";                                       // Keep blank to indicate null name.
-                            // string mode = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
-
-                            // Open the process and check if it was successful before the AoB scan.
-                            if (!MemLib.OpenProcess("CoreKeeper"))
-                            {
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Ensure pointers are found.
-                            if (AoBScanResultsPlayerTools == null)
-                            {
-                                // Display message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Toggle the godmode bool.
-                            godmodeEnabled = !godmodeEnabled;
-
-                            // Get the addresses.
-                            godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
-
-                            // Check if the slider was not yet checked.
-                            if (godmodeEnabled)
-                            {
-                                // Toggle slider.
-                                Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
-                                Godmode_ToggleSwitch.Checked = true;
-                                Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
-
-                                // Slider is being toggled on.
-                                // Start the timed events.
-                                playersGodmodeTimer.Interval = 1; // Custom intervals.
-                                playersGodmodeTimer.Elapsed += new ElapsedEventHandler(PlayersGodmodeTimedEvent);
-                                playersGodmodeTimer.Start();
-
-                                // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Enabled!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-
-                                // End chat command.
-                                break;
-                            }
-                            else
-                            {
-                                // Toggle slider.
-                                Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
-                                Godmode_ToggleSwitch.Checked = false;
-                                Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
-
-                                // Slider is being toggled off.
-                                // Stop the timers.
-                                playersGodmodeTimer.Stop();
-
-                                // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Disabled!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-
-                                // End chat command.
-                                break;
-                            }
-                        }
-
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End godmode.
-
-                    #region Noclip
-
-                    if (currentCommand.Split(' ')[0] == "/noclip")
-                    {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[Noclip]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[Noclip]") && firstRun)
-                        {
-                            // Prevent further entries this loop.
-                            firstRun = false;
-
-                            // Make a list of each command part.
-                            // string[] cmdParts = currentCommand.Split(' ');
-
-                            // Get strings.
-                            // string worldName = cmdParts.Length > 1 ? cmdParts[1] : "";                                       // Keep blank to indicate null name.
-                            // string mode = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
-
-                            // Open the process and check if it was successful before the AoB scan.
-                            if (!MemLib.OpenProcess("CoreKeeper"))
-                            {
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Ensure pointers are found.
-                            if (AoBScanResultsPlayerTools == null)
-                            {
-                                // Display message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Toggle the godmode bool.
-                            noclipEnabled = !noclipEnabled;
-
-                            // Get the addresses.
-                            // Old alternative address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
-                            // POINTER MAP: 03 ?? (02) - Use the second one.
-                            noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
-
-                            // Check if the slider was not yet checked.
-                            if (noclipEnabled)
-                            {
-                                // Toggle slider.
-                                Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
-                                Noclip_ToggleSwitch.Checked = true;
-                                Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
-
-                                // Toggle force on checkbox.
-                                ForceNoclip_Checkbox.Checked = true;
-
-                                // Slider is being toggled on.
-                                // Get original value.
-                                noclipOriginalValue = MemLib.ReadUInt(noclipAddress).ToString();
-
-                                // Start the timed events.
-                                playersNoclipTimer.Interval = 100;
-                                playersNoclipTimer.Elapsed += new ElapsedEventHandler(PlayersNoclipTimedEvent);
-                                playersNoclipTimer.Start();
-
-                                // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Enabled!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-
-                                // End chat command.
-                                break;
-                            }
-                            else
-                            {
-                                // Toggle slider.
-                                Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
-                                Noclip_ToggleSwitch.Checked = false;
-                                Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
-
-                                // Toggle force on checkbox.
-                                ForceNoclip_Checkbox.Checked = false;
-
-                                // Slider is being toggled off.
-                                // Stop the timers.
-                                playersNoclipTimer.Stop();
-
-                                // Write value.
-                                MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
-
-                                // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Disabled!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-
-                                // End chat command.
-                                break;
-                            }
-                        }
-
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End noclip.
-
-                    #region Teleport Player
-
-                    if (currentCommand.Split(' ')[0] == "/tp")
-                    {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[TP]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[TP]") && firstRun)
-                        {
-                            // Prevent further entries this loop.
-                            firstRun = false;
-
-                            // Make a list of each command part.
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
                             string[] cmdParts = currentCommand.Split(' ');
 
-                            // Get strings.
-                            string xLocation = cmdParts.Length > 1 ? cmdParts[1] : "";                                            // Keep blank to indicate null name.
-                            string yLocation = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
+                            // Parse arguments, with safe defaults.
+                            string itemInput = cmdParts.Length > 1 ? cmdParts[1] : "";
+                            string itemAmount = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : "1";
+                            string itemVariation = cmdParts.Length > 3 && !string.IsNullOrWhiteSpace(cmdParts[3]) ? cmdParts[3] : null; // NULL means auto-detect.
+                            string itemSkillSet = cmdParts.Length > 4 && !string.IsNullOrWhiteSpace(cmdParts[4]) ? cmdParts[4] : null;
 
-                            // Ensure command is fully populated.
-                            if (xLocation == "" || yLocation == "")
+                            if (!(currentCommand == ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1] || currentCommand == ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2] ||
+                                  ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
                             {
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] CMD ERROR: You need to specify both X & Y coordinates!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
+                                firstRun = false;
 
-                            // Open the process and check if it was successful before the AoB scan.
-                            if (!MemLib.OpenProcess("CoreKeeper"))
-                            {
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Ensure pointers are found.
-                            if (AoBScanResultsPlayerLocation == null)
-                            {
-                                // Display message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Teleport Player addresses!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Iterate through each found address.
-                            foreach (long res2 in AoBScanResultsPlayerLocation)
-                            {
-                                // Get address from loop.
-                                string playerX = res2.ToString("X").ToString();
-                                string playerY = BigInteger.Add(BigInteger.Parse(res2.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
-
-                                // Send player to X.
-                                MemLib.WriteMemory(playerX, "float", xLocation);
-
-                                // Send player to Y.
-                                MemLib.WriteMemory(playerY, "float", yLocation);
-                            }
-
-                            // Display message to ingame console before clearing.
-                            RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] Teleported Player to: {X: " + xLocation + ", Y: " + yLocation + "}.", UseOverlay_CheckBox.Checked);
-                            ChatCommands_RichTextBox.ScrollToCaret();
-
-                            // End chat command.
-                            break;
-                        }
-
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End noclip.
-
-
-                    // ~~World~~
-                    //
-                    #region Clear Ground Items
-
-                    if (currentCommand.Split(' ')[0] == "/clearground")
-                    {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[ClearGround]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[ClearGround]") && firstRun)
-                        {
-                            // Prevent further entries this loop.
-                            firstRun = false;
-
-                            ChatCommands_RichTextBox.AppendText(currentCommand + " - Loading please wait.." + Environment.NewLine);
-                            ChatCommands_RichTextBox.ScrollToCaret();
-
-                            // Check if brute force mode is enabled.
-                            // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
-                            if (BruteForceTrash_CheckBox.Checked)
-                            {
-                                // Do brute force scanning.
-                                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
-                            }
-                            else
-                            {
-                                // Do normal scanning.
-                                // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
-                                // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
-                                // Depreciated Address 23Feb25: 01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-                                AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
-                            }
-
-                            // If the count is zero, the scan had an error.
-                            if (AoBScanResultsGroundItems.Count() == 0)
-                            {
-                                // Display error message.
-                                if (BruteForceTrash_CheckBox.Checked)
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround_BruteForce] Failed to find any addresses. No ground items found!!", UseOverlay_CheckBox.Checked);
+                                if (!string.IsNullOrWhiteSpace(itemInput))
+                                {
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[GiveItem] " + currentCommand, UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                }
                                 else
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] You must throw at least one torch on the ground!!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
+                                    return;
+
+                                if (AoBScanResultsInventory == null)
+                                {
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Inventory addresses!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                try
+                                {
+                                    // Flatten cache for lookup (search all categories).
+                                    var allItems = InventoryImageCache.CategoryImages
+                                        .SelectMany(kvp => kvp.Value)
+                                        .ToList();
+
+                                    // Try match by ID first (if numeric input).
+                                    InventoryImageData match = null;
+                                    if (int.TryParse(itemInput, out int itemId))
+                                    {
+                                        match = allItems.FirstOrDefault(x => x.Id == itemId.ToString());
+                                    }
+
+                                    // If not found by ID, or if name given, try name.
+                                    if (match == null)
+                                    {
+                                        string normalizedInput = NormalizeItemName(itemInput);
+                                        match = allItems.FirstOrDefault(x => NormalizeItemName(x.Name) == normalizedInput);
+                                    }
+
+                                    if (match == null)
+                                    {
+                                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, $"ERROR: Item '{itemInput}' not found!", UseOverlay_CheckBox.Checked);
+                                        return;
+                                    }
+
+                                    // Determine variation/skillset (from command or file).
+                                    int varVal = 0;
+                                    int skillVal = 0;
+                                    if (!string.IsNullOrWhiteSpace(itemVariation))
+                                        int.TryParse(itemVariation, out varVal);
+                                    else if (int.TryParse(match.Variation, out int parsedVar))
+                                        varVal = parsedVar;
+
+                                    if (!string.IsNullOrWhiteSpace(itemSkillSet))
+                                        int.TryParse(itemSkillSet, out skillVal);
+                                    else if (int.TryParse(match.SkillSet, out int parsedSkill))
+                                        skillVal = parsedSkill;
+
+                                    // Which slot to use?
+                                    if (OverwriteSlotOne_RadioButton.Checked)
+                                    {
+                                        AddItemToInv(ItemSlot: 1, Type: int.Parse(match.Id), Amount: int.Parse(itemAmount), Variation: varVal, Skillset: skillVal, Overwrite: true);
+                                    }
+                                    else if (AddToEmptySlots_RadioButton.Checked)
+                                    {
+                                        if (firstItem)
+                                        {
+                                            firstItem = false;
+                                            AddItemToInv(LoadInventory: true); // Refresh inventory first.
+                                            AddItemToInv(AddToEmpty: true, Type: int.Parse(match.Id), Amount: int.Parse(itemAmount), Variation: varVal, Skillset: skillVal, Overwrite: true);
+                                        }
+                                    }
+                                    else if (Custom_RadioButton.Checked)
+                                    {
+                                        AddItemToInv(ItemSlot: (int)CustomAmount_NumericUpDown.Value, Type: int.Parse(match.Id), Amount: int.Parse(itemAmount), Variation: varVal, Skillset: skillVal, Overwrite: true);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, $"ERROR: {ex.Message}", UseOverlay_CheckBox.Checked);
+                                }
                             }
+                            return; // Exit handler entirely.
+                        }
+                        #endregion // End give item.
 
-                            // Remove ground items.
-                            await RemoveGroundItemsAsync();
+                        // ~~Player~~
+                        //
+                        #region Godmode
 
-                            // Log events.
-                            RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] Ground items cleared!", UseOverlay_CheckBox.Checked);
-                            ChatCommands_RichTextBox.ScrollToCaret();
+                        if (currentCommand.Split(' ')[0] == "/godmode")
+                        {
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
+
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
+                            {
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
+                                // Make a list of each command part.
+                                // string[] cmdParts = currentCommand.Split(' ');
+
+                                // Get strings.
+                                // string worldName = cmdParts.Length > 1 ? cmdParts[1] : "";                                       // Keep blank to indicate null name.
+                                // string mode = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
+
+                                // Open the process and check if it was successful before the AoB scan.
+                                if (!MemLib.OpenProcess("CoreKeeper"))
+                                {
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Ensure pointers are found.
+                                if (AoBScanResultsPlayerTools == null)
+                                {
+                                    // Display message.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Toggle the godmode bool.
+                                godmodeEnabled = !godmodeEnabled;
+
+                                // Get the addresses.
+                                godmodeAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(godmode_Offset, NumberStyles.Integer)).ToString("X");
+
+                                // Check if the slider was not yet checked.
+                                if (godmodeEnabled)
+                                {
+                                    // Toggle slider.
+                                    Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
+                                    Godmode_ToggleSwitch.Checked = true;
+                                    Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
+
+                                    // Slider is being toggled on.
+                                    // Start the timed events.
+                                    playersGodmodeTimer.Interval = 1; // Custom intervals.
+                                    playersGodmodeTimer.Elapsed += new ElapsedEventHandler(PlayersGodmodeTimedEvent);
+                                    playersGodmodeTimer.Start();
+
+                                    // Display message to ingame console before clearing.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Enabled!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+
+                                    // End chat command.
+                                    return;
+                                }
+                                else
+                                {
+                                    // Toggle slider.
+                                    Godmode_ToggleSwitch.CheckedChanged -= Godmode_ToggleSwitch_CheckedChanged;
+                                    Godmode_ToggleSwitch.Checked = false;
+                                    Godmode_ToggleSwitch.CheckedChanged += Godmode_ToggleSwitch_CheckedChanged;
+
+                                    // Slider is being toggled off.
+                                    // Stop the timers.
+                                    playersGodmodeTimer.Stop();
+
+                                    // Display message to ingame console before clearing.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Disabled!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+
+                                    // End chat command.
+                                    return;
+                                }
+                            }
 
                             // End chat command.
-                            break;
+                            return; // Exit handler entirely.
                         }
+                        #endregion // End godmode.
 
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End clear ground items.
+                        #region Noclip
 
-                    #region Change World Difficulty
-
-                    if (currentCommand.Split(' ')[0] == "/mode")
-                    {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[WorldMode]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[WorldMode]") && firstRun)
+                        if (currentCommand.Split(' ')[0] == "/noclip")
                         {
-                            // Prevent further entries this loop.
-                            firstRun = false;
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
 
-                            // Make a list of each command part.
-                            string[] cmdParts = currentCommand.Split(' ');
-
-                            // Get strings.
-                            string worldName = cmdParts.Length > 1 ? cmdParts[1] : "";                                       // Keep blank to indicate null name.
-                            string mode = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
-
-                            // Ensure command is fully populated.
-                            if (worldName == "" || mode == "")
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
                             {
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] CMD ERROR: /mode [worldName] [difficulty = 'normal' or 'hard']", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
+                                // Make a list of each command part.
+                                // string[] cmdParts = currentCommand.Split(' ');
+
+                                // Get strings.
+                                // string worldName = cmdParts.Length > 1 ? cmdParts[1] : "";                                       // Keep blank to indicate null name.
+                                // string mode = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
+
+                                // Open the process and check if it was successful before the AoB scan.
+                                if (!MemLib.OpenProcess("CoreKeeper"))
+                                {
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Ensure pointers are found.
+                                if (AoBScanResultsPlayerTools == null)
+                                {
+                                    // Display message.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Toggle the godmode bool.
+                                noclipEnabled = !noclipEnabled;
+
+                                // Get the addresses.
+                                // Old alternative address: 124 // Fix 1.3.4.6 15Jan23. // Reverted 1.3.4.9 09Feb23 - old address: 116.
+                                // POINTER MAP: 03 ?? (02) - Use the second one.
+                                noclipAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerTools.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(noclip_Offset, NumberStyles.Integer)).ToString("X");
+
+                                // Check if the slider was not yet checked.
+                                if (noclipEnabled)
+                                {
+                                    // Toggle slider.
+                                    Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
+                                    Noclip_ToggleSwitch.Checked = true;
+                                    Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
+
+                                    // Toggle force on checkbox.
+                                    ForceNoclip_Checkbox.Checked = true;
+
+                                    // Slider is being toggled on.
+                                    // Get original value.
+                                    noclipOriginalValue = MemLib.ReadUInt(noclipAddress).ToString();
+
+                                    // Start the timed events.
+                                    playersNoclipTimer.Interval = 100;
+                                    playersNoclipTimer.Elapsed += new ElapsedEventHandler(PlayersNoclipTimedEvent);
+                                    playersNoclipTimer.Start();
+
+                                    // Display message to ingame console before clearing.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Enabled!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+
+                                    // End chat command.
+                                    return;
+                                }
+                                else
+                                {
+                                    // Toggle slider.
+                                    Noclip_ToggleSwitch.CheckedChanged -= Noclip_ToggleSwitch_CheckedChanged;
+                                    Noclip_ToggleSwitch.Checked = false;
+                                    Noclip_ToggleSwitch.CheckedChanged += Noclip_ToggleSwitch_CheckedChanged;
+
+                                    // Toggle force on checkbox.
+                                    ForceNoclip_Checkbox.Checked = false;
+
+                                    // Slider is being toggled off.
+                                    // Stop the timers.
+                                    playersNoclipTimer.Stop();
+
+                                    // Write value.
+                                    MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
+
+                                    // Display message to ingame console before clearing.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Disabled!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+
+                                    // End chat command.
+                                    return;
+                                }
                             }
 
-                            // Open the process and check if it was successful before the AoB scan.
-                            if (!MemLib.OpenProcess("CoreKeeper"))
-                            {
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Ensure pointers are found.
-                            if (AoBScanResultsWorldData == null)
-                            {
-                                // Display message.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the World Information addresses!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                                break;
-                            }
-
-                            // Load world information.
-                            Task.Run(async () => { await LoadWorldInformation(worldName); }).Wait();
-
-                            // Change world difficulty.
-                            if (mode.ToLower() == "normal")
-                            {
-                                // Change world difficulty to normal.
-                                ChangeWorldDifficulty(0);
-
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to normal!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                            }
-                            else if (mode.ToLower() == "hard")
-                            {
-                                // Change world difficulty to hard.
-                                ChangeWorldDifficulty(1);
-
-                                // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to hard!", UseOverlay_CheckBox.Checked);
-                                ChatCommands_RichTextBox.ScrollToCaret();
-                            }
+                            // End chat command.
+                            return; // Exit handler entirely.
                         }
+                        #endregion // End noclip.
 
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End change world difficulty.
+                        #region Teleport Player
 
-
-                    // ~~Misc~~
-                    //
-                    #region Get Help
-
-                    if (currentCommand.Split(' ')[0] == "/help")
-                    {
-                        // Erase current chat values.
-                        // "                                "
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[Help]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[Help]") && firstRun)
+                        if (currentCommand.Split(' ')[0] == "/tp")
                         {
-                            // Prevent further entries this loop.
-                            firstRun = false;
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
 
-                            // Display message to ingame console before clearing.
-                            RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Help] Help command was issued!", false);
-                            ChatCommands_RichTextBox.ScrollToCaret();
-
-                            // Handle overlay differently.
-                            if (UseOverlay_CheckBox.Checked)
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
                             {
-                                // Get page number. - ensure a valid suffix exists or just use the first page.
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
                                 // Make a list of each command part.
                                 string[] cmdParts = currentCommand.Split(' ');
 
-                                int testValue;
-                                int pageNumber = (cmdParts.Length > 1 && !string.IsNullOrWhiteSpace(cmdParts[1]))
-                                    ? (int.TryParse(cmdParts[1], out testValue) ? testValue : 1)
-                                    : 1;
+                                // Get strings.
+                                string xLocation = cmdParts.Length > 1 ? cmdParts[1] : "";                                            // Keep blank to indicate null name.
+                                string yLocation = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
 
-                                OverlayHelper.ShowOverlay(CommandReader.ReadCommands(5, pageNumber, true), 10); // Use longer display time.
+                                // Ensure command is fully populated.
+                                if (xLocation == "" || yLocation == "")
+                                {
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] CMD ERROR: You need to specify both X & Y coordinates!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Open the process and check if it was successful before the AoB scan.
+                                if (!MemLib.OpenProcess("CoreKeeper"))
+                                {
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Ensure pointers are found.
+                                if (AoBScanResultsPlayerLocation == null)
+                                {
+                                    // Display message.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Teleport Player addresses!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Iterate through each found address.
+                                foreach (long res2 in AoBScanResultsPlayerLocation)
+                                {
+                                    // Get address from loop.
+                                    string playerX = res2.ToString("X").ToString();
+                                    string playerY = BigInteger.Add(BigInteger.Parse(res2.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
+
+                                    // Send player to X.
+                                    MemLib.WriteMemory(playerX, "float", xLocation);
+
+                                    // Send player to Y.
+                                    MemLib.WriteMemory(playerY, "float", yLocation);
+                                }
+
+                                // Display message to ingame console before clearing.
+                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] Teleported Player to: {X: " + xLocation + ", Y: " + yLocation + "}.", UseOverlay_CheckBox.Checked);
+                                ChatCommands_RichTextBox.ScrollToCaret();
+
+                                // End chat command.
+                                return;
                             }
 
                             // End chat command.
-                            break;
+                            return; // Exit handler entirely.
                         }
+                        #endregion // End noclip.
 
-                        // End chat command.
-                        break;
-                    }
-                    #endregion // End clear CMD.
 
-                    #region Clear CMD
+                        // ~~World~~
+                        //
+                        #region Clear Ground Items
 
-                    if (currentCommand.Split(' ')[0] == "/cls")
-                    {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Log command if it does not exist.
-                        // INFO: Loop runs multiple times, run once via checking cmd execution in log.
-                        if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[ClearConsole]"
-                            || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[ClearConsole]") && firstRun)
+                        if (currentCommand.Split(' ')[0] == "/clearground")
                         {
-                            // Prevent further entries this loop.
-                            firstRun = false;
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
 
-                            // Display message to ingame console before clearing.
-                            RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearConsole] Console log was cleared!", UseOverlay_CheckBox.Checked);
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
+                            {
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
+                                ChatCommands_RichTextBox.AppendText(currentCommand + " - Loading please wait.." + Environment.NewLine);
+                                ChatCommands_RichTextBox.ScrollToCaret();
+
+                                // Check if brute force mode is enabled.
+                                // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
+                                if (BruteForceTrash_CheckBox.Checked)
+                                {
+                                    // Do brute force scanning.
+                                    AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00", true, true);
+                                }
+                                else
+                                {
+                                    // Do normal scanning.
+                                    // Depreciated Address 23Oct23: 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00
+                                    // Depreciated Address 04May24: 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
+                                    // Depreciated Address 23Feb25: 01 00 00 00 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                                    AoBScanResultsGroundItems = await MemLib.AoBScan("01 00 00 00 01 00 00 00 6E 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00", true, true);
+                                }
+
+                                // If the count is zero, the scan had an error.
+                                if (AoBScanResultsGroundItems.Count() == 0)
+                                {
+                                    // Display error message.
+                                    if (BruteForceTrash_CheckBox.Checked)
+                                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround_BruteForce] Failed to find any addresses. No ground items found!!", UseOverlay_CheckBox.Checked);
+                                    else
+                                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] You must throw at least one torch on the ground!!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Remove ground items.
+                                await RemoveGroundItemsAsync();
+
+                                // Log events.
+                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] Ground items cleared!", UseOverlay_CheckBox.Checked);
+                                ChatCommands_RichTextBox.ScrollToCaret();
+
+                                // End chat command.
+                                return;
+                            }
+
+                            // End chat command.
+                            return; // Exit handler entirely.
+                        }
+                        #endregion // End clear ground items.
+
+                        #region Change World Difficulty
+
+                        if (currentCommand.Split(' ')[0] == "/mode")
+                        {
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
+
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
+                            {
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
+                                // Make a list of each command part.
+                                string[] cmdParts = currentCommand.Split(' ');
+
+                                // Get strings.
+                                string worldName = cmdParts.Length > 1 ? cmdParts[1] : "";                                       // Keep blank to indicate null name.
+                                string mode = cmdParts.Length > 2 && !string.IsNullOrWhiteSpace(cmdParts[2]) ? cmdParts[2] : ""; // Keep blank to indicate null mode.
+
+                                // Ensure command is fully populated.
+                                if (worldName == "" || mode == "")
+                                {
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] CMD ERROR: /mode [worldName] [difficulty = 'normal' or 'hard']", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Open the process and check if it was successful before the AoB scan.
+                                if (!MemLib.OpenProcess("CoreKeeper"))
+                                {
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Ensure pointers are found.
+                                if (AoBScanResultsWorldData == null)
+                                {
+                                    // Display message.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the World Information addresses!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                    return;
+                                }
+
+                                // Load world information.
+                                Task.Run(async () => { await LoadWorldInformation(worldName); }).Wait();
+
+                                // Change world difficulty.
+                                if (mode.ToLower() == "normal")
+                                {
+                                    // Change world difficulty to normal.
+                                    ChangeWorldDifficulty(0);
+
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to normal!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                }
+                                else if (mode.ToLower() == "hard")
+                                {
+                                    // Change world difficulty to hard.
+                                    ChangeWorldDifficulty(1);
+
+                                    // Log events.
+                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to hard!", UseOverlay_CheckBox.Checked);
+                                    ChatCommands_RichTextBox.ScrollToCaret();
+                                }
+                            }
+
+                            // End chat command.
+                            return; // Exit handler entirely.
+                        }
+                        #endregion // End change world difficulty.
+
+
+                        // ~~Misc~~
+                        //
+                        #region Get Help
+
+                        if (currentCommand.Split(' ')[0] == "/help")
+                        {
+                            // Wipe the first x bytes of chat at baseAddress (i.e., "/item" becomes empty).
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
+
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].StartsWith("ERROR:") || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].StartsWith("ERROR:")) && firstRun)
+                            {
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
+                                // Display message to ingame console before clearing.
+                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Help] Help command was issued!", false);
+                                ChatCommands_RichTextBox.ScrollToCaret();
+
+                                // Handle overlay differently.
+                                if (UseOverlay_CheckBox.Checked)
+                                {
+                                    // Get page number. - ensure a valid suffix exists or just use the first page.
+                                    // Make a list of each command part.
+                                    string[] cmdParts = currentCommand.Split(' ');
+
+                                    int testValue;
+                                    int pageNumber = (cmdParts.Length > 1 && !string.IsNullOrWhiteSpace(cmdParts[1]))
+                                        ? (int.TryParse(cmdParts[1], out testValue) ? testValue : 1)
+                                        : 1;
+
+                                    OverlayHelper.ShowOverlay(CommandReader.ReadCommands(5, pageNumber, true), 10); // Use longer display time.
+                                }
+
+                                // End chat command.
+                                return;
+                            }
+
+                            // End chat command.
+                            return; // Exit handler entirely.
+                        }
+                        #endregion // End clear CMD.
+
+                        #region Clear CMD
+
+                        if (currentCommand.Split(' ')[0] == "/cls")
+                        {
+                            // Erase current chat values.
+                            MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
+
+                            // Log command if it does not exist.
+                            // INFO: Loop runs multiple times, run once via checking cmd execution in log.
+                            if (!(ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 1].Split(' ')[0] == "[ClearConsole]"
+                                || ChatCommands_RichTextBox.Lines[ChatCommands_RichTextBox.Lines.Length - 2].Split(' ')[0] == "[ClearConsole]") && firstRun)
+                            {
+                                // Prevent further entries this loop.
+                                firstRun = false;
+
+                                // Display message to ingame console before clearing.
+                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearConsole] Console log was cleared!", UseOverlay_CheckBox.Checked);
+                                ChatCommands_RichTextBox.ScrollToCaret();
+
+                                // Reset richtextbox.
+                                ChatCommands_RichTextBox.Text = "Any captured chat messages will appear here.\n" +
+                                    "-----------------------------------------------------------------------------------------------------------------\n";
+                            }
+
+                            // End chat command.
+                            return; // Exit handler entirely.
+                        }
+                        #endregion // End clear CMD.
+
+
+                        // CMD not found.
+                        //
+                        #region Command Not Found
+
+                        // Check if this is the initial launch message or not.
+                        if (currentCommand.Split(' ')[0] == "/chat"
+                            || currentCommand.StartsWith("/chat")) // Fix for loops. - EX: Finds /chat in "'/chatX3 [".
+                        {
+                            // Erase current chat values.
+                            // MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
+
+                            // End loop.
+                            return;
+                        }
+                        else if (currentCommand.Split(' ')[0].Contains('/'))
+                        {
+                            // Unknown command.
+
+                            // Erase current chat values.
+                            // MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
+                            // Dynamically erase the command in memory based on its lengh.
+                            MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
+
+                            // Display error message.
+                            RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "'" + currentCommand.Split(' ')[0] + "' is not recognized as an command.", UseOverlay_CheckBox.Checked);
                             ChatCommands_RichTextBox.ScrollToCaret();
 
-                            // Reset richtextbox.
-                            ChatCommands_RichTextBox.Text = "Any captured chat messages will appear here.\n" +
-                                "-----------------------------------------------------------------------------------------------------------------\n";
+                            // End loop.
+                            return;
                         }
-
-                        // End chat command.
-                        break;
+                        #endregion
                     }
-                    #endregion // End clear CMD.
-
-
-                    // CMD not found.
-                    //
-                    #region Command Not Found
-
-                    // Check if this is the initial launch message or not.
-                    if (currentCommand.Split(' ')[0] == "/chat"
-                        || currentCommand.StartsWith("/chat")) // Fix for loops. - EX: Finds /chat in "'/chatX3 [".
+                    catch (Exception)
                     {
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // End loop.
-                        break;
+                        continue;
                     }
-                    else if (currentCommand.Split(' ')[0].Contains('/'))
-                    {
-                        // Unknown command.
-
-                        // Erase current chat values.
-                        MemLib.WriteMemory(baseAddress, "string", new string(' ', 100));
-
-                        // Display error message.
-                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "'" + currentCommand.Split(' ')[0] + "' is not recognized as an command.", UseOverlay_CheckBox.Checked);
-                        ChatCommands_RichTextBox.ScrollToCaret();
-
-                        // End loop.
-                        break;
-                    }
-                    #endregion
                 }
-                catch (Exception)
-                {
-                    continue;
-                }
+
+                // Reset the loop checks.
+                firstRun = true;
+                firstItem = true;
             }
-
-            // Reset the loop checks.
-            firstRun = true;
-            firstItem = true;
+            finally
+            {
+                // Always clear the flag, even if there was an error.
+                // This ensures future ticks can run.
+                _chatHandlerBusy = false;
+            }
         }
         #endregion // End chat events.
 
@@ -9196,6 +9156,12 @@ namespace CoreKeeperInventoryEditor
                 }
             }
         }
+
+        private static string NormalizeItemName(string input)
+        {
+            return input.ToLower().Replace("_", "").Replace(" ", "");
+        }
+
         #endregion
 
         #endregion // End toggle chat commands

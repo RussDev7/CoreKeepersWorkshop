@@ -3562,7 +3562,7 @@ namespace CoreKeeperInventoryEditor
             this.CustomAmount_NumericUpDown.Enabled = false;
             this.CustomAmount_NumericUpDown.Location = new System.Drawing.Point(75, 56);
             this.CustomAmount_NumericUpDown.Maximum = new decimal(new int[] {
-            30,
+            50,
             0,
             0,
             0});
