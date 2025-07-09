@@ -78,7 +78,10 @@ This editor has full support for adding modded items or future game release cont
 
 ![01](https://user-images.githubusercontent.com/33048298/190876339-6153add9-0558-4759-969f-a14f2dddbe7f.PNG)
 
-Below is a chart to show off filename system for images:
+Below is a chart to show off the filename system for images:
+- Note, the following catigories are optional:
+  - Variation
+  - Skillset (new)
 
 ![ItemSupportv2](https://user-images.githubusercontent.com/33048298/190885823-8f0b7a7a-0abd-4f45-b11a-76d67c52f466.png)
 
