@@ -382,6 +382,7 @@ namespace CoreKeeperInventoryEditor
                 toolTip.SetToolTip(BruteForceTrash_CheckBox, "Brute force the trashing of items by singling out each item.");
                 toolTip.SetToolTip(ForceNoclip_Checkbox, "Force noclip to always be on.");
                 toolTip.SetToolTip(MapTeleport_CheckBox, "Use the overhead map to left-click teleport to any position.");
+                toolTip.SetToolTip(UseOverlay_CheckBox, "Displays the chat commands console via a game overlay.");
 
                 toolTip.SetToolTip(Inventory_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
                 toolTip.SetToolTip(PlayerTools_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
