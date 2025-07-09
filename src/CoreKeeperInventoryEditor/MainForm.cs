@@ -4945,7 +4945,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsPlayerMapLocation = null;
 
                 // Display error message.
-                MessageBox.Show("There was an issue trying to fetch the map teleport addresses." + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"There was an issue trying to fetch the map teleport addresses.\r\nTry reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (AoBScanResultsPlayerMapLocation.Count() > 1)
@@ -4978,11 +4978,12 @@ namespace CoreKeeperInventoryEditor
                 GetTeleportAddresses_Button.Enabled = true;
                 TeleportPlayer_GroupBox.Enabled = true;
 
-                // Reset aob scan results.
-                AoBScanResultsPlayerMapLocation = null;
-
                 // Display error message.
-                MessageBox.Show($"There was an issue trying to fetch the map teleport addresses. Count: [{AoBScanResultsPlayerMapLocation.Count()}]" + Environment.NewLine + "Try reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"There was an issue trying to fetch the map teleport addresses. Count: [{AoBScanResultsPlayerMapLocation.Count()}]\r\nTry reloading the game!!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Reset aob scan results.
+                // Fix v1.3.6.6: We're nullifying the list before reading its '.Count()' causing a null throw. Fix: Move after the count statements.
+                AoBScanResultsPlayerMapLocation = null;
                 return;
             }
 
@@ -4991,7 +4992,7 @@ namespace CoreKeeperInventoryEditor
             {
                 if (TeleportPlayerAddresses_RichTextBox.Text == "Addresses Loaded: 0")
                 {
-                    TeleportPlayerAddresses_RichTextBox.Text = "Teleport Map Addresses Loaded: " + AoBScanResultsPlayerMapLocation.Count().ToString() + " [" + res.ToString("X").ToString();
+                    TeleportPlayerAddresses_RichTextBox.Text = $"Teleport Map Addresses Loaded: {AoBScanResultsPlayerMapLocation.Count()} [{res:X}";
                 }
                 else
                 {
@@ -5152,10 +5153,13 @@ namespace CoreKeeperInventoryEditor
                 GetMapRenderingAddresses_Button.Enabled = true;
                 MapRendering_GroupBox.Enabled = true;
 
-                // Reset aob scan results
-                AoBScanResultsDevMapReveal = null;
+                // Display error message.
+                MessageBox.Show($"There was an issue gathering the reveal range addresses! Found: {AoBScanResultsRevealMapRange.Count()}\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                MessageBox.Show("There was an issue gathering the reveal range addresses! Found: " + AoBScanResultsRevealMapRange.Count() + "\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Fix v1.3.6.6: We're nullifying the list before reading its '.Count()' causing a null throw. Fix: Move after the count statements.
+                // Reset aob scan results.
+                AoBScanResultsRevealMapRange = null;
+                AoBScanResultsDevMapReveal = null;
                 return;
             }
 
@@ -5193,11 +5197,13 @@ namespace CoreKeeperInventoryEditor
                 GetMapRenderingAddresses_Button.Enabled = true;
                 MapRendering_GroupBox.Enabled = true;
 
-                // Reset aob scan results
-                AoBScanResultsDevMapReveal = null;
-
                 // Display error message.
-                MessageBox.Show("There was an issue gathering the map reveal dev addresses! Found: " + AoBScanResultsDevMapReveal.Count() + "\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"There was an issue gathering the map reveal dev addresses! Found: {AoBScanResultsDevMapReveal.Count()}\r\rTry restarting your game!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Fix v1.3.6.6: We're nullifying the list before reading its '.Count()' causing a null throw. Fix: Move after the count statements.
+                // Reset aob scan results.
+                AoBScanResultsRevealMapRange = null;
+                AoBScanResultsDevMapReveal = null;
                 return;
             }
 
