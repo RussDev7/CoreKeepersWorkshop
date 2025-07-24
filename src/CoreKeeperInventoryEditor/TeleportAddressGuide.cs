@@ -1,16 +1,17 @@
-﻿using System.Windows.Forms;
-using System.Diagnostics;
-using System.Linq;
+﻿using CoreKeeperInventoryEditor;
+using System.Windows.Forms;
 using System;
-using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeepersWorkshop
 {
     public partial class TeleportAddressGuide : Form
     {
+        // Form initialization.
+        private CustomFormStyler _formThemeStyler;
         public TeleportAddressGuide()
         {
             InitializeComponent();
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
         }
 
         #region Form Load And Closing Events
@@ -33,7 +34,7 @@ namespace CoreKeepersWorkshop
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
             #endregion
         }
 
@@ -42,10 +43,11 @@ namespace CoreKeepersWorkshop
         private void TeleportAddressGuide_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Check if the "X" button was pressed to close form.
-            if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            // if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            if (_formThemeStyler.CloseButtonPressed) // Now capture the custom titlebar.
             {
                 // User pressed the "X" button cancle task.
-                this.Close();
+                // this.Close();
             }
 
             // Ensure we catch all closing exceptions. // Fix v1.3.3.

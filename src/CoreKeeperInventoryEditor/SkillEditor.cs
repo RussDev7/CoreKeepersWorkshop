@@ -2,24 +2,25 @@
 using CoreKeeperInventoryEditor;
 using System.Globalization;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Numerics;
 using System.Drawing;
 using System.Linq;
 using Memory;
 using System;
-using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeepersWorkshop
 {
     public partial class SkillEditor : Form
     {
+        // Form initialization.
+        private CustomFormStyler _formThemeStyler;
         public SkillEditor()
         {
             InitializeComponent();
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
         }
 
-        #region Variables
+        #region Fields
 
         // Define some variables.
         public Mem MemLib = new Mem();
@@ -47,7 +48,7 @@ namespace CoreKeepersWorkshop
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Set Form Controls
@@ -66,47 +67,47 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(SkillID0_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID1_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID2_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID3_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID4_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID5_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID6_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID7_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID8_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID9_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID10_NumericUpDown, "Set the current skilltype to desired a ID.");
-            toolTip.SetToolTip(SkillID11_NumericUpDown, "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID0_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID1_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID2_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID3_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID4_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID5_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID6_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID7_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID8_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID9_NumericUpDown,         "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID10_NumericUpDown,        "Set the current skilltype to desired a ID.");
+            toolTip.SetToolTip(SkillID11_NumericUpDown,        "Set the current skilltype to desired a ID.");
 
-            toolTip.SetToolTip(SkillILvL0_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL1_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL2_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL3_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL4_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL5_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL6_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL7_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL8_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL9_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL10_NumericUpDown, "Set the EXP amount for the desired skill.");
-            toolTip.SetToolTip(SkillILvL11_NumericUpDown, "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL0_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL1_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL2_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL3_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL4_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL5_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL6_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL7_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL8_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL9_NumericUpDown,       "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL10_NumericUpDown,      "Set the EXP amount for the desired skill.");
+            toolTip.SetToolTip(SkillILvL11_NumericUpDown,      "Set the EXP amount for the desired skill.");
 
-            // toolTip.SetToolTip(numericUpDown19, "Define how many skills the player has discovered over 1 EXP.");
-            // toolTip.SetToolTip(numericUpDown20, "DEBUG: Define the header1 offset.");
-            // toolTip.SetToolTip(numericUpDown21, "DEBUG: Define the header2 offset.");
+            // toolTip.SetToolTip(numericUpDown19,             "Define how many skills the player has discovered over 1 EXP.");
+            // toolTip.SetToolTip(numericUpDown20,             "DEBUG: Define the header1 offset.");
+            // toolTip.SetToolTip(numericUpDown21,             "DEBUG: Define the header2 offset.");
 
-            toolTip.SetToolTip(ChangeSkills_Button, "Change your players skills to custom values!");
-            toolTip.SetToolTip(MaxAllSkills_Button, "Change your players skills to max values!");
-            toolTip.SetToolTip(ResetAllSkills_Button, "Resets all player skills to 0.");
-            toolTip.SetToolTip(MaxLevelsHelp_Button, "Show a list of all skill names, IDs, and max values.");
+            toolTip.SetToolTip(ChangeSkills_Button,            "Change your players skills to custom values!");
+            toolTip.SetToolTip(MaxAllSkills_Button,            "Change your players skills to max values!");
+            toolTip.SetToolTip(ResetAllSkills_Button,          "Resets all player skills to 0.");
+            toolTip.SetToolTip(MaxLevelsHelp_Button,           "Show a list of all skill names, IDs, and max values.");
             toolTip.SetToolTip(GetPlayerSkillAddresses_Button, "Scan for the skill addresses.");
-            toolTip.SetToolTip(UseSkillAddress_Button, "Select the current loadout for scanning.");
-            toolTip.SetToolTip(PreviousSkillAddress_Button, "Switch skill loadout to the previous address.");
-            toolTip.SetToolTip(NextSkillAddress_Button, "Switch skill loadout to the next address.");
+            toolTip.SetToolTip(UseSkillAddress_Button,         "Select the current loadout for scanning.");
+            toolTip.SetToolTip(PreviousSkillAddress_Button,    "Switch skill loadout to the previous address.");
+            toolTip.SetToolTip(NextSkillAddress_Button,        "Switch skill loadout to the next address.");
 
-            // toolTip.SetToolTip(checkBox1, "This is used to help find the correct addresses.");
-            toolTip.SetToolTip(UseEXPValues_CheckBox, "Switch the display format to use EXP vs Levels.");
+            // toolTip.SetToolTip(checkBox1,                   "This is used to help find the correct addresses.");
+            toolTip.SetToolTip(UseEXPValues_CheckBox,          "Switch the display format to use EXP vs Levels.");
             #endregion
         }
 
@@ -116,10 +117,11 @@ namespace CoreKeepersWorkshop
         private void SkillEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Check if the "X" button was pressed to close form.
-            if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            // if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            if (_formThemeStyler.CloseButtonPressed) // Now capture the custom titlebar.
             {
                 // User pressed the "X" button cancel task.
-                this.Close();
+                // this.Close();
             }
 
             // Ensure we catch all closing exceptions. // Fix v1.3.3.

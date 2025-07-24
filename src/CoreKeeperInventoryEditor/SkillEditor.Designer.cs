@@ -1054,6 +1054,7 @@
             this.Controls.Add(this.Skill0_Panel);
             this.Controls.Add(this.ChangeSkills_ProgressBar);
             this.Controls.Add(this.ChangeSkills_Button);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

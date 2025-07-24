@@ -25,6 +25,54 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TopMost {
+            get {
+                return ((bool)(this["TopMost"]));
+            }
+            set {
+                this["TopMost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int FormOpacity {
+            get {
+                return ((int)(this["FormOpacity"]));
+            }
+            set {
+                this["FormOpacity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int ChunkViewerOpacity {
+            get {
+                return ((int)(this["ChunkViewerOpacity"]));
+            }
+            set {
+                this["ChunkViewerOpacity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Inventory_TabPage")]
+        public string CurrentItemTab {
+            get {
+                return ((string)(this["CurrentItemTab"]));
+            }
+            set {
+                this["CurrentItemTab"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public int ItemAmount {
             get {
@@ -49,18 +97,6 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Tab1_TabPage")]
-        public string CurrentItemTab {
-            get {
-                return ((string)(this["CurrentItemTab"]));
-            }
-            set {
-                this["CurrentItemTab"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int ItemVariation {
             get {
@@ -68,6 +104,18 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["ItemVariation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ItemSkillset {
+            get {
+                return ((int)(this["ItemSkillset"]));
+            }
+            set {
+                this["ItemSkillset"] = value;
             }
         }
         
@@ -109,6 +157,18 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int InfoSkillset {
+            get {
+                return ((int)(this["InfoSkillset"]));
+            }
+            set {
+                this["InfoSkillset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
         public global::System.Drawing.Point MainFormLocation {
             get {
@@ -116,18 +176,6 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["MainFormLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
-        public global::System.Drawing.Point ItemEditorLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["ItemEditorLocation"]));
-            }
-            set {
-                this["ItemEditorLocation"] = value;
             }
         }
         
@@ -146,12 +194,60 @@ namespace CoreKeepersWorkshop.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point ItemEditorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ItemEditorLocation"]));
+            }
+            set {
+                this["ItemEditorLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
         public global::System.Drawing.Point CookbookLocation {
             get {
                 return ((global::System.Drawing.Point)(this["CookbookLocation"]));
             }
             set {
                 this["CookbookLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point TeleportAddressGuideLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["TeleportAddressGuideLocation"]));
+            }
+            set {
+                this["TeleportAddressGuideLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point SkillEditorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["SkillEditorLocation"]));
+            }
+            set {
+                this["SkillEditorLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
+        public global::System.Drawing.Point ChunkViewerLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ChunkViewerLocation"]));
+            }
+            set {
+                this["ChunkViewerLocation"] = value;
             }
         }
         
@@ -169,37 +265,13 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int InventoryBackgroundCount {
             get {
                 return ((int)(this["InventoryBackgroundCount"]));
             }
             set {
                 this["InventoryBackgroundCount"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ChatBackground {
-            get {
-                return ((string)(this["ChatBackground"]));
-            }
-            set {
-                this["ChatBackground"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ChatBackgroundCount {
-            get {
-                return ((int)(this["ChatBackgroundCount"]));
-            }
-            set {
-                this["ChatBackgroundCount"] = value;
             }
         }
         
@@ -253,6 +325,54 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ChatBackground {
+            get {
+                return ((string)(this["ChatBackground"]));
+            }
+            set {
+                this["ChatBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ChatBackgroundCount {
+            get {
+                return ((int)(this["ChatBackgroundCount"]));
+            }
+            set {
+                this["ChatBackgroundCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SettingsBackground {
+            get {
+                return ((string)(this["SettingsBackground"]));
+            }
+            set {
+                this["SettingsBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int SettingsBackgroundCount {
+            get {
+                return ((int)(this["SettingsBackgroundCount"]));
+            }
+            set {
+                this["SettingsBackgroundCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("80")]
         public int DevToolDelay {
             get {
@@ -272,18 +392,6 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["RadialMoveScale"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool TopMost {
-            get {
-                return ((bool)(this["TopMost"]));
-            }
-            set {
-                this["TopMost"] = value;
             }
         }
         
@@ -332,18 +440,6 @@ namespace CoreKeepersWorkshop.Properties {
             }
             set {
                 this["FishingPadding"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
-        public global::System.Drawing.Point ChunkViewerLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["ChunkViewerLocation"]));
-            }
-            set {
-                this["ChunkViewerLocation"] = value;
             }
         }
         
@@ -422,12 +518,12 @@ namespace CoreKeepersWorkshop.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int QuantitySelectButton1 {
+        public int QuantitySelectGetInventoryAddresses_Button {
             get {
-                return ((int)(this["QuantitySelectButton1"]));
+                return ((int)(this["QuantitySelectGetInventoryAddresses_Button"]));
             }
             set {
-                this["QuantitySelectButton1"] = value;
+                this["QuantitySelectGetInventoryAddresses_Button"] = value;
             }
         }
         
@@ -481,54 +577,6 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ItemSkillset {
-            get {
-                return ((int)(this["ItemSkillset"]));
-            }
-            set {
-                this["ItemSkillset"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int InfoSkillset {
-            get {
-                return ((int)(this["InfoSkillset"]));
-            }
-            set {
-                this["InfoSkillset"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
-        public global::System.Drawing.Point TeleportAddressGuideLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["TeleportAddressGuideLocation"]));
-            }
-            set {
-                this["TeleportAddressGuideLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
-        public global::System.Drawing.Point SkillEditorLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["SkillEditorLocation"]));
-            }
-            set {
-                this["SkillEditorLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SkillEditorUseEXP {
             get {
@@ -553,13 +601,73 @@ namespace CoreKeepersWorkshop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public int FormOpacity {
+        [global::System.Configuration.DefaultSettingValueAttribute("Dark")]
+        public global::CoreKeeperInventoryEditor.ThemeMode UITheme {
             get {
-                return ((int)(this["FormOpacity"]));
+                return ((global::CoreKeeperInventoryEditor.ThemeMode)(this["UITheme"]));
             }
             set {
-                this["FormOpacity"] = value;
+                this["UITheme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("All")]
+        public global::CoreKeeperInventoryEditor.Corner UICorners {
+            get {
+                return ((global::CoreKeeperInventoryEditor.Corner)(this["UICorners"]));
+            }
+            set {
+                this["UICorners"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        public int UICornerRadius {
+            get {
+                return ((int)(this["UICornerRadius"]));
+            }
+            set {
+                this["UICornerRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int UITitleBarHeight {
+            get {
+                return ((int)(this["UITitleBarHeight"]));
+            }
+            set {
+                this["UITitleBarHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int UIBorderSize {
+            get {
+                return ((int)(this["UIBorderSize"]));
+            }
+            set {
+                this["UIBorderSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UIShowIcon {
+            get {
+                return ((bool)(this["UIShowIcon"]));
+            }
+            set {
+                this["UIShowIcon"] = value;
             }
         }
     }

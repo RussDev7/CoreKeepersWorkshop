@@ -579,6 +579,7 @@ namespace CoreKeepersWorkshop
             this.Controls.Add(this.ItemID_NumericUpDown);
             this.Controls.Add(this.Variation1_NumericUpDown);
             this.Controls.Add(this.VariationNumerical_NumericUpDown);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

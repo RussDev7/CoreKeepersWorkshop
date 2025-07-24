@@ -1,6 +1,6 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CoreKeepersWorkshop")]
 [assembly: AssemblyDescription("CoreKeepers Inventory Editor!")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RussDev Inc©")]
+[assembly: AssemblyCompany("CoreKeepersWorkshop")]
 [assembly: AssemblyProduct("CoreKeepersWorkshop")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]

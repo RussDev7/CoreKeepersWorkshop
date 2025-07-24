@@ -1,37 +1,41 @@
-﻿using System.Drawing.Drawing2D;
+﻿using CoreKeeperInventoryEditor;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Globalization;
-using System.Diagnostics;
 using System.Numerics;
 using System.Drawing;
 using System.Timers;
-using System.Linq;
 using Memory;
 using System;
-using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeepersWorkshop
 {
     // Painting on a panel code referenced from: https://www.codeproject.com/Articles/198419/Painting-on-a-panel
     public partial class ChunkViewer : Form
     {
+        // Form initialization.
+        private CustomFormStyler _formThemeStyler;
         readonly Form callarForm;
         public ChunkViewer(Form parentForm)
         {
             InitializeComponent();
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
 
             // Set double buffering.
-            Main_Panel.GetType().GetMethod("SetStyle", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(Main_Panel, new object[] { System.Windows.Forms.ControlStyles.UserPaint | System.Windows.Forms.ControlStyles.AllPaintingInWmPaint | System.Windows.Forms.ControlStyles.DoubleBuffer, true });
+            Content_Panel.GetType().GetMethod("SetStyle", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(Content_Panel, new object[] { System.Windows.Forms.ControlStyles.UserPaint | System.Windows.Forms.ControlStyles.AllPaintingInWmPaint | System.Windows.Forms.ControlStyles.DoubleBuffer, true });
 
             // Define form hook.
             callarForm = parentForm;
         }
 
-        #region Variables
+        #region Fields
 
         // Define some variables.
         public Mem MemLib = new Mem();
         readonly System.Timers.Timer timedEvents = new System.Timers.Timer();
+
+        private const int _defaultXOffset = 65;
+        private const int _defaultYOffset = 160;
 
         #endregion // End variables.
 
@@ -80,23 +84,24 @@ namespace CoreKeepersWorkshop
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            // NOTE: This form has a seperate setting for opacity.
+            // this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
+            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity / 100.0;
             #endregion
 
             #region Set Form Controls
 
             // Set controls based on saved settings.
             ShowEnemySpawnChunks_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs;
-            Debug_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
+            Debug_CheckBox.Checked                = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
 
-            DisplayArea_NumericUpDown.Visible = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
-            DisplayArea_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale;
+            TranslateScale_NumericUpDown.Visible  = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
+            TranslateScale_NumericUpDown.Value    = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale;
 
-            // ActiveForm.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity;
-            Scale_TrackBar.Value = (int)(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale / 0.2);
-            mapScale = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale;
+            Scale_TrackBar.Value                  = (int)(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale / 0.2);
+            mapScale                              = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale;
 
-            this.Size = new Size((int)Math.Round(64 * mapScale) + 80, (int)Math.Round(64 * mapScale) + 160); // Form size.
+            this.Size                             = new Size((int)Math.Round(64 * mapScale) + _defaultXOffset, (int)Math.Round(64 * mapScale) + _defaultYOffset); // Form size.
             #endregion
 
             #region Timed Events
@@ -117,14 +122,14 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(HideMainForm_CheckBox, "Hides the main form making usability much better.");
+            toolTip.SetToolTip(HideMainForm_CheckBox,         "Hides the main form making usability much better.");
             toolTip.SetToolTip(ShowEnemySpawnChunks_CheckBox, "Shows the chunks the game uses to spawn enemies.");
-            toolTip.SetToolTip(Debug_CheckBox, "Hide or show debug tools.");
-            toolTip.SetToolTip(DisplayArea_NumericUpDown, "Adjust the display area for the grid box.");
-            toolTip.SetToolTip(XAxisOffset_NumericUpDown, "Adjust the forms x-axis size offset.");
-            toolTip.SetToolTip(YAxisOffset_NumericUpDown, "Adjust the forms y-axis size offset.");
-            toolTip.SetToolTip(Opacity_TrackBar, "Adjust the transparency of the form.");
-            toolTip.SetToolTip(Scale_TrackBar, "Adjust the scale of the grid.");
+            toolTip.SetToolTip(Debug_CheckBox,                "Hide or show debug tools.");
+            toolTip.SetToolTip(TranslateScale_NumericUpDown,  "Adjust the display area for the grid box.");
+            toolTip.SetToolTip(XAxisOffset_NumericUpDown,     "Adjust the forms x-axis size offset.");
+            toolTip.SetToolTip(YAxisOffset_NumericUpDown,     "Adjust the forms y-axis size offset.");
+            toolTip.SetToolTip(Opacity_TrackBar,              "Adjust the transparency of the form.");
+            toolTip.SetToolTip(Scale_TrackBar,                "Adjust the scale of the grid.");
             #endregion
         }
 
@@ -140,10 +145,11 @@ namespace CoreKeepersWorkshop
             timedEvents.Stop();
 
             // Check if the "X" button was pressed to close form.
-            if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            // if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            if (_formThemeStyler.CloseButtonPressed) // Now capture the custom titlebar.
             {
                 // User pressed the "X" button cancel task.
-                this.Close();
+                // this.Close();
             }
 
             // Ensure we catch all closing exceptions. // Fix v1.3.3.
@@ -162,16 +168,26 @@ namespace CoreKeepersWorkshop
             // Hide or unhide controls.
             if (Debug_CheckBox.Checked)
             {
-                // Disable
-                DisplayArea_NumericUpDown.Visible = true; // Show numericupdown.
+                // Enable.
+                TranslateScale_NumericUpDown.Visible = true;
+                XAxisOffset_NumericUpDown.Visible = true;
+                YAxisOffset_NumericUpDown.Visible = true;
+                XAxisOffset_Label.Visible = true;
+                YAxisOffset_Label.Visible = true;
+                TranslateScale_Label.Visible = true;
 
                 // Save some form settings.
                 CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug = true;
             }
             else
             {
-                // Enable
-                DisplayArea_NumericUpDown.Visible = false; // Hide numericupdown.
+                // Disable.
+                TranslateScale_NumericUpDown.Visible = false;
+                XAxisOffset_NumericUpDown.Visible = false;
+                YAxisOffset_NumericUpDown.Visible = false;
+                XAxisOffset_Label.Visible = false;
+                YAxisOffset_Label.Visible = false;
+                TranslateScale_Label.Visible = false;
 
                 // Save some form settings.
                 CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug = false;
@@ -198,7 +214,7 @@ namespace CoreKeepersWorkshop
         private void DisplayArea_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Save settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale = DisplayArea_NumericUpDown.Value;
+            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale = TranslateScale_NumericUpDown.Value;
         }
 
         // Hide main form.
@@ -221,11 +237,12 @@ namespace CoreKeepersWorkshop
         private void Opacity_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             // Get the new value.
-            double newOpacity = ((double)Opacity_TrackBar.Value) / 100.0;
+            int    rawOpacity = Opacity_TrackBar.Value;
+            double newOpacity = (double)rawOpacity / 100.0;
             ActiveForm.Opacity = newOpacity;
 
             // Save the opacity.
-            // CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity = newOpacity;
+            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity = rawOpacity;
         }
 
         // Adjust the grid scale.
@@ -241,8 +258,8 @@ namespace CoreKeepersWorkshop
             CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale = mapScale;
 
             // Define the offsets for the form size.
-            int xOffset = 80;
-            int yOffset = 160;
+            int xOffset = _defaultXOffset;
+            int yOffset = _defaultYOffset;
             if (Debug_CheckBox.Checked)
             {
                 xOffset = (int)XAxisOffset_NumericUpDown.Value;
@@ -295,7 +312,7 @@ namespace CoreKeepersWorkshop
                 playersPosition = new Vector2((float)(playerX * mapScale), (float)(playerY * mapScale));
 
                 // Refresh the panel to draw.
-                Main_Panel.Refresh();
+                Content_Panel.Refresh();
             }
             else
             {
@@ -317,14 +334,14 @@ namespace CoreKeepersWorkshop
         }
 
         // Do painting events for the panel.
-        private void Main_Panel_Paint(object sender, PaintEventArgs e)
+        private void Content_Panel_Paint(object sender, PaintEventArgs e)
         {
             // Get location variables for this chunk.
             Vector2 currentChunk = GetChunk(new Vector2(playersPosition.X / mapScale, playersPosition.Y / mapScale)); // Chunk location.
-            Vector2 corner1 = new Vector2(currentChunk.X, currentChunk.Y);                                                                                                                   // A: 0,0
-            Vector2 corner2 = new Vector2(currentChunk.X, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);                                                           // B: 0,63
-            Vector2 corner3 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);   // C: 63,63
-            Vector2 corner4 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, currentChunk.Y);                                                           // D: 63,0
+            Vector2 corner1 = new Vector2(currentChunk.X, currentChunk.Y);                                                                                                                      // A: 0,0
+            Vector2 corner2 = new Vector2(currentChunk.X, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);                                                              // B: 0,63
+            Vector2 corner3 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63);      // C: 63,63
+            Vector2 corner4 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, currentChunk.Y);                                                              // D: 63,0
 
             // Check if values are -64 to 0, adjust offsets. // Fix for negative chunks.
             if (IsNegative(playersPosition.X) && (currentChunk.X / 64) - 1 == -1) // Adjust X axis.
@@ -338,18 +355,18 @@ namespace CoreKeepersWorkshop
             if (IsNegative(playersPosition.Y) && (currentChunk.Y / 64) - 1 == -1) // Adjust Y axis.
             {
                 corner2 = new Vector2(currentChunk.X, (IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63) * -1);                                                           // B: 0,63
-                corner3 = new Vector2(corner3.X, (IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63) * -1);   // C: 63,63
+                corner3 = new Vector2(corner3.X, (IsNegative(currentChunk.Y) ? currentChunk.Y - 63 : currentChunk.Y + 63) * -1);                                                                // C: 63,63
 
                 // corner1 = new Vector2(currentChunk.X, currentChunk.Y * -1);                                                                                                                  // A: 0,0
                 // corner4 = new Vector2(IsNegative(currentChunk.X) ? currentChunk.X - 63 : currentChunk.X + 63, currentChunk.Y * -1);                                                          // D: 63,0
             }
 
             // Draw coordinates.
-            e.Graphics.DrawString((Debug_CheckBox.Checked ? "A" : "") + "(" + (IsNegative(playersPosition.X) ? corner4.X : corner1.X) + ", " + (IsNegative(playersPosition.Y) ? corner2.Y : corner1.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, (int)Math.Round(64 * mapScale) + 40));                              // A: 0,0
-            e.Graphics.DrawString((Debug_CheckBox.Checked ? "B" : "") + "(" + (IsNegative(playersPosition.X) ? corner3.X : corner2.X) + ", " + (IsNegative(playersPosition.Y) ? corner1.Y : corner2.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, 16));                                                               // B: 0,63
-            e.Graphics.DrawString((Debug_CheckBox.Checked ? "C" : "") + "(" + (IsNegative(playersPosition.X) ? corner2.X : corner3.X) + ", " + (IsNegative(playersPosition.Y) ? corner4.Y : corner3.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, 16));                                  // C: 63,63
-            e.Graphics.DrawString((Debug_CheckBox.Checked ? "D" : "") + "(" + (IsNegative(playersPosition.X) ? corner1.X : corner4.X) + ", " + (IsNegative(playersPosition.Y) ? corner3.Y : corner4.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, (int)Math.Round(64 * mapScale) + 40)); // D: 63,0
-            e.Graphics.DrawString("CHUNK: [" + (IsNegative(playersPosition.X) ? (currentChunk.X / 64) - 1 : (currentChunk.X / 64)) + ", " + (IsNegative(playersPosition.Y) ? (currentChunk.Y / 64) - 1 : (currentChunk.Y / 64)) + "]", new Font("Arial", 10, FontStyle.Italic), Brushes.Lime, new Point((((int)Math.Round(64 * mapScale) + 32) / 3) + 10, 16)); // Area
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "A " : "") + "(" + (IsNegative(playersPosition.X) ? corner4.X : corner1.X) + ", " + (IsNegative(playersPosition.Y) ? corner2.Y : corner1.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, (int)Math.Round(64 * mapScale) + 40));                                    // A: 0,0.
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "B " : "") + "(" + (IsNegative(playersPosition.X) ? corner3.X : corner2.X) + ", " + (IsNegative(playersPosition.Y) ? corner1.Y : corner2.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point(32 - 2, 16));                                                                     // B: 0,63.
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "C " : "") + "(" + (IsNegative(playersPosition.X) ? corner2.X : corner3.X) + ", " + (IsNegative(playersPosition.Y) ? corner4.Y : corner3.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, 16));                                        // C: 63,63.
+            e.Graphics.DrawString((Debug_CheckBox.Checked ? "D " : "") + "(" + (IsNegative(playersPosition.X) ? corner1.X : corner4.X) + ", " + (IsNegative(playersPosition.Y) ? corner3.Y : corner4.Y) + ")", new Font("Arial", 10, FontStyle.Italic), Brushes.Red, new Point((int)Math.Round(64 * mapScale) - 32, (int)Math.Round(64 * mapScale) + 40));       // D: 63,0.
+            e.Graphics.DrawString("CHUNK: [" + (IsNegative(playersPosition.X) ? (currentChunk.X / 64) - 1 : (currentChunk.X / 64)) + ", " + (IsNegative(playersPosition.Y) ? (currentChunk.Y / 64) - 1 : (currentChunk.Y / 64)) + "]", new Font("Arial", 10, FontStyle.Italic), Brushes.Lime, new Point((((int)Math.Round(64 * mapScale) + 32) / 3) + 10, 16));  // Area.
 
             // Begin graphics container
             GraphicsContainer containerState = e.Graphics.BeginContainer();
@@ -358,7 +375,7 @@ namespace CoreKeepersWorkshop
             e.Graphics.ScaleTransform(1.0F, -1.0F);
 
             // Translate the drawing area accordingly
-            var translateScale = (Debug_CheckBox.Checked) ? DisplayArea_NumericUpDown.Value : (int)Math.Round(64 * mapScale) + 108;
+            var translateScale = (Debug_CheckBox.Checked) ? TranslateScale_NumericUpDown.Value : (int)Math.Round(64 * mapScale) + 108;
             e.Graphics.TranslateTransform(0.0F, -(float)translateScale);
 
             //Apply a smoothing mode to smooth out the line.

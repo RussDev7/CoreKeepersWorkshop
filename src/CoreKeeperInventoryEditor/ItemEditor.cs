@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using CoreKeeperInventoryEditor;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Reflection;
 using System.Drawing;
 using System.Linq;
 using System.IO;
 using System;
-using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeepersWorkshop
 {
     public partial class ItemEditor : Form
     {
+        // Form initialization.
+        private CustomFormStyler _formThemeStyler;
         public ItemEditor()
         {
             InitializeComponent();
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
         }
 
         // Define texture data.
-        public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        private static string InventoryDir => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "Inventory");
+        public IEnumerable<string> ImageFiles =>
+            Directory.Exists(InventoryDir)
+                ? Directory.EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
+                    .DefaultIfEmpty(string.Empty)
+                : new[] { string.Empty };
 
         #region Closing Varibles
 
@@ -86,12 +92,12 @@ namespace CoreKeepersWorkshop
             }
 
             // Get base item name.
-            if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString()) != null)
+            if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString()) != null)
             {
-                Item1_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())).Split(',')[0];
+                Item1_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())).Split(',')[0];
 
                 // Load image.
-                Slot1_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())));
+                Slot1_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())));
                 Slot1_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             }
             else
@@ -119,12 +125,12 @@ namespace CoreKeepersWorkshop
                 if (baseItemVariation >= 1)
                 {
                     // Get base item ingredient 1 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString()) != null)
+                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString()) != null)
                     {
-                        Item2_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
+                        Item2_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
 
                         // Load image.
-                        Slot2_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())));
+                        Slot2_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())));
                         Slot2_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
@@ -154,12 +160,12 @@ namespace CoreKeepersWorkshop
                 if (baseItemVariation >= 1 && !VariationNumerical_NumericUpDown.Visible)
                 {
                     // Get base item ingredient 2 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString()) != null)
+                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString()) != null)
                     {
-                        Item3_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
+                        Item3_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
 
                         // Load image.
-                        Slot3_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())));
+                        Slot3_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())));
                         Slot3_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
@@ -197,12 +203,12 @@ namespace CoreKeepersWorkshop
                     if (!VariationNumerical_NumericUpDown.Visible)
                     {
                         // Get base item ingredient 1 name.
-                        if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
+                        if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
                         {
-                            Item2_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
+                            Item2_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
 
                             // Load image.
-                            Slot2_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
+                            Slot2_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
                             Slot2_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                         }
                         else
@@ -238,12 +244,12 @@ namespace CoreKeepersWorkshop
                 if (baseIngredient2ID.ToString().Length > 0 && !VariationNumerical_NumericUpDown.Visible) // Make sure duel texbox mode is enabled.
                 {
                     // Get base item ingredient 2 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID) != null)
+                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID) != null)
                     {
-                        Item3_Label.Text = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)).Split(',')[0];
+                        Item3_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)).Split(',')[0];
 
                         // Load image.
-                        Slot3_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)));
+                        Slot3_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)));
                         Slot3_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     else
@@ -298,7 +304,7 @@ namespace CoreKeepersWorkshop
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
@@ -311,41 +317,41 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(ItemID_NumericUpDown, "Enter the ID you wish to add. Press enter when done.");
-            toolTip.SetToolTip(Quantity_NumericUpDown, "Enter a custom item quantity. Press enter when done.");
+            toolTip.SetToolTip(ItemID_NumericUpDown,             "Enter the ID you wish to add. Press enter when done.");
+            toolTip.SetToolTip(Quantity_NumericUpDown,           "Enter a custom item quantity. Press enter when done.");
             toolTip.SetToolTip(VariationNumerical_NumericUpDown, "Enter a custom variant ID. Press enter when done.");
-            toolTip.SetToolTip(Variation1_NumericUpDown, "Enter an ingredient one ID. Press enter when done.");
-            toolTip.SetToolTip(Variation2_NumericUpDown, "Enter an ingredient two ID. Press enter when done.");
-            toolTip.SetToolTip(CustomQuantity1_NumericUpDown, "Press the enter key when finished.");
-            toolTip.SetToolTip(CustomQuantity2_NumericUpDown, "Press the enter key when finished.");
-            toolTip.SetToolTip(CustomQuantity3_NumericUpDown, "Press the enter key when finished.");
-            toolTip.SetToolTip(CustomQuantity4_NumericUpDown, "Press the enter key when finished.");
-            toolTip.SetToolTip(CustomQuantity5_NumericUpDown, "Press the enter key when finished.");
-            toolTip.SetToolTip(Skillset_NumericUpDown, "Enter a custom skillset ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(Variation1_NumericUpDown,         "Enter an ingredient one ID. Press enter when done.");
+            toolTip.SetToolTip(Variation2_NumericUpDown,         "Enter an ingredient two ID. Press enter when done.");
+            toolTip.SetToolTip(CustomQuantity1_NumericUpDown,    "Press the enter key when finished.");
+            toolTip.SetToolTip(CustomQuantity2_NumericUpDown,    "Press the enter key when finished.");
+            toolTip.SetToolTip(CustomQuantity3_NumericUpDown,    "Press the enter key when finished.");
+            toolTip.SetToolTip(CustomQuantity4_NumericUpDown,    "Press the enter key when finished.");
+            toolTip.SetToolTip(CustomQuantity5_NumericUpDown,    "Press the enter key when finished.");
+            toolTip.SetToolTip(Skillset_NumericUpDown,           "Enter a custom skillset ID. Either press enter when done or use the button.");
 
-            toolTip.SetToolTip(Variation_Label, "Toggle the GUI between food / item variety.");
+            toolTip.SetToolTip(Variation_Label,                  "Toggle the GUI between food / item variety.");
 
-            toolTip.SetToolTip(ChangeRarity_Button, "Change your food rarity. Press enter when done.");
-            toolTip.SetToolTip(Done_Button, "Finish editing the item.");
-            toolTip.SetToolTip(RemoveItem_Button, "Remove the item from this inventory slot.");
-            toolTip.SetToolTip(CookedFoodList_Button, "Open the food cookbook to easily search for food items.");
-            toolTip.SetToolTip(CustomQuantity1_Button, "Quick change the items quantity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity2_Button, "Quick change the items quantity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity3_Button, "Quick change the items quantity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity4_Button, "Quick change the items quantity. Right click to edit.");
-            toolTip.SetToolTip(CustomQuantity5_Button, "Quick change the items quantity. Right click to edit.");
-            toolTip.SetToolTip(SkillsetHelp_Button, "Launch a guide on how to find skillset IDs.");
+            toolTip.SetToolTip(ChangeRarity_Button,              "Change your food rarity. Press enter when done.");
+            toolTip.SetToolTip(Done_Button,                      "Finish editing the item.");
+            toolTip.SetToolTip(RemoveItem_Button,                "Remove the item from this inventory slot.");
+            toolTip.SetToolTip(CookedFoodList_Button,            "Open the food cookbook to easily search for food items.");
+            toolTip.SetToolTip(CustomQuantity1_Button,           "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity2_Button,           "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity3_Button,           "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity4_Button,           "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(CustomQuantity5_Button,           "Quick change the items quantity. Right click to edit.");
+            toolTip.SetToolTip(SkillsetHelp_Button,              "Launch a guide on how to find skillset IDs.");
 
-            toolTip.SetToolTip(Slot1_PictureBox, "Click to open the item explorer.");
-            toolTip.SetToolTip(Slot2_PictureBox, "Click to open the item explorer.");
-            toolTip.SetToolTip(Slot3_PictureBox, "Click to open the item explorer.");
+            toolTip.SetToolTip(Slot1_PictureBox,                 "Click to open the item explorer.");
+            toolTip.SetToolTip(Slot2_PictureBox,                 "Click to open the item explorer.");
+            toolTip.SetToolTip(Slot3_PictureBox,                 "Click to open the item explorer.");
             #endregion
 
             #region Load Form Settings
 
             // Load quantity select numerics and buttons.
-            CustomQuantity1_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton1.ToString();
-            CustomQuantity1_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton1;
+            CustomQuantity1_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectGetInventoryAddresses_Button.ToString();
+            CustomQuantity1_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectGetInventoryAddresses_Button;
             CustomQuantity2_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2.ToString();
             CustomQuantity2_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2;
             CustomQuantity3_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3.ToString();
@@ -429,11 +435,12 @@ namespace CoreKeepersWorkshop
         private void ItemEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Check if the "X" button was pressed to close form.
-            if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            // if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            if (_formThemeStyler.CloseButtonPressed) // Now capture the custom titlebar.
             {
                 // User pressed the "X" button cancel task.
                 userCanceldTask = true;
-                this.Close();
+                // this.Close();
             }
 
             // Ensure we catch all closing exceptions. // Fix v1.3.3.
@@ -809,24 +816,26 @@ namespace CoreKeepersWorkshop
         private void CookedFoodList_Button_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
-            FoodCookbook frm4 = new FoodCookbook();
-            DialogResult dr = frm4.ShowDialog(this);
+            FoodCookbook foodCookbook = new FoodCookbook();
+            DialogResult dr = foodCookbook.ShowDialog(this);
 
             // Get returned item from picker.
-            int itemType = frm4.GetItemTypeFromList();
-            int itemAmount = frm4.GetItemAmountFromList();
-            int itemVariation = frm4.GetItemVeriationFromList() == 0 ? 0 : (frm4.GetItemVeriationFromList()); // If variation is not zero, add offset.
-            bool wasAborted = frm4.GetUserCanceldTask();
-            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
-            frm4.Close();
+            int itemType      = foodCookbook.GetItemTypeFromList();
+            int itemAmount    = foodCookbook.GetItemAmountFromList();
+            int itemVariation = foodCookbook.GetItemVeriationFromList() == 0 ? 0 : (foodCookbook.GetItemVeriationFromList()); // If variation is not zero, add offset.
+            int itemSkillset  = foodCookbook.GetItemSkillsetFromList()  == 0 ? 0 : (foodCookbook.GetItemSkillsetFromList());  // If skillset is not zero, add offset.
+            bool wasAborted   = foodCookbook.GetUserCanceldTask();
+            // bool itemOverwrite = foodCookbook.GetSelectedOverwriteTask();
+            foodCookbook.Close();
 
             // Check if user closed the form
             if (wasAborted) { return; };
 
             // Set the values from returning form.
-            selectedItemType = itemType;
-            selectedItemAmount = itemAmount;
+            selectedItemType      = itemType;
+            selectedItemAmount    = itemAmount;
             selectedItemVariation = itemVariation;
+            selectedItemSkillset  = itemSkillset;
             this.Close();
         }
 
@@ -1279,7 +1288,7 @@ namespace CoreKeepersWorkshop
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton1 = (int)CustomQuantity1_NumericUpDown.Value;
+                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectGetInventoryAddresses_Button = (int)CustomQuantity1_NumericUpDown.Value;
 
                 // Change button text.
                 CustomQuantity1_Button.Text = ((int)CustomQuantity1_NumericUpDown.Value).ToString();
@@ -1406,15 +1415,24 @@ namespace CoreKeepersWorkshop
         // Launch item explorer.
         private void Slot1_PictureBox_Click(object sender, EventArgs e)
         {
-            // Spawn food cookbook window.
-            ItemSelectionMenu frm3 = new ItemSelectionMenu();
-            DialogResult dr = frm3.ShowDialog(this);
+            // Before showing the InventoryEditor popup form, check if the images are already loaded in memory cache.
+            // If not, load them now (this only happens once).
+            if (!InventoryImageCache.IsLoaded)
+            {
+                // Loads all images from disk into memory (static cache).
+                // Pass the FolderNames to tell it what folders to load.
+                InventoryImageCache.LoadAllImages(ItemSelectionMenu.FolderNames);
+            }
+
+            // Spawn item selection menu window.
+            ItemSelectionMenu itemSelectionMenu1 = new ItemSelectionMenu();
+            DialogResult dr = itemSelectionMenu1.ShowDialog(this);
 
             // Get returned item from picker.
-            int itemType = frm3.GetItemTypeFromList();
-            bool wasAborted = frm3.GetUserCanceldTask();
-            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
-            frm3.Close();
+            int itemType    = itemSelectionMenu1.GetItemTypeFromList();
+            bool wasAborted = itemSelectionMenu1.GetUserCanceldTask();
+            // bool itemOverwrite = itemSelectionMenu1.GetSelectedOverwriteTask();
+            itemSelectionMenu1.Close();
 
             // Check if user closed the form
             if (wasAborted) { return; };
@@ -1429,29 +1447,30 @@ namespace CoreKeepersWorkshop
         // Launch item explorer.
         private void Slot2_PictureBox_Click(object sender, EventArgs e)
         {
-            // Spawn food cookbook window.
-            ItemSelectionMenu frm3 = new ItemSelectionMenu();
-            DialogResult dr = frm3.ShowDialog(this);
+            // Before showing the InventoryEditor popup form, check if the images are already loaded in memory cache.
+            // If not, load them now (this only happens once).
+            if (!InventoryImageCache.IsLoaded)
+            {
+                // Loads all images from disk into memory (static cache).
+                // Pass the FolderNames to tell it what folders to load.
+                InventoryImageCache.LoadAllImages(ItemSelectionMenu.FolderNames);
+            }
+
+            // Spawn item selection menu window.
+            ItemSelectionMenu itemSelectionMenu2 = new ItemSelectionMenu();
+            DialogResult dr = itemSelectionMenu2.ShowDialog(this);
 
             // Get returned item from picker.
-            int itemType = frm3.GetItemTypeFromList();
-            bool wasAborted = frm3.GetUserCanceldTask();
-            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
-            frm3.Close();
+            int itemType    = itemSelectionMenu2.GetItemTypeFromList();
+            bool wasAborted = itemSelectionMenu2.GetUserCanceldTask();
+            // bool itemOverwrite = itemSelectionMenu2.GetSelectedOverwriteTask();
+            itemSelectionMenu2.Close();
 
             // Check if user closed the form
             if (wasAborted) { return; };
 
             // Set the values from returning form.
-            // Check if food edit mode is enabled or not.
-            // if (numericUpDown3.Visible)
-            // {
-            //     numericUpDown3.Value = itemType;
-            // }
-            // else
-            // {
-            //     numericUpDown4.Value = itemType;
-            // }
+            Variation1_NumericUpDown.Value = itemType;
 
             // Reload pictureboxes and labels.
             ReloadPictureBoxes(useTextboxeData: true);
@@ -1460,15 +1479,24 @@ namespace CoreKeepersWorkshop
         // Launch item explorer.
         private void Slot3_PictureBox_Click(object sender, EventArgs e)
         {
-            // Spawn food cookbook window.
-            ItemSelectionMenu frm3 = new ItemSelectionMenu();
-            DialogResult dr = frm3.ShowDialog(this);
+            // Before showing the InventoryEditor popup form, check if the images are already loaded in memory cache.
+            // If not, load them now (this only happens once).
+            if (!InventoryImageCache.IsLoaded)
+            {
+                // Loads all images from disk into memory (static cache).
+                // Pass the FolderNames to tell it what folders to load.
+                InventoryImageCache.LoadAllImages(ItemSelectionMenu.FolderNames);
+            }
+
+            // Spawn item selection menu window.
+            ItemSelectionMenu itemSelectionMenu3 = new ItemSelectionMenu();
+            DialogResult dr = itemSelectionMenu3.ShowDialog(this);
 
             // Get returned item from picker.
-            int itemType = frm3.GetItemTypeFromList();
-            bool wasAborted = frm3.GetUserCanceldTask();
-            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
-            frm3.Close();
+            int itemType    = itemSelectionMenu3.GetItemTypeFromList();
+            bool wasAborted = itemSelectionMenu3.GetUserCanceldTask();
+            // bool itemOverwrite = itemSelectionMenu3.GetSelectedOverwriteTask();
+            itemSelectionMenu3.Close();
 
             // Check if user closed the form
             if (wasAborted) { return; };

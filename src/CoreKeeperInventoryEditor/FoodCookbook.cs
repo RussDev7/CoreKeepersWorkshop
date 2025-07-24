@@ -1,28 +1,44 @@
 ﻿using System.Text.RegularExpressions;
+using CoreKeeperInventoryEditor;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Reflection;
-using System.Linq;
 using System.IO;
 using System;
-using CoreKeepersWorkshop.Properties;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace CoreKeepersWorkshop
 {
     public partial class FoodCookbook : Form
     {
+        // Form initialization.
+        private CustomFormStyler _formThemeStyler;
         public FoodCookbook()
         {
             InitializeComponent();
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
         }
+
+        #region Food JSON Mapping
+
+        class FoodRecord
+        {
+            public string Name      { get; set; } = "";
+            public string Stats     { get; set; } = "";
+            public int    Id        { get; set; }
+            public int    Variation { get; set; }
+            public int?   Skillset  { get; set; }
+        }
+        #endregion
 
         #region Closing Varibles
 
         // Form closing saving.
-        int selectedItemType = 0;
-        int selectedItemAmount = 0;
+        int selectedItemType      = 0;
+        int selectedItemAmount    = 0;
         int selectedItemVariation = 0;
-        bool userCanceldTask = false;
+        int selectedItemSkillset  = 0;
+        bool userCanceldTask      = false;
 
         // Define closing variables.
         public int GetItemTypeFromList()
@@ -36,6 +52,10 @@ namespace CoreKeepersWorkshop
         public int GetItemVeriationFromList()
         {
             return selectedItemVariation;
+        }
+        public int GetItemSkillsetFromList()
+        {
+            return selectedItemSkillset;
         }
         public bool GetUserCanceldTask()
         {
@@ -63,7 +83,7 @@ namespace CoreKeepersWorkshop
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Properties.Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
@@ -76,35 +96,36 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
-            toolTip.SetToolTip(textBox1, "Search for an item by name, id, or variant. Press enter when done.");
-            toolTip.SetToolTip(button1, "Search the indexes for a desired item.");
+            toolTip.SetToolTip(ItemSearch_TextBox,       "Search for an item by name, id, or variant. Press enter when done.");
+            toolTip.SetToolTip(SearchForItem_Button,     "Search the indexes for a desired item.");
 
-            toolTip.SetToolTip(numericUpDown1, "Enter the amount of items to add.");
+            toolTip.SetToolTip(ItemAmount_NumericUpDown, "Enter the amount of items to add.");
             #endregion
 
             #region Populate Datagridview
+
             // Get json file from resources.
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("CoreKeepersWorkshop.Resources.Cookbook.json"))
             using (StreamReader reader = new StreamReader(stream))
             {
                 // Convert stream into string.
                 var jsonFileContent = reader.ReadToEnd();
-                dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonFileContent);
+                var records = JsonConvert.DeserializeObject<List<FoodRecord>>(jsonFileContent);
 
-                // Load each object from json to a string array.
-                foreach (var file in result)
+                foreach (var r in records)
                 {
-                    // Remove spaces from food names.
-                    string foodName = (string)file.name;
-                    foodName = new Regex("[ ]{2,}", RegexOptions.None).Replace(foodName, " ");
-
-                    // Add the values to the datagridview.
-                    dataGridView1.Invoke((MethodInvoker)(() => dataGridView1.Rows.Add((string)foodName, (string)file.stats, (string)file.id, (string)file.variation)));
+                    FoodCookbook_DataGridView.Rows.Add(
+                        r.Name,
+                        r.Stats,
+                        r.Id,
+                        r.Variation,
+                        r.Skillset ?? 0
+                    );
                 }
             }
 
             // Sort datagridview by ascending.
-            dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            FoodCookbook_DataGridView.Sort(FoodCookbook_DataGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
             #endregion
         }
 
@@ -114,11 +135,12 @@ namespace CoreKeepersWorkshop
         private void FoodCookbook_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Check if the "X" button was pressed to close form.
-            if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            // if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            if (_formThemeStyler.CloseButtonPressed) // Now capture the custom titlebar.
             {
                 // User pressed the "X" button cancel task.
                 userCanceldTask = true;
-                this.Close();
+                // this.Close();
             }
 
             // Ensure we catch all closing exceptions. // Fix v1.3.3.
@@ -134,36 +156,38 @@ namespace CoreKeepersWorkshop
 
         #endregion
 
-        #region Form Controls
+        #region Form Controls - Search For Items
+
+        #region Search
 
         // Search the datagridview.
-        private void Button2_Click(object sender, EventArgs e)
+        private void SearchForItem_Button_Click(object sender, EventArgs e)
         {
-            string searchValue = textBox1.Text;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            string searchValue = ItemSearch_TextBox.Text;
+            FoodCookbook_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             try
             {
                 // Get each row within datagridview.
                 bool valueFound = false;
 
                 // Check is a row is selected or not.
-                if (dataGridView1.SelectedRows.Count > 0)
+                if (FoodCookbook_DataGridView.SelectedRows.Count > 0)
                 {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    foreach (DataGridViewRow row in FoodCookbook_DataGridView.Rows)
                     {
                         for (int i = 0; i < row.Cells.Count; i++)
                         {
                             // Search rows only rows after the selected row.
-                            if (dataGridView1.SelectedRows[0].Index < row.Index)
+                            if (FoodCookbook_DataGridView.SelectedRows[0].Index < row.Index)
                             {
                                 // Check if rows current cell contains the value.
                                 if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().ToLower().Contains(searchValue))
                                 {
                                     // Search match found.
                                     int rowIndex = row.Index;
-                                    dataGridView1.Rows[rowIndex].Selected = true;
-                                    dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0]; // Unselect row.
-                                    dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[0]; // Select found row.
+                                    FoodCookbook_DataGridView.Rows[rowIndex].Selected = true;
+                                    FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[0].Cells[0];        // Unselect row.
+                                    FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[rowIndex].Cells[0]; // Select found row.
                                     valueFound = true;
                                     break;
                                 }
@@ -177,7 +201,7 @@ namespace CoreKeepersWorkshop
                 }
                 else
                 {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    foreach (DataGridViewRow row in FoodCookbook_DataGridView.Rows)
                     {
                         for (int i = 0; i < row.Cells.Count; i++)
                         {
@@ -186,9 +210,9 @@ namespace CoreKeepersWorkshop
                             {
                                 // Search match found.
                                 int rowIndex = row.Index;
-                                dataGridView1.Rows[rowIndex].Selected = true;
-                                dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0]; // Unselect row.
-                                dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[0]; // Select found row.
+                                FoodCookbook_DataGridView.Rows[rowIndex].Selected = true;
+                                FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[0].Cells[0]; // Unselect row.
+                                FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[rowIndex].Cells[0]; // Select found row.
                                 valueFound = true;
                                 break;
                             }
@@ -202,20 +226,20 @@ namespace CoreKeepersWorkshop
                 if (!valueFound)
                 {
                     // Check is a row is selected or not.
-                    if (dataGridView1.SelectedRows.Count > 0)
+                    if (FoodCookbook_DataGridView.SelectedRows.Count > 0)
                     {
                         // Display message.
-                        MessageBox.Show("No further search results for \"" + textBox1.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No further search results for \"" + ItemSearch_TextBox.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
                         // Display message.
-                        MessageBox.Show("No search results for \"" + textBox1.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No search results for \"" + ItemSearch_TextBox.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     // Reset row back to zero.
-                    dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0];
-                    dataGridView1.Rows[0].Selected = false;
+                    FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[0].Cells[0];
+                    FoodCookbook_DataGridView.Rows[0].Selected = false;
                     return;
                 }
             }
@@ -224,38 +248,41 @@ namespace CoreKeepersWorkshop
                 MessageBox.Show(exc.Message);
             }
         }
+        #endregion
 
-        // Do enter events.        
-        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        #region Enter Down
+
+        // Do enter down events.        
+        private void ItemSearch_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             // Filter only the enter key.
             if (e.KeyCode == Keys.Enter)
             {
-                string searchValue = textBox1.Text;
-                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                string searchValue = ItemSearch_TextBox.Text;
+                FoodCookbook_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 try
                 {
                     // Get each row within datagridview.
                     bool valueFound = false;
 
                     // Check is a row is selected or not.
-                    if (dataGridView1.SelectedRows.Count > 0)
+                    if (FoodCookbook_DataGridView.SelectedRows.Count > 0)
                     {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        foreach (DataGridViewRow row in FoodCookbook_DataGridView.Rows)
                         {
                             for (int i = 0; i < row.Cells.Count; i++)
                             {
                                 // Search rows only rows after the selected row.
-                                if (dataGridView1.SelectedRows[0].Index < row.Index)
+                                if (FoodCookbook_DataGridView.SelectedRows[0].Index < row.Index)
                                 {
                                     // Check if rows current cell contains the value.
                                     if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().ToLower().Contains(searchValue))
                                     {
                                         // Search match found.
                                         int rowIndex = row.Index;
-                                        dataGridView1.Rows[rowIndex].Selected = true;
-                                        dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0]; // Unselect row.
-                                        dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[0]; // Select found row.
+                                        FoodCookbook_DataGridView.Rows[rowIndex].Selected = true;
+                                        FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[0].Cells[0]; // Unselect row.
+                                        FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[rowIndex].Cells[0]; // Select found row.
                                         valueFound = true;
                                         break;
                                     }
@@ -269,7 +296,7 @@ namespace CoreKeepersWorkshop
                     }
                     else
                     {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        foreach (DataGridViewRow row in FoodCookbook_DataGridView.Rows)
                         {
                             for (int i = 0; i < row.Cells.Count; i++)
                             {
@@ -278,9 +305,9 @@ namespace CoreKeepersWorkshop
                                 {
                                     // Search match found.
                                     int rowIndex = row.Index;
-                                    dataGridView1.Rows[rowIndex].Selected = true;
-                                    dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0]; // Unselect row.
-                                    dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[0]; // Select found row.
+                                    FoodCookbook_DataGridView.Rows[rowIndex].Selected = true;
+                                    FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[0].Cells[0]; // Unselect row.
+                                    FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[rowIndex].Cells[0]; // Select found row.
                                     valueFound = true;
                                     break;
                                 }
@@ -294,20 +321,20 @@ namespace CoreKeepersWorkshop
                     if (!valueFound)
                     {
                         // Check is a row is selected or not.
-                        if (dataGridView1.SelectedRows.Count > 0)
+                        if (FoodCookbook_DataGridView.SelectedRows.Count > 0)
                         {
                             // Display message.
-                            MessageBox.Show("No further search results for \"" + textBox1.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No further search results for \"" + ItemSearch_TextBox.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
                             // Display message.
-                            MessageBox.Show("No search results for \"" + textBox1.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No search results for \"" + ItemSearch_TextBox.Text + "\".", "Cookbook Search", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         // Reset row back to zero.
-                        dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0];
-                        dataGridView1.Rows[0].Selected = false;
+                        FoodCookbook_DataGridView.CurrentCell = FoodCookbook_DataGridView.Rows[0].Cells[0];
+                        FoodCookbook_DataGridView.Rows[0].Selected = false;
                         return;
                     }
                 }
@@ -319,21 +346,29 @@ namespace CoreKeepersWorkshop
         }
         #endregion
 
+        #endregion
+
         #region Keydown Events
 
         // Select the row.
-        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void FoodCookbook_DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Get values from selected row.
-            int itemAmount = (int)numericUpDown1.Value;
-            int itemID = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
-            int itemVariation = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());
+            try
+            {
+                // Get values from selected row.
+                int itemAmount        = (int)ItemAmount_NumericUpDown.Value;
+                int itemID            = int.Parse(FoodCookbook_DataGridView.Rows[e.RowIndex].Cells[2].Value.ToString());
+                int itemVariation     = int.Parse(FoodCookbook_DataGridView.Rows[e.RowIndex].Cells[3].Value.ToString());
+                int itemSkillset      = int.Parse(FoodCookbook_DataGridView.Rows[e.RowIndex].Cells[4].Value.ToString());
 
-            // Set values for closing.
-            selectedItemAmount = itemAmount;
-            selectedItemType = itemID;
-            selectedItemVariation = itemVariation;
-            this.Close();
+                // Set values for closing.
+                selectedItemAmount    = itemAmount;
+                selectedItemType      = itemID;
+                selectedItemVariation = itemVariation;
+                selectedItemSkillset  = itemSkillset;
+                this.Close();
+            }
+            catch (Exception) { }
         }
         #endregion
     }

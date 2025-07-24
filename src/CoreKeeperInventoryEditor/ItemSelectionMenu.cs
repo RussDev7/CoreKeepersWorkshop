@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using CoreKeepersWorkshop;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.IO;
 using System;
-using CoreKeepersWorkshop.Properties;
 
 namespace CoreKeeperInventoryEditor
 {
@@ -21,55 +19,69 @@ namespace CoreKeeperInventoryEditor
         bool userCanceldTask = false;
 
         // Define texture data.
-        public static IEnumerable<string> ImageFiles = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        private static string InventoryDir => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "Inventory");
+        public IEnumerable<string> ImageFiles =>
+            Directory.Exists(InventoryDir)
+                ? Directory.EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
+                    .DefaultIfEmpty(string.Empty)
+                : new[] { string.Empty };
 
         // Define folder names.
-        public static IEnumerable<string> FolderNames = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") ? Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") : new String[] { "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null", "Null" }; // Ensure directory exists. Fix: v1.2.9.
+        public static IEnumerable<string> FolderNames =>
+            Directory.Exists(InventoryDir)
+                ? Directory.EnumerateDirectories(InventoryDir)
+                : Enumerable.Repeat("Null", 17);
 
         // Define imagelist.
-        private ListView[] TabListViews;
+        private ListView[]  TabListViews;
         private ImageList[] Imagelists;
         private ImageList[] ImagelistsLarge;
-        readonly ImageList ImagelistTools = new ImageList();
-        readonly ImageList ImagelistLargeTools = new ImageList();
-        readonly ImageList ImagelistPlaceableItems = new ImageList();
+        readonly ImageList ImagelistTools               = new ImageList();
+        readonly ImageList ImagelistLargeTools          = new ImageList();
+        readonly ImageList ImagelistPlaceableItems      = new ImageList();
         readonly ImageList ImagelistLargePlaceableItems = new ImageList();
-        readonly ImageList ImagelistNature = new ImageList();
-        readonly ImageList ImagelistLargeNature = new ImageList();
-        readonly ImageList ImagelistMaterials = new ImageList();
-        readonly ImageList ImagelistLargeMaterials = new ImageList();
-        readonly ImageList ImagelistSpecial = new ImageList();
-        readonly ImageList ImagelistLargeSpecial = new ImageList();
-        readonly ImageList ImagelistMobItems = new ImageList();
-        readonly ImageList ImagelistLargeMobItems = new ImageList();
-        readonly ImageList ImagelistBaseBuilding = new ImageList();
-        readonly ImageList ImagelistLargeBaseBuilding = new ImageList();
-        readonly ImageList ImagelistTreasures = new ImageList();
-        readonly ImageList ImagelistLargeTreasures = new ImageList();
-        readonly ImageList ImagelistWiring = new ImageList();
-        readonly ImageList ImagelistLargeWiring = new ImageList();
-        readonly ImageList ImagelistPlants = new ImageList();
-        readonly ImageList ImagelistLargePlants = new ImageList();
-        readonly ImageList ImagelistArmors = new ImageList();
-        readonly ImageList ImagelistLargeArmors = new ImageList();
-        readonly ImageList ImagelistAccessories = new ImageList();
-        readonly ImageList ImagelistLargeAccessories = new ImageList();
-        readonly ImageList ImagelistWeapons = new ImageList();
-        readonly ImageList ImagelistLargeWeapons = new ImageList();
-        readonly ImageList ImagelistConsumables = new ImageList();
-        readonly ImageList ImagelistLargeConsumables = new ImageList();
-        readonly ImageList ImagelistSeasonal = new ImageList();
-        readonly ImageList ImagelistLargeSeasonal = new ImageList();
-        readonly ImageList ImagelistUnobtainable = new ImageList();
-        readonly ImageList ImagelistLargeUnobtainable = new ImageList();
-        readonly ImageList ImagelistUnused = new ImageList();
-        readonly ImageList ImagelistLargeUnused = new ImageList();
-        readonly ImageList ImagelistSearch = new ImageList();
-        readonly ImageList ImagelistLargeSearch = new ImageList();
+        readonly ImageList ImagelistNature              = new ImageList();
+        readonly ImageList ImagelistLargeNature         = new ImageList();
+        readonly ImageList ImagelistMaterials           = new ImageList();
+        readonly ImageList ImagelistLargeMaterials      = new ImageList();
+        readonly ImageList ImagelistSpecial             = new ImageList();
+        readonly ImageList ImagelistLargeSpecial        = new ImageList();
+        readonly ImageList ImagelistMobItems            = new ImageList();
+        readonly ImageList ImagelistLargeMobItems       = new ImageList();
+        readonly ImageList ImagelistBaseBuilding        = new ImageList();
+        readonly ImageList ImagelistLargeBaseBuilding   = new ImageList();
+        readonly ImageList ImagelistTreasures           = new ImageList();
+        readonly ImageList ImagelistLargeTreasures      = new ImageList();
+        readonly ImageList ImagelistWiring              = new ImageList();
+        readonly ImageList ImagelistLargeWiring         = new ImageList();
+        readonly ImageList ImagelistPlants              = new ImageList();
+        readonly ImageList ImagelistLargePlants         = new ImageList();
+        readonly ImageList ImagelistArmors              = new ImageList();
+        readonly ImageList ImagelistLargeArmors         = new ImageList();
+        readonly ImageList ImagelistAccessories         = new ImageList();
+        readonly ImageList ImagelistLargeAccessories    = new ImageList();
+        readonly ImageList ImagelistWeapons             = new ImageList();
+        readonly ImageList ImagelistLargeWeapons        = new ImageList();
+        readonly ImageList ImagelistConsumables         = new ImageList();
+        readonly ImageList ImagelistLargeConsumables    = new ImageList();
+        readonly ImageList ImagelistSeasonal            = new ImageList();
+        readonly ImageList ImagelistLargeSeasonal       = new ImageList();
+        readonly ImageList ImagelistUnobtainable        = new ImageList();
+        readonly ImageList ImagelistLargeUnobtainable   = new ImageList();
+        readonly ImageList ImagelistUnused              = new ImageList();
+        readonly ImageList ImagelistLargeUnused         = new ImageList();
+        readonly ImageList ImagelistSearch              = new ImageList();
+        readonly ImageList ImagelistLargeSearch         = new ImageList();
 
+        // Form initialization.
+        private CustomFormStyler _formThemeStyler;
+        private readonly int     _tabControlWidthOffset  = 8; // BorderlessTabControl custom parent offsets.
+        private readonly int     _tabControlHeightOffset = 0;
         public ItemSelectionMenu()
         {
             InitializeComponent();
+            Size = new Size(Width - _tabControlWidthOffset, Height - _tabControlHeightOffset); // Offset the form by the pixel amount 'WndProc' stole.
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme();                           // Load the forms theme.
         }
 
         #region Form Controls
@@ -78,11 +90,12 @@ namespace CoreKeeperInventoryEditor
         private void InventoryEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Check if the "X" button was pressed to close form.
-            if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            // if (!new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close"))
+            if (_formThemeStyler.CloseButtonPressed) // Now capture the custom titlebar.
             {
                 // User pressed the "X" button cancel task.
                 userCanceldTask = true;
-                this.Close();
+                // this.Close();
             }
 
             // Ensure we catch all closing exceptions. // Fix v1.3.3.
@@ -163,10 +176,20 @@ namespace CoreKeeperInventoryEditor
             this.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
             #endregion
 
+            #region Set Form Theme
+
+            // Change the tab-control color settings based on the theme.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.UITheme == ThemeMode.Dark)
+                Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Dark);
+            else
+                Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Light);
+            MainContentPanel1_Panel.BackColor = Color.FromArgb(12, 12, 12); // Near black.
+            #endregion
+
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
@@ -180,18 +203,18 @@ namespace CoreKeeperInventoryEditor
 
             // Set tool texts.
             toolTip.SetToolTip(CustomAmount_NumericUpDown, "Enter the amount of items to add.");
-            toolTip.SetToolTip(CustomID_NumericUpDown, "Enter a custom ID. Either press enter when done or use the button.");
-            toolTip.SetToolTip(ItemVariant_NumericUpDown, "Enter a custom variant ID. Either press enter when done or use the button.");
-            toolTip.SetToolTip(SkillType_NumericUpDown, "Enter a custom skillset ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(CustomID_NumericUpDown,     "Enter a custom ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(ItemVariant_NumericUpDown,  "Enter a custom variant ID. Either press enter when done or use the button.");
+            toolTip.SetToolTip(SkillType_NumericUpDown,    "Enter a custom skillset ID. Either press enter when done or use the button.");
 
-            toolTip.SetToolTip(CustomAmount_Button, "Remove the item from this inventory slot.");
-            toolTip.SetToolTip(CustomID_Button, "Spawn in custom item amount + ID.");
-            toolTip.SetToolTip(Search_Button, "Start the search for a desired item.");
-            toolTip.SetToolTip(ItemVariant_Button, "Spawn in custom item with variation.");
-            toolTip.SetToolTip(OpenCookedFoodList_Button, "Open the food cookbook to easily search for food items.");
-            toolTip.SetToolTip(SkillTypeInfo_Button, "Launch a guide on how to find skillset IDs.");
+            toolTip.SetToolTip(CustomAmount_Button,        "Remove the item from this inventory slot.");
+            toolTip.SetToolTip(CustomID_Button,            "Spawn in custom item amount + ID.");
+            toolTip.SetToolTip(Search_Button,              "Start the search for a desired item.");
+            toolTip.SetToolTip(ItemVariant_Button,         "Spawn in custom item with variation.");
+            toolTip.SetToolTip(OpenCookedFoodList_Button,  "Open the food cookbook to easily search for food items.");
+            toolTip.SetToolTip(SkillTypeInfo_Button,       "Launch a guide on how to find skillset IDs.");
 
-            toolTip.SetToolTip(Search_TextBox, "Enter a name to search for.");
+            toolTip.SetToolTip(Search_TextBox,             "Enter a name to search for.");
 
             #endregion
 
@@ -514,26 +537,26 @@ namespace CoreKeeperInventoryEditor
         private void OpenCookedFoodList_Button_Click(object sender, EventArgs e)
         {
             // Spawn food cookbook window.
-            FoodCookbook frm4 = new FoodCookbook();
-            DialogResult dr = frm4.ShowDialog(this);
+            FoodCookbook foodCookbook = new FoodCookbook();
+            DialogResult dr = foodCookbook.ShowDialog(this);
 
             // Get returned item from picker.
-            int itemType = frm4.GetItemTypeFromList();
-            int itemAmount = frm4.GetItemAmountFromList();
-            int itemVariation = frm4.GetItemVeriationFromList() == 0 ? 0 : (frm4.GetItemVeriationFromList()); // If variation is not zero, add offset.
-            // int itemSkillset = frm4.GetItemSkillsetFromList(); // Not implemented yet;
-            bool wasAborted = frm4.GetUserCanceldTask();
-            // bool itemOverwrite = frm3.GetSelectedOverwriteTask();
-            frm4.Close();
+            int itemType      = foodCookbook.GetItemTypeFromList();
+            int itemAmount    = foodCookbook.GetItemAmountFromList();
+            int itemVariation = foodCookbook.GetItemVeriationFromList() == 0 ? 0 : (foodCookbook.GetItemVeriationFromList()); // If variation is not zero, add offset.
+            int itemSkillset  = foodCookbook.GetItemSkillsetFromList()  == 0 ? 0 : (foodCookbook.GetItemSkillsetFromList());  // If skillset is not zero, add offset.
+            bool wasAborted   = foodCookbook.GetUserCanceldTask();
+            // bool itemOverwrite = foodCookbook.GetSelectedOverwriteTask();
+            foodCookbook.Close();
 
             // Check if user closed the form
             if (wasAborted) { return; };
 
             // Set the values from returning form.
-            selectedItemType = itemType;
-            selectedItemAmount = itemAmount;
-            selectedItemVariation = itemVariation;
-            // selectedItemSkillset = itemSkillset; // Not implemented yet;
+            selectedItemType        = itemType;
+            selectedItemAmount      = itemAmount;
+            selectedItemVariation   = itemVariation;
+            selectedItemSkillset    = itemSkillset;
             this.Close();
         }
         #endregion

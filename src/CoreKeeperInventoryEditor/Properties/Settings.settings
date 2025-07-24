@@ -2,16 +2,28 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CoreKeepersWorkshop.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
+    <Setting Name="TopMost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FormOpacity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="ChunkViewerOpacity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="CurrentItemTab" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Inventory_TabPage</Value>
+    </Setting>
     <Setting Name="ItemAmount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="ItemID" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">110</Value>
     </Setting>
-    <Setting Name="CurrentItemTab" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tab1_TabPage</Value>
-    </Setting>
     <Setting Name="ItemVariation" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ItemSkillset" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="InfoAmount" Type="System.Int32" Scope="User">
@@ -23,29 +35,35 @@
     <Setting Name="InfoVariation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="MainFormLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 50</Value>
+    <Setting Name="InfoSkillset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="ItemEditorLocation" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="MainFormLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">50, 50</Value>
     </Setting>
     <Setting Name="InventoryEditorLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">50, 50</Value>
     </Setting>
+    <Setting Name="ItemEditorLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
     <Setting Name="CookbookLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="TeleportAddressGuideLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="SkillEditorLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="ChunkViewerLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">50, 50</Value>
     </Setting>
     <Setting Name="InventoryBackground" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="InventoryBackgroundCount" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="ChatBackground" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ChatBackgroundCount" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PlayerBackground" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -59,14 +77,23 @@
     <Setting Name="WorldBackgroundCount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="ChatBackground" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ChatBackgroundCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SettingsBackground" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SettingsBackgroundCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="DevToolDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="RadialMoveScale" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
-    </Setting>
-    <Setting Name="TopMost" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="MapRenderingMax" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">150</Value>
@@ -79,9 +106,6 @@
     </Setting>
     <Setting Name="FishingPadding" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
-    </Setting>
-    <Setting Name="ChunkViewerLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 50</Value>
     </Setting>
     <Setting Name="ChunkViewerAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">00000000000</Value>
@@ -101,7 +125,7 @@
     <Setting Name="ProcessPriorityIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="QuantitySelectButton1" Type="System.Int32" Scope="User">
+    <Setting Name="QuantitySelectGetInventoryAddresses_Button" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="QuantitySelectButton2" Type="System.Int32" Scope="User">
@@ -116,26 +140,29 @@
     <Setting Name="QuantitySelectButton5" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9999</Value>
     </Setting>
-    <Setting Name="ItemSkillset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="InfoSkillset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="TeleportAddressGuideLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 50</Value>
-    </Setting>
-    <Setting Name="SkillEditorLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 50</Value>
-    </Setting>
     <Setting Name="SkillEditorUseEXP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ConsoleForeColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Snow</Value>
     </Setting>
-    <Setting Name="FormOpacity" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="UITheme" Type="CoreKeeperInventoryEditor.ThemeMode" Scope="User">
+      <Value Profile="(Default)">Dark</Value>
+    </Setting>
+    <Setting Name="UICorners" Type="CoreKeeperInventoryEditor.Corner" Scope="User">
+      <Value Profile="(Default)">All</Value>
+    </Setting>
+    <Setting Name="UICornerRadius" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="UITitleBarHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="UIBorderSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="UIShowIcon" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

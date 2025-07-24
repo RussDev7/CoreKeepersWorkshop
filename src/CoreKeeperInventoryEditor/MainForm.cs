@@ -5,7 +5,6 @@ using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Security.Principal;
 using System.Drawing.Drawing2D;
-using System.Linq.Expressions;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -24,17 +23,24 @@ using System.IO;
 using Memory;
 using System;
 
+// Rename the namespace to your project's.
+// Not doing so will cause designer errors.
 namespace CoreKeeperInventoryEditor
 {
     public partial class MainForm : Form
     {
         // Form initialization.
+        private CustomFormStyler _formThemeStyler;
+        private readonly int     _tabControlWidthOffset  = 6; // BorderlessTabControl custom parent offsets.
+        private readonly int     _tabControlHeightOffset = 0;
         public MainForm()
         {
             InitializeComponent();
+            Size = new Size(Width - _tabControlWidthOffset, Height - _tabControlHeightOffset); // Offset the form by the pixel amount 'WndProc' stole.
+            Load += (_, __) => _formThemeStyler = this.ApplyTheme();                           // Load the forms theme.
         }
 
-        #region Variables
+        #region Fields
 
         // Setup some variables.
         public Mem MemLib = null;                                     // Do not define memory.dll yet.
@@ -57,40 +63,33 @@ namespace CoreKeeperInventoryEditor
         // public static IEnumerable<long> AoBScanResultsSkills;      // SkillEditor.
         // public List<string> LastChatCommand = new List<string>() { "" };
         public Dictionary<string, int> ExportPlayerItems = new Dictionary<string, int> { };
-        public string ExportPlayerName = "";
-        public bool isMinimized = false;
-        public int useAddress = 1;
-        public bool placeholdersActive = false;
+        public string ExportPlayerName   = "";
+        public bool   isMinimized        = false;
+        public int    useAddress         = 1;
+        public bool   placeholdersActive = false;
+        private bool  _initialized       = false;
 
         // Define texture data.
-        public IEnumerable<string> ImageFiles1 = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\Inventory\", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        public IEnumerable<string> InventorySkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Inventory", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        public IEnumerable<string> PlayerSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Player", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        public IEnumerable<string> WorldSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\World", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
-        public IEnumerable<string> ChatSkins = Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat") && Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) != null ? Directory.GetFileSystemEntries(AppDomain.CurrentDomain.BaseDirectory + @"assets\backgrounds\Chat", "*.png", SearchOption.AllDirectories) : new String[] { "" }; // Ensure directory exists and images exist. Fix: v1.2.9.
+        private static string InventoryDir => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "Inventory");
+        public IEnumerable<string> ImageFiles =>
+            Directory.Exists(InventoryDir)
+                ? Directory.EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
+                    .DefaultIfEmpty(string.Empty)
+                : new[] { string.Empty };
 
-        // Define skin counters.
-        public int inventorySkinCounter = Settings.Default.InventoryBackgroundCount;
-        public int playerSkinCounter = Settings.Default.PlayerBackgroundCount;
-        public int worldSkinCounter = Settings.Default.WorldBackgroundCount;
-        public int chatSkinCounter = Settings.Default.ChatBackgroundCount;
+        // Define the inventory skins in parallel arrays.
+        private TabPage[]        _contentPages;
+        private Size[]           _pageSizes;
+        private string[][]       _skinFiles;
+        private Action<string>[] _applySetting;
+        private int[]            _counters;
+        private int              _previousTab;
 
         // Define warning and error titles.
         public static readonly string warningTitle = $"WARNING: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
         public static readonly string errorTitle   = $"ERROR: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
 
-        // Set the mouse event class.
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-
-        private const int MOUSEEVENT_LEFTDOWN   = 0x02;
-        private const int MOUSEEVENT_LEFTUP     = 0x04;
-        private const int MOUSEEVENT_RIGHTDOWN  = 0x08;
-        private const int MOUSEEVENT_RIGHTUP    = 0x10;
-        private const int MOUSEEVENT_MIDDLEDOWN = 0x20;
-        private const int MOUSEEVENT_MIDDLEUP   = 0x40;
-
-        #region Process Handle Classes
+        #region Interop Constants (Process Handle)
 
         // Set the process overlay class.
         [DllImport("user32.dll")]
@@ -105,6 +104,17 @@ namespace CoreKeeperInventoryEditor
         private static extern bool SetForegroundWindow(IntPtr hWnd);
         [DllImport("user32.dll")]
         public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
+
+        // Set the mouse event class.
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+        private const int MOUSEEVENT_LEFTDOWN   = 0x02;
+        private const int MOUSEEVENT_LEFTUP     = 0x04;
+        private const int MOUSEEVENT_RIGHTDOWN  = 0x08;
+        private const int MOUSEEVENT_RIGHTUP    = 0x10;
+        private const int MOUSEEVENT_MIDDLEDOWN = 0x20;
+        private const int MOUSEEVENT_MIDDLEUP   = 0x40;
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -257,6 +267,34 @@ namespace CoreKeeperInventoryEditor
                 FormOpacity_TrackBar.Value = Settings.Default.FormOpacity;                  // Set the form opacity trackbar value.
                 #endregion
 
+                #region Set Form Theme
+
+                // Dark / light:
+                DarkMode_CheckBox.Checked          = (Settings.Default.UITheme == ThemeMode.Dark);
+
+                // Corners:
+                Corner saved                       = Settings.Default.UICorners;
+                TopLeftCorner_CheckBox.Checked     = saved.HasFlag(Corner.TopLeft);
+                TopRightCorner_CheckBox.Checked    = saved.HasFlag(Corner.TopRight);
+                BottomLeftCorner_CheckBox.Checked  = saved.HasFlag(Corner.BottomLeft);
+                BottomRightCorner_CheckBox.Checked = saved.HasFlag(Corner.BottomRight);
+
+                // Everything else:
+                CornerRadius_NumericUpDown.Value   = Settings.Default.UICornerRadius;
+                TitleBarHeight_NumericUpDown.Value = Settings.Default.UITitleBarHeight;
+                BorderSize_NumericUpDown.Value     = Settings.Default.UIBorderSize;
+                ShowIcon_CheckBox.Checked          = Settings.Default.UIShowIcon;
+
+                // Refresh the form UI.
+                FormStylingExtensions.RefreshAllThemes();
+
+                // Change the tab-control color settings based on the theme.
+                if (CoreKeepersWorkshop.Properties.Settings.Default.UITheme == ThemeMode.Dark)
+                    Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Dark);
+                else
+                    Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Light);
+                #endregion
+
                 #region Set Form Opacity
 
                 // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
@@ -269,55 +307,71 @@ namespace CoreKeeperInventoryEditor
                 MainForm.ActiveForm.Location = Settings.Default.MainFormLocation;
                 #endregion
 
-                #region Set Background
+                #region Initiate & Set Background
+
+                // Define tabs and sizes.
+                _contentPages = new[]
+                {
+                    Inventory_TabPage,
+                    Player_TabPage,
+                    World_TabPage,
+                    Chat_TabPage,
+                    Settings_TabPage
+                };
+                _pageSizes = new[]
+                {
+                    new Size(756 - _tabControlWidthOffset, 494),
+                    new Size(756 - _tabControlWidthOffset, 360),
+                    new Size(756 - _tabControlWidthOffset, 494),
+                    new Size(410 - _tabControlWidthOffset, 360),
+                    new Size(410 - _tabControlWidthOffset, 360)  // Same as chat tab.
+                };
+
+                // Load all skin‐folders at once.
+                _skinFiles = new[]
+                {
+                    LoadPngFiles(@"assets\backgrounds\Inventory"),
+                    LoadPngFiles(@"assets\backgrounds\Player"),
+                    LoadPngFiles(@"assets\backgrounds\World"),
+                    LoadPngFiles(@"assets\backgrounds\Chat"),
+                    LoadPngFiles(@"assets\backgrounds\Settings")
+                };
+
+                // Pull saved counters from Settings.
+                _counters = new[]
+                {
+                    Settings.Default.InventoryBackgroundCount,
+                    Settings.Default.PlayerBackgroundCount,
+                    Settings.Default.WorldBackgroundCount,
+                    Settings.Default.ChatBackgroundCount,
+                    Settings.Default.SettingsBackgroundCount
+                };
+
+                // When we change skin X, store back into the right Settings property.
+                _applySetting = new Action<string>[]
+                {
+                    path => Settings.Default.InventoryBackground = path,
+                    path => Settings.Default.PlayerBackground    = path,
+                    path => Settings.Default.WorldBackground     = path,
+                    path => Settings.Default.ChatBackground      = path,
+                    path => Settings.Default.SettingsBackground  = path,
+                };
 
                 // Get background from saved settings.
-                if (Settings.Default.InventoryBackground != "") // Ensure background is not null.
+                for (int i = 0; i < _contentPages.Length; i++)
                 {
-                    // Catch image missing / renamed errors.
+                    var path = _getSavedBackground[i]();
+                    if (string.IsNullOrWhiteSpace(path))
+                        continue;
+
                     try
                     {
-                        Main_TabControl.TabPages[0].BackgroundImage = ImageFast.FromFile(Settings.Default.InventoryBackground);
+                        _contentPages[i].BackgroundImage = ImageFast.FromFile(path);
                     }
-                    catch (Exception)
+                    catch
                     {
-                        Settings.Default.InventoryBackground = "";
-                    }
-                }
-                if (Settings.Default.PlayerBackground != "") // Ensure background is not null.
-                {
-                    // Catch image missing / renamed errors.
-                    try
-                    {
-                        Main_TabControl.TabPages[1].BackgroundImage = ImageFast.FromFile(Settings.Default.PlayerBackground);
-                    }
-                    catch (Exception)
-                    {
-                        Settings.Default.PlayerBackground = "";
-                    }
-                }
-                if (Settings.Default.WorldBackground != "") // Ensure background is not null.
-                {
-                    // Catch image missing / renamed errors.
-                    try
-                    {
-                        Main_TabControl.TabPages[2].BackgroundImage = ImageFast.FromFile(Settings.Default.WorldBackground);
-                    }
-                    catch (Exception)
-                    {
-                        Settings.Default.WorldBackground = "";
-                    }
-                }
-                if (Settings.Default.ChatBackground != "") // Ensure background is not null.
-                {
-                    // Catch image missing / renamed errors.
-                    try
-                    {
-                        Main_TabControl.TabPages[3].BackgroundImage = ImageFast.FromFile(Settings.Default.ChatBackground);
-                    }
-                    catch (Exception)
-                    {
-                        Settings.Default.ChatBackground = "";
+                        // Clear out any bad path.
+                        _applySetting[i]("");
                     }
                 }
                 #endregion
@@ -332,123 +386,214 @@ namespace CoreKeeperInventoryEditor
                 };
 
                 // Set tool texts.
-                toolTip.SetToolTip(CurrentName_TextBox, "Enter the existing loaded player's name.");
-                toolTip.SetToolTip(NewName_TextBox, "Enter a custom name. Must match current player's name length.");
-                toolTip.SetToolTip(WorldInformation_TextBox, "Enter the name of the world you wish to load.");
-
-                toolTip.SetToolTip(GetInventoryAddresses_Button, "Get the required addresses for editing the inventory.");
-                toolTip.SetToolTip(ReloadInventory_Button, "Reload loads the GUI with updated inventory items.");
-                toolTip.SetToolTip(RemoveAll_Button, "Remove all items from the inventory.");
-                toolTip.SetToolTip(ChanngeName_Button, "Change your existing name.");
-                toolTip.SetToolTip(ImportPlayer_Button, "Import a player file to overwrite items.");
-                toolTip.SetToolTip(ExportPlayer_Button, "Export a player file to overwrite items.");
-                toolTip.SetToolTip(EnableChatCommands_Button, "Enable / disable in-game chat commands.");
-                toolTip.SetToolTip(TrashGroundItems_Button, "Removes all ground items not picked up by the player.");
-                toolTip.SetToolTip(TeleportXY_Button, "Teleport the player to a desired world position.");
-                toolTip.SetToolTip(GetAddresses_Button, "Get the required addresses for using player tools.");
-                toolTip.SetToolTip(GetTeleportAddresses_Button, "Get the required addresses for using world tools.");
-                toolTip.SetToolTip(ApplyBuff_Button, "Replaces the glow tulip buff with a desired buff.");
-                toolTip.SetToolTip(ChangeDate_Button, "Change the date created of the current world.");
-                toolTip.SetToolTip(GetWorldInformation_Button, "Fills the datagridview with the world header information.");
-                toolTip.SetToolTip(ChangeDifficulty_Button, "Change the difficulty of the current world.");
-                toolTip.SetToolTip(ChangeCrystals_Button, "Change the activated crystals of the current world.");
-                toolTip.SetToolTip(AutomaticFishing_Button, "Automatically fishes for you. First throw reel into water.");
-                toolTip.SetToolTip(RandomTeleport_Button, "Teleport the player to random positions around the map.");
-                toolTip.SetToolTip(PreviousInvAddress_Button, "Switch to the previous found inventory.");
-                toolTip.SetToolTip(NextInvAddress_Button, "Switch to the next found inventory.");
-                toolTip.SetToolTip(AutoMapRenderer_Button, "Automatically render very large areas around the player.");
-                toolTip.SetToolTip(RestoreDefaultRange_Button, "Restore the default range and disable full map brightness.");
-                toolTip.SetToolTip(SetRevealRange_Button, "Turn on custom map render distance with full map brightness.");
-                toolTip.SetToolTip(CancelOperation_Button, "Cancel the map rendering operation.");
-                toolTip.SetToolTip(GetMapRenderingAddresses_Button, "Get the required addresses for custom map rendering.");
-                toolTip.SetToolTip(PauseOperation_Button, "Pause or resume the auto map rendering operation.");
-                toolTip.SetToolTip(OpenChunkVisualizer_Button, "Open a chunk viewer to display real-time chunk position tracking.");
-                toolTip.SetToolTip(TeleportPlayerHelp_Button, "Launch a visualization guide on how to set your teleport addresses.");
-                toolTip.SetToolTip(ChangeSeed_Button, "Change the seed of the current world.");
-                toolTip.SetToolTip(ChangeIcon_Button, "Change the icon of the current world.");
-                toolTip.SetToolTip(ChangeConsoleForeColor_Button, "Change the world property editors console color.\nCurrent Color: " + Settings.Default.ConsoleForeColor.Name.ToString());
-                toolTip.SetToolTip(OpenSkillEditor_Button, "Launch the player skill editor.");
-                // toolTip.SetToolTip(button41, "This is the console color visualizer.");
-                toolTip.SetToolTip(ClearDebugLog_Button, "Clear the debug console.");
-                toolTip.SetToolTip(ClearWorldToolsLog_Button, "Clear the world tools console.");
-                toolTip.SetToolTip(ResetControls_Button, "Used to reset (defaults) all saved control settings across all forms.");
-
-                toolTip.SetToolTip(BuffType_ComboBox, "Open a list of all ingame buffs and debuffs.");
-                toolTip.SetToolTip(AppPriority_ComboBox, "Set this applications process priority.");
-
-                toolTip.SetToolTip(SaveEachRing_CheckBox, "Save the map to file after each completed ring.");
-                toolTip.SetToolTip(AlwaysOnTop_CheckBox, "Keep this application always on top of other applications.");
-                toolTip.SetToolTip(BruteForceTP_CheckBox, "Brute force the address searching for the teleport address.");
-                toolTip.SetToolTip(BruteForceTrash_CheckBox, "Brute force the trashing of items by singling out each item.");
-                toolTip.SetToolTip(ForceNoclip_Checkbox, "Force noclip to always be on.");
-                toolTip.SetToolTip(MapTeleport_CheckBox, "Use the overhead map to left-click teleport to any position.");
-                toolTip.SetToolTip(UseOverlay_CheckBox, "Displays the chat commands console via a game overlay.");
-
-                toolTip.SetToolTip(Inventory_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
-                toolTip.SetToolTip(PlayerTools_RichTextBox, "A list of all found addresses. Used mostly for debugging.");
-
-                toolTip.SetToolTip(DisplayLocation_ToggleSwitch, "Gets the players XY coordinates and displays it.");
-                toolTip.SetToolTip(Godmode_ToggleSwitch, "Enabling will prevent the player from being killed.");
-                toolTip.SetToolTip(Speed_ToggleSwitch, "Set a custom run speed for the player.");
-                toolTip.SetToolTip(Noclip_ToggleSwitch, "Spacebar will allow the player to pass through walls.");
-                toolTip.SetToolTip(InfiniteFood_ToggleSwitch, "Enabling will keep the players food replenished.");
-                toolTip.SetToolTip(Suicide_ToggleSwitch, "Enabling this will instantly kill the player.");
-                toolTip.SetToolTip(InfiniteResources_ToggleSwitch, "Prevents the diminishing of inventory items.");
+                toolTip.SetToolTip(CurrentName_TextBox,                  "Enter the existing loaded player's name.");
+                toolTip.SetToolTip(NewName_TextBox,                      "Enter a custom name. Must match current player's name length.");
+                toolTip.SetToolTip(WorldInformation_TextBox,             "Enter the name of the world you wish to load.");
+                
+                toolTip.SetToolTip(GetInventoryAddresses_Button,         "Get the required addresses for editing the inventory.");
+                toolTip.SetToolTip(ReloadInventory_Button,               "Reload loads the GUI with updated inventory items.");
+                toolTip.SetToolTip(RemoveAll_Button,                     "Remove all items from the inventory.");
+                toolTip.SetToolTip(ChanngeName_Button,                   "Change your existing name.");
+                toolTip.SetToolTip(ImportPlayer_Button,                  "Import a player file to overwrite items.");
+                toolTip.SetToolTip(ExportPlayer_Button,                  "Export a player file to overwrite items.");
+                toolTip.SetToolTip(EnableChatCommands_Button,            "Enable / disable in-game chat commands.");
+                toolTip.SetToolTip(TrashGroundItems_Button,              "Removes all ground items not picked up by the player.");
+                toolTip.SetToolTip(TeleportXY_Button,                    "Teleport the player to a desired world position.");
+                toolTip.SetToolTip(GetAddresses_Button,                  "Get the required addresses for using player tools.");
+                toolTip.SetToolTip(GetTeleportAddresses_Button,          "Get the required addresses for using world tools.");
+                toolTip.SetToolTip(ApplyBuff_Button,                     "Replaces the glow tulip buff with a desired buff.");
+                toolTip.SetToolTip(ChangeDate_Button,                    "Change the date created of the current world.");
+                toolTip.SetToolTip(GetWorldInformation_Button,           "Fills the datagridview with the world header information.");
+                toolTip.SetToolTip(ChangeDifficulty_Button,              "Change the difficulty of the current world.");
+                toolTip.SetToolTip(ChangeCrystals_Button,                "Change the activated crystals of the current world.");
+                toolTip.SetToolTip(AutomaticFishing_Button,              "Automatically fishes for you. First throw reel into water.");
+                toolTip.SetToolTip(RandomTeleport_Button,                "Teleport the player to random positions around the map.");
+                toolTip.SetToolTip(PreviousInvAddress_Button,            "Switch to the previous found inventory.");
+                toolTip.SetToolTip(NextInvAddress_Button,                "Switch to the next found inventory.");
+                toolTip.SetToolTip(AutoMapRenderer_Button,               "Automatically render very large areas around the player.");
+                toolTip.SetToolTip(RestoreDefaultRange_Button,           "Restore the default range and disable full map brightness.");
+                toolTip.SetToolTip(SetRevealRange_Button,                "Turn on custom map render distance with full map brightness.");
+                toolTip.SetToolTip(CancelOperation_Button,               "Cancel the map rendering operation.");
+                toolTip.SetToolTip(GetMapRenderingAddresses_Button,      "Get the required addresses for custom map rendering.");
+                toolTip.SetToolTip(PauseOperation_Button,                "Pause or resume the auto map rendering operation.");
+                toolTip.SetToolTip(OpenChunkVisualizer_Button,           "Open a chunk viewer to display real-time chunk position tracking.");
+                toolTip.SetToolTip(TeleportPlayerHelp_Button,            "Launch a visualization guide on how to set your teleport addresses.");
+                toolTip.SetToolTip(ChangeSeed_Button,                    "Change the seed of the current world.");
+                toolTip.SetToolTip(ChangeIcon_Button,                    "Change the icon of the current world.");
+                toolTip.SetToolTip(ChangeConsoleForeColor_Button,        $"Change the world property editors console color.\nCurrent Color: {Settings.Default.ConsoleForeColor.Name}");
+                toolTip.SetToolTip(OpenSkillEditor_Button,               "Launch the player skill editor.");
+                // toolTip.SetToolTip(button41,                          "This is the console color visualizer.");
+                toolTip.SetToolTip(ClearDebugLog_Button,                 "Clear the debug console.");
+                toolTip.SetToolTip(ClearWorldToolsLog_Button,            "Clear the world tools console.");
+                toolTip.SetToolTip(ResetControls_Button,                 "Used to reset (defaults) all saved control settings across all forms.");
+                
+                toolTip.SetToolTip(BuffType_ComboBox,                    "Open a list of all ingame buffs and debuffs.");
+                toolTip.SetToolTip(AppPriority_ComboBox,                 "Set this applications process priority.");
+                
+                toolTip.SetToolTip(SaveEachRing_CheckBox,                "Save the map to file after each completed ring.");
+                toolTip.SetToolTip(AlwaysOnTop_CheckBox,                 "Keep this application always on top of other applications.");
+                toolTip.SetToolTip(BruteForceTP_CheckBox,                "Brute force the address searching for the teleport address.");
+                toolTip.SetToolTip(BruteForceTrash_CheckBox,             "Brute force the trashing of items by singling out each item.");
+                toolTip.SetToolTip(ForceNoclip_Checkbox,                 "Force noclip to always be on.");
+                toolTip.SetToolTip(MapTeleport_CheckBox,                 "Use the overhead map to left-click teleport to any position.");
+                toolTip.SetToolTip(UseOverlay_CheckBox,                  "Displays the chat commands console via a game overlay.");
+                toolTip.SetToolTip(TopLeftCorner_CheckBox,               "Toggle top left corner.");
+                toolTip.SetToolTip(TopRightCorner_CheckBox,              "Toggle top right corner.");
+                toolTip.SetToolTip(BottomLeftCorner_CheckBox,            "Toggle bottom left corner.");
+                toolTip.SetToolTip(BottomRightCorner_CheckBox,           "Toggle bottom right corner.");
+                toolTip.SetToolTip(DarkMode_CheckBox,                    "Toggle dark/light mode.");
+                toolTip.SetToolTip(ShowIcon_CheckBox,                    "Toggle the titlebar icon.");
+                
+                toolTip.SetToolTip(Inventory_RichTextBox,                "A list of all found addresses. Used mostly for debugging.");
+                toolTip.SetToolTip(PlayerTools_RichTextBox,              "A list of all found addresses. Used mostly for debugging.");
+                
+                toolTip.SetToolTip(DisplayLocation_ToggleSwitch,         "Gets the players XY coordinates and displays it.");
+                toolTip.SetToolTip(Godmode_ToggleSwitch,                 "Enabling will prevent the player from being killed.");
+                toolTip.SetToolTip(Speed_ToggleSwitch,                   "Set a custom run speed for the player.");
+                toolTip.SetToolTip(Noclip_ToggleSwitch,                  "Spacebar will allow the player to pass through walls.");
+                toolTip.SetToolTip(InfiniteFood_ToggleSwitch,            "Enabling will keep the players food replenished.");
+                toolTip.SetToolTip(Suicide_ToggleSwitch,                 "Enabling this will instantly kill the player.");
+                toolTip.SetToolTip(InfiniteResources_ToggleSwitch,       "Prevents the diminishing of inventory items.");
                 // OBSOLETE: toolTip.SetToolTip(siticoneWinToggleSwith8, "Prevents being killed or teleported while stuck in walls. Use the t-key to toggle.");
-                toolTip.SetToolTip(InfiniteMana_ToggleSwitch, "Enabling will keep the players mana replenished.");
-                toolTip.SetToolTip(ForceRecall_ToggleSwitch, "Recalls the player to spawn immediately.");
-                toolTip.SetToolTip(FreeCrafting_ToggleSwitch, "Enables the ability to craft without consuming resources.");
-                toolTip.SetToolTip(PassiveAI_ToggleSwitch, "Toggles enemies aggression towards the player.");
-                toolTip.SetToolTip(PlaceAnywhere_ToggleSwitch, "Enabling will allow the player to place on invalid tiles.");
-                // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith13, "Enabling will allow the player to adjust the placement range.");
-                toolTip.SetToolTip(Range_ToggleSwitch, "Coming back soon...");
-                toolTip.SetToolTip(KeepInventory_ToggleSwitch, "Prevents losing inventory items upon death.");
-                toolTip.SetToolTip(TrashInventory_ToggleSwitch, "Enabling will continuously remove all items from the inventory. Items will be logged.");
-                // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith16, "Set a custom max speed for minecarts.");
-                toolTip.SetToolTip(MaxMinecartSpeed_ToggleSwitch, "Coming back soon...");
-                toolTip.SetToolTip(FreezeItemSlots_ToggleSwitch, "Adds checkboxes to the inventory editor for freezing an items property(s).");
+                toolTip.SetToolTip(InfiniteMana_ToggleSwitch,            "Enabling will keep the players mana replenished.");
+                toolTip.SetToolTip(ForceRecall_ToggleSwitch,             "Recalls the player to spawn immediately.");
+                toolTip.SetToolTip(FreeCrafting_ToggleSwitch,            "Enables the ability to craft without consuming resources.");
+                toolTip.SetToolTip(PassiveAI_ToggleSwitch,               "Toggles enemies aggression towards the player.");
+                toolTip.SetToolTip(PlaceAnywhere_ToggleSwitch,           "Enabling will allow the player to place on invalid tiles.");
+                // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith13,  "Enabling will allow the player to adjust the placement range.");
+                toolTip.SetToolTip(Range_ToggleSwitch,                   "Coming back soon...");
+                toolTip.SetToolTip(KeepInventory_ToggleSwitch,           "Prevents losing inventory items upon death.");
+                toolTip.SetToolTip(TrashInventory_ToggleSwitch,          "Enabling will continuously remove all items from the inventory. Items will be logged.");
+                // BROKEN: toolTip.SetToolTip(siticoneWinToggleSwith16,  "Set a custom max speed for minecarts.");
+                toolTip.SetToolTip(MaxMinecartSpeed_ToggleSwitch,        "Coming back soon...");
+                toolTip.SetToolTip(FreezeItemSlots_ToggleSwitch,         "Adds checkboxes to the inventory editor for freezing an items property(s).");
+                
+                toolTip.SetToolTip(OverwriteSlotOne_RadioButton,         "Overwrite item slot one.");
+                toolTip.SetToolTip(AddToEmptySlots_RadioButton,          "Add item to an empty inventory slot.");
+                toolTip.SetToolTip(Custom_RadioButton,                   "Add items to a custom inventory slot.");
+                toolTip.SetToolTip(WorldDifficulty_ComboBox,             "Change the world difficulty (mode).");
+                
+                toolTip.SetToolTip(CustomAmount_NumericUpDown,           "Change what item slot to send items too.");
+                toolTip.SetToolTip(DevToolsDelay_NumericUpDown,          "Change the interval of dev-tools that use delays. (default: 80)");
+                toolTip.SetToolTip(SpeedAmount_NumericUpDown,            "Change the base speed the player will walk at.");
+                toolTip.SetToolTip(TeleportX_NumericUpDown,              "Change the x-axis world position to be teleported on.");
+                toolTip.SetToolTip(TeleportY_NumericUpDown,              "Change the y-axis world position to be teleported on.");
+                toolTip.SetToolTip(Power_NumericUpDown,                  "Change the amount of power the buff will contain.");
+                toolTip.SetToolTip(TimeS_NumericUpDown,                  "Change the amount of time the buff will be active for.");
+                toolTip.SetToolTip(MaxRadius_NumericUpDown,              "The (radius x range) of tiles to render around the player.");
+                toolTip.SetToolTip(NextRingDelay_NumericUpDown,          "Change the cooldown time (milliseconds) before the next teleport.");
+                toolTip.SetToolTip(StartRadius_NumericUpDown,            "Set the minimum range in tiles away from the player to start the map render.");
+                toolTip.SetToolTip(RenderRange_NumericUpDown,            "Set the maximum range in tiles to render the map by.");
+                toolTip.SetToolTip(RadialMoveScale_NumericUpDown,        "Set a custom radialMoveScale for auto map rendering. (default: 0.1)");
+                toolTip.SetToolTip(CastDelay_NumericUpDown,              "Set the delay for re-casting the fishing pole.");
+                toolTip.SetToolTip(FishingPadding_NumericUpDown,         "Set the delay for loop operations. Ex: Caught fish checking.");
+                toolTip.SetToolTip(RTDelay_NumericUpDown,                "Set the seconds delay for re-teleporting the player.");
+                toolTip.SetToolTip(RTRange_NumericUpDown,                "Set the max range (radius) to teleport the player within.");
+                toolTip.SetToolTip(CornerRadius_NumericUpDown,           "Set a desired corner radius.");
+                toolTip.SetToolTip(TitleBarHeight_NumericUpDown,         "Set the vertical thickness of the titlebar (main form requires restart).");
+                toolTip.SetToolTip(BorderSize_NumericUpDown,             "Set the border thickness around the form.");
+                
+                toolTip.SetToolTip(DevTools3_Label,                      "Create an ID list from all installed assets.");
+                toolTip.SetToolTip(DevTools2_Label,                      "Sets the variant of item slot2 based on a file list.");
+                toolTip.SetToolTip(DevTools1_Label,                      "Change item slot2s variant based on the left/right arrow keys.");
+                toolTip.SetToolTip(DevTools5_Label,                      "Grabs the application and sends it to the center of the screen.");
+                toolTip.SetToolTip(DevTools4_Label,                      "Stores the games private bytes with timestamps for each completed rotation.");
+                toolTip.SetToolTip(MoreMobs_Label,                       "Use the slider below for more mods!");
+                
+                toolTip.SetToolTip(Mods_TrackBar,                        "Used to scroll to other player mods.");
+                toolTip.SetToolTip(MaxMinecartSpeed_TrackBar,            "Used to set a custom max speed for minecarts.");
+                toolTip.SetToolTip(FormOpacity_TrackBar,                 "Used to set a custom opacity that applies to all forms.");
 
-                toolTip.SetToolTip(OverwriteSlotOne_RadioButton, "Overwrite item slot one.");
-                toolTip.SetToolTip(AddToEmptySlots_RadioButton, "Add item to an empty inventory slot.");
-                toolTip.SetToolTip(Custom_RadioButton, "Add items to a custom inventory slot.");
-                toolTip.SetToolTip(WorldDifficulty_ComboBox, "Change the world difficulty (mode).");
+                // toolTip.SetToolTip(dataGridView1,                     "Prints all the world header information.");
 
-                toolTip.SetToolTip(CustomAmount_NumericUpDown, "Change what item slot to send items too.");
-                toolTip.SetToolTip(DevToolsDelay_NumericUpDown, "Change the interval of dev-tools that use delays. (default: 80)");
-                toolTip.SetToolTip(SpeedAmount_NumericUpDown, "Change the base speed the player will walk at.");
-                toolTip.SetToolTip(TeleportX_NumericUpDown, "Change the x-axis world position to be teleported on.");
-                toolTip.SetToolTip(TeleportY_NumericUpDown, "Change the y-axis world position to be teleported on.");
-                toolTip.SetToolTip(Power_NumericUpDown, "Change the amount of power the buff will contain.");
-                toolTip.SetToolTip(TimeS_NumericUpDown, "Change the amount of time the buff will be active for.");
-                toolTip.SetToolTip(MaxRadius_NumericUpDown, "The (radius x range) of tiles to render around the player.");
-                toolTip.SetToolTip(NextRingDelay_NumericUpDown, "Change the cooldown time (milliseconds) before the next teleport.");
-                toolTip.SetToolTip(StartRadius_NumericUpDown, "Set the minimum range in tiles away from the player to start the map render.");
-                toolTip.SetToolTip(RenderRange_NumericUpDown, "Set the maximum range in tiles to render the map by.");
-                toolTip.SetToolTip(RadialMoveScale_NumericUpDown, "Set a custom radialMoveScale for auto map rendering. (default: 0.1)");
-                toolTip.SetToolTip(CastDelay_NumericUpDown, "Set the delay for re-casting the fishing pole.");
-                toolTip.SetToolTip(FishingPadding_NumericUpDown, "Set the delay for loop operations. Ex: Caught fish checking.");
-                toolTip.SetToolTip(RTDelay_NumericUpDown, "Set the seconds delay for re-teleporting the player.");
-                toolTip.SetToolTip(RTRange_NumericUpDown, "Set the max range (radius) to teleport the player within.");
+                #endregion
 
-                toolTip.SetToolTip(DevTools3_Label, "Create an ID list from all installed assets.");
-                toolTip.SetToolTip(DevTools2_Label, "Sets the variant of item slot2 based on a file list.");
-                toolTip.SetToolTip(DevTools1_Label, "Change item slot2s variant based on the left/right arrow keys.");
-                toolTip.SetToolTip(DevTools5_Label, "Grabs the application and sends it to the center of the screen.");
-                toolTip.SetToolTip(DevTools4_Label, "Stores the games private bytes with timestamps for each completed rotation.");
-                toolTip.SetToolTip(MoreMobs_Label, "Use the slider below for more mods!");
+                #region Form Initialized
 
-                toolTip.SetToolTip(Mods_TrackBar, "Used to scroll to other player mods.");
-                toolTip.SetToolTip(MaxMinecartSpeed_TrackBar, "Used to set a custom max speed for minecarts.");
-                toolTip.SetToolTip(FormOpacity_TrackBar, "Used to set a custom opacity that applies to all forms.");
-
-                // toolTip.SetToolTip(dataGridView1, "Prints all the world header information.");
-
+                // Now that the form is fully loaded and at the restored spot, turn saving back on.
+                _initialized = true;
                 #endregion
             }
             catch (Exception)
             {
             }
         }
+
+        #region Load Image / Skin Manager
+
+        // Helper to load *.png (empty array if the folder doesn't exist).
+        private static string[] LoadPngFiles(string relativePath)
+        {
+            var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+            return Directory.Exists(dir)
+                ? Directory.GetFiles(dir, "*.png", SearchOption.AllDirectories)
+                : Array.Empty<string>();
+        }
+
+        private void ChangeSkin(int tabIndex)
+        {
+            if (tabIndex < 0 || tabIndex >= _skinFiles.Length) return;
+
+            // bounce back to the real page
+            Main_TabControl.SelectedTab = _contentPages[tabIndex];
+
+            var files = _skinFiles[tabIndex];
+            var counter = _counters[tabIndex];
+            if (files.Length == 0 || !File.Exists(files[counter]))
+            {
+                MessageBox.Show(
+                    "No skins exist within the asset folder!",
+                    errorTitle,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            // set the image + persist setting
+            var path = files[counter];
+            _contentPages[tabIndex].BackgroundImage = ImageFast.FromFile(path);
+            _applySetting[tabIndex](path);
+
+            Settings.Default.Save();  // don't forget to save!
+
+            // advance & wrap the counter
+            _counters[tabIndex] = (counter + 1) % files.Length;
+        }
+
+        // in your Form class, next to _applySetting and friends:
+        private readonly Func<string>[] _getSavedBackground = new Func<string>[]
+        {
+            () => Settings.Default.InventoryBackground,
+            () => Settings.Default.PlayerBackground,
+            () => Settings.Default.WorldBackground,
+            () => Settings.Default.ChatBackground,
+            () => Settings.Default.SettingsBackground
+        };
+
+        /// <summary>
+        /// Applies skinFiles[tabIndex][skinIndex] to the tab,
+        /// persists the path, and bumps the in‑memory counter.
+        /// </summary>
+        private void SetSkin(int tabIndex, int skinIndex)
+        {
+            // sanity
+            if (tabIndex < 0 || tabIndex >= _skinFiles.Length) return;
+            var files = _skinFiles[tabIndex];
+            if (skinIndex < 0 || skinIndex >= files.Length) return;
+
+            // load & apply
+            var path = files[skinIndex];
+            _contentPages[tabIndex].BackgroundImage = ImageFast.FromFile(path);
+
+            // save for next time
+            _applySetting[tabIndex](path);
+            Settings.Default.Save();
+
+            // next click will go to the following index
+            _counters[tabIndex] = (skinIndex + 1) % files.Length;
+        }
+        #endregion
 
         #region Memory Dll Loader
 
@@ -573,17 +718,12 @@ namespace CoreKeeperInventoryEditor
                     Settings.Default.MainFormLocation = this.Location;
                 }
 
-                // Save some form settings.
-                Settings.Default.ItemAmount = 50;
-                Settings.Default.ItemID = 110;
+                // Reset (save) some ItemSelectionMenu form settings.
+                Settings.Default.ItemAmount     = 50;
+                Settings.Default.ItemID         = 110;
+                Settings.Default.ItemVariation  = 0;
+                Settings.Default.ItemSkillset   = 0;
                 Settings.Default.CurrentItemTab = "Tab1_TabPage";
-                Settings.Default.ItemVariation = 0;
-
-                // Save UI form settings.
-                Settings.Default.InventoryBackgroundCount = inventorySkinCounter;
-                Settings.Default.PlayerBackgroundCount = playerSkinCounter;
-                Settings.Default.WorldBackgroundCount = worldSkinCounter;
-                Settings.Default.ChatBackgroundCount = chatSkinCounter;
 
                 // Save some form controls.
                 Settings.Default.DevToolDelay = (int)DevToolsDelay_NumericUpDown.Value; // Dev tool operation delay.
@@ -597,14 +737,45 @@ namespace CoreKeeperInventoryEditor
             }
             catch (Exception)
             { } // Do nothing.
+
+            // Ensure all threads are terminated.
+            Application.ExitThread();
         }
         #endregion
 
         #region Form Resize
 
-        // Move window to the bottom left.
+        #region Border Style Resize Helper
+
+        /// <summary>
+        /// Adjusts the form’s client area to accommodate a custom title bar and
+        /// account for the absence of the standard window border when FormBorderStyle is None.
+        /// </summary>
+        void SetClientArea(Size contentArea)
+        {
+            // When FormBorderStyle=None, Windows omits the standard 1-pixel border
+            // and the caption bar; we need small offsets to make our sizing math line up.
+            // These magic numbers (16,10) reflect the typical combined thickness of
+            // the missing frame edges on each axis.
+
+            // Calculate horizontal and vertical offsets if there is no border.
+            // int customTitleOffset = (this.FormBorderStyle == FormBorderStyle.None) ? titleBar.Height : 0;
+            int noBorderOffsetX      = (this.FormBorderStyle == FormBorderStyle.None) ? 16              : 0;
+            int noBorderOffsetY      = (this.FormBorderStyle == FormBorderStyle.None) ? 10              : 0;
+
+            // Set the client area size.
+            Size = new Size(
+                contentArea.Width - noBorderOffsetX,
+                contentArea.Height - noBorderOffsetY);
+        }
+        #endregion
+
+        // Move window to the top right.
         private void MainForm_Resize(object sender, EventArgs e)
         {
+            // Return if the form is not yet initialized.
+            if (!_initialized) return;
+
             // Get height for both types of taskbar modes.
             Rectangle activeScreenDimensions = Screen.FromControl(this).Bounds;
 
@@ -617,9 +788,9 @@ namespace CoreKeeperInventoryEditor
             // Get window states.
             if (WindowState == FormWindowState.Minimized && AlwaysOnTop_CheckBox.Checked)
             {
-                // Adjust window properties
+                // Adjust window properties.
                 this.WindowState = FormWindowState.Normal;
-                this.Size = new Size(320, 37);
+                this.Size = (this.FormBorderStyle == FormBorderStyle.None) ? new Size(320, 30) : new Size(320, 37);
 
                 // Adjust the form location.
                 // Try to place this window top left of the games window.
@@ -629,12 +800,13 @@ namespace CoreKeeperInventoryEditor
                     // Check if the game is fullscreen or borderless fullscreen. If windowed add a +6 x-buffer.
                     bool hasCaption = (GetWindowLongPtr(procs[0].MainWindowHandle, GWL_STYLE).ToInt64() & WS_CAPTION) != 0;
                     int leftOffset = (hasCaption) ? 6 : 0;
+                    leftOffset += (this.FormBorderStyle == FormBorderStyle.None) ? 6 : 0; // Add an additional 6 offset if border style is none.
                     this.Location = new Point(rect.Left + leftOffset, rect.Top + 6);
                 }
                 else
-                    this.Location = new Point(0, 6);
+                    this.Location = (this.FormBorderStyle == FormBorderStyle.None) ? new Point(6, 6) : new Point(0, 6);
 
-                // Adjust window properties
+                // Adjust window properties.
                 this.Opacity = 0.8;
                 this.MaximizeBox = true;
                 this.MinimizeBox = false;
@@ -644,28 +816,19 @@ namespace CoreKeeperInventoryEditor
             }
             else if (WindowState == FormWindowState.Maximized)
             {
-                // Adjust window properties
+                // Adjust window properties.
                 this.WindowState = FormWindowState.Normal;
                 this.MaximizeBox = false;
                 this.MinimizeBox = true;
 
                 // Ensure we got the correct tab size to maximize back too.
-                if (Main_TabControl.SelectedTab == Inventory_TabPage)   // Inventory.
-                {
-                    this.Size = new Size(756, 494);
-                }
-                else if (Main_TabControl.SelectedTab == Player_TabPage) // Player.
-                {
-                    this.Size = new Size(756, 360);
-                }
-                else if (Main_TabControl.SelectedTab == World_TabPage)  // World.
-                {
-                    this.Size = new Size(756, 494);
-                }
-                else if (Main_TabControl.SelectedTab == Chat_TabPage)   // Chat.
-                {
-                    this.Size = new Size(410, 360);
-                }
+                Size desired = Size.Empty;
+                if (Main_TabControl.SelectedTab      == Inventory_TabPage) desired = new Size(756 - _tabControlWidthOffset, 494);
+                else if (Main_TabControl.SelectedTab == Player_TabPage)    desired = new Size(756 - _tabControlWidthOffset, 360);
+                else if (Main_TabControl.SelectedTab == World_TabPage)     desired = new Size(756 - _tabControlWidthOffset, 494);
+                else if (Main_TabControl.SelectedTab == Chat_TabPage)      desired = new Size(410 - _tabControlWidthOffset, 360);
+                else if (Main_TabControl.SelectedTab == Settings_TabPage)  desired = new Size(410 - _tabControlWidthOffset, 360);
+                SetClientArea(desired);
 
                 // Adjust some final form settings.
                 this.Opacity = Settings.Default.FormOpacity / 100.0;
@@ -680,180 +843,39 @@ namespace CoreKeeperInventoryEditor
         #region Switching Tabs
 
         // Control switching tabs.
-        int previousTab = 0;
         private void Main_TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Main_TabControl.SelectedTab == Inventory_TabPage) // Inventory.
+            try
             {
-                this.Size = new Size(756, 494);
+                // Resize the form based on the selected tab page.
+                Size desired = Size.Empty;
+                if (Main_TabControl.SelectedTab == Inventory_TabPage)     desired = new Size(756 - _tabControlWidthOffset, 494);
+                else if (Main_TabControl.SelectedTab == Player_TabPage)   desired = new Size(756 - _tabControlWidthOffset, 360);
+                else if (Main_TabControl.SelectedTab == World_TabPage)    desired = new Size(756 - _tabControlWidthOffset, 494);
+                else if (Main_TabControl.SelectedTab == Chat_TabPage)     desired = new Size(410 - _tabControlWidthOffset, 360);
+                else if (Main_TabControl.SelectedTab == Settings_TabPage) desired = new Size(410 - _tabControlWidthOffset, 360);
+                SetClientArea(desired);
+
+                // Change skin.
+                // Resize form if it's one of the 4 real pages.
+                var sel = Main_TabControl.SelectedTab;
+                var idx = Array.IndexOf(_contentPages, sel);
+                if (idx >= 0)
+                    SetClientArea(_pageSizes[idx]);
+
+                // Did user click "Change Skin":
+                if (sel == ChangeSkin_TabPage)
+                    ChangeSkin(_previousTab);
+
+                _previousTab = Main_TabControl.SelectedIndex;
             }
-            else if (Main_TabControl.SelectedTab == Player_TabPage) // Player.
-            {
-                this.Size = new Size(756, 360);
-            }
-            else if (Main_TabControl.SelectedTab == World_TabPage) // World.
-            {
-                this.Size = new Size(756, 494);
-            }
-            else if (Main_TabControl.SelectedTab == Chat_TabPage) // Chat.
-            {
-                this.Size = new Size(410, 360);
-            }
-
-            // Change skin
-            if (Main_TabControl.SelectedTab == ChangeSkin_TabPage)
-            {
-                // Get the tab we are changing.
-                switch (previousTab)
-                {
-
-                    case 0: // Inventory
-                        // Reset tab page back to one.
-                        Main_TabControl.SelectedTab = Inventory_TabPage;
-
-                        // Prevent overflow from add or removal of images.
-                        if (inventorySkinCounter >= InventorySkins.Count()) { inventorySkinCounter = 0; }
-
-                        // Ensure the skin exists. Fix: v1.2.9.
-                        if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[inventorySkinCounter])) // Check if folder is empty. Fix: v1.3.4
-                        {
-                            // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Change the background.
-                        Main_TabControl.TabPages[0].BackgroundImage = ImageFast.FromFile(InventorySkins.ToArray()[inventorySkinCounter].ToString());
-
-                        // Save the property in the settings.
-                        Settings.Default.InventoryBackground = InventorySkins.ToArray()[inventorySkinCounter].ToString();
-
-                        // Add to the counter.
-                        inventorySkinCounter++;
-                        if (inventorySkinCounter == InventorySkins.Count()) { inventorySkinCounter = 0; }
-                        break;
-                    case 1: // Player
-                        // Reset tab page back to two.
-                        Main_TabControl.SelectedTab = Player_TabPage;
-
-                        // Prevent overflow from add or removal of images.
-                        if (playerSkinCounter >= PlayerSkins.Count()) { playerSkinCounter = 0; }
-
-                        // Ensure the skin exists. Fix: v1.2.9.
-                        if (PlayerSkins.Count() < 1 || !File.Exists(PlayerSkins.ToArray()[playerSkinCounter])) // Check if folder is empty. Fix: v1.3.4
-                        {
-                            // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Change the background.
-                        Main_TabControl.TabPages[1].BackgroundImage = ImageFast.FromFile(PlayerSkins.ToArray()[playerSkinCounter].ToString());
-
-                        // Save the property in the settings.
-                        Settings.Default.PlayerBackground = PlayerSkins.ToArray()[playerSkinCounter].ToString();
-
-                        // Add to the counter.
-                        playerSkinCounter++;
-                        if (playerSkinCounter == PlayerSkins.Count()) { playerSkinCounter = 0; }
-                        break;
-                    case 2: // World
-                        // Reset tab page back to two.
-                        Main_TabControl.SelectedTab = World_TabPage;
-
-                        // Prevent overflow from add or removal of images.
-                        if (worldSkinCounter >= WorldSkins.Count()) { worldSkinCounter = 0; }
-
-                        // Ensure the skin exists. Fix: v1.2.9.
-                        if (WorldSkins.Count() < 1 || !File.Exists(WorldSkins.ToArray()[worldSkinCounter])) // Check if folder is empty. Fix: v1.3.4
-                        {
-                            // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Change the background.
-                        Main_TabControl.TabPages[2].BackgroundImage = ImageFast.FromFile(WorldSkins.ToArray()[worldSkinCounter].ToString());
-
-                        // Save the property in the settings.
-                        Settings.Default.WorldBackground = WorldSkins.ToArray()[worldSkinCounter].ToString();
-
-                        // Add to the counter.
-                        worldSkinCounter++;
-                        if (worldSkinCounter == WorldSkins.Count()) { worldSkinCounter = 0; }
-                        break;
-                    case 3: // Chat
-                        // Reset tab page back to three.
-                        Main_TabControl.SelectedTab = Chat_TabPage;
-
-                        // Prevent overflow from add or removal of images.
-                        if (chatSkinCounter >= ChatSkins.Count()) { chatSkinCounter = 0; }
-
-                        // Ensure the skin exists. Fix: v1.2.9.
-                        if (ChatSkins.Count() < 1 || !File.Exists(ChatSkins.ToArray()[chatSkinCounter])) // Check if folder is empty. Fix: v1.3.4
-                        {
-                            // Display an error.
-                            MessageBox.Show("No skins exist within the asset folder!", errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Change the background.
-                        Main_TabControl.TabPages[3].BackgroundImage = ImageFast.FromFile(ChatSkins.ToArray()[chatSkinCounter].ToString());
-
-                        // Save the property in the settings.
-                        Settings.Default.ChatBackground = ChatSkins.ToArray()[chatSkinCounter].ToString();
-
-                        // Add to the counter.
-                        chatSkinCounter++;
-                        if (chatSkinCounter == ChatSkins.Count()) { chatSkinCounter = 0; }
-                        break;
-                }
-            }
-
-            // Update the previous tab value.
-            previousTab = Main_TabControl.SelectedIndex;
+            catch (Exception) { } // Swallow safely.
         }
         #endregion
 
         #endregion // End control logic.
 
         #endregion // End form controls.
-
-        #region Form Helpers
-
-        /// <summary>
-        /// Generates a random integer between the specified minimum (inclusive) and maximum (exclusive) values.
-        /// This function uses 'RNGCryptoServiceProvider' over 'Random' to generate close to true random values.
-        /// </summary>
-        public static int GenerateRandomNumber(int min, int max)
-        {
-            // Ensure that the input values are valid.
-            if (min > max)
-                return min; // If min is greater than max, return min.
-            if (min == max)
-                return min; // If min is equal to max, return min.
-
-            // Use RNGCryptoServiceProvider to generate random bytes.
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                var data = new byte[8];
-                rng.GetBytes(data);
-
-                // Convert the generated bytes to an integer (use startIndex: 0 for the entire byte array).
-                int generatedValue = Math.Abs(BitConverter.ToInt32(data, startIndex: 0));
-
-                // Calculate the difference between max and min.
-                int diff = max - min;
-
-                // Use modulo to ensure the generated value is within the specified range.
-                int mod = generatedValue % diff;
-
-                // Shift the normalized value to be within the specified range.
-                int normalizedNumber = min + mod;
-                return normalizedNumber;
-            }
-        }
-        #endregion // End form helpers.
 
         #region Inventory Editor
 
@@ -1286,15 +1308,15 @@ namespace CoreKeeperInventoryEditor
                                     try
                                     {
                                         // Check if image plus Variation exists.
-                                        if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()) != null)
+                                        if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()) != null)
                                         {
-                                            slotPictureBoxControl.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()))); // Check if file matches current Type, set it.
+                                            slotPictureBoxControl.Image = new Bitmap(ImageFast.FromFile(ImageFiles.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()))); // Check if file matches current Type, set it.
                                             slotPictureBoxControl.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
-                                        else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString()) != null)
+                                        else if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString()) != null)
                                         {
                                             // Image without Variation exists.
-                                            slotPictureBoxControl.Image = MakeGrayscale3(new Bitmap(ImageFast.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current Type, set it.
+                                            slotPictureBoxControl.Image = MakeGrayscale3(new Bitmap(ImageFast.FromFile(ImageFiles.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current Type, set it.
                                             slotPictureBoxControl.SizeMode = PictureBoxSizeMode.Zoom;
                                         }
                                         else
@@ -1363,13 +1385,13 @@ namespace CoreKeeperInventoryEditor
                 string baseingredient2Name = "";
 
                 // Get base item name.
-                if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (infoVariant == 0 ? 0 : infoVariant).ToString()) != null)
+                if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (infoVariant == 0 ? 0 : infoVariant).ToString()) != null)
                 {
-                    baseItemName = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (infoVariant == 0 ? 0 : infoVariant).ToString())).Split(',')[0];
+                    baseItemName = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (infoVariant == 0 ? 0 : infoVariant).ToString())).Split(',')[0];
                 }
-                else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString()) != null)
+                else if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString()) != null)
                 {
-                    baseItemName = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString())).Split(',')[0];
+                    baseItemName = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString())).Split(',')[0];
                 }
                 else
                 {
@@ -1387,9 +1409,9 @@ namespace CoreKeeperInventoryEditor
                 if (infoVariant >= 1)
                 {
                     // Get base item ingredient 1 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString()) != null)
+                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseingredient1Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
+                        baseingredient1Name = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
@@ -1404,9 +1426,9 @@ namespace CoreKeeperInventoryEditor
                         }
                     }
                     // Get base item ingredient 2 name.
-                    if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString()) != null)
+                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseingredient2Name = Path.GetFileName(ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
+                        baseingredient2Name = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
@@ -1479,15 +1501,15 @@ namespace CoreKeeperInventoryEditor
                             try
                             {
                                 // Check if image plus Variation exists.
-                                if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()) != null)
+                                if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()) != null)
                                 {
-                                    slotPictureBoxControl.Image = new Bitmap(ImageFast.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()))); // Check if file matches current Type, set it.
+                                    slotPictureBoxControl.Image = new Bitmap(ImageFast.FromFile(ImageFiles.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (Variation == 0 ? 0 : Variation).ToString()))); // Check if file matches current Type, set it.
                                     slotPictureBoxControl.SizeMode = PictureBoxSizeMode.Zoom;
                                 }
-                                else if (ImageFiles1.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString()) != null)
+                                else if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString()) != null)
                                 {
                                     // Image without Variation exists.
-                                    slotPictureBoxControl.Image = MakeGrayscale3(new Bitmap(ImageFast.FromFile(ImageFiles1.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current Type, set it.
+                                    slotPictureBoxControl.Image = MakeGrayscale3(new Bitmap(ImageFast.FromFile(ImageFiles.First(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == Type.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == "0")))); // Check if file matches current Type, set it.
                                     slotPictureBoxControl.SizeMode = PictureBoxSizeMode.Zoom;
                                 }
                                 else
@@ -1740,10 +1762,10 @@ namespace CoreKeeperInventoryEditor
                     int[] itemInfo = GetSlotInfo(slotNumber);
 
                     // Save some form settings.
-                    Settings.Default.InfoID = itemInfo[0];
-                    Settings.Default.InfoAmount = Math.Abs(itemInfo[1]); // Fix negative numbers throwing an exception. // Fix v1.3.4.4.
+                    Settings.Default.InfoID        = itemInfo[0];
+                    Settings.Default.InfoAmount    = Math.Abs(itemInfo[1]);                // Fix negative numbers throwing an exception. // Fix v1.3.4.4.
                     Settings.Default.InfoVariation = itemInfo[2] == 0 ? 0 : (itemInfo[2]); // Ensure variant gets translated correctly.
-                    Settings.Default.InfoSkillset = itemInfo[3];
+                    Settings.Default.InfoSkillset  = itemInfo[3];
 
                     // Spawn item picker window.
                     ItemEditor itemEditor = new ItemEditor();
@@ -2138,7 +2160,7 @@ namespace CoreKeeperInventoryEditor
             GetAddresses_Button.Text = "Loading...";
 
             // Disable button to prevent spamming.
-            // button10.Enabled = false;
+            // GetInventoryAddresses_Button0.Enabled = false;
             PlayerTools_GroupBox.Enabled = false;
 
             // Reset textbox.
@@ -2173,7 +2195,7 @@ namespace CoreKeeperInventoryEditor
                 GetAddresses_Button.Text = "Get Addresses";
 
                 // Re-enable button.
-                //button10.Enabled = true;
+                //GetInventoryAddresses_Button0.Enabled = true;
                 PlayerTools_GroupBox.Enabled = true;
 
                 // Reset aob scan results
@@ -2199,7 +2221,7 @@ namespace CoreKeeperInventoryEditor
             PlayerTools_RichTextBox.Text += "]";
 
             // Re-enable button.
-            // button10.Enabled = true;
+            // GetInventoryAddresses_Button0.Enabled = true;
             PlayerTools_GroupBox.Enabled = true;
 
             // Rename button back to default.
@@ -3638,7 +3660,7 @@ namespace CoreKeeperInventoryEditor
             string playerPositionY = MemLib.ReadFloat(positionY).ToString(); // OLD: -1 Correct the offset. 
 
             // Change the applications tittle based on minimization and tab pages. 
-            if (isMinimized || Main_TabControl.SelectedTab == Chat_TabPage) // Tab five is smaller.
+            if (isMinimized || Main_TabControl.SelectedTab == Chat_TabPage || Main_TabControl.SelectedTab == Settings_TabPage) // Tab five & six is smaller.
             {
                 // Change text based on minimized window.
                 this.Text = "Pos [X: " + playerPositionX + " Y: " + playerPositionY + "]";
@@ -4599,7 +4621,7 @@ namespace CoreKeeperInventoryEditor
             GetTeleportAddresses_Button.Text = "Loading...";
 
             // Disable button to prevent spamming.
-            // button11.Enabled = false;
+            // GetInventoryAddresses_Button1.Enabled = false;
             TeleportPlayer_GroupBox.Enabled = false;
 
             // Reset textbox.
@@ -4872,7 +4894,7 @@ namespace CoreKeeperInventoryEditor
             TeleportPlayerAddresses_RichTextBox.Text += "]";
 
             // Re-enable button.
-            // button11.Enabled = true;
+            // GetInventoryAddresses_Button1.Enabled = true;
             TeleportPlayer_GroupBox.Enabled = true;
 
             // Rename button back to default.
@@ -5003,7 +5025,7 @@ namespace CoreKeeperInventoryEditor
             TeleportPlayerAddresses_RichTextBox.Text += "]";
 
             // Re-enable button.
-            // button11.Enabled = true;
+            // GetInventoryAddresses_Button1.Enabled = true;
             TeleportPlayer_GroupBox.Enabled = true;
 
             // Rename button back to default.
@@ -5044,7 +5066,7 @@ namespace CoreKeeperInventoryEditor
             GetMapRenderingAddresses_Button.Text = "Loading...";
 
             // Disable button to prevent spamming.
-            // button11.Enabled = false;
+            // GetInventoryAddresses_Button1.Enabled = false;
             MapRendering_GroupBox.Enabled = false;
 
             // Reset textbox.
@@ -5215,7 +5237,7 @@ namespace CoreKeeperInventoryEditor
             MapRenderingAddresses_RichTextBox.Text = $"Addresses Loaded ({addressCount}): R:[{revealMapRangeAddresses}], D:[{devMapRevealAddresses}]";
 
             // Re-enable button.
-            // button11.Enabled = true;
+            // GetInventoryAddresses_Button1.Enabled = true;
             MapRendering_GroupBox.Enabled = true;
 
             // Rename button back to default.
@@ -7980,7 +8002,7 @@ namespace CoreKeeperInventoryEditor
                 AutomaticFishing_Button.Enabled = true;
 
                 // Disable button to prevent spamming.
-                // button11.Enabled = false;
+                // GetInventoryAddresses_Button1.Enabled = false;
                 WorldInformation_GroupBox.Enabled = false;
 
                 // Reset textbox.
@@ -8237,6 +8259,43 @@ namespace CoreKeeperInventoryEditor
 
             _isTeleporting = false;
         }
+
+        #region Random Number Helper
+
+        /// <summary>
+        /// Generates a random integer between the specified minimum (inclusive) and maximum (exclusive) values.
+        /// This function uses 'RNGCryptoServiceProvider' over 'Random' to generate close to true random values.
+        /// </summary>
+        public static int GenerateRandomNumber(int min, int max)
+        {
+            // Ensure that the input values are valid.
+            if (min > max)
+                return min; // If min is greater than max, return min.
+            if (min == max)
+                return min; // If min is equal to max, return min.
+
+            // Use RNGCryptoServiceProvider to generate random bytes.
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var data = new byte[8];
+                rng.GetBytes(data);
+
+                // Convert the generated bytes to an integer (use startIndex: 0 for the entire byte array).
+                int generatedValue = Math.Abs(BitConverter.ToInt32(data, startIndex: 0));
+
+                // Calculate the difference between max and min.
+                int diff = max - min;
+
+                // Use modulo to ensure the generated value is within the specified range.
+                int mod = generatedValue % diff;
+
+                // Shift the normalized value to be within the specified range.
+                int normalizedNumber = min + mod;
+                return normalizedNumber;
+            }
+        }
+        #endregion // End random number helper.
+
         #endregion
 
         #endregion // End player tools.
@@ -8443,11 +8502,11 @@ namespace CoreKeeperInventoryEditor
                 // Reset richtextbox.
                 string stringBuilder = "Welcome to the chat commands! Available CMDS are below.\n\n" +
                     CommandReader.ReadCommands(15, 1) +
-                    "-----------------------------------------------------------------------------------------------------------------\n";
+                    "------------------------------------------------------------------------------------------------------------------\n";
 
                 ChatCommands_RichTextBox.Text = stringBuilder;
                 ChatCommands_RichTextBox.AppendText("Any captured chat messages will appear here.\n" +
-                    "-----------------------------------------------------------------------------------------------------------------\n");
+                    "------------------------------------------------------------------------------------------------------------------\n");
                 ChatCommands_RichTextBox.ScrollToCaret();
 
                 // Advance progress bar.
@@ -9081,7 +9140,7 @@ namespace CoreKeeperInventoryEditor
 
                                 // Reset richtextbox.
                                 ChatCommands_RichTextBox.Text = "Any captured chat messages will appear here.\n" +
-                                    "-----------------------------------------------------------------------------------------------------------------\n";
+                                    "------------------------------------------------------------------------------------------------------------------\n";
                             }
 
                             // End chat command.
@@ -9172,6 +9231,70 @@ namespace CoreKeeperInventoryEditor
         #endregion
 
         #endregion // End toggle chat commands
+
+        #region Settings Tab
+
+        #region Event Handelers
+
+        public event EventHandler RestoreNativeRequested;
+
+        // call this *inside* MainForm when you want to swap out
+        public void OnRestoreNativeRequested()
+            => RestoreNativeRequested?.Invoke(this, EventArgs.Empty);
+
+        #endregion
+
+        #region Main UI Theme Controls
+
+        // Global for theme control updating.
+        public void UpdateUITheme(object sender, EventArgs e)
+        {
+            // Ensure the form is initialized before running.
+            if (!_initialized) return;
+
+            // Update settings.
+            Settings.Default.UITheme          = DarkMode_CheckBox.Checked ? ThemeMode.Dark : ThemeMode.Light;
+            Settings.Default.UICorners        = SelectedCorners;
+            Settings.Default.UICornerRadius   = (int)CornerRadius_NumericUpDown.Value;
+            Settings.Default.UITitleBarHeight = (int)TitleBarHeight_NumericUpDown.Value;
+            Settings.Default.UIBorderSize     = (int)BorderSize_NumericUpDown.Value;
+            Settings.Default.UIShowIcon       = ShowIcon_CheckBox.Checked;
+
+            // Refresh the form UI.
+            FormStylingExtensions.RefreshAllThemes();
+
+            // Change the tab-control color settings based on the theme.
+            if (CoreKeepersWorkshop.Properties.Settings.Default.UITheme == ThemeMode.Dark)
+                Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Dark);
+            else
+                Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Light);
+        }
+
+        /// <summary>
+        /// Bit-mask of corner check-boxes.
+        /// </summary>
+        public Corner SelectedCorners
+        {
+            get
+            {
+                Corner c = Corner.None;
+
+                // Optional selectors.
+                /*
+                if (NoCorners_RadioButton.Checked)      return Corner.None;
+                if (AllCorners_RadioButton.Checked)     return Corner.All;
+                */
+
+                if (TopLeftCorner_CheckBox.Checked)     c |= Corner.TopLeft;
+                if (TopRightCorner_CheckBox.Checked)    c |= Corner.TopRight;
+                if (BottomLeftCorner_CheckBox.Checked)  c |= Corner.BottomLeft;
+                if (BottomRightCorner_CheckBox.Checked) c |= Corner.BottomRight;
+                return c;
+            }
+        }
+        #endregion
+
+        #endregion
 
         #region Admin Tools
 
@@ -9580,57 +9703,140 @@ namespace CoreKeeperInventoryEditor
             // Ask user if they are sure to reset all controls.
             if (MessageBox.Show("Are you sure you wish to reset all form controls?", "Reset All Controls", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                // Backgrounds.
-                Settings.Default.InventoryBackground = "";
-                Settings.Default.InventoryBackgroundCount = 0;
-                Settings.Default.ChatBackground = "";
-                Settings.Default.ChatBackgroundCount = 0;
-                Settings.Default.PlayerBackground = "";
-                Settings.Default.PlayerBackgroundCount = 0;
-                Settings.Default.WorldBackground = "";
-                Settings.Default.WorldBackgroundCount = 0;
-                if (InventorySkins.Count() < 1 || !File.Exists(InventorySkins.ToArray()[Settings.Default.InventoryBackgroundCount])) // Check if folder is empty. Fix: v1.3.4
-                    Main_TabControl.TabPages[0].BackgroundImage = null;
-                else
-                    Main_TabControl.TabPages[0].BackgroundImage = ImageFast.FromFile(InventorySkins.ToArray()[Settings.Default.InventoryBackgroundCount].ToString());
-                Main_TabControl.TabPages[1].BackgroundImage = null;
-                Main_TabControl.TabPages[2].BackgroundImage = null;
-                Main_TabControl.TabPages[3].BackgroundImage = null;
+                #region Main Form
 
-                // Main controls.
-                MaxRadius_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingMax)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);     // Map rendering max radius.
-                StartRadius_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.MapRenderingStart)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Map rendering start radius.
-                CastDelay_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingCast)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);         // Fishing bot casting delay.
-                FishingPadding_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FishingPadding)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Fishing bot padding delay.
-
-                // World properties console.
-                WorldInformation_DataGridView.RowsDefaultCellStyle.ForeColor = Color.Snow;
-                WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle.ForeColor = Color.Snow;
-                foreach (DataGridViewRow row in WorldInformation_DataGridView.Rows)
-                {
-                    row.DefaultCellStyle.ForeColor = Color.Snow;
+                try
+                { 
+                    // Backgrounds.
+                    for (int i = 0; i < _contentPages.Length; i++)                                              // Clear all saved backgrounds & in‑memory counters.
+                    {
+                        _applySetting[i]("");                                                                   // Clears Settings.Default.XBackground.
+                        _counters[i]                     = 0;                                                   // Reset in‑memory click counter.
+                        _contentPages[i].BackgroundImage = null;
+                    }
+    
+                    // Set the first tab back to the defualt image. 
+                    if (_skinFiles[0].Length > 1)
+                        SetSkin(0, 0);                                                                          // Loads skinFiles[0][0], advances counter.
+    
+                    // Main controls.
+                    MaxRadius_NumericUpDown.Value       = GetDefault<decimal>("MapRenderingMax");               // Map rendering max radius.
+                    StartRadius_NumericUpDown.Value     = (decimal)GetDefault<int>("MapRenderingStart");        // Map rendering start radius.
+                    CastDelay_NumericUpDown.Value       = GetDefault<decimal>("FishingCast");                   // Fishing bot casting delay.
+                    FishingPadding_NumericUpDown.Value  = GetDefault<decimal>("FishingPadding");                // Fishing bot padding delay.
+    
+                    // World properties console.
+                    WorldInformation_DataGridView.RowsDefaultCellStyle.ForeColor            = Color.Snow;
+                    WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle.ForeColor = Color.Snow;
+                    foreach (DataGridViewRow row in WorldInformation_DataGridView.Rows)
+                    {
+                        row.DefaultCellStyle.ForeColor  = Color.Snow;
+                    }
+                    Settings.Default.ConsoleForeColor   = Color.Snow;
+                    ColorSample_Button.ForeColor        = Color.Snow;
+                    ColorSample_Button.BackColor        = Color.Snow;
+    
+                    // Dev tools.
+                    DevToolsDelay_NumericUpDown.Value   = (decimal)GetDefault<int>("DevToolDelay");             // Dev tool operation delay.
+                    RadialMoveScale_NumericUpDown.Value = GetDefault<decimal>("RadialMoveScale");               // Auto render maps radialMoveScale.
+    
+                    AlwaysOnTop_CheckBox.Checked        = GetDefault<bool>("TopMost");                          // Set as top most.
+                    AppPriority_ComboBox.SelectedIndex  = GetDefault<int>("ProcessPriorityIndex");              // Set the priority.
+                    FormOpacity_TrackBar.Value          = GetDefault<int>("FormOpacity");                       // Set the form opacity.
+    
+                    // UI theme.
+                    DarkMode_CheckBox.Checked           = (GetDefault<ThemeMode>("UITheme") == ThemeMode.Dark); // Theme dark / light mode.
+    
+                    CornerRadius_NumericUpDown.Value    = GetDefault<int>("UICornerRadius");                    // Theme corner radius.
+                    TitleBarHeight_NumericUpDown.Value  = GetDefault<int>("UITitleBarHeight");                  // Theme title bar height.
+                    BorderSize_NumericUpDown.Value      = GetDefault<int>("UIBorderSize");                      // Theme border size.
+                    ShowIcon_CheckBox.Checked           = GetDefault<bool>("UIShowIcon");                       // Theme show icon.
+    
+                    // UI corners:
+                    Corner c                            = GetDefault<Corner>("UICorners");                      // Set each corner checkbox.
+                    TopLeftCorner_CheckBox.Checked      = c.HasFlag(Corner.TopLeft);
+                    TopRightCorner_CheckBox.Checked     = c.HasFlag(Corner.TopRight);
+                    BottomLeftCorner_CheckBox.Checked   = c.HasFlag(Corner.BottomLeft);
+                    BottomRightCorner_CheckBox.Checked  = c.HasFlag(Corner.BottomRight);
                 }
-                Settings.Default.ConsoleForeColor = Color.Snow;
-                ColorSample_Button.ForeColor = Color.Snow;
-                ColorSample_Button.BackColor = Color.Snow;
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"There was an issue tying to reset one or more control(s) from the 'Main Form'!" +
+                        $"\n\n{ex}", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                #endregion
 
-                // Dev tools.
-                DevToolsDelay_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.DevToolDelay)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);      // Dev tool operation delay.
-                RadialMoveScale_NumericUpDown.Value = decimal.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.RadialMoveScale)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Auto render maps radialMoveScale.
-                AlwaysOnTop_CheckBox.Checked = bool.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.TopMost)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);                   // Set as top most.
-                AppPriority_ComboBox.SelectedIndex = int.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.ProcessPriorityIndex)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value); // Set the priority.
-                FormOpacity_TrackBar.Value = int.Parse(Settings.Default.GetType().GetProperty(GetNameOf(() => Settings.Default.FormOpacity)).GetCustomAttribute<System.Configuration.DefaultSettingValueAttribute>().Value);                  // Set the form opacity.
+                #region Chunk Viewer
+
+                try
+                {
+                    // Mass default forms control settings.
+                    SetDefault(nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale),
+                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity),
+                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug),
+                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale),
+                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs)
+                               );
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"There was an issue tying to reset one or more control(s) from the 'Chunk Viewer'!" +
+                        $"\n\n{ex}", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                #endregion
+
+                // Apply visuals + persist.
+                FormStylingExtensions.RefreshAllThemes();                                                       // Refresh the form UI.
+                Settings.Default.Save();                                                                        // Keep the reset values next run.
 
                 // Display completed message.
                 MessageBox.Show("All controls have been reset!", "Reset All Controls", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        // Added support for earlier dotnet.
-        public static string GetNameOf<T>(Expression<Func<T>> expression)
-        {
-            var body = (MemberExpression)expression.Body;
 
-            return body.Member.Name;
+        /// <summary>
+        /// Return the design‑time default for the named setting.
+        /// </summary>
+        static T GetDefault<T>(string name)
+        {
+            object raw = Settings.Default.Properties[name].DefaultValue;
+
+            // Special‑case enums because Convert.ChangeType can't do string -> enum.
+            if (typeof(T).IsEnum)
+                return (T)Enum.Parse(typeof(T), raw.ToString(), ignoreCase: true);
+
+            // Everything else (int, decimal, bool, string …).
+            return (T)Convert.ChangeType(raw, typeof(T));
+        }
+
+        /// <summary>
+        /// Resets the given user‑scoped settings back to their design‑time defaults.
+        /// </summary>
+        static void SetDefault(params string[] names)
+        {
+            var settings = CoreKeepersWorkshop.Properties.Settings.Default;
+            foreach (var name in names)
+            {
+                // Look up the metadata for this setting.
+                var prop = settings.Properties[name];
+                var rawDef = prop.DefaultValue;       // Usually a string.
+                object val;
+
+                // If it's an enum, parse it.
+                if (prop.PropertyType.IsEnum)
+                {
+                    val = Enum.Parse(prop.PropertyType, rawDef.ToString(), ignoreCase: true);
+                }
+                else
+                {
+                    // Convert.ChangeType will handle int, decimal, bool, etc.
+                    val = Convert.ChangeType(rawDef, prop.PropertyType);
+                }
+
+                // Set it via the indexer so the typed property updates cleanly.
+                settings[name] = val;
+            }
+            settings.Save();
         }
         #endregion
 

@@ -78,7 +78,7 @@
     <ApplicationIcon>Images\logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>Startup\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Memory, Version=1.2.28.0, Culture=neutral, processorArchitecture=AMD64">
@@ -95,6 +95,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
@@ -114,6 +115,11 @@
     <Compile Include="ChunkViewer.Designer.cs">
       <DependentUpon>ChunkViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FormStylingExtensions.cs" />
+    <Compile Include="Controls\BorderlessTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpers\TitleBarManager.cs" />
     <Compile Include="FoodCookbook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,8 +127,8 @@
       <DependentUpon>FoodCookbook.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="ImageFast.cs" />
-    <Compile Include="InventoryImageCache.cs" />
+    <Compile Include="Helpers\ImageFast.cs" />
+    <Compile Include="Helpers\InventoryImageCache.cs" />
     <Compile Include="ItemEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,9 +147,9 @@
     <Compile Include="ItemSelectionMenu.Designer.cs">
       <DependentUpon>ItemSelectionMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Startup\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OverlayHelper.cs" />
+    <Compile Include="Helpers\OverlayHelper.cs" />
     <Compile Include="SkillEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,10 +162,10 @@
     <Compile Include="TeleportAddressGuide.Designer.cs">
       <DependentUpon>TeleportAddressGuide.cs</DependentUpon>
     </Compile>
-    <Compile Include="TextProgressBar.cs">
+    <Compile Include="Controls\TextProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="VariationHelper.cs" />
+    <Compile Include="Helpers\VariationHelper.cs" />
     <EmbeddedResource Include="ChunkViewer.resx">
       <DependentUpon>ChunkViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,8 +192,9 @@
     <EmbeddedResource Include="TeleportAddressGuide.resx">
       <DependentUpon>TeleportAddressGuide.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.manifest" />
-    <None Include="packages.config" />
+    <None Include="app.config" />
+    <None Include="Startup\app.manifest" />
+    <None Include="Startup\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -204,9 +211,6 @@
     </Compile>
     <EmbeddedResource Include="Resources\Cookbook.json" />
     <EmbeddedResource Include="Resources\BuffIDs.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\UIBackground.png" />
@@ -238,6 +242,7 @@
     <None Include="Images\skills\Skill11.png" />
     <None Include="Images\skills\Skill12.png" />
     <None Include="Images\MissingTexture.png" />
+    <Content Include="Controls\Siticone.UI.dll" />
     <Content Include="Images\TeleportAddressGuide.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

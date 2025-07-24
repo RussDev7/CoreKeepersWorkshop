@@ -30,10 +30,10 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Main_TabControl = new System.Windows.Forms.TabControl();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.Main_TabControl = new CoreKeepersWorkshop.BorderlessTabControl();
             this.Inventory_TabPage = new System.Windows.Forms.TabPage();
             this.Slot50_PictureBox = new System.Windows.Forms.PictureBox();
             this.Slot49_PictureBox = new System.Windows.Forms.PictureBox();
@@ -107,15 +107,9 @@ namespace CoreKeeperInventoryEditor
             this.ClearWorldToolsLog_Button = new System.Windows.Forms.Button();
             this.WorldTools_RichTextBox = new System.Windows.Forms.RichTextBox();
             this.DevTools_TabPage = new System.Windows.Forms.TabPage();
-            this.FormOpacity_TrackBar = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
-            this.FormOpacity_Label = new System.Windows.Forms.Label();
-            this.DefualtControls_Label = new System.Windows.Forms.Label();
             this.DevToolsDelay_Label = new System.Windows.Forms.Label();
             this.RadialMoveScale_Label = new System.Windows.Forms.Label();
             this.DevSettings_Label = new System.Windows.Forms.Label();
-            this.AppPriority_Label = new System.Windows.Forms.Label();
-            this.AppPriority_ComboBox = new System.Windows.Forms.ComboBox();
-            this.AlwaysOnTop_CheckBox = new System.Windows.Forms.CheckBox();
             this.DevTools4_Label = new System.Windows.Forms.Label();
             this.DevTools5_Label = new System.Windows.Forms.Label();
             this.DevTools1_Label = new System.Windows.Forms.Label();
@@ -123,7 +117,6 @@ namespace CoreKeeperInventoryEditor
             this.DevTools2_Label = new System.Windows.Forms.Label();
             this.DevToolsDelay_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.RadialMoveScale_NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.ResetControls_Button = new System.Windows.Forms.Button();
             this.DevTools_Label = new System.Windows.Forms.Label();
             this.SpecialThanks_TabPage = new System.Windows.Forms.TabPage();
             this.SpecialThanks_RichTextBox = new System.Windows.Forms.RichTextBox();
@@ -286,6 +279,31 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_GroupBox = new System.Windows.Forms.GroupBox();
             this.ChatCommands_Label = new System.Windows.Forms.Label();
             this.ChatCommands_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.Settings_TabPage = new System.Windows.Forms.TabPage();
+            this.DefualtControls_GroupBox = new System.Windows.Forms.GroupBox();
+            this.DefualtControls_Label = new System.Windows.Forms.Label();
+            this.ResetControls_Button = new System.Windows.Forms.Button();
+            this.ProcessOptions_GroupBox = new System.Windows.Forms.GroupBox();
+            this.AppPriority_Label = new System.Windows.Forms.Label();
+            this.AlwaysOnTop_CheckBox = new System.Windows.Forms.CheckBox();
+            this.AppPriority_ComboBox = new System.Windows.Forms.ComboBox();
+            this.UITheme_GroupBox = new System.Windows.Forms.GroupBox();
+            this.UISettings_Label = new System.Windows.Forms.Label();
+            this.RoundedCorners_Label = new System.Windows.Forms.Label();
+            this.BottomRightCorner_CheckBox = new System.Windows.Forms.CheckBox();
+            this.TitleBarHeight_Label = new System.Windows.Forms.Label();
+            this.FormOpacity_TrackBar = new Siticone.UI.WinForms.SiticoneMetroTrackBar();
+            this.CornerRadius_Label = new System.Windows.Forms.Label();
+            this.FormOpacity_Label = new System.Windows.Forms.Label();
+            this.CornerRadius_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TopLeftCorner_CheckBox = new System.Windows.Forms.CheckBox();
+            this.BorderSize_Label = new System.Windows.Forms.Label();
+            this.BottomLeftCorner_CheckBox = new System.Windows.Forms.CheckBox();
+            this.BorderSize_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TopRightCorner_CheckBox = new System.Windows.Forms.CheckBox();
+            this.TitleBarHeight_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.DarkMode_CheckBox = new System.Windows.Forms.CheckBox();
+            this.ShowIcon_CheckBox = new System.Windows.Forms.CheckBox();
             this.ChangeSkin_TabPage = new System.Windows.Forms.TabPage();
             this.Main_TabControl.SuspendLayout();
             this.Inventory_TabPage.SuspendLayout();
@@ -388,6 +406,13 @@ namespace CoreKeeperInventoryEditor
             ((System.ComponentModel.ISupportInitialize)(this.CustomAmount_NumericUpDown)).BeginInit();
             this.ChatCommandsLog_GroupBox.SuspendLayout();
             this.ChatCommands_GroupBox.SuspendLayout();
+            this.Settings_TabPage.SuspendLayout();
+            this.DefualtControls_GroupBox.SuspendLayout();
+            this.ProcessOptions_GroupBox.SuspendLayout();
+            this.UITheme_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CornerRadius_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BorderSize_NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TitleBarHeight_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // Main_TabControl
@@ -397,13 +422,17 @@ namespace CoreKeeperInventoryEditor
             this.Main_TabControl.Controls.Add(this.Player_TabPage);
             this.Main_TabControl.Controls.Add(this.World_TabPage);
             this.Main_TabControl.Controls.Add(this.Chat_TabPage);
+            this.Main_TabControl.Controls.Add(this.Settings_TabPage);
             this.Main_TabControl.Controls.Add(this.ChangeSkin_TabPage);
             this.Main_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Main_TabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.Main_TabControl.Location = new System.Drawing.Point(0, 0);
+            this.Main_TabControl.Multiline = true;
             this.Main_TabControl.Name = "Main_TabControl";
+            this.Main_TabControl.NearestNeighborStretch = true;
             this.Main_TabControl.SelectedIndex = 0;
             this.Main_TabControl.Size = new System.Drawing.Size(740, 455);
-            this.Main_TabControl.TabIndex = 5;
+            this.Main_TabControl.TabIndex = 0;
             this.Main_TabControl.SelectedIndexChanged += new System.EventHandler(this.Main_TabControl_SelectedIndexChanged);
             // 
             // Inventory_TabPage
@@ -411,6 +440,7 @@ namespace CoreKeeperInventoryEditor
             this.Inventory_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
             this.Inventory_TabPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Inventory_TabPage.BackgroundImage")));
             this.Inventory_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Inventory_TabPage.Controls.Add(this.GetInventoryAddresses_Button);
             this.Inventory_TabPage.Controls.Add(this.Slot50_PictureBox);
             this.Inventory_TabPage.Controls.Add(this.Slot49_PictureBox);
             this.Inventory_TabPage.Controls.Add(this.Slot48_PictureBox);
@@ -466,12 +496,11 @@ namespace CoreKeeperInventoryEditor
             this.Inventory_TabPage.Controls.Add(this.Slot3_PictureBox);
             this.Inventory_TabPage.Controls.Add(this.Slot2_PictureBox);
             this.Inventory_TabPage.Controls.Add(this.Slot1_PictureBox);
-            this.Inventory_TabPage.Controls.Add(this.GetInventoryAddresses_Button);
             this.Inventory_TabPage.Controls.Add(this.Inventory_RichTextBox);
-            this.Inventory_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Inventory_TabPage.Location = new System.Drawing.Point(4, 28);
             this.Inventory_TabPage.Name = "Inventory_TabPage";
             this.Inventory_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.Inventory_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.Inventory_TabPage.Size = new System.Drawing.Size(732, 423);
             this.Inventory_TabPage.TabIndex = 0;
             this.Inventory_TabPage.Text = "Inventory";
             // 
@@ -698,7 +727,8 @@ namespace CoreKeeperInventoryEditor
             // NextInvAddress_Button
             // 
             this.NextInvAddress_Button.Enabled = false;
-            this.NextInvAddress_Button.Location = new System.Drawing.Point(466, 7);
+            this.NextInvAddress_Button.ForeColor = System.Drawing.Color.Black;
+            this.NextInvAddress_Button.Location = new System.Drawing.Point(466, 6);
             this.NextInvAddress_Button.Name = "NextInvAddress_Button";
             this.NextInvAddress_Button.Size = new System.Drawing.Size(59, 23);
             this.NextInvAddress_Button.TabIndex = 4;
@@ -709,7 +739,8 @@ namespace CoreKeeperInventoryEditor
             // PreviousInvAddress_Button
             // 
             this.PreviousInvAddress_Button.Enabled = false;
-            this.PreviousInvAddress_Button.Location = new System.Drawing.Point(160, 7);
+            this.PreviousInvAddress_Button.ForeColor = System.Drawing.Color.Black;
+            this.PreviousInvAddress_Button.Location = new System.Drawing.Point(160, 6);
             this.PreviousInvAddress_Button.Name = "PreviousInvAddress_Button";
             this.PreviousInvAddress_Button.Size = new System.Drawing.Size(59, 23);
             this.PreviousInvAddress_Button.TabIndex = 2;
@@ -719,7 +750,7 @@ namespace CoreKeeperInventoryEditor
             // 
             // Inventory_ProgressBar
             // 
-            this.Inventory_ProgressBar.Location = new System.Drawing.Point(218, 8);
+            this.Inventory_ProgressBar.Location = new System.Drawing.Point(218, 7);
             this.Inventory_ProgressBar.Name = "Inventory_ProgressBar";
             this.Inventory_ProgressBar.Size = new System.Drawing.Size(250, 21);
             this.Inventory_ProgressBar.Step = 1;
@@ -729,7 +760,8 @@ namespace CoreKeeperInventoryEditor
             // RemoveAll_Button
             // 
             this.RemoveAll_Button.Enabled = false;
-            this.RemoveAll_Button.Location = new System.Drawing.Point(531, 7);
+            this.RemoveAll_Button.ForeColor = System.Drawing.Color.Black;
+            this.RemoveAll_Button.Location = new System.Drawing.Point(531, 6);
             this.RemoveAll_Button.Name = "RemoveAll_Button";
             this.RemoveAll_Button.Size = new System.Drawing.Size(98, 23);
             this.RemoveAll_Button.TabIndex = 5;
@@ -740,7 +772,8 @@ namespace CoreKeeperInventoryEditor
             // ReloadInventory_Button
             // 
             this.ReloadInventory_Button.Enabled = false;
-            this.ReloadInventory_Button.Location = new System.Drawing.Point(628, 7);
+            this.ReloadInventory_Button.ForeColor = System.Drawing.Color.Black;
+            this.ReloadInventory_Button.Location = new System.Drawing.Point(628, 6);
             this.ReloadInventory_Button.Name = "ReloadInventory_Button";
             this.ReloadInventory_Button.Size = new System.Drawing.Size(98, 23);
             this.ReloadInventory_Button.TabIndex = 6;
@@ -1080,7 +1113,8 @@ namespace CoreKeeperInventoryEditor
             // 
             // GetInventoryAddresses_Button
             // 
-            this.GetInventoryAddresses_Button.Location = new System.Drawing.Point(6, 7);
+            this.GetInventoryAddresses_Button.ForeColor = System.Drawing.Color.Black;
+            this.GetInventoryAddresses_Button.Location = new System.Drawing.Point(6, 6);
             this.GetInventoryAddresses_Button.Name = "GetInventoryAddresses_Button";
             this.GetInventoryAddresses_Button.Size = new System.Drawing.Size(148, 23);
             this.GetInventoryAddresses_Button.TabIndex = 1;
@@ -1091,7 +1125,7 @@ namespace CoreKeeperInventoryEditor
             // Inventory_RichTextBox
             // 
             this.Inventory_RichTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Inventory_RichTextBox.Location = new System.Drawing.Point(218, 8);
+            this.Inventory_RichTextBox.Location = new System.Drawing.Point(218, 7);
             this.Inventory_RichTextBox.Name = "Inventory_RichTextBox";
             this.Inventory_RichTextBox.ReadOnly = true;
             this.Inventory_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
@@ -1111,10 +1145,10 @@ namespace CoreKeeperInventoryEditor
             this.Player_TabPage.Controls.Add(this.ImportExport_GroupBox);
             this.Player_TabPage.Controls.Add(this.ChangePlayersName_GroupBox);
             this.Player_TabPage.Controls.Add(this.BuffEditor_GroupBox);
-            this.Player_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Player_TabPage.Location = new System.Drawing.Point(4, 28);
             this.Player_TabPage.Name = "Player_TabPage";
             this.Player_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.Player_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.Player_TabPage.Size = new System.Drawing.Size(732, 423);
             this.Player_TabPage.TabIndex = 1;
             this.Player_TabPage.Text = "Player";
             // 
@@ -1123,7 +1157,7 @@ namespace CoreKeeperInventoryEditor
             this.Power_Label.AutoSize = true;
             this.Power_Label.BackColor = System.Drawing.Color.Transparent;
             this.Power_Label.ForeColor = System.Drawing.Color.Lime;
-            this.Power_Label.Location = new System.Drawing.Point(597, 232);
+            this.Power_Label.Location = new System.Drawing.Point(595, 232);
             this.Power_Label.Name = "Power_Label";
             this.Power_Label.Size = new System.Drawing.Size(37, 13);
             this.Power_Label.TabIndex = 0;
@@ -1134,7 +1168,7 @@ namespace CoreKeeperInventoryEditor
             this.TimeS_Label.AutoSize = true;
             this.TimeS_Label.BackColor = System.Drawing.Color.Transparent;
             this.TimeS_Label.ForeColor = System.Drawing.Color.Lime;
-            this.TimeS_Label.Location = new System.Drawing.Point(664, 232);
+            this.TimeS_Label.Location = new System.Drawing.Point(662, 232);
             this.TimeS_Label.Name = "TimeS_Label";
             this.TimeS_Label.Size = new System.Drawing.Size(44, 13);
             this.TimeS_Label.TabIndex = 0;
@@ -1145,7 +1179,7 @@ namespace CoreKeeperInventoryEditor
             this.BuffType_Label.AutoSize = true;
             this.BuffType_Label.BackColor = System.Drawing.Color.Transparent;
             this.BuffType_Label.ForeColor = System.Drawing.Color.Lime;
-            this.BuffType_Label.Location = new System.Drawing.Point(489, 232);
+            this.BuffType_Label.Location = new System.Drawing.Point(487, 232);
             this.BuffType_Label.Name = "BuffType_Label";
             this.BuffType_Label.Size = new System.Drawing.Size(53, 13);
             this.BuffType_Label.TabIndex = 0;
@@ -1294,15 +1328,9 @@ namespace CoreKeeperInventoryEditor
             this.DevTools_TabPage.AutoScroll = true;
             this.DevTools_TabPage.AutoScrollMargin = new System.Drawing.Size(0, 3);
             this.DevTools_TabPage.BackColor = System.Drawing.Color.Black;
-            this.DevTools_TabPage.Controls.Add(this.FormOpacity_TrackBar);
-            this.DevTools_TabPage.Controls.Add(this.FormOpacity_Label);
-            this.DevTools_TabPage.Controls.Add(this.DefualtControls_Label);
             this.DevTools_TabPage.Controls.Add(this.DevToolsDelay_Label);
             this.DevTools_TabPage.Controls.Add(this.RadialMoveScale_Label);
             this.DevTools_TabPage.Controls.Add(this.DevSettings_Label);
-            this.DevTools_TabPage.Controls.Add(this.AppPriority_Label);
-            this.DevTools_TabPage.Controls.Add(this.AppPriority_ComboBox);
-            this.DevTools_TabPage.Controls.Add(this.AlwaysOnTop_CheckBox);
             this.DevTools_TabPage.Controls.Add(this.DevTools4_Label);
             this.DevTools_TabPage.Controls.Add(this.DevTools5_Label);
             this.DevTools_TabPage.Controls.Add(this.DevTools1_Label);
@@ -1310,7 +1338,6 @@ namespace CoreKeeperInventoryEditor
             this.DevTools_TabPage.Controls.Add(this.DevTools2_Label);
             this.DevTools_TabPage.Controls.Add(this.DevToolsDelay_NumericUpDown);
             this.DevTools_TabPage.Controls.Add(this.RadialMoveScale_NumericUpDown);
-            this.DevTools_TabPage.Controls.Add(this.ResetControls_Button);
             this.DevTools_TabPage.Controls.Add(this.DevTools_Label);
             this.DevTools_TabPage.Location = new System.Drawing.Point(4, 25);
             this.DevTools_TabPage.Name = "DevTools_TabPage";
@@ -1318,44 +1345,11 @@ namespace CoreKeeperInventoryEditor
             this.DevTools_TabPage.TabIndex = 2;
             this.DevTools_TabPage.Text = "Dev-Tools";
             // 
-            // FormOpacity_TrackBar
-            // 
-            this.FormOpacity_TrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.FormOpacity_TrackBar.HoveredState.Parent = this.FormOpacity_TrackBar;
-            this.FormOpacity_TrackBar.Location = new System.Drawing.Point(196, 150);
-            this.FormOpacity_TrackBar.Minimum = 20;
-            this.FormOpacity_TrackBar.Name = "FormOpacity_TrackBar";
-            this.FormOpacity_TrackBar.Size = new System.Drawing.Size(130, 23);
-            this.FormOpacity_TrackBar.TabIndex = 10;
-            this.FormOpacity_TrackBar.ThumbColor = System.Drawing.Color.Lime;
-            this.FormOpacity_TrackBar.Value = 100;
-            this.FormOpacity_TrackBar.ValueChanged += new System.EventHandler(this.FormOpacity_TrackBar_ValueChanged);
-            // 
-            // FormOpacity_Label
-            // 
-            this.FormOpacity_Label.AutoSize = true;
-            this.FormOpacity_Label.ForeColor = System.Drawing.Color.Yellow;
-            this.FormOpacity_Label.Location = new System.Drawing.Point(193, 133);
-            this.FormOpacity_Label.Name = "FormOpacity_Label";
-            this.FormOpacity_Label.Size = new System.Drawing.Size(107, 13);
-            this.FormOpacity_Label.TabIndex = 0;
-            this.FormOpacity_Label.Text = "Form Opacity: [100%]";
-            // 
-            // DefualtControls_Label
-            // 
-            this.DefualtControls_Label.AutoSize = true;
-            this.DefualtControls_Label.ForeColor = System.Drawing.Color.Yellow;
-            this.DefualtControls_Label.Location = new System.Drawing.Point(99, 133);
-            this.DefualtControls_Label.Name = "DefualtControls_Label";
-            this.DefualtControls_Label.Size = new System.Drawing.Size(85, 13);
-            this.DefualtControls_Label.TabIndex = 0;
-            this.DefualtControls_Label.Text = "Defualt Controls:";
-            // 
             // DevToolsDelay_Label
             // 
             this.DevToolsDelay_Label.AutoSize = true;
             this.DevToolsDelay_Label.ForeColor = System.Drawing.Color.Yellow;
-            this.DevToolsDelay_Label.Location = new System.Drawing.Point(3, 216);
+            this.DevToolsDelay_Label.Location = new System.Drawing.Point(1, 174);
             this.DevToolsDelay_Label.Name = "DevToolsDelay_Label";
             this.DevToolsDelay_Label.Size = new System.Drawing.Size(83, 13);
             this.DevToolsDelay_Label.TabIndex = 0;
@@ -1365,7 +1359,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.RadialMoveScale_Label.AutoSize = true;
             this.RadialMoveScale_Label.ForeColor = System.Drawing.Color.Yellow;
-            this.RadialMoveScale_Label.Location = new System.Drawing.Point(3, 175);
+            this.RadialMoveScale_Label.Location = new System.Drawing.Point(1, 133);
             this.RadialMoveScale_Label.Name = "RadialMoveScale_Label";
             this.RadialMoveScale_Label.Size = new System.Drawing.Size(94, 13);
             this.RadialMoveScale_Label.TabIndex = 0;
@@ -1380,48 +1374,6 @@ namespace CoreKeeperInventoryEditor
             this.DevSettings_Label.Size = new System.Drawing.Size(77, 13);
             this.DevSettings_Label.TabIndex = 0;
             this.DevSettings_Label.Text = "Dev Settings ↓";
-            // 
-            // AppPriority_Label
-            // 
-            this.AppPriority_Label.AutoSize = true;
-            this.AppPriority_Label.ForeColor = System.Drawing.Color.Yellow;
-            this.AppPriority_Label.Location = new System.Drawing.Point(3, 133);
-            this.AppPriority_Label.Name = "AppPriority_Label";
-            this.AppPriority_Label.Size = new System.Drawing.Size(63, 13);
-            this.AppPriority_Label.TabIndex = 0;
-            this.AppPriority_Label.Text = "App Priority:";
-            // 
-            // AppPriority_ComboBox
-            // 
-            this.AppPriority_ComboBox.FormattingEnabled = true;
-            this.AppPriority_ComboBox.Items.AddRange(new object[] {
-            "Real Time",
-            "High",
-            "Above Normal",
-            "Normal",
-            "Below Normal",
-            "Idle"});
-            this.AppPriority_ComboBox.Location = new System.Drawing.Point(6, 149);
-            this.AppPriority_ComboBox.Name = "AppPriority_ComboBox";
-            this.AppPriority_ComboBox.Size = new System.Drawing.Size(86, 21);
-            this.AppPriority_ComboBox.TabIndex = 6;
-            this.AppPriority_ComboBox.Text = "Normal";
-            this.AppPriority_ComboBox.SelectedIndexChanged += new System.EventHandler(this.AppPriority_ComboBox_SelectedIndexChanged);
-            this.AppPriority_ComboBox.Enter += new System.EventHandler(this.AppPriority_ComboBox_Enter);
-            // 
-            // AlwaysOnTop_CheckBox
-            // 
-            this.AlwaysOnTop_CheckBox.AutoSize = true;
-            this.AlwaysOnTop_CheckBox.Checked = true;
-            this.AlwaysOnTop_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AlwaysOnTop_CheckBox.ForeColor = System.Drawing.Color.Yellow;
-            this.AlwaysOnTop_CheckBox.Location = new System.Drawing.Point(242, 238);
-            this.AlwaysOnTop_CheckBox.Name = "AlwaysOnTop_CheckBox";
-            this.AlwaysOnTop_CheckBox.Size = new System.Drawing.Size(92, 17);
-            this.AlwaysOnTop_CheckBox.TabIndex = 11;
-            this.AlwaysOnTop_CheckBox.Text = "Always on top";
-            this.AlwaysOnTop_CheckBox.UseVisualStyleBackColor = true;
-            this.AlwaysOnTop_CheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTop_CheckBox_CheckedChanged);
             // 
             // DevTools4_Label
             // 
@@ -1487,7 +1439,7 @@ namespace CoreKeeperInventoryEditor
             0,
             0});
             this.DevToolsDelay_NumericUpDown.InterceptArrowKeys = false;
-            this.DevToolsDelay_NumericUpDown.Location = new System.Drawing.Point(5, 232);
+            this.DevToolsDelay_NumericUpDown.Location = new System.Drawing.Point(3, 190);
             this.DevToolsDelay_NumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
@@ -1517,7 +1469,7 @@ namespace CoreKeeperInventoryEditor
             0,
             65536});
             this.RadialMoveScale_NumericUpDown.InterceptArrowKeys = false;
-            this.RadialMoveScale_NumericUpDown.Location = new System.Drawing.Point(6, 191);
+            this.RadialMoveScale_NumericUpDown.Location = new System.Drawing.Point(4, 149);
             this.RadialMoveScale_NumericUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1537,16 +1489,6 @@ namespace CoreKeeperInventoryEditor
             0,
             0,
             65536});
-            // 
-            // ResetControls_Button
-            // 
-            this.ResetControls_Button.Location = new System.Drawing.Point(102, 149);
-            this.ResetControls_Button.Name = "ResetControls_Button";
-            this.ResetControls_Button.Size = new System.Drawing.Size(84, 21);
-            this.ResetControls_Button.TabIndex = 9;
-            this.ResetControls_Button.Text = "Reset Controls";
-            this.ResetControls_Button.UseVisualStyleBackColor = true;
-            this.ResetControls_Button.Click += new System.EventHandler(this.ResetControls_Button_Click);
             // 
             // DevTools_Label
             // 
@@ -1591,7 +1533,7 @@ namespace CoreKeeperInventoryEditor
             this.PlayerTools_GroupBox.Controls.Add(this.GetAddresses_Button);
             this.PlayerTools_GroupBox.Controls.Add(this.PlayerTools_RichTextBox);
             this.PlayerTools_GroupBox.ForeColor = System.Drawing.Color.Lime;
-            this.PlayerTools_GroupBox.Location = new System.Drawing.Point(384, 5);
+            this.PlayerTools_GroupBox.Location = new System.Drawing.Point(382, 5);
             this.PlayerTools_GroupBox.Name = "PlayerTools_GroupBox";
             this.PlayerTools_GroupBox.Size = new System.Drawing.Size(342, 221);
             this.PlayerTools_GroupBox.TabIndex = 0;
@@ -2319,7 +2261,7 @@ namespace CoreKeeperInventoryEditor
             this.BuffEditor_GroupBox.Controls.Add(this.Power_NumericUpDown);
             this.BuffEditor_GroupBox.Controls.Add(this.BuffType_ComboBox);
             this.BuffEditor_GroupBox.ForeColor = System.Drawing.Color.Lime;
-            this.BuffEditor_GroupBox.Location = new System.Drawing.Point(384, 232);
+            this.BuffEditor_GroupBox.Location = new System.Drawing.Point(382, 232);
             this.BuffEditor_GroupBox.Name = "BuffEditor_GroupBox";
             this.BuffEditor_GroupBox.Size = new System.Drawing.Size(343, 52);
             this.BuffEditor_GroupBox.TabIndex = 0;
@@ -2396,9 +2338,9 @@ namespace CoreKeeperInventoryEditor
             this.World_TabPage.Controls.Add(this.WorldInformation_GroupBox);
             this.World_TabPage.Controls.Add(this.WorldInformationData_GroupBox);
             this.World_TabPage.Controls.Add(this.TeleportPlayer_GroupBox);
-            this.World_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.World_TabPage.Location = new System.Drawing.Point(4, 28);
             this.World_TabPage.Name = "World_TabPage";
-            this.World_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.World_TabPage.Size = new System.Drawing.Size(732, 423);
             this.World_TabPage.TabIndex = 4;
             this.World_TabPage.Text = "World";
             // 
@@ -3287,21 +3229,21 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
             this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
             this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
             this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Header_Column,
@@ -3311,9 +3253,9 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ReadOnly = true;
             this.WorldInformation_DataGridView.RowHeadersVisible = false;
             this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.WorldInformation_DataGridView.ShowCellErrors = false;
@@ -3520,13 +3462,14 @@ namespace CoreKeeperInventoryEditor
             // Chat_TabPage
             // 
             this.Chat_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.Chat_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Chat_TabPage.Controls.Add(this.ChatCommandsOptions_GroupBox);
             this.Chat_TabPage.Controls.Add(this.ChatCommandsLog_GroupBox);
             this.Chat_TabPage.Controls.Add(this.ChatCommands_GroupBox);
             this.Chat_TabPage.Controls.Add(this.ChatCommands_ProgressBar);
-            this.Chat_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.Chat_TabPage.Location = new System.Drawing.Point(4, 28);
             this.Chat_TabPage.Name = "Chat_TabPage";
-            this.Chat_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.Chat_TabPage.Size = new System.Drawing.Size(732, 423);
             this.Chat_TabPage.TabIndex = 2;
             this.Chat_TabPage.Text = "Chat";
             // 
@@ -3539,7 +3482,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommandsOptions_GroupBox.Controls.Add(this.AddToEmptySlots_RadioButton);
             this.ChatCommandsOptions_GroupBox.Controls.Add(this.OverwriteSlotOne_RadioButton);
             this.ChatCommandsOptions_GroupBox.ForeColor = System.Drawing.Color.Lime;
-            this.ChatCommandsOptions_GroupBox.Location = new System.Drawing.Point(241, 5);
+            this.ChatCommandsOptions_GroupBox.Location = new System.Drawing.Point(245, 5);
             this.ChatCommandsOptions_GroupBox.Name = "ChatCommandsOptions_GroupBox";
             this.ChatCommandsOptions_GroupBox.Size = new System.Drawing.Size(133, 111);
             this.ChatCommandsOptions_GroupBox.TabIndex = 0;
@@ -3621,9 +3564,9 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommandsLog_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ChatCommandsLog_GroupBox.Controls.Add(this.UseOverlay_CheckBox);
             this.ChatCommandsLog_GroupBox.Controls.Add(this.ChatCommands_RichTextBox);
-            this.ChatCommandsLog_GroupBox.Location = new System.Drawing.Point(10, 117);
+            this.ChatCommandsLog_GroupBox.Location = new System.Drawing.Point(10, 116);
             this.ChatCommandsLog_GroupBox.Name = "ChatCommandsLog_GroupBox";
-            this.ChatCommandsLog_GroupBox.Size = new System.Drawing.Size(364, 138);
+            this.ChatCommandsLog_GroupBox.Size = new System.Drawing.Size(368, 138);
             this.ChatCommandsLog_GroupBox.TabIndex = 0;
             this.ChatCommandsLog_GroupBox.TabStop = false;
             // 
@@ -3639,7 +3582,7 @@ namespace CoreKeeperInventoryEditor
             this.UseOverlay_CheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UseOverlay_CheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UseOverlay_CheckBox.ForeColor = System.Drawing.Color.GreenYellow;
-            this.UseOverlay_CheckBox.Location = new System.Drawing.Point(274, 10);
+            this.UseOverlay_CheckBox.Location = new System.Drawing.Point(278, 10);
             this.UseOverlay_CheckBox.Name = "UseOverlay_CheckBox";
             this.UseOverlay_CheckBox.Size = new System.Drawing.Size(69, 19);
             this.UseOverlay_CheckBox.TabIndex = 6;
@@ -3655,10 +3598,10 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_RichTextBox.Name = "ChatCommands_RichTextBox";
             this.ChatCommands_RichTextBox.ReadOnly = true;
             this.ChatCommands_RichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.ChatCommands_RichTextBox.Size = new System.Drawing.Size(362, 129);
+            this.ChatCommands_RichTextBox.Size = new System.Drawing.Size(366, 129);
             this.ChatCommands_RichTextBox.TabIndex = 0;
             this.ChatCommands_RichTextBox.Text = "Any captured chat messages will appear here.\n------------------------------------" +
-    "-----------------------------------------------------------------------------\n";
+    "------------------------------------------------------------------------------\n";
             // 
             // ChatCommands_GroupBox
             // 
@@ -3667,7 +3610,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_GroupBox.ForeColor = System.Drawing.Color.Lime;
             this.ChatCommands_GroupBox.Location = new System.Drawing.Point(10, 5);
             this.ChatCommands_GroupBox.Name = "ChatCommands_GroupBox";
-            this.ChatCommands_GroupBox.Size = new System.Drawing.Size(232, 111);
+            this.ChatCommands_GroupBox.Size = new System.Drawing.Size(236, 111);
             this.ChatCommands_GroupBox.TabIndex = 0;
             this.ChatCommands_GroupBox.TabStop = false;
             this.ChatCommands_GroupBox.Text = "Chat Commands";
@@ -3676,7 +3619,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.ChatCommands_Label.AutoSize = true;
             this.ChatCommands_Label.ForeColor = System.Drawing.Color.Snow;
-            this.ChatCommands_Label.Location = new System.Drawing.Point(2, 14);
+            this.ChatCommands_Label.Location = new System.Drawing.Point(3, 14);
             this.ChatCommands_Label.Name = "ChatCommands_Label";
             this.ChatCommands_Label.Size = new System.Drawing.Size(231, 91);
             this.ChatCommands_Label.TabIndex = 0;
@@ -3684,19 +3627,366 @@ namespace CoreKeeperInventoryEditor
             // 
             // ChatCommands_ProgressBar
             // 
-            this.ChatCommands_ProgressBar.Location = new System.Drawing.Point(10, 259);
+            this.ChatCommands_ProgressBar.Location = new System.Drawing.Point(10, 258);
             this.ChatCommands_ProgressBar.Name = "ChatCommands_ProgressBar";
-            this.ChatCommands_ProgressBar.Size = new System.Drawing.Size(364, 23);
+            this.ChatCommands_ProgressBar.Size = new System.Drawing.Size(368, 23);
             this.ChatCommands_ProgressBar.TabIndex = 0;
+            // 
+            // Settings_TabPage
+            // 
+            this.Settings_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
+            this.Settings_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Settings_TabPage.Controls.Add(this.DefualtControls_GroupBox);
+            this.Settings_TabPage.Controls.Add(this.ProcessOptions_GroupBox);
+            this.Settings_TabPage.Controls.Add(this.UITheme_GroupBox);
+            this.Settings_TabPage.Location = new System.Drawing.Point(4, 28);
+            this.Settings_TabPage.Name = "Settings_TabPage";
+            this.Settings_TabPage.Size = new System.Drawing.Size(732, 423);
+            this.Settings_TabPage.TabIndex = 5;
+            this.Settings_TabPage.Text = "Settings";
+            // 
+            // DefualtControls_GroupBox
+            // 
+            this.DefualtControls_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.DefualtControls_GroupBox.Controls.Add(this.DefualtControls_Label);
+            this.DefualtControls_GroupBox.Controls.Add(this.ResetControls_Button);
+            this.DefualtControls_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.DefualtControls_GroupBox.Location = new System.Drawing.Point(10, 226);
+            this.DefualtControls_GroupBox.Name = "DefualtControls_GroupBox";
+            this.DefualtControls_GroupBox.Size = new System.Drawing.Size(105, 56);
+            this.DefualtControls_GroupBox.TabIndex = 0;
+            this.DefualtControls_GroupBox.TabStop = false;
+            // 
+            // DefualtControls_Label
+            // 
+            this.DefualtControls_Label.AutoSize = true;
+            this.DefualtControls_Label.BackColor = System.Drawing.Color.Transparent;
+            this.DefualtControls_Label.ForeColor = System.Drawing.Color.Snow;
+            this.DefualtControls_Label.Location = new System.Drawing.Point(6, 11);
+            this.DefualtControls_Label.Name = "DefualtControls_Label";
+            this.DefualtControls_Label.Size = new System.Drawing.Size(85, 13);
+            this.DefualtControls_Label.TabIndex = 0;
+            this.DefualtControls_Label.Text = "Defualt Controls:";
+            // 
+            // ResetControls_Button
+            // 
+            this.ResetControls_Button.BackColor = System.Drawing.Color.Transparent;
+            this.ResetControls_Button.ForeColor = System.Drawing.Color.Black;
+            this.ResetControls_Button.Location = new System.Drawing.Point(9, 27);
+            this.ResetControls_Button.Name = "ResetControls_Button";
+            this.ResetControls_Button.Size = new System.Drawing.Size(84, 21);
+            this.ResetControls_Button.TabIndex = 13;
+            this.ResetControls_Button.Text = "Reset Controls";
+            this.ResetControls_Button.UseVisualStyleBackColor = false;
+            this.ResetControls_Button.Click += new System.EventHandler(this.ResetControls_Button_Click);
+            // 
+            // ProcessOptions_GroupBox
+            // 
+            this.ProcessOptions_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ProcessOptions_GroupBox.Controls.Add(this.AppPriority_Label);
+            this.ProcessOptions_GroupBox.Controls.Add(this.AlwaysOnTop_CheckBox);
+            this.ProcessOptions_GroupBox.Controls.Add(this.AppPriority_ComboBox);
+            this.ProcessOptions_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.ProcessOptions_GroupBox.Location = new System.Drawing.Point(10, 144);
+            this.ProcessOptions_GroupBox.Name = "ProcessOptions_GroupBox";
+            this.ProcessOptions_GroupBox.Size = new System.Drawing.Size(105, 81);
+            this.ProcessOptions_GroupBox.TabIndex = 0;
+            this.ProcessOptions_GroupBox.TabStop = false;
+            this.ProcessOptions_GroupBox.Text = "Process Options";
+            // 
+            // AppPriority_Label
+            // 
+            this.AppPriority_Label.AutoSize = true;
+            this.AppPriority_Label.BackColor = System.Drawing.Color.Transparent;
+            this.AppPriority_Label.ForeColor = System.Drawing.Color.Snow;
+            this.AppPriority_Label.Location = new System.Drawing.Point(6, 16);
+            this.AppPriority_Label.Name = "AppPriority_Label";
+            this.AppPriority_Label.Size = new System.Drawing.Size(63, 13);
+            this.AppPriority_Label.TabIndex = 0;
+            this.AppPriority_Label.Text = "App Priority:";
+            // 
+            // AlwaysOnTop_CheckBox
+            // 
+            this.AlwaysOnTop_CheckBox.AutoSize = true;
+            this.AlwaysOnTop_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.AlwaysOnTop_CheckBox.Checked = true;
+            this.AlwaysOnTop_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AlwaysOnTop_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.AlwaysOnTop_CheckBox.Location = new System.Drawing.Point(9, 59);
+            this.AlwaysOnTop_CheckBox.Name = "AlwaysOnTop_CheckBox";
+            this.AlwaysOnTop_CheckBox.Size = new System.Drawing.Size(92, 17);
+            this.AlwaysOnTop_CheckBox.TabIndex = 12;
+            this.AlwaysOnTop_CheckBox.Text = "Always on top";
+            this.AlwaysOnTop_CheckBox.UseVisualStyleBackColor = false;
+            this.AlwaysOnTop_CheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTop_CheckBox_CheckedChanged);
+            // 
+            // AppPriority_ComboBox
+            // 
+            this.AppPriority_ComboBox.FormattingEnabled = true;
+            this.AppPriority_ComboBox.Items.AddRange(new object[] {
+            "Real Time",
+            "High",
+            "Above Normal",
+            "Normal",
+            "Below Normal",
+            "Idle"});
+            this.AppPriority_ComboBox.Location = new System.Drawing.Point(9, 32);
+            this.AppPriority_ComboBox.Name = "AppPriority_ComboBox";
+            this.AppPriority_ComboBox.Size = new System.Drawing.Size(86, 21);
+            this.AppPriority_ComboBox.TabIndex = 11;
+            this.AppPriority_ComboBox.Text = "Normal";
+            this.AppPriority_ComboBox.SelectedIndexChanged += new System.EventHandler(this.AppPriority_ComboBox_SelectedIndexChanged);
+            this.AppPriority_ComboBox.Enter += new System.EventHandler(this.AppPriority_ComboBox_Enter);
+            // 
+            // UITheme_GroupBox
+            // 
+            this.UITheme_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.UITheme_GroupBox.Controls.Add(this.UISettings_Label);
+            this.UITheme_GroupBox.Controls.Add(this.RoundedCorners_Label);
+            this.UITheme_GroupBox.Controls.Add(this.BottomRightCorner_CheckBox);
+            this.UITheme_GroupBox.Controls.Add(this.TitleBarHeight_Label);
+            this.UITheme_GroupBox.Controls.Add(this.FormOpacity_TrackBar);
+            this.UITheme_GroupBox.Controls.Add(this.CornerRadius_Label);
+            this.UITheme_GroupBox.Controls.Add(this.FormOpacity_Label);
+            this.UITheme_GroupBox.Controls.Add(this.CornerRadius_NumericUpDown);
+            this.UITheme_GroupBox.Controls.Add(this.TopLeftCorner_CheckBox);
+            this.UITheme_GroupBox.Controls.Add(this.BorderSize_Label);
+            this.UITheme_GroupBox.Controls.Add(this.BottomLeftCorner_CheckBox);
+            this.UITheme_GroupBox.Controls.Add(this.BorderSize_NumericUpDown);
+            this.UITheme_GroupBox.Controls.Add(this.TopRightCorner_CheckBox);
+            this.UITheme_GroupBox.Controls.Add(this.TitleBarHeight_NumericUpDown);
+            this.UITheme_GroupBox.Controls.Add(this.DarkMode_CheckBox);
+            this.UITheme_GroupBox.Controls.Add(this.ShowIcon_CheckBox);
+            this.UITheme_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.UITheme_GroupBox.Location = new System.Drawing.Point(10, 5);
+            this.UITheme_GroupBox.Name = "UITheme_GroupBox";
+            this.UITheme_GroupBox.Size = new System.Drawing.Size(368, 136);
+            this.UITheme_GroupBox.TabIndex = 0;
+            this.UITheme_GroupBox.TabStop = false;
+            this.UITheme_GroupBox.Text = "UI Theme";
+            // 
+            // UISettings_Label
+            // 
+            this.UISettings_Label.AutoSize = true;
+            this.UISettings_Label.BackColor = System.Drawing.Color.Transparent;
+            this.UISettings_Label.ForeColor = System.Drawing.Color.Yellow;
+            this.UISettings_Label.Location = new System.Drawing.Point(189, 69);
+            this.UISettings_Label.Name = "UISettings_Label";
+            this.UISettings_Label.Size = new System.Drawing.Size(48, 13);
+            this.UISettings_Label.TabIndex = 0;
+            this.UISettings_Label.Text = "Settings:";
+            // 
+            // RoundedCorners_Label
+            // 
+            this.RoundedCorners_Label.AutoSize = true;
+            this.RoundedCorners_Label.BackColor = System.Drawing.Color.Transparent;
+            this.RoundedCorners_Label.ForeColor = System.Drawing.Color.Yellow;
+            this.RoundedCorners_Label.Location = new System.Drawing.Point(6, 69);
+            this.RoundedCorners_Label.Name = "RoundedCorners_Label";
+            this.RoundedCorners_Label.Size = new System.Drawing.Size(93, 13);
+            this.RoundedCorners_Label.TabIndex = 0;
+            this.RoundedCorners_Label.Text = "Rounded Corners:";
+            // 
+            // BottomRightCorner_CheckBox
+            // 
+            this.BottomRightCorner_CheckBox.AutoSize = true;
+            this.BottomRightCorner_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.BottomRightCorner_CheckBox.Checked = true;
+            this.BottomRightCorner_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.BottomRightCorner_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.BottomRightCorner_CheckBox.Location = new System.Drawing.Point(94, 111);
+            this.BottomRightCorner_CheckBox.Name = "BottomRightCorner_CheckBox";
+            this.BottomRightCorner_CheckBox.Size = new System.Drawing.Size(87, 17);
+            this.BottomRightCorner_CheckBox.TabIndex = 5;
+            this.BottomRightCorner_CheckBox.Text = "Bottom Right";
+            this.BottomRightCorner_CheckBox.UseVisualStyleBackColor = false;
+            this.BottomRightCorner_CheckBox.CheckedChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // TitleBarHeight_Label
+            // 
+            this.TitleBarHeight_Label.AutoSize = true;
+            this.TitleBarHeight_Label.BackColor = System.Drawing.Color.Transparent;
+            this.TitleBarHeight_Label.ForeColor = System.Drawing.Color.Snow;
+            this.TitleBarHeight_Label.Location = new System.Drawing.Point(278, 51);
+            this.TitleBarHeight_Label.Name = "TitleBarHeight_Label";
+            this.TitleBarHeight_Label.Size = new System.Drawing.Size(83, 13);
+            this.TitleBarHeight_Label.TabIndex = 0;
+            this.TitleBarHeight_Label.Text = "Title Bar Height:";
+            // 
+            // FormOpacity_TrackBar
+            // 
+            this.FormOpacity_TrackBar.BackColor = System.Drawing.Color.Transparent;
+            this.FormOpacity_TrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.FormOpacity_TrackBar.HoveredState.Parent = this.FormOpacity_TrackBar;
+            this.FormOpacity_TrackBar.Location = new System.Drawing.Point(9, 38);
+            this.FormOpacity_TrackBar.Minimum = 20;
+            this.FormOpacity_TrackBar.Name = "FormOpacity_TrackBar";
+            this.FormOpacity_TrackBar.Size = new System.Drawing.Size(255, 23);
+            this.FormOpacity_TrackBar.TabIndex = 1;
+            this.FormOpacity_TrackBar.ThumbColor = System.Drawing.Color.Lime;
+            this.FormOpacity_TrackBar.Value = 100;
+            this.FormOpacity_TrackBar.ValueChanged += new System.EventHandler(this.FormOpacity_TrackBar_ValueChanged);
+            // 
+            // CornerRadius_Label
+            // 
+            this.CornerRadius_Label.AutoSize = true;
+            this.CornerRadius_Label.BackColor = System.Drawing.Color.Transparent;
+            this.CornerRadius_Label.ForeColor = System.Drawing.Color.Snow;
+            this.CornerRadius_Label.Location = new System.Drawing.Point(278, 13);
+            this.CornerRadius_Label.Name = "CornerRadius_Label";
+            this.CornerRadius_Label.Size = new System.Drawing.Size(77, 13);
+            this.CornerRadius_Label.TabIndex = 0;
+            this.CornerRadius_Label.Text = "Corner Radius:";
+            // 
+            // FormOpacity_Label
+            // 
+            this.FormOpacity_Label.AutoSize = true;
+            this.FormOpacity_Label.BackColor = System.Drawing.Color.Transparent;
+            this.FormOpacity_Label.ForeColor = System.Drawing.Color.Yellow;
+            this.FormOpacity_Label.Location = new System.Drawing.Point(6, 16);
+            this.FormOpacity_Label.Name = "FormOpacity_Label";
+            this.FormOpacity_Label.Size = new System.Drawing.Size(107, 13);
+            this.FormOpacity_Label.TabIndex = 0;
+            this.FormOpacity_Label.Text = "Form Opacity: [100%]";
+            // 
+            // CornerRadius_NumericUpDown
+            // 
+            this.CornerRadius_NumericUpDown.Location = new System.Drawing.Point(281, 29);
+            this.CornerRadius_NumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CornerRadius_NumericUpDown.Name = "CornerRadius_NumericUpDown";
+            this.CornerRadius_NumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.CornerRadius_NumericUpDown.TabIndex = 8;
+            this.CornerRadius_NumericUpDown.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.CornerRadius_NumericUpDown.ValueChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // TopLeftCorner_CheckBox
+            // 
+            this.TopLeftCorner_CheckBox.AutoSize = true;
+            this.TopLeftCorner_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.TopLeftCorner_CheckBox.Checked = true;
+            this.TopLeftCorner_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TopLeftCorner_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.TopLeftCorner_CheckBox.Location = new System.Drawing.Point(9, 88);
+            this.TopLeftCorner_CheckBox.Name = "TopLeftCorner_CheckBox";
+            this.TopLeftCorner_CheckBox.Size = new System.Drawing.Size(66, 17);
+            this.TopLeftCorner_CheckBox.TabIndex = 2;
+            this.TopLeftCorner_CheckBox.Text = "Top Left";
+            this.TopLeftCorner_CheckBox.UseVisualStyleBackColor = false;
+            this.TopLeftCorner_CheckBox.CheckedChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // BorderSize_Label
+            // 
+            this.BorderSize_Label.AutoSize = true;
+            this.BorderSize_Label.BackColor = System.Drawing.Color.Transparent;
+            this.BorderSize_Label.ForeColor = System.Drawing.Color.Snow;
+            this.BorderSize_Label.Location = new System.Drawing.Point(278, 89);
+            this.BorderSize_Label.Name = "BorderSize_Label";
+            this.BorderSize_Label.Size = new System.Drawing.Size(64, 13);
+            this.BorderSize_Label.TabIndex = 0;
+            this.BorderSize_Label.Text = "Border Size:";
+            // 
+            // BottomLeftCorner_CheckBox
+            // 
+            this.BottomLeftCorner_CheckBox.AutoSize = true;
+            this.BottomLeftCorner_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.BottomLeftCorner_CheckBox.Checked = true;
+            this.BottomLeftCorner_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.BottomLeftCorner_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.BottomLeftCorner_CheckBox.Location = new System.Drawing.Point(9, 111);
+            this.BottomLeftCorner_CheckBox.Name = "BottomLeftCorner_CheckBox";
+            this.BottomLeftCorner_CheckBox.Size = new System.Drawing.Size(80, 17);
+            this.BottomLeftCorner_CheckBox.TabIndex = 4;
+            this.BottomLeftCorner_CheckBox.Text = "Bottom Left";
+            this.BottomLeftCorner_CheckBox.UseVisualStyleBackColor = false;
+            this.BottomLeftCorner_CheckBox.CheckedChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // BorderSize_NumericUpDown
+            // 
+            this.BorderSize_NumericUpDown.Location = new System.Drawing.Point(281, 105);
+            this.BorderSize_NumericUpDown.Name = "BorderSize_NumericUpDown";
+            this.BorderSize_NumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.BorderSize_NumericUpDown.TabIndex = 10;
+            this.BorderSize_NumericUpDown.ValueChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // TopRightCorner_CheckBox
+            // 
+            this.TopRightCorner_CheckBox.AutoSize = true;
+            this.TopRightCorner_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.TopRightCorner_CheckBox.Checked = true;
+            this.TopRightCorner_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TopRightCorner_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.TopRightCorner_CheckBox.Location = new System.Drawing.Point(94, 88);
+            this.TopRightCorner_CheckBox.Name = "TopRightCorner_CheckBox";
+            this.TopRightCorner_CheckBox.Size = new System.Drawing.Size(73, 17);
+            this.TopRightCorner_CheckBox.TabIndex = 3;
+            this.TopRightCorner_CheckBox.Text = "Top Right";
+            this.TopRightCorner_CheckBox.UseVisualStyleBackColor = false;
+            this.TopRightCorner_CheckBox.CheckedChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // TitleBarHeight_NumericUpDown
+            // 
+            this.TitleBarHeight_NumericUpDown.Location = new System.Drawing.Point(281, 67);
+            this.TitleBarHeight_NumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TitleBarHeight_NumericUpDown.Name = "TitleBarHeight_NumericUpDown";
+            this.TitleBarHeight_NumericUpDown.Size = new System.Drawing.Size(79, 20);
+            this.TitleBarHeight_NumericUpDown.TabIndex = 9;
+            this.TitleBarHeight_NumericUpDown.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.TitleBarHeight_NumericUpDown.ValueChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // DarkMode_CheckBox
+            // 
+            this.DarkMode_CheckBox.AutoSize = true;
+            this.DarkMode_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.DarkMode_CheckBox.Checked = true;
+            this.DarkMode_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DarkMode_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.DarkMode_CheckBox.Location = new System.Drawing.Point(192, 88);
+            this.DarkMode_CheckBox.Name = "DarkMode_CheckBox";
+            this.DarkMode_CheckBox.Size = new System.Drawing.Size(79, 17);
+            this.DarkMode_CheckBox.TabIndex = 6;
+            this.DarkMode_CheckBox.Text = "Dark Mode";
+            this.DarkMode_CheckBox.UseVisualStyleBackColor = false;
+            this.DarkMode_CheckBox.CheckedChanged += new System.EventHandler(this.UpdateUITheme);
+            // 
+            // ShowIcon_CheckBox
+            // 
+            this.ShowIcon_CheckBox.AutoSize = true;
+            this.ShowIcon_CheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.ShowIcon_CheckBox.Checked = true;
+            this.ShowIcon_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowIcon_CheckBox.ForeColor = System.Drawing.Color.Snow;
+            this.ShowIcon_CheckBox.Location = new System.Drawing.Point(192, 111);
+            this.ShowIcon_CheckBox.Name = "ShowIcon_CheckBox";
+            this.ShowIcon_CheckBox.Size = new System.Drawing.Size(77, 17);
+            this.ShowIcon_CheckBox.TabIndex = 7;
+            this.ShowIcon_CheckBox.Text = "Show Icon";
+            this.ShowIcon_CheckBox.UseVisualStyleBackColor = false;
+            this.ShowIcon_CheckBox.CheckedChanged += new System.EventHandler(this.UpdateUITheme);
             // 
             // ChangeSkin_TabPage
             // 
             this.ChangeSkin_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
-            this.ChangeSkin_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.ChangeSkin_TabPage.Location = new System.Drawing.Point(4, 28);
             this.ChangeSkin_TabPage.Name = "ChangeSkin_TabPage";
-            this.ChangeSkin_TabPage.Size = new System.Drawing.Size(732, 426);
+            this.ChangeSkin_TabPage.Size = new System.Drawing.Size(732, 423);
             this.ChangeSkin_TabPage.TabIndex = 3;
-            this.ChangeSkin_TabPage.Text = "Change Skin";
+            this.ChangeSkin_TabPage.Text = "GUI-Skin";
             // 
             // MainForm
             // 
@@ -3828,15 +4118,24 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommandsLog_GroupBox.PerformLayout();
             this.ChatCommands_GroupBox.ResumeLayout(false);
             this.ChatCommands_GroupBox.PerformLayout();
+            this.Settings_TabPage.ResumeLayout(false);
+            this.DefualtControls_GroupBox.ResumeLayout(false);
+            this.DefualtControls_GroupBox.PerformLayout();
+            this.ProcessOptions_GroupBox.ResumeLayout(false);
+            this.ProcessOptions_GroupBox.PerformLayout();
+            this.UITheme_GroupBox.ResumeLayout(false);
+            this.UITheme_GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CornerRadius_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BorderSize_NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TitleBarHeight_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button GetInventoryAddresses_Button;
         private System.Windows.Forms.RichTextBox Inventory_RichTextBox;
-        private System.Windows.Forms.TabControl Main_TabControl;
+        private CoreKeepersWorkshop.BorderlessTabControl Main_TabControl;
         private System.Windows.Forms.TabPage Inventory_TabPage;
         private System.Windows.Forms.TabPage Player_TabPage;
         private System.Windows.Forms.PictureBox Slot1_PictureBox;
@@ -4022,7 +4321,6 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.GroupBox WorldUtilities_GroupBox;
         private System.Windows.Forms.ProgressBar WorldInformation_ProgressBar;
         private System.Windows.Forms.Label DevTools4_Label;
-        private System.Windows.Forms.CheckBox AlwaysOnTop_CheckBox;
         private System.Windows.Forms.Label FreeCrafting_Label;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith FreeCrafting_ToggleSwitch;
         private System.Windows.Forms.CheckBox BruteForceTP_CheckBox;
@@ -4031,13 +4329,10 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.NumericUpDown FishingPadding_NumericUpDown;
         private System.Windows.Forms.Button FishingPadding_Button;
         private System.Windows.Forms.Label BruteForceTP_Label;
-        private System.Windows.Forms.Button ResetControls_Button;
         private System.Windows.Forms.Label PassiveAI_Label;
         private Siticone.UI.WinForms.SiticoneWinToggleSwith PassiveAI_ToggleSwitch;
         private System.Windows.Forms.Button OpenChunkVisualizer_Button;
         private System.Windows.Forms.Label OpenChunkVisualizer_Label;
-        private System.Windows.Forms.Label AppPriority_Label;
-        private System.Windows.Forms.ComboBox AppPriority_ComboBox;
         private System.Windows.Forms.Button TeleportPlayerHelp_Button;
         private Siticone.UI.WinForms.SiticoneTrackBar Mods_TrackBar;
         private Siticone.UI.WinForms.SiticonePanel PlayerTools_Panel;
@@ -4085,9 +4380,32 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label DevSettings_Label;
         private System.Windows.Forms.Label RadialMoveScale_Label;
         private System.Windows.Forms.Label DevToolsDelay_Label;
-        private System.Windows.Forms.Label DefualtControls_Label;
+        private System.Windows.Forms.TabPage Settings_TabPage;
+        private System.Windows.Forms.Label RoundedCorners_Label;
+        private System.Windows.Forms.CheckBox BottomRightCorner_CheckBox;
+        private System.Windows.Forms.CheckBox BottomLeftCorner_CheckBox;
+        private System.Windows.Forms.CheckBox TopRightCorner_CheckBox;
+        private System.Windows.Forms.CheckBox TopLeftCorner_CheckBox;
+        private System.Windows.Forms.NumericUpDown TitleBarHeight_NumericUpDown;
+        private System.Windows.Forms.Label TitleBarHeight_Label;
+        private System.Windows.Forms.NumericUpDown BorderSize_NumericUpDown;
+        private System.Windows.Forms.Label BorderSize_Label;
+        private System.Windows.Forms.CheckBox ShowIcon_CheckBox;
+        private System.Windows.Forms.NumericUpDown CornerRadius_NumericUpDown;
+        private System.Windows.Forms.CheckBox DarkMode_CheckBox;
+        private System.Windows.Forms.Label CornerRadius_Label;
         private Siticone.UI.WinForms.SiticoneMetroTrackBar FormOpacity_TrackBar;
         private System.Windows.Forms.Label FormOpacity_Label;
+        private System.Windows.Forms.Label DefualtControls_Label;
+        private System.Windows.Forms.CheckBox AlwaysOnTop_CheckBox;
+        private System.Windows.Forms.Button ResetControls_Button;
+        private System.Windows.Forms.Label AppPriority_Label;
+        private System.Windows.Forms.ComboBox AppPriority_ComboBox;
+        private System.Windows.Forms.GroupBox UITheme_GroupBox;
+        private System.Windows.Forms.GroupBox ProcessOptions_GroupBox;
+        private System.Windows.Forms.Label UISettings_Label;
+        private System.Windows.Forms.GroupBox DefualtControls_GroupBox;
+        private System.Windows.Forms.Button GetInventoryAddresses_Button;
     }
 }
 
