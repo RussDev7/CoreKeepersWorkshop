@@ -41,7 +41,7 @@
 
  
 ## How It Works / How Do I Use It?
-Due to how Core Keeper is as a unity game, the devolopers have protected their source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection techniques to scramble regions of memory to prevent address pointers. So using some clever AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
+Due to how Core Keeper is as a unity game, the developers have protected their source and mono files. To further aid in the no support for modding this game includes, they also have used memory protection techniques to scramble regions of memory to prevent address pointers. So using some clever AoB (array of bytes) scanning, we can get around this protection due to some unspecified exploits that exists within their protection.
 
 Included in this application's directory is a file named `build.bat`. This file can be used to compile the applications source code from a single click. You can also download an already compiled version from the releases. After building, your application can be found in the releases directory. If you downloaded it pre-compiled, you will need to simply extract it to any desired location.
 
@@ -58,7 +58,7 @@ The features for the application is as follows:
 ![SkillEditor](https://github.com/user-attachments/assets/51d94246-1674-4697-bb6f-cf727de9f33c)
 
 ## Explanation On Item Variants
-Variants are mostly used curently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items regardless of variant all have a base ID. There is not a unique ID assosiated with each item variant, only the base ID. Refer to the formula below to understand how these are built.
+Variants are mostly used currently for food items only. In order to find a variant for an item, you first need to determine the base item ID. All items regardless of variant all have a base ID. There is not a unique ID associated with each item variant, only the base ID. Refer to the formula below to understand how these are built.
 
 Variant-ID: `xxxxyyyy`\
 `x` = ID of first ingredient\
@@ -74,12 +74,12 @@ To first find the addresses, tools such as cheat engine or other memory scanning
 ![HowMemWorks](https://user-images.githubusercontent.com/33048298/203687176-72f493b0-0186-4cea-a5f9-16c3555efb20.png)
 
 ## How To Add New / Modded Items
-This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editor's textures. Each item category is divided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a questionmark on the main form. 
+This editor has full support for adding modded items or future game release content. The assets folder contains all the inventory editor's textures. Each item category is divided by it's own subdirectory folder. These folders can be found within the `.\assets\inventory\` directory. From here you can add new assets. The editor uses a very special type of Json'ing to allow for adding future content without the need to manually update the application for each update. If the in-game items do not contain an asset texture within this editor, they will show up as a question-mark on the main form. 
 
-![01](https://user-images.githubusercontent.com/33048298/190876339-6153add9-0558-4759-969f-a14f2dddbe7f.PNG)
+![MemoryViewer](https://user-images.githubusercontent.com/33048298/190876339-6153add9-0558-4759-969f-a14f2dddbe7f.PNG)
 
 Below is a chart to show off the filename system for images:
-- Note, the following catigories are optional:
+- Note, the following categories are optional:
   - Variation
   - Skillset (new)
 
@@ -108,12 +108,34 @@ Here is the list of all the available categories:
 ## How To Add Custom Skins
 Adding background UI skins is now supported. You can add custom skins to the `\assets\backgrounds\{folder name}` directory by any name. These images must be 695x420. It's very important you keep the inventory boxes where they are, these do not move with the skins. You can cycle through the skins using the "Change Skin" tab-button at the top. These will save when you close and appear when re-opened.
 
-![CK-UISkins2](https://user-images.githubusercontent.com/33048298/206583351-3a6dde45-43f2-43b2-991d-b931b17d9bf3.gif)
+![CK-UISkins](https://user-images.githubusercontent.com/33048298/206583351-3a6dde45-43f2-43b2-991d-b931b17d9bf3.gif)
+
+## NEW: Professional GUI
+This section is to show off the recent overhaul to the GUI. Thanks to two custom classes;
+| Class                                                                                     | About                                                        |
+| :---------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+| [BorderlessTabControl.cs](src/CoreKeeperInventoryEditor/Controls/BorderlessTabControl.cs) | Custom transparent `TabControl` with no borders.             |
+| [TitleBarManager.cs](src/CoreKeeperInventoryEditor/Helpers/TitleBarManager.cs)            | Custom dark/light theme `titlebar` with rounded GUI corners. |
+
+-It's now feasible to easily add a professional looking GUI to any .NET project. Added in this overhaul is a new tab page `Settings` that allows you to full customize the GUI. Some settings such as font, forecolor, and background color are supported but are rather managed by the built in dark/light themes.
+
+Bellow is a list of available theme tweaks:
+ - Form Opacity
+ - Rounded Corners [TL, TR, BL, BR]
+ - Dark Mode (Light / Dark)
+ - Show Icon
+ - Corner Radius
+ - Title Bar Height
+ - Border Size
+
+Also included in this theme tweak, is a more standardized collapsible GUI. The GUI when minimized, and the game is open, will reduce its opacity by 50% and position its self to the top right; maintaining its theme. When the game or process is not open/found, it will instead position itself at the top left of the desktop. Note, the minimized tab opacity will always be 50% opacity, it does not stack with the forms opacity!
+
+![ReworkedGUI](https://github.com/user-attachments/assets/e5b0a2ae-dbc6-415a-a0f3-e618cd3ce198)
 
 ## Download
 
 - [GitHub Releases](https://github.com/RussDev7/CoreKeepersWorkshop/releases)
-- [Skin Template](https://raw.githubusercontent.com/RussDev7/CoreKeepersWorkshop/main/src/CoreKeeperInventoryEditor/images/SkinTemplate.png)
+- [Skin Template](src/CoreKeeperInventoryEditor/Images/SkinTemplate.png)
 
 ## Requirements
 
@@ -132,4 +154,4 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 - [TextProgressBar](https://github.com/ukushu/TextProgressBar)
 - [UI-Backgrounds](https://discord.com/users/229227672121769984/)
 - [CK Asset Wiki](https://corekeeper.atma.gg/en/Core_Keeper_Wiki)
-- [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Donation&currency_code=USD&bn=PP%2dDonationsBF)
+- [Donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=imthedude030@gmail.com&lc=US&item_name=Corekeepers+Workshop+Donation&currency_code=USD)
