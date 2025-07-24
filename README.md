@@ -119,7 +119,7 @@ This section is to show off the recent overhaul to the GUI. Thanks to two custom
 
 -It's now feasible to easily add a professional looking GUI to any .NET project. Added in this overhaul is a new tab page `Settings` that allows you to full customize the GUI. Some settings such as font, forecolor, and background color are supported but are rather managed by the built in dark/light themes.
 
-Bellow is a list of available theme tweaks:
+Bellow is a list of available theme tweaks in `Settings`:
  - Form Opacity
  - Rounded Corners [TL, TR, BL, BR]
  - Dark Mode (Light / Dark)
