@@ -110,14 +110,14 @@ Adding background UI skins is now supported. You can add custom skins to the `\a
 
 ![CK-UISkins](https://user-images.githubusercontent.com/33048298/206583351-3a6dde45-43f2-43b2-991d-b931b17d9bf3.gif)
 
-## NEW: Professional GUI
+## Professional GUI (NEW)
 This section is to show off the recent overhaul to the GUI. Thanks to two custom classes;
 | Class                                                                                     | About                                                        |
 | :---------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
 | [BorderlessTabControl.cs](src/CoreKeeperInventoryEditor/Controls/BorderlessTabControl.cs) | Custom transparent `TabControl` with no borders.             |
 | [TitleBarManager.cs](src/CoreKeeperInventoryEditor/Helpers/TitleBarManager.cs)            | Custom dark/light theme `titlebar` with rounded GUI corners. |
 
--It's now feasible to easily add a professional looking GUI to any .NET project. Added in this overhaul is a new tab page `Settings` that allows you to full customize the GUI. Some settings such as font, forecolor, and background color are supported but are rather managed by the built in dark/light themes.
+-It's now feasible to easily add a professional GUI appearance to any .NET project. Added in this overhaul is a new tab page `Settings` that allows you to full customize the GUI. Some settings such as font, forecolor, and background color are supported but are rather managed by the built in dark/light themes.
 
 Bellow is a list of available theme tweaks in `Settings`:
  - Form Opacity
