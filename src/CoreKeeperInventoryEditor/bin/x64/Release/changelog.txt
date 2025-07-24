@@ -10,14 +10,25 @@ Changes Since v1.3.6.5
 - Fixed "ItemSelectionMenu" to display items full names.
 - Optimized and fixed the chat commands.
 - Fixed null collection errors for map reveal & teleport.
+- Significantly increased item selection menu load times.
+- Significantly optimized image indexing.
+- Added "Skillset" tool the food cookbook.
+- Updated all food cookbook controls with new names. (miss)
+- Re-sized, adjusted, and cleaned up all forms.
+- Organized the entire project structure.
+- Tweaked the assembly company name to match the projects.
+- Fixed typos within the projects readme file.
 
++ Overhauled the projects GUI.
 + Added a map teleport mod.
 + Added two new properties to the world information tool.
 + Added freeze item slots to the player mods.
-+ Significantly increased item selection menu load times.
 + Added optional ability to use skillsets in item names.
 + Added a form opacity option to the dev-tools.
 + Added various missing tooltips.
++ Added a new GUI dark/light theme.
++ Added rounded corner support.
++ Added a flush borderless tab control.
 
 Changes Since v1.3.6.4
 ===========================================================
