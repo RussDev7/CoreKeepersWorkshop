@@ -9122,6 +9122,7 @@ namespace CoreKeeperInventoryEditor
 
         /// <summary>
         /// Helper to raise <see cref="RestoreNativeRequested"/> safely.
+        /// Call this inside the main form when you want to swap out.
         /// </summary>
         public void OnRestoreNativeRequested()
             => RestoreNativeRequested?.Invoke(this, EventArgs.Empty);
