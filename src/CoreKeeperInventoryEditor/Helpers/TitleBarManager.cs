@@ -29,6 +29,7 @@ using System.Drawing;
 using System.Linq;
 using System;
 
+// Reminder: Update namespace when re‑using this class in a different project.
 namespace CoreKeeperInventoryEditor
 {
     #region Support Types
@@ -39,12 +40,12 @@ namespace CoreKeeperInventoryEditor
     [Flags]
     public enum Corner
     {
-        None = 0,
-        TopLeft = 1,
-        TopRight = 2,
+        None        = 0,
+        TopLeft     = 1,
+        TopRight    = 2,
         BottomRight = 4,
-        BottomLeft = 8,
-        All = TopLeft | TopRight | BottomRight | BottomLeft
+        BottomLeft  = 8,
+        All         = TopLeft | TopRight | BottomRight | BottomLeft
     }
 
     /// <summary>
@@ -72,7 +73,7 @@ namespace CoreKeeperInventoryEditor
             IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
 
         private const int WM_NCLBUTTONDOWN = 0xA1;
-        private const int HTCAPTION = 0x02;
+        private const int HTCAPTION        = 0x02;
 
         #endregion
 
@@ -139,7 +140,7 @@ namespace CoreKeeperInventoryEditor
 
             // Kill system frame & add padding for our border.
             _form.FormBorderStyle = FormBorderStyle.None;
-            _form.Padding = new Padding(_borderSize);
+            _form.Padding         = new Padding(_borderSize);
             SetDoubleBuffered(_form);
 
             // Enlarge client area so content gets all of its original space back.
@@ -188,7 +189,7 @@ namespace CoreKeeperInventoryEditor
         /// <summary>
         /// Toggle custom chrome on/off.
         /// </summary>
-        public void Toggle() => (_enabled ? (Action)Disable : Enable)();
+        public void Toggle()  => (_enabled ? (Action)Disable : Enable)();
 
         /// <summary>
         /// Gets a value indicating whether this styler is currently enabled.
@@ -227,7 +228,7 @@ namespace CoreKeeperInventoryEditor
         {
             _titleBar = new Panel
             {
-                Dock = DockStyle.Top,
+                Dock   = DockStyle.Top,
                 Height = _titleBarHeight
             };
             _titleBar.MouseDown += TitleBar_MouseDown;
@@ -240,22 +241,22 @@ namespace CoreKeeperInventoryEditor
             {
                 _iconBox = new PictureBox
                 {
-                    Size = new Size(_titleBarHeight - 16, _titleBarHeight - 16),
-                    Location = new Point(9, 7),
+                    Size      = new Size(_titleBarHeight - 16, _titleBarHeight - 16),
+                    Location  = new Point(9, 7),
                     BackColor = Color.Transparent,
-                    SizeMode = PictureBoxSizeMode.StretchImage
+                    SizeMode  = PictureBoxSizeMode.StretchImage
                 };
                 _titleBar.Controls.Add(_iconBox);
             }
 
             // Window title.
-            _titleLabel = new Label { AutoSize = true };
+            _titleLabel           = new Label { AutoSize = true };
             _titleLabel.MouseDown += TitleBar_MouseDown;
             _titleBar.Controls.Add(_titleLabel);
 
             // Buttons.
-            _btnMin = MakeButton("—", Minimise);
-            _btnMax = MakeButton("☐", ToggleMaximise);
+            _btnMin   = MakeButton("—", Minimize);
+            _btnMax   = MakeButton("☐", ToggleMaximise);
             _btnClose = MakeButton("✕", () =>
             {
                 CloseButtonPressed = true;
@@ -272,8 +273,8 @@ namespace CoreKeeperInventoryEditor
         {
             _contentPanel = new Panel
             {
-                Dock = DockStyle.Fill,
-                Padding = _form.Padding,
+                Dock      = DockStyle.Fill,
+                Padding   = _form.Padding,
                 BackColor = _form.BackColor
             };
 
@@ -289,9 +290,9 @@ namespace CoreKeeperInventoryEditor
         /// </summary>
         private void WireFormEvents()
         {
-            _form.Load += (_, __) => UpdateLayout();
+            _form.Load        += (_, __) => UpdateLayout();
             _form.SizeChanged += (_, __) => _form.BeginInvoke((Action)UpdateLayout);
-            _form.ResizeEnd += (_, __) => UpdateLayout();
+            _form.ResizeEnd   += (_, __) => UpdateLayout();
             _form.TextChanged += (_, __) => UpdateLayout();
         }
         #endregion
@@ -302,18 +303,18 @@ namespace CoreKeeperInventoryEditor
         {
             var btn = new Button
             {
-                Text = text,
+                Text      = text,
                 FlatStyle = FlatStyle.Flat,
-                Size = new Size(30, _titleBarHeight),
-                Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                TabStop = false
+                Size      = new Size(30, _titleBarHeight),
+                Anchor    = AnchorStyles.Top | AnchorStyles.Right,
+                TabStop   = false
             };
             btn.FlatAppearance.BorderSize = 0;
             btn.Click += (_, __) => onClick();
             return btn;
         }
 
-        private void Minimise() => _form.WindowState = FormWindowState.Minimized;
+        private void Minimize() => _form.WindowState = FormWindowState.Minimized;
         private void ToggleMaximise()
             => _form.WindowState = _form.WindowState == FormWindowState.Maximized
                                  ? FormWindowState.Normal
@@ -352,7 +353,7 @@ namespace CoreKeeperInventoryEditor
                 // Color.FromArgb(50, 50, 50); // Slate‑grey.
                 // Color.FromArgb(28, 28, 28); // Dark gray.
 
-                formBack = Color.FromArgb(28, 28, 28);
+                formBack  = Color.FromArgb(28, 28, 28);
                 titleBack = Color.Black;
                 titleFore = Color.White;
             }
@@ -364,7 +365,7 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Titlebar colors.
-            _titleBar.BackColor = titleBack;
+            _titleBar.BackColor   = titleBack;
             _titleLabel.ForeColor = titleFore;
             foreach (var b in new[] { _btnMin, _btnMax, _btnClose })
             {
@@ -381,7 +382,7 @@ namespace CoreKeeperInventoryEditor
                 if (_iconBox != null)
                 {
                     _iconBox.Visible = true;
-                    _iconBox.Image = _form.Icon?.ToBitmap();
+                    _iconBox.Image   = _form.Icon?.ToBitmap();
                 }
             }
             else if (_iconBox != null)
@@ -399,8 +400,8 @@ namespace CoreKeeperInventoryEditor
             // Buttons – right‑align in order Close | Max | Min.
             int x = _form.ClientSize.Width;
             PositionButton(_btnClose, _form.ControlBox);
-            PositionButton(_btnMax, _form.MaximizeBox);
-            PositionButton(_btnMin, _form.MinimizeBox);
+            PositionButton(_btnMax,   _form.MaximizeBox);
+            PositionButton(_btnMin,   _form.MinimizeBox);
 
             void PositionButton(Button btn, bool visible)
             {
@@ -410,7 +411,7 @@ namespace CoreKeeperInventoryEditor
                 btn.Location = new Point(x, 0);
             }
 
-            // Apply rounded region (maximised windows skip this).
+            // Apply rounded region (maximized windows skip this).
             if (_form.WindowState == FormWindowState.Normal)
                 ApplyRoundedRegion();
             else
@@ -423,7 +424,7 @@ namespace CoreKeeperInventoryEditor
         private void ApplyRoundedRegion()
         {
             var r = _form.ClientRectangle;
-            if (r.Width <= 2 || r.Height <= 2) return; // Ignore minimised size.
+            if (r.Width <= 2 || r.Height <= 2) return; // Ignore minimized size.
 
             int d = _cornerRadius * 2;
             var gp = new GraphicsPath();
