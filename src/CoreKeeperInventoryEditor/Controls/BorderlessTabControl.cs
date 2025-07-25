@@ -302,7 +302,7 @@ namespace CoreKeepersWorkshop
             {
                 // #RRGGBB or color names
                 try { return ColorTranslator.FromHtml(s); } catch { }
-                try { return Color.FromName(s); } catch { }
+                try { return Color.FromName(s);           } catch { }
             }
             return Color.Empty;
         }
@@ -336,7 +336,7 @@ namespace CoreKeepersWorkshop
             }
             else    // Normal.
             {
-                TOP_OFF = BOTTOM_OFF = LEFT_OFF = 0;
+                TOP_OFF   = BOTTOM_OFF = LEFT_OFF = 0;
                 RIGHT_OFF = -1;
                 H_SHIFT   = 0;
             }
@@ -344,13 +344,13 @@ namespace CoreKeepersWorkshop
             // Apply offsets.
             r.Y      += TOP_OFF;
             r.Height -= BOTTOM_OFF * 2;
-            r.X      += H_SHIFT + LEFT_OFF;
-            r.Width  -= H_SHIFT - RIGHT_OFF;
+            r.X      += H_SHIFT    + LEFT_OFF;
+            r.Width  -= H_SHIFT    - RIGHT_OFF;
 
             using var pen = new Pen(BevelColor);
             if (isRightOnly)
             {
-                g.DrawLine(pen, r.Right, r.Top, r.Right, r.Bottom);    // Right.
+                g.DrawLine(pen, r.Right, r.Top,    r.Right, r.Bottom); // Right.
                 return;
             }
 
@@ -426,7 +426,7 @@ namespace CoreKeepersWorkshop
             if (!enabled) return;       // No‑op when queued as a design‑time placeholder.
 
             const int shrinkWidth  = 8; // Horizontal inset added in WndProc.
-            const int shrinkHeight = 4; // Vertical inset.
+            const int shrinkHeight = 0; // Vertical inset.
 
             /* --------------------------------------------------------------
                1. Dock ≠ Fill -> we can safely resize this control.
@@ -434,7 +434,7 @@ namespace CoreKeepersWorkshop
             if (Dock != DockStyle.Fill)
             {
                 // Guard against over‑shrinking on handle re‑creation.
-                if (Width <= shrinkWidth ||
+                if (Width  <= shrinkWidth ||
                     Height <= shrinkHeight)
                     return;
 
@@ -454,7 +454,7 @@ namespace CoreKeepersWorkshop
             if (p == null) return;      // Unlikely, but protects against odd cases.
 
             // Prevent collapse below the desired inset.
-            if (p.ClientSize.Width > shrinkWidth &&
+            if (p.ClientSize.Width  > shrinkWidth &&
                 p.ClientSize.Height > shrinkHeight)
             {
                 p.ClientSize = new Size(p.ClientSize.Width  - shrinkWidth,
