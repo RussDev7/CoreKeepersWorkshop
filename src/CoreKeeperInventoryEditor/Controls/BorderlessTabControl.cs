@@ -448,11 +448,13 @@ namespace CoreKeepersWorkshop
                2. Dock = Fill -> layout always stretches us to the parent's
                   client area, so we shrink the parent once instead.
                -------------------------------------------------------------- */
-            if (_parentShrunk) return;  // Already handled for this handle build.
+            if (_parentShrunk) return; // Already handled for this handle build.
             _parentShrunk = true;
 
+            #pragma warning disable CS8600
             Control p = Parent;
-            if (p == null) return;      // Unlikely, but protects against odd cases.
+            #pragma warning restore CS8600
+            if (p == null) return;     // Unlikely, but protects against odd cases.
 
             // Prevent collapse below the desired inset.
             if (p.ClientSize.Width  > shrinkWidth &&
