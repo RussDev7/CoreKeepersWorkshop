@@ -426,6 +426,14 @@ namespace CoreKeeperInventoryEditor
             var r = _form.ClientRectangle;
             if (r.Width <= 2 || r.Height <= 2) return; // Ignore minimized size.
 
+            // If radius is 0 just use a normal rectangular region.
+            if (_cornerRadius <= 0 || _roundedCorners == Corner.None)
+            {
+                _form.Region?.Dispose();
+                _form.Region = null;                   // Let Windows draw square frame.
+                return;
+            }
+
             int d = _cornerRadius * 2;
             var gp = new GraphicsPath();
 
