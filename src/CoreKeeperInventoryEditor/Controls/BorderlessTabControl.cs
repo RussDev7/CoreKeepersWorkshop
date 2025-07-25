@@ -31,6 +31,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System;
 
+// Reminder: Update namespace when re‑using this class in a different project.
 namespace CoreKeepersWorkshop
 {
     /// <summary>
@@ -372,7 +373,7 @@ namespace CoreKeepersWorkshop
         /// <summary>
         /// When the native handle is first created (or re‑created after DPI/theme
         /// changes) we queue two layout‑fix delegates:
-        /// • <see cref="ReclaimNormalTabHeight"/> – normalises tab‑strip height.
+        /// • <see cref="ReclaimNormalTabHeight"/> – normalizes tab‑strip height.
         /// • <see cref="AdjustControlSize"/>      – compensates for WndProc inset.
         /// </summary>
         protected override void OnHandleCreated(EventArgs e)
