@@ -130,7 +130,7 @@ Bellow is a list of available theme tweaks in `Settings`:
 
 Also included in this theme tweak, is a more standardized collapsible GUI. The GUI when minimized, and the game is open, will reduce its opacity by 50% and position its self to the top right; maintaining its theme. When the game or process is not open/found, it will instead position itself at the top left of the desktop. Note, the minimized tab opacity will always be 50% opacity, it does not stack with the forms opacity!
 
-![ReworkedGUI](https://github.com/user-attachments/assets/e5b0a2ae-dbc6-415a-a0f3-e618cd3ce198)
+![ReworkedGUI](https://github.com/user-attachments/assets/d551f07e-05de-423b-a359-8fb268648d61)
 
 ## Download
 
