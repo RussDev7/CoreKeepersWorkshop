@@ -23,8 +23,6 @@ using System.IO;
 using Memory;
 using System;
 
-// Rename the namespace to your project's.
-// Not doing so will cause designer errors.
 namespace CoreKeeperInventoryEditor
 {
     public partial class MainForm : Form
@@ -9116,9 +9114,15 @@ namespace CoreKeeperInventoryEditor
 
         #region Event Handelers
 
+        /// <summary>
+        /// Raised when the form needs to discard its custom chrome
+        /// and rebuild itself with the native window frame.
+        /// </summary>
         public event EventHandler RestoreNativeRequested;
 
-        // call this *inside* MainForm when you want to swap out
+        /// <summary>
+        /// Helper to raise <see cref="RestoreNativeRequested"/> safely.
+        /// </summary>
         public void OnRestoreNativeRequested()
             => RestoreNativeRequested?.Invoke(this, EventArgs.Empty);
 
