@@ -8322,116 +8322,25 @@ namespace CoreKeeperInventoryEditor
 
         #region Available Commands List
 
-        public class CommandReader
+        // Project now supports tuple array declarations.
+        public static readonly (string command, string description)[] commands = new (string, string)[]
         {
-            #region Future Code Implementations
+            // ~~Inventory~~
+            ("item [type] (amount) (variation)",    "Give the player an item."),
 
-            // .NET 4.7.2 does not support tuple array declarations
-            /*
-            private static readonly (string command, string description)[] commands = new (string, string)[]
-            {
-                // ~~Inventory~~
-                ("item [type] (amount) (variation)",    "Give the player an item."),
+            // ~~Player~~
+            ("godmode",                             "Toggle invincibility."),
+            ("noclip",                              "Toggle no clipping."),
+            ("tp [x] [y]",                          "Teleport to a location."),
 
-                // ~~Player~~
-                ("godmode",                             "Toggle invincibility."),
-                ("noclip",                              "Toggle no clipping."),
-                ("tp [x] [y]",                          "Teleport to a location."),
+            // ~~World~~
+            ("clearground",                         "Remove ground items."),
+            ("mode [worldName] [difficulty]",       "Change the world difficulty."),
 
-                // ~~World~~
-                ("clearground",                         "Remove ground items."),
-                ("mode [worldName] [difficulty]",       "Change the world difficulty."),
-
-                // ~~Misc~~
-                ("help (page)",                         "Display a list of commands."),
-                ("cls",                                 "Clear the console.")
-            };
-            */
-            #endregion
-
-            private static readonly Tuple<string, string>[] commands = new Tuple<string, string>[]
-            {
-                // ~~Inventory~~
-                Tuple.Create("item [type] (amount) (variation)",    "Give the player an item."),
-
-                // ~~Player~~
-                Tuple.Create("godmode",                             "Toggle invincibility."),
-                Tuple.Create("noclip",                              "Toggle no clipping."),
-                Tuple.Create("tp [x] [y]",                          "Teleport to a location."),
-
-                // ~~World~~
-                Tuple.Create("clearground",                         "Remove ground items."),
-                Tuple.Create("mode [worldName] [difficulty]",       "Change the world difficulty."),
-
-                // ~~Misc~~
-                Tuple.Create("help (page)",                         "Display a list of commands."),
-                Tuple.Create("cls",                                 "Clear the console.")
-             };
-
-            #region Formatting Logic
-
-            private static string FormatCommand(string command, string description, int maxLength)
-            {
-                int spacesToAdd = maxLength - command.Length;
-
-                int offset = (spacesToAdd != 0) ? -1 : 0; // Apply a -1 offset if the spaces to add is not zero.
-                return command + new string(' ', spacesToAdd + offset) + "\t - " + description;
-            }
-
-            public static string ReadCommands(int maxLines, int page, bool ingameText = false)
-            {
-                int totalPages = (int)Math.Ceiling((double)commands.Length / maxLines);
-                if (page < 1 || page > totalPages)
-                {
-                    return "Invalid page number. Total pages: " + totalPages;
-                }
-
-                int maxCommandLength = commands.Max(cmd => cmd.Item1.Length);
-
-                StringBuilder sb = new StringBuilder();
-
-                if (ingameText)
-                    sb.AppendLine("=============================================");
-                else
-                    sb.AppendLine("========================================================");
-                sb.AppendLine("[] ---- Required Argument");
-                sb.AppendLine("() ---- Optional Argument");
-                sb.AppendLine("==============CONSOLE COMMANDS [PAGE " + page.ToString("D2") + "]==============");
-                sb.AppendLine("");
-
-                int startIndex = (page - 1) * maxLines;
-                int endIndex = Math.Min(startIndex + maxLines, commands.Length);
-
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    // Get the format based on where to display.
-                    if (!ingameText)
-                    {
-                        // Format for console.
-
-                        // Get string for richtextbox.
-                        sb.AppendLine(FormatCommand(commands[i].Item1, commands[i].Item2, maxCommandLength));
-                    }
-                    else
-                    {
-                        // Format for ingame.
-
-                        // Get string for richtextbox.
-                        sb.AppendLine(commands[i].Item1 + "\t - " + commands[i].Item2);
-                    }
-                }
-
-                // Finish the ingame builder.
-                if (ingameText)
-                {
-                    sb.AppendLine("");
-                    sb.AppendLine("Use '/help " + (page + 1) + "' for more commands.");
-                }
-
-                return sb.ToString();
-            }
-            #endregion
-        }
+            // ~~Misc~~
+            ("help (page)",                         "Display a list of commands."),
+            ("cls",                                 "Clear the console.")
+        };
         #endregion
 
         #region Toggle Chat Commands
@@ -8579,7 +8488,7 @@ namespace CoreKeeperInventoryEditor
 
                                 if (!string.IsNullOrWhiteSpace(itemInput))
                                 {
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[GiveItem] " + currentCommand, UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[GiveItem] " + currentCommand, UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                 }
                                 else
@@ -8587,7 +8496,7 @@ namespace CoreKeeperInventoryEditor
 
                                 if (AoBScanResultsInventory == null)
                                 {
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Inventory addresses!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Inventory addresses!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8609,13 +8518,13 @@ namespace CoreKeeperInventoryEditor
                                     // If not found by ID, or if name given, try name.
                                     if (match == null)
                                     {
-                                        string normalizedInput = NormalizeItemName(itemInput);
-                                        match = allItems.FirstOrDefault(x => NormalizeItemName(x.Name) == normalizedInput);
+                                        string normalizedInput = RichTextBoxExtensions.NormalizeItemName(itemInput);
+                                        match = allItems.FirstOrDefault(x => RichTextBoxExtensions.NormalizeItemName(x.Name) == normalizedInput);
                                     }
 
                                     if (match == null)
                                     {
-                                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, $"ERROR: Item '{itemInput}' not found!", UseOverlay_CheckBox.Checked);
+                                        RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, $"ERROR: Item '{itemInput}' not found!", UseOverlay_CheckBox.Checked);
                                         return;
                                     }
 
@@ -8653,7 +8562,7 @@ namespace CoreKeeperInventoryEditor
                                 }
                                 catch (Exception ex)
                                 {
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, $"ERROR: {ex.Message}", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, $"ERROR: {ex.Message}", UseOverlay_CheckBox.Checked);
                                 }
                             }
                             return; // Exit handler entirely.
@@ -8687,7 +8596,7 @@ namespace CoreKeeperInventoryEditor
                                 if (!MemLib.OpenProcess("CoreKeeper"))
                                 {
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8696,7 +8605,7 @@ namespace CoreKeeperInventoryEditor
                                 if (AoBScanResultsPlayerTools == null)
                                 {
                                     // Display message.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8722,7 +8631,7 @@ namespace CoreKeeperInventoryEditor
                                     playersGodmodeTimer.Start();
 
                                     // Display message to ingame console before clearing.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Enabled!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Enabled!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
 
                                     // End chat command.
@@ -8740,7 +8649,7 @@ namespace CoreKeeperInventoryEditor
                                     playersGodmodeTimer.Stop();
 
                                     // Display message to ingame console before clearing.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Disabled!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Godmode] Disabled!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
 
                                     // End chat command.
@@ -8778,7 +8687,7 @@ namespace CoreKeeperInventoryEditor
                                 if (!MemLib.OpenProcess("CoreKeeper"))
                                 {
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8787,7 +8696,7 @@ namespace CoreKeeperInventoryEditor
                                 if (AoBScanResultsPlayerTools == null)
                                 {
                                     // Display message.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Player addresses!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8821,7 +8730,7 @@ namespace CoreKeeperInventoryEditor
                                     playersNoclipTimer.Start();
 
                                     // Display message to ingame console before clearing.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Enabled!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Enabled!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
 
                                     // End chat command.
@@ -8845,7 +8754,7 @@ namespace CoreKeeperInventoryEditor
                                     MemLib.WriteMemory(noclipAddress, "int", noclipOriginalValue); // Overwrite new value.
 
                                     // Display message to ingame console before clearing.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Disabled!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Noclip] Disabled!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
 
                                     // End chat command.
@@ -8883,7 +8792,7 @@ namespace CoreKeeperInventoryEditor
                                 if (xLocation == "" || yLocation == "")
                                 {
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] CMD ERROR: You need to specify both X & Y coordinates!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[TP] CMD ERROR: You need to specify both X & Y coordinates!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8892,7 +8801,7 @@ namespace CoreKeeperInventoryEditor
                                 if (!MemLib.OpenProcess("CoreKeeper"))
                                 {
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[TP] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8901,7 +8810,7 @@ namespace CoreKeeperInventoryEditor
                                 if (AoBScanResultsPlayerLocation == null)
                                 {
                                     // Display message.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Teleport Player addresses!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the Teleport Player addresses!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8921,7 +8830,7 @@ namespace CoreKeeperInventoryEditor
                                 }
 
                                 // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[TP] Teleported Player to: {X: " + xLocation + ", Y: " + yLocation + "}.", UseOverlay_CheckBox.Checked);
+                                RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[TP] Teleported Player to: {X: " + xLocation + ", Y: " + yLocation + "}.", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
 
                                 // End chat command.
@@ -8974,9 +8883,9 @@ namespace CoreKeeperInventoryEditor
                                 {
                                     // Display error message.
                                     if (BruteForceTrash_CheckBox.Checked)
-                                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround_BruteForce] Failed to find any addresses. No ground items found!!", UseOverlay_CheckBox.Checked);
+                                        RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround_BruteForce] Failed to find any addresses. No ground items found!!", UseOverlay_CheckBox.Checked);
                                     else
-                                        RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] You must throw at least one torch on the ground!!", UseOverlay_CheckBox.Checked);
+                                        RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] You must throw at least one torch on the ground!!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -8985,7 +8894,7 @@ namespace CoreKeeperInventoryEditor
                                 await RemoveGroundItemsAsync();
 
                                 // Log events.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] Ground items cleared!", UseOverlay_CheckBox.Checked);
+                                RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[ClearGround] Ground items cleared!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
 
                                 // End chat command.
@@ -9022,7 +8931,7 @@ namespace CoreKeeperInventoryEditor
                                 if (worldName == "" || mode == "")
                                 {
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] CMD ERROR: /mode [worldName] [difficulty = 'normal' or 'hard']", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] CMD ERROR: /mode [worldName] [difficulty = 'normal' or 'hard']", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -9031,7 +8940,7 @@ namespace CoreKeeperInventoryEditor
                                 if (!MemLib.OpenProcess("CoreKeeper"))
                                 {
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] ERROR: Process Is Not Found or Open!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -9040,7 +8949,7 @@ namespace CoreKeeperInventoryEditor
                                 if (AoBScanResultsWorldData == null)
                                 {
                                     // Display message.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the World Information addresses!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "ERROR: You need to first scan for the World Information addresses!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                     return;
                                 }
@@ -9055,7 +8964,7 @@ namespace CoreKeeperInventoryEditor
                                     ChangeWorldDifficulty(0);
 
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to normal!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to normal!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                 }
                                 else if (mode.ToLower() == "hard")
@@ -9064,7 +8973,7 @@ namespace CoreKeeperInventoryEditor
                                     ChangeWorldDifficulty(1);
 
                                     // Log events.
-                                    RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to hard!", UseOverlay_CheckBox.Checked);
+                                    RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[WorldMode] Difficulty set to hard!", UseOverlay_CheckBox.Checked);
                                     ChatCommands_RichTextBox.ScrollToCaret();
                                 }
                             }
@@ -9092,7 +9001,7 @@ namespace CoreKeeperInventoryEditor
                                 firstRun = false;
 
                                 // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[Help] Help command was issued!", false);
+                                RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[Help] Help command was issued!", false);
                                 ChatCommands_RichTextBox.ScrollToCaret();
 
                                 // Handle overlay differently.
@@ -9135,7 +9044,7 @@ namespace CoreKeeperInventoryEditor
                                 firstRun = false;
 
                                 // Display message to ingame console before clearing.
-                                RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "[ClearConsole] Console log was cleared!", UseOverlay_CheckBox.Checked);
+                                RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "[ClearConsole] Console log was cleared!", UseOverlay_CheckBox.Checked);
                                 ChatCommands_RichTextBox.ScrollToCaret();
 
                                 // Reset richtextbox.
@@ -9174,7 +9083,7 @@ namespace CoreKeeperInventoryEditor
                             MemLib.WriteMemory(baseAddress, "bytes", string.Join(" ", Enumerable.Repeat("00", currentCommand.Split(' ')[0].Length)));
 
                             // Display error message.
-                            RichTextBoxHelper.AppendUniqueText(ChatCommands_RichTextBox, "'" + currentCommand.Split(' ')[0] + "' is not recognized as an command.", UseOverlay_CheckBox.Checked);
+                            RichTextBoxExtensions.AppendUniqueText(ChatCommands_RichTextBox, "'" + currentCommand.Split(' ')[0] + "' is not recognized as an command.", UseOverlay_CheckBox.Checked);
                             ChatCommands_RichTextBox.ScrollToCaret();
 
                             // End loop.
@@ -9200,35 +9109,6 @@ namespace CoreKeeperInventoryEditor
             }
         }
         #endregion // End chat events.
-
-        #region Append Unique Text Helper
-
-        public static class RichTextBoxHelper
-        {
-            private static string _lastMessage = string.Empty;
-
-            public static void AppendUniqueText(RichTextBox richTextBox, string message, bool useOverlay)
-            {
-                if (_lastMessage != message)
-                {
-                    // Display console in-game.
-                    if (useOverlay)
-                    {
-                        OverlayHelper.ShowOverlay(message, 5);
-                    }
-
-                    richTextBox.AppendText(message + Environment.NewLine);
-                    _lastMessage = message;
-                }
-            }
-        }
-
-        private static string NormalizeItemName(string input)
-        {
-            return input.ToLower().Replace("_", "").Replace(" ", "");
-        }
-
-        #endregion
 
         #endregion // End toggle chat commands
 

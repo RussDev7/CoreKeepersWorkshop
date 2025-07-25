@@ -1,11 +1,10 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
 using CoreKeeperInventoryEditor;
 using System.Windows.Forms;
 using System.Reflection;
+using Newtonsoft.Json;
 using System.IO;
 using System;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace CoreKeepersWorkshop
 {
@@ -18,18 +17,6 @@ namespace CoreKeepersWorkshop
             InitializeComponent();
             Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
         }
-
-        #region Food JSON Mapping
-
-        class FoodRecord
-        {
-            public string Name      { get; set; } = "";
-            public string Stats     { get; set; } = "";
-            public int    Id        { get; set; }
-            public int    Variation { get; set; }
-            public int?   Skillset  { get; set; }
-        }
-        #endregion
 
         #region Closing Varibles
 

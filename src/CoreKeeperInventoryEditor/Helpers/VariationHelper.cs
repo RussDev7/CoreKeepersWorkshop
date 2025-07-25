@@ -1,5 +1,6 @@
 ﻿namespace CoreKeepersWorkshop
 {
+    // Essential variation math helpers decompiled from the games code.
     internal class VariationHelper
     {
         public static int GetFoodVariation(int ingredient1, int ingredient2)

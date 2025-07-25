@@ -115,6 +115,8 @@
     <Compile Include="ChunkViewer.Designer.cs">
       <DependentUpon>ChunkViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommandReader.cs" />
+    <Compile Include="Helpers\FoodRecord.cs" />
     <Compile Include="Helpers\FormStylingExtensions.cs" />
     <Compile Include="Controls\BorderlessTabControl.cs">
       <SubType>Component</SubType>
@@ -147,6 +149,7 @@
     <Compile Include="ItemSelectionMenu.Designer.cs">
       <DependentUpon>ItemSelectionMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\RichTextBoxExtensions.cs" />
     <Compile Include="Startup\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\OverlayHelper.cs" />
