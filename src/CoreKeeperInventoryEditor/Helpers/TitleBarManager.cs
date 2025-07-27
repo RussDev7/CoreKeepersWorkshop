@@ -57,6 +57,14 @@ namespace CoreKeeperInventoryEditor
         Light
     }
 
+    /// <summary>
+    /// How the form reacts when the border size changes.
+    /// </summary>
+    public enum BorderMode
+    {
+        GrowOut, // Border grows outward, expanding the form size.
+        GrowIn   // Border grows inward, shrinking the content area.
+    }
     #endregion
 
     /// <summary>
@@ -73,6 +81,8 @@ namespace CoreKeeperInventoryEditor
             IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
 
         private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int WM_SYSCOMMAND    = 0x0112;
+        private const int SC_CONTEXTHELP   = 0xF180;
         private const int HTCAPTION        = 0x02;
 
         #endregion
@@ -85,7 +95,7 @@ namespace CoreKeeperInventoryEditor
         private Panel         _titleBar;
         private Panel         _contentPanel;
         private Label         _titleLabel;
-        private Button        _btnMin, _btnMax, _btnClose;
+        private Button        _btnMin, _btnMax, _btnClose, _btnHelp;
         private PictureBox    _iconBox;
 
         // Style options (can be changed later via UpdateStyle).
@@ -95,6 +105,8 @@ namespace CoreKeeperInventoryEditor
         private bool          _showIcon;
         private Corner        _roundedCorners;
         private ThemeMode     _theme;
+        private BorderMode    _borderMode;
+        private Color?        _borderColor;
 
         // State flags.
         private bool          _enabled;
@@ -106,10 +118,13 @@ namespace CoreKeeperInventoryEditor
         /// <summary>
         /// Create a new styler, but do not enable it yet.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:Use primary constructor")]
         public CustomFormStyler(
             Form form,
             ThemeMode theme       = ThemeMode.Dark,
+            BorderMode borderMode = BorderMode.GrowOut,
             Corner roundedCorners = Corner.All,
+            Color? borderColor    = null,
             int titleBarHeight    = 30,
             int cornerRadius      = 15,
             int borderSize        = 0,
@@ -117,7 +132,9 @@ namespace CoreKeeperInventoryEditor
         {
             _form                 = form ?? throw new ArgumentNullException(nameof(form));
             _theme                = theme;
+            _borderMode           = borderMode;
             _roundedCorners       = roundedCorners;
+            _borderColor          = borderColor;    // Keep it nullable.
             _titleBarHeight       = titleBarHeight;
             _cornerRadius         = cornerRadius;
             _borderSize           = borderSize;
@@ -138,9 +155,9 @@ namespace CoreKeeperInventoryEditor
             // Remember the old client size.
             var oldClient = _form.ClientSize;
 
-            // Kill system frame & add padding for our border.
+            // Kill system frame & padding for our border.
             _form.FormBorderStyle = FormBorderStyle.None;
-            _form.Padding         = new Padding(_borderSize);
+            _form.Padding         = Padding.Empty;
             SetDoubleBuffered(_form);
 
             // Enlarge client area so content gets all of its original space back.
@@ -156,9 +173,32 @@ namespace CoreKeeperInventoryEditor
             _form.Controls.Clear();
             _form.Controls.Add(_contentPanel); // Fill.
             _form.Controls.Add(_titleBar);     // Top.
+            _form.Paint += Form_Paint;         // Subscribe to Paint so we can draw our border.
 
             WireFormEvents();
             UpdateLayout();                    // Apply colors, text, button placement.
+
+            // Calculate initial border delta compensation.
+            ApplyInitialBorderAndTitleBar(oldClient);
+
+            /// <summary>
+            /// Adjusts the form’s client size once when the custom chrome is first applied.
+            /// • For GrowOut mode, expands width/height by twice the border size so the original
+            ///   content area remains intact.
+            /// • For GrowIn mode, shrinks width/height by twice the border size so the border
+            ///   is drawn inside the existing area.
+            /// • Always adds the title-bar height, and guards against negative dimensions.
+            /// </summary>
+            void ApplyInitialBorderAndTitleBar(Size oldClient)
+            {
+                int delta = _borderSize * 2;
+                int sign  = _borderMode == BorderMode.GrowOut ? 1 : -1;
+
+                int newW  = Math.Max(1, oldClient.Width  + sign * delta);
+                int newH  = Math.Max(1, oldClient.Height + sign * delta + _titleBarHeight);
+
+                _form.ClientSize = new Size(newW, newH);
+            }
         }
 
         /// <summary>
@@ -173,6 +213,7 @@ namespace CoreKeeperInventoryEditor
             if (_titleBar != null)
             {
                 _titleBar.MouseDown -= TitleBar_MouseDown;
+                _form.Paint         -= Form_Paint;
                 _titleBar.Controls.Clear();
                 _form.Controls.Remove(_titleBar);
                 _titleBar.Dispose();
@@ -201,19 +242,46 @@ namespace CoreKeeperInventoryEditor
         /// Only the values you supply are modified.
         /// </summary>
         public void UpdateStyle(
-            ThemeMode? theme          = null,
-            Corner?    roundedCorners = null,
-            int?       titleBarHeight = null,
-            int?       cornerRadius   = null,
-            int?       borderSize     = null,
-            bool?      showIcon       = null)
+            ThemeMode?  theme          = null,
+            BorderMode? borderMode     = null,
+            Corner?     roundedCorners = null,
+            Color?      borderColor    = null,
+            int?        titleBarHeight = null,
+            int?        cornerRadius   = null,
+            int?        borderSize     = null,
+            bool?       showIcon       = null)
         {
+            // bool borderSizeChanged     = borderSize.HasValue  && borderSize.Value  != _borderSize;
+            // bool borderModeChanged     = borderMode.HasValue  && borderMode.Value  != _borderMode;
+            // bool borderColorChanged    = borderColor.HasValue && borderColor.Value != _borderColor;
+            int  oldBorderSize            = _borderSize;
+
             if (theme != null)          _theme          = theme.Value;
+            if (borderMode != null)     _borderMode     = borderMode.Value;
             if (roundedCorners != null) _roundedCorners = roundedCorners.Value;
+            if (borderColor != null)    _borderColor    = borderColor.Value;
             if (titleBarHeight != null) _titleBarHeight = titleBarHeight.Value;
             if (cornerRadius != null)   _cornerRadius   = cornerRadius.Value;
             if (borderSize != null)     _borderSize     = borderSize.Value;
             if (showIcon != null)       _showIcon       = showIcon.Value;
+
+            // Determine sizing behavior based on BorderMode.
+            int deltaBorder = _borderSize - oldBorderSize;
+            if (_borderMode == BorderMode.GrowOut)
+            {
+                // Adjust the form size outwards.
+                _form.Size = new Size(
+                    _form.Width  + deltaBorder * 2,
+                    _form.Height + deltaBorder * 2);
+            }
+            else if (_borderMode == BorderMode.GrowIn)
+            {
+                // Adjust the form size inwards (reduces client area).
+                _form.Size = new Size(
+                    _form.Width  - deltaBorder * 2,
+                    _form.Height - deltaBorder * 2);
+            }
+            _form.Invalidate();
 
             UpdateLayout();
         }
@@ -262,7 +330,13 @@ namespace CoreKeeperInventoryEditor
                 CloseButtonPressed = true;
                 _form.Close();
             });
-            _titleBar.Controls.AddRange(new[] { _btnMin, _btnMax, _btnClose });
+
+            // Help button (only if the Form’s HelpButton property is true, and maximize + minimize buttons are hidden).
+            if (_form.HelpButton && (!_form.MaximizeBox && !_form.MinimizeBox))
+                _btnHelp = MakeButton("?", ShowHelp);
+
+            var buttons = new[] { _btnMin, _btnMax, _btnHelp, _btnClose }.Where(b => b != null).ToArray();
+            _titleBar.Controls.AddRange(buttons);
         }
 
         /// <summary>
@@ -319,6 +393,7 @@ namespace CoreKeeperInventoryEditor
             => _form.WindowState = _form.WindowState == FormWindowState.Maximized
                                  ? FormWindowState.Normal
                                  : FormWindowState.Maximized;
+        private void ShowHelp() => SendMessage(_form.Handle, WM_SYSCOMMAND, (IntPtr)SC_CONTEXTHELP, IntPtr.Zero);
         #endregion
 
         #region Mouse Drag
@@ -398,13 +473,15 @@ namespace CoreKeeperInventoryEditor
             _titleLabel.Text = _form.Text;
 
             // Buttons – right‑align in order Close | Max | Min.
-            int x = _form.ClientSize.Width;
+            int x = _titleBar.ClientSize.Width;
             PositionButton(_btnClose, _form.ControlBox);
+            PositionButton(_btnHelp,  _form.HelpButton);
             PositionButton(_btnMax,   _form.MaximizeBox);
             PositionButton(_btnMin,   _form.MinimizeBox);
 
             void PositionButton(Button btn, bool visible)
             {
+                if (btn == null) return;
                 btn.Visible = visible;
                 if (!visible) return;
                 x -= btn.Width;
@@ -464,6 +541,38 @@ namespace CoreKeeperInventoryEditor
             gp.CloseFigure();
             _form.Region?.Dispose();
             _form.Region = new Region(gp);
+        }
+        #endregion
+
+        #region Border Painting
+
+        /// <summary>
+        /// Draws the custom window border.
+        /// 
+        /// • Uses <c>_borderColor</c> if the caller supplied one;  
+        ///   otherwise falls back to white in dark‑theme mode or black in light‑theme mode.  
+        /// • Renders the stroke entirely inside the client area, so it never clips into the
+        ///   non‑client region.
+        /// • The rectangle is offset by <c>_borderSize / 2f</c> on every side and drawn with
+        ///   a floating‑point <see cref="RectangleF"/>.  
+        ///   This half‑pixel shift keeps both even‑ and odd‑width borders perfectly aligned,
+        ///   eliminating the 1‑pixel gaps that can occur with antialiased drawing.
+        /// </summary>
+        private void Form_Paint(object sender, PaintEventArgs e)
+        {
+            if (_borderSize <= 0) return;
+
+            // Determine default color if none specified.
+            Color effectiveBorderColor = _borderColor ??
+                (_theme == ThemeMode.Dark ? Color.White : Color.Black);
+
+            using var pen = new Pen(effectiveBorderColor, _borderSize);
+
+            var rect = new RectangleF(_borderSize / 2f, _borderSize / 2f,
+                _form.ClientSize.Width  - _borderSize,
+                _form.ClientSize.Height - _borderSize);
+
+            e.Graphics.DrawRectangle(pen, rect.X, rect.Y, rect.Width, rect.Height);
         }
         #endregion
 

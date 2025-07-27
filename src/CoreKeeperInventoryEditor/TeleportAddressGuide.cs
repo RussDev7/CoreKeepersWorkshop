@@ -1,4 +1,5 @@
-﻿using CoreKeeperInventoryEditor;
+﻿using CoreKeepersWorkshop.Properties;
+using CoreKeeperInventoryEditor;
 using System.Windows.Forms;
 using System;
 
@@ -25,16 +26,16 @@ namespace CoreKeepersWorkshop
             Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
             #endregion
 
-            #region Set Form Locations
-
-            // Set the forms active location based on previous save.
-            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.TeleportAddressGuideLocation;
-            #endregion
-
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
+            #endregion
+
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            if (ActiveForm != null) this.Location = Settings.Default.TeleportAddressGuideLocation;
             #endregion
         }
 
@@ -54,7 +55,7 @@ namespace CoreKeepersWorkshop
             try
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.TeleportAddressGuideLocation = this.Location;
+                Settings.Default.TeleportAddressGuideLocation = this.Location;
             }
             catch (Exception)
             { } // Do nothing.

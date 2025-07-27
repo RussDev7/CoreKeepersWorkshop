@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CoreKeepersWorkshop.Properties;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using CoreKeepersWorkshop;
 using System.Drawing;
@@ -11,12 +12,12 @@ namespace CoreKeeperInventoryEditor
     public partial class ItemSelectionMenu : Form
     {
         // Form closing saving.
-        int selectedItemType = 0;
-        int selectedItemAmount = 0;
+        int selectedItemType      = 0;
+        int selectedItemAmount    = 0;
         int selectedItemVariation = 0;
-        int selectedItemSkillset = 0;
-        bool selectedOverwrite = false;
-        bool userCanceldTask = false;
+        int selectedItemSkillset  = 0;
+        bool selectedOverwrite    = false;
+        bool userCanceldTask      = false;
 
         // Define texture data.
         private static string InventoryDir => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "Inventory");
@@ -102,22 +103,22 @@ namespace CoreKeeperInventoryEditor
             try
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount = (int)CustomAmount_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemID = (int)CustomID_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation = (int)ItemVariant_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = (int)SkillType_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation = this.Location;
+                Settings.Default.ItemAmount              = (int)CustomAmount_NumericUpDown.Value;
+                Settings.Default.ItemID                  = (int)CustomID_NumericUpDown.Value;
+                Settings.Default.ItemVariation           = (int)ItemVariant_NumericUpDown.Value;
+                Settings.Default.ItemSkillset            = (int)SkillType_NumericUpDown.Value;
+                Settings.Default.InventoryEditorLocation = this.Location;
 
                 // Ensure current tab is not search, if so, reset.
                 if (Main_TabControl.SelectedTab == Search)
                 {
                     // Set value to tools.
-                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = "Tab1_TabPage";
+                    Settings.Default.CurrentItemTab = "Tab1_TabPage";
                 }
                 else
                 {
                     // Save current tab.
-                    CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab = Main_TabControl.SelectedTab.Name;
+                    Settings.Default.CurrentItemTab = Main_TabControl.SelectedTab.Name;
                 }
             }
             catch (Exception)
@@ -170,16 +171,10 @@ namespace CoreKeeperInventoryEditor
             Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
             #endregion
 
-            #region Set Form Locations
-
-            // Set the forms active location based on previous save.
-            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.InventoryEditorLocation;
-            #endregion
-
             #region Set Form Theme
 
             // Change the tab-control color settings based on the theme.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.UITheme == ThemeMode.Dark)
+            if (Settings.Default.UITheme == ThemeMode.Dark)
                 Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Dark);
             else
                 Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Light);
@@ -189,7 +184,7 @@ namespace CoreKeeperInventoryEditor
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
@@ -260,17 +255,17 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Ensure the skillset is more then -1.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset < 0)
+            if (Settings.Default.ItemSkillset < 0)
             {
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset = 0;
+                Settings.Default.ItemSkillset = 0;
             }
 
             // Load some settings.
-            CustomAmount_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemAmount;
-            CustomID_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemID;
-            ItemVariant_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemVariation;
-            SkillType_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.ItemSkillset;
-            Main_TabControl.SelectedTab = Main_TabControl.TabPages[CoreKeepersWorkshop.Properties.Settings.Default.CurrentItemTab];
+            CustomAmount_NumericUpDown.Value = Settings.Default.ItemAmount;
+            CustomID_NumericUpDown.Value     = Settings.Default.ItemID;
+            ItemVariant_NumericUpDown.Value  = Settings.Default.ItemVariation;
+            SkillType_NumericUpDown.Value    = Settings.Default.ItemSkillset;
+            Main_TabControl.SelectedTab      = Main_TabControl.TabPages[Settings.Default.CurrentItemTab];
 
             // Assign images/items.
             // Loop through all folders/categories (each tab/category of items).
@@ -315,6 +310,12 @@ namespace CoreKeeperInventoryEditor
             }
 
             #endregion
+
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            if (ActiveForm != null) this.Location = Settings.Default.InventoryEditorLocation;
+            #endregion
         }
 
         #region Main Form Controls
@@ -322,33 +323,33 @@ namespace CoreKeeperInventoryEditor
         // Add custom ID.
         private void CustomID_Button_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)CustomID_NumericUpDown.Value;
-            selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            selectedItemType      = (int)CustomID_NumericUpDown.Value;
+            selectedItemAmount    = (int)CustomAmount_NumericUpDown.Value;
             selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
-            selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
-            selectedOverwrite = true;
+            selectedItemSkillset  = (int)SkillType_NumericUpDown.Value;
+            selectedOverwrite     = true;
             this.Close();
         }
 
         // Add custom variation.
         private void ItemVariant_Button_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)CustomID_NumericUpDown.Value;
-            selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            selectedItemType      = (int)CustomID_NumericUpDown.Value;
+            selectedItemAmount    = (int)CustomAmount_NumericUpDown.Value;
             selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
-            selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
-            selectedOverwrite = true;
+            selectedItemSkillset  = (int)SkillType_NumericUpDown.Value;
+            selectedOverwrite     = true;
             this.Close();
         }
 
         // Add custom skillset.
         private void SkillType_Button_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)CustomID_NumericUpDown.Value;
-            selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+            selectedItemType      = (int)CustomID_NumericUpDown.Value;
+            selectedItemAmount    = (int)CustomAmount_NumericUpDown.Value;
             selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
-            selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
-            selectedOverwrite = true;
+            selectedItemSkillset  = (int)SkillType_NumericUpDown.Value;
+            selectedOverwrite     = true;
             this.Close();
         }
 
@@ -357,11 +358,11 @@ namespace CoreKeeperInventoryEditor
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectedItemType = (int)CustomID_NumericUpDown.Value;
-                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                selectedItemType      = (int)CustomID_NumericUpDown.Value;
+                selectedItemAmount    = (int)CustomAmount_NumericUpDown.Value;
                 selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
-                selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
-                selectedOverwrite = true;
+                selectedItemSkillset  = (int)SkillType_NumericUpDown.Value;
+                selectedOverwrite     = true;
                 this.Close();
             }
         }
@@ -371,11 +372,11 @@ namespace CoreKeeperInventoryEditor
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectedItemType = (int)CustomID_NumericUpDown.Value;
-                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                selectedItemType      = (int)CustomID_NumericUpDown.Value;
+                selectedItemAmount    = (int)CustomAmount_NumericUpDown.Value;
                 selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
-                selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
-                selectedOverwrite = true;
+                selectedItemSkillset  = (int)SkillType_NumericUpDown.Value;
+                selectedOverwrite     = true;
                 this.Close();
             }
         }
@@ -385,11 +386,11 @@ namespace CoreKeeperInventoryEditor
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectedItemType = (int)CustomID_NumericUpDown.Value;
-                selectedItemAmount = (int)CustomAmount_NumericUpDown.Value;
+                selectedItemType      = (int)CustomID_NumericUpDown.Value;
+                selectedItemAmount    = (int)CustomAmount_NumericUpDown.Value;
                 selectedItemVariation = (int)ItemVariant_NumericUpDown.Value;
-                selectedItemSkillset = (int)SkillType_NumericUpDown.Value;
-                selectedOverwrite = true;
+                selectedItemSkillset  = (int)SkillType_NumericUpDown.Value;
+                selectedOverwrite     = true;
                 this.Close();
             }
         }
@@ -397,10 +398,10 @@ namespace CoreKeeperInventoryEditor
         // Remove item.
         private void RemoveItem_Button_Click(object sender, EventArgs e)
         {
-            selectedItemType = 0;
-            selectedItemAmount = 1;
+            selectedItemType      = 0;
+            selectedItemAmount    = 1;
             selectedItemVariation = 0;
-            selectedItemSkillset = 0;
+            selectedItemSkillset  = 0;
             this.Close();
         }
 
@@ -421,7 +422,7 @@ namespace CoreKeeperInventoryEditor
 
             // Set Image Size
             ImagelistLargeSearch.ImageSize = new Size(50, 60);
-            ImagelistSearch.ImageSize = new Size(50, 60);
+            ImagelistSearch.ImageSize      = new Size(50, 60);
 
             // Define separate counts.
             int countSearch = 0;
@@ -486,7 +487,7 @@ namespace CoreKeeperInventoryEditor
 
                 // Set Image Size
                 ImagelistLargeSearch.ImageSize = new Size(50, 60);
-                ImagelistSearch.ImageSize = new Size(50, 60);
+                ImagelistSearch.ImageSize      = new Size(50, 60);
 
                 // Define separate counts.
 
@@ -574,7 +575,7 @@ namespace CoreKeeperInventoryEditor
                 string[] tagParts = listView.SelectedItems[0].Tag.ToString().Split(',');
 
                 // Set your variables to what the user selected.
-                selectedItemType = int.Parse(tagParts[0]);
+                selectedItemType      = int.Parse(tagParts[0]);
                 selectedItemVariation = int.Parse(tagParts[1]);
 
                 // Skillset is optional; if present, parse it, else set to 0.

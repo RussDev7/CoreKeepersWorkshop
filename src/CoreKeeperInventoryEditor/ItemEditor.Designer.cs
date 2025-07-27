@@ -63,6 +63,9 @@ namespace CoreKeepersWorkshop
             this.Skillset_Button = new System.Windows.Forms.Button();
             this.Skillset_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.SkillsetHelp_Button = new System.Windows.Forms.Button();
+            this.Slot1_Panel = new System.Windows.Forms.Panel();
+            this.Slot2_Panel = new System.Windows.Forms.Panel();
+            this.Slot3_Panel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ItemID_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VariationNumerical_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
@@ -78,6 +81,9 @@ namespace CoreKeepersWorkshop
             ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity5_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity2_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Skillset_NumericUpDown)).BeginInit();
+            this.Slot1_Panel.SuspendLayout();
+            this.Slot2_Panel.SuspendLayout();
+            this.Slot3_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ItemID_NumericUpDown
@@ -103,7 +109,7 @@ namespace CoreKeepersWorkshop
             // 
             this.VariationNumerical_NumericUpDown.Location = new System.Drawing.Point(91, 29);
             this.VariationNumerical_NumericUpDown.Maximum = new decimal(new int[] {
-            999999999,
+            2147483647,
             0,
             0,
             0});
@@ -232,33 +238,33 @@ namespace CoreKeepersWorkshop
             // 
             // Slot1_PictureBox
             // 
-            this.Slot1_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot1_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.Slot1_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Slot1_PictureBox.Location = new System.Drawing.Point(12, 55);
+            this.Slot1_PictureBox.Location = new System.Drawing.Point(4, 4);
             this.Slot1_PictureBox.Name = "Slot1_PictureBox";
-            this.Slot1_PictureBox.Size = new System.Drawing.Size(64, 64);
+            this.Slot1_PictureBox.Size = new System.Drawing.Size(55, 55);
             this.Slot1_PictureBox.TabIndex = 10;
             this.Slot1_PictureBox.TabStop = false;
             this.Slot1_PictureBox.Click += new System.EventHandler(this.Slot1_PictureBox_Click);
             // 
             // Slot2_PictureBox
             // 
-            this.Slot2_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot2_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.Slot2_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Slot2_PictureBox.Location = new System.Drawing.Point(91, 55);
+            this.Slot2_PictureBox.Location = new System.Drawing.Point(4, 4);
             this.Slot2_PictureBox.Name = "Slot2_PictureBox";
-            this.Slot2_PictureBox.Size = new System.Drawing.Size(64, 64);
+            this.Slot2_PictureBox.Size = new System.Drawing.Size(55, 55);
             this.Slot2_PictureBox.TabIndex = 11;
             this.Slot2_PictureBox.TabStop = false;
             this.Slot2_PictureBox.Click += new System.EventHandler(this.Slot2_PictureBox_Click);
             // 
             // Slot3_PictureBox
             // 
-            this.Slot3_PictureBox.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot3_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.Slot3_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Slot3_PictureBox.Location = new System.Drawing.Point(172, 55);
+            this.Slot3_PictureBox.Location = new System.Drawing.Point(4, 4);
             this.Slot3_PictureBox.Name = "Slot3_PictureBox";
-            this.Slot3_PictureBox.Size = new System.Drawing.Size(64, 64);
+            this.Slot3_PictureBox.Size = new System.Drawing.Size(55, 55);
             this.Slot3_PictureBox.TabIndex = 12;
             this.Slot3_PictureBox.TabStop = false;
             this.Slot3_PictureBox.Click += new System.EventHandler(this.Slot3_PictureBox_Click);
@@ -550,6 +556,36 @@ namespace CoreKeepersWorkshop
             this.SkillsetHelp_Button.UseVisualStyleBackColor = true;
             this.SkillsetHelp_Button.Click += new System.EventHandler(this.SkillsetHelp_Button_Click);
             // 
+            // Slot1_Panel
+            // 
+            this.Slot1_Panel.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot1_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot1_Panel.Controls.Add(this.Slot1_PictureBox);
+            this.Slot1_Panel.Location = new System.Drawing.Point(12, 55);
+            this.Slot1_Panel.Name = "Slot1_Panel";
+            this.Slot1_Panel.Size = new System.Drawing.Size(64, 64);
+            this.Slot1_Panel.TabIndex = 20;
+            // 
+            // Slot2_Panel
+            // 
+            this.Slot2_Panel.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot2_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot2_Panel.Controls.Add(this.Slot2_PictureBox);
+            this.Slot2_Panel.Location = new System.Drawing.Point(91, 55);
+            this.Slot2_Panel.Name = "Slot2_Panel";
+            this.Slot2_Panel.Size = new System.Drawing.Size(64, 64);
+            this.Slot2_Panel.TabIndex = 21;
+            // 
+            // Slot3_Panel
+            // 
+            this.Slot3_Panel.BackgroundImage = global::CoreKeepersWorkshop.Properties.Resources.UIBackgroundSingle;
+            this.Slot3_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slot3_Panel.Controls.Add(this.Slot3_PictureBox);
+            this.Slot3_Panel.Location = new System.Drawing.Point(172, 55);
+            this.Slot3_Panel.Name = "Slot3_Panel";
+            this.Slot3_Panel.Size = new System.Drawing.Size(64, 64);
+            this.Slot3_Panel.TabIndex = 22;
+            // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -565,9 +601,6 @@ namespace CoreKeepersWorkshop
             this.Controls.Add(this.Item3_Label);
             this.Controls.Add(this.Item2_Label);
             this.Controls.Add(this.Item1_Label);
-            this.Controls.Add(this.Slot3_PictureBox);
-            this.Controls.Add(this.Slot2_PictureBox);
-            this.Controls.Add(this.Slot1_PictureBox);
             this.Controls.Add(this.Variation_Label);
             this.Controls.Add(this.ItemID_Label);
             this.Controls.Add(this.CookedFoodList_Button);
@@ -579,6 +612,9 @@ namespace CoreKeepersWorkshop
             this.Controls.Add(this.ItemID_NumericUpDown);
             this.Controls.Add(this.Variation1_NumericUpDown);
             this.Controls.Add(this.VariationNumerical_NumericUpDown);
+            this.Controls.Add(this.Slot1_Panel);
+            this.Controls.Add(this.Slot2_Panel);
+            this.Controls.Add(this.Slot3_Panel);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -603,6 +639,9 @@ namespace CoreKeepersWorkshop
             ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity5_NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomQuantity2_NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Skillset_NumericUpDown)).EndInit();
+            this.Slot1_Panel.ResumeLayout(false);
+            this.Slot2_Panel.ResumeLayout(false);
+            this.Slot3_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -642,5 +681,8 @@ namespace CoreKeepersWorkshop
         private System.Windows.Forms.Button Skillset_Button;
         private System.Windows.Forms.NumericUpDown Skillset_NumericUpDown;
         private System.Windows.Forms.Button SkillsetHelp_Button;
+        private System.Windows.Forms.Panel Slot1_Panel;
+        private System.Windows.Forms.Panel Slot2_Panel;
+        private System.Windows.Forms.Panel Slot3_Panel;
     }
 }

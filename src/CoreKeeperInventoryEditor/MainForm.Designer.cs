@@ -30,11 +30,12 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Main_TabControl = new CoreKeepersWorkshop.BorderlessTabControl();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.Main_TabControl = new CoreKeeperInventoryEditor.BorderlessTabControl();
             this.Inventory_TabPage = new System.Windows.Forms.TabPage();
+            this.GetInventoryAddresses_Button = new System.Windows.Forms.Button();
             this.Slot50_PictureBox = new System.Windows.Forms.PictureBox();
             this.Slot49_PictureBox = new System.Windows.Forms.PictureBox();
             this.Slot48_PictureBox = new System.Windows.Forms.PictureBox();
@@ -90,7 +91,6 @@ namespace CoreKeeperInventoryEditor
             this.Slot3_PictureBox = new System.Windows.Forms.PictureBox();
             this.Slot2_PictureBox = new System.Windows.Forms.PictureBox();
             this.Slot1_PictureBox = new System.Windows.Forms.PictureBox();
-            this.GetInventoryAddresses_Button = new System.Windows.Forms.Button();
             this.Inventory_RichTextBox = new System.Windows.Forms.RichTextBox();
             this.Player_TabPage = new System.Windows.Forms.TabPage();
             this.Power_Label = new System.Windows.Forms.Label();
@@ -503,6 +503,17 @@ namespace CoreKeeperInventoryEditor
             this.Inventory_TabPage.Size = new System.Drawing.Size(732, 423);
             this.Inventory_TabPage.TabIndex = 0;
             this.Inventory_TabPage.Text = "Inventory";
+            // 
+            // GetInventoryAddresses_Button
+            // 
+            this.GetInventoryAddresses_Button.ForeColor = System.Drawing.Color.Black;
+            this.GetInventoryAddresses_Button.Location = new System.Drawing.Point(6, 6);
+            this.GetInventoryAddresses_Button.Name = "GetInventoryAddresses_Button";
+            this.GetInventoryAddresses_Button.Size = new System.Drawing.Size(148, 23);
+            this.GetInventoryAddresses_Button.TabIndex = 1;
+            this.GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
+            this.GetInventoryAddresses_Button.UseVisualStyleBackColor = true;
+            this.GetInventoryAddresses_Button.Click += new System.EventHandler(this.GetInventoryAddresses_Button_Click);
             // 
             // Slot50_PictureBox
             // 
@@ -1110,17 +1121,6 @@ namespace CoreKeeperInventoryEditor
             this.Slot1_PictureBox.TabIndex = 2;
             this.Slot1_PictureBox.TabStop = false;
             this.Slot1_PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
-            // 
-            // GetInventoryAddresses_Button
-            // 
-            this.GetInventoryAddresses_Button.ForeColor = System.Drawing.Color.Black;
-            this.GetInventoryAddresses_Button.Location = new System.Drawing.Point(6, 6);
-            this.GetInventoryAddresses_Button.Name = "GetInventoryAddresses_Button";
-            this.GetInventoryAddresses_Button.Size = new System.Drawing.Size(148, 23);
-            this.GetInventoryAddresses_Button.TabIndex = 1;
-            this.GetInventoryAddresses_Button.Text = "Get Inventory Addresses";
-            this.GetInventoryAddresses_Button.UseVisualStyleBackColor = true;
-            this.GetInventoryAddresses_Button.Click += new System.EventHandler(this.GetInventoryAddresses_Button_Click);
             // 
             // Inventory_RichTextBox
             // 
@@ -3229,21 +3229,21 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
             this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
             this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
             this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Header_Column,
@@ -3253,9 +3253,9 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ReadOnly = true;
             this.WorldInformation_DataGridView.RowHeadersVisible = false;
             this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.WorldInformation_DataGridView.ShowCellErrors = false;
@@ -3911,6 +3911,11 @@ namespace CoreKeeperInventoryEditor
             // BorderSize_NumericUpDown
             // 
             this.BorderSize_NumericUpDown.Location = new System.Drawing.Point(281, 105);
+            this.BorderSize_NumericUpDown.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.BorderSize_NumericUpDown.Name = "BorderSize_NumericUpDown";
             this.BorderSize_NumericUpDown.Size = new System.Drawing.Size(79, 20);
             this.BorderSize_NumericUpDown.TabIndex = 10;
@@ -3935,7 +3940,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.TitleBarHeight_NumericUpDown.Location = new System.Drawing.Point(281, 67);
             this.TitleBarHeight_NumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            30,
             0,
             0,
             0});
@@ -4135,7 +4140,7 @@ namespace CoreKeeperInventoryEditor
         #endregion
 
         private System.Windows.Forms.RichTextBox Inventory_RichTextBox;
-        private CoreKeepersWorkshop.BorderlessTabControl Main_TabControl;
+        private BorderlessTabControl Main_TabControl;
         private System.Windows.Forms.TabPage Inventory_TabPage;
         private System.Windows.Forms.TabPage Player_TabPage;
         private System.Windows.Forms.PictureBox Slot1_PictureBox;

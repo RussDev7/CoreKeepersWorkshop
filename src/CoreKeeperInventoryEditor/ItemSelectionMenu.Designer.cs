@@ -30,7 +30,7 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemSelectionMenu));
-            this.Main_TabControl = new CoreKeepersWorkshop.BorderlessTabControl();
+            this.Main_TabControl = new BorderlessTabControl();
             this.Tab1_TabPage = new System.Windows.Forms.TabPage();
             this.Tab1_ListView = new System.Windows.Forms.ListView();
             this.Tab2_TabPage = new System.Windows.Forms.TabPage();
@@ -845,6 +845,6 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.ListView Tab16_ListView;
         private System.Windows.Forms.ListView Tab17_ListView;
         private System.Windows.Forms.Panel MainContentPanel1_Panel;
-        private CoreKeepersWorkshop.BorderlessTabControl Main_TabControl;
+        private BorderlessTabControl Main_TabControl;
     }
 }

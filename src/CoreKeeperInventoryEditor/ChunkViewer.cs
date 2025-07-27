@@ -1,4 +1,5 @@
-﻿using CoreKeeperInventoryEditor;
+﻿using CoreKeepersWorkshop.Properties;
+using CoreKeeperInventoryEditor;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Globalization;
@@ -75,31 +76,25 @@ namespace CoreKeepersWorkshop
             Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
             #endregion
 
-            #region Set Form Locations
-
-            // Set the forms active location based on previous save.
-            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerLocation;
-            #endregion
-
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
             // NOTE: This form has a seperate setting for opacity.
-            // this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
-            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity / 100.0;
+            // this.Opacity = Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Settings.Default.ChunkViewerOpacity / 100.0;
             #endregion
 
             #region Set Form Controls
 
             // Set controls based on saved settings.
-            ShowEnemySpawnChunks_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs;
-            Debug_CheckBox.Checked                = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
+            ShowEnemySpawnChunks_CheckBox.Checked = Settings.Default.ChunkViewerMobs;
+            Debug_CheckBox.Checked                = Settings.Default.ChunkViewerDebug;
 
-            TranslateScale_NumericUpDown.Visible  = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug;
-            TranslateScale_NumericUpDown.Value    = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale;
+            TranslateScale_NumericUpDown.Visible  = Settings.Default.ChunkViewerDebug;
+            TranslateScale_NumericUpDown.Value    = Settings.Default.ChunkViewerDebugScale;
 
-            Scale_TrackBar.Value                  = (int)(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale / 0.2);
-            mapScale                              = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale;
+            Scale_TrackBar.Value                  = (int)(Settings.Default.ChunkViewerScale / 0.2);
+            mapScale                              = Settings.Default.ChunkViewerScale;
 
             this.Size                             = new Size((int)Math.Round(64 * mapScale) + _defaultXOffset, (int)Math.Round(64 * mapScale) + _defaultYOffset); // Form size.
             #endregion
@@ -131,6 +126,12 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(Opacity_TrackBar,              "Adjust the transparency of the form.");
             toolTip.SetToolTip(Scale_TrackBar,                "Adjust the scale of the grid.");
             #endregion
+
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            if (ActiveForm != null) this.Location = Settings.Default.ChunkViewerLocation;
+            #endregion
         }
 
         #region Control Logic
@@ -156,7 +157,7 @@ namespace CoreKeepersWorkshop
             try
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerLocation = this.Location;
+                Settings.Default.ChunkViewerLocation = this.Location;
             }
             catch (Exception)
             { } // Do nothing.
@@ -177,7 +178,7 @@ namespace CoreKeepersWorkshop
                 TranslateScale_Label.Visible = true;
 
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug = true;
+                Settings.Default.ChunkViewerDebug = true;
             }
             else
             {
@@ -190,7 +191,7 @@ namespace CoreKeepersWorkshop
                 TranslateScale_Label.Visible = false;
 
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug = false;
+                Settings.Default.ChunkViewerDebug = false;
             }
         }
 
@@ -201,12 +202,12 @@ namespace CoreKeepersWorkshop
             if (ShowEnemySpawnChunks_CheckBox.Checked)
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs = true;
+                Settings.Default.ChunkViewerMobs = true;
             }
             else
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs = false;
+                Settings.Default.ChunkViewerMobs = false;
             }
         }
 
@@ -214,7 +215,7 @@ namespace CoreKeepersWorkshop
         private void DisplayArea_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Save settings.
-            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale = TranslateScale_NumericUpDown.Value;
+            Settings.Default.ChunkViewerDebugScale = TranslateScale_NumericUpDown.Value;
         }
 
         // Hide main form.
@@ -242,7 +243,7 @@ namespace CoreKeepersWorkshop
             ActiveForm.Opacity = newOpacity;
 
             // Save the opacity.
-            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity = rawOpacity;
+            Settings.Default.ChunkViewerOpacity = rawOpacity;
         }
 
         // Adjust the grid scale.
@@ -255,7 +256,7 @@ namespace CoreKeepersWorkshop
             mapScale = sliderScale * Scale_TrackBar.Value;
 
             // Save the new scale.
-            CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale = mapScale;
+            Settings.Default.ChunkViewerScale = mapScale;
 
             // Define the offsets for the form size.
             int xOffset = _defaultXOffset;
@@ -283,7 +284,7 @@ namespace CoreKeepersWorkshop
             // Change the forms background opacity.
 
             // Define string from host form.
-            string playerToolAddress = CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerAddress;
+            string playerToolAddress = Settings.Default.ChunkViewerAddress;
 
             if (MemLib.OpenProcess("CoreKeeper") && playerToolAddress != null)
             {

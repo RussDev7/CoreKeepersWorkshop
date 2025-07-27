@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CoreKeepersWorkshop.Properties;
+using System.Collections.Generic;
 using CoreKeeperInventoryEditor;
 using System.Globalization;
 using System.Windows.Forms;
@@ -39,22 +40,16 @@ namespace CoreKeepersWorkshop
             Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
             #endregion
 
-            #region Set Form Locations
-
-            // Set the forms active location based on previous save.
-            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorLocation;
-            #endregion
-
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Set Form Controls
 
             // Set controls based on saved settings.
-            UseEXPValues_CheckBox.Checked = CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorUseEXP;
+            UseEXPValues_CheckBox.Checked = Settings.Default.SkillEditorUseEXP;
             #endregion
 
             #region Tooltips
@@ -109,6 +104,12 @@ namespace CoreKeepersWorkshop
             // toolTip.SetToolTip(checkBox1,                   "This is used to help find the correct addresses.");
             toolTip.SetToolTip(UseEXPValues_CheckBox,          "Switch the display format to use EXP vs Levels.");
             #endregion
+
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            if (ActiveForm != null) this.Location = Settings.Default.SkillEditorLocation;
+            #endregion
         }
 
         #region Form Closing
@@ -128,7 +129,7 @@ namespace CoreKeepersWorkshop
             try
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.SkillEditorLocation = this.Location;
+                Settings.Default.SkillEditorLocation = this.Location;
             }
             catch (Exception)
             { } // Do nothing.

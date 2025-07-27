@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CoreKeepersWorkshop.Properties;
+using System.Collections.Generic;
 using CoreKeeperInventoryEditor;
 using System.Windows.Forms;
 using System.Reflection;
@@ -61,16 +62,10 @@ namespace CoreKeepersWorkshop
             Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
             #endregion
 
-            #region Set Form Locations
-
-            // Set the forms active location based on previous save.
-            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.CookbookLocation;
-            #endregion
-
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = Properties.Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
@@ -114,6 +109,12 @@ namespace CoreKeepersWorkshop
             // Sort datagridview by ascending.
             FoodCookbook_DataGridView.Sort(FoodCookbook_DataGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
             #endregion
+
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            if (ActiveForm != null) this.Location = Settings.Default.CookbookLocation;
+            #endregion
         }
 
         #region Form Closing
@@ -134,7 +135,7 @@ namespace CoreKeepersWorkshop
             try
             {
                 // Save some form settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.CookbookLocation = this.Location;
+                Settings.Default.CookbookLocation = this.Location;
             }
             catch (Exception)
             { } // Do nothing.

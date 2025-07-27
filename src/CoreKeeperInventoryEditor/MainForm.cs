@@ -287,7 +287,7 @@ namespace CoreKeeperInventoryEditor
                 FormStylingExtensions.RefreshAllThemes();
 
                 // Change the tab-control color settings based on the theme.
-                if (CoreKeepersWorkshop.Properties.Settings.Default.UITheme == ThemeMode.Dark)
+                if (Settings.Default.UITheme == ThemeMode.Dark)
                     Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Dark);
                 else
                     Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Light);
@@ -297,12 +297,6 @@ namespace CoreKeeperInventoryEditor
 
                 // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
                 this.Opacity = Settings.Default.FormOpacity / 100.0;
-                #endregion
-
-                #region Set Form Locations
-
-                // Set the forms active location based on previous save.
-                MainForm.ActiveForm.Location = Settings.Default.MainFormLocation;
                 #endregion
 
                 #region Initiate & Set Background
@@ -506,15 +500,19 @@ namespace CoreKeeperInventoryEditor
 
                 #endregion
 
+                #region Set Form Locations
+
+                // Set the forms active location based on previous save.
+                if (ActiveForm != null) this.Location = Settings.Default.MainFormLocation;
+                #endregion
+
                 #region Form Initialized
 
                 // Now that the form is fully loaded and at the restored spot, turn saving back on.
                 _initialized = true;
                 #endregion
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) { } // Swallow safely.
         }
 
         #region Load Image / Skin Manager
@@ -724,13 +722,13 @@ namespace CoreKeeperInventoryEditor
                 Settings.Default.CurrentItemTab = "Tab1_TabPage";
 
                 // Save some form controls.
-                Settings.Default.DevToolDelay = (int)DevToolsDelay_NumericUpDown.Value; // Dev tool operation delay.
-                Settings.Default.RadialMoveScale = RadialMoveScale_NumericUpDown.Value; // Auto render maps radialMoveScale.
-                Settings.Default.MapRenderingMax = MaxRadius_NumericUpDown.Value;       // Map rendering max radius.
-                Settings.Default.MapRenderingStart = StartRadius_NumericUpDown.Value;   // Map rendering start radius.
-                Settings.Default.FishingCast = CastDelay_NumericUpDown.Value;           // Fishing bot casting delay.
-                Settings.Default.FishingPadding = FishingPadding_NumericUpDown.Value;   // Fishing bot padding delay.
-                Settings.Default.FormOpacity = FormOpacity_TrackBar.Value;              // Dev tool form opacity.
+                Settings.Default.DevToolDelay      = (int)DevToolsDelay_NumericUpDown.Value; // Dev tool operation delay.
+                Settings.Default.RadialMoveScale   = RadialMoveScale_NumericUpDown.Value;    // Auto render maps radialMoveScale.
+                Settings.Default.MapRenderingMax   = MaxRadius_NumericUpDown.Value;          // Map rendering max radius.
+                Settings.Default.MapRenderingStart = StartRadius_NumericUpDown.Value;        // Map rendering start radius.
+                Settings.Default.FishingCast       = CastDelay_NumericUpDown.Value;          // Fishing bot casting delay.
+                Settings.Default.FishingPadding    = FishingPadding_NumericUpDown.Value;     // Fishing bot padding delay.
+                Settings.Default.FormOpacity       = FormOpacity_TrackBar.Value;             // Dev tool form opacity.
                 Settings.Default.Save();
             }
             catch (Exception)
@@ -763,8 +761,29 @@ namespace CoreKeeperInventoryEditor
 
             // Set the client area size.
             Size = new Size(
-                contentArea.Width - noBorderOffsetX,
-                contentArea.Height - noBorderOffsetY);
+                contentArea.Width  - noBorderOffsetX - _tabControlWidthOffset,
+                contentArea.Height - noBorderOffsetY - _tabControlHeightOffset);
+        }
+
+        /// <summary>
+        /// Applies the initial border offset when using GrowOut mode.
+        /// Expands the client size by twice the configured border size.
+        /// </summary>
+        private void ApplyBorderOffset(Size oldClient)
+        {
+            // Total extra pixels to add on each dimension (left+right or top+bottom).
+            int delta = Settings.Default.UIBorderSize * 2;
+
+            // 'sign' is +1 for GrowOut (expanding outward);
+            // if using GrowIn, set to -1 to shrink inward.
+            int sign = 1;
+
+            // Compute new width and height, clamping to at least 1px.
+            int newW = Math.Max(1, oldClient.Width  + sign * delta);
+            int newH = Math.Max(1, oldClient.Height + sign * delta);
+
+            // Apply the adjusted size so the original content area stays intact.
+            ClientSize = new Size(newW, newH);
         }
         #endregion
 
@@ -805,7 +824,7 @@ namespace CoreKeeperInventoryEditor
                     this.Location = (this.FormBorderStyle == FormBorderStyle.None) ? new Point(6, 6) : new Point(0, 6);
 
                 // Adjust window properties.
-                this.Opacity = 0.8;
+                this.Opacity     = 0.8;
                 this.MaximizeBox = true;
                 this.MinimizeBox = false;
 
@@ -821,15 +840,16 @@ namespace CoreKeeperInventoryEditor
 
                 // Ensure we got the correct tab size to maximize back too.
                 Size desired = Size.Empty;
-                if (Main_TabControl.SelectedTab      == Inventory_TabPage) desired = new Size(756 - _tabControlWidthOffset, 494);
-                else if (Main_TabControl.SelectedTab == Player_TabPage)    desired = new Size(756 - _tabControlWidthOffset, 360);
-                else if (Main_TabControl.SelectedTab == World_TabPage)     desired = new Size(756 - _tabControlWidthOffset, 494);
-                else if (Main_TabControl.SelectedTab == Chat_TabPage)      desired = new Size(410 - _tabControlWidthOffset, 360);
-                else if (Main_TabControl.SelectedTab == Settings_TabPage)  desired = new Size(410 - _tabControlWidthOffset, 360);
+                if (Main_TabControl.SelectedTab      == Inventory_TabPage) desired = new Size(756, 494);
+                else if (Main_TabControl.SelectedTab == Player_TabPage)    desired = new Size(756, 360);
+                else if (Main_TabControl.SelectedTab == World_TabPage)     desired = new Size(756, 494);
+                else if (Main_TabControl.SelectedTab == Chat_TabPage)      desired = new Size(410, 360);
+                else if (Main_TabControl.SelectedTab == Settings_TabPage)  desired = new Size(410, 360);
                 SetClientArea(desired);
+                ApplyBorderOffset(ClientSize);
 
                 // Adjust some final form settings.
-                this.Opacity = Settings.Default.FormOpacity / 100.0;
+                this.Opacity  = Settings.Default.FormOpacity / 100.0;
                 this.Location = Settings.Default.MainFormLocation;
 
                 // Adjust minimized bool.
@@ -847,19 +867,19 @@ namespace CoreKeeperInventoryEditor
             {
                 // Resize the form based on the selected tab page.
                 Size desired = Size.Empty;
-                if (Main_TabControl.SelectedTab == Inventory_TabPage)     desired = new Size(756 - _tabControlWidthOffset, 494);
-                else if (Main_TabControl.SelectedTab == Player_TabPage)   desired = new Size(756 - _tabControlWidthOffset, 360);
-                else if (Main_TabControl.SelectedTab == World_TabPage)    desired = new Size(756 - _tabControlWidthOffset, 494);
-                else if (Main_TabControl.SelectedTab == Chat_TabPage)     desired = new Size(410 - _tabControlWidthOffset, 360);
-                else if (Main_TabControl.SelectedTab == Settings_TabPage) desired = new Size(410 - _tabControlWidthOffset, 360);
+                if (Main_TabControl.SelectedTab == Inventory_TabPage)     desired = new Size(756, 494);
+                else if (Main_TabControl.SelectedTab == Player_TabPage)   desired = new Size(756, 360);
+                else if (Main_TabControl.SelectedTab == World_TabPage)    desired = new Size(756, 494);
+                else if (Main_TabControl.SelectedTab == Chat_TabPage)     desired = new Size(410, 360);
+                else if (Main_TabControl.SelectedTab == Settings_TabPage) desired = new Size(410, 360);
                 SetClientArea(desired);
+                ApplyBorderOffset(ClientSize);
 
                 // Change skin.
                 // Resize form if it's one of the 4 real pages.
                 var sel = Main_TabControl.SelectedTab;
                 var idx = Array.IndexOf(_contentPages, sel);
-                if (idx >= 0)
-                    SetClientArea(_pageSizes[idx]);
+                // if (idx >= 0) SetClientArea(_pageSizes[idx]);
 
                 // Did user click "Change Skin":
                 if (sel == ChangeSkin_TabPage)
@@ -1194,10 +1214,10 @@ namespace CoreKeeperInventoryEditor
             }
 
             // Define some variables for item info.
-            int infoType = 0;
-            int infoAmount = 0;
-            int infoVariant = 0;
-            int infoSkillset = 0;
+            int infoType        = 0;
+            int infoAmount      = 0;
+            int infoVariant     = 0;
+            int infoSkillset    = 0;
 
             // Define a variable to hold the new item Amount information.
             int finalItemAmount = 0;
@@ -1379,8 +1399,8 @@ namespace CoreKeeperInventoryEditor
             {
                 // Get the name of the item.
                 string baseItemName = "";
-                string baseingredient1Name = "";
-                string baseingredient2Name = "";
+                string baseIngredient1Name = "";
+                string baseIngredient2Name = "";
 
                 // Get base item name.
                 if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == infoType.ToString() && new FileInfo(x).Name.Split(',')[2].Split('.')[0] == (infoVariant == 0 ? 0 : infoVariant).ToString()) != null)
@@ -1400,7 +1420,7 @@ namespace CoreKeeperInventoryEditor
                     }
                     else
                     {
-                        baseItemName = "UnkownItem";
+                        baseItemName = "UnknownItem";
                     }
                 }
                 // Check if the items variant is an length of 1. 
@@ -1409,35 +1429,39 @@ namespace CoreKeeperInventoryEditor
                     // Get base item ingredient 1 name.
                     if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseingredient1Name = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
+                        baseIngredient1Name = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
+                        int.TryParse(VariationHelper.GetIngredient1FromFoodVariation(infoVariant).ToString().Split(',')[0], out int unrecognizedVariation1);
+
                         // Check if the item id is 0.
-                        if (infoType == 0)
+                        if (unrecognizedVariation1 == 0)
                         {
-                            baseingredient1Name = "Empty";
+                            baseIngredient1Name = "Empty";
                         }
                         else
                         {
-                            baseingredient1Name = "UnkownItem";
+                            baseIngredient1Name = "UnknownItem";
                         }
                     }
                     // Get base item ingredient 2 name.
                     if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString()) != null)
                     {
-                        baseingredient2Name = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
+                        baseIngredient2Name = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString())).Split(',')[0];
                     }
                     else
                     {
+                        int.TryParse(VariationHelper.GetIngredient2FromFoodVariation(infoVariant).ToString().Split(',')[0], out int unrecognizedVariation2);
+
                         // Check if the item id is 0.
-                        if (infoType == 0)
+                        if (unrecognizedVariation2 == 0)
                         {
-                            baseingredient2Name = "Empty";
+                            baseIngredient2Name = "Empty";
                         }
                         else
                         {
-                            baseingredient2Name = "UnkownItem";
+                            baseIngredient2Name = "UnknownItem";
                         }
                     }
                 }
@@ -1446,7 +1470,7 @@ namespace CoreKeeperInventoryEditor
                 string itemMessage = "";
                 if (infoVariant >= 1)
                 {
-                    itemMessage = $"Inventory Slot {ItemSlot}'s Item Info:\n\nName: {baseItemName}\nBase ID: {infoType}\nAmount: {infoAmount}\nSkillset: {infoSkillset}\n\nVariant IDs: ({infoVariant})\n- ingredient1: {baseingredient1Name} [{VariationHelper.GetIngredient1FromFoodVariation(infoVariant)}]\n- ingredient2: {baseingredient2Name} [{VariationHelper.GetIngredient2FromFoodVariation(infoVariant)}]";
+                    itemMessage = $"Inventory Slot {ItemSlot}'s Item Info:\n\nName: {baseItemName}\nBase ID: {infoType}\nAmount: {infoAmount}\nSkillset: {infoSkillset}\n\nVariant IDs: ({infoVariant})\n- ingredient1: {baseIngredient1Name} [{VariationHelper.GetIngredient1FromFoodVariation(infoVariant)}]\n- ingredient2: {baseIngredient2Name} [{VariationHelper.GetIngredient2FromFoodVariation(infoVariant)}]";
                 }
                 else
                 {
@@ -9149,7 +9173,7 @@ namespace CoreKeeperInventoryEditor
             FormStylingExtensions.RefreshAllThemes();
 
             // Change the tab-control color settings based on the theme.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.UITheme == ThemeMode.Dark)
+            if (Settings.Default.UITheme == ThemeMode.Dark)
                 Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Dark);
             else
                 Main_TabControl.RecolorAllTabs(BorderlessTabControlExtensions.ThemeMode.Light);
@@ -9656,11 +9680,11 @@ namespace CoreKeeperInventoryEditor
                 try
                 {
                     // Mass default forms control settings.
-                    SetDefault(nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebugScale),
-                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerOpacity),
-                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerDebug),
-                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerScale),
-                               nameof(CoreKeepersWorkshop.Properties.Settings.Default.ChunkViewerMobs)
+                    SetDefault(nameof(Settings.Default.ChunkViewerDebugScale),
+                               nameof(Settings.Default.ChunkViewerOpacity),
+                               nameof(Settings.Default.ChunkViewerDebug),
+                               nameof(Settings.Default.ChunkViewerScale),
+                               nameof(Settings.Default.ChunkViewerMobs)
                                );
                 }
                 catch (Exception ex)
@@ -9699,7 +9723,7 @@ namespace CoreKeeperInventoryEditor
         /// </summary>
         static void SetDefault(params string[] names)
         {
-            var settings = CoreKeepersWorkshop.Properties.Settings.Default;
+            var settings = Settings.Default;
             foreach (var name in names)
             {
                 // Look up the metadata for this setting.

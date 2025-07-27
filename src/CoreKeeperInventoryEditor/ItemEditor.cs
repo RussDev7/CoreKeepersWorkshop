@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using CoreKeepersWorkshop.Properties;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using CoreKeeperInventoryEditor;
 using System.Windows.Forms;
@@ -20,6 +21,8 @@ namespace CoreKeepersWorkshop
             Load += (_, __) => _formThemeStyler = this.ApplyTheme(); // Load the forms theme.
         }
 
+        #region Fields
+
         // Define texture data.
         private static string InventoryDir => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "Inventory");
         public IEnumerable<string> ImageFiles =>
@@ -28,14 +31,39 @@ namespace CoreKeepersWorkshop
                     .DefaultIfEmpty(string.Empty)
                 : new[] { string.Empty };
 
+        // Maps an item/variation id (string) -> absolute PNG path (string).
+        // Built once when the type is first touched, then reused by every lookup.
+        private static readonly Dictionary<string, string> _imagePathById =
+            Directory.Exists(InventoryDir)
+                ? Directory
+                    .EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
+                    .Where(f => {
+                        var name = Path.GetFileName(f);
+                        return !name.Equals("desktop.ini", StringComparison.OrdinalIgnoreCase)
+                            && !name.Equals("Thumbs.db", StringComparison.OrdinalIgnoreCase);
+                    })
+                    .Select(f => new {
+                        parts = Path.GetFileNameWithoutExtension(f).Split(','),
+                        file = f
+                    })
+                    .Where(x => x.parts.Length >= 2)
+                    .GroupBy(x => x.parts[1])
+                    .ToDictionary(
+                        g => g.Key,
+                        g => g.First().file
+                    )
+                : new Dictionary<string, string>();
+
+        #endregion
+
         #region Closing Varibles
 
         // Form closing saving.
-        int selectedItemType = 0;
-        int selectedItemAmount = 0;
-        int selectedItemVariation = 0;
-        int selectedItemSkillset = 0;
-        bool userCanceldTask = false;
+        int selectedItemType      = 0;
+        int  selectedItemAmount    = 0;
+        int  selectedItemVariation = 0;
+        int  selectedItemSkillset  = 0;
+        bool userCanceldTask       = false;
 
         // Define closing variables.
         public int GetItemTypeFromList()
@@ -62,222 +90,71 @@ namespace CoreKeepersWorkshop
 
         #region Reload Pictureboxes & Labels
 
-        // Reload pictureboxes and labels.
-        public void ReloadPictureBoxes(bool useTextboxeData = false)
+        
+        // Helper to set one slot.
+        private void SetSlot(PictureBox box, Label label, string id)
         {
-            // Define base settings.
-            int baseItemID = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
-            int baseItemAmount = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
-            int baseItemVariation = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
-
-            // Get the ingredient ids of the item.
-            string baseIngredient1ID = "0";
-            string baseIngredient2ID = "0";
-
-            // Use defined form data.
-            if (useTextboxeData)
+            if (string.IsNullOrEmpty(id) || id == "0")
             {
-                baseItemID = (int)ItemID_NumericUpDown.Value;
-                baseItemAmount = (int)Quantity_NumericUpDown.Value;
-                if (!VariationNumerical_NumericUpDown.Visible) // Check if item is a food variant.
-                {
-                    baseIngredient1ID = Variation1_NumericUpDown.Value.ToString();
-                    baseIngredient2ID = Variation2_NumericUpDown.Value.ToString();
-                }
-                else
-                {
-                    // Normal item variant.
-                    baseIngredient1ID = VariationNumerical_NumericUpDown.Value.ToString();
-                }
+                box.Image    = null;
+                label.Text   = "";
             }
-
-            // Get base item name.
-            if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString()) != null)
+            else if (_imagePathById.TryGetValue(id, out var path))
             {
-                Item1_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())).Split(',')[0];
-
-                // Load image.
-                Slot1_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseItemID.ToString())));
-                Slot1_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                var name     = Path.GetFileNameWithoutExtension(path).Split(',')[0];
+                label.Text   = name;
+                box.Image    = new Bitmap(ImageFast.FromFile(path));
+                box.SizeMode = PictureBoxSizeMode.Zoom;
             }
             else
             {
-                // Check if the first item is not empty.
-                if (ItemID_NumericUpDown.Value != 0)
-                {
-                    Item1_Label.Text = "UnkownItem";
-
-                    // Load image.
-                    Slot1_PictureBox.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                    Slot1_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-                else
-                {
-                    Slot1_PictureBox.Image = null;
-                    Item1_Label.Text = "";
-                }
+                label.Text   = "UnknownItem";
+                box.Image    = Resources.UnknownItem;
+                box.SizeMode = PictureBoxSizeMode.Zoom;
             }
+        }
 
-            // Check if usetextbox mode is enabled.
-            if (!useTextboxeData)
+        // Reload pictureboxes and labels.
+        public void ReloadPictureBoxes(bool useTextboxData = false)
+        {
+            // base IDs
+            string id1 = Settings.Default.InfoID.ToString();
+            string id2 = "0";
+            string id3 = "0";
+
+            if (useTextboxData)
             {
-                // Check if the items variant is populated.
-                if (baseItemVariation >= 1)
+                id1 = ((int)ItemID_NumericUpDown.Value).ToString();
+
+                if (VariationNumerical_NumericUpDown.Visible)
                 {
-                    // Get base item ingredient 1 name.
-                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString()) != null)
-                    {
-                        Item2_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
-
-                        // Load image.
-                        Slot2_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient1FromFoodVariation(baseItemVariation).ToString())));
-                        Slot2_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    }
-                    else
-                    {
-                        // Check if the variant item two is not empty.
-                        if (VariationNumerical_NumericUpDown.Value != 0 || Variation1_NumericUpDown.Value != 0)
-                        {
-                            Item2_Label.Text = "UnkownItem";
-
-                            // Load image.
-                            Slot2_PictureBox.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            Slot2_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                        }
-                        else
-                        {
-                            Slot2_PictureBox.Image = null;
-                            Item2_Label.Text = "";
-                        }
-                    }
+                    // Simple variant.
+                    id2 = VariationNumerical_NumericUpDown.Value.ToString();
                 }
                 else
                 {
-                    Slot2_PictureBox.Image = null;
-                    Item2_Label.Text = "";
-                }
-                // Check if the items variant is populated.
-                if (baseItemVariation >= 1 && !VariationNumerical_NumericUpDown.Visible)
-                {
-                    // Get base item ingredient 2 name.
-                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString()) != null)
-                    {
-                        Item3_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())).Split(',')[0];
-
-                        // Load image.
-                        Slot3_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == VariationHelper.GetIngredient2FromFoodVariation(baseItemVariation).ToString())));
-                        Slot3_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    }
-                    else
-                    {
-                        // Check if the third item is not empty.
-                        if (Variation2_NumericUpDown.Value != 0)
-                        {
-                            Item3_Label.Text = "UnkownItem";
-
-                            // Load image.
-                            Slot3_PictureBox.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            Slot3_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                        }
-                        else
-                        {
-                            Slot3_PictureBox.Image = null;
-                            Item3_Label.Text = "";
-                        }
-                    }
-                }
-                else
-                {
-                    
-                    Slot3_PictureBox.Image = null;
-                    Item3_Label.Text = "";
+                    id2 = Variation1_NumericUpDown.Value.ToString();
+                    id3 = Variation2_NumericUpDown.Value.ToString();
                 }
             }
             else
             {
-                // Use texbox data.
-                // Check if the items variant is populated.
-                if (baseIngredient1ID.ToString().Length > 0 && int.Parse(baseIngredient1ID.ToString()) > 0)
+                // Settings-based "food" variant IDs.
+                int variation = Settings.Default.InfoVariation;
+                if (variation >= 1)
                 {
-                    // Check if target is item mode or not. // Fix v1.3.5.6.
+                    id2 = VariationHelper.GetIngredient1FromFoodVariation(variation).ToString();
                     if (!VariationNumerical_NumericUpDown.Visible)
-                    {
-                        // Get base item ingredient 1 name.
-                        if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID) != null)
-                        {
-                            Item2_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)).Split(',')[0];
-
-                            // Load image.
-                            Slot2_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient1ID)));
-                            Slot2_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                        }
-                        else
-                        {
-                            // Check if the variant item two is not empty.
-                            if (VariationNumerical_NumericUpDown.Value != 0 || Variation1_NumericUpDown.Value != 0)
-                            {
-                                Item2_Label.Text = "UnkownItem";
-
-                                // Load image.
-                                Slot2_PictureBox.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                                Slot2_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                            }
-                            else
-                            {
-                                Slot2_PictureBox.Image = null;
-                                Item2_Label.Text = "";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Slot2_PictureBox.Image = null;
-                        Item2_Label.Text = "";
-                    }
-                }
-                else
-                {
-                    Slot2_PictureBox.Image = null;
-                    Item2_Label.Text = "";
-                }
-                // Check if the items variant is populated.
-                if (baseIngredient2ID.ToString().Length > 0 && !VariationNumerical_NumericUpDown.Visible) // Make sure duel texbox mode is enabled.
-                {
-                    // Get base item ingredient 2 name.
-                    if (ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID) != null)
-                    {
-                        Item3_Label.Text = Path.GetFileName(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)).Split(',')[0];
-
-                        // Load image.
-                        Slot3_PictureBox.Image = new Bitmap(ImageFast.FromFile(ImageFiles.FirstOrDefault(x => new FileInfo(x).Name.Split(',')[0] != "desktop.ini" && new FileInfo(x).Name.Split(',')[0] != "Thumbs.db" && new FileInfo(x).Name.Split(',')[1] == baseIngredient2ID)));
-                        Slot3_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    }
-                    else
-                    {
-                        // Check if the third item is not empty.
-                        if (Variation2_NumericUpDown.Value != 0)
-                        {
-                            Item3_Label.Text = "UnkownItem";
-
-                            // Load image.
-                            Slot3_PictureBox.Image = CoreKeepersWorkshop.Properties.Resources.UnknownItem;
-                            Slot3_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                        }
-                        else
-                        {
-                            Slot3_PictureBox.Image = null;
-                            Item3_Label.Text = "";
-                        }
-                    }
-                }
-                else
-                {
-                    Slot3_PictureBox.Image = null;
-                    Item3_Label.Text = "";
+                        id3 = VariationHelper.GetIngredient2FromFoodVariation(variation).ToString();
                 }
             }
 
-            // Reload pictureboxs.
+            // Apply to each slot.
+            SetSlot(Slot1_PictureBox, Item1_Label, id1);
+            SetSlot(Slot2_PictureBox, Item2_Label, id2);
+            SetSlot(Slot3_PictureBox, Item3_Label, id3);
+
+            // Refresh.
             Slot1_PictureBox.Invalidate();
             Slot2_PictureBox.Invalidate();
             Slot3_PictureBox.Invalidate();
@@ -295,16 +172,10 @@ namespace CoreKeepersWorkshop
             Cursor = new Cursor(CoreKeepersWorkshop.Properties.Resources.UICursor.GetHicon());
             #endregion
 
-            #region Set Form Locations
-
-            // Set the forms active location based on previous save.
-            this.Location = CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation;
-            #endregion
-
             #region Set Form Opacity
 
             // Set form opacity based on trackbars value saved setting (1 to 100 -> 0.01 to 1.0).
-            this.Opacity = CoreKeepersWorkshop.Properties.Settings.Default.FormOpacity / 100.0;
+            this.Opacity = Settings.Default.FormOpacity / 100.0;
             #endregion
 
             #region Tooltips
@@ -350,45 +221,45 @@ namespace CoreKeepersWorkshop
             #region Load Form Settings
 
             // Load quantity select numerics and buttons.
-            CustomQuantity1_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectGetInventoryAddresses_Button.ToString();
-            CustomQuantity1_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectGetInventoryAddresses_Button;
-            CustomQuantity2_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2.ToString();
-            CustomQuantity2_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2;
-            CustomQuantity3_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3.ToString();
-            CustomQuantity3_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3;
-            CustomQuantity4_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton4.ToString();
-            CustomQuantity4_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton4;
-            CustomQuantity5_Button.Text = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5.ToString();
-            CustomQuantity5_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5;
+            CustomQuantity1_Button.Text         = Settings.Default.QuantitySelectGetInventoryAddresses_Button.ToString();
+            CustomQuantity1_NumericUpDown.Value = Settings.Default.QuantitySelectGetInventoryAddresses_Button;
+            CustomQuantity2_Button.Text         = Settings.Default.QuantitySelectButton2.ToString();
+            CustomQuantity2_NumericUpDown.Value = Settings.Default.QuantitySelectButton2;
+            CustomQuantity3_Button.Text         = Settings.Default.QuantitySelectButton3.ToString();
+            CustomQuantity3_NumericUpDown.Value = Settings.Default.QuantitySelectButton3;
+            CustomQuantity4_Button.Text         = Settings.Default.QuantitySelectButton4.ToString();
+            CustomQuantity4_NumericUpDown.Value = Settings.Default.QuantitySelectButton4;
+            CustomQuantity5_Button.Text         = Settings.Default.QuantitySelectButton5.ToString();
+            CustomQuantity5_NumericUpDown.Value = Settings.Default.QuantitySelectButton5;
 
             // Ensure the quantity is more then zero. // Fix v1.3.5.4.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount < 1)
+            if (Settings.Default.InfoAmount   < 1)
             {
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = 1;
+                Settings.Default.InfoAmount   = 1;
             }
             // Ensure the skillset is more then -1.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset < 0)
+            if (Settings.Default.InfoSkillset < 0)
             {
-                MessageBox.Show("The skillset was lower then 0! -> Current value: " + CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset + "\n\nValue will be set to 0.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = 0;
+                MessageBox.Show("The skillset was lower then 0! -> Current value: " + Settings.Default.InfoSkillset + "\n\nValue will be set to 0.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Settings.Default.InfoSkillset = 0;
             }
 
             // Load some settings.
-            if (CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation >= 1) // Check if item is a food variant.
+            if (Settings.Default.InfoVariation >= 1) // Check if item is a food variant.
             {
                 // Change some form items.
                 VariationNumerical_NumericUpDown.Visible = false;
-                Variation1_NumericUpDown.Visible = true;
-                Variation2_NumericUpDown.Visible = true;
-                VariationAnd_Button.Visible = true;
+                Variation1_NumericUpDown.Visible         = true;
+                Variation2_NumericUpDown.Visible         = true;
+                VariationAnd_Button.Visible              = true;
 
                 // Update settings.
-                ItemID_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
-                Quantity_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
+                ItemID_NumericUpDown.Value   = Settings.Default.InfoID;
+                Quantity_NumericUpDown.Value = Settings.Default.InfoAmount;
 
                 // New format. // Fix v1.3.5.6.
-                Variation1_NumericUpDown.Value = VariationHelper.GetIngredient1FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
-                Variation2_NumericUpDown.Value = VariationHelper.GetIngredient2FromFoodVariation(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation);
+                Variation1_NumericUpDown.Value = VariationHelper.GetIngredient1FromFoodVariation(Settings.Default.InfoVariation);
+                Variation2_NumericUpDown.Value = VariationHelper.GetIngredient2FromFoodVariation(Settings.Default.InfoVariation);
 
                 // Ensure the largest value loads in the front.
                 // if (num5 > num4)
@@ -404,10 +275,10 @@ namespace CoreKeepersWorkshop
                 // }
 
                 // Legacy format.
-                // numericUpDown4.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(0, CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
-                // numericUpDown5.Value = decimal.Parse(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Substring(CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation.ToString().Length / 2));
+                // numericUpDown4.Value = decimal.Parse(Settings.Default.InfoVariation.ToString().Substring(0, Settings.Default.InfoVariation.ToString().Length / 2));
+                // numericUpDown5.Value = decimal.Parse(Settings.Default.InfoVariation.ToString().Substring(Settings.Default.InfoVariation.ToString().Length / 2));
 
-                Skillset_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset;
+                Skillset_NumericUpDown.Value = Settings.Default.InfoSkillset;
 
                 // Rename button label.
                 Variation_Label.Text = "Variation [Food Ingredients]";
@@ -415,17 +286,23 @@ namespace CoreKeepersWorkshop
             else
             {
                 // None food variant, keep normal settings.
-                ItemID_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoID;
-                Quantity_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount;
-                VariationNumerical_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation;
-                Skillset_NumericUpDown.Value = CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset;
+                ItemID_NumericUpDown.Value             = Settings.Default.InfoID;
+                Quantity_NumericUpDown.Value           = Settings.Default.InfoAmount;
+                VariationNumerical_NumericUpDown.Value = Settings.Default.InfoVariation;
+                Skillset_NumericUpDown.Value           = Settings.Default.InfoSkillset;
             }
             #endregion
 
             #region Load Pictures & Names
 
             // Reload all pictureboxes and labels from the default load data.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
+            #endregion
+
+            #region Set Form Locations
+
+            // Set the forms active location based on previous save.
+            if (ActiveForm != null) this.Location = Settings.Default.ItemEditorLocation;
             #endregion
         }
 
@@ -464,26 +341,26 @@ namespace CoreKeepersWorkshop
                         // }
 
                         // Combine strings into int. // Fix v1.3.5.6.
-                        CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = VariationHelper.GetFoodVariation((int)Variation1_NumericUpDown.Value, (int)Variation2_NumericUpDown.Value);
+                        Settings.Default.InfoVariation = VariationHelper.GetFoodVariation((int)Variation1_NumericUpDown.Value, (int)Variation2_NumericUpDown.Value);
 
                         // Legacy format.
-                        // CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
+                        // Settings.Default.InfoVariation = int.Parse(numericUpDown4.Value.ToString() + numericUpDown5.Value.ToString());
                     }
                     else
                     {
                         // Only single value exists, treat as a unique variant value.
-                        CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)Variation1_NumericUpDown.Value;
+                        Settings.Default.InfoVariation = (int)Variation1_NumericUpDown.Value;
                     }
                 }
                 else
                 {
                     // Normal item variant.
-                    CoreKeepersWorkshop.Properties.Settings.Default.InfoVariation = (int)VariationNumerical_NumericUpDown.Value;
+                    Settings.Default.InfoVariation  = (int)VariationNumerical_NumericUpDown.Value;
                 }
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoID = (int)ItemID_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoAmount = (int)Quantity_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.InfoSkillset = (int)Skillset_NumericUpDown.Value;
-                CoreKeepersWorkshop.Properties.Settings.Default.ItemEditorLocation = this.Location;
+                Settings.Default.InfoID             = (int)ItemID_NumericUpDown.Value;
+                Settings.Default.InfoAmount         = (int)Quantity_NumericUpDown.Value;
+                Settings.Default.InfoSkillset       = (int)Skillset_NumericUpDown.Value;
+                Settings.Default.ItemEditorLocation = this.Location;
             }
             catch (Exception)
             { } // Do nothing.
@@ -787,7 +664,7 @@ namespace CoreKeepersWorkshop
                 VariationNumerical_NumericUpDown.Value = VariationHelper.GetFoodVariation((int)Variation1_NumericUpDown.Value, (int)Variation2_NumericUpDown.Value);
 
                 // Reload all pictureboxes and labels.
-                ReloadPictureBoxes(useTextboxeData: true);
+                ReloadPictureBoxes(useTextboxData: true);
             }
             else
             {
@@ -808,7 +685,7 @@ namespace CoreKeepersWorkshop
                 Variation2_NumericUpDown.Value = VariationHelper.GetIngredient2FromFoodVariation((int)VariationNumerical_NumericUpDown.Value);
 
                 // Reload all pictureboxes and labels.
-                ReloadPictureBoxes(useTextboxeData: true);
+                ReloadPictureBoxes(useTextboxData: true);
             }
         }
 
@@ -843,34 +720,34 @@ namespace CoreKeepersWorkshop
         private void VariationNumerical_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // Value had changed, reload images and labels.
         private void Variation1_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // Value had changed, reload images and labels.
         private void Variation2_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // Value had changed, reload images and labels.
         private void ItemID_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Reload all pictureboxes and labels from the textboxe data.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // Change item rarity.
         private void ChangeRarity_Button_Click(object sender, EventArgs e)
         {
-            string originalName = "Unknown";
+            string originalName   = "Unknown";
             string originalRarity = "Uncommon";
             int originalBase = (int)ItemID_NumericUpDown.Value;
             bool foundNewRarity = false;
@@ -1011,7 +888,7 @@ namespace CoreKeepersWorkshop
                                 }
 
                                 // Reload pictureboxes and labels.
-                                ReloadPictureBoxes(useTextboxeData: true);
+                                ReloadPictureBoxes(useTextboxData: true);
 
                                 // End loop.
                                 break;
@@ -1288,7 +1165,7 @@ namespace CoreKeepersWorkshop
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectGetInventoryAddresses_Button = (int)CustomQuantity1_NumericUpDown.Value;
+                Settings.Default.QuantitySelectGetInventoryAddresses_Button = (int)CustomQuantity1_NumericUpDown.Value;
 
                 // Change button text.
                 CustomQuantity1_Button.Text = ((int)CustomQuantity1_NumericUpDown.Value).ToString();
@@ -1316,7 +1193,7 @@ namespace CoreKeepersWorkshop
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton2 = (int)CustomQuantity2_NumericUpDown.Value;
+                Settings.Default.QuantitySelectButton2 = (int)CustomQuantity2_NumericUpDown.Value;
 
                 // Change button text.
                 CustomQuantity2_Button.Text = ((int)CustomQuantity2_NumericUpDown.Value).ToString();
@@ -1344,7 +1221,7 @@ namespace CoreKeepersWorkshop
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton3 = (int)CustomQuantity3_NumericUpDown.Value;
+                Settings.Default.QuantitySelectButton3 = (int)CustomQuantity3_NumericUpDown.Value;
 
                 // Change button text.
                 CustomQuantity3_Button.Text = ((int)CustomQuantity3_NumericUpDown.Value).ToString();
@@ -1372,7 +1249,7 @@ namespace CoreKeepersWorkshop
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton4 = (int)CustomQuantity4_NumericUpDown.Value;
+                Settings.Default.QuantitySelectButton4 = (int)CustomQuantity4_NumericUpDown.Value;
 
                 // Change button text.
                 CustomQuantity4_Button.Text = ((int)CustomQuantity4_NumericUpDown.Value).ToString();
@@ -1400,7 +1277,7 @@ namespace CoreKeepersWorkshop
             if (e.KeyCode == Keys.Enter)
             {
                 // Save settings.
-                CoreKeepersWorkshop.Properties.Settings.Default.QuantitySelectButton5 = (int)CustomQuantity5_NumericUpDown.Value;
+                Settings.Default.QuantitySelectButton5 = (int)CustomQuantity5_NumericUpDown.Value;
 
                 // Change button text.
                 CustomQuantity5_Button.Text = ((int)CustomQuantity5_NumericUpDown.Value).ToString();
@@ -1441,7 +1318,7 @@ namespace CoreKeepersWorkshop
             ItemID_NumericUpDown.Value = itemType;
 
             // Reload pictureboxes and labels.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // Launch item explorer.
@@ -1470,10 +1347,13 @@ namespace CoreKeepersWorkshop
             if (wasAborted) { return; };
 
             // Set the values from returning form.
-            Variation1_NumericUpDown.Value = itemType;
+            if (VariationNumerical_NumericUpDown.Visible)
+                VariationNumerical_NumericUpDown.Value = itemType;
+            else
+                Variation1_NumericUpDown.Value         = itemType;
 
             // Reload pictureboxes and labels.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // Launch item explorer.
@@ -1487,6 +1367,10 @@ namespace CoreKeepersWorkshop
                 // Pass the FolderNames to tell it what folders to load.
                 InventoryImageCache.LoadAllImages(ItemSelectionMenu.FolderNames);
             }
+
+            // Do not launch the second variation item selection menu if item mode is enabled.
+            if (VariationNumerical_NumericUpDown.Visible)
+                return;
 
             // Spawn item selection menu window.
             ItemSelectionMenu itemSelectionMenu3 = new ItemSelectionMenu();
@@ -1505,14 +1389,14 @@ namespace CoreKeepersWorkshop
             Variation2_NumericUpDown.Value = itemType;
 
             // Reload pictureboxes and labels.
-            ReloadPictureBoxes(useTextboxeData: true);
+            ReloadPictureBoxes(useTextboxData: true);
         }
 
         // User clicked done, save and close form.
         private void Done_Button_Click(object sender, EventArgs e)
         {
-            selectedItemType = (int)ItemID_NumericUpDown.Value;
-            selectedItemAmount = (int)Quantity_NumericUpDown.Value;
+            selectedItemType     = (int)ItemID_NumericUpDown.Value;
+            selectedItemAmount   = (int)Quantity_NumericUpDown.Value;
             selectedItemSkillset = (int)Skillset_NumericUpDown.Value;
             if (!VariationNumerical_NumericUpDown.Visible) // Check if item is a food variant.
             {

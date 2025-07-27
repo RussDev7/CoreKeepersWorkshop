@@ -32,7 +32,7 @@ using System.Drawing;
 using System;
 
 // Reminder: Update namespace when re‑using this class in a different project.
-namespace CoreKeepersWorkshop
+namespace CoreKeeperInventoryEditor
 {
     /// <summary>
     /// Border‑free TabControl with owner‑drawn buttons and optional per‑tab
@@ -60,8 +60,8 @@ namespace CoreKeepersWorkshop
 
         #region Fields
 
-        private bool _heightQueued;     // Stops queueing multiple delegates when the handle is destroyed/re‑created by layout changes.
-        private int _pressedIndex = -1; // –1 ⇢ no tab is being clicked.
+        private bool _heightQueued;      // Stops queueing multiple delegates when the handle is destroyed/re‑created by layout changes.
+        private int  _pressedIndex = -1; // –1 ⇢ no tab is being clicked.
 
         #endregion
 
@@ -252,6 +252,58 @@ namespace CoreKeepersWorkshop
         #region Caption Style Helpers
 
         /// <summary>
+        /// Bundles all per‑tab color settings for <see cref="BorderlessTabControl"/>
+        /// and keeps the TabPage’s interior color in sync:
+        /// <list type="bullet">
+        ///   <item>
+        ///     <description><see cref="FaceBack"/> – color used to fill the tab button.</description>
+        ///   </item>
+        ///   <item>
+        ///     <description><see cref="TextFore"/> – color used to draw the tab text.</description>
+        ///   </item>
+        ///   <item>
+        ///     <description><see cref="PageBack"/> – optional; when assigned,
+        ///       immediately pushes the value into <c>TabPage.BackColor</c>.</description>
+        ///   </item>
+        /// </list>
+        /// The constructor receives the owning <see cref="TabPage"/> so that
+        /// <see cref="PageBack"/> can update the page instantly without extra code
+        /// in your form.
+        /// </summary>
+        public sealed class TabColorInfo // (TabPage owner) // <- primary constructor.
+        {
+            // Starting in C# 12, you can make this a primary constructor.
+            // Field/prop initialisers can use the 'owner' parameter directly.
+            // private readonly TabPage _owner = owner ?? throw new ArgumentNullException(nameof(owner));
+
+            private readonly TabPage _owner;
+            public TabColorInfo(TabPage owner) =>
+                _owner = owner ?? throw new ArgumentNullException(nameof(owner));
+
+            /// <summary>Button face/background color.</summary>
+            public Color FaceBack { get; set; }
+
+            /// <summary>Caption (text) color drawn in <c>OnPaint</c>.</summary>
+            public Color TextFore { get; set; }
+
+            /// <summary>
+            /// Background color for the tab‑page’s client area.  
+            /// Leave <c>null</c> to keep the page’s existing color.
+            /// </summary>
+            private Color? _pageBack = null;
+            public  Color? PageBack
+            {
+                get => _pageBack;
+                set
+                {
+                    _pageBack = value;
+                    if (value.HasValue && _owner != null)
+                        _owner.BackColor = value.Value; // Apply immediately.
+                }
+            }
+        }
+
+        /// <summary>
         /// Returns the font that should be used when drawing a tab caption.
         /// Priority: <see cref="TabPage.Font"/> → control‑wide <see cref="Control.Font"/>.
         /// </summary>
@@ -272,14 +324,8 @@ namespace CoreKeepersWorkshop
         /// Returns the color that should be used when drawing a tab caption.
         /// Priority: <see cref="TabPage.ForeColor"/> → control‑wide <see cref="Control.ForeColor"/>.
         /// </summary>
-        private Color GetCaptionColor(TabPage page)
-        {
-            if (page.ForeColor != Color.Empty &&
-                page.ForeColor != SystemColors.ControlText)
-                return page.ForeColor;
-
-            return ForeColor;
-        }
+        private static Color GetCaptionColor(TabPage page) =>
+            page?.Tag is TabColorInfo info ? info.TextFore : SystemColors.ControlText;
 
         protected override void OnForeColorChanged(EventArgs e)
         {
@@ -294,19 +340,8 @@ namespace CoreKeepersWorkshop
         /// Color overrides via TabPage.Tag.
         /// The null‑safe check keeps the helper designer safe.
         /// </summary>
-        private static Color GetButtonBackColor(TabPage page)
-        {
-            if (page?.Tag == null) return Color.Empty;
-
-            if (page.Tag is Color c) return c;
-            if (page.Tag is string s)
-            {
-                // #RRGGBB or color names
-                try { return ColorTranslator.FromHtml(s); } catch { }
-                try { return Color.FromName(s);           } catch { }
-            }
-            return Color.Empty;
-        }
+        private static Color GetButtonBackColor(TabPage page) =>
+            page?.Tag is TabColorInfo info ? info.FaceBack : Color.Empty;
 
         /* Draws one “ring” of the bevel.
            Parameters adjust which edges to draw and how far inside. */
@@ -451,9 +486,7 @@ namespace CoreKeepersWorkshop
             if (_parentShrunk) return; // Already handled for this handle build.
             _parentShrunk = true;
 
-            #pragma warning disable CS8600
             Control p = Parent;
-            #pragma warning restore CS8600
             if (p == null) return;     // Unlikely, but protects against odd cases.
 
             // Prevent collapse below the desired inset.
@@ -477,7 +510,7 @@ namespace CoreKeepersWorkshop
 
             if (Appearance != TabAppearance.Normal) { SizeMode = TabSizeMode.Normal; return; }
 
-            SizeMode = TabSizeMode.Fixed; // So TCM_SETITEMSIZE is sent.
+            SizeMode = TabSizeMode.Fixed;               // So TCM_SETITEMSIZE is sent.
 
             // Measure the widest caption.
             int widest = 0;
@@ -486,7 +519,7 @@ namespace CoreKeepersWorkshop
                     widest = Math.Max(widest, TextRenderer.MeasureText(g, p.Text, Font).Width);
 
             const int Pad = 16;
-            ItemSize = new Size(widest + Pad, 24); // 24 px tall like the others.
+            ItemSize = new Size(widest + Pad, 24);      // 24 px tall like the others.
 
             UpdateStripRegion();
             Invalidate();
@@ -605,8 +638,8 @@ namespace CoreKeepersWorkshop
 
         /* -------------------------------------------------------------
            2. Extension method (note the this BorderlessTabControl).
-              Because of the “this” keyword the compiler treats it as if
-              it were an *instance* method on the control:
+              Because of the "this" keyword the compiler treats it as if
+              it were an instance method on the control:
                   ctl.RecolorAllTabs(ThemeMode.Light);
            ------------------------------------------------------------ */
         public static void RecolorAllTabs(this BorderlessTabControl ctl,
@@ -619,18 +652,17 @@ namespace CoreKeepersWorkshop
 
             foreach (TabPage page in ctl.TabPages)
             {
-                // Store the background color in Tag (read by OnPaint) and
-                // update the caption color so text stays readable.
-                if (themeMode == ThemeMode.Dark)
+                page.Tag = new BorderlessTabControl.TabColorInfo(page)
                 {
-                    page.Tag = Color.FromArgb(50, 50, 50); // Slate‑grey.
-                    page.ForeColor = Color.White;          // White text.
-                }
-                else
-                {
-                    page.Tag = SystemColors.Control;       // Standard light grey.
-                    page.ForeColor = Color.Black;          // Black text.
-                }
+                    FaceBack  = (themeMode == ThemeMode.Dark)
+                              ? Color.FromArgb(50, 50, 50)  // Slate‑grey button.
+                              : SystemColors.Control,       // Light‑grey button.
+                    TextFore = (themeMode == ThemeMode.Dark)
+                              ? Color.White                 // White caption text.
+                              : Color.Black                 // Black caption text.
+                };
+
+                /* NO page.ForeColor assignment here. */
             }
 
             ctl.ResumeLayout(); // Re‑enable layout engine.
