@@ -18,6 +18,13 @@ Changes Since v1.3.6.5
 - Organized the entire project structure.
 - Tweaked the assembly company name to match the projects.
 - Fixed typos within the projects readme file.
+- Fixed the title-bar border size shrinking the form.
+- Fixed startup error caused by moving non-initiated form.
+- Fixed tab-recoloring changing all child foregrounds.
+- Reduced the "ItemEditor" code lines from 1554 to 1420.
+- Fixed the item assets image size within the item editor.
+- Fixed the item-mode's variation limit within item editor.
+- Fixed item info distinguishing bad variants as unknown.
 
 + Overhauled the projects GUI.
 + Added a map teleport mod.
