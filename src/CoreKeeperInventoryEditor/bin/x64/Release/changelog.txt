@@ -25,6 +25,8 @@ Changes Since v1.3.6.5
 - Fixed the item assets image size within the item editor.
 - Fixed the item-mode's variation limit within item editor.
 - Fixed item info distinguishing bad variants as unknown.
+- Added info alert for missing inventory assets.
+- Disabled pdb/config generation for cleaner build output.
 
 + Overhauled the projects GUI.
 + Added a map teleport mod.
@@ -36,6 +38,7 @@ Changes Since v1.3.6.5
 + Added a new GUI dark/light theme.
 + Added rounded corner support.
 + Added a flush borderless tab control.
++ Embedded all external resource files.
 
 Changes Since v1.3.6.4
 ===========================================================
