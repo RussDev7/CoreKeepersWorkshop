@@ -27,16 +27,16 @@ Rem | Install SLN under x64 profile.
 "%MSBUILD%" ".\src\CoreKeeperInventoryEditor.sln" /p:Configuration=Release /p:Platform=x64"
 
 Rem | Delete Paths & Create Paths
-rmdir /s /q ".\release"
+if exist ".\release\" rmdir /s /q ".\release"
 mkdir ".\release"
 
 Rem | Copy Over Items
 xcopy /E /Y ".\src\CoreKeeperInventoryEditor\bin\x64\Release" ".\release\%filename%\"
 
 Rem | Clean Up Files
-del /f /q /s ".\release\*.xml"
-del /f /q /s ".\release\*.pdb"
-del /f /q /s ".\release\*.config"
+if exist ".\release\*.xml"    del /f /q /s ".\release\*.xml"
+if exist ".\release\*.pdb"    del /f /q /s ".\release\*.pdb"
+if exist ".\release\*.config" del /f /q /s ".\release\*.config"
 
 Rem | Delete & Create ZIP Release
 if exist ".\%filename%.zip" (del /f ".\%filename%.zip")
