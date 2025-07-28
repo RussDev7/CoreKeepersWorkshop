@@ -165,6 +165,19 @@ namespace CoreKeeperInventoryEditor
         // Do loading events.
         private void InventoryEditor_Load(object sender, EventArgs e)
         {
+            #region Asset Validation
+
+            // Check if 'ImageFiles' contains actual .png files.
+            if (!ImageFiles.Any(f => !string.IsNullOrWhiteSpace(f)))
+                MessageBox.Show(
+                    "No image files were found in the Inventory folder.",
+                    MainForm.normalTitle,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            // Don't close. Allow the form to be launched as this error is handled.
+            #endregion
+
             #region Set Custom Cusror
 
             // Set the applications cursor.

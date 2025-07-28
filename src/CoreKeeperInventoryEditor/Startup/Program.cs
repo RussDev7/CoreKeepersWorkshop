@@ -1,6 +1,8 @@
 ﻿#nullable enable // Silence CS8632.
 using System.Windows.Forms;
+using System.Reflection;
 using System.Threading;
+using System.Linq;
 using System;
 
 namespace CoreKeeperInventoryEditor
@@ -17,6 +19,35 @@ namespace CoreKeeperInventoryEditor
         [STAThread]
         static void Main()
         {
+            #region Embedded-DLL Resolver
+
+            //  When the CLR can’t find a referenced assembly on disk, this handler
+            //  looks inside the executable’s resources and loads it from there.
+            //  (Handy for "single-file" deployments.)
+            AppDomain.CurrentDomain.AssemblyResolve += (s, args) =>
+            {
+                // The DLL the CLR is looking for (e.g. “Foo.dll”).
+                var asmName = new AssemblyName(args.Name).Name + ".dll";
+
+                // Our own executable.
+                var me = Assembly.GetExecutingAssembly();
+
+                // Find a resource that ends with “…Foo.dll”.
+                var resource = me.GetManifestResourceNames()
+                                 .FirstOrDefault(r => r.EndsWith(asmName));
+
+                if (resource == null) return null; // Not embedded → bail out.
+
+                // Read the embedded DLL bytes and load them.
+                using (var str = me.GetManifestResourceStream(resource))
+                {
+                    var data = new byte[str.Length];
+                    str.Read(data, 0, data.Length);
+                    return Assembly.Load(data);
+                }
+            };
+            #endregion
+
             // Unique name for the mutex that enforces a single instance.
             string SingleInstanceMutexName = Application.ProductName;
 
@@ -28,9 +59,25 @@ namespace CoreKeeperInventoryEditor
 
             if (!isFirstInstance) return; // Another copy is already running – quietly exit.
 
+            // WinForms boilerplate.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AppContextManager());
+
+            // Run AppContextManager w/ global exception trap.
+            try
+            {
+                Application.Run(new AppContextManager());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "Unhandled exception",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                Clipboard.SetText(ex.ToString());
+            }
 
             // GC.KeepAlive(mutex);       // Now unnecessary with the using‑statement.
         }

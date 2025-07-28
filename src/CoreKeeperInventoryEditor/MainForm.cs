@@ -84,6 +84,7 @@ namespace CoreKeeperInventoryEditor
         private int              _previousTab;
 
         // Define warning and error titles.
+        public static readonly string normalTitle  = $"{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
         public static readonly string warningTitle = $"WARNING: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
         public static readonly string errorTitle   = $"ERROR: {FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).ProductName} v{FileVersionInfo.GetVersionInfo(Path.GetFileName(System.Windows.Forms.Application.ExecutablePath)).FileVersion}";
 
@@ -186,6 +187,8 @@ namespace CoreKeeperInventoryEditor
 
                 #region Does Memory.dll Exist?
 
+                // This block was removed since Memory.dll is now an embedded resource.
+                /*
                 // Check if the users AV detected memory.dll as a false positive.
                 string startupPath = AppDomain.CurrentDomain.BaseDirectory;
                 string dllPath = Path.Combine(startupPath, "Memory.dll");
@@ -202,8 +205,9 @@ namespace CoreKeeperInventoryEditor
                                     "Once the exception is added, and Memory.dll has been restored, restart the application.\n\n" +
                                     "Exiting the application now.",
                                     errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
+                    this.Close(); return;
                 }
+                */
 
                 // Checks passed, initiate memory.dll.
                 InitiateMemoryDLL();
