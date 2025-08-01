@@ -39,6 +39,7 @@ Changes Since v1.3.6.5
 + Added rounded corner support.
 + Added a flush borderless tab control.
 + Embedded all external resource files.
++ Inlined memory.dll to reduce AV false positives.
 
 Changes Since v1.3.6.4
 ===========================================================
