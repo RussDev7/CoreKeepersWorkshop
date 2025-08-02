@@ -10,8 +10,6 @@ Changes Since v1.3.6.5
 - Fixed "ItemSelectionMenu" to display items full names.
 - Optimized and fixed the chat commands.
 - Fixed null collection errors for map reveal & teleport.
-- Significantly increased item selection menu load times.
-- Significantly optimized image indexing.
 - Added "Skillset" tool the food cookbook.
 - Updated all food cookbook controls with new names. (miss)
 - Re-sized, adjusted, and cleaned up all forms.
@@ -27,6 +25,8 @@ Changes Since v1.3.6.5
 - Fixed item info distinguishing bad variants as unknown.
 - Added info alert for missing inventory assets.
 - Disabled pdb/config generation for cleaner build output.
+- Fixed placeholder torch function not clearing inventory.
+- Deleting all inventory items now deletes skillset data.
 
 + Overhauled the projects GUI.
 + Added a map teleport mod.
@@ -40,6 +40,9 @@ Changes Since v1.3.6.5
 + Added a flush borderless tab control.
 + Embedded all external resource files.
 + Inlined memory.dll to reduce AV false positives.
+- Significantly increased item selection menu load times.
+- Significantly optimized image indexing.
++ Significantly decreased all scan times.
 
 Changes Since v1.3.6.4
 ===========================================================
@@ -642,3 +645,4 @@ Changes Since v1.0
 + Added a search for item feature for the item browser.
 + Added tooltips.
 + Increased the indexing speeds 300%.
+
