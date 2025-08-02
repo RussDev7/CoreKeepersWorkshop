@@ -40,8 +40,8 @@ Changes Since v1.3.6.5
 + Added a flush borderless tab control.
 + Embedded all external resource files.
 + Inlined memory.dll to reduce AV false positives.
-- Significantly increased item selection menu load times.
-- Significantly optimized image indexing.
++ Significantly increased item selection menu load times.
++ Significantly optimized image indexing.
 + Significantly decreased all scan times.
 
 Changes Since v1.3.6.4
@@ -645,4 +645,5 @@ Changes Since v1.0
 + Added a search for item feature for the item browser.
 + Added tooltips.
 + Increased the indexing speeds 300%.
+
 
