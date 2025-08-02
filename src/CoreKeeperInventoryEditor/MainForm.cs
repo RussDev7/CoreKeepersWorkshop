@@ -1120,29 +1120,29 @@ namespace CoreKeeperInventoryEditor
             {
                 // Enable controls.
                 ReloadInventory_Button.Enabled = true; // Reload.
-                RemoveAll_Button.Enabled = true;       // Remove all.
+                RemoveAll_Button.Enabled       = true; // Remove all.
 
                 // If scan is larger then 1 result, enable arrow controls.
                 if (AoBScanResultsInventory.Count() > 1)
                 {
                     // Enable arrow buttons.
                     PreviousInvAddress_Button.Enabled = true; // Previous.
-                    NextInvAddress_Button.Enabled = true;     // Next.
+                    NextInvAddress_Button.Enabled     = true; // Next.
                 }
                 else
                 {
                     // Disable arrow buttons.
                     PreviousInvAddress_Button.Enabled = false; // Previous.
-                    NextInvAddress_Button.Enabled = false;     // Next.
+                    NextInvAddress_Button.Enabled     = false; // Next.
                 }
             }
             else
             {
                 // Disable controls.
-                ReloadInventory_Button.Enabled = false;    // Reload.
-                RemoveAll_Button.Enabled = false;          // Remove all.
+                ReloadInventory_Button.Enabled    = false; // Reload.
+                RemoveAll_Button.Enabled          = false; // Remove all.
                 PreviousInvAddress_Button.Enabled = false; // Previous.
-                NextInvAddress_Button.Enabled = false;     // Next.
+                NextInvAddress_Button.Enabled     = false; // Next.
             }
 
             // Toggle placeholder torches off.
@@ -1160,11 +1160,11 @@ namespace CoreKeeperInventoryEditor
 
         // Function for adding items to the players inventory.
         public void AddItemToInv(
-            int ItemSlot         = 1,
-            int Type             = 1,
-            int Variation        = 0,
-            int Amount           = 1,
-            int Skillset         = 0,
+            int  ItemSlot        = 1,
+            int  Type            = 1,
+            int  Variation       = 0,
+            int  Amount          = 1,
+            int  Skillset        = 0,
             bool LoadInventory   = false,
             bool CycleAll        = false,
             bool ExportInventory = false,
@@ -1616,22 +1616,33 @@ namespace CoreKeeperInventoryEditor
             // Check to enable or disable the placeholder torches.
             if (Enabled)
             {
-                // Enable placeholder torches.
+                // Enable placeholder torches. //
 
-                Slot1_PictureBox.Image = MakeGrayscale3(new Bitmap(Resources.TorchPlaceholder));
-                Slot1_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                // Remove all previous images.
+                int slotCount = Main_TabControl.TabPages["Inventory_TabPage"].Controls.OfType<PictureBox>().Count();
+                for (int i = 1; i <= slotCount; i++)
+                {
+                    // Clear the image from the UI.
+                    if (this.Controls.Find($"Slot{i}_PictureBox", searchAllChildren: true).FirstOrDefault() is PictureBox picBox)
+                    {
+                        picBox.Image = null;
+                    }
+                }
 
-                Slot30_PictureBox.Image = MakeGrayscale3(new Bitmap(Resources.TorchPlaceholder));
+                Slot1_PictureBox.Image     = MakeGrayscale3(new Bitmap(Resources.TorchPlaceholder));
+                Slot1_PictureBox.SizeMode  = PictureBoxSizeMode.Zoom;
+
+                Slot30_PictureBox.Image    = MakeGrayscale3(new Bitmap(Resources.TorchPlaceholder));
                 Slot30_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                Slot1_PictureBox.Invalidate(); // Reload picturebox.
+                Slot1_PictureBox.Invalidate();  // Reload picturebox.
                 Slot30_PictureBox.Invalidate(); // Reload picturebox.
             }
             else
             {
-                // Disable placeholder torches.
+                // Disable placeholder torches. //
 
-                Slot1_PictureBox.Image = null;
+                Slot1_PictureBox.Image  = null;
                 Slot30_PictureBox.Image = null;
             }
         }
@@ -1678,7 +1689,7 @@ namespace CoreKeeperInventoryEditor
             AddItemToInv(LoadInventory: true);
         }
 
-        // Remove entire Inventory.
+        // Remove entire Inventory (& data).
         private void RemoveAll_Button_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Delete ALL items? Are you sure?", "Remove All", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -1687,7 +1698,7 @@ namespace CoreKeeperInventoryEditor
                 RemoveAll_Button.Text = "Clearing..";
 
                 // Reload Inventory.
-                AddItemToInv(Type: 0, Amount: 1, Variation: 0, CycleAll: true);
+                AddItemToInv(Type: 0, Amount: 1, Variation: 0, Skillset: 0, CycleAll: true);
             }
         }
 
