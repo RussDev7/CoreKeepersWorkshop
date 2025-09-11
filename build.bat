@@ -6,7 +6,7 @@
 @ECHO OFF
 
 Rem | Set Params
-Set "VersionPrefix=1.3.6.6"
+Set "VersionPrefix=1.3.6.7"
 Set "filename=CoreKeeperInventoryEditor-%VersionPrefix%"
 
 Rem | Put the expected location of vswhere into a variable.
@@ -45,3 +45,4 @@ powershell.exe -nologo -noprofile -command "Compress-Archive -Path ".\release\*"
 Rem | Operation Complete
 echo(
 pause
+
