@@ -1,3 +1,7 @@
+Changes Since v1.3.6.6
+===========================================================
+- Added mod support to the player tools.
+
 Changes Since v1.3.6.5
 ===========================================================
 - Updated the map reveal addresses (again).
@@ -645,5 +649,6 @@ Changes Since v1.0
 + Added a search for item feature for the item browser.
 + Added tooltips.
 + Increased the indexing speeds 300%.
+
 
 
