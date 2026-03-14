@@ -1,6 +1,16 @@
 Changes Since v1.3.6.6
 ===========================================================
 - Added mod support to the player tools.
+- Corrected misnamed assets.
+- Updated player mods addresses.
+- Updated the map reveal addresses.
+- Updated the auto fishing addresses.
+- Updated the dev rendering addresses.
+- Updated the place anywhere addresses.
+- Updated the food cookbook entrees.
+- Updated the buff editor entrees.
+
++ Added 236+ various missing assets.
 
 Changes Since v1.3.6.5
 ===========================================================

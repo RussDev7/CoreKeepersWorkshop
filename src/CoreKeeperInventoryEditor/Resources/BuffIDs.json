@@ -1056,7 +1056,7 @@
       "id":"263"
    },
    {
-      "name":"Gain Mana Percentage On Crit",
+      "name":"Gain Mana On Crit",
       "id":"264"
    },
    {
@@ -1220,15 +1220,215 @@
       "id":"304"
    },
    {
-      "name":"Superman",
+      "name":"Chance To Not Consume Explosives",
       "id":"305"
    },
    {
-      "name":"Bilibili Doge Chance",
+      "name":"Chance To Drop Explosives Components",
       "id":"306"
    },
    {
-      "name":"M A X_ V A L U E S",
+      "name":"Increased Explosives Radius Percentage",
       "id":"307"
+   },
+   {
+      "name":"Chance For Additional Ore From Explosives",
+      "id":"308"
+   },
+   {
+      "name":"Reduced Damage From Explosions",
+      "id":"309"
+   },
+   {
+      "name":"Gain Mana From Explosion",
+      "id":"310"
+   },
+   {
+      "name":"Chance To Spawn Minion On Explosion",
+      "id":"311"
+   },
+   {
+      "name":"Explosion Increase Melee Damage",
+      "id":"312"
+   },
+   {
+      "name":"Chance To Spawn Napalm From Explosives",
+      "id":"313"
+   },
+   {
+      "name":"Increased Burning Damage Percentage",
+      "id":"314"
+   },
+   {
+      "name":"Increased Magic Damage Percentage While Adjacent To Water",
+      "id":"315"
+   },
+   {
+      "name":"Increased Magic Damage Percentage From Adjacent Water",
+      "id":"316"
+   },
+   {
+      "name":"Minions Explode As They Despawn",
+      "id":"317"
+   },
+   {
+      "name":"Chance On Hit To Stun",
+      "id":"318"
+   },
+   {
+      "name":"Superman",
+      "id":"319"
+   },
+   {
+      "name":"Bili Bili Dodge Chance",
+      "id":"320"
+   },
+   {
+      "name":"Green Glow",
+      "id":"321"
+   },
+   {
+      "name":"Sleeping From Standing Still",
+      "id":"322"
+   },
+   {
+      "name":"Buffs From Quality Sleep",
+      "id":"323"
+   },
+   {
+      "name":"Life On Minion Hit",
+      "id":"324"
+   },
+   {
+      "name":"Life On Pet Hit",
+      "id":"325"
+   },
+   {
+      "name":"Increased Minion Crit Damage Percentage",
+      "id":"326"
+   },
+   {
+      "name":"Increased Minion Boss Damage Percentage",
+      "id":"327"
+   },
+   {
+      "name":"Channel Void Breach",
+      "id":"328"
+   },
+   {
+      "name":"Affix Electric Orb",
+      "id":"329"
+   },
+   {
+      "name":"Affix Arcane Beam",
+      "id":"330"
+   },
+   {
+      "name":"Affix Fire Bomb",
+      "id":"331"
+   },
+   {
+      "name":"Affix Unused3",
+      "id":"332"
+   },
+   {
+      "name":"Affix Unused4",
+      "id":"333"
+   },
+   {
+      "name":"Affix Unused5",
+      "id":"334"
+   },
+   {
+      "name":"Extra Heal From Sleep Percentage",
+      "id":"335"
+   },
+   {
+      "name":"Drenched In Oil",
+      "id":"336"
+   },
+   {
+      "name":"Immune To Oil",
+      "id":"337"
+   },
+   {
+      "name":"Apply Drenched In Oil",
+      "id":"338"
+   },
+   {
+      "name":"Amass Then Reciprocate Damage",
+      "id":"339"
+   },
+   {
+      "name":"Increase Sequence Explosion Total Max Explosions On Hit",
+      "id":"340"
+   },
+   {
+      "name":"Sequence Explosion Total Max Explosions",
+      "id":"341"
+   },
+   {
+      "name":"Ready To Amass Then Reciprocate Damage",
+      "id":"342"
+   },
+   {
+      "name":"Closed Eyes",
+      "id":"343"
+   },
+   {
+      "name":"Apply Burning If Burning",
+      "id":"344"
+   },
+   {
+      "name":"Damage Increase If Burning",
+      "id":"345"
+   },
+   {
+      "name":"Explosives Apply Oil On Ground",
+      "id":"346"
+   },
+   {
+      "name":"Gain Sleep From Standing Still",
+      "id":"347"
+   },
+   {
+      "name":"Mana On Hit",
+      "id":"348"
+   },
+   {
+      "name":"Mana Addition Percentage",
+      "id":"349"
+   },
+   {
+      "name":"Increase Mana Cost And Magic Damage Percentage Per Second",
+      "id":"350"
+   },
+   {
+      "name":"Increase Mana Cost And Magic Damage Percentage",
+      "id":"351"
+   },
+   {
+      "name":"Chance To Spawn Fire On Attack",
+      "id":"352"
+   },
+   {
+      "name":"Apply Burning From Burning",
+      "id":"353"
+   },
+   {
+      "name":"Damage Increase From Burning",
+      "id":"354"
+   },
+   {
+      "name":"Void Glow",
+      "id":"355"
+   },
+   {
+      "name":"Void Hydra Heart Buff",
+      "id":"356"
+   },
+   {
+      "name":"M A X_ V A L U E S",
+      "id":"357"
    }
 ]
