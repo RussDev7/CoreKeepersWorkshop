@@ -5211,7 +5211,7 @@ namespace CoreKeeperInventoryEditor
             // Depreciated Address 24Jun25: 51 01 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 E0 40 00 00 00 00 01 04 02 05 04 03 01 50 00 00 00 00
             // Future: [51 01 00 00 EB C4 BA C9 01 00 00 EB BD BA E1 01 00 00 EB B6] or [00 00 E0 40 00 00 00 00 01 04 02 05 04 03 01 50 00 00 00 00]
             // Scan the reveal range address first.
-            AoBScanResultsRevealMapRange = await MemLib.AoBScan("51 01 00 00 EB C4 BA C9 01 00 00 EB BD BA E1 01 00 00 EB B6", true, true);
+            AoBScanResultsRevealMapRange = await MemLib.AoBScan("51 01 00 00 ?? ?? ?? ?? 01 00 00 EB ?? ?? ?? ?? 00 00 40 41", true, true);
 
             // Check for the reveal range addresses.
             if (AoBScanResultsRevealMapRange.Count() < 1 || AoBScanResultsRevealMapRange.Count() > 2) // Using 2 as a cap.
