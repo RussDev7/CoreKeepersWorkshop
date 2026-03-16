@@ -291,8 +291,8 @@ namespace CoreKeepersWorkshop
                 // Get the addresses.
                 // Updated offsets 04Oct23.
                 // Updated offsets 07Feb25.
-                string positionXAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("0", NumberStyles.Integer)).ToString("X");
-                string positionYAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                string positionXAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse(MainForm.positionX_Offset, NumberStyles.Integer)).ToString("X");
+                string positionYAddress = BigInteger.Add(BigInteger.Parse(playerToolAddress, NumberStyles.HexNumber), BigInteger.Parse(MainForm.positionY_Offset, NumberStyles.Integer)).ToString("X");
 
                 float playerX = MemLib.ReadFloat(positionXAddress);
                 float playerY = MemLib.ReadFloat(positionYAddress);

@@ -181,6 +181,7 @@
             // 
             this.HideMainForm_CheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.HideMainForm_CheckBox.AutoSize = true;
+            this.HideMainForm_CheckBox.ForeColor = System.Drawing.Color.Snow;
             this.HideMainForm_CheckBox.Location = new System.Drawing.Point(167, 30);
             this.HideMainForm_CheckBox.Name = "HideMainForm_CheckBox";
             this.HideMainForm_CheckBox.Size = new System.Drawing.Size(100, 17);
@@ -193,6 +194,7 @@
             // 
             this.ShowEnemySpawnChunks_CheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ShowEnemySpawnChunks_CheckBox.AutoSize = true;
+            this.ShowEnemySpawnChunks_CheckBox.ForeColor = System.Drawing.Color.Snow;
             this.ShowEnemySpawnChunks_CheckBox.Location = new System.Drawing.Point(167, 7);
             this.ShowEnemySpawnChunks_CheckBox.Name = "ShowEnemySpawnChunks_CheckBox";
             this.ShowEnemySpawnChunks_CheckBox.Size = new System.Drawing.Size(163, 17);
@@ -218,6 +220,7 @@
             // 
             this.Opacity_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Opacity_Label.AutoSize = true;
+            this.Opacity_Label.ForeColor = System.Drawing.Color.Snow;
             this.Opacity_Label.Location = new System.Drawing.Point(16, 8);
             this.Opacity_Label.Name = "Opacity_Label";
             this.Opacity_Label.Size = new System.Drawing.Size(43, 13);
@@ -228,6 +231,7 @@
             // 
             this.Debug_CheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Debug_CheckBox.AutoSize = true;
+            this.Debug_CheckBox.ForeColor = System.Drawing.Color.Snow;
             this.Debug_CheckBox.Location = new System.Drawing.Point(272, 30);
             this.Debug_CheckBox.Name = "Debug_CheckBox";
             this.Debug_CheckBox.Size = new System.Drawing.Size(58, 17);
@@ -254,6 +258,7 @@
             // 
             this.Scale_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Scale_Label.AutoSize = true;
+            this.Scale_Label.ForeColor = System.Drawing.Color.Snow;
             this.Scale_Label.Location = new System.Drawing.Point(92, 8);
             this.Scale_Label.Name = "Scale_Label";
             this.Scale_Label.Size = new System.Drawing.Size(34, 13);
