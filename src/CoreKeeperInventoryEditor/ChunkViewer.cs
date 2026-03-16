@@ -67,6 +67,9 @@ namespace CoreKeepersWorkshop
 
         #region Form Load And Closing Events
 
+        private const float _scaleStep = 0.2f; // The scale to multiply by to get a larger range.
+        float mapScale = 4.0f;
+
         // Do loading events for the form.
         private void ChunkViewer_Load(object sender, EventArgs e)
         {
@@ -93,10 +96,21 @@ namespace CoreKeepersWorkshop
             TranslateScale_NumericUpDown.Visible  = Settings.Default.ChunkViewerDebug;
             TranslateScale_NumericUpDown.Value    = Settings.Default.ChunkViewerDebugScale;
 
-            Scale_TrackBar.Value                  = (int)(Settings.Default.ChunkViewerScale / 0.2);
-            mapScale                              = Settings.Default.ChunkViewerScale;
+            Scale_TrackBar.Value                  = (int)Math.Round(Settings.Default.ChunkViewerScale / _scaleStep);
+            // mapScale                              = Settings.Default.ChunkViewerScale;
 
-            this.Size                             = new Size((int)Math.Round(64 * mapScale) + _defaultXOffset, (int)Math.Round(64 * mapScale) + _defaultYOffset); // Form size.
+            BeginInvoke(new Action(() =>
+            {
+                ApplyScaleAndSize();
+                Content_Panel.Invalidate();
+            }));
+
+            // Set label colors based on saved theme settings.
+            Opacity_Label.ForeColor                 = Settings.Default.UITheme == ThemeMode.Light ? Color.Black : Color.Snow;
+            Scale_Label.ForeColor                   = Settings.Default.UITheme == ThemeMode.Light ? Color.Black : Color.Snow;
+            ShowEnemySpawnChunks_CheckBox.ForeColor = Settings.Default.UITheme == ThemeMode.Light ? Color.Black : Color.Snow;
+            HideMainForm_CheckBox.ForeColor         = Settings.Default.UITheme == ThemeMode.Light ? Color.Black : Color.Snow;
+            Debug_CheckBox.ForeColor                = Settings.Default.UITheme == ThemeMode.Light ? Color.Black : Color.Snow;
             #endregion
 
             #region Timed Events
@@ -249,11 +263,13 @@ namespace CoreKeepersWorkshop
         // Adjust the grid scale.
         private void Scale_TrackBar_ValueChanged(object sender, EventArgs e)
         {
-            // Get the scale to multiply by to get a larger range.
-            float sliderScale = 0.2f;
+            ApplyScaleAndSize();
+        }
 
-            // Set the map scale value.
-            mapScale = sliderScale * Scale_TrackBar.Value;
+        private void ApplyScaleAndSize()
+        {
+            // Read scale from the slider.
+            mapScale = Scale_TrackBar.Value * _scaleStep;
 
             // Save the new scale.
             Settings.Default.ChunkViewerScale = mapScale;
@@ -261,6 +277,7 @@ namespace CoreKeepersWorkshop
             // Define the offsets for the form size.
             int xOffset = _defaultXOffset;
             int yOffset = _defaultYOffset;
+
             if (Debug_CheckBox.Checked)
             {
                 xOffset = (int)XAxisOffset_NumericUpDown.Value;
@@ -268,7 +285,12 @@ namespace CoreKeepersWorkshop
             }
 
             // Set the form size.
-            this.Size = new Size((int)Math.Round(64 * mapScale) + xOffset, (int)Math.Round(64 * mapScale) + yOffset);
+            this.Size = new Size(
+                (int)Math.Round(64f * mapScale) + xOffset,
+                (int)Math.Round(64f * mapScale) + yOffset
+            );
+
+            Content_Panel.Invalidate();
         }
         #endregion
 
@@ -277,7 +299,6 @@ namespace CoreKeepersWorkshop
         #region Do Painting
 
         // Get the players position timer.
-        float mapScale = 4.2f;
         Vector2 playersPosition = new Vector2(0, 0);
         private void TimedEvents(Object source, ElapsedEventArgs e)
         {
