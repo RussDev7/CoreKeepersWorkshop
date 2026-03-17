@@ -1,3 +1,9 @@
+Changes Since v1.3.6.7
+===========================================================
+- Updated the map reveal addresses.
+- Updated the dev rendering addresses.
+- Fixed incorrect chunk viewer window scaling.
+
 Changes Since v1.3.6.6
 ===========================================================
 - Added mod support to the player tools.
