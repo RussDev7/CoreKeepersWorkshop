@@ -5112,6 +5112,7 @@ namespace CoreKeeperInventoryEditor
 
         // This bool is for separating the vanilla & modded reveal ranges.
         // Depreciated 28May25: public static bool mapRevealIsVanilla = false;
+        public static bool mapRevealIsAlt = false;
         public async void GetMapRevealAddresses()
         {
             // Open the process and check if it was successful before the AoB scan.
@@ -5215,7 +5216,20 @@ namespace CoreKeeperInventoryEditor
             // Depreciated Address 28May25: 00 00 40 41 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0C 00 00 00 34 00 00 00 00 00 04 40
             // Depreciated Address 24Jun25: 51 01 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 E0 40 00 00 00 00 01 04 02 05 04 03 01 50 00 00 00 00
             // Scan the reveal range address first.
+
+            // Scan the modded address first.
+            mapRevealIsAlt = false; // Change flag to default.
             AoBScanResultsRevealMapRange = await MemLib.AoBScan("51 01 00 00 ?? ?? ?? ?? 01 00 00 EB ?? ?? ?? ?? 00 00 40 41", true, true);
+
+            // Check if the modded AOB address was found.
+            if (AoBScanResultsRevealMapRange.Count() < 1)
+            {
+                // Address not found. Lets try scanning for alt.
+                AoBScanResultsRevealMapRange = await MemLib.AoBScan("51 01 00 00 EB C4 BA ?? 01 00 00 EB", true, true);
+
+                // Change the alt flag.
+                mapRevealIsAlt = true;
+            }
 
             // Check for the reveal range addresses.
             if (AoBScanResultsRevealMapRange.Count() < 1 || AoBScanResultsRevealMapRange.Count() > 2) // Using 2 as a cap.
@@ -5292,7 +5306,8 @@ namespace CoreKeeperInventoryEditor
             string revealMapRangeAddresses = string.Join(", ", AoBScanResultsRevealMapRange.Select(val => val.ToString("X")));
             string devMapRevealAddresses   = string.Join(", ", AoBScanResultsDevMapReveal.Select(val => val.ToString("X")));
             int addressCount               = AoBScanResultsRevealMapRange.Count() + AoBScanResultsDevMapReveal.Count();
-            MapRenderingAddresses_RichTextBox.Text = $"Addresses Loaded ({addressCount}): R:[{revealMapRangeAddresses}], D:[{devMapRevealAddresses}]";
+            string isAltAddressString      = mapRevealIsAlt ? $" (alt)" : string.Empty;
+            MapRenderingAddresses_RichTextBox.Text = $"Addresses Loaded ({addressCount}): R{isAltAddressString}:[{revealMapRangeAddresses}], D:[{devMapRevealAddresses}]";
 
             // Re-enable button.
             // GetInventoryAddresses_Button1.Enabled = true;
@@ -5398,11 +5413,11 @@ namespace CoreKeeperInventoryEditor
                 // Set the new value within memory.
                 // string rangeAddress = mapRevealIsVanilla ? BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X") : BigInteger.Subtract(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("8", NumberStyles.Integer)).ToString("X");
                 string rangeAddress = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("16", NumberStyles.Integer)).ToString("X");
-                MemLib.WriteMemory(rangeAddress, "float", "7"); // Default: 7.
+                MemLib.WriteMemory(rangeAddress, "float", "12"); // Default: 12.
             }
 
             // Update the render range numericupdown.
-            RenderRange_NumericUpDown.Value = 7;
+            RenderRange_NumericUpDown.Value = 12;
 
             // Update the progress bar.
             if (MapRendering_ProgressBar.Maximum >= 100)
