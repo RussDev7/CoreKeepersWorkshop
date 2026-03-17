@@ -6,7 +6,7 @@
 @ECHO OFF
 
 Rem | Set Params
-Set "VersionPrefix=1.3.6.7"
+Set "VersionPrefix=1.3.6.8"
 Set "filename=CoreKeeperInventoryEditor-%VersionPrefix%"
 
 Rem | Put the expected location of vswhere into a variable.
