@@ -24,7 +24,7 @@ for /f "usebackq tokens=*" %%I in (`
 )
 
 Rem | Install SLN under x64 profile.
-"%MSBUILD%" ".\src\CoreKeeperInventoryEditor.sln" /p:Configuration=Release /p:Platform=x64"
+"%MSBUILD%" ".\src\CoreKeeperInventoryEditor.sln" /p:Configuration=Release /p:Platform=x64
 
 Rem | Delete Paths & Create Paths
 if exist ".\release\" rmdir /s /q ".\release"
