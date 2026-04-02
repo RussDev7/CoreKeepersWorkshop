@@ -6445,7 +6445,7 @@ namespace CoreKeeperInventoryEditor
         // Below contains all the offsets for the map teleport mod.
         // These values are all added to the map teleports base address.
                                                              // Base + Offset.
-        readonly string mapLocationCheck_Offset     = "4"    // (0.1=true).
+        readonly string mapLocationCheck_Offset     = "4";   // (0.1=true).
         readonly string mapMiddleClickX_Offset      = "12";  // (this.mapUI.GetCursorWorldPosition().X).
         readonly string mapOpenedAtLeastOnce_Offset = "16";  // (0=false, 1=true).
         readonly string mapMiddleClickY_Offset      = "20";  // (this.mapUI.GetCursorWorldPosition().Y).
