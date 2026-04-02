@@ -1,6 +1,7 @@
 Changes Since v1.3.6.7
 ===========================================================
 - Updated the map reveal addresses.
+- Updated the map teleport addresses.
 - Updated the dev rendering addresses.
 - Fixed incorrect chunk viewer window scaling.
 
