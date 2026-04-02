@@ -4996,9 +4996,9 @@ namespace CoreKeeperInventoryEditor
 
             // Reference: [MapUI]
             // Select an address based on brute force mode.
-            //                                                                                                            [           ] - mapOpenedAtLeastOnce.
-            string AoBPlayerMapLocationArrayOne = "?? 02 00 00 00 00 00 00 04 00 00 00 CD CC CC 3D 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 80 3F 00 00 00 00";
-            string AoBPlayerMapLocationArrayTwo = "?? 02 00 00 00 00 00 00 04 00 00 00 CD CC CC 3D 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 00 00 80 3F 00 00 00 00";
+            //                                                                                    [           ] - mapOpenedAtLeastOnce.
+            string AoBPlayerMapLocationArrayOne = "04 00 00 00 CD CC CC 3D 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 80 3F 00 00 00 00";
+            string AoBPlayerMapLocationArrayTwo = "04 00 00 00 CD CC CC 3D 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 00 00 80 3F 00 00 00 00";
 
             // AoB scan and store it in AoBScanResults. We specify our start and end address regions to decrease scan time.
             AoBScanResultsPlayerMapLocation = await MemLib.AoBScan(AoBPlayerMapLocationArrayOne, true, true);
@@ -6445,12 +6445,12 @@ namespace CoreKeeperInventoryEditor
         // Below contains all the offsets for the map teleport mod.
         // These values are all added to the map teleports base address.
                                                              // Base + Offset.
-        readonly string mapMiddleClickX_Offset      = "20";  // (this.mapUI.GetCursorWorldPosition().X).
-        readonly string mapOpenedAtLeastOnce_Offset = "24";  // (0=false, 1=true).
-        readonly string mapMiddleClickY_Offset      = "28";  // (this.mapUI.GetCursorWorldPosition().Y).
-        readonly string mapOpen_Offset              = "92";  // (0=close, 1=open).
-        readonly string mapLeftClickX_Offset        = "136"; // (this.mapUI.GetCursorWorldPosition().X).
-        readonly string mapLeftClickY_Offset        = "140"; // (this.mapUI.GetCursorWorldPosition().Y).
+        readonly string mapMiddleClickX_Offset      = "12";  // (this.mapUI.GetCursorWorldPosition().X).
+        readonly string mapOpenedAtLeastOnce_Offset = "16";  // (0=false, 1=true).
+        readonly string mapMiddleClickY_Offset      = "20";  // (this.mapUI.GetCursorWorldPosition().Y).
+        readonly string mapOpen_Offset              = "84";  // (0=close, 1=open).
+        readonly string mapLeftClickX_Offset        = "128"; // (this.mapUI.GetCursorWorldPosition().X).
+        readonly string mapLeftClickY_Offset        = "132"; // (this.mapUI.GetCursorWorldPosition().Y).
 
         #pragma warning restore CS0414
 
@@ -6496,7 +6496,7 @@ namespace CoreKeeperInventoryEditor
                 {
                     // Pointers are found, check if they are still valid.
                     //
-                    string mapLocationCheckAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("12", NumberStyles.Integer)).ToString("X");
+                    string mapLocationCheckAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
                     float mapLocationCheck = MemLib.ReadFloat(mapLocationCheckAddress, round: false); // _pingCooldown - Should be 0.1f.
 
                     // Check if we need to rescan crafting or not.
@@ -6515,10 +6515,14 @@ namespace CoreKeeperInventoryEditor
                     return;
                 }
 
-                // Calculate the address offsets outside of the timed loop to save perfomance.
+                // Calculate the address offsets outside of the timed loop to save performance.
                 mapOpen_Address = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mapOpen_Offset, NumberStyles.Integer)).ToString("X");
                 mapLeftClickX_Address = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mapLeftClickX_Offset, NumberStyles.Integer)).ToString("X");
                 mapLeftClickY_Address = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X"), NumberStyles.HexNumber), BigInteger.Parse(mapLeftClickY_Offset, NumberStyles.Integer)).ToString("X");
+
+                // Set the initial map clicked position to the current values.
+                oldmapToWorldPosX = MemLib.ReadFloat(mapLeftClickX_Address);
+                oldmapToWorldPosY = MemLib.ReadFloat(mapLeftClickY_Address);
 
                 // Checkbox is being toggled on.
                 // Start the timed events.
