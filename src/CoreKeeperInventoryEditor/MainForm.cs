@@ -6445,6 +6445,7 @@ namespace CoreKeeperInventoryEditor
         // Below contains all the offsets for the map teleport mod.
         // These values are all added to the map teleports base address.
                                                              // Base + Offset.
+        readonly string mapLocationCheck_Offset     = "4"    // (0.1=true).
         readonly string mapMiddleClickX_Offset      = "12";  // (this.mapUI.GetCursorWorldPosition().X).
         readonly string mapOpenedAtLeastOnce_Offset = "16";  // (0=false, 1=true).
         readonly string mapMiddleClickY_Offset      = "20";  // (this.mapUI.GetCursorWorldPosition().Y).
@@ -6496,7 +6497,7 @@ namespace CoreKeeperInventoryEditor
                 {
                     // Pointers are found, check if they are still valid.
                     //
-                    string mapLocationCheckAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("4", NumberStyles.Integer)).ToString("X");
+                    string mapLocationCheckAddress = BigInteger.Add(BigInteger.Parse(AoBScanResultsPlayerMapLocation.First().ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse(mapLocationCheck_Offset, NumberStyles.Integer)).ToString("X");
                     float mapLocationCheck = MemLib.ReadFloat(mapLocationCheckAddress, round: false); // _pingCooldown - Should be 0.1f.
 
                     // Check if we need to rescan crafting or not.
