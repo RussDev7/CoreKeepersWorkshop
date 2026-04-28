@@ -1,7 +1,7 @@
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::Clean The CoreKeepersWorkshop Project Via Batch                ::
-::Gihub https://github.com/RussDev7/CoreKeepersWorkshop          ::
-::Developed, Maintained, And Sponsored By D.RUSS#2430            ::
+:: Clean The CoreKeepersWorkshop Project Via Batch               ::
+:: Gihub https://github.com/RussDev7/CoreKeepersWorkshop         ::
+:: Developed and maintained by RussDev7 / Discord: dannyruss     ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
 
