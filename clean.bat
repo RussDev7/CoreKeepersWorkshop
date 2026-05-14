@@ -1,8 +1,8 @@
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: Clean The CoreKeepersWorkshop Project Via Batch               ::
-:: Gihub https://github.com/RussDev7/CoreKeepersWorkshop         ::
-:: Developed and maintained by RussDev7 / Discord: dannyruss     ::
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Clean The CoreKeepersWorkshop Project Via Batch           ::
+:: GitHub: https://github.com/RussDev7/CoreKeepersWorkshop   ::
+:: Developed and maintained by RussDev7 / Discord: dannyruss ::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
 
 Rem | Check If Clean Is Necessary
