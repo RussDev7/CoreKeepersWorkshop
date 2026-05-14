@@ -1,6 +1,8 @@
 Changes Since v1.3.6.71
 ===========================================================
 - Updated the map teleport addresses.
+- Updated player mods addresses.
+- Fixed 'restore default range' not disabling feature.
 
 Changes Since v1.3.6.7
 ===========================================================

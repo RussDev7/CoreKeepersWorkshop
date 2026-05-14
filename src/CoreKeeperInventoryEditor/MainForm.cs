@@ -1908,10 +1908,10 @@ namespace CoreKeeperInventoryEditor
         public static readonly string positionX_Offset = "0";      // Player position X.
         public static readonly string positionY_Offset = "8";      // Player position Y.
         public static readonly string speed_Offset     = "-808";   // Player speed.  // 336 default.
-        public static readonly string hunger_Offset    = "4160";   // Player hunger. // What even is this game anymore LOL.
+        public static readonly string hunger_Offset    = "4224";   // Player hunger. // What even is this game anymore LOL.
         public static readonly string mana_Offset      = "-1152";  // Player mana.
         public static readonly string noclip_Offset    = "192";    // Noclip.        // 4 = off, 32 = on, 524288 = Recall (wait 5s).
-        public static readonly string passiveAI_Offset = "4228";   // Passive AI.    // 5 = off, 8  = on.
+        public static readonly string passiveAI_Offset = "4292";   // Passive AI.    // 5 = off, 8  = on.
 
         // Obsolete Offsets 05Feb25:
         // readonly string playerStateBaseOffset = "248";          // For player effects like recall and anti collision.
@@ -5403,8 +5403,8 @@ namespace CoreKeeperInventoryEditor
                 // Get the offset.
                 string devAddressVanilla = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("272", NumberStyles.Integer)).ToString("X");
                 string devAddressModded = BigInteger.Add(BigInteger.Parse(res.ToString("X").ToString(), NumberStyles.HexNumber), BigInteger.Parse("288", NumberStyles.Integer)).ToString("X");
-                MemLib.WriteMemory(devAddressVanilla, "byte", "1");
-                MemLib.WriteMemory(devAddressModded, "byte", "1");
+                MemLib.WriteMemory(devAddressVanilla, "byte", "0");
+                MemLib.WriteMemory(devAddressModded, "byte", "0");
             }
 
             // Set the custom render.
