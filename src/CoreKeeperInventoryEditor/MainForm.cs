@@ -5218,7 +5218,7 @@ namespace CoreKeeperInventoryEditor
             // Scan the reveal range address first.
 
             // Scan the modded address first.
-            mapRevealIsAlt = false; // Change flag to default.
+            mapRevealIsAlt = true; // Change flag to default.
             AoBScanResultsRevealMapRange = await MemLib.AoBScan("51 01 00 00 ?? ?? ?? ?? 01 00 00 EB ?? ?? ?? ?? 00 00 40 41", true, true);
 
             // Check if the modded AOB address was found.
@@ -5228,7 +5228,7 @@ namespace CoreKeeperInventoryEditor
                 AoBScanResultsRevealMapRange = await MemLib.AoBScan("51 01 00 00 EB C4 BA ?? 01 00 00 EB", true, true);
 
                 // Change the alt flag.
-                mapRevealIsAlt = true;
+                mapRevealIsAlt = false;
             }
 
             // Check for the reveal range addresses.
