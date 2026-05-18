@@ -66,6 +66,7 @@ namespace CoreKeepersWorkshop
             this.Slot1_Panel = new System.Windows.Forms.Panel();
             this.Slot2_Panel = new System.Windows.Forms.Panel();
             this.Slot3_Panel = new System.Windows.Forms.Panel();
+            this.ItemID_SearchTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemID_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VariationNumerical_NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
@@ -95,7 +96,7 @@ namespace CoreKeepersWorkshop
             0,
             0});
             this.ItemID_NumericUpDown.Name = "ItemID_NumericUpDown";
-            this.ItemID_NumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.ItemID_NumericUpDown.Size = new System.Drawing.Size(64, 20);
             this.ItemID_NumericUpDown.TabIndex = 0;
             this.ItemID_NumericUpDown.Value = new decimal(new int[] {
             110,
@@ -216,17 +217,20 @@ namespace CoreKeepersWorkshop
             // ItemID_Label
             // 
             this.ItemID_Label.AutoSize = true;
+            this.ItemID_Label.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ItemID_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItemID_Label.ForeColor = System.Drawing.Color.Snow;
             this.ItemID_Label.Location = new System.Drawing.Point(9, 9);
             this.ItemID_Label.Name = "ItemID_Label";
-            this.ItemID_Label.Size = new System.Drawing.Size(48, 17);
+            this.ItemID_Label.Size = new System.Drawing.Size(62, 17);
             this.ItemID_Label.TabIndex = 8;
-            this.ItemID_Label.Text = "Item ID";
+            this.ItemID_Label.Text = "Item ID [I]";
+            this.ItemID_Label.Click += new System.EventHandler(this.ItemID_Label_Click);
             // 
             // Variation_Label
             // 
             this.Variation_Label.AutoSize = true;
+            this.Variation_Label.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Variation_Label.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Variation_Label.ForeColor = System.Drawing.Color.Snow;
             this.Variation_Label.Location = new System.Drawing.Point(88, 9);
@@ -586,6 +590,18 @@ namespace CoreKeepersWorkshop
             this.Slot3_Panel.Size = new System.Drawing.Size(64, 64);
             this.Slot3_Panel.TabIndex = 22;
             // 
+            // ItemID_SearchTextBox
+            // 
+            this.ItemID_SearchTextBox.Location = new System.Drawing.Point(12, 29);
+            this.ItemID_SearchTextBox.Name = "ItemID_SearchTextBox";
+            this.ItemID_SearchTextBox.Size = new System.Drawing.Size(64, 20);
+            this.ItemID_SearchTextBox.TabIndex = 23;
+            this.ItemID_SearchTextBox.Visible = false;
+            this.ItemID_SearchTextBox.TextChanged += new System.EventHandler(this.ItemID_SearchTextBox_TextChanged);
+            this.ItemID_SearchTextBox.Enter += new System.EventHandler(this.ItemID_SearchTextBox_Enter);
+            this.ItemID_SearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemID_SearchTextBox_KeyDown);
+            this.ItemID_SearchTextBox.Leave += new System.EventHandler(this.ItemID_SearchTextBox_Leave);
+            // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -615,6 +631,7 @@ namespace CoreKeepersWorkshop
             this.Controls.Add(this.Slot1_Panel);
             this.Controls.Add(this.Slot2_Panel);
             this.Controls.Add(this.Slot3_Panel);
+            this.Controls.Add(this.ItemID_SearchTextBox);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -684,5 +701,6 @@ namespace CoreKeepersWorkshop
         private System.Windows.Forms.Panel Slot1_Panel;
         private System.Windows.Forms.Panel Slot2_Panel;
         private System.Windows.Forms.Panel Slot3_Panel;
+        private System.Windows.Forms.TextBox ItemID_SearchTextBox;
     }
 }

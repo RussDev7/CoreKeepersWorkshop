@@ -54,12 +54,66 @@ namespace CoreKeepersWorkshop
                     )
                 : new Dictionary<string, string>();
 
+        // Item search entry used by the Quick Item Editor search box.
+        private sealed class ItemSearchEntry
+        {
+            public string Name { get; set; }
+            public int    Id   { get; set; }
+            public string Path { get; set; }
+        }
+
+        // Prevents TextChanged from firing while we are programmatically changing the search text.
+        private bool _suppressItemIdSearchTextChanged = false;
+
+        // Stores the original collapsed size and location of the item ID search box.
+        private Rectangle _itemIdSearchCollapsedBounds;
+
+        // Tracks whether the original search box bounds have already been saved.
+        private bool _itemIdSearchBoundsCaptured = false;
+
+        // Cached searchable item list built from assets/Inventory/*.png.
+        private static readonly List<ItemSearchEntry> _itemSearchEntries =
+            Directory.Exists(InventoryDir)
+                ? [.. Directory
+                    .EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
+                    .Where(f =>
+                    {
+                        string name = Path.GetFileName(f);
+                        return !name.Equals("desktop.ini", StringComparison.OrdinalIgnoreCase)
+                            && !name.Equals("Thumbs.db", StringComparison.OrdinalIgnoreCase);
+                    })
+                    .Select(TryCreateItemSearchEntry)
+                    .Where(x => x != null)
+                    .GroupBy(x => x.Id)
+                    .Select(g => g.First())
+                    .OrderBy(x => x.Name)]
+                : [];
+
+        // Converts an inventory image filename into a searchable item entry.
+        private static ItemSearchEntry TryCreateItemSearchEntry(string file)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(file);
+            string[] parts = fileName.Split(',');
+
+            if (parts.Length < 2)
+                return null;
+
+            if (!int.TryParse(parts[1], out int id))
+                return null;
+
+            return new ItemSearchEntry
+            {
+                Name = parts[0],
+                Id = id,
+                Path = file
+            };
+        }
         #endregion
 
         #region Closing Varibles
 
         // Form closing saving.
-        int selectedItemType      = 0;
+        int  selectedItemType      = 0;
         int  selectedItemAmount    = 0;
         int  selectedItemVariation = 0;
         int  selectedItemSkillset  = 0;
@@ -188,7 +242,9 @@ namespace CoreKeepersWorkshop
             };
 
             // Set tool texts.
+            toolTip.SetToolTip(ItemID_Label,                     "Click to toggle between Item ID and item name search.");
             toolTip.SetToolTip(ItemID_NumericUpDown,             "Enter the ID you wish to add. Press enter when done.");
+            toolTip.SetToolTip(ItemID_SearchTextBox,             "Search by item name or item ID. Press Enter to select, or Escape to cancel.");
             toolTip.SetToolTip(Quantity_NumericUpDown,           "Enter a custom item quantity. Press enter when done.");
             toolTip.SetToolTip(VariationNumerical_NumericUpDown, "Enter a custom variant ID. Press enter when done.");
             toolTip.SetToolTip(Variation1_NumericUpDown,         "Enter an ingredient one ID. Press enter when done.");
@@ -216,6 +272,13 @@ namespace CoreKeepersWorkshop
             toolTip.SetToolTip(Slot1_PictureBox,                 "Click to open the item explorer.");
             toolTip.SetToolTip(Slot2_PictureBox,                 "Click to open the item explorer.");
             toolTip.SetToolTip(Slot3_PictureBox,                 "Click to open the item explorer.");
+            #endregion
+
+            #region Quick Item Editor Search Setup
+            
+            // Configure item search autocomplete.
+            ConfigureItemIdSearchBox();
+
             #endregion
 
             #region Load Form Settings
@@ -643,6 +706,212 @@ namespace CoreKeepersWorkshop
         #endregion // Keydown Events.
 
         #region Form Controls
+
+        // Configures autocomplete for the Quick Item Editor item search box.
+        private void ConfigureItemIdSearchBox()
+        {
+            // Save the original collapsed textbox size/location.
+            _itemIdSearchCollapsedBounds = ItemID_SearchTextBox.Bounds;
+            _itemIdSearchBoundsCaptured = true;
+
+            AutoCompleteStringCollection source =
+            [
+                .. _itemSearchEntries
+                .Select(x => x.Name)
+                .Distinct(),
+            ];
+
+            ItemID_SearchTextBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ItemID_SearchTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            ItemID_SearchTextBox.AutoCompleteCustomSource = source;
+        }
+
+        // Expands the item ID search box when it receives focus.
+        private void ItemID_SearchTextBox_Enter(object sender, EventArgs e)
+        {
+            ExpandItemIdSearchTextBox();
+        }
+
+        // Collapses the item ID search box when it loses focus.
+        private void ItemID_SearchTextBox_Leave(object sender, EventArgs e)
+        {
+            CollapseItemIdSearchTextBox();
+        }
+
+        // Enlarges the item ID search box so longer item names are easier to type and read.
+        private void ExpandItemIdSearchTextBox()
+        {
+            // Capture the original textbox bounds once before changing its size.
+            if (!_itemIdSearchBoundsCaptured)
+            {
+                _itemIdSearchCollapsedBounds = ItemID_SearchTextBox.Bounds;
+                _itemIdSearchBoundsCaptured = true;
+            }
+
+            // Expand the textbox width while keeping its current position and height.
+            ItemID_SearchTextBox.Width = 224;
+
+            // Keep the expanded textbox visually above nearby controls.
+            ItemID_SearchTextBox.BringToFront();
+        }
+
+        // Restores the item ID search box back to its original collapsed size and location.
+        private void CollapseItemIdSearchTextBox()
+        {
+            // Do nothing if the original textbox bounds were never captured.
+            if (!_itemIdSearchBoundsCaptured)
+                return;
+
+            // Restore the textbox to its original designer-defined bounds.
+            ItemID_SearchTextBox.Bounds = _itemIdSearchCollapsedBounds;
+        }
+
+        // Toggle between the normal item ID numeric box and the item search box.
+        private void ItemID_Label_Click(object sender, EventArgs e)
+        {
+            SetItemIdSearchMode(!ItemID_SearchTextBox.Visible);
+        }
+
+        // Shows or hides the item ID search box.
+        private void SetItemIdSearchMode(bool enabled)
+        {
+            if (enabled)
+            {
+                _suppressItemIdSearchTextChanged = true;
+
+                ItemID_SearchTextBox.Text = GetCurrentItemSearchName();
+                ItemID_SearchTextBox.Visible = true;
+                ItemID_SearchTextBox.BringToFront();
+
+                ItemID_NumericUpDown.Visible = false;
+
+                // Show that Item ID is currently in search mode.
+                ItemID_Label.Text = "Item ID [S]";
+
+                // ItemID_SearchTextBox.Focus();
+                // ItemID_SearchTextBox.SelectAll();
+
+                _suppressItemIdSearchTextChanged = false;
+            }
+            else
+            {
+                CollapseItemIdSearchTextBox();
+
+                ItemID_SearchTextBox.Visible = false;
+                ItemID_NumericUpDown.Visible = true;
+
+                // Show that Item ID is currently in numeric ID mode.
+                ItemID_Label.Text = "Item ID [I]";
+
+                ItemID_NumericUpDown.Focus();
+            }
+        }
+
+        // Gets the current item name from the selected Item ID.
+        private string GetCurrentItemSearchName()
+        {
+            int currentId = (int)ItemID_NumericUpDown.Value;
+
+            ItemSearchEntry entry = _itemSearchEntries
+                .FirstOrDefault(x => x.Id == currentId);
+
+            return entry != null ? entry.Name : string.Empty;
+        }
+
+        // Live-searches while typing.
+        private void ItemID_SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_suppressItemIdSearchTextChanged)
+                return;
+
+            TryApplyItemIdSearch(ItemID_SearchTextBox.Text, false);
+        }
+
+        // Handles Enter and Escape inside the search box.
+        private void ItemID_SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (TryApplyItemIdSearch(ItemID_SearchTextBox.Text, true))
+                {
+                    // Hide the search box and restore the numeric item ID box.
+                    SetItemIdSearchMode(false);
+
+                    // Trigger the same logic as clicking the Done button.
+                    Done_Button.PerformClick();
+                }
+
+                // Prevent the Enter key from making a Windows ding sound.
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                // Cancel search mode without closing the editor.
+                SetItemIdSearchMode(false);
+
+                // Prevent the Escape key from being handled again elsewhere.
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        // Finds the best matching item and applies its ID to ItemID_NumericUpDown.
+        private bool TryApplyItemIdSearch(string searchText, bool showMessage)
+        {
+            ItemSearchEntry match = FindBestItemSearchMatch(searchText);
+
+            if (match == null)
+            {
+                if (showMessage)
+                {
+                    MessageBox.Show(
+                        "No item was found matching: " + searchText,
+                        "Item Search",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+
+                return false;
+            }
+
+            decimal itemId = match.Id;
+
+            if (itemId < ItemID_NumericUpDown.Minimum)
+                itemId = ItemID_NumericUpDown.Minimum;
+
+            if (itemId > ItemID_NumericUpDown.Maximum)
+                itemId = ItemID_NumericUpDown.Maximum;
+
+            ItemID_NumericUpDown.Value = itemId;
+
+            // Refresh preview image and label.
+            ReloadPictureBoxes(useTextboxData: true);
+
+            return true;
+        }
+
+        // Finds the best item match by exact ID, exact name, starts-with name, then contains name.
+        private ItemSearchEntry FindBestItemSearchMatch(string searchText)
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+                return null;
+
+            string query = searchText.Trim();
+
+            if (int.TryParse(query, out int id))
+            {
+                return _itemSearchEntries
+                    .FirstOrDefault(x => x.Id == id);
+            }
+
+            return _itemSearchEntries
+                .FirstOrDefault(x => x.Name.Equals(query, StringComparison.OrdinalIgnoreCase))
+                ?? _itemSearchEntries
+                    .FirstOrDefault(x => x.Name.StartsWith(query, StringComparison.OrdinalIgnoreCase))
+                ?? _itemSearchEntries
+                    .FirstOrDefault(x => x.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
         // Toggle variant settings.
         private void Variation_Label_Click(object sender, EventArgs e)
         {
