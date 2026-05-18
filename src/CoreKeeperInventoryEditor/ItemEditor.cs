@@ -73,21 +73,22 @@ namespace CoreKeepersWorkshop
 
         // Cached searchable item list built from assets/Inventory/*.png.
         private static readonly List<ItemSearchEntry> _itemSearchEntries =
-            Directory.Exists(InventoryDir)
-                ? [.. Directory
-                    .EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
-                    .Where(f =>
-                    {
-                        string name = Path.GetFileName(f);
-                        return !name.Equals("desktop.ini", StringComparison.OrdinalIgnoreCase)
-                            && !name.Equals("Thumbs.db", StringComparison.OrdinalIgnoreCase);
-                    })
-                    .Select(TryCreateItemSearchEntry)
-                    .Where(x => x != null)
-                    .GroupBy(x => x.Id)
-                    .Select(g => g.First())
-                    .OrderBy(x => x.Name)]
-                : [];
+        Directory.Exists(InventoryDir)
+            ? Directory
+                .EnumerateFiles(InventoryDir, "*.png", SearchOption.AllDirectories)
+                .Where(f =>
+                {
+                    string name = Path.GetFileName(f);
+                    return !name.Equals("desktop.ini", StringComparison.OrdinalIgnoreCase)
+                        && !name.Equals("Thumbs.db", StringComparison.OrdinalIgnoreCase);
+                })
+                .Select(TryCreateItemSearchEntry)
+                .Where(x => x != null)
+                .GroupBy(x => x.Id)
+                .Select(g => g.First())
+                .OrderBy(x => x.Name)
+                .ToList()
+            : new List<ItemSearchEntry>();
 
         // Converts an inventory image filename into a searchable item entry.
         private static ItemSearchEntry TryCreateItemSearchEntry(string file)
@@ -95,6 +96,8 @@ namespace CoreKeepersWorkshop
             string fileName = Path.GetFileNameWithoutExtension(file);
             string[] parts = fileName.Split(',');
 
+            // ItemName and ItemID are required.
+            // Variation and Skillset are optional.
             if (parts.Length < 2)
                 return null;
 
@@ -104,7 +107,7 @@ namespace CoreKeepersWorkshop
             return new ItemSearchEntry
             {
                 Name = parts[0],
-                Id = id,
+                Id   = id,
                 Path = file
             };
         }
@@ -714,12 +717,14 @@ namespace CoreKeepersWorkshop
             _itemIdSearchCollapsedBounds = ItemID_SearchTextBox.Bounds;
             _itemIdSearchBoundsCaptured = true;
 
-            AutoCompleteStringCollection source =
-            [
-                .. _itemSearchEntries
-                .Select(x => x.Name)
-                .Distinct(),
-            ];
+            AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+
+            source.AddRange(
+                _itemSearchEntries
+                    .Select(x => x.Name)
+                    .Distinct()
+                    .ToArray()
+            );
 
             ItemID_SearchTextBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             ItemID_SearchTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
