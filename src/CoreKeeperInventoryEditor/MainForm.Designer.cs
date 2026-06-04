@@ -30,9 +30,9 @@ namespace CoreKeeperInventoryEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Main_TabControl = new CoreKeeperInventoryEditor.BorderlessTabControl();
             this.Inventory_TabPage = new System.Windows.Forms.TabPage();
             this.GetInventoryAddresses_Button = new System.Windows.Forms.Button();
@@ -280,8 +280,8 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_Label = new System.Windows.Forms.Label();
             this.ChatCommands_ProgressBar = new System.Windows.Forms.ProgressBar();
             this.Settings_TabPage = new System.Windows.Forms.TabPage();
-            this.DefualtControls_GroupBox = new System.Windows.Forms.GroupBox();
-            this.DefualtControls_Label = new System.Windows.Forms.Label();
+            this.DefaultControls_GroupBox = new System.Windows.Forms.GroupBox();
+            this.DefaultControls_Label = new System.Windows.Forms.Label();
             this.ResetControls_Button = new System.Windows.Forms.Button();
             this.ProcessOptions_GroupBox = new System.Windows.Forms.GroupBox();
             this.AppPriority_Label = new System.Windows.Forms.Label();
@@ -407,7 +407,7 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommandsLog_GroupBox.SuspendLayout();
             this.ChatCommands_GroupBox.SuspendLayout();
             this.Settings_TabPage.SuspendLayout();
-            this.DefualtControls_GroupBox.SuspendLayout();
+            this.DefaultControls_GroupBox.SuspendLayout();
             this.ProcessOptions_GroupBox.SuspendLayout();
             this.UITheme_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CornerRadius_NumericUpDown)).BeginInit();
@@ -3229,21 +3229,21 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.AllowUserToDeleteRows = false;
             this.WorldInformation_DataGridView.AllowUserToResizeColumns = false;
             this.WorldInformation_DataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.WorldInformation_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.WorldInformation_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.WorldInformation_DataGridView.BackgroundColor = System.Drawing.Color.Black;
             this.WorldInformation_DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.WorldInformation_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.WorldInformation_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WorldInformation_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Header_Column,
@@ -3253,9 +3253,9 @@ namespace CoreKeeperInventoryEditor
             this.WorldInformation_DataGridView.ReadOnly = true;
             this.WorldInformation_DataGridView.RowHeadersVisible = false;
             this.WorldInformation_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Snow;
-            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Snow;
+            this.WorldInformation_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.WorldInformation_DataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WorldInformation_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.WorldInformation_DataGridView.ShowCellErrors = false;
@@ -3636,7 +3636,7 @@ namespace CoreKeeperInventoryEditor
             // 
             this.Settings_TabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(104)))), ((int)(((byte)(126)))));
             this.Settings_TabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Settings_TabPage.Controls.Add(this.DefualtControls_GroupBox);
+            this.Settings_TabPage.Controls.Add(this.DefaultControls_GroupBox);
             this.Settings_TabPage.Controls.Add(this.ProcessOptions_GroupBox);
             this.Settings_TabPage.Controls.Add(this.UITheme_GroupBox);
             this.Settings_TabPage.Location = new System.Drawing.Point(4, 28);
@@ -3645,28 +3645,28 @@ namespace CoreKeeperInventoryEditor
             this.Settings_TabPage.TabIndex = 5;
             this.Settings_TabPage.Text = "Settings";
             // 
-            // DefualtControls_GroupBox
+            // DefaultControls_GroupBox
             // 
-            this.DefualtControls_GroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.DefualtControls_GroupBox.Controls.Add(this.DefualtControls_Label);
-            this.DefualtControls_GroupBox.Controls.Add(this.ResetControls_Button);
-            this.DefualtControls_GroupBox.ForeColor = System.Drawing.Color.Lime;
-            this.DefualtControls_GroupBox.Location = new System.Drawing.Point(10, 226);
-            this.DefualtControls_GroupBox.Name = "DefualtControls_GroupBox";
-            this.DefualtControls_GroupBox.Size = new System.Drawing.Size(105, 56);
-            this.DefualtControls_GroupBox.TabIndex = 0;
-            this.DefualtControls_GroupBox.TabStop = false;
+            this.DefaultControls_GroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.DefaultControls_GroupBox.Controls.Add(this.DefaultControls_Label);
+            this.DefaultControls_GroupBox.Controls.Add(this.ResetControls_Button);
+            this.DefaultControls_GroupBox.ForeColor = System.Drawing.Color.Lime;
+            this.DefaultControls_GroupBox.Location = new System.Drawing.Point(10, 226);
+            this.DefaultControls_GroupBox.Name = "DefaultControls_GroupBox";
+            this.DefaultControls_GroupBox.Size = new System.Drawing.Size(105, 56);
+            this.DefaultControls_GroupBox.TabIndex = 0;
+            this.DefaultControls_GroupBox.TabStop = false;
             // 
-            // DefualtControls_Label
+            // DefaultControls_Label
             // 
-            this.DefualtControls_Label.AutoSize = true;
-            this.DefualtControls_Label.BackColor = System.Drawing.Color.Transparent;
-            this.DefualtControls_Label.ForeColor = System.Drawing.Color.Snow;
-            this.DefualtControls_Label.Location = new System.Drawing.Point(6, 11);
-            this.DefualtControls_Label.Name = "DefualtControls_Label";
-            this.DefualtControls_Label.Size = new System.Drawing.Size(85, 13);
-            this.DefualtControls_Label.TabIndex = 0;
-            this.DefualtControls_Label.Text = "Defualt Controls:";
+            this.DefaultControls_Label.AutoSize = true;
+            this.DefaultControls_Label.BackColor = System.Drawing.Color.Transparent;
+            this.DefaultControls_Label.ForeColor = System.Drawing.Color.Snow;
+            this.DefaultControls_Label.Location = new System.Drawing.Point(6, 11);
+            this.DefaultControls_Label.Name = "DefaultControls_Label";
+            this.DefaultControls_Label.Size = new System.Drawing.Size(85, 13);
+            this.DefaultControls_Label.TabIndex = 0;
+            this.DefaultControls_Label.Text = "Default Controls:";
             // 
             // ResetControls_Button
             // 
@@ -4124,8 +4124,8 @@ namespace CoreKeeperInventoryEditor
             this.ChatCommands_GroupBox.ResumeLayout(false);
             this.ChatCommands_GroupBox.PerformLayout();
             this.Settings_TabPage.ResumeLayout(false);
-            this.DefualtControls_GroupBox.ResumeLayout(false);
-            this.DefualtControls_GroupBox.PerformLayout();
+            this.DefaultControls_GroupBox.ResumeLayout(false);
+            this.DefaultControls_GroupBox.PerformLayout();
             this.ProcessOptions_GroupBox.ResumeLayout(false);
             this.ProcessOptions_GroupBox.PerformLayout();
             this.UITheme_GroupBox.ResumeLayout(false);
@@ -4401,7 +4401,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.Label CornerRadius_Label;
         private Siticone.UI.WinForms.SiticoneMetroTrackBar FormOpacity_TrackBar;
         private System.Windows.Forms.Label FormOpacity_Label;
-        private System.Windows.Forms.Label DefualtControls_Label;
+        private System.Windows.Forms.Label DefaultControls_Label;
         private System.Windows.Forms.CheckBox AlwaysOnTop_CheckBox;
         private System.Windows.Forms.Button ResetControls_Button;
         private System.Windows.Forms.Label AppPriority_Label;
@@ -4409,7 +4409,7 @@ namespace CoreKeeperInventoryEditor
         private System.Windows.Forms.GroupBox UITheme_GroupBox;
         private System.Windows.Forms.GroupBox ProcessOptions_GroupBox;
         private System.Windows.Forms.Label UISettings_Label;
-        private System.Windows.Forms.GroupBox DefualtControls_GroupBox;
+        private System.Windows.Forms.GroupBox DefaultControls_GroupBox;
         private System.Windows.Forms.Button GetInventoryAddresses_Button;
     }
 }

@@ -9685,8 +9685,8 @@ namespace CoreKeeperInventoryEditor
                         _counters[i]                     = 0;                                                   // Reset in‑memory click counter.
                         _contentPages[i].BackgroundImage = null;
                     }
-    
-                    // Set the first tab back to the defualt image. 
+
+                    // Set the first tab back to the default image. 
                     if (_skinFiles[0].Length > 1)
                         SetSkin(0, 0);                                                                          // Loads skinFiles[0][0], advances counter.
     
